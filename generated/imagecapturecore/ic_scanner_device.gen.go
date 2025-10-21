@@ -7,8 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/mlcompute"
 )
 
 // The class instance for the [ICScannerDevice] class.
@@ -30,8 +31,8 @@ type _ICScannerDeviceClass struct {
 
 // An interface definition for the [ICScannerDevice] class.
 type IICScannerDevice interface {
-	objectivec.IObject
-	RequestOpenSessionWithCredentialsPassword(username string, password string)
+	IICDevice
+	RequestOpenSessionWithCredentialsPassword(username appkit.string, password appkit.string)
 	RequestOverviewScan()
 }
 
@@ -41,14 +42,16 @@ type IICScannerDevice interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice
 type ICScannerDevice struct {
-	objectivec.Object
+	mlcompute.ICDevice
 }
 
 // ICScannerDeviceFrom constructs a [ICScannerDevice] from an unsafe.Pointer.
 //
 // An object that represents a scanner.
 func ICScannerDeviceFrom(ptr unsafe.Pointer) ICScannerDevice {
-	return ICScannerDevice{objectivec.Object{objc.ID(ptr)}}
+	return ICScannerDevice{
+		ICDevice: mlcompute.ICDeviceFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -86,8 +89,8 @@ func NewICScannerDevice() ICScannerDevice {
 // Opens a session on the protected device with the authorized username and passcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/requestOpenSession(withCredentials:password:)
-func (i_ ICScannerDevice) RequestOpenSessionWithCredentialsPassword(username string, password string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("requestOpenSessionWithCredentials:password:"), objc.String(username), objc.String(password))
+func (i_ ICScannerDevice) RequestOpenSessionWithCredentialsPassword(username appkit.string, password appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("requestOpenSessionWithCredentials:password:"), username, password)
 }
 
 // Starts an overview scan on the selected functional unit.
@@ -100,8 +103,8 @@ func (i_ ICScannerDevice) RequestOverviewScan() {
 // The document’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/documentName
-func (i_ ICScannerDevice) DocumentName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("documentName"))
+func (i_ ICScannerDevice) DocumentName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("documentName"))
 	return rv
 }
 
@@ -111,8 +114,8 @@ func (i_ ICScannerDevice) DocumentName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICScannerDevice/documentName
-func (i_ ICScannerDevice) SetDocumentName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), objc.String(value))
+func (i_ ICScannerDevice) SetDocumentName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), value)
 }
 
 // The transfer mode for the scanned document.
@@ -147,15 +150,15 @@ func (i_ ICScannerDevice) AvailableFunctionalUnitTypes() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/availablefunctionalunittypes
-func (i_ ICScannerDevice) SetAvailableFunctionalUnitTypes(value foundation.Number) {
+func (i_ ICScannerDevice) SetAvailableFunctionalUnitTypes(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAvailableFunctionalUnitTypes:"), value)
 }
 
 // A default username on protected scanners.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/defaultusername
-func (i_ ICScannerDevice) DefaultUsername() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("defaultUsername"))
+func (i_ ICScannerDevice) DefaultUsername() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("defaultUsername"))
 	return rv
 }
 
@@ -165,15 +168,15 @@ func (i_ ICScannerDevice) DefaultUsername() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/defaultusername
-func (i_ ICScannerDevice) SetDefaultUsername(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultUsername:"), objc.String(value))
+func (i_ ICScannerDevice) SetDefaultUsername(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultUsername:"), value)
 }
 
 // The document’s uniform type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentuti
-func (i_ ICScannerDevice) DocumentUTI() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("documentUTI"))
+func (i_ ICScannerDevice) DocumentUTI() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("documentUTI"))
 	return rv
 }
 
@@ -183,8 +186,8 @@ func (i_ ICScannerDevice) DocumentUTI() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/documentuti
-func (i_ ICScannerDevice) SetDocumentUTI(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentUTI:"), objc.String(value))
+func (i_ ICScannerDevice) SetDocumentUTI(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentUTI:"), value)
 }
 
 // The downloads directory.
@@ -201,7 +204,7 @@ func (i_ ICScannerDevice) DownloadsDirectory() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icscannerdevice/downloadsdirectory
-func (i_ ICScannerDevice) SetDownloadsDirectory(value foundation.URL) {
+func (i_ ICScannerDevice) SetDownloadsDirectory(value foundation.IURL) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
 }
 

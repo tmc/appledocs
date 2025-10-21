@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -86,9 +87,9 @@ func NewFileProviderDomain() FileProviderDomain {
 // Creates a new file provider domain with the specified URL and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(displayName:userInfo:volumeURL:)
-func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, userInfo objc.ID, volumeURL foundation.URL) FileProviderDomain {
+func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName appkit.string, userInfo objectivec.IObject, volumeURL foundation.IURL) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), objc.String(displayName), userInfo, volumeURL)
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), displayName, userInfo, volumeURL)
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +99,9 @@ func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName string, u
 // Creates a new file provider domain with the specified identifier and display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
-func NewFileProviderDomainWithIdentifierDisplayName(identifier unsafe.Pointer, displayName string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayName(identifier IFileProviderDomainIdentifier, displayName appkit.string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, objc.String(displayName))
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, displayName)
 	rv.Autorelease()
 	return rv
 }
@@ -110,9 +111,9 @@ func NewFileProviderDomainWithIdentifierDisplayName(identifier unsafe.Pointer, d
 // Returns a newly instantiated domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:pathRelativeToDocumentStorage:)
-func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier unsafe.Pointer, displayName string, pathRelativeToDocumentStorage string) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier IFileProviderDomainIdentifier, displayName appkit.string, pathRelativeToDocumentStorage appkit.string) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
-	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, objc.String(displayName), objc.String(pathRelativeToDocumentStorage))
+	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, displayName, pathRelativeToDocumentStorage)
 	rv.Autorelease()
 	return rv
 }
@@ -121,24 +122,24 @@ func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage
 // A unique identifier for the backing store used by the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/backingStoreIdentity
-func (f_ FileProviderDomain) BackingStoreIdentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("backingStoreIdentity"))
+func (f_ FileProviderDomain) BackingStoreIdentity() foundation.NSData {
+	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("backingStoreIdentity"))
 	return rv
 }
 
 // The name of the domain displayed in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/displayName
-func (f_ FileProviderDomain) DisplayName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("displayName"))
+func (f_ FileProviderDomain) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // The domain’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/identifier
-func (f_ FileProviderDomain) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("identifier"))
+func (f_ FileProviderDomain) Identifier() FileProviderDomainIdentifier {
+	rv := objc.Send[FileProviderDomainIdentifier](f_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -178,24 +179,24 @@ func (f_ FileProviderDomain) Replicated() bool {
 // The path of the domain’s subdirectory relative to the file provider’s shared container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/pathRelativeToDocumentStorage
-func (f_ FileProviderDomain) PathRelativeToDocumentStorage() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
+func (f_ FileProviderDomain) PathRelativeToDocumentStorage() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("pathRelativeToDocumentStorage"))
 	return rv
 }
 
 // A list of known folders that the domain currently replicates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/replicatedKnownFolders
-func (f_ FileProviderDomain) ReplicatedKnownFolders() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("replicatedKnownFolders"))
+func (f_ FileProviderDomain) ReplicatedKnownFolders() FileProviderKnownFolders {
+	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("replicatedKnownFolders"))
 	return rv
 }
 
 // A list of known folders that the domain can replicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
-func (f_ FileProviderDomain) SupportedKnownFolders() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("supportedKnownFolders"))
+func (f_ FileProviderDomain) SupportedKnownFolders() FileProviderKnownFolders {
+	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("supportedKnownFolders"))
 	return rv
 }
 
@@ -205,7 +206,7 @@ func (f_ FileProviderDomain) SupportedKnownFolders() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
-func (f_ FileProviderDomain) SetSupportedKnownFolders(value unsafe.Pointer) {
+func (f_ FileProviderDomain) SetSupportedKnownFolders(value IFileProviderKnownFolders) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedKnownFolders:"), value)
 }
 
@@ -245,8 +246,8 @@ func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
 // A mode that gives the File Provider extension more control over the system’s behavior during testing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
-func (f_ FileProviderDomain) TestingModes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("testingModes"))
+func (f_ FileProviderDomain) TestingModes() FileProviderDomainTestingModes {
+	rv := objc.Send[FileProviderDomainTestingModes](f_.ID, objc.Sel("testingModes"))
 	return rv
 }
 
@@ -256,7 +257,7 @@ func (f_ FileProviderDomain) TestingModes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
-func (f_ FileProviderDomain) SetTestingModes(value unsafe.Pointer) {
+func (f_ FileProviderDomain) SetTestingModes(value IFileProviderDomainTestingModes) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTestingModes:"), value)
 }
 
@@ -270,8 +271,8 @@ func (f_ FileProviderDomain) UserEnabled() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/userInfo
-func (f_ FileProviderDomain) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("userInfo"))
+func (f_ FileProviderDomain) UserInfo() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -279,14 +280,14 @@ func (f_ FileProviderDomain) UserInfo() unsafe.Pointer {
 // SetUserInfo sets the value of the userInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/userInfo
-func (f_ FileProviderDomain) SetUserInfo(value unsafe.Pointer) {
+func (f_ FileProviderDomain) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/volumeUUID
-func (f_ FileProviderDomain) VolumeUUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("volumeUUID"))
+func (f_ FileProviderDomain) VolumeUUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](f_.ID, objc.Sel("volumeUUID"))
 	return rv
 }
 
@@ -344,8 +345,8 @@ func (f_ FileProviderDomain) SetIsReplicated(value bool) {
 // The domain managed by this file provider object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain
-func (f_ FileProviderDomain) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domain"))
+func (f_ FileProviderDomain) Domain() NSFileProviderDomain {
+	rv := objc.Send[NSFileProviderDomain](f_.ID, objc.Sel("domain"))
 	return rv
 }
 
@@ -355,7 +356,7 @@ func (f_ FileProviderDomain) Domain() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain
-func (f_ FileProviderDomain) SetDomain(value unsafe.Pointer) {
+func (f_ FileProviderDomain) SetDomain(value IFileProviderDomain) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDomain:"), value)
 }
 

@@ -78,7 +78,7 @@ func NewAXMathExpressionMultiscript() AXMathExpressionMultiscript {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionMultiscript/init(baseExpression:prescriptExpressions:postscriptExpressions:)
-func NewAXMathExpressionMultiscriptWithBaseExpressionPrescriptExpressionsPostscriptExpressions(baseExpression unsafe.Pointer, prescriptExpressions unsafe.Pointer, postscriptExpressions unsafe.Pointer) AXMathExpressionMultiscript {
+func NewAXMathExpressionMultiscriptWithBaseExpressionPrescriptExpressionsPostscriptExpressions(baseExpression IAXMathExpression, prescriptExpressions []AXMathExpressionSubSuperscript, postscriptExpressions []AXMathExpressionSubSuperscript) AXMathExpressionMultiscript {
 	instance := getAXMathExpressionMultiscriptClass().Alloc()
 	rv := objc.Send[AXMathExpressionMultiscript](instance.ID, objc.Sel("initWithBaseExpression:prescriptExpressions:postscriptExpressions:"), baseExpression, prescriptExpressions, postscriptExpressions)
 	rv.Autorelease()
@@ -88,8 +88,8 @@ func NewAXMathExpressionMultiscriptWithBaseExpressionPrescriptExpressionsPostscr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionMultiscript/baseExpression
-func (a_ AXMathExpressionMultiscript) BaseExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("baseExpression"))
+func (a_ AXMathExpressionMultiscript) BaseExpression() AXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("baseExpression"))
 	return rv
 }
 

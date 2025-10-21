@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXUnitSignalBars] class.
@@ -29,7 +29,7 @@ type _MXUnitSignalBarsClass struct {
 
 // An interface definition for the [MXUnitSignalBars] class.
 type IMXUnitSignalBars interface {
-	objectivec.IObject
+	foundation.IDimension
 }
 
 // A unit of measure for the number of bars of cellular network connectivity.
@@ -38,14 +38,16 @@ type IMXUnitSignalBars interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars
 type MXUnitSignalBars struct {
-	objectivec.Object
+	foundation.Dimension
 }
 
 // MXUnitSignalBarsFrom constructs a [MXUnitSignalBars] from an unsafe.Pointer.
 //
 // A unit of measure for the number of bars of cellular network connectivity.
 func MXUnitSignalBarsFrom(ptr unsafe.Pointer) MXUnitSignalBars {
-	return MXUnitSignalBars{objectivec.Object{objc.ID(ptr)}}
+	return MXUnitSignalBars{
+		Dimension: foundation.DimensionFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -83,23 +85,23 @@ func NewMXUnitSignalBars() MXUnitSignalBars {
 // The number of bars of connectivity to the cellular network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars/bars
-func (mc _MXUnitSignalBarsClass) Bars() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("bars"))
+func (mc _MXUnitSignalBarsClass) Bars() MXUnitSignalBars {
+	rv := objc.Send[MXUnitSignalBars](objc.ID(mc.class), objc.Sel("bars"))
 	return rv
 }
 // The number of bars of connectivity to the cellular network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitSignalBars/bars
-func (m_ MXUnitSignalBars) Bars() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bars"))
+func (m_ MXUnitSignalBars) Bars() MXUnitSignalBars {
+	rv := objc.Send[MXUnitSignalBars](m_.ID, objc.Sel("bars"))
 	return rv
 }
 
 // An object representing the distribution of the different levels of connectivity to the cellular network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric/histogrammedcellularconditiontime
-func (m_ MXUnitSignalBars) HistogrammedCellularConditionTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedCellularConditionTime"))
+func (m_ MXUnitSignalBars) HistogrammedCellularConditionTime() MXUnitSignalBars {
+	rv := objc.Send[MXUnitSignalBars](m_.ID, objc.Sel("histogrammedCellularConditionTime"))
 	return rv
 }
 
@@ -109,7 +111,7 @@ func (m_ MXUnitSignalBars) HistogrammedCellularConditionTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxcellularconditionmetric/histogrammedcellularconditiontime
-func (m_ MXUnitSignalBars) SetHistogrammedCellularConditionTime(value unsafe.Pointer) {
+func (m_ MXUnitSignalBars) SetHistogrammedCellularConditionTime(value IMXUnitSignalBars) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHistogrammedCellularConditionTime:"), value)
 }
 

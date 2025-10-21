@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [InterAppAudioSwitcherView] class.
@@ -31,7 +32,7 @@ type _InterAppAudioSwitcherViewClass struct {
 type IInterAppAudioSwitcherView interface {
 	appkit.IView
 	ContentWidth() float64
-	SetOutputAudioUnit(au unsafe.Pointer)
+	SetOutputAudioUnit(au audiotoolbox.IAudioUnit)
 }
 
 // A view that provides an audio switcher user interface.
@@ -91,7 +92,7 @@ func (i_ InterAppAudioSwitcherView) ContentWidth() float64 {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioSwitcherView/setOutputAudioUnit(_:)
-func (i_ InterAppAudioSwitcherView) SetOutputAudioUnit(au unsafe.Pointer) {
+func (i_ InterAppAudioSwitcherView) SetOutputAudioUnit(au audiotoolbox.IAudioUnit) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOutputAudioUnit:"), au)
 }
 

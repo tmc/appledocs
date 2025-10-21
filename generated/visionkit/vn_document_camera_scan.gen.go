@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewDocumentCameraScan() DocumentCameraScan {
 // The title of the scanned document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan/title
-func (d_ DocumentCameraScan) Title() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("title"))
+func (d_ DocumentCameraScan) Title() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("title"))
 	return rv
 }
 

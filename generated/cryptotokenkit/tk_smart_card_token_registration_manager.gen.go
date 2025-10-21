@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _TKSmartCardTokenRegistrationManagerClass struct {
 // An interface definition for the [TKSmartCardTokenRegistrationManager] class.
 type ITKSmartCardTokenRegistrationManager interface {
 	objectivec.IObject
-	RegisterSmartCardWithTokenIDPromptMessageError(tokenID string, promptMessage string, error_ unsafe.Pointer) bool
-	UnregisterSmartCardWithTokenIDError(tokenID string, error_ unsafe.Pointer) bool
+	RegisterSmartCardWithTokenIDPromptMessageError(tokenID appkit.string, promptMessage appkit.string, error_ unsafe.Pointer) bool
+	UnregisterSmartCardWithTokenIDError(tokenID appkit.string, error_ unsafe.Pointer) bool
 }
 
 // Provides a centralized management system for registering and unregistering smartcards using their token IDs.
@@ -85,31 +86,31 @@ func NewTKSmartCardTokenRegistrationManager() TKSmartCardTokenRegistrationManage
 // Default instance of registration manager
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/default
-func (tc _TKSmartCardTokenRegistrationManagerClass) DefaultManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("defaultManager"))
+func (tc _TKSmartCardTokenRegistrationManagerClass) DefaultManager() TKSmartCardTokenRegistrationManager {
+	rv := objc.Send[TKSmartCardTokenRegistrationManager](objc.ID(tc.class), objc.Sel("defaultManager"))
 	return rv
 }
 // Registers a smartcard with a specific token ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/registerSmartCard(tokenID:promptMessage:)
-func (t_ TKSmartCardTokenRegistrationManager) RegisterSmartCardWithTokenIDPromptMessageError(tokenID string, promptMessage string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("registerSmartCardWithTokenID:promptMessage:error:"), objc.String(tokenID), objc.String(promptMessage), error_)
+func (t_ TKSmartCardTokenRegistrationManager) RegisterSmartCardWithTokenIDPromptMessageError(tokenID appkit.string, promptMessage appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("registerSmartCardWithTokenID:promptMessage:error:"), tokenID, promptMessage, error_)
 	return rv
 }
 
 // Unregisters a smartcard for the provided token ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/unregisterSmartCard(tokenID:)
-func (t_ TKSmartCardTokenRegistrationManager) UnregisterSmartCardWithTokenIDError(tokenID string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("unregisterSmartCardWithTokenID:error:"), objc.String(tokenID), error_)
+func (t_ TKSmartCardTokenRegistrationManager) UnregisterSmartCardWithTokenIDError(tokenID appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("unregisterSmartCardWithTokenID:error:"), tokenID, error_)
 	return rv
 }
 
 // Default instance of registration manager
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/default
-func (t_ TKSmartCardTokenRegistrationManager) DefaultManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultManager"))
+func (t_ TKSmartCardTokenRegistrationManager) DefaultManager() TKSmartCardTokenRegistrationManager {
+	rv := objc.Send[TKSmartCardTokenRegistrationManager](t_.ID, objc.Sel("defaultManager"))
 	return rv
 }
 

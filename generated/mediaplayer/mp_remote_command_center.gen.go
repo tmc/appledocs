@@ -83,168 +83,168 @@ func NewRemoteCommandCenter() RemoteCommandCenter {
 // Returns the shared object you use to access the system’s remote command objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/shared()
-func (rc _RemoteCommandCenterClass) SharedCommandCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("sharedCommandCenter"))
+func (rc _RemoteCommandCenterClass) SharedCommandCenter() RemoteCommandCenter {
+	rv := objc.Send[RemoteCommandCenter](objc.ID(rc.class), objc.Sel("sharedCommandCenter"))
 	return rv
 }
 
 // The command object for indicating that a user wants to remember a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/bookmarkCommand
-func (r_ RemoteCommandCenter) BookmarkCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("bookmarkCommand"))
+func (r_ RemoteCommandCenter) BookmarkCommand() MPFeedbackCommand {
+	rv := objc.Send[MPFeedbackCommand](r_.ID, objc.Sel("bookmarkCommand"))
 	return rv
 }
 
 // The command object for changing the playback position in a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/changePlaybackPositionCommand
-func (r_ RemoteCommandCenter) ChangePlaybackPositionCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("changePlaybackPositionCommand"))
+func (r_ RemoteCommandCenter) ChangePlaybackPositionCommand() MPChangePlaybackPositionCommand {
+	rv := objc.Send[MPChangePlaybackPositionCommand](r_.ID, objc.Sel("changePlaybackPositionCommand"))
 	return rv
 }
 
 // The command object for changing the playback rate of the current media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/changePlaybackRateCommand
-func (r_ RemoteCommandCenter) ChangePlaybackRateCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("changePlaybackRateCommand"))
+func (r_ RemoteCommandCenter) ChangePlaybackRateCommand() MPChangePlaybackRateCommand {
+	rv := objc.Send[MPChangePlaybackRateCommand](r_.ID, objc.Sel("changePlaybackRateCommand"))
 	return rv
 }
 
 // The command object for changing the repeat mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/changeRepeatModeCommand
-func (r_ RemoteCommandCenter) ChangeRepeatModeCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("changeRepeatModeCommand"))
+func (r_ RemoteCommandCenter) ChangeRepeatModeCommand() MPChangeRepeatModeCommand {
+	rv := objc.Send[MPChangeRepeatModeCommand](r_.ID, objc.Sel("changeRepeatModeCommand"))
 	return rv
 }
 
 // The command object for changing the shuffle mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/changeShuffleModeCommand
-func (r_ RemoteCommandCenter) ChangeShuffleModeCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("changeShuffleModeCommand"))
+func (r_ RemoteCommandCenter) ChangeShuffleModeCommand() MPChangeShuffleModeCommand {
+	rv := objc.Send[MPChangeShuffleModeCommand](r_.ID, objc.Sel("changeShuffleModeCommand"))
 	return rv
 }
 
 // The command object for disabling a language option
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/disableLanguageOptionCommand
-func (r_ RemoteCommandCenter) DisableLanguageOptionCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("disableLanguageOptionCommand"))
+func (r_ RemoteCommandCenter) DisableLanguageOptionCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("disableLanguageOptionCommand"))
 	return rv
 }
 
 // The command object for indicating that a user dislikes what is currently playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/dislikeCommand
-func (r_ RemoteCommandCenter) DislikeCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("dislikeCommand"))
+func (r_ RemoteCommandCenter) DislikeCommand() MPFeedbackCommand {
+	rv := objc.Send[MPFeedbackCommand](r_.ID, objc.Sel("dislikeCommand"))
 	return rv
 }
 
 // The command object for enabling a language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/enableLanguageOptionCommand
-func (r_ RemoteCommandCenter) EnableLanguageOptionCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("enableLanguageOptionCommand"))
+func (r_ RemoteCommandCenter) EnableLanguageOptionCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("enableLanguageOptionCommand"))
 	return rv
 }
 
 // The command object for indicating that a user likes what is currently playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/likeCommand
-func (r_ RemoteCommandCenter) LikeCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("likeCommand"))
+func (r_ RemoteCommandCenter) LikeCommand() MPFeedbackCommand {
+	rv := objc.Send[MPFeedbackCommand](r_.ID, objc.Sel("likeCommand"))
 	return rv
 }
 
 // The command object for selecting the next track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/nextTrackCommand
-func (r_ RemoteCommandCenter) NextTrackCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("nextTrackCommand"))
+func (r_ RemoteCommandCenter) NextTrackCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("nextTrackCommand"))
 	return rv
 }
 
 // The command object for pausing playback of the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/pauseCommand
-func (r_ RemoteCommandCenter) PauseCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("pauseCommand"))
+func (r_ RemoteCommandCenter) PauseCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("pauseCommand"))
 	return rv
 }
 
 // The command object for starting playback of the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/playCommand
-func (r_ RemoteCommandCenter) PlayCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("playCommand"))
+func (r_ RemoteCommandCenter) PlayCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("playCommand"))
 	return rv
 }
 
 // The command object for selecting the previous track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/previousTrackCommand
-func (r_ RemoteCommandCenter) PreviousTrackCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("previousTrackCommand"))
+func (r_ RemoteCommandCenter) PreviousTrackCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("previousTrackCommand"))
 	return rv
 }
 
 // The command object for rating a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/ratingCommand
-func (r_ RemoteCommandCenter) RatingCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("ratingCommand"))
+func (r_ RemoteCommandCenter) RatingCommand() MPRatingCommand {
+	rv := objc.Send[MPRatingCommand](r_.ID, objc.Sel("ratingCommand"))
 	return rv
 }
 
 // The command object for seeking backward through a single media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/seekBackwardCommand
-func (r_ RemoteCommandCenter) SeekBackwardCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("seekBackwardCommand"))
+func (r_ RemoteCommandCenter) SeekBackwardCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("seekBackwardCommand"))
 	return rv
 }
 
 // The command object for seeking forward through a single media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/seekForwardCommand
-func (r_ RemoteCommandCenter) SeekForwardCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("seekForwardCommand"))
+func (r_ RemoteCommandCenter) SeekForwardCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("seekForwardCommand"))
 	return rv
 }
 
 // The command object for playing a previous point in a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/skipBackwardCommand
-func (r_ RemoteCommandCenter) SkipBackwardCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("skipBackwardCommand"))
+func (r_ RemoteCommandCenter) SkipBackwardCommand() MPSkipIntervalCommand {
+	rv := objc.Send[MPSkipIntervalCommand](r_.ID, objc.Sel("skipBackwardCommand"))
 	return rv
 }
 
 // The command object for playing a future point in a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/skipForwardCommand
-func (r_ RemoteCommandCenter) SkipForwardCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("skipForwardCommand"))
+func (r_ RemoteCommandCenter) SkipForwardCommand() MPSkipIntervalCommand {
+	rv := objc.Send[MPSkipIntervalCommand](r_.ID, objc.Sel("skipForwardCommand"))
 	return rv
 }
 
 // The command object for stopping playback of the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/stopCommand
-func (r_ RemoteCommandCenter) StopCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("stopCommand"))
+func (r_ RemoteCommandCenter) StopCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("stopCommand"))
 	return rv
 }
 
 // The command object for toggling between playing and pausing the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandCenter/togglePlayPauseCommand
-func (r_ RemoteCommandCenter) TogglePlayPauseCommand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("togglePlayPauseCommand"))
+func (r_ RemoteCommandCenter) TogglePlayPauseCommand() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("togglePlayPauseCommand"))
 	return rv
 }
 

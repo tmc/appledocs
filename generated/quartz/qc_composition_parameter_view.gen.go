@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [QCCompositionParameterView] class.
@@ -30,7 +31,7 @@ type _QCCompositionParameterViewClass struct {
 // An interface definition for the [QCCompositionParameterView] class.
 type IQCCompositionParameterView interface {
 	appkit.IView
-	SetDelegate(delegate objc.ID)
+	SetDelegate(delegate objectivec.IObject)
 }
 
 // A class that allows users to edit the input parameters of a composition in real time. The composition can be rendering in any of the following objects: , , or .
@@ -84,7 +85,7 @@ func NewQCCompositionParameterView() QCCompositionParameterView {
 // Sets the composition parameter view delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionParameterView/setDelegate(_:)
-func (q_ QCCompositionParameterView) SetDelegate(delegate objc.ID) {
+func (q_ QCCompositionParameterView) SetDelegate(delegate objectivec.IObject) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setDelegate:"), delegate)
 }
 

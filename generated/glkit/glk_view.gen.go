@@ -159,8 +159,8 @@ func (g_ GLKView) SetDelegate(value objc.ID) {
 // The format of the color renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-func (g_ GLKView) DrawableColorFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("drawableColorFormat"))
+func (g_ GLKView) DrawableColorFormat() GLKViewDrawableColorFormat {
+	rv := objc.Send[GLKViewDrawableColorFormat](g_.ID, objc.Sel("drawableColorFormat"))
 	return rv
 }
 
@@ -170,15 +170,15 @@ func (g_ GLKView) DrawableColorFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableColorFormat
-func (g_ GLKView) SetDrawableColorFormat(value unsafe.Pointer) {
+func (g_ GLKView) SetDrawableColorFormat(value GLKViewDrawableColorFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableColorFormat:"), value)
 }
 
 // The format of the depth renderbuffer
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-func (g_ GLKView) DrawableDepthFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("drawableDepthFormat"))
+func (g_ GLKView) DrawableDepthFormat() GLKViewDrawableDepthFormat {
+	rv := objc.Send[GLKViewDrawableDepthFormat](g_.ID, objc.Sel("drawableDepthFormat"))
 	return rv
 }
 
@@ -188,7 +188,7 @@ func (g_ GLKView) DrawableDepthFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableDepthFormat
-func (g_ GLKView) SetDrawableDepthFormat(value unsafe.Pointer) {
+func (g_ GLKView) SetDrawableDepthFormat(value GLKViewDrawableDepthFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableDepthFormat:"), value)
 }
 
@@ -203,8 +203,8 @@ func (g_ GLKView) DrawableHeight() int {
 // The format of the multisampling buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-func (g_ GLKView) DrawableMultisample() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("drawableMultisample"))
+func (g_ GLKView) DrawableMultisample() GLKViewDrawableMultisample {
+	rv := objc.Send[GLKViewDrawableMultisample](g_.ID, objc.Sel("drawableMultisample"))
 	return rv
 }
 
@@ -214,15 +214,15 @@ func (g_ GLKView) DrawableMultisample() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableMultisample
-func (g_ GLKView) SetDrawableMultisample(value unsafe.Pointer) {
+func (g_ GLKView) SetDrawableMultisample(value IGLKViewDrawableMultisample) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableMultisample:"), value)
 }
 
 // The format of the stencil renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-func (g_ GLKView) DrawableStencilFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("drawableStencilFormat"))
+func (g_ GLKView) DrawableStencilFormat() GLKViewDrawableStencilFormat {
+	rv := objc.Send[GLKViewDrawableStencilFormat](g_.ID, objc.Sel("drawableStencilFormat"))
 	return rv
 }
 
@@ -232,7 +232,7 @@ func (g_ GLKView) DrawableStencilFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/drawableStencilFormat
-func (g_ GLKView) SetDrawableStencilFormat(value unsafe.Pointer) {
+func (g_ GLKView) SetDrawableStencilFormat(value GLKViewDrawableStencilFormat) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDrawableStencilFormat:"), value)
 }
 
@@ -265,8 +265,8 @@ func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
 // Draws the contents of the view and returns them as a new image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/snapshot
-func (g_ GLKView) Snapshot() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("snapshot"))
+func (g_ GLKView) Snapshot() appkit.Image {
+	rv := objc.Send[appkit.Image](g_.ID, objc.Sel("snapshot"))
 	return rv
 }
 

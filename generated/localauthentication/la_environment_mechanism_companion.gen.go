@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EnvironmentMechanismCompanion] class.
@@ -78,16 +79,16 @@ func NewEnvironmentMechanismCompanion() EnvironmentMechanismCompanion {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion/stateHash
-func (e_ EnvironmentMechanismCompanion) StateHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("stateHash"))
+func (e_ EnvironmentMechanismCompanion) StateHash() foundation.NSData {
+	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("stateHash"))
 	return rv
 }
 
 // Type of the companion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismCompanion/type
-func (e_ EnvironmentMechanismCompanion) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("type"))
+func (e_ EnvironmentMechanismCompanion) Type() CompanionType {
+	rv := objc.Send[CompanionType](e_.ID, objc.Sel("type"))
 	return rv
 }
 

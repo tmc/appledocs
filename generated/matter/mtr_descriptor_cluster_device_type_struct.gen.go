@@ -87,7 +87,7 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() foundation.Number {
 // SetDeviceType sets the value of the deviceType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetDeviceType(value foundation.Number) {
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetDeviceType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) Revision() foundation.Number {
 // SetRevision sets the value of the revision property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value foundation.Number) {
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() foundation.Number {
 // SetType sets the value of the type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
-func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value foundation.Number) {
+func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

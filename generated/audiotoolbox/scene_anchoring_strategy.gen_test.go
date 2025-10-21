@@ -9,10 +9,3 @@ import (
 // Suppress unused import errors
 var _ = audiotoolbox.NewSceneAnchoringStrategy
 
-// ExampleNewSceneAnchoringStrategyWithSceneIdentifier demonstrates how to create a SceneAnchoringStrategy instance using NewSceneAnchoringStrategyWithSceneIdentifier.
-func ExampleNewSceneAnchoringStrategyWithSceneIdentifier() {
-	_ = audiotoolbox.NewSceneAnchoringStrategyWithSceneIdentifier(
-		"sceneIdentifier", // sceneIdentifier string
-	)
-	// Output:
-}

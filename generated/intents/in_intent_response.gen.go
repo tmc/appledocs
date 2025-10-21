@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewINIntentResponse() INIntentResponse {
 // The user activity object to use when launching the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintentresponse/useractivity
-func (i_ INIntentResponse) UserActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivity"))
+func (i_ INIntentResponse) UserActivity() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (i_ INIntentResponse) UserActivity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintentresponse/useractivity
-func (i_ INIntentResponse) SetUserActivity(value unsafe.Pointer) {
+func (i_ INIntentResponse) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)
 }
 

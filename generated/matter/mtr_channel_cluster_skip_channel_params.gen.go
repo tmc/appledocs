@@ -87,7 +87,7 @@ func (m_ MTRChannelClusterSkipChannelParams) Count() foundation.Number {
 // SetCount sets the value of the count property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/count
-func (m_ MTRChannelClusterSkipChannelParams) SetCount(value foundation.Number) {
+func (m_ MTRChannelClusterSkipChannelParams) SetCount(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRChannelClusterSkipChannelParams) ServerSideProcessingTimeout() found
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/serversideprocessingtimeout
-func (m_ MTRChannelClusterSkipChannelParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRChannelClusterSkipChannelParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRChannelClusterSkipChannelParams) TimedInvokeTimeoutMs() foundation.N
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterSkipChannelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRChannelClusterSkipChannelParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

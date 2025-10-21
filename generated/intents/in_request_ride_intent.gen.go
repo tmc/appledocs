@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INRequestRideIntent] class.
@@ -84,16 +85,16 @@ func NewINRequestRideIntent() INRequestRideIntent {
 // The user’s starting location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRequestRideIntent/pickupLocation
-func (i_ INRequestRideIntent) PickupLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+func (i_ INRequestRideIntent) PickupLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
 	return rv
 }
 
 // The user’s destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/dropofflocation
-func (i_ INRequestRideIntent) DropOffLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dropOffLocation"))
+func (i_ INRequestRideIntent) DropOffLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
 	return rv
 }
 
@@ -103,7 +104,7 @@ func (i_ INRequestRideIntent) DropOffLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/dropofflocation
-func (i_ INRequestRideIntent) SetDropOffLocation(value unsafe.Pointer) {
+func (i_ INRequestRideIntent) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
@@ -146,8 +147,8 @@ func (i_ INRequestRideIntent) SetPaymentMethod(value unsafe.Pointer) {
 // The name of the ride option selected by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/rideoptionname
-func (i_ INRequestRideIntent) RideOptionName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rideOptionName"))
+func (i_ INRequestRideIntent) RideOptionName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("rideOptionName"))
 	return rv
 }
 
@@ -157,15 +158,15 @@ func (i_ INRequestRideIntent) RideOptionName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/rideoptionname
-func (i_ INRequestRideIntent) SetRideOptionName(value unsafe.Pointer) {
+func (i_ INRequestRideIntent) SetRideOptionName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRideOptionName:"), value)
 }
 
 // The time at which to pick up the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/scheduledpickuptime
-func (i_ INRequestRideIntent) ScheduledPickupTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scheduledPickupTime"))
+func (i_ INRequestRideIntent) ScheduledPickupTime() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("scheduledPickupTime"))
 	return rv
 }
 
@@ -175,7 +176,7 @@ func (i_ INRequestRideIntent) ScheduledPickupTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestrideintent/scheduledpickuptime
-func (i_ INRequestRideIntent) SetScheduledPickupTime(value unsafe.Pointer) {
+func (i_ INRequestRideIntent) SetScheduledPickupTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
 }
 

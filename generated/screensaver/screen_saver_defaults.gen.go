@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScreenSaverDefaults] class.
@@ -29,7 +30,7 @@ type _ScreenSaverDefaultsClass struct {
 
 // An interface definition for the [ScreenSaverDefaults] class.
 type IScreenSaverDefaults interface {
-	objectivec.IObject
+	foundation.IUserDefaults
 }
 
 // A class that defines a set of methods for saving and restoring user defaults for screen savers.
@@ -38,14 +39,16 @@ type IScreenSaverDefaults interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults
 type ScreenSaverDefaults struct {
-	objectivec.Object
+	foundation.UserDefaults
 }
 
 // ScreenSaverDefaultsFrom constructs a [ScreenSaverDefaults] from an unsafe.Pointer.
 //
 // A class that defines a set of methods for saving and restoring user defaults for screen savers.
 func ScreenSaverDefaultsFrom(ptr unsafe.Pointer) ScreenSaverDefaults {
-	return ScreenSaverDefaults{objectivec.Object{objc.ID(ptr)}}
+	return ScreenSaverDefaults{
+		UserDefaults: foundation.UserDefaultsFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -85,8 +88,8 @@ func NewScreenSaverDefaults() ScreenSaverDefaults {
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)
-func NewScreenSaverDefaultsForModuleWithName(inModuleName string) ScreenSaverDefaults {
-	rv := objc.Send[ScreenSaverDefaults](objc.ID(getScreenSaverDefaultsClass().class), objc.Sel("defaultsForModuleWithName:"), objc.String(inModuleName))
+func NewScreenSaverDefaultsForModuleWithName(inModuleName appkit.string) ScreenSaverDefaults {
+	rv := objc.Send[ScreenSaverDefaults](objc.ID(getScreenSaverDefaultsClass().class), objc.Sel("defaultsForModuleWithName:"), inModuleName)
 	return rv
 }
 
@@ -94,8 +97,8 @@ func NewScreenSaverDefaultsForModuleWithName(inModuleName string) ScreenSaverDef
 // Returns a screen saver defaults instance that reads and writes defaults for the specified module.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverDefaults/init(forModuleWithName:)
-func (sc _ScreenSaverDefaultsClass) DefaultsForModuleWithName(inModuleName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultsForModuleWithName:"), objc.String(inModuleName))
+func (sc _ScreenSaverDefaultsClass) DefaultsForModuleWithName(inModuleName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultsForModuleWithName:"), inModuleName)
 	return rv
 }
 

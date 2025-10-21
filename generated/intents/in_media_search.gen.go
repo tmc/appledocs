@@ -81,8 +81,8 @@ func NewINMediaSearch() INMediaSearch {
 // The activity names to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/activitynames
-func (i_ INMediaSearch) ActivityNames() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("activityNames"))
+func (i_ INMediaSearch) ActivityNames() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("activityNames"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (i_ INMediaSearch) ActivityNames() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/activitynames
-func (i_ INMediaSearch) SetActivityNames(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setActivityNames:"), objc.String(value))
+func (i_ INMediaSearch) SetActivityNames(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setActivityNames:"), value)
 }
 
 // The name of the album to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/albumname
-func (i_ INMediaSearch) AlbumName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
+func (i_ INMediaSearch) AlbumName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("albumName"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (i_ INMediaSearch) AlbumName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/albumname
-func (i_ INMediaSearch) SetAlbumName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
+func (i_ INMediaSearch) SetAlbumName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), value)
 }
 
 // The name of the artist to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/artistname
-func (i_ INMediaSearch) ArtistName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("artistName"))
+func (i_ INMediaSearch) ArtistName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("artistName"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (i_ INMediaSearch) ArtistName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/artistname
-func (i_ INMediaSearch) SetArtistName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setArtistName:"), objc.String(value))
+func (i_ INMediaSearch) SetArtistName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setArtistName:"), value)
 }
 
 // The media genres to search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/genrenames
-func (i_ INMediaSearch) GenreNames() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("genreNames"))
+func (i_ INMediaSearch) GenreNames() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("genreNames"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (i_ INMediaSearch) GenreNames() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/genrenames
-func (i_ INMediaSearch) SetGenreNames(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGenreNames:"), objc.String(value))
+func (i_ INMediaSearch) SetGenreNames(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGenreNames:"), value)
 }
 
 // The unique media identifier to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/mediaidentifier
-func (i_ INMediaSearch) MediaIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("mediaIdentifier"))
+func (i_ INMediaSearch) MediaIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("mediaIdentifier"))
 	return rv
 }
 
@@ -164,15 +164,15 @@ func (i_ INMediaSearch) MediaIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/mediaidentifier
-func (i_ INMediaSearch) SetMediaIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaIdentifier:"), objc.String(value))
+func (i_ INMediaSearch) SetMediaIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaIdentifier:"), value)
 }
 
 // The name of the media to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/medianame
-func (i_ INMediaSearch) MediaName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("mediaName"))
+func (i_ INMediaSearch) MediaName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("mediaName"))
 	return rv
 }
 
@@ -182,8 +182,8 @@ func (i_ INMediaSearch) MediaName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/medianame
-func (i_ INMediaSearch) SetMediaName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaName:"), objc.String(value))
+func (i_ INMediaSearch) SetMediaName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaName:"), value)
 }
 
 // The type of media to search for.
@@ -207,8 +207,8 @@ func (i_ INMediaSearch) SetMediaType(value unsafe.Pointer) {
 // The moods to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/moodnames
-func (i_ INMediaSearch) MoodNames() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("moodNames"))
+func (i_ INMediaSearch) MoodNames() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("moodNames"))
 	return rv
 }
 
@@ -218,8 +218,8 @@ func (i_ INMediaSearch) MoodNames() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/moodnames
-func (i_ INMediaSearch) SetMoodNames(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMoodNames:"), objc.String(value))
+func (i_ INMediaSearch) SetMoodNames(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMoodNames:"), value)
 }
 
 // A reference for the media item to search for.
@@ -243,8 +243,8 @@ func (i_ INMediaSearch) SetReference(value unsafe.Pointer) {
 // The release date to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/releasedate
-func (i_ INMediaSearch) ReleaseDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("releaseDate"))
+func (i_ INMediaSearch) ReleaseDate() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("releaseDate"))
 	return rv
 }
 
@@ -254,7 +254,7 @@ func (i_ INMediaSearch) ReleaseDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmediasearch/releasedate
-func (i_ INMediaSearch) SetReleaseDate(value unsafe.Pointer) {
+func (i_ INMediaSearch) SetReleaseDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReleaseDate:"), value)
 }
 

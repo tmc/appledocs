@@ -30,7 +30,7 @@ type _UNTimeIntervalNotificationTriggerClass struct {
 // An interface definition for the [UNTimeIntervalNotificationTrigger] class.
 type IUNTimeIntervalNotificationTrigger interface {
 	IUNNotificationTrigger
-	NextTriggerDate() unsafe.Pointer
+	NextTriggerDate() foundation.Date
 }
 
 // A trigger condition that causes the system to deliver a notification after the amount of time you specify elapses.
@@ -88,7 +88,7 @@ func NewUNTimeIntervalNotificationTrigger() UNTimeIntervalNotificationTrigger {
 // Creates a time interval trigger using the time value parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/init(timeInterval:repeats:)
-func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval foundation.TimeInterval, repeats bool) UNTimeIntervalNotificationTrigger {
+func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval foundation.ITimeInterval, repeats bool) UNTimeIntervalNotificationTrigger {
 	rv := objc.Send[UNTimeIntervalNotificationTrigger](objc.ID(getUNTimeIntervalNotificationTriggerClass().class), objc.Sel("triggerWithTimeInterval:repeats:"), timeInterval, repeats)
 	return rv
 }
@@ -97,7 +97,7 @@ func NewUNTimeIntervalNotificationTriggerWithTimeIntervalRepeats(timeInterval fo
 // Creates a time interval trigger using the time value parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/init(timeInterval:repeats:)
-func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats(timeInterval foundation.TimeInterval, repeats bool) unsafe.Pointer {
+func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats(timeInterval foundation.ITimeInterval, repeats bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("triggerWithTimeInterval:repeats:"), timeInterval, repeats)
 	return rv
 }
@@ -105,8 +105,8 @@ func (uc _UNTimeIntervalNotificationTriggerClass) TriggerWithTimeIntervalRepeats
 // The next date at which the trigger conditions are met.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTimeIntervalNotificationTrigger/nextTriggerDate()
-func (u_ UNTimeIntervalNotificationTrigger) NextTriggerDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("nextTriggerDate"))
+func (u_ UNTimeIntervalNotificationTrigger) NextTriggerDate() foundation.Date {
+	rv := objc.Send[foundation.Date](u_.ID, objc.Sel("nextTriggerDate"))
 	return rv
 }
 

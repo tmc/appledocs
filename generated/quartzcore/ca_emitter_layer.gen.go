@@ -149,8 +149,8 @@ func (e_ EmitterLayer) SetEmitterDepth(value float64) {
 // Specifies the emitter mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterMode
-func (e_ EmitterLayer) EmitterMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("emitterMode"))
+func (e_ EmitterLayer) EmitterMode() EmitterLayerEmitterMode {
+	rv := objc.Send[EmitterLayerEmitterMode](e_.ID, objc.Sel("emitterMode"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (e_ EmitterLayer) EmitterMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterMode
-func (e_ EmitterLayer) SetEmitterMode(value unsafe.Pointer) {
+func (e_ EmitterLayer) SetEmitterMode(value EmitterLayerEmitterMode) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterMode:"), value)
 }
 
@@ -185,8 +185,8 @@ func (e_ EmitterLayer) SetEmitterPosition(value coregraphics.CGPoint) {
 // Specifies the emitter shape.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
-func (e_ EmitterLayer) EmitterShape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("emitterShape"))
+func (e_ EmitterLayer) EmitterShape() EmitterLayerEmitterShape {
+	rv := objc.Send[EmitterLayerEmitterShape](e_.ID, objc.Sel("emitterShape"))
 	return rv
 }
 
@@ -196,7 +196,7 @@ func (e_ EmitterLayer) EmitterShape() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/emitterShape
-func (e_ EmitterLayer) SetEmitterShape(value unsafe.Pointer) {
+func (e_ EmitterLayer) SetEmitterShape(value IEmitterLayerEmitterShape) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEmitterShape:"), value)
 }
 
@@ -275,8 +275,8 @@ func (e_ EmitterLayer) SetPreservesDepth(value bool) {
 // Defines how particle cells are rendered into the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/renderMode
-func (e_ EmitterLayer) RenderMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("renderMode"))
+func (e_ EmitterLayer) RenderMode() EmitterLayerRenderMode {
+	rv := objc.Send[EmitterLayerRenderMode](e_.ID, objc.Sel("renderMode"))
 	return rv
 }
 
@@ -286,7 +286,7 @@ func (e_ EmitterLayer) RenderMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterLayer/renderMode
-func (e_ EmitterLayer) SetRenderMode(value unsafe.Pointer) {
+func (e_ EmitterLayer) SetRenderMode(value EmitterLayerRenderMode) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRenderMode:"), value)
 }
 

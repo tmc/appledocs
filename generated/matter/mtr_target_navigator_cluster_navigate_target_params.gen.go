@@ -78,8 +78,8 @@ func NewMTRTargetNavigatorClusterNavigateTargetParams() MTRTargetNavigatorCluste
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetparams/data
-func (m_ MTRTargetNavigatorClusterNavigateTargetParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRTargetNavigatorClusterNavigateTargetParams) Data() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetParams) Data() string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetparams/data
-func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetData(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetParams) ServerSideProcessingTime
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetparams/serversideprocessingtimeout
-func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetParams) Target() foundation.Numb
 // SetTarget sets the value of the target property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetparams/target
-func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetTarget(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetTarget(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTarget:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetparams/timedinvoketimeoutms
-func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterNavigateTargetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

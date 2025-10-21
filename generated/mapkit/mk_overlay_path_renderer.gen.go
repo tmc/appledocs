@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/gameplaykit"
 )
 
 // The class instance for the [MKOverlayPathRenderer] class.
@@ -85,8 +87,8 @@ func NewMKOverlayPathRenderer() MKOverlayPathRenderer {
 // The fill color to use for the path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/fillcolor
-func (m_ MKOverlayPathRenderer) FillColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fillColor"))
+func (m_ MKOverlayPathRenderer) FillColor() appkit.Color {
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("fillColor"))
 	return rv
 }
 
@@ -96,7 +98,7 @@ func (m_ MKOverlayPathRenderer) FillColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/fillcolor
-func (m_ MKOverlayPathRenderer) SetFillColor(value unsafe.Pointer) {
+func (m_ MKOverlayPathRenderer) SetFillColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFillColor:"), value)
 }
 
@@ -132,7 +134,7 @@ func (m_ MKOverlayPathRenderer) LineDashPattern() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/linedashpattern
-func (m_ MKOverlayPathRenderer) SetLineDashPattern(value foundation.Number) {
+func (m_ MKOverlayPathRenderer) SetLineDashPattern(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineDashPattern:"), value)
 }
 
@@ -211,8 +213,8 @@ func (m_ MKOverlayPathRenderer) SetMiterLimit(value float64) {
 // The path representing the overlay’s shape.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/path
-func (m_ MKOverlayPathRenderer) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("path"))
+func (m_ MKOverlayPathRenderer) Path() gameplaykit.Path {
+	rv := objc.Send[gameplaykit.Path](m_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -222,7 +224,7 @@ func (m_ MKOverlayPathRenderer) Path() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/path
-func (m_ MKOverlayPathRenderer) SetPath(value unsafe.Pointer) {
+func (m_ MKOverlayPathRenderer) SetPath(value gameplaykit.IPath) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
 
@@ -247,8 +249,8 @@ func (m_ MKOverlayPathRenderer) SetShouldRasterize(value bool) {
 // The stroke color to use for the path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/strokecolor
-func (m_ MKOverlayPathRenderer) StrokeColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("strokeColor"))
+func (m_ MKOverlayPathRenderer) StrokeColor() appkit.Color {
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("strokeColor"))
 	return rv
 }
 
@@ -258,7 +260,7 @@ func (m_ MKOverlayPathRenderer) StrokeColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkoverlaypathrenderer/strokecolor
-func (m_ MKOverlayPathRenderer) SetStrokeColor(value unsafe.Pointer) {
+func (m_ MKOverlayPathRenderer) SetStrokeColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStrokeColor:"), value)
 }
 

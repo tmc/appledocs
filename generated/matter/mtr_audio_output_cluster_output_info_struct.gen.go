@@ -87,14 +87,14 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) Index() foundation.Number {
 // SetIndex sets the value of the index property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value foundation.Number) {
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
-func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
@@ -117,7 +117,7 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) OutputType() foundation.Number {
 // SetOutputType sets the value of the outputType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
-func (m_ MTRAudioOutputClusterOutputInfoStruct) SetOutputType(value foundation.Number) {
+func (m_ MTRAudioOutputClusterOutputInfoStruct) SetOutputType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputType:"), value)
 }
 

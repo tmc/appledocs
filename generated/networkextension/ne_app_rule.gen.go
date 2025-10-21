@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,9 +84,9 @@ func NewNEAppRule() NEAppRule {
 // Create an app rule that matches an app with a given signing identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:)
-func NewNEAppRuleWithSigningIdentifier(signingIdentifier string) NEAppRule {
+func NewNEAppRuleWithSigningIdentifier(signingIdentifier appkit.string) NEAppRule {
 	instance := getNEAppRuleClass().Alloc()
-	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:"), objc.String(signingIdentifier))
+	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:"), signingIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -95,9 +96,9 @@ func NewNEAppRuleWithSigningIdentifier(signingIdentifier string) NEAppRule {
 // Create an app rule that matches an app with a given signing identifier and a given designated requirement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/init(signingIdentifier:designatedRequirement:)
-func NewNEAppRuleWithSigningIdentifierDesignatedRequirement(signingIdentifier string, designatedRequirement string) NEAppRule {
+func NewNEAppRuleWithSigningIdentifierDesignatedRequirement(signingIdentifier appkit.string, designatedRequirement appkit.string) NEAppRule {
 	instance := getNEAppRuleClass().Alloc()
-	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:designatedRequirement:"), objc.String(signingIdentifier), objc.String(designatedRequirement))
+	rv := objc.Send[NEAppRule](instance.ID, objc.Sel("initWithSigningIdentifier:designatedRequirement:"), signingIdentifier, designatedRequirement)
 	rv.Autorelease()
 	return rv
 }
@@ -106,16 +107,16 @@ func NewNEAppRuleWithSigningIdentifierDesignatedRequirement(signingIdentifier st
 // The designated requirement of the app that matches the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchDesignatedRequirement
-func (n_ NEAppRule) MatchDesignatedRequirement() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchDesignatedRequirement"))
+func (n_ NEAppRule) MatchDesignatedRequirement() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchDesignatedRequirement"))
 	return rv
 }
 
 // The hostname domains that match the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchDomains
-func (n_ NEAppRule) MatchDomains() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("matchDomains"))
+func (n_ NEAppRule) MatchDomains() objc.ID {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("matchDomains"))
 	return rv
 }
 
@@ -125,15 +126,15 @@ func (n_ NEAppRule) MatchDomains() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchDomains
-func (n_ NEAppRule) SetMatchDomains(value unsafe.Pointer) {
+func (n_ NEAppRule) SetMatchDomains(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchDomains:"), value)
 }
 
 // The file system path of the app that matches the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchPath
-func (n_ NEAppRule) MatchPath() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchPath"))
+func (n_ NEAppRule) MatchPath() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchPath"))
 	return rv
 }
 
@@ -143,15 +144,15 @@ func (n_ NEAppRule) MatchPath() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchPath
-func (n_ NEAppRule) SetMatchPath(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPath:"), objc.String(value))
+func (n_ NEAppRule) SetMatchPath(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMatchPath:"), value)
 }
 
 // The signing identifier of the app that matches the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppRule/matchSigningIdentifier
-func (n_ NEAppRule) MatchSigningIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("matchSigningIdentifier"))
+func (n_ NEAppRule) MatchSigningIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("matchSigningIdentifier"))
 	return rv
 }
 

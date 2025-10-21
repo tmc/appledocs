@@ -87,7 +87,7 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Clust
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value foundation.Number) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetCluster(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Endpo
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value foundation.Number) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/restrictions
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restrictions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("restrictions"))
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restrictions() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("restrictions"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) Restr
 // SetRestrictions sets the value of the restrictions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct/restrictions
-func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetRestrictions(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct) SetRestrictions(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictions:"), value)
 }
 

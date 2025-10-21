@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZDiskBlockDeviceStorageDeviceAttachment] class.
@@ -84,8 +85,8 @@ func NewVZDiskBlockDeviceStorageDeviceAttachment() VZDiskBlockDeviceStorageDevic
 // A file handle to a block device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/filehandle
-func (v_ VZDiskBlockDeviceStorageDeviceAttachment) FileHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fileHandle"))
+func (v_ VZDiskBlockDeviceStorageDeviceAttachment) FileHandle() foundation.FileHandle {
+	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandle"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (v_ VZDiskBlockDeviceStorageDeviceAttachment) FileHandle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/filehandle
-func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetFileHandle(value unsafe.Pointer) {
+func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetFileHandle(value foundation.IFileHandle) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFileHandle:"), value)
 }
 
@@ -120,8 +121,8 @@ func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetIsReadOnly(value bool) {
 // The value that defines how the disk synchronizes with the underlying storage when the guest operating system flushes data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SynchronizationMode() VZDiskSynchronizationMode {
+	rv := objc.Send[VZDiskSynchronizationMode](v_.ID, objc.Sel("synchronizationMode"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskblockdevicestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+func (v_ VZDiskBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value VZDiskSynchronizationMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 

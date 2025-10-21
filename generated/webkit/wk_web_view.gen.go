@@ -10,6 +10,7 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [WebView] class.
@@ -33,43 +34,43 @@ type _WebViewClass struct {
 type IWebView interface {
 	appkit.IView
 	CloseAllMediaPresentations()
-	CloseAllMediaPresentationsWithCompletionHandler(completionHandler func())
-	CreatePDFWithConfigurationCompletionHandler(pdfConfiguration unsafe.Pointer, completionHandler unsafe.Pointer)
+	CloseAllMediaPresentationsWithCompletionHandler(completionHandler Ifunc())
+	CreatePDFWithConfigurationCompletionHandler(pdfConfiguration IWKPDFConfiguration, completionHandler unsafe.Pointer)
 	CreateWebArchiveDataWithCompletionHandler(completionHandler unsafe.Pointer)
-	EvaluateJavaScriptCompletionHandler(javaScriptString string, completionHandler unsafe.Pointer)
-	FetchDataOfTypesCompletionHandler(dataTypes unsafe.Pointer, completionHandler unsafe.Pointer)
-	FindStringWithConfigurationCompletionHandler(string_ string, configuration unsafe.Pointer, completionHandler unsafe.Pointer)
-	GoToBackForwardListItem(item unsafe.Pointer) unsafe.Pointer
-	GoBack() unsafe.Pointer
-	GoForward() unsafe.Pointer
-	LoadRequest(request unsafe.Pointer) unsafe.Pointer
-	LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Pointer, MIMEType string, characterEncodingName string, baseURL foundation.URL) unsafe.Pointer
-	LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer, readAccessURL foundation.URL) unsafe.Pointer
-	LoadFileURLAllowingReadAccessToURL(URL foundation.URL, readAccessURL foundation.URL) unsafe.Pointer
-	LoadHTMLStringBaseURL(string_ string, baseURL foundation.URL) unsafe.Pointer
-	LoadSimulatedRequestResponseResponseData(request unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
-	LoadSimulatedRequestResponseHTMLString(request unsafe.Pointer, string_ string) unsafe.Pointer
-	LoadSimulatedRequestWithResponseResponseData(request unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer
-	LoadSimulatedRequestWithResponseHTMLString(request unsafe.Pointer, string_ string) unsafe.Pointer
-	PauseAllMediaPlaybackWithCompletionHandler(completionHandler func())
-	PauseAllMediaPlayback(completionHandler func())
-	PrintOperationWithPrintInfo(printInfo unsafe.Pointer) unsafe.Pointer
-	Reload() unsafe.Pointer
-	ReloadFromOrigin() unsafe.Pointer
+	EvaluateJavaScriptCompletionHandler(javaScriptString appkit.string, completionHandler unsafe.Pointer)
+	FetchDataOfTypesCompletionHandler(dataTypes WebViewDataType, completionHandler unsafe.Pointer)
+	FindStringWithConfigurationCompletionHandler(string_ appkit.string, configuration IWKFindConfiguration, completionHandler unsafe.Pointer)
+	GoToBackForwardListItem(item IWKBackForwardListItem) Navigation
+	GoBack() Navigation
+	GoForward() Navigation
+	LoadRequest(request foundation.IURLRequest) Navigation
+	LoadDataMIMETypeCharacterEncodingNameBaseURL(data foundation.IData, MIMEType appkit.string, characterEncodingName appkit.string, baseURL foundation.IURL) Navigation
+	LoadFileRequestAllowingReadAccessToURL(request foundation.IURLRequest, readAccessURL foundation.IURL) Navigation
+	LoadFileURLAllowingReadAccessToURL(URL foundation.IURL, readAccessURL foundation.IURL) Navigation
+	LoadHTMLStringBaseURL(string_ appkit.string, baseURL foundation.IURL) Navigation
+	LoadSimulatedRequestResponseResponseData(request foundation.IURLRequest, response foundation.IURLResponse, data foundation.IData) Navigation
+	LoadSimulatedRequestResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation
+	LoadSimulatedRequestWithResponseResponseData(request foundation.IURLRequest, response foundation.IURLResponse, data foundation.IData) Navigation
+	LoadSimulatedRequestWithResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation
+	PauseAllMediaPlaybackWithCompletionHandler(completionHandler Ifunc())
+	PauseAllMediaPlayback(completionHandler Ifunc())
+	PrintOperationWithPrintInfo(printInfo appkit.IPrintInfo) appkit.PrintOperation
+	Reload() Navigation
+	ReloadFromOrigin() Navigation
 	RequestMediaPlaybackStateWithCompletionHandler(completionHandler unsafe.Pointer)
 	RequestMediaPlaybackState(completionHandler unsafe.Pointer)
-	RestoreDataCompletionHandler(data unsafe.Pointer, completionHandler func(error objc.ID))
-	ResumeAllMediaPlayback(completionHandler func())
-	ResumeDownloadFromResumeDataCompletionHandler(resumeData unsafe.Pointer, completionHandler unsafe.Pointer)
-	SetAllMediaPlaybackSuspendedCompletionHandler(suspended bool, completionHandler func())
-	SetCameraCaptureStateCompletionHandler(state unsafe.Pointer, completionHandler func())
+	RestoreDataCompletionHandler(data foundation.IData, completionHandler func(error objc.ID))
+	ResumeAllMediaPlayback(completionHandler Ifunc())
+	ResumeDownloadFromResumeDataCompletionHandler(resumeData foundation.IData, completionHandler unsafe.Pointer)
+	SetAllMediaPlaybackSuspendedCompletionHandler(suspended bool, completionHandler Ifunc())
+	SetCameraCaptureStateCompletionHandler(state MediaCaptureState, completionHandler Ifunc())
 	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
-	SetMicrophoneCaptureStateCompletionHandler(state unsafe.Pointer, completionHandler func())
+	SetMicrophoneCaptureStateCompletionHandler(state MediaCaptureState, completionHandler Ifunc())
 	SetMinimumViewportInsetMaximumViewportInset(minimumViewportInset unsafe.Pointer, maximumViewportInset unsafe.Pointer)
-	StartDownloadUsingRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer)
+	StartDownloadUsingRequestCompletionHandler(request foundation.IURLRequest, completionHandler unsafe.Pointer)
 	StopLoading()
-	SuspendAllMediaPlayback(completionHandler func())
-	TakeSnapshotWithConfigurationCompletionHandler(snapshotConfiguration unsafe.Pointer, completionHandler unsafe.Pointer)
+	SuspendAllMediaPlayback(completionHandler Ifunc())
+	TakeSnapshotWithConfigurationCompletionHandler(snapshotConfiguration IWKSnapshotConfiguration, completionHandler unsafe.Pointer)
 }
 
 // An object that displays interactive web content, such as for an in-app browser.
@@ -127,7 +128,7 @@ func NewWebView() WebView {
 // Returns an object initialized from data in the specified coder object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(coder:)
-func NewWebViewWithCoder(coder unsafe.Pointer) WebView {
+func NewWebViewWithCoder(coder foundation.ICoder) WebView {
 	instance := getWebViewClass().Alloc()
 	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -139,7 +140,7 @@ func NewWebViewWithCoder(coder unsafe.Pointer) WebView {
 // Creates a web view and initializes it with the specified frame and configuration data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/init(frame:configuration:)
-func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration unsafe.Pointer) WebView {
+func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration IWKWebViewConfiguration) WebView {
 	instance := getWebViewClass().Alloc()
 	rv := objc.Send[WebView](instance.ID, objc.Sel("initWithFrame:configuration:"), frame, configuration)
 	rv.Autorelease()
@@ -150,8 +151,8 @@ func NewWebViewWithFrameConfiguration(frame coregraphics.CGRect, configuration u
 // Returns a Boolean value that indicates whether WebKit natively supports resources with the specified URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/handlesURLScheme(_:)
-func (wc _WebViewClass) HandlesURLScheme(urlScheme string) bool {
-	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("handlesURLScheme:"), objc.String(urlScheme))
+func (wc _WebViewClass) HandlesURLScheme(urlScheme appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("handlesURLScheme:"), urlScheme)
 	return rv
 }
 
@@ -164,14 +165,14 @@ func (w_ WebView) CloseAllMediaPresentations() {
 // Closes all media the web view is presenting, including picture-in-picture video and fullscreen video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/closeAllMediaPresentations(completionHandler:)
-func (w_ WebView) CloseAllMediaPresentationsWithCompletionHandler(completionHandler func()) {
+func (w_ WebView) CloseAllMediaPresentationsWithCompletionHandler(completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("closeAllMediaPresentationsWithCompletionHandler:"), completionHandler)
 }
 
 // Generates PDF data from the web view’s contents asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/createPDFWithConfiguration:completionHandler:
-func (w_ WebView) CreatePDFWithConfigurationCompletionHandler(pdfConfiguration unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ WebView) CreatePDFWithConfigurationCompletionHandler(pdfConfiguration IWKPDFConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("createPDFWithConfiguration:completionHandler:"), pdfConfiguration, completionHandler)
 }
 
@@ -185,152 +186,152 @@ func (w_ WebView) CreateWebArchiveDataWithCompletionHandler(completionHandler un
 // Evaluates the specified JavaScript string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/evaluateJavaScript(_:completionHandler:)
-func (w_ WebView) EvaluateJavaScriptCompletionHandler(javaScriptString string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("evaluateJavaScript:completionHandler:"), objc.String(javaScriptString), completionHandler)
+func (w_ WebView) EvaluateJavaScriptCompletionHandler(javaScriptString appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("evaluateJavaScript:completionHandler:"), javaScriptString, completionHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/fetchData(of:completionHandler:)
-func (w_ WebView) FetchDataOfTypesCompletionHandler(dataTypes unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ WebView) FetchDataOfTypesCompletionHandler(dataTypes WebViewDataType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("fetchDataOfTypes:completionHandler:"), dataTypes, completionHandler)
 }
 
 // Searches for the specified string in the web view’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/findString:withConfiguration:completionHandler:
-func (w_ WebView) FindStringWithConfigurationCompletionHandler(string_ string, configuration unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("findString:withConfiguration:completionHandler:"), objc.String(string_), configuration, completionHandler)
+func (w_ WebView) FindStringWithConfigurationCompletionHandler(string_ appkit.string, configuration IWKFindConfiguration, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("findString:withConfiguration:completionHandler:"), string_, configuration, completionHandler)
 }
 
 // Navigates to an item from the back-forward list and sets it as the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/go(to:)
-func (w_ WebView) GoToBackForwardListItem(item unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("goToBackForwardListItem:"), item)
+func (w_ WebView) GoToBackForwardListItem(item IWKBackForwardListItem) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("goToBackForwardListItem:"), item)
 	return rv
 }
 
 // Navigates to the back item in the back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/goBack()
-func (w_ WebView) GoBack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("goBack"))
+func (w_ WebView) GoBack() Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("goBack"))
 	return rv
 }
 
 // Navigates to the forward item in the back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/goForward()
-func (w_ WebView) GoForward() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("goForward"))
+func (w_ WebView) GoForward() Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("goForward"))
 	return rv
 }
 
 // Loads the web content that the specified URL request object references and navigates to that content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/load(_:)
-func (w_ WebView) LoadRequest(request unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadRequest:"), request)
+func (w_ WebView) LoadRequest(request foundation.IURLRequest) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadRequest:"), request)
 	return rv
 }
 
 // Loads the content of the specified data object and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/load(_:mimeType:characterEncodingName:baseURL:)
-func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data unsafe.Pointer, MIMEType string, characterEncodingName string, baseURL foundation.URL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadData:MIMEType:characterEncodingName:baseURL:"), data, objc.String(MIMEType), objc.String(characterEncodingName), baseURL)
+func (w_ WebView) LoadDataMIMETypeCharacterEncodingNameBaseURL(data foundation.IData, MIMEType appkit.string, characterEncodingName appkit.string, baseURL foundation.IURL) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadData:MIMEType:characterEncodingName:baseURL:"), data, MIMEType, characterEncodingName, baseURL)
 	return rv
 }
 
 // Loads the web content from the file the URL request object specifies and navigates to that content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadFileRequest(_:allowingReadAccessTo:)
-func (w_ WebView) LoadFileRequestAllowingReadAccessToURL(request unsafe.Pointer, readAccessURL foundation.URL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadFileRequest:allowingReadAccessToURL:"), request, readAccessURL)
+func (w_ WebView) LoadFileRequestAllowingReadAccessToURL(request foundation.IURLRequest, readAccessURL foundation.IURL) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadFileRequest:allowingReadAccessToURL:"), request, readAccessURL)
 	return rv
 }
 
 // Loads the web content from the specified file and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadFileURL(_:allowingReadAccessTo:)
-func (w_ WebView) LoadFileURLAllowingReadAccessToURL(URL foundation.URL, readAccessURL foundation.URL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadFileURL:allowingReadAccessToURL:"), URL, readAccessURL)
+func (w_ WebView) LoadFileURLAllowingReadAccessToURL(URL foundation.IURL, readAccessURL foundation.IURL) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadFileURL:allowingReadAccessToURL:"), URL, readAccessURL)
 	return rv
 }
 
 // Loads the contents of the specified HTML string and navigates to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadHTMLString(_:baseURL:)
-func (w_ WebView) LoadHTMLStringBaseURL(string_ string, baseURL foundation.URL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadHTMLString:baseURL:"), objc.String(string_), baseURL)
+func (w_ WebView) LoadHTMLStringBaseURL(string_ appkit.string, baseURL foundation.IURL) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadHTMLString:baseURL:"), string_, baseURL)
 	return rv
 }
 
 // Loads the web content from the data you provide as if the data were the response to the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadSimulatedRequest(_:response:responseData:)
-func (w_ WebView) LoadSimulatedRequestResponseResponseData(request unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadSimulatedRequest:response:responseData:"), request, response, data)
+func (w_ WebView) LoadSimulatedRequestResponseResponseData(request foundation.IURLRequest, response foundation.IURLResponse, data foundation.IData) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:response:responseData:"), request, response, data)
 	return rv
 }
 
 // Loads the web content from the HTML you provide as if the HTML were the response to the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadSimulatedRequest(_:responseHTML:)
-func (w_ WebView) LoadSimulatedRequestResponseHTMLString(request unsafe.Pointer, string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadSimulatedRequest:responseHTMLString:"), request, objc.String(string_))
+func (w_ WebView) LoadSimulatedRequestResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:responseHTMLString:"), request, string_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadSimulatedRequest(_:with:responseData:)
-func (w_ WebView) LoadSimulatedRequestWithResponseResponseData(request unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadSimulatedRequest:withResponse:responseData:"), request, response, data)
+func (w_ WebView) LoadSimulatedRequestWithResponseResponseData(request foundation.IURLRequest, response foundation.IURLResponse, data foundation.IData) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:withResponse:responseData:"), request, response, data)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/loadSimulatedRequest(_:withResponseHTML:)
-func (w_ WebView) LoadSimulatedRequestWithResponseHTMLString(request unsafe.Pointer, string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("loadSimulatedRequest:withResponseHTMLString:"), request, objc.String(string_))
+func (w_ WebView) LoadSimulatedRequestWithResponseHTMLString(request foundation.IURLRequest, string_ appkit.string) Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("loadSimulatedRequest:withResponseHTMLString:"), request, string_)
 	return rv
 }
 
 // Pauses playback of all media in the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/pauseAllMediaPlayback(completionHandler:)
-func (w_ WebView) PauseAllMediaPlaybackWithCompletionHandler(completionHandler func()) {
+func (w_ WebView) PauseAllMediaPlaybackWithCompletionHandler(completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("pauseAllMediaPlaybackWithCompletionHandler:"), completionHandler)
 }
 
 // Pauses playback of all media in the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/pauseAllMediaPlayback:
-func (w_ WebView) PauseAllMediaPlayback(completionHandler func()) {
+func (w_ WebView) PauseAllMediaPlayback(completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("pauseAllMediaPlayback:"), completionHandler)
 }
 
 // Returns the print operation object to use when printing the contents of the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/printOperation(with:)
-func (w_ WebView) PrintOperationWithPrintInfo(printInfo unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("printOperationWithPrintInfo:"), printInfo)
+func (w_ WebView) PrintOperationWithPrintInfo(printInfo appkit.IPrintInfo) appkit.PrintOperation {
+	rv := objc.Send[appkit.PrintOperation](w_.ID, objc.Sel("printOperationWithPrintInfo:"), printInfo)
 	return rv
 }
 
 // Reloads the current webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/reload()
-func (w_ WebView) Reload() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("reload"))
+func (w_ WebView) Reload() Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("reload"))
 	return rv
 }
 
 // Reloads the current webpage, and performs end-to-end revalidation of the content using cache-validating conditionals, if possible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/reloadFromOrigin()
-func (w_ WebView) ReloadFromOrigin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("reloadFromOrigin"))
+func (w_ WebView) ReloadFromOrigin() Navigation {
+	rv := objc.Send[Navigation](w_.ID, objc.Sel("reloadFromOrigin"))
 	return rv
 }
 
@@ -350,35 +351,35 @@ func (w_ WebView) RequestMediaPlaybackState(completionHandler unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/restoreData(_:completionHandler:)
-func (w_ WebView) RestoreDataCompletionHandler(data unsafe.Pointer, completionHandler func(error objc.ID)) {
+func (w_ WebView) RestoreDataCompletionHandler(data foundation.IData, completionHandler func(error objc.ID)) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("restoreData:completionHandler:"), data, completionHandler)
 }
 
 // Resumes playback of all media in a web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/resumeAllMediaPlayback:
-func (w_ WebView) ResumeAllMediaPlayback(completionHandler func()) {
+func (w_ WebView) ResumeAllMediaPlayback(completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("resumeAllMediaPlayback:"), completionHandler)
 }
 
 // Resumes a failed or canceled download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/resumeDownload(fromResumeData:completionHandler:)
-func (w_ WebView) ResumeDownloadFromResumeDataCompletionHandler(resumeData unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ WebView) ResumeDownloadFromResumeDataCompletionHandler(resumeData foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("resumeDownloadFromResumeData:completionHandler:"), resumeData, completionHandler)
 }
 
 // Changes whether the webpage is suspending playback of all media in the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/setAllMediaPlaybackSuspended(_:completionHandler:)
-func (w_ WebView) SetAllMediaPlaybackSuspendedCompletionHandler(suspended bool, completionHandler func()) {
+func (w_ WebView) SetAllMediaPlaybackSuspendedCompletionHandler(suspended bool, completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllMediaPlaybackSuspended:completionHandler:"), suspended, completionHandler)
 }
 
 // Changes whether the webpage is using the camera to capture images or video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/setCameraCaptureState(_:completionHandler:)
-func (w_ WebView) SetCameraCaptureStateCompletionHandler(state unsafe.Pointer, completionHandler func()) {
+func (w_ WebView) SetCameraCaptureStateCompletionHandler(state MediaCaptureState, completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setCameraCaptureState:completionHandler:"), state, completionHandler)
 }
 
@@ -392,7 +393,7 @@ func (w_ WebView) SetMagnificationCenteredAtPoint(magnification float64, point c
 // Changes whether the webpage is using the microphone to capture audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/setMicrophoneCaptureState(_:completionHandler:)
-func (w_ WebView) SetMicrophoneCaptureStateCompletionHandler(state unsafe.Pointer, completionHandler func()) {
+func (w_ WebView) SetMicrophoneCaptureStateCompletionHandler(state MediaCaptureState, completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMicrophoneCaptureState:completionHandler:"), state, completionHandler)
 }
 
@@ -405,7 +406,7 @@ func (w_ WebView) SetMinimumViewportInsetMaximumViewportInset(minimumViewportIns
 // Starts to download the resource at the URL in the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/startDownload(using:completionHandler:)
-func (w_ WebView) StartDownloadUsingRequestCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ WebView) StartDownloadUsingRequestCompletionHandler(request foundation.IURLRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("startDownloadUsingRequest:completionHandler:"), request, completionHandler)
 }
 
@@ -419,14 +420,14 @@ func (w_ WebView) StopLoading() {
 // Changes whether the webpage is suspending playback of all media in the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/suspendAllMediaPlayback:
-func (w_ WebView) SuspendAllMediaPlayback(completionHandler func()) {
+func (w_ WebView) SuspendAllMediaPlayback(completionHandler Ifunc()) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("suspendAllMediaPlayback:"), completionHandler)
 }
 
 // Generates a platform-native image from the web view’s contents asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/takeSnapshot(with:completionHandler:)
-func (w_ WebView) TakeSnapshotWithConfigurationCompletionHandler(snapshotConfiguration unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (w_ WebView) TakeSnapshotWithConfigurationCompletionHandler(snapshotConfiguration IWKSnapshotConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("takeSnapshotWithConfiguration:completionHandler:"), snapshotConfiguration, completionHandler)
 }
 
@@ -487,16 +488,16 @@ func (w_ WebView) SetAllowsMagnification(value bool) {
 // The web view’s back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/backForwardList
-func (w_ WebView) BackForwardList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("backForwardList"))
+func (w_ WebView) BackForwardList() WKBackForwardList {
+	rv := objc.Send[WKBackForwardList](w_.ID, objc.Sel("backForwardList"))
 	return rv
 }
 
 // An enumeration case that indicates whether the webpage is using the camera to capture images or video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/cameraCaptureState
-func (w_ WebView) CameraCaptureState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("cameraCaptureState"))
+func (w_ WebView) CameraCaptureState() MediaCaptureState {
+	rv := objc.Send[MediaCaptureState](w_.ID, objc.Sel("cameraCaptureState"))
 	return rv
 }
 
@@ -519,24 +520,24 @@ func (w_ WebView) CanGoForward() bool {
 // An array of objects forming the certificate chain for the currently committed navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/certificateChain
-func (w_ WebView) CertificateChain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("certificateChain"))
+func (w_ WebView) CertificateChain() objc.ID {
+	rv := objc.Send[objc.ID](w_.ID, objc.Sel("certificateChain"))
 	return rv
 }
 
 // The object that contains the configuration details for the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/configuration
-func (w_ WebView) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("configuration"))
+func (w_ WebView) Configuration() WKWebViewConfiguration {
+	rv := objc.Send[WKWebViewConfiguration](w_.ID, objc.Sel("configuration"))
 	return rv
 }
 
 // The custom user agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/customUserAgent
-func (w_ WebView) CustomUserAgent() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("customUserAgent"))
+func (w_ WebView) CustomUserAgent() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("customUserAgent"))
 	return rv
 }
 
@@ -546,8 +547,8 @@ func (w_ WebView) CustomUserAgent() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/customUserAgent
-func (w_ WebView) SetCustomUserAgent(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), objc.String(value))
+func (w_ WebView) SetCustomUserAgent(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), value)
 }
 
 // An estimate of what fraction of the current navigation has been loaded.
@@ -567,8 +568,8 @@ func (w_ WebView) FindInteraction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/fullscreenState-swift.property
-func (w_ WebView) FullscreenState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("fullscreenState"))
+func (w_ WebView) FullscreenState() FullscreenState {
+	rv := objc.Send[FullscreenState](w_.ID, objc.Sel("fullscreenState"))
 	return rv
 }
 
@@ -681,8 +682,8 @@ func (w_ WebView) MaximumViewportInset() unsafe.Pointer {
 // The media type for the contents of the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/mediaType
-func (w_ WebView) MediaType() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("mediaType"))
+func (w_ WebView) MediaType() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -692,15 +693,15 @@ func (w_ WebView) MediaType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/mediaType
-func (w_ WebView) SetMediaType(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), objc.String(value))
+func (w_ WebView) SetMediaType(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaType:"), value)
 }
 
 // An enumeration case that indicates whether the webpage is using the microphone to capture audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/microphoneCaptureState
-func (w_ WebView) MicrophoneCaptureState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("microphoneCaptureState"))
+func (w_ WebView) MicrophoneCaptureState() MediaCaptureState {
+	rv := objc.Send[MediaCaptureState](w_.ID, objc.Sel("microphoneCaptureState"))
 	return rv
 }
 
@@ -765,8 +766,8 @@ func (w_ WebView) SetPageZoom(value float64) {
 // The scroll view associated with the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/scrollView
-func (w_ WebView) ScrollView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("scrollView"))
+func (w_ WebView) ScrollView() appkit.ScrollView {
+	rv := objc.Send[appkit.ScrollView](w_.ID, objc.Sel("scrollView"))
 	return rv
 }
 
@@ -781,16 +782,16 @@ func (w_ WebView) ServerTrust() unsafe.Pointer {
 // The theme color that the system gets from the first valid meta tag in the webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/themeColor
-func (w_ WebView) ThemeColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("themeColor"))
+func (w_ WebView) ThemeColor() appkit.Color {
+	rv := objc.Send[appkit.Color](w_.ID, objc.Sel("themeColor"))
 	return rv
 }
 
 // The page title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/title
-func (w_ WebView) Title() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("title"))
+func (w_ WebView) Title() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -815,8 +816,8 @@ func (w_ WebView) SetUIDelegate(value objc.ID) {
 // The color the web view displays behind the active page, visible when the user scrolls beyond the bounds of the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/underPageBackgroundColor
-func (w_ WebView) UnderPageBackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("underPageBackgroundColor"))
+func (w_ WebView) UnderPageBackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](w_.ID, objc.Sel("underPageBackgroundColor"))
 	return rv
 }
 
@@ -826,7 +827,7 @@ func (w_ WebView) UnderPageBackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebView/underPageBackgroundColor
-func (w_ WebView) SetUnderPageBackgroundColor(value unsafe.Pointer) {
+func (w_ WebView) SetUnderPageBackgroundColor(value appkit.IColor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setUnderPageBackgroundColor:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,7 +81,7 @@ func NewResizeBilinear() ResizeBilinear {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNResizeBilinear/init(coder:device:)
-func NewResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ResizeBilinear {
+func NewResizeBilinearWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ResizeBilinear {
 	instance := getResizeBilinearClass().Alloc()
 	rv := objc.Send[ResizeBilinear](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

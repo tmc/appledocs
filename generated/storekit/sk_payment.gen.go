@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +87,7 @@ func NewPayment() Payment {
 // Returns a new payment for the specified product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/init(product:)
-func NewPaymentWithProduct(product unsafe.Pointer) Payment {
+func NewPaymentWithProduct(product ISKProduct) Payment {
 	rv := objc.Send[Payment](objc.ID(getPaymentClass().class), objc.Sel("paymentWithProduct:"), product)
 	return rv
 }
@@ -94,7 +96,7 @@ func NewPaymentWithProduct(product unsafe.Pointer) Payment {
 // Returns a new payment for the specified product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/init(product:)
-func (pc _PaymentClass) PaymentWithProduct(product unsafe.Pointer) unsafe.Pointer {
+func (pc _PaymentClass) PaymentWithProduct(product ISKProduct) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("paymentWithProduct:"), product)
 	return rv
 }
@@ -102,32 +104,32 @@ func (pc _PaymentClass) PaymentWithProduct(product unsafe.Pointer) unsafe.Pointe
 // Returns a new payment with the specified product identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/paymentWithProductIdentifier:
-func (pc _PaymentClass) PaymentWithProductIdentifier(identifier string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("paymentWithProductIdentifier:"), objc.String(identifier))
+func (pc _PaymentClass) PaymentWithProductIdentifier(identifier appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("paymentWithProductIdentifier:"), identifier)
 	return rv
 }
 
 // A string that associates the transaction with a user account on your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/applicationUsername
-func (p_ Payment) ApplicationUsername() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("applicationUsername"))
+func (p_ Payment) ApplicationUsername() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
 
 // The details of the discount offer to apply to the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/paymentDiscount
-func (p_ Payment) PaymentDiscount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paymentDiscount"))
+func (p_ Payment) PaymentDiscount() SKPaymentDiscount {
+	rv := objc.Send[SKPaymentDiscount](p_.ID, objc.Sel("paymentDiscount"))
 	return rv
 }
 
 // A string used to identify a product that can be purchased from within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/productIdentifier
-func (p_ Payment) ProductIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("productIdentifier"))
+func (p_ Payment) ProductIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
@@ -142,8 +144,8 @@ func (p_ Payment) Quantity() int {
 // Reserved for future use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPayment/requestData
-func (p_ Payment) RequestData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestData"))
+func (p_ Payment) RequestData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("requestData"))
 	return rv
 }
 

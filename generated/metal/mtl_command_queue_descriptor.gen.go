@@ -99,8 +99,8 @@ func (c_ CommandQueueDescriptor) SetLogState(value objc.ID) {
 // The domain for Metal command buffer errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain
-func (c_ CommandQueueDescriptor) MTLCommandBufferErrorDomain() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
+func (c_ CommandQueueDescriptor) MTLCommandBufferErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
 	return rv
 }
 

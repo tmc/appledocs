@@ -77,7 +77,7 @@ func NewInitialGradient() InitialGradient {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradient/init(device:)
-func NewInitialGradientWithDevice(device objc.ID) InitialGradient {
+func NewInitialGradientWithDevice(device objectivec.IObject) InitialGradient {
 	instance := getInitialGradientClass().Alloc()
 	rv := objc.Send[InitialGradient](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

@@ -79,11 +79,24 @@ func NewMKStandardMapConfiguration() MKStandardMapConfiguration {
 }
 
 
+
+
+// Creates a standard map configuration with the specified emphasis style.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/init(emphasisStyle:)
+func NewMKStandardMapConfigurationWithEmphasisStyle(emphasisStyle unsafe.Pointer) MKStandardMapConfiguration {
+	instance := getMKStandardMapConfigurationClass().Alloc()
+	rv := objc.Send[MKStandardMapConfiguration](instance.ID, objc.Sel("initWithEmphasisStyle:"), emphasisStyle)
+	rv.Autorelease()
+	return rv
+}
+
+
 // The filter used to determine the points of interest shown on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
-func (m_ MKStandardMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+func (m_ MKStandardMapConfiguration) PointOfInterestFilter() MKPointOfInterestFilter {
+	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
@@ -93,7 +106,7 @@ func (m_ MKStandardMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKStandardMapConfiguration/pointOfInterestFilter
-func (m_ MKStandardMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer) {
+func (m_ MKStandardMapConfiguration) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
@@ -118,8 +131,8 @@ func (m_ MKStandardMapConfiguration) SetPitchButtonVisibility(value unsafe.Point
 // The characteristics of the map view, including the map type and features the map displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKStandardMapConfiguration) PreferredConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+func (m_ MKStandardMapConfiguration) PreferredConfiguration() MKMapConfiguration {
+	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
 	return rv
 }
 
@@ -129,7 +142,7 @@ func (m_ MKStandardMapConfiguration) PreferredConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKStandardMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+func (m_ MKStandardMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
@@ -186,6 +199,5 @@ func (m_ MKStandardMapConfiguration) ShowsTraffic() bool {
 func (m_ MKStandardMapConfiguration) SetShowsTraffic(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsTraffic:"), value)
 }
-
 
 

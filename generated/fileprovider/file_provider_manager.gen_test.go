@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = fileprovider.NewFileProviderManager
 
+// ExampleNewFileProviderManagerForDomain demonstrates how to create a FileProviderManager instance using NewFileProviderManagerForDomain.
+// Returns a newly created file provider manager for the specified domain.
+func ExampleNewFileProviderManagerForDomain() {
+	_ = fileprovider.NewFileProviderManagerForDomain(
+		fileprovider.NSFileProviderDomain{}, // domain NSFileProviderDomain
+	)
+	// Output:
+}

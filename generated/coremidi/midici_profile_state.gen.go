@@ -81,8 +81,8 @@ func NewMIDICIProfileState() MIDICIProfileState {
 // The object’s disabled profiles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
-func (m_ MIDICIProfileState) DisabledProfiles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("disabledProfiles"))
+func (m_ MIDICIProfileState) DisabledProfiles() MIDICIProfile {
+	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("disabledProfiles"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (m_ MIDICIProfileState) DisabledProfiles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/disabledprofiles
-func (m_ MIDICIProfileState) SetDisabledProfiles(value unsafe.Pointer) {
+func (m_ MIDICIProfileState) SetDisabledProfiles(value IMIDICIProfile) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisabledProfiles:"), value)
 }
 
 // The object’s enabled profiles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
-func (m_ MIDICIProfileState) EnabledProfiles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("enabledProfiles"))
+func (m_ MIDICIProfileState) EnabledProfiles() MIDICIProfile {
+	rv := objc.Send[MIDICIProfile](m_.ID, objc.Sel("enabledProfiles"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (m_ MIDICIProfileState) EnabledProfiles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/enabledprofiles
-func (m_ MIDICIProfileState) SetEnabledProfiles(value unsafe.Pointer) {
+func (m_ MIDICIProfileState) SetEnabledProfiles(value IMIDICIProfile) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabledProfiles:"), value)
 }
 
 // The MIDI channel to which this state applies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
-func (m_ MIDICIProfileState) MidiChannel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("midiChannel"))
+func (m_ MIDICIProfileState) MidiChannel() MIDIChannelNumber {
+	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("midiChannel"))
 	return rv
 }
 
@@ -128,7 +128,7 @@ func (m_ MIDICIProfileState) MidiChannel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofilestate/midichannel
-func (m_ MIDICIProfileState) SetMidiChannel(value unsafe.Pointer) {
+func (m_ MIDICIProfileState) SetMidiChannel(value IMIDIChannelNumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiChannel:"), value)
 }
 

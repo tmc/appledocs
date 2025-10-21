@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = healthkit.NewHKLiveWorkoutDataSource
 
+// ExampleNewHKLiveWorkoutDataSourceWithHealthStoreWorkoutConfiguration demonstrates how to create a HKLiveWorkoutDataSource instance using NewHKLiveWorkoutDataSourceWithHealthStoreWorkoutConfiguration.
+// Creates a new data source based on the provided workout configuration.
+func ExampleNewHKLiveWorkoutDataSourceWithHealthStoreWorkoutConfiguration() {
+	_ = healthkit.NewHKLiveWorkoutDataSourceWithHealthStoreWorkoutConfiguration(
+		healthkit.HKHealthStore{}, // healthStore HKHealthStore
+		healthkit.HKWorkoutConfiguration{}, // configuration HKWorkoutConfiguration
+	)
+	// Output:
+}

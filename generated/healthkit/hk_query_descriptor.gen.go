@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewHKQueryDescriptor() HKQueryDescriptor {
 // The predicate that filters samples matching this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("predicate"))
+func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (h_ HKQueryDescriptor) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) SetPredicate(value unsafe.Pointer) {
+func (h_ HKQueryDescriptor) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // The data type of samples that match this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-func (h_ HKQueryDescriptor) SampleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sampleType"))
+func (h_ HKQueryDescriptor) SampleType() HKSampleType {
+	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (h_ HKQueryDescriptor) SampleType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-func (h_ HKQueryDescriptor) SetSampleType(value unsafe.Pointer) {
+func (h_ HKQueryDescriptor) SetSampleType(value HKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }
 

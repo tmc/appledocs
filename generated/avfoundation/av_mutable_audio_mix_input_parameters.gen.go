@@ -100,8 +100,8 @@ func (m_ MutableAudioMixInputParameters) SetAudioTapProcessor(value unsafe.Point
 // The processing algorithm used to manage audio pitch for scaled audio edits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/audiotimepitchalgorithm
-func (m_ MutableAudioMixInputParameters) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (m_ MutableAudioMixInputParameters) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
+	rv := objc.Send[AudioTimePitchAlgorithm](m_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (m_ MutableAudioMixInputParameters) AudioTimePitchAlgorithm() unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableaudiomixinputparameters/audiotimepitchalgorithm
-func (m_ MutableAudioMixInputParameters) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (m_ MutableAudioMixInputParameters) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 

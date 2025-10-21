@@ -81,8 +81,8 @@ func NewPasskeyAssertionCredentialExtensionInput() PasskeyAssertionCredentialExt
 // Input for the extension in passkey assertion requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionInput-c.class/largeBlob
-func (p_ PasskeyAssertionCredentialExtensionInput) LargeBlob() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("largeBlob"))
+func (p_ PasskeyAssertionCredentialExtensionInput) LargeBlob() ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput {
+	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput](p_.ID, objc.Sel("largeBlob"))
 	return rv
 }
 

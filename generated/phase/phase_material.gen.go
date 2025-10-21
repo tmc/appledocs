@@ -85,7 +85,7 @@ func NewPHASEMaterial() PHASEMaterial {
 // Creates a material with the given preset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMaterial/init(engine:preset:)
-func NewPHASEMaterialWithEnginePreset(engine unsafe.Pointer, preset unsafe.Pointer) PHASEMaterial {
+func NewPHASEMaterialWithEnginePreset(engine IPHASEEngine, preset IPHASEMaterialPreset) PHASEMaterial {
 	instance := getPHASEMaterialClass().Alloc()
 	rv := objc.Send[PHASEMaterial](instance.ID, objc.Sel("initWithEngine:preset:"), engine, preset)
 	rv.Autorelease()

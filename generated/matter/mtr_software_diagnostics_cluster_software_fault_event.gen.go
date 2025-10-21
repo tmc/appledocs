@@ -78,8 +78,8 @@ func NewMTRSoftwareDiagnosticsClusterSoftwareFaultEvent() MTRSoftwareDiagnostics
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("faultRecording"))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("faultRecording"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) FaultRecording() unsaf
 // SetFaultRecording sets the value of the faultRecording property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/faultrecording
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value unsafe.Pointer) {
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetFaultRecording(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultRecording:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Id() foundation.Number
 // SetId sets the value of the id property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/id
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value foundation.Number) {
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclustersoftwarefaultevent/name
-func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRSoftwareDiagnosticsClusterSoftwareFaultEvent) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

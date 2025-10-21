@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -138,8 +139,8 @@ func (c_ CameraCalibrationData) SetIntrinsicMatrixReferenceDimensions(value core
 // A map of floating-point values describing radial distortions for use in reapplying camera geometry to a rectified image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/inverselensdistortionlookuptable
-func (c_ CameraCalibrationData) InverseLensDistortionLookupTable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inverseLensDistortionLookupTable"))
+func (c_ CameraCalibrationData) InverseLensDistortionLookupTable() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("inverseLensDistortionLookupTable"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (c_ CameraCalibrationData) InverseLensDistortionLookupTable() unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/inverselensdistortionlookuptable
-func (c_ CameraCalibrationData) SetInverseLensDistortionLookupTable(value unsafe.Pointer) {
+func (c_ CameraCalibrationData) SetInverseLensDistortionLookupTable(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInverseLensDistortionLookupTable:"), value)
 }
 
@@ -174,8 +175,8 @@ func (c_ CameraCalibrationData) SetLensDistortionCenter(value coregraphics.CGPoi
 // A map of floating-point values describing radial distortions imparted by the camera lens, for use in rectifying camera images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/lensdistortionlookuptable
-func (c_ CameraCalibrationData) LensDistortionLookupTable() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lensDistortionLookupTable"))
+func (c_ CameraCalibrationData) LensDistortionLookupTable() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("lensDistortionLookupTable"))
 	return rv
 }
 
@@ -185,7 +186,7 @@ func (c_ CameraCalibrationData) LensDistortionLookupTable() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/lensdistortionlookuptable
-func (c_ CameraCalibrationData) SetLensDistortionLookupTable(value unsafe.Pointer) {
+func (c_ CameraCalibrationData) SetLensDistortionLookupTable(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLensDistortionLookupTable:"), value)
 }
 

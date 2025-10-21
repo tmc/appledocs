@@ -87,7 +87,7 @@ func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) ValveFault() fou
 // SetValveFault sets the value of the valveFault property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
-func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) SetValveFault(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) SetValveFault(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveFault:"), value)
 }
 

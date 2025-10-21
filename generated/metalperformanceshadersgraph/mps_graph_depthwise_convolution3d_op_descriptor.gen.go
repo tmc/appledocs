@@ -87,7 +87,7 @@ func NewGraphDepthwiseConvolution3DOpDescriptor() GraphDepthwiseConvolution3DOpD
 // Creates a 3D depthwise convolution descriptor with default values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution3DOpDescriptor/init(paddingStyle:)
-func NewGraphDepthwiseConvolution3DOpDescriptorWithPaddingStyle(paddingStyle unsafe.Pointer) GraphDepthwiseConvolution3DOpDescriptor {
+func NewGraphDepthwiseConvolution3DOpDescriptorWithPaddingStyle(paddingStyle GraphPaddingStyle) GraphDepthwiseConvolution3DOpDescriptor {
 	rv := objc.Send[GraphDepthwiseConvolution3DOpDescriptor](objc.ID(getGraphDepthwiseConvolution3DOpDescriptorClass().class), objc.Sel("descriptorWithPaddingStyle:"), paddingStyle)
 	return rv
 }
@@ -96,7 +96,7 @@ func NewGraphDepthwiseConvolution3DOpDescriptorWithPaddingStyle(paddingStyle uns
 // Creates a 3D depthwise convolution descriptor with default values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution3DOpDescriptor/init(paddingStyle:)
-func (gc _GraphDepthwiseConvolution3DOpDescriptorClass) DescriptorWithPaddingStyle(paddingStyle unsafe.Pointer) unsafe.Pointer {
+func (gc _GraphDepthwiseConvolution3DOpDescriptorClass) DescriptorWithPaddingStyle(paddingStyle GraphPaddingStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithPaddingStyle:"), paddingStyle)
 	return rv
 }
@@ -133,15 +133,15 @@ func (g_ GraphDepthwiseConvolution3DOpDescriptor) DilationRates() foundation.Num
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/dilationrates
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetDilationRates(value foundation.Number) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetDilationRates(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
 }
 
 // The padding style for the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingstyle
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingStyle() GraphPaddingStyle {
+	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
@@ -151,7 +151,7 @@ func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingStyle() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingstyle
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
 
@@ -169,7 +169,7 @@ func (g_ GraphDepthwiseConvolution3DOpDescriptor) PaddingValues() foundation.Num
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/paddingvalues
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingValues(value foundation.Number) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetPaddingValues(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingValues:"), value)
 }
 
@@ -187,7 +187,7 @@ func (g_ GraphDepthwiseConvolution3DOpDescriptor) Strides() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution3dopdescriptor/strides
-func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetStrides(value foundation.Number) {
+func (g_ GraphDepthwiseConvolution3DOpDescriptor) SetStrides(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
 }
 

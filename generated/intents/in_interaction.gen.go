@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +33,7 @@ type _INInteractionClass struct {
 type IINInteraction interface {
 	objectivec.IObject
 	DonateInteractionWithCompletion(completion unsafe.Pointer)
-	ParameterValueForParameter(parameter unsafe.Pointer) objc.ID
+	ParameterValueForParameter(parameter INParameter) objc.ID
 }
 
 // An interaction between the user and your app involving an intent object.
@@ -85,8 +87,8 @@ func NewINInteraction() INInteraction {
 // Deletes the interactions with the specified group identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/delete(with:completion:)-tcq9
-func (ic _INInteractionClass) DeleteInteractionsWithGroupIdentifierCompletion(groupIdentifier string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithGroupIdentifier:completion:"), objc.String(groupIdentifier), completion)
+func (ic _INInteractionClass) DeleteInteractionsWithGroupIdentifierCompletion(groupIdentifier appkit.string, completion unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithGroupIdentifier:completion:"), groupIdentifier, completion)
 }
 
 // Donates this interaction object to the system.
@@ -99,7 +101,7 @@ func (i_ INInteraction) DonateInteractionWithCompletion(completion unsafe.Pointe
 // Returns the value of the specified parameter of this interaction object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/parameterValue(for:)
-func (i_ INInteraction) ParameterValueForParameter(parameter unsafe.Pointer) objc.ID {
+func (i_ INInteraction) ParameterValueForParameter(parameter INParameter) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("parameterValueForParameter:"), parameter)
 	return rv
 }
@@ -107,8 +109,8 @@ func (i_ INInteraction) ParameterValueForParameter(parameter unsafe.Pointer) obj
 // The unique identifier of the interaction’s group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
-func (i_ INInteraction) GroupIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("groupIdentifier"))
+func (i_ INInteraction) GroupIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -118,15 +120,15 @@ func (i_ INInteraction) GroupIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/groupIdentifier
-func (i_ INInteraction) SetGroupIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), objc.String(value))
+func (i_ INInteraction) SetGroupIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), value)
 }
 
 // The unique identifier of the interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
-func (i_ INInteraction) Identifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+func (i_ INInteraction) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -136,8 +138,8 @@ func (i_ INInteraction) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INInteraction/identifier
-func (i_ INInteraction) SetIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (i_ INInteraction) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The current state of the interaction.
@@ -151,8 +153,8 @@ func (i_ INInteraction) IntentHandlingStatus() unsafe.Pointer {
 // The time at which the interaction started and its duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
-func (i_ INInteraction) DateInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateInterval"))
+func (i_ INInteraction) DateInterval() foundation.DateInterval {
+	rv := objc.Send[foundation.DateInterval](i_.ID, objc.Sel("dateInterval"))
 	return rv
 }
 
@@ -162,7 +164,7 @@ func (i_ INInteraction) DateInterval() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/dateinterval
-func (i_ INInteraction) SetDateInterval(value unsafe.Pointer) {
+func (i_ INInteraction) SetDateInterval(value foundation.IDateInterval) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateInterval:"), value)
 }
 
@@ -187,8 +189,8 @@ func (i_ INInteraction) SetDirection(value unsafe.Pointer) {
 // The intent object that describes the user’s request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
-func (i_ INInteraction) Intent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intent"))
+func (i_ INInteraction) Intent() INIntent {
+	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
 	return rv
 }
 
@@ -198,15 +200,15 @@ func (i_ INInteraction) Intent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intent
-func (i_ INInteraction) SetIntent(value unsafe.Pointer) {
+func (i_ INInteraction) SetIntent(value INIntent) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
 
 // The response object that your app created in response to the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
-func (i_ INInteraction) IntentResponse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intentResponse"))
+func (i_ INInteraction) IntentResponse() INIntentResponse {
+	rv := objc.Send[INIntentResponse](i_.ID, objc.Sel("intentResponse"))
 	return rv
 }
 
@@ -216,7 +218,7 @@ func (i_ INInteraction) IntentResponse() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ininteraction/intentresponse
-func (i_ INInteraction) SetIntentResponse(value unsafe.Pointer) {
+func (i_ INInteraction) SetIntentResponse(value INIntentResponse) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentResponse:"), value)
 }
 

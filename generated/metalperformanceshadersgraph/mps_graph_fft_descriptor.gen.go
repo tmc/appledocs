@@ -92,8 +92,8 @@ func (gc _GraphFFTDescriptorClass) Descriptor() unsafe.Pointer {
 // The scaling mode of the fast fourier transform (FFT) operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
-func (g_ GraphFFTDescriptor) ScalingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("scalingMode"))
+func (g_ GraphFFTDescriptor) ScalingMode() GraphFFTScalingMode {
+	rv := objc.Send[GraphFFTScalingMode](g_.ID, objc.Sel("scalingMode"))
 	return rv
 }
 
@@ -103,7 +103,7 @@ func (g_ GraphFFTDescriptor) ScalingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphFFTDescriptor/scalingMode
-func (g_ GraphFFTDescriptor) SetScalingMode(value unsafe.Pointer) {
+func (g_ GraphFFTDescriptor) SetScalingMode(value GraphFFTScalingMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setScalingMode:"), value)
 }
 

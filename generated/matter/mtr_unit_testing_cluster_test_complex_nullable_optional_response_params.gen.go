@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableIntValue sets the value of the nullableIntValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableintvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableIntValue(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableIntValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableIntValue:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableIntWasNull sets the value of the nullableIntWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableintwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableIntWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableIntWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableIntWasNull:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableListWasNull sets the value of the nullableListWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablelistwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableListWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableListWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableListWasNull:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalIntValue sets the value of the nullableOptionalIntValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalintvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntValue(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntValue:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalIntWasNull sets the value of the nullableOptionalIntWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntWasNull:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalIntWasPresent sets the value of the nullableOptionalIntWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntWasPresent:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalListWasNull sets the value of the nullableOptionalListWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListWasNull:"), value)
 }
 
@@ -222,14 +222,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalListWasPresent sets the value of the nullableOptionalListWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListWasPresent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableOptionalStringValue"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableOptionalStringValue() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("nullableOptionalStringValue"))
 	return rv
 }
 
@@ -237,8 +237,8 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalStringValue sets the value of the nullableOptionalStringValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringValue:"), objc.String(value))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringValue:"), value)
 }
 
 //
@@ -252,7 +252,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalStringWasNull sets the value of the nullableOptionalStringWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringWasNull:"), value)
 }
 
@@ -267,14 +267,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalStringWasPresent sets the value of the nullableOptionalStringWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringWasPresent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableOptionalStructValue"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableOptionalStructValue() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("nullableOptionalStructValue"))
 	return rv
 }
 
@@ -282,7 +282,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalStructValue sets the value of the nullableOptionalStructValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructValue(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructValue:"), value)
 }
 
@@ -297,7 +297,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalStructWasNull sets the value of the nullableOptionalStructWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructWasNull:"), value)
 }
 
@@ -312,14 +312,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableOptionalStructWasPresent sets the value of the nullableOptionalStructWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructWasPresent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablestringvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableStringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableStringValue"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableStringValue() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("nullableStringValue"))
 	return rv
 }
 
@@ -327,8 +327,8 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableStringValue sets the value of the nullableStringValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablestringvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringValue:"), objc.String(value))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStringValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringValue:"), value)
 }
 
 //
@@ -342,14 +342,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableStringWasNull sets the value of the nullableStringWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablestringwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStringWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStringWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringWasNull:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablestructvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableStructValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableStructValue"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) NullableStructValue() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("nullableStructValue"))
 	return rv
 }
 
@@ -357,7 +357,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableStructValue sets the value of the nullableStructValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablestructvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStructValue(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStructValue:"), value)
 }
 
@@ -372,7 +372,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Nullabl
 // SetNullableStructWasNull sets the value of the nullableStructWasNull property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/nullablestructwasnull
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStructWasNull(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetNullableStructWasNull(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStructWasNull:"), value)
 }
 
@@ -387,7 +387,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalIntValue sets the value of the optionalIntValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalintvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalIntValue(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalIntValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalIntValue:"), value)
 }
 
@@ -402,7 +402,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalIntWasPresent sets the value of the optionalIntWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalintwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalIntWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalIntWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalIntWasPresent:"), value)
 }
 
@@ -432,14 +432,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalListWasPresent sets the value of the optionalListWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionallistwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalListWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalListWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalListWasPresent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalstringvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) OptionalStringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("optionalStringValue"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) OptionalStringValue() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("optionalStringValue"))
 	return rv
 }
 
@@ -447,8 +447,8 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalStringValue sets the value of the optionalStringValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalstringvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringValue:"), objc.String(value))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStringValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringValue:"), value)
 }
 
 //
@@ -462,14 +462,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalStringWasPresent sets the value of the optionalStringWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalstringwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStringWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStringWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringWasPresent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalstructvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) OptionalStructValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("optionalStructValue"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) OptionalStructValue() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("optionalStructValue"))
 	return rv
 }
 
@@ -477,7 +477,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalStructValue sets the value of the optionalStructValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalstructvalue
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStructValue(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStructValue:"), value)
 }
 
@@ -492,7 +492,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) Optiona
 // SetOptionalStructWasPresent sets the value of the optionalStructWasPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/optionalstructwaspresent
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStructWasPresent(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetOptionalStructWasPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStructWasPresent:"), value)
 }
 
@@ -507,7 +507,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) TimedIn
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -81,8 +81,8 @@ func NewPHPersistentChangeFetchResult() PHPersistentChangeFetchResult {
 // The opaque token that represents the current state of the Photos library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phphotolibrary/currentchangetoken
-func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentChangeToken"))
+func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() PHPersistentChangeToken {
+	rv := objc.Send[PHPersistentChangeToken](p_.ID, objc.Sel("currentChangeToken"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phphotolibrary/currentchangetoken
-func (p_ PHPersistentChangeFetchResult) SetCurrentChangeToken(value unsafe.Pointer) {
+func (p_ PHPersistentChangeFetchResult) SetCurrentChangeToken(value IPHPersistentChangeToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentChangeToken:"), value)
 }
 

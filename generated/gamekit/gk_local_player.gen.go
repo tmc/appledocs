@@ -81,6 +81,24 @@ func NewLocalPlayer() LocalPlayer {
 }
 
 
+// A handler that GameKit calls while initializing the local player.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/authenticateHandler
+func (l_ LocalPlayer) AuthenticateHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("authenticateHandler"))
+	return rv
+}
+
+
+// SetAuthenticateHandler sets the value of the authenticateHandler property.
+// A handler that GameKit calls while initializing the local player.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/authenticateHandler
+func (l_ LocalPlayer) SetAuthenticateHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setAuthenticateHandler:"), value)
+}
+
 // A Boolean value that indicates whether a local player has signed in to Game Center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKLocalPlayer/isAuthenticated

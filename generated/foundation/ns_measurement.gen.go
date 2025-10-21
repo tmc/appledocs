@@ -30,7 +30,7 @@ type _MeasurementClass struct {
 // An interface definition for the [Measurement] class.
 type IMeasurement interface {
 	objectivec.IObject
-	CanBeConvertedToUnit(unit unsafe.Pointer) bool
+	CanBeConvertedToUnit(unit IUnit) bool
 }
 
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
@@ -97,7 +97,7 @@ func NewMeasurementWithDoubleValueUnit(doubleValue unsafe.Pointer, unit unsafe.P
 // Indicates whether the measurement can be converted to the given unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/canBeConverted(to:)
-func (m_ Measurement) CanBeConvertedToUnit(unit unsafe.Pointer) bool {
+func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("canBeConvertedToUnit:"), unit)
 	return rv
 }

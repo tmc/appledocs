@@ -103,8 +103,8 @@ func (g_ GraphPooling4DOpDescriptor) SetCeilMode(value bool) {
 // Defines what kind of padding graph applies to the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/paddingStyle
-func (g_ GraphPooling4DOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
+func (g_ GraphPooling4DOpDescriptor) PaddingStyle() GraphPaddingStyle {
+	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (g_ GraphPooling4DOpDescriptor) PaddingStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphPooling4DOpDescriptor/paddingStyle
-func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+func (g_ GraphPooling4DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
 
@@ -132,7 +132,7 @@ func (g_ GraphPooling4DOpDescriptor) DilationRates() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/dilationrates
-func (g_ GraphPooling4DOpDescriptor) SetDilationRates(value foundation.Number) {
+func (g_ GraphPooling4DOpDescriptor) SetDilationRates(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
 }
 
@@ -168,7 +168,7 @@ func (g_ GraphPooling4DOpDescriptor) KernelSizes() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/kernelsizes
-func (g_ GraphPooling4DOpDescriptor) SetKernelSizes(value foundation.Number) {
+func (g_ GraphPooling4DOpDescriptor) SetKernelSizes(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setKernelSizes:"), value)
 }
 
@@ -186,7 +186,7 @@ func (g_ GraphPooling4DOpDescriptor) PaddingValues() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/paddingvalues
-func (g_ GraphPooling4DOpDescriptor) SetPaddingValues(value foundation.Number) {
+func (g_ GraphPooling4DOpDescriptor) SetPaddingValues(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingValues:"), value)
 }
 
@@ -211,8 +211,8 @@ func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesDataType(value unsafe.Point
 // Defines the mode for returned indices of maximum values within each pooling window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/returnindicesmode
-func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("returnIndicesMode"))
+func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() GraphPoolingReturnIndicesMode {
+	rv := objc.Send[GraphPoolingReturnIndicesMode](g_.ID, objc.Sel("returnIndicesMode"))
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (g_ GraphPooling4DOpDescriptor) ReturnIndicesMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/returnindicesmode
-func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesMode(value unsafe.Pointer) {
+func (g_ GraphPooling4DOpDescriptor) SetReturnIndicesMode(value GraphPoolingReturnIndicesMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReturnIndicesMode:"), value)
 }
 
@@ -240,7 +240,7 @@ func (g_ GraphPooling4DOpDescriptor) Strides() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor/strides
-func (g_ GraphPooling4DOpDescriptor) SetStrides(value foundation.Number) {
+func (g_ GraphPooling4DOpDescriptor) SetStrides(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrides:"), value)
 }
 

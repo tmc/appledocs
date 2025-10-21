@@ -84,8 +84,8 @@ func NewDirectoryEnumerator() DirectoryEnumerator {
 // A dictionary with the attributes of the directory at which enumeration started.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
-func (d_ DirectoryEnumerator) DirectoryAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("directoryAttributes"))
+func (d_ DirectoryEnumerator) DirectoryAttributes() FileAttributeKey {
+	rv := objc.Send[FileAttributeKey](d_.ID, objc.Sel("directoryAttributes"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (d_ DirectoryEnumerator) DirectoryAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/directoryattributes
-func (d_ DirectoryEnumerator) SetDirectoryAttributes(value unsafe.Pointer) {
+func (d_ DirectoryEnumerator) SetDirectoryAttributes(value IFileAttributeKey) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDirectoryAttributes:"), value)
 }
 
 // A dictionary with the attributes of the most recently returned file or subdirectory (as referenced by the pathname).
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
-func (d_ DirectoryEnumerator) FileAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileAttributes"))
+func (d_ DirectoryEnumerator) FileAttributes() FileAttributeKey {
+	rv := objc.Send[FileAttributeKey](d_.ID, objc.Sel("fileAttributes"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (d_ DirectoryEnumerator) FileAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/directoryenumerator/fileattributes
-func (d_ DirectoryEnumerator) SetFileAttributes(value unsafe.Pointer) {
+func (d_ DirectoryEnumerator) SetFileAttributes(value IFileAttributeKey) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFileAttributes:"), value)
 }
 

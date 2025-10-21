@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewPHASEDefinition() PHASEDefinition {
 // A unique name for the definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDefinition/identifier
-func (p_ PHASEDefinition) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDefinition) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEDefinition) GlobalMetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+func (p_ PHASEDefinition) GlobalMetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (p_ PHASEDefinition) GlobalMetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEDefinition) SetGlobalMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+func (p_ PHASEDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
 

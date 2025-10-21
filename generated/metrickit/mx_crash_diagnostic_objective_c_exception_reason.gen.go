@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _MXCrashDiagnosticObjectiveCExceptionReasonClass struct {
 // An interface definition for the [MXCrashDiagnosticObjectiveCExceptionReason] class.
 type IMXCrashDiagnosticObjectiveCExceptionReason interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An object that represents the exception reason for an uncaught ObjC exception.
@@ -84,16 +86,16 @@ func NewMXCrashDiagnosticObjectiveCExceptionReason() MXCrashDiagnosticObjectiveC
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/dictionaryRepresentation()
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dictionaryRepresentation"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
 // Returns the contents of the exception reason in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/jsonRepresentation()
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
@@ -106,44 +108,44 @@ func (m_ MXCrashDiagnosticObjectiveCExceptionReason) Arguments() []string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/className
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ClassName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("className"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ClassName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("className"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/composedMessage
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ComposedMessage() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("composedMessage"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ComposedMessage() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("composedMessage"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/exceptionName
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("exceptionName"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("exceptionName"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/exceptionType
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("exceptionType"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) ExceptionType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("exceptionType"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnosticObjectiveCExceptionReason/formatString
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) FormatString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("formatString"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) FormatString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("formatString"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXCrashDiagnosticObjectiveCExceptionReason) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXCrashDiagnosticObjectiveCExceptionReason) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

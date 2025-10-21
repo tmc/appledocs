@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _SNClassificationResultClass struct {
 // An interface definition for the [SNClassificationResult] class.
 type ISNClassificationResult interface {
 	objectivec.IObject
-	ClassificationForIdentifier(identifier string) unsafe.Pointer
+	ClassificationForIdentifier(identifier appkit.string) SNClassification
 }
 
 // A result that contains the highest-ranking classifications in a time range.
@@ -84,8 +85,8 @@ func NewSNClassificationResult() SNClassificationResult {
 // Returns the classification for an identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult/classification(forIdentifier:)
-func (s_ SNClassificationResult) ClassificationForIdentifier(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("classificationForIdentifier:"), objc.String(identifier))
+func (s_ SNClassificationResult) ClassificationForIdentifier(identifier appkit.string) SNClassification {
+	rv := objc.Send[SNClassification](s_.ID, objc.Sel("classificationForIdentifier:"), identifier)
 	return rv
 }
 

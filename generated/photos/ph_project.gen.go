@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHProject] class.
@@ -92,8 +93,8 @@ func (p_ PHProject) HasProjectPreview() bool {
 // Data associated with the project extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHProject/projectExtensionData
-func (p_ PHProject) ProjectExtensionData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("projectExtensionData"))
+func (p_ PHProject) ProjectExtensionData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("projectExtensionData"))
 	return rv
 }
 

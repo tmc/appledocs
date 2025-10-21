@@ -86,7 +86,7 @@ func NewSFUniversalLink() SFUniversalLink {
 // Creates a universal link object with the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFUniversalLink/init(webpageURL:)
-func NewSFUniversalLinkWithWebpageURL(url foundation.URL) SFUniversalLink {
+func NewSFUniversalLinkWithWebpageURL(url foundation.IURL) SFUniversalLink {
 	instance := getSFUniversalLinkClass().Alloc()
 	rv := objc.Send[SFUniversalLink](instance.ID, objc.Sel("initWithWebpageURL:"), url)
 	rv.Autorelease()

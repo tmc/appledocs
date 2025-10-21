@@ -79,8 +79,8 @@ func NewMTRTimeSynchronizationClusterTimeZoneType() MTRTimeSynchronizationCluste
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -88,8 +88,8 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneType) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
@@ -103,7 +103,7 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneType) Offset() foundation.Number {
 // SetOffset sets the value of the offset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetOffset(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetOffset(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneType) ValidAt() foundation.Number 
 // SetValidAt sets the value of the validAt property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustertimezonetype/validat
-func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetValidAt(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneType) SetValidAt(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidAt:"), value)
 }
 

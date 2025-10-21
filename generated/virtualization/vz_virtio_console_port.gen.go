@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewVZVirtioConsolePort() VZVirtioConsolePort {
 // An array of serial port attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
-func (v_ VZVirtioConsolePort) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+func (v_ VZVirtioConsolePort) Attachment() VZSerialPortAttachment {
+	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
@@ -94,23 +95,23 @@ func (v_ VZVirtioConsolePort) Attachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/attachment
-func (v_ VZVirtioConsolePort) SetAttachment(value unsafe.Pointer) {
+func (v_ VZVirtioConsolePort) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePort/name
-func (v_ VZVirtioConsolePort) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePort) Name() appkit.string {
+	rv := objc.Send[appkit.string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The array of console ports that a specific device uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
-func (v_ VZVirtioConsolePort) Ports() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ports"))
+func (v_ VZVirtioConsolePort) Ports() VZVirtioConsolePortArray {
+	rv := objc.Send[VZVirtioConsolePortArray](v_.ID, objc.Sel("ports"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (v_ VZVirtioConsolePort) Ports() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice/ports
-func (v_ VZVirtioConsolePort) SetPorts(value unsafe.Pointer) {
+func (v_ VZVirtioConsolePort) SetPorts(value IVZVirtioConsolePortArray) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPorts:"), value)
 }
 

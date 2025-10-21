@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,14 +32,14 @@ type _PHImageManagerClass struct {
 // An interface definition for the [PHImageManager] class.
 type IPHImageManager interface {
 	objectivec.IObject
-	CancelImageRequest(requestID unsafe.Pointer)
-	RequestAVAssetForVideoOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer
-	RequestExportSessionForVideoOptionsExportPresetResultHandler(asset unsafe.Pointer, options unsafe.Pointer, exportPreset string, resultHandler unsafe.Pointer) unsafe.Pointer
-	RequestImageForAssetTargetSizeContentModeOptionsResultHandler(asset unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer
-	RequestImageDataAndOrientationForAssetOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer
-	RequestImageDataForAssetOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer
-	RequestLivePhotoForAssetTargetSizeContentModeOptionsResultHandler(asset unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer
-	RequestPlayerItemForVideoOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer
+	CancelImageRequest(requestID IPHImageRequestID)
+	RequestAVAssetForVideoOptionsResultHandler(asset IPHAsset, options PHVideoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestExportSessionForVideoOptionsExportPresetResultHandler(asset IPHAsset, options PHVideoRequestOptions, exportPreset appkit.string, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestImageForAssetTargetSizeContentModeOptionsResultHandler(asset IPHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestImageDataAndOrientationForAssetOptionsResultHandler(asset IPHAsset, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestImageDataForAssetOptionsResultHandler(asset IPHAsset, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestLivePhotoForAssetTargetSizeContentModeOptionsResultHandler(asset IPHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHLivePhotoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
+	RequestPlayerItemForVideoOptionsResultHandler(asset IPHAsset, options PHVideoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID
 }
 
 // An object that facilitates retrieving or generating preview thumbnails and asset data.
@@ -92,71 +93,71 @@ func NewPHImageManager() PHImageManager {
 // Returns the shared image manager object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/default()
-func (pc _PHImageManagerClass) DefaultManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("defaultManager"))
+func (pc _PHImageManagerClass) DefaultManager() PHImageManager {
+	rv := objc.Send[PHImageManager](objc.ID(pc.class), objc.Sel("defaultManager"))
 	return rv
 }
 
 // Cancels an asynchronous request
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/cancelImageRequest(_:)
-func (p_ PHImageManager) CancelImageRequest(requestID unsafe.Pointer) {
+func (p_ PHImageManager) CancelImageRequest(requestID IPHImageRequestID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancelImageRequest:"), requestID)
 }
 
 // Requests AVFoundation objects representing the video asset’s content and state, to be loaded asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestAVAsset(forVideo:options:resultHandler:)
-func (p_ PHImageManager) RequestAVAssetForVideoOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestAVAssetForVideo:options:resultHandler:"), asset, options, resultHandler)
+func (p_ PHImageManager) RequestAVAssetForVideoOptionsResultHandler(asset IPHAsset, options PHVideoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestAVAssetForVideo:options:resultHandler:"), asset, options, resultHandler)
 	return rv
 }
 
 // Requests an export session for writing the video asset’s data to a file, to be loaded asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestExportSession(forVideo:options:exportPreset:resultHandler:)
-func (p_ PHImageManager) RequestExportSessionForVideoOptionsExportPresetResultHandler(asset unsafe.Pointer, options unsafe.Pointer, exportPreset string, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestExportSessionForVideo:options:exportPreset:resultHandler:"), asset, options, objc.String(exportPreset), resultHandler)
+func (p_ PHImageManager) RequestExportSessionForVideoOptionsExportPresetResultHandler(asset IPHAsset, options PHVideoRequestOptions, exportPreset appkit.string, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestExportSessionForVideo:options:exportPreset:resultHandler:"), asset, options, exportPreset, resultHandler)
 	return rv
 }
 
 // Requests an image representation for the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestImage(for:targetSize:contentMode:options:resultHandler:)
-func (p_ PHImageManager) RequestImageForAssetTargetSizeContentModeOptionsResultHandler(asset unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestImageForAsset:targetSize:contentMode:options:resultHandler:"), asset, targetSize, contentMode, options, resultHandler)
+func (p_ PHImageManager) RequestImageForAssetTargetSizeContentModeOptionsResultHandler(asset IPHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestImageForAsset:targetSize:contentMode:options:resultHandler:"), asset, targetSize, contentMode, options, resultHandler)
 	return rv
 }
 
 // Requests the largest represented image as data bytes and EXIF orientation for the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestImageDataAndOrientation(for:options:resultHandler:)
-func (p_ PHImageManager) RequestImageDataAndOrientationForAssetOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestImageDataAndOrientationForAsset:options:resultHandler:"), asset, options, resultHandler)
+func (p_ PHImageManager) RequestImageDataAndOrientationForAssetOptionsResultHandler(asset IPHAsset, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestImageDataAndOrientationForAsset:options:resultHandler:"), asset, options, resultHandler)
 	return rv
 }
 
 // Requests full-sized image data for the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestImageDataForAsset:options:resultHandler:
-func (p_ PHImageManager) RequestImageDataForAssetOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestImageDataForAsset:options:resultHandler:"), asset, options, resultHandler)
+func (p_ PHImageManager) RequestImageDataForAssetOptionsResultHandler(asset IPHAsset, options PHImageRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestImageDataForAsset:options:resultHandler:"), asset, options, resultHandler)
 	return rv
 }
 
 // Requests a Live Photo representation for the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestLivePhoto(for:targetSize:contentMode:options:resultHandler:)
-func (p_ PHImageManager) RequestLivePhotoForAssetTargetSizeContentModeOptionsResultHandler(asset unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:"), asset, targetSize, contentMode, options, resultHandler)
+func (p_ PHImageManager) RequestLivePhotoForAssetTargetSizeContentModeOptionsResultHandler(asset IPHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHLivePhotoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestLivePhotoForAsset:targetSize:contentMode:options:resultHandler:"), asset, targetSize, contentMode, options, resultHandler)
 	return rv
 }
 
 // Requests a representation of the video asset for playback, to be loaded asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageManager/requestPlayerItem(forVideo:options:resultHandler:)
-func (p_ PHImageManager) RequestPlayerItemForVideoOptionsResultHandler(asset unsafe.Pointer, options unsafe.Pointer, resultHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestPlayerItemForVideo:options:resultHandler:"), asset, options, resultHandler)
+func (p_ PHImageManager) RequestPlayerItemForVideoOptionsResultHandler(asset IPHAsset, options PHVideoRequestOptions, resultHandler unsafe.Pointer) PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("requestPlayerItemForVideo:options:resultHandler:"), asset, options, resultHandler)
 	return rv
 }
 
@@ -171,8 +172,8 @@ func (p_ PHImageManager) PHImageManagerMaximumSize() coregraphics.CGSize {
 // A special value provided for asynchronous image requests that cannot be canceled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phinvalidimagerequestid
-func (p_ PHImageManager) PHInvalidImageRequestID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PHInvalidImageRequestID"))
+func (p_ PHImageManager) PHInvalidImageRequestID() PHImageRequestID {
+	rv := objc.Send[PHImageRequestID](p_.ID, objc.Sel("PHInvalidImageRequestID"))
 	return rv
 }
 

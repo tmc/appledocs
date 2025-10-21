@@ -30,15 +30,15 @@ type _MusicPlayerControllerClass struct {
 // An interface definition for the [MusicPlayerController] class.
 type IMusicPlayerController interface {
 	objectivec.IObject
-	AppendQueueDescriptor(descriptor unsafe.Pointer)
+	AppendQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor)
 	BeginGeneratingPlaybackNotifications()
 	EndGeneratingPlaybackNotifications()
 	PrepareToPlayWithCompletionHandler(completionHandler unsafe.Pointer)
-	PrependQueueDescriptor(descriptor unsafe.Pointer)
-	SetQueueWithDescriptor(descriptor unsafe.Pointer)
-	SetQueueWithQuery(query unsafe.Pointer)
-	SetQueueWithStoreIDs(storeIDs unsafe.Pointer)
-	SetQueueWithItemCollection(itemCollection unsafe.Pointer)
+	PrependQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor)
+	SetQueueWithDescriptor(descriptor IMPMusicPlayerQueueDescriptor)
+	SetQueueWithQuery(query IMPMediaQuery)
+	SetQueueWithStoreIDs(storeIDs []string)
+	SetQueueWithItemCollection(itemCollection IMPMediaItemCollection)
 	SkipToBeginning()
 	SkipToNextItem()
 	SkipToPreviousItem()
@@ -95,22 +95,22 @@ func NewMusicPlayerController() MusicPlayerController {
 // Returns the application music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationMusicPlayer
-func (mc _MusicPlayerControllerClass) ApplicationMusicPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("applicationMusicPlayer"))
+func (mc _MusicPlayerControllerClass) ApplicationMusicPlayer() MusicPlayerController {
+	rv := objc.Send[MPMusicPlayerController](objc.ID(mc.class), objc.Sel("applicationMusicPlayer"))
 	return rv
 }
 // Returns the application queue music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationQueuePlayer
-func (mc _MusicPlayerControllerClass) ApplicationQueuePlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("applicationQueuePlayer"))
+func (mc _MusicPlayerControllerClass) ApplicationQueuePlayer() MPMusicPlayerApplicationController {
+	rv := objc.Send[MPMusicPlayerApplicationController](objc.ID(mc.class), objc.Sel("applicationQueuePlayer"))
 	return rv
 }
 // Returns the iPod music player, which controls the iPod app’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer
-func (mc _MusicPlayerControllerClass) IPodMusicPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("iPodMusicPlayer"))
+func (mc _MusicPlayerControllerClass) IPodMusicPlayer() MusicPlayerController {
+	rv := objc.Send[MPMusicPlayerController](objc.ID(mc.class), objc.Sel("iPodMusicPlayer"))
 	return rv
 }
 // Returns the system music player, which controls the Music app’s state.
@@ -123,7 +123,7 @@ func (mc _MusicPlayerControllerClass) SystemMusicPlayer() unsafe.Pointer {
 // Inserts the media items defined by the queue descriptor after the last media item in the current queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/append(_:)
-func (m_ MusicPlayerController) AppendQueueDescriptor(descriptor unsafe.Pointer) {
+func (m_ MusicPlayerController) AppendQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendQueueDescriptor:"), descriptor)
 }
 
@@ -151,35 +151,35 @@ func (m_ MusicPlayerController) PrepareToPlayWithCompletionHandler(completionHan
 // Inserts the media items defined by the queue descriptor into the current queue immediately after the currently playing media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/prepend(_:)
-func (m_ MusicPlayerController) PrependQueueDescriptor(descriptor unsafe.Pointer) {
+func (m_ MusicPlayerController) PrependQueueDescriptor(descriptor IMPMusicPlayerQueueDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("prependQueueDescriptor:"), descriptor)
 }
 
 // Set the music player’s playback queue using media items that fit the queue descriptor properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-1izmj
-func (m_ MusicPlayerController) SetQueueWithDescriptor(descriptor unsafe.Pointer) {
+func (m_ MusicPlayerController) SetQueueWithDescriptor(descriptor IMPMusicPlayerQueueDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithDescriptor:"), descriptor)
 }
 
 // Sets a music player’s playback queue based on a media query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-5rii3
-func (m_ MusicPlayerController) SetQueueWithQuery(query unsafe.Pointer) {
+func (m_ MusicPlayerController) SetQueueWithQuery(query IMPMediaQuery) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithQuery:"), query)
 }
 
 // Sets a music player’s playback queue using with media items identified by the store identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-8x6xb
-func (m_ MusicPlayerController) SetQueueWithStoreIDs(storeIDs unsafe.Pointer) {
+func (m_ MusicPlayerController) SetQueueWithStoreIDs(storeIDs []string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithStoreIDs:"), storeIDs)
 }
 
 // Sets a music player’s playback queue using a media item collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/setQueue(with:)-xlwk
-func (m_ MusicPlayerController) SetQueueWithItemCollection(itemCollection unsafe.Pointer) {
+func (m_ MusicPlayerController) SetQueueWithItemCollection(itemCollection IMPMediaItemCollection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueueWithItemCollection:"), itemCollection)
 }
 
@@ -207,24 +207,24 @@ func (m_ MusicPlayerController) SkipToPreviousItem() {
 // Returns the application music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationMusicPlayer
-func (m_ MusicPlayerController) ApplicationMusicPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationMusicPlayer"))
+func (m_ MusicPlayerController) ApplicationMusicPlayer() MPMusicPlayerController {
+	rv := objc.Send[MPMusicPlayerController](m_.ID, objc.Sel("applicationMusicPlayer"))
 	return rv
 }
 
 // Returns the application queue music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/applicationQueuePlayer
-func (m_ MusicPlayerController) ApplicationQueuePlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationQueuePlayer"))
+func (m_ MusicPlayerController) ApplicationQueuePlayer() MPMusicPlayerApplicationController {
+	rv := objc.Send[MPMusicPlayerApplicationController](m_.ID, objc.Sel("applicationQueuePlayer"))
 	return rv
 }
 
 // Returns the iPod music player, which controls the iPod app’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/iPodMusicPlayer
-func (m_ MusicPlayerController) IPodMusicPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iPodMusicPlayer"))
+func (m_ MusicPlayerController) IPodMusicPlayer() MPMusicPlayerController {
+	rv := objc.Send[MPMusicPlayerController](m_.ID, objc.Sel("iPodMusicPlayer"))
 	return rv
 }
 
@@ -239,8 +239,8 @@ func (m_ MusicPlayerController) IndexOfNowPlayingItem() uint {
 // The currently-playing media item, or the media item in a queue that you designated to begin playback with.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/nowPlayingItem
-func (m_ MusicPlayerController) NowPlayingItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nowPlayingItem"))
+func (m_ MusicPlayerController) NowPlayingItem() MPMediaItem {
+	rv := objc.Send[MPMediaItem](m_.ID, objc.Sel("nowPlayingItem"))
 	return rv
 }
 
@@ -250,23 +250,23 @@ func (m_ MusicPlayerController) NowPlayingItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/nowPlayingItem
-func (m_ MusicPlayerController) SetNowPlayingItem(value unsafe.Pointer) {
+func (m_ MusicPlayerController) SetNowPlayingItem(value IMPMediaItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNowPlayingItem:"), value)
 }
 
 // The current playback state of the music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/playbackState
-func (m_ MusicPlayerController) PlaybackState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("playbackState"))
+func (m_ MusicPlayerController) PlaybackState() MusicPlaybackState {
+	rv := objc.Send[MusicPlaybackState](m_.ID, objc.Sel("playbackState"))
 	return rv
 }
 
 // The current repeat mode of the music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/repeatMode
-func (m_ MusicPlayerController) RepeatMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("repeatMode"))
+func (m_ MusicPlayerController) RepeatMode() MusicRepeatMode {
+	rv := objc.Send[MusicRepeatMode](m_.ID, objc.Sel("repeatMode"))
 	return rv
 }
 
@@ -276,15 +276,15 @@ func (m_ MusicPlayerController) RepeatMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/repeatMode
-func (m_ MusicPlayerController) SetRepeatMode(value unsafe.Pointer) {
+func (m_ MusicPlayerController) SetRepeatMode(value MusicRepeatMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRepeatMode:"), value)
 }
 
 // The current shuffle mode of the music player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/shuffleMode
-func (m_ MusicPlayerController) ShuffleMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shuffleMode"))
+func (m_ MusicPlayerController) ShuffleMode() MusicShuffleMode {
+	rv := objc.Send[MusicShuffleMode](m_.ID, objc.Sel("shuffleMode"))
 	return rv
 }
 
@@ -294,7 +294,7 @@ func (m_ MusicPlayerController) ShuffleMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerController/shuffleMode
-func (m_ MusicPlayerController) SetShuffleMode(value unsafe.Pointer) {
+func (m_ MusicPlayerController) SetShuffleMode(value MusicShuffleMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShuffleMode:"), value)
 }
 

@@ -84,8 +84,8 @@ func NewINResumeWorkoutIntent() INResumeWorkoutIntent {
 // The name of the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inresumeworkoutintent/workoutname
-func (i_ INResumeWorkoutIntent) WorkoutName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+func (i_ INResumeWorkoutIntent) WorkoutName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (i_ INResumeWorkoutIntent) WorkoutName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inresumeworkoutintent/workoutname
-func (i_ INResumeWorkoutIntent) SetWorkoutName(value unsafe.Pointer) {
+func (i_ INResumeWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
 

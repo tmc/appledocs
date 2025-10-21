@@ -87,7 +87,7 @@ func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) Mask() foundation.N
 // SetMask sets the value of the mask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/mask
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetMask(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) ServerSideProcessin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) TimedInvokeTimeoutM
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterModifyEnabledAlarmsParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterModifyEnabledAlarmsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

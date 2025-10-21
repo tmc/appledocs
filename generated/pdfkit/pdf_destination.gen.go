@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,16 +85,16 @@ func NewPDFDestination() PDFDestination {
 // Returns the page that the destination refers to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFDestination/page
-func (p_ PDFDestination) Page() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("page"))
+func (p_ PDFDestination) Page() PDFPage {
+	rv := objc.Send[PDFPage](p_.ID, objc.Sel("page"))
 	return rv
 }
 
 // An object that represents an action for a PDF element, such as a link annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
-func (p_ PDFDestination) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("action"))
+func (p_ PDFDestination) Action() PDFAction {
+	rv := objc.Send[PDFAction](p_.ID, objc.Sel("action"))
 	return rv
 }
 
@@ -103,15 +104,15 @@ func (p_ PDFDestination) Action() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/action
-func (p_ PDFDestination) SetAction(value unsafe.Pointer) {
+func (p_ PDFDestination) SetAction(value IPDFAction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
 
 // Returns the modification date of the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFDestination) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
+func (p_ PDFDestination) ModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -121,15 +122,15 @@ func (p_ PDFDestination) ModificationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/modificationdate
-func (p_ PDFDestination) SetModificationDate(value unsafe.Pointer) {
+func (p_ PDFDestination) SetModificationDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
 }
 
 // Returns the type of the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) Type() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("type"))
+func (p_ PDFDestination) Type() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -139,15 +140,15 @@ func (p_ PDFDestination) Type() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/type
-func (p_ PDFDestination) SetType(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), objc.String(value))
+func (p_ PDFDestination) SetType(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
 
 // Returns the name of the user who created the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFDestination) UserName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("userName"))
+func (p_ PDFDestination) UserName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -157,8 +158,8 @@ func (p_ PDFDestination) UserName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/username
-func (p_ PDFDestination) SetUserName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), objc.String(value))
+func (p_ PDFDestination) SetUserName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserName:"), value)
 }
 
 // Returns the point, in page space, that the destination refers to.
@@ -197,8 +198,8 @@ func (p_ PDFDestination) SetZoom(value float64) {
 // Returns a
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
-func (p_ PDFDestination) CurrentDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentDestination"))
+func (p_ PDFDestination) CurrentDestination() PDFDestination {
+	rv := objc.Send[PDFDestination](p_.ID, objc.Sel("currentDestination"))
 	return rv
 }
 
@@ -208,7 +209,7 @@ func (p_ PDFDestination) CurrentDestination() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfview/currentdestination
-func (p_ PDFDestination) SetCurrentDestination(value unsafe.Pointer) {
+func (p_ PDFDestination) SetCurrentDestination(value IPDFDestination) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDestination:"), value)
 }
 

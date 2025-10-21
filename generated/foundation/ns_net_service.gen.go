@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +31,18 @@ type _NetServiceClass struct {
 // An interface definition for the [NetService] class.
 type INetService interface {
 	objectivec.IObject
-	GetInputStreamOutputStream(inputStream unsafe.Pointer, outputStream unsafe.Pointer) bool
+	GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool
 	Publish()
-	PublishWithOptions(options unsafe.Pointer)
-	RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	PublishWithOptions(options NetServiceOptions)
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 	Resolve()
-	ResolveWithTimeout(timeout TimeInterval)
-	ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
-	SetTXTRecordData(recordData unsafe.Pointer) bool
+	ResolveWithTimeout(timeout ITimeInterval)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	SetTXTRecordData(recordData IData) bool
 	StartMonitoring()
 	Stop()
 	StopMonitoring()
-	TXTRecordData() unsafe.Pointer
+	TXTRecordData() Data
 }
 
 // A network service that broadcasts its availability using multicast DNS.
@@ -97,9 +98,9 @@ func NewNetService() NetService {
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
-func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) NetService {
+func NewNetServiceWithDomainTypeName(domain appkit.string, type_ appkit.string, name appkit.string) NetService {
 	instance := getNetServiceClass().Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), objc.String(domain), objc.String(type_), objc.String(name))
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:"), domain, type_, name)
 	rv.Autorelease()
 	return rv
 }
@@ -109,9 +110,9 @@ func NewNetServiceWithDomainTypeName(domain string, type_ string, name string) N
 // Initializes the receiver for publishing a network service of type at the socket location specified by , , and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:port:)
-func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name string, port unsafe.Pointer) NetService {
+func NewNetServiceWithDomainTypeNamePort(domain appkit.string, type_ appkit.string, name appkit.string, port unsafe.Pointer) NetService {
 	instance := getNetServiceClass().Alloc()
-	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), objc.String(domain), objc.String(type_), objc.String(name), port)
+	rv := objc.Send[NetService](instance.ID, objc.Sel("initWithDomain:type:name:port:"), domain, type_, name, port)
 	rv.Autorelease()
 	return rv
 }
@@ -120,15 +121,15 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 // Returns an object representing a TXT record formed from a given dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/data(fromTXTRecord:)
-func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
+func (nc _NetServiceClass) DataFromTXTRecordDictionary(txtDictionary unsafe.Pointer) Data {
+	rv := objc.Send[Data](objc.ID(nc.class), objc.Sel("dataFromTXTRecordDictionary:"), txtDictionary)
 	return rv
 }
 
 // Returns a dictionary representing a TXT record given as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/dictionary(fromTXTRecord:)
-func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData unsafe.Pointer) unsafe.Pointer {
+func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("dictionaryFromTXTRecordData:"), txtData)
 	return rv
 }
@@ -136,7 +137,7 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData unsafe.Pointer) u
 // Creates a pair of input and output streams for the receiver and returns a Boolean value that indicates whether they were retrieved successfully.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/getInputStream(_:outputStream:)
-func (n_ NetService) GetInputStreamOutputStream(inputStream unsafe.Pointer, outputStream unsafe.Pointer) bool {
+func (n_ NetService) GetInputStreamOutputStream(inputStream IInputStream, outputStream IOutputStream) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("getInputStream:outputStream:"), inputStream, outputStream)
 	return rv
 }
@@ -151,14 +152,14 @@ func (n_ NetService) Publish() {
 // Attempts to advertise the receiver on the network, with the given options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/publish(options:)
-func (n_ NetService) PublishWithOptions(options unsafe.Pointer) {
+func (n_ NetService) PublishWithOptions(options NetServiceOptions) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("publishWithOptions:"), options)
 }
 
 // Removes the service from the given run loop for a given mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/remove(from:forMode:)
-func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (n_ NetService) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -172,21 +173,21 @@ func (n_ NetService) Resolve() {
 // Starts a resolve process of a finite duration for the service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/resolve(withTimeout:)
-func (n_ NetService) ResolveWithTimeout(timeout TimeInterval) {
+func (n_ NetService) ResolveWithTimeout(timeout ITimeInterval) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resolveWithTimeout:"), timeout)
 }
 
 // Adds the service to the specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/schedule(in:forMode:)
-func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (n_ NetService) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
 // Sets the TXT record for the receiver, and returns a Boolean value that indicates whether the operation was successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/setTXTRecord(_:)
-func (n_ NetService) SetTXTRecordData(recordData unsafe.Pointer) bool {
+func (n_ NetService) SetTXTRecordData(recordData IData) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("setTXTRecordData:"), recordData)
 	return rv
 }
@@ -215,8 +216,8 @@ func (n_ NetService) StopMonitoring() {
 // Returns the TXT record for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/txtRecordData()
-func (n_ NetService) TXTRecordData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("TXTRecordData"))
+func (n_ NetService) TXTRecordData() Data {
+	rv := objc.Send[Data](n_.ID, objc.Sel("TXTRecordData"))
 	return rv
 }
 
@@ -249,16 +250,16 @@ func (n_ NetService) SetDelegate(value objc.ID) {
 // A string containing the domain for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
-func (n_ NetService) Domain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
+func (n_ NetService) Domain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // A string containing the DNS hostname for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/hostName
-func (n_ NetService) HostName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("hostName"))
+func (n_ NetService) HostName() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("hostName"))
 	return rv
 }
 
@@ -283,8 +284,8 @@ func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 // A string containing the name of this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name
-func (n_ NetService) Name() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("name"))
+func (n_ NetService) Name() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -299,8 +300,8 @@ func (n_ NetService) Port() int {
 // The type of the published service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
-func (n_ NetService) Type() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("type"))
+func (n_ NetService) Type() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("type"))
 	return rv
 }
 

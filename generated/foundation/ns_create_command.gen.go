@@ -84,8 +84,8 @@ func NewCreateCommand() CreateCommand {
 // Returns the class description for the class that is to be created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/createClassDescription
-func (c_ CreateCommand) CreateClassDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("createClassDescription"))
+func (c_ CreateCommand) CreateClassDescription() NSScriptClassDescription {
+	rv := objc.Send[NSScriptClassDescription](c_.ID, objc.Sel("createClassDescription"))
 	return rv
 }
 

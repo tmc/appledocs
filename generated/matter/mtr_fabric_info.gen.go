@@ -87,7 +87,7 @@ func (m_ MTRFabricInfo) FabricID() foundation.Number {
 // SetFabricID sets the value of the fabricID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/fabricid
-func (m_ MTRFabricInfo) SetFabricID(value foundation.Number) {
+func (m_ MTRFabricInfo) SetFabricID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRFabricInfo) FabricIndex() foundation.Number {
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/fabricindex
-func (m_ MTRFabricInfo) SetFabricIndex(value foundation.Number) {
+func (m_ MTRFabricInfo) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificate
-func (m_ MTRFabricInfo) IntermediateCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("intermediateCertificate"))
+func (m_ MTRFabricInfo) IntermediateCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificate"))
 	return rv
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRFabricInfo) IntermediateCertificate() unsafe.Pointer {
 // SetIntermediateCertificate sets the value of the intermediateCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificate
-func (m_ MTRFabricInfo) SetIntermediateCertificate(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetIntermediateCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificatetlv
-func (m_ MTRFabricInfo) IntermediateCertificateTLV() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("intermediateCertificateTLV"))
+func (m_ MTRFabricInfo) IntermediateCertificateTLV() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificateTLV"))
 	return rv
 }
 
@@ -132,14 +132,14 @@ func (m_ MTRFabricInfo) IntermediateCertificateTLV() unsafe.Pointer {
 // SetIntermediateCertificateTLV sets the value of the intermediateCertificateTLV property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificatetlv
-func (m_ MTRFabricInfo) SetIntermediateCertificateTLV(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetIntermediateCertificateTLV(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificateTLV:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/label
-func (m_ MTRFabricInfo) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRFabricInfo) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (m_ MTRFabricInfo) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/label
-func (m_ MTRFabricInfo) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRFabricInfo) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -162,14 +162,14 @@ func (m_ MTRFabricInfo) NodeID() foundation.Number {
 // SetNodeID sets the value of the nodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/nodeid
-func (m_ MTRFabricInfo) SetNodeID(value foundation.Number) {
+func (m_ MTRFabricInfo) SetNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificate
-func (m_ MTRFabricInfo) OperationalCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificate"))
+func (m_ MTRFabricInfo) OperationalCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificate"))
 	return rv
 }
 
@@ -177,14 +177,14 @@ func (m_ MTRFabricInfo) OperationalCertificate() unsafe.Pointer {
 // SetOperationalCertificate sets the value of the operationalCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificate
-func (m_ MTRFabricInfo) SetOperationalCertificate(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetOperationalCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificatetlv
-func (m_ MTRFabricInfo) OperationalCertificateTLV() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateTLV"))
+func (m_ MTRFabricInfo) OperationalCertificateTLV() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificateTLV"))
 	return rv
 }
 
@@ -192,14 +192,14 @@ func (m_ MTRFabricInfo) OperationalCertificateTLV() unsafe.Pointer {
 // SetOperationalCertificateTLV sets the value of the operationalCertificateTLV property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificatetlv
-func (m_ MTRFabricInfo) SetOperationalCertificateTLV(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetOperationalCertificateTLV(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateTLV:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificate
-func (m_ MTRFabricInfo) RootCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificate"))
+func (m_ MTRFabricInfo) RootCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
@@ -207,14 +207,14 @@ func (m_ MTRFabricInfo) RootCertificate() unsafe.Pointer {
 // SetRootCertificate sets the value of the rootCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificate
-func (m_ MTRFabricInfo) SetRootCertificate(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetRootCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificatetlv
-func (m_ MTRFabricInfo) RootCertificateTLV() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificateTLV"))
+func (m_ MTRFabricInfo) RootCertificateTLV() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificateTLV"))
 	return rv
 }
 
@@ -222,14 +222,14 @@ func (m_ MTRFabricInfo) RootCertificateTLV() unsafe.Pointer {
 // SetRootCertificateTLV sets the value of the rootCertificateTLV property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificatetlv
-func (m_ MTRFabricInfo) SetRootCertificateTLV(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetRootCertificateTLV(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificateTLV:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootpublickey
-func (m_ MTRFabricInfo) RootPublicKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootPublicKey"))
+func (m_ MTRFabricInfo) RootPublicKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootPublicKey"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (m_ MTRFabricInfo) RootPublicKey() unsafe.Pointer {
 // SetRootPublicKey sets the value of the rootPublicKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootpublickey
-func (m_ MTRFabricInfo) SetRootPublicKey(value unsafe.Pointer) {
+func (m_ MTRFabricInfo) SetRootPublicKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
 }
 
@@ -252,7 +252,7 @@ func (m_ MTRFabricInfo) VendorID() foundation.Number {
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/vendorid
-func (m_ MTRFabricInfo) SetVendorID(value foundation.Number) {
+func (m_ MTRFabricInfo) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

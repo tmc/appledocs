@@ -88,7 +88,7 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent) ProductID() fo
 // SetProductID sets the value of the productID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-970fn/productid
-func (m_ MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent) SetProductID(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent) SetProductID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent) SoftwareVersio
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterversionappliedevent-970fn/softwareversion
-func (m_ MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

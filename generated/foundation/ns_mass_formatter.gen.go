@@ -100,8 +100,8 @@ func (m_ MassFormatter) SetIsForPersonMassUse(value bool) {
 // The number formatter used to format the numbers in a mass strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-func (m_ MassFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
+func (m_ MassFormatter) NumberFormatter() NSNumberFormatter {
+	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (m_ MassFormatter) NumberFormatter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/massformatter/numberformatter
-func (m_ MassFormatter) SetNumberFormatter(value unsafe.Pointer) {
+func (m_ MassFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 

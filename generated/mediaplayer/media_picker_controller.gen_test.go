@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = mediaplayer.NewMediaPickerController
 
+// ExampleNewMediaPickerControllerWithMediaTypes demonstrates how to create a MediaPickerController instance using NewMediaPickerControllerWithMediaTypes.
+// Initializes a media item picker for specified media types.
+func ExampleNewMediaPickerControllerWithMediaTypes() {
+	_ = mediaplayer.NewMediaPickerControllerWithMediaTypes(
+		mediaplayer.MediaType{}, // mediaTypes MediaType
+	)
+	// Output:
+}

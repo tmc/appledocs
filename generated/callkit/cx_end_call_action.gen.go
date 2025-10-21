@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXEndCallAction] class.
@@ -29,7 +30,7 @@ type _CXEndCallActionClass struct {
 // An interface definition for the [CXEndCallAction] class.
 type ICXEndCallAction interface {
 	ICXCallAction
-	FulfillWithDateEnded(dateEnded unsafe.Pointer)
+	FulfillWithDateEnded(dateEnded foundation.IDate)
 }
 
 // An encapsulation of the act of ending a call.
@@ -85,7 +86,7 @@ func NewCXEndCallAction() CXEndCallAction {
 // Reports the successful execution of the action at the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXEndCallAction/fulfill(withDateEnded:)
-func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded unsafe.Pointer) {
+func (c_ CXEndCallAction) FulfillWithDateEnded(dateEnded foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateEnded:"), dateEnded)
 }
 

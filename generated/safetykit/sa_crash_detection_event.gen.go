@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,24 +85,24 @@ func NewSACrashDetectionEvent() SACrashDetectionEvent {
 // The date and time the crash occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/date
-func (s_ SACrashDetectionEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("date"))
+func (s_ SACrashDetectionEvent) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("date"))
 	return rv
 }
 
 // The longitude and latitude where the crash detection occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/location
-func (s_ SACrashDetectionEvent) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("location"))
+func (s_ SACrashDetectionEvent) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](s_.ID, objc.Sel("location"))
 	return rv
 }
 
 // An indication of whether the system attempted to call an Emergency SOS provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionEvent/response-swift.property
-func (s_ SACrashDetectionEvent) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("response"))
+func (s_ SACrashDetectionEvent) Response() SACrashDetectionEventResponse {
+	rv := objc.Send[SACrashDetectionEventResponse](s_.ID, objc.Sel("response"))
 	return rv
 }
 

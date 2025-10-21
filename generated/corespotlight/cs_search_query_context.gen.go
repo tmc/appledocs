@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -137,8 +138,8 @@ func (c_ CSSearchQueryContext) SetFilterQueries(value []string) {
 // The language used for the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) KeyboardLanguage() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("keyboardLanguage"))
+func (c_ CSSearchQueryContext) KeyboardLanguage() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("keyboardLanguage"))
 	return rv
 }
 
@@ -148,15 +149,15 @@ func (c_ CSSearchQueryContext) KeyboardLanguage() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/keyboardLanguage
-func (c_ CSSearchQueryContext) SetKeyboardLanguage(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), objc.String(value))
+func (c_ CSSearchQueryContext) SetKeyboardLanguage(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setKeyboardLanguage:"), value)
 }
 
 // The query source options to allow or deny Mail messages in the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/sourceOptions-swift.property
-func (c_ CSSearchQueryContext) SourceOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceOptions"))
+func (c_ CSSearchQueryContext) SourceOptions() CSSearchQuerySourceOptions {
+	rv := objc.Send[CSSearchQuerySourceOptions](c_.ID, objc.Sel("sourceOptions"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (c_ CSSearchQueryContext) SourceOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSearchQueryContext/sourceOptions-swift.property
-func (c_ CSSearchQueryContext) SetSourceOptions(value unsafe.Pointer) {
+func (c_ CSSearchQueryContext) SetSourceOptions(value CSSearchQuerySourceOptions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceOptions:"), value)
 }
 

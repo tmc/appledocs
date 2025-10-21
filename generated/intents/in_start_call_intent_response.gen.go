@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INStartCallIntentResponse] class.
@@ -86,7 +87,7 @@ func NewINStartCallIntentResponse() INStartCallIntentResponse {
 // Initializes the response object with the specified code and user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntentResponse/init(code:userActivity:)
-func NewINStartCallIntentResponseWithCodeUserActivity(code unsafe.Pointer, userActivity unsafe.Pointer) INStartCallIntentResponse {
+func NewINStartCallIntentResponseWithCodeUserActivity(code INStartCallIntentResponseCode, userActivity foundation.IUserActivity) INStartCallIntentResponse {
 	instance := getINStartCallIntentResponseClass().Alloc()
 	rv := objc.Send[INStartCallIntentResponse](instance.ID, objc.Sel("initWithCode:userActivity:"), code, userActivity)
 	rv.Autorelease()
@@ -97,8 +98,8 @@ func NewINStartCallIntentResponseWithCodeUserActivity(code unsafe.Pointer, userA
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartCallIntentResponse/code
-func (i_ INStartCallIntentResponse) Code() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+func (i_ INStartCallIntentResponse) Code() INStartCallIntentResponseCode {
+	rv := objc.Send[INStartCallIntentResponseCode](i_.ID, objc.Sel("code"))
 	return rv
 }
 

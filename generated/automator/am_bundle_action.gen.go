@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AMBundleAction] class.
@@ -92,8 +94,8 @@ func (a_ AMBundleAction) AwakeFromBundle() {
 // The action’s bundle object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/bundle
-func (a_ AMBundleAction) Bundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("bundle"))
+func (a_ AMBundleAction) Bundle() foundation.Bundle {
+	rv := objc.Send[foundation.Bundle](a_.ID, objc.Sel("bundle"))
 	return rv
 }
 
@@ -126,8 +128,8 @@ func (a_ AMBundleAction) SetParameters(value unsafe.Pointer) {
 // The action’s view object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMBundleAction/view
-func (a_ AMBundleAction) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("view"))
+func (a_ AMBundleAction) View() appkit.View {
+	rv := objc.Send[appkit.View](a_.ID, objc.Sel("view"))
 	return rv
 }
 

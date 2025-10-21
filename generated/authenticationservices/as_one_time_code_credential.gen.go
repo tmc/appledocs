@@ -81,8 +81,8 @@ func NewOneTimeCodeCredential() OneTimeCodeCredential {
 // The one-time passcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asonetimecodecredential/code
-func (o_ OneTimeCodeCredential) Code() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("code"))
+func (o_ OneTimeCodeCredential) Code() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("code"))
 	return rv
 }
 
@@ -92,8 +92,8 @@ func (o_ OneTimeCodeCredential) Code() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asonetimecodecredential/code
-func (o_ OneTimeCodeCredential) SetCode(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCode:"), objc.String(value))
+func (o_ OneTimeCodeCredential) SetCode(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCode:"), value)
 }
 
 

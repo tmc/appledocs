@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewInk() Ink {
 // Create a new ink, specifying its type, color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/init(inkType:color:)
-func NewInkWithInkTypeColor(type_ unsafe.Pointer, color unsafe.Pointer) Ink {
+func NewInkWithInkTypeColor(type_ unsafe.Pointer, color appkit.IColor) Ink {
 	instance := getInkClass().Alloc()
 	rv := objc.Send[Ink](instance.ID, objc.Sel("initWithInkType:color:"), type_, color)
 	rv.Autorelease()
@@ -94,8 +95,8 @@ func NewInkWithInkTypeColor(type_ unsafe.Pointer, color unsafe.Pointer) Ink {
 // The base color for this ink.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/color
-func (i_ Ink) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("color"))
+func (i_ Ink) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (i_ Ink) InkType() unsafe.Pointer {
 // The version of PencilKit necessary to use the ink.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkReference/requiredContentVersion
-func (i_ Ink) RequiredContentVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("requiredContentVersion"))
+func (i_ Ink) RequiredContentVersion() ContentVersion {
+	rv := objc.Send[ContentVersion](i_.ID, objc.Sel("requiredContentVersion"))
 	return rv
 }
 

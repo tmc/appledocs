@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,8 +90,8 @@ func (m_ ModelStructureNeuralNetworkLayer) InputNames() []string {
 // The layer name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/name
-func (m_ ModelStructureNeuralNetworkLayer) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureNeuralNetworkLayer) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (m_ ModelStructureNeuralNetworkLayer) OutputNames() []string {
 // The type of the layer, e,g, “elementwise”, “pooling”, etc.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureNeuralNetworkLayer/type
-func (m_ ModelStructureNeuralNetworkLayer) Type() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("type"))
+func (m_ ModelStructureNeuralNetworkLayer) Type() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("type"))
 	return rv
 }
 

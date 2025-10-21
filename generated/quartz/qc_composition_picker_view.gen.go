@@ -30,7 +30,7 @@ type _QCCompositionPickerViewClass struct {
 // An interface definition for the [QCCompositionPickerView] class.
 type IQCCompositionPickerView interface {
 	appkit.IView
-	SetSelectedComposition(composition unsafe.Pointer)
+	SetSelectedComposition(composition IQCComposition)
 	ShowsCompositionNames() bool
 }
 
@@ -87,7 +87,7 @@ func NewQCCompositionPickerView() QCCompositionPickerView {
 // Sets a composition as selected in the composition picker view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView/setSelectedComposition(_:)
-func (q_ QCCompositionPickerView) SetSelectedComposition(composition unsafe.Pointer) {
+func (q_ QCCompositionPickerView) SetSelectedComposition(composition IQCComposition) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setSelectedComposition:"), composition)
 }
 

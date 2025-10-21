@@ -2079,6 +2079,9 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterAccessControlEventAccessControlEntryChangedID
 	MTRClusterAccessControlEventAccessControlEntryChangedID MTREventIDType = 0
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterAccessControlEventAccessControlExtensionChangedID
+	MTRClusterAccessControlEventAccessControlExtensionChangedID MTREventIDType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventIDType/MTRClusterBasicEventLeaveID
 	MTRClusterBasicEventLeaveID MTREventIDType = 0
 	//

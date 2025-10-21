@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,9 +84,9 @@ func NewNETunnelNetworkSettings() NETunnelNetworkSettings {
 // Initialize a object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/init(tunnelRemoteAddress:)
-func NewNETunnelNetworkSettingsWithTunnelRemoteAddress(address string) NETunnelNetworkSettings {
+func NewNETunnelNetworkSettingsWithTunnelRemoteAddress(address appkit.string) NETunnelNetworkSettings {
 	instance := getNETunnelNetworkSettingsClass().Alloc()
-	rv := objc.Send[NETunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:"), objc.String(address))
+	rv := objc.Send[NETunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:"), address)
 	rv.Autorelease()
 	return rv
 }
@@ -94,8 +95,8 @@ func NewNETunnelNetworkSettingsWithTunnelRemoteAddress(address string) NETunnelN
 // The tunnel DNS settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/dnsSettings
-func (n_ NETunnelNetworkSettings) DNSSettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("DNSSettings"))
+func (n_ NETunnelNetworkSettings) DNSSettings() NEDNSSettings {
+	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("DNSSettings"))
 	return rv
 }
 
@@ -105,15 +106,15 @@ func (n_ NETunnelNetworkSettings) DNSSettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/dnsSettings
-func (n_ NETunnelNetworkSettings) SetDNSSettings(value unsafe.Pointer) {
+func (n_ NETunnelNetworkSettings) SetDNSSettings(value INEDNSSettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDNSSettings:"), value)
 }
 
 // The tunnel HTTP proxy settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/proxySettings
-func (n_ NETunnelNetworkSettings) ProxySettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("proxySettings"))
+func (n_ NETunnelNetworkSettings) ProxySettings() NEProxySettings {
+	rv := objc.Send[NEProxySettings](n_.ID, objc.Sel("proxySettings"))
 	return rv
 }
 
@@ -123,15 +124,15 @@ func (n_ NETunnelNetworkSettings) ProxySettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/proxySettings
-func (n_ NETunnelNetworkSettings) SetProxySettings(value unsafe.Pointer) {
+func (n_ NETunnelNetworkSettings) SetProxySettings(value INEProxySettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProxySettings:"), value)
 }
 
 // The IP address of the tunnel server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelNetworkSettings/tunnelRemoteAddress
-func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("tunnelRemoteAddress"))
+func (n_ NETunnelNetworkSettings) TunnelRemoteAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("tunnelRemoteAddress"))
 	return rv
 }
 

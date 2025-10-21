@@ -30,7 +30,7 @@ type _UserNotificationCenterClass struct {
 // An interface definition for the [UserNotificationCenter] class.
 type IUserNotificationCenter interface {
 	objectivec.IObject
-	RemoveDeliveredNotification(notification unsafe.Pointer)
+	RemoveDeliveredNotification(notification IUserNotification)
 }
 
 // An object that delivers notifications from apps to the user.
@@ -84,7 +84,7 @@ func NewUserNotificationCenter() UserNotificationCenter {
 // Remove a delivered user notification from the user notification center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeDeliveredNotification(_:)
-func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification unsafe.Pointer) {
+func (u_ UserNotificationCenter) RemoveDeliveredNotification(notification IUserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotification:"), notification)
 }
 
@@ -109,8 +109,8 @@ func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
 // The date this notification was actually delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-func (u_ UserNotificationCenter) ActualDeliveryDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("actualDeliveryDate"))
+func (u_ UserNotificationCenter) ActualDeliveryDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
 }
 
@@ -120,15 +120,15 @@ func (u_ UserNotificationCenter) ActualDeliveryDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-func (u_ UserNotificationCenter) SetActualDeliveryDate(value unsafe.Pointer) {
+func (u_ UserNotificationCenter) SetActualDeliveryDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActualDeliveryDate:"), value)
 }
 
 // Specifies when the notification should be delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-func (u_ UserNotificationCenter) DeliveryDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryDate"))
+func (u_ UserNotificationCenter) DeliveryDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("deliveryDate"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (u_ UserNotificationCenter) DeliveryDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate
-func (u_ UserNotificationCenter) SetDeliveryDate(value unsafe.Pointer) {
+func (u_ UserNotificationCenter) SetDeliveryDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
 }
 
@@ -163,8 +163,8 @@ func (u_ UserNotificationCenter) SetIsPresented(value bool) {
 // An array of all user notifications delivered to the notification center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
-func (u_ UserNotificationCenter) DeliveredNotifications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveredNotifications"))
+func (u_ UserNotificationCenter) DeliveredNotifications() NSUserNotification {
+	rv := objc.Send[NSUserNotification](u_.ID, objc.Sel("deliveredNotifications"))
 	return rv
 }
 
@@ -174,15 +174,15 @@ func (u_ UserNotificationCenter) DeliveredNotifications() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliverednotifications
-func (u_ UserNotificationCenter) SetDeliveredNotifications(value unsafe.Pointer) {
+func (u_ UserNotificationCenter) SetDeliveredNotifications(value IUserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveredNotifications:"), value)
 }
 
 // Specifies an array of scheduled user notifications that have not yet been delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
-func (u_ UserNotificationCenter) ScheduledNotifications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scheduledNotifications"))
+func (u_ UserNotificationCenter) ScheduledNotifications() NSUserNotification {
+	rv := objc.Send[NSUserNotification](u_.ID, objc.Sel("scheduledNotifications"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (u_ UserNotificationCenter) ScheduledNotifications() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/schedulednotifications
-func (u_ UserNotificationCenter) SetScheduledNotifications(value unsafe.Pointer) {
+func (u_ UserNotificationCenter) SetScheduledNotifications(value IUserNotification) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setScheduledNotifications:"), value)
 }
 

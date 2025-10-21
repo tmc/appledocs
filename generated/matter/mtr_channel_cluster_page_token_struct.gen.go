@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRChannelClusterPageTokenStruct() MTRChannelClusterPageTokenStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/after
-func (m_ MTRChannelClusterPageTokenStruct) After() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("after"))
+func (m_ MTRChannelClusterPageTokenStruct) After() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("after"))
 	return rv
 }
 
@@ -87,14 +88,14 @@ func (m_ MTRChannelClusterPageTokenStruct) After() string {
 // SetAfter sets the value of the after property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/after
-func (m_ MTRChannelClusterPageTokenStruct) SetAfter(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAfter:"), objc.String(value))
+func (m_ MTRChannelClusterPageTokenStruct) SetAfter(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAfter:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/before
-func (m_ MTRChannelClusterPageTokenStruct) Before() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("before"))
+func (m_ MTRChannelClusterPageTokenStruct) Before() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("before"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (m_ MTRChannelClusterPageTokenStruct) Before() string {
 // SetBefore sets the value of the before property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/before
-func (m_ MTRChannelClusterPageTokenStruct) SetBefore(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBefore:"), objc.String(value))
+func (m_ MTRChannelClusterPageTokenStruct) SetBefore(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBefore:"), value)
 }
 
 //
@@ -117,7 +118,7 @@ func (m_ MTRChannelClusterPageTokenStruct) Limit() foundation.Number {
 // SetLimit sets the value of the limit property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterPageTokenStruct/limit
-func (m_ MTRChannelClusterPageTokenStruct) SetLimit(value foundation.Number) {
+func (m_ MTRChannelClusterPageTokenStruct) SetLimit(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLimit:"), value)
 }
 

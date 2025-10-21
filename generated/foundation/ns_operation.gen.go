@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,10 +31,10 @@ type _OperationClass struct {
 // An interface definition for the [Operation] class.
 type IOperation interface {
 	objectivec.IObject
-	AddDependency(op unsafe.Pointer)
+	AddDependency(op IOperation)
 	Cancel()
 	Main()
-	RemoveDependency(op unsafe.Pointer)
+	RemoveDependency(op IOperation)
 	Start()
 	WaitUntilFinished()
 }
@@ -89,7 +90,7 @@ func NewOperation() Operation {
 // Makes the receiver dependent on the completion of the specified operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/addDependency(_:)
-func (o_ Operation) AddDependency(op unsafe.Pointer) {
+func (o_ Operation) AddDependency(op IOperation) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addDependency:"), op)
 }
 
@@ -110,7 +111,7 @@ func (o_ Operation) Main() {
 // Removes the receiver’s dependence on the specified operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/removeDependency(_:)
-func (o_ Operation) RemoveDependency(op unsafe.Pointer) {
+func (o_ Operation) RemoveDependency(op IOperation) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeDependency:"), op)
 }
 
@@ -126,6 +127,24 @@ func (o_ Operation) Start() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/waitUntilFinished()
 func (o_ Operation) WaitUntilFinished() {
 	objc.Send[objc.ID](o_.ID, objc.Sel("waitUntilFinished"))
+}
+
+// The block to execute after the operation’s main task is completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (o_ Operation) CompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("completionBlock"))
+	return rv
+}
+
+
+// SetCompletionBlock sets the value of the completionBlock property.
+// The block to execute after the operation’s main task is completed.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/completionBlock
+func (o_ Operation) SetCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCompletionBlock:"), value)
 }
 
 // An array of the operation objects that must finish executing before the current object can begin executing.
@@ -187,8 +206,8 @@ func (o_ Operation) Ready() bool {
 // The name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) Name() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("name"))
+func (o_ Operation) Name() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -198,15 +217,15 @@ func (o_ Operation) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) SetName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
+func (o_ Operation) SetName(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
 }
 
 // The relative amount of importance for granting system resources to the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (o_ Operation) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("qualityOfService"))
+func (o_ Operation) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -216,15 +235,15 @@ func (o_ Operation) QualityOfService() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (o_ Operation) SetQualityOfService(value unsafe.Pointer) {
+func (o_ Operation) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
 // The execution priority of the operation in an operation queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
-func (o_ Operation) QueuePriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
+func (o_ Operation) QueuePriority() OperationQueuePriority {
+	rv := objc.Send[OperationQueuePriority](o_.ID, objc.Sel("queuePriority"))
 	return rv
 }
 
@@ -234,7 +253,7 @@ func (o_ Operation) QueuePriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
-func (o_ Operation) SetQueuePriority(value unsafe.Pointer) {
+func (o_ Operation) SetQueuePriority(value OperationQueuePriority) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
 

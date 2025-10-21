@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,7 +88,7 @@ func (m_ MTRThermostatClusterPresetStruct) BuiltIn() foundation.Number {
 // SetBuiltIn sets the value of the builtIn property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/builtIn
-func (m_ MTRThermostatClusterPresetStruct) SetBuiltIn(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetStruct) SetBuiltIn(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
 
@@ -102,7 +103,7 @@ func (m_ MTRThermostatClusterPresetStruct) CoolingSetpoint() foundation.Number {
 // SetCoolingSetpoint sets the value of the coolingSetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/coolingSetpoint
-func (m_ MTRThermostatClusterPresetStruct) SetCoolingSetpoint(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetStruct) SetCoolingSetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolingSetpoint:"), value)
 }
 
@@ -117,14 +118,14 @@ func (m_ MTRThermostatClusterPresetStruct) HeatingSetpoint() foundation.Number {
 // SetHeatingSetpoint sets the value of the heatingSetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/heatingSetpoint
-func (m_ MTRThermostatClusterPresetStruct) SetHeatingSetpoint(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetStruct) SetHeatingSetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatingSetpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
-func (m_ MTRThermostatClusterPresetStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRThermostatClusterPresetStruct) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -132,14 +133,14 @@ func (m_ MTRThermostatClusterPresetStruct) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/name
-func (m_ MTRThermostatClusterPresetStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRThermostatClusterPresetStruct) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetHandle
-func (m_ MTRThermostatClusterPresetStruct) PresetHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presetHandle"))
+func (m_ MTRThermostatClusterPresetStruct) PresetHandle() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (m_ MTRThermostatClusterPresetStruct) PresetHandle() unsafe.Pointer {
 // SetPresetHandle sets the value of the presetHandle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetHandle
-func (m_ MTRThermostatClusterPresetStruct) SetPresetHandle(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterPresetStruct) SetPresetHandle(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
@@ -162,7 +163,7 @@ func (m_ MTRThermostatClusterPresetStruct) PresetScenario() foundation.Number {
 // SetPresetScenario sets the value of the presetScenario property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetStruct/presetScenario
-func (m_ MTRThermostatClusterPresetStruct) SetPresetScenario(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetStruct) SetPresetScenario(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
 

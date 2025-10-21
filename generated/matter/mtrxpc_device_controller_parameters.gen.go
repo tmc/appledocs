@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRXPCDeviceControllerParameters] class.
@@ -81,7 +82,7 @@ func NewMTRXPCDeviceControllerParameters() MTRXPCDeviceControllerParameters {
 // A controller created from this way will connect to a remote instance of an MTRDeviceController loaded in an XPC Service
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpcConnectionBlock:uniqueIdentifier:)
-func NewMTRXPCDeviceControllerParametersWithXPCConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier unsafe.Pointer) MTRXPCDeviceControllerParameters {
+func NewMTRXPCDeviceControllerParametersWithXPCConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier foundation.IUUID) MTRXPCDeviceControllerParameters {
 	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
 	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPCConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
 	rv.Autorelease()
@@ -90,7 +91,7 @@ func NewMTRXPCDeviceControllerParametersWithXPCConnectionBlockUniqueIdentifier(x
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/init(xpConnectionBlock:uniqueIdentifier:)
-func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier unsafe.Pointer) MTRXPCDeviceControllerParameters {
+func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xpcConnectionBlock unsafe.Pointer, uniqueIdentifier foundation.IUUID) MTRXPCDeviceControllerParameters {
 	instance := getMTRXPCDeviceControllerParametersClass().Alloc()
 	rv := objc.Send[MTRXPCDeviceControllerParameters](instance.ID, objc.Sel("initWithXPConnectionBlock:uniqueIdentifier:"), xpcConnectionBlock, uniqueIdentifier)
 	rv.Autorelease()
@@ -100,8 +101,8 @@ func NewMTRXPCDeviceControllerParametersWithXPConnectionBlockUniqueIdentifier(xp
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRXPCDeviceControllerParameters/uniqueIdentifier
-func (m_ MTRXPCDeviceControllerParameters) UniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("uniqueIdentifier"))
+func (m_ MTRXPCDeviceControllerParameters) UniqueIdentifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 

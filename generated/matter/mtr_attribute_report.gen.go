@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRAttributeReport() MTRAttributeReport {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
-func (m_ MTRAttributeReport) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("error"))
+func (m_ MTRAttributeReport) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](m_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRAttributeReport) Error() unsafe.Pointer {
 // SetError sets the value of the error property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/error
-func (m_ MTRAttributeReport) SetError(value unsafe.Pointer) {
+func (m_ MTRAttributeReport) SetError(value foundation.IError) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/path
-func (m_ MTRAttributeReport) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("path"))
+func (m_ MTRAttributeReport) Path() MTRAttributePath {
+	rv := objc.Send[MTRAttributePath](m_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRAttributeReport) Path() unsafe.Pointer {
 // SetPath sets the value of the path property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributereport/path
-func (m_ MTRAttributeReport) SetPath(value unsafe.Pointer) {
+func (m_ MTRAttributeReport) SetPath(value IMTRAttributePath) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
 

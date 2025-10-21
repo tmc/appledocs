@@ -86,7 +86,7 @@ func NewCComparisonLayer() CComparisonLayer {
 // Creates a comparison layer with the operation you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCComparisonLayer/init(operation:)
-func NewCComparisonLayerWithOperation(operation unsafe.Pointer) CComparisonLayer {
+func NewCComparisonLayerWithOperation(operation ICComparisonOperation) CComparisonLayer {
 	rv := objc.Send[CComparisonLayer](objc.ID(getCComparisonLayerClass().class), objc.Sel("layerWithOperation:"), operation)
 	return rv
 }
@@ -95,7 +95,7 @@ func NewCComparisonLayerWithOperation(operation unsafe.Pointer) CComparisonLayer
 // Creates a comparison layer with the operation you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCComparisonLayer/init(operation:)
-func (cc _CComparisonLayerClass) LayerWithOperation(operation unsafe.Pointer) unsafe.Pointer {
+func (cc _CComparisonLayerClass) LayerWithOperation(operation ICComparisonOperation) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithOperation:"), operation)
 	return rv
 }
@@ -103,8 +103,8 @@ func (cc _CComparisonLayerClass) LayerWithOperation(operation unsafe.Pointer) un
 // The comparison layer’s operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCComparisonLayer/operation
-func (c_ CComparisonLayer) Operation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operation"))
+func (c_ CComparisonLayer) Operation() CComparisonOperation {
+	rv := objc.Send[CComparisonOperation](c_.ID, objc.Sel("operation"))
 	return rv
 }
 

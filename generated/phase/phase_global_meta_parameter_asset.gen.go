@@ -84,8 +84,8 @@ func NewPHASEGlobalMetaParameterAsset() PHASEGlobalMetaParameterAsset {
 // A unique name for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
-func (p_ PHASEGlobalMetaParameterAsset) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEGlobalMetaParameterAsset) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (p_ PHASEGlobalMetaParameterAsset) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseasset/identifier
-func (p_ PHASEGlobalMetaParameterAsset) SetIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PHASEGlobalMetaParameterAsset) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEGlobalMetaParameterAsset) GlobalMetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+func (p_ PHASEGlobalMetaParameterAsset) GlobalMetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (p_ PHASEGlobalMetaParameterAsset) GlobalMetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEGlobalMetaParameterAsset) SetGlobalMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+func (p_ PHASEGlobalMetaParameterAsset) SetGlobalMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
 // The object’s meta parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEGlobalMetaParameterAsset) MetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+func (p_ PHASEGlobalMetaParameterAsset) MetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (p_ PHASEGlobalMetaParameterAsset) MetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEGlobalMetaParameterAsset) SetMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+func (p_ PHASEGlobalMetaParameterAsset) SetMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (cc _ConstraintLayoutManagerClass) LayoutManager() unsafe.Pointer {
 // The object responsible for laying out the layer’s sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager
-func (c_ ConstraintLayoutManager) LayoutManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("layoutManager"))
+func (c_ ConstraintLayoutManager) LayoutManager() appkit.LayoutManager {
+	rv := objc.Send[appkit.LayoutManager](c_.ID, objc.Sel("layoutManager"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (c_ ConstraintLayoutManager) LayoutManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager
-func (c_ ConstraintLayoutManager) SetLayoutManager(value unsafe.Pointer) {
+func (c_ ConstraintLayoutManager) SetLayoutManager(value appkit.ILayoutManager) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLayoutManager:"), value)
 }
 
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/name
-func (c_ ConstraintLayoutManager) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ ConstraintLayoutManager) Name() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (c_ ConstraintLayoutManager) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/name
-func (c_ ConstraintLayoutManager) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ ConstraintLayoutManager) SetName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 

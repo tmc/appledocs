@@ -78,8 +78,8 @@ func NewMTRDoorLockClusterUnlockWithTimeoutParams() MTRDoorLockClusterUnlockWith
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockwithtimeoutparams/pincode
-func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) PinCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinCode"))
+func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) PinCode() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("pinCode"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) PinCode() unsafe.Pointer {
 // SetPinCode sets the value of the pinCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockwithtimeoutparams/pincode
-func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetPinCode(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetPinCode(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) ServerSideProcessingTimeout(
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockwithtimeoutparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) TimedInvokeTimeoutMs() found
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockwithtimeoutparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) Timeout() foundation.Number 
 // SetTimeout sets the value of the timeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockwithtimeoutparams/timeout
-func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnlockWithTimeoutParams) SetTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
 

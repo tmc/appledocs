@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -123,9 +124,9 @@ func NewVectorWithCGRect(r coregraphics.CGRect) Vector {
 // Initialize a Core Image vector object with values provided in a string representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(string:)
-func NewVectorWithString(representation string) Vector {
+func NewVectorWithString(representation appkit.string) Vector {
 	instance := getVectorClass().Alloc()
-	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), objc.String(representation))
+	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithString:"), representation)
 	rv.Autorelease()
 	return rv
 }
@@ -135,7 +136,7 @@ func NewVectorWithString(representation string) Vector {
 // Initialize a Core Image vector object with the specified the values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/init(values:count:)
-func NewVectorWithValuesCount(values unsafe.Pointer, count unsafe.Pointer) Vector {
+func NewVectorWithValuesCount(values coregraphics.float64, count unsafe.Pointer) Vector {
 	instance := getVectorClass().Alloc()
 	rv := objc.Send[Vector](instance.ID, objc.Sel("initWithValues:count:"), values, count)
 	rv.Autorelease()
@@ -218,15 +219,15 @@ func (vc _VectorClass) VectorWithCGRect(r coregraphics.CGRect) unsafe.Pointer {
 // Create a Core Image vector object with values provided in a string representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithString:
-func (vc _VectorClass) VectorWithString(representation string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithString:"), objc.String(representation))
+func (vc _VectorClass) VectorWithString(representation appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithString:"), representation)
 	return rv
 }
 
 // Create a Core Image vector object that is initialized with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/vectorWithValues:count:
-func (vc _VectorClass) VectorWithValuesCount(values unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func (vc _VectorClass) VectorWithValuesCount(values coregraphics.float64, count unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vectorWithValues:count:"), values, count)
 	return rv
 }
@@ -306,8 +307,8 @@ func (v_ Vector) Count() unsafe.Pointer {
 // Returns a formatted string with all the values of a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIVector/stringRepresentation
-func (v_ Vector) StringRepresentation() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("stringRepresentation"))
+func (v_ Vector) StringRepresentation() appkit.string {
+	rv := objc.Send[appkit.string](v_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 

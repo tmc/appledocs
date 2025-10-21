@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewCNRenderingSessionFrameAttributes() CNRenderingSessionFrameAttributes {
 // Initializes the rendering frame attributes from a sample buffer read from a Cinematic metadata track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithSampleBuffer:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
+func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampleBuffer unsafe.Pointer, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithSampleBuffer:sessionAttributes:"), sampleBuffer, sessionAttributes)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewCNRenderingSessionFrameAttributesWithSampleBufferSessionAttributes(sampl
 // Initializes the rendering frame attributes from a timed metadata group read from a Cinematic metadata track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionFrameAttributes/initWithTimedMetadataGroup:sessionAttributes:
-func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup unsafe.Pointer, sessionAttributes unsafe.Pointer) CNRenderingSessionFrameAttributes {
+func NewCNRenderingSessionFrameAttributesWithTimedMetadataGroupSessionAttributes(metadataGroup avfoundation.ITimedMetadataGroup, sessionAttributes ICNRenderingSessionAttributes) CNRenderingSessionFrameAttributes {
 	instance := getCNRenderingSessionFrameAttributesClass().Alloc()
 	rv := objc.Send[CNRenderingSessionFrameAttributes](instance.ID, objc.Sel("initWithTimedMetadataGroup:sessionAttributes:"), metadataGroup, sessionAttributes)
 	rv.Autorelease()

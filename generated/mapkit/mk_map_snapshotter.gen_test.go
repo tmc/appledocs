@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = mapkit.NewMKMapSnapshotter
 
+// ExampleNewMKMapSnapshotterWithOptions demonstrates how to create a MKMapSnapshotter instance using NewMKMapSnapshotterWithOptions.
+// Creates and returns a snapshotter object based on the specified options.
+func ExampleNewMKMapSnapshotterWithOptions() {
+	_ = mapkit.NewMKMapSnapshotterWithOptions(
+		mapkit.MKMapSnapshotOptions{}, // options MKMapSnapshotOptions
+	)
+	// Output:
+}

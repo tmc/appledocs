@@ -84,8 +84,8 @@ func NewCloudServiceController() CloudServiceController {
 // Returns the type of authorization the customer has for accessing the Music library on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceController/authorizationStatus()
-func (cc _CloudServiceControllerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("authorizationStatus"))
+func (cc _CloudServiceControllerClass) AuthorizationStatus() CloudServiceAuthorizationStatus {
+	rv := objc.Send[CloudServiceAuthorizationStatus](objc.ID(cc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 

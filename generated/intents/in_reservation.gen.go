@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,40 +93,40 @@ func (i_ INReservation) Actions() []INReservationAction {
 // The date and time the user booked the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/bookingTime
-func (i_ INReservation) BookingTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bookingTime"))
+func (i_ INReservation) BookingTime() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("bookingTime"))
 	return rv
 }
 
 // A unique reference for the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/itemReference
-func (i_ INReservation) ItemReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("itemReference"))
+func (i_ INReservation) ItemReference() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("itemReference"))
 	return rv
 }
 
 // The reservation holder’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationHolderName
-func (i_ INReservation) ReservationHolderName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("reservationHolderName"))
+func (i_ INReservation) ReservationHolderName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("reservationHolderName"))
 	return rv
 }
 
 // The reservation number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationNumber
-func (i_ INReservation) ReservationNumber() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("reservationNumber"))
+func (i_ INReservation) ReservationNumber() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("reservationNumber"))
 	return rv
 }
 
 // The current status of the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INReservation/reservationStatus
-func (i_ INReservation) ReservationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationStatus"))
+func (i_ INReservation) ReservationStatus() INReservationStatus {
+	rv := objc.Send[INReservationStatus](i_.ID, objc.Sel("reservationStatus"))
 	return rv
 }
 

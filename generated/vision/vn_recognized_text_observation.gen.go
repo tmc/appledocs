@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [RecognizedTextObservation] class.
@@ -29,7 +28,7 @@ type _RecognizedTextObservationClass struct {
 
 // An interface definition for the [RecognizedTextObservation] class.
 type IRecognizedTextObservation interface {
-	objectivec.IObject
+	IRectangleObservation
 	TopCandidates(maxCandidateCount uint) []RecognizedText
 }
 
@@ -39,14 +38,16 @@ type IRecognizedTextObservation interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedTextObservation
 type RecognizedTextObservation struct {
-	objectivec.Object
+	RectangleObservation
 }
 
 // RecognizedTextObservationFrom constructs a [RecognizedTextObservation] from an unsafe.Pointer.
 //
 // A request that detects and recognizes regions of text in an image.
 func RecognizedTextObservationFrom(ptr unsafe.Pointer) RecognizedTextObservation {
-	return RecognizedTextObservation{objectivec.Object{objc.ID(ptr)}}
+	return RecognizedTextObservation{
+		RectangleObservation: RectangleObservationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

@@ -90,7 +90,7 @@ func (f_ FilePreviewRequest) FileURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklook/qlfilepreviewrequest/fileurl
-func (f_ FilePreviewRequest) SetFileURL(value foundation.URL) {
+func (f_ FilePreviewRequest) SetFileURL(value foundation.IURL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileURL:"), value)
 }
 

@@ -90,8 +90,8 @@ func NewMTRChannelClusterProgramGuideResponseParamsWithResponseValueError(respon
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/paging
-func (m_ MTRChannelClusterProgramGuideResponseParams) Paging() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("paging"))
+func (m_ MTRChannelClusterProgramGuideResponseParams) Paging() MTRChannelClusterChannelPagingStruct {
+	rv := objc.Send[MTRChannelClusterChannelPagingStruct](m_.ID, objc.Sel("paging"))
 	return rv
 }
 
@@ -99,14 +99,14 @@ func (m_ MTRChannelClusterProgramGuideResponseParams) Paging() unsafe.Pointer {
 // SetPaging sets the value of the paging property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/paging
-func (m_ MTRChannelClusterProgramGuideResponseParams) SetPaging(value unsafe.Pointer) {
+func (m_ MTRChannelClusterProgramGuideResponseParams) SetPaging(value IMTRChannelClusterChannelPagingStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaging:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/programList
-func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("programList"))
+func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("programList"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (m_ MTRChannelClusterProgramGuideResponseParams) ProgramList() unsafe.Point
 // SetProgramList sets the value of the programList property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramGuideResponseParams/programList
-func (m_ MTRChannelClusterProgramGuideResponseParams) SetProgramList(value unsafe.Pointer) {
+func (m_ MTRChannelClusterProgramGuideResponseParams) SetProgramList(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramList:"), value)
 }
 

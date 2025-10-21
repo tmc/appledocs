@@ -119,8 +119,8 @@ func (a_ AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTableOf
 // A label for the geometry structure, suitable for debugging.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/label
-func (a_ AccelerationStructureGeometryDescriptor) Label() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("label"))
+func (a_ AccelerationStructureGeometryDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (a_ AccelerationStructureGeometryDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuregeometrydescriptor/label
-func (a_ AccelerationStructureGeometryDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (a_ AccelerationStructureGeometryDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
 }
 
 // A Boolean value that determines whether the geometry data in the acceleration structure needs to skip triangle-intersection tests.

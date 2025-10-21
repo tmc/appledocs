@@ -86,7 +86,7 @@ func NewLogicalTest() LogicalTest {
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(andTestWith:)
-func NewLogicalTestAndTestWithTests(subTests unsafe.Pointer) LogicalTest {
+func NewLogicalTestAndTestWithTests(subTests []SpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initAndTestWithTests:"), subTests)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewLogicalTestAndTestWithTests(subTests unsafe.Pointer) LogicalTest {
 // Returns an object initialized to perform an operation with the objects in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogicalTest/init(orTestWith:)
-func NewLogicalTestOrTestWithTests(subTests unsafe.Pointer) LogicalTest {
+func NewLogicalTestOrTestWithTests(subTests []SpecifierTest) LogicalTest {
 	instance := getLogicalTestClass().Alloc()
 	rv := objc.Send[LogicalTest](instance.ID, objc.Sel("initOrTestWithTests:"), subTests)
 	rv.Autorelease()

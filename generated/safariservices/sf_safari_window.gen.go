@@ -35,7 +35,7 @@ type ISFSafariWindow interface {
 	GetActiveTabWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetAllTabsWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetToolbarItemWithCompletionHandler(completionHandler unsafe.Pointer)
-	OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url foundation.URL, activateTab bool, completionHandler unsafe.Pointer)
+	OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url foundation.IURL, activateTab bool, completionHandler unsafe.Pointer)
 }
 
 // A proxy for a Safari window.
@@ -113,7 +113,7 @@ func (s_ SFSafariWindow) GetToolbarItemWithCompletionHandler(completionHandler u
 // Opens a tab at the end of the tab bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariWindow/openTab(with:makeActiveIfPossible:completionHandler:)
-func (s_ SFSafariWindow) OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url foundation.URL, activateTab bool, completionHandler unsafe.Pointer) {
+func (s_ SFSafariWindow) OpenTabWithURLMakeActiveIfPossibleCompletionHandler(url foundation.IURL, activateTab bool, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("openTabWithURL:makeActiveIfPossible:completionHandler:"), url, activateTab, completionHandler)
 }
 

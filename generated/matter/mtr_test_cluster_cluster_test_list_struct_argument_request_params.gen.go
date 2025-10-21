@@ -103,7 +103,7 @@ func (m_ MTRTestClusterClusterTestListStructArgumentRequestParams) ServerSidePro
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterTestListStructArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestListStructArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRTestClusterClusterTestListStructArgumentRequestParams) TimedInvokeTi
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestListStructArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestListStructArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

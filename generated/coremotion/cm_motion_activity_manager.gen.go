@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _MotionActivityManagerClass struct {
 // An interface definition for the [MotionActivityManager] class.
 type IMotionActivityManager interface {
 	objectivec.IObject
-	QueryActivityStartingFromDateToDateToQueueWithHandler(start unsafe.Pointer, end unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer)
-	StartActivityUpdatesToQueueWithHandler(queue unsafe.Pointer, handler unsafe.Pointer)
+	QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.IDate, end foundation.IDate, queue foundation.IOperationQueue, handler unsafe.Pointer)
+	StartActivityUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
 	StopActivityUpdates()
 }
 
@@ -86,8 +87,8 @@ func NewMotionActivityManager() MotionActivityManager {
 // Returns a value indicating whether the app is authorized to retrieve stored motion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/authorizationStatus()
-func (mc _MotionActivityManagerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("authorizationStatus"))
+func (mc _MotionActivityManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -102,14 +103,14 @@ func (mc _MotionActivityManagerClass) IsActivityAvailable() bool {
 // Gathers and returns historical motion data for the specified time period
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/queryActivityStarting(from:to:to:withHandler:)
-func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start unsafe.Pointer, end unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) {
+func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start foundation.IDate, end foundation.IDate, queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("queryActivityStartingFromDate:toDate:toQueue:withHandler:"), start, end, queue, handler)
 }
 
 // Starts the delivery of current motion data updates to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/startActivityUpdates(to:withHandler:)
-func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue unsafe.Pointer, handler unsafe.Pointer) {
+func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startActivityUpdatesToQueue:withHandler:"), queue, handler)
 }
 

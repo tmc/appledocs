@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _QCCompositionRepositoryClass struct {
 // An interface definition for the [QCCompositionRepository] class.
 type IQCCompositionRepository interface {
 	objectivec.IObject
-	CompositionWithIdentifier(identifier string) unsafe.Pointer
+	CompositionWithIdentifier(identifier appkit.string) QCComposition
 }
 
 // The class represents a system-wide centralized repository of built-in and installed Quartz Composer compositions ( and ). The class cannot be subclassed.
@@ -84,16 +85,16 @@ func NewQCCompositionRepository() QCCompositionRepository {
 // Returns the shared instance of the composition repository.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionRepository/shared()
-func (qc _QCCompositionRepositoryClass) SharedCompositionRepository() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("sharedCompositionRepository"))
+func (qc _QCCompositionRepositoryClass) SharedCompositionRepository() QCCompositionRepository {
+	rv := objc.Send[QCCompositionRepository](objc.ID(qc.class), objc.Sel("sharedCompositionRepository"))
 	return rv
 }
 
 // Returns the composition that corresponds to the identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionRepository/composition(withIdentifier:)
-func (q_ QCCompositionRepository) CompositionWithIdentifier(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("compositionWithIdentifier:"), objc.String(identifier))
+func (q_ QCCompositionRepository) CompositionWithIdentifier(identifier appkit.string) QCComposition {
+	rv := objc.Send[QCComposition](q_.ID, objc.Sel("compositionWithIdentifier:"), identifier)
 	return rv
 }
 

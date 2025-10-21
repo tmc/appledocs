@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/metal"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,7 +90,7 @@ func NewView() View {
 // Initializes a view from data in a given unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(coder:)
-func NewViewWithCoder(coder unsafe.Pointer) View {
+func NewViewWithCoder(coder foundation.ICoder) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -100,7 +102,7 @@ func NewViewWithCoder(coder unsafe.Pointer) View {
 // Initializes a view with the specified frame rectangle and Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/init(frame:device:)
-func NewViewWithFrameDevice(frameRect coregraphics.CGRect, device objc.ID) View {
+func NewViewWithFrameDevice(frameRect coregraphics.CGRect, device objectivec.IObject) View {
 	instance := getViewClass().Alloc()
 	rv := objc.Send[View](instance.ID, objc.Sel("initWithFrame:device:"), frameRect, device)
 	rv.Autorelease()
@@ -240,16 +242,16 @@ func (v_ View) CurrentDrawable() objc.ID {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/currentMTL4RenderPassDescriptor
-func (v_ View) CurrentMTL4RenderPassDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("currentMTL4RenderPassDescriptor"))
+func (v_ View) CurrentMTL4RenderPassDescriptor() metal.MTL4RenderPassDescriptor {
+	rv := objc.Send[metal.MTL4RenderPassDescriptor](v_.ID, objc.Sel("currentMTL4RenderPassDescriptor"))
 	return rv
 }
 
 // A render pass descriptor to draw into the current drawable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKView/currentRenderPassDescriptor
-func (v_ View) CurrentRenderPassDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("currentRenderPassDescriptor"))
+func (v_ View) CurrentRenderPassDescriptor() metal.RenderPassDescriptor {
+	rv := objc.Send[metal.RenderPassDescriptor](v_.ID, objc.Sel("currentRenderPassDescriptor"))
 	return rv
 }
 

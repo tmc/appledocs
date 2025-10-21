@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,8 +87,8 @@ func NewScanner() Scanner {
 // Returns an object that scans a given string according to the user’s default locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/localizedScanner(with:)
-func (sc _ScannerClass) LocalizedScannerWithString(string_ string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), objc.String(string_))
+func (sc _ScannerClass) LocalizedScannerWithString(string_ appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), string_)
 	return rv
 }
 
@@ -144,8 +145,8 @@ func (s_ Scanner) SetCaseSensitive(value bool) {
 // Character set containing the characters the scanner ignores when looking for a scannable element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
-func (s_ Scanner) CharactersToBeSkipped() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("charactersToBeSkipped"))
+func (s_ Scanner) CharactersToBeSkipped() CharacterSet {
+	rv := objc.Send[CharacterSet](s_.ID, objc.Sel("charactersToBeSkipped"))
 	return rv
 }
 
@@ -155,14 +156,14 @@ func (s_ Scanner) CharactersToBeSkipped() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/characterstobeskipped
-func (s_ Scanner) SetCharactersToBeSkipped(value unsafe.Pointer) {
+func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCharactersToBeSkipped:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) CurrentIndex() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("currentIndex"))
+func (s_ Scanner) CurrentIndex() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentIndex"))
 	return rv
 }
 
@@ -170,8 +171,8 @@ func (s_ Scanner) CurrentIndex() string {
 // SetCurrentIndex sets the value of the currentIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) SetCurrentIndex(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), objc.String(value))
+func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
 }
 
 // Flag that indicates whether the receiver has exhausted all significant characters.
@@ -231,8 +232,8 @@ func (s_ Scanner) SetScanLocation(value int) {
 // The string the scanner will scan.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) String() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("string"))
+func (s_ Scanner) String() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -242,8 +243,8 @@ func (s_ Scanner) String() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/string
-func (s_ Scanner) SetString(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setString:"), objc.String(value))
+func (s_ Scanner) SetString(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setString:"), value)
 }
 
 

@@ -175,8 +175,8 @@ func (f_ FileVersion) SetIsResolved(value bool) {
 // The string containing the user-presentable name of the file version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-func (f_ FileVersion) LocalizedName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedName"))
+func (f_ FileVersion) LocalizedName() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -186,15 +186,15 @@ func (f_ FileVersion) LocalizedName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizedname
-func (f_ FileVersion) SetLocalizedName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (f_ FileVersion) SetLocalizedName(value appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 // The user-presentable name of the computer on which the revision was saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
+func (f_ FileVersion) LocalizedNameOfSavingComputer() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("localizedNameOfSavingComputer"))
 	return rv
 }
 
@@ -204,15 +204,15 @@ func (f_ FileVersion) LocalizedNameOfSavingComputer() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/localizednameofsavingcomputer
-func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), objc.String(value))
+func (f_ FileVersion) SetLocalizedNameOfSavingComputer(value appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedNameOfSavingComputer:"), value)
 }
 
 // The modification date of the version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
-func (f_ FileVersion) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("modificationDate"))
+func (f_ FileVersion) ModificationDate() Date {
+	rv := objc.Send[Date](f_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -222,14 +222,14 @@ func (f_ FileVersion) ModificationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/modificationdate
-func (f_ FileVersion) SetModificationDate(value unsafe.Pointer) {
+func (f_ FileVersion) SetModificationDate(value IDate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setModificationDate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-func (f_ FileVersion) OriginatorNameComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("originatorNameComponents"))
+func (f_ FileVersion) OriginatorNameComponents() PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](f_.ID, objc.Sel("originatorNameComponents"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (f_ FileVersion) OriginatorNameComponents() unsafe.Pointer {
 // SetOriginatorNameComponents sets the value of the originatorNameComponents property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileversion/originatornamecomponents
-func (f_ FileVersion) SetOriginatorNameComponents(value unsafe.Pointer) {
+func (f_ FileVersion) SetOriginatorNameComponents(value IPersonNameComponents) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setOriginatorNameComponents:"), value)
 }
 

@@ -78,7 +78,7 @@ func NewInitialGradientNode() InitialGradientNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode/init(source:)
-func NewInitialGradientNodeWithSource(source unsafe.Pointer) InitialGradientNode {
+func NewInitialGradientNodeWithSource(source IMPSNNImageNode) InitialGradientNode {
 	instance := getInitialGradientNodeClass().Alloc()
 	rv := objc.Send[InitialGradientNode](instance.ID, objc.Sel("initWithSource:"), source)
 	rv.Autorelease()
@@ -88,7 +88,7 @@ func NewInitialGradientNodeWithSource(source unsafe.Pointer) InitialGradientNode
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNInitialGradientNode/nodeWithSource:
-func (ic _InitialGradientNodeClass) NodeWithSource(source unsafe.Pointer) unsafe.Pointer {
+func (ic _InitialGradientNodeClass) NodeWithSource(source IMPSNNImageNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("nodeWithSource:"), source)
 	return rv
 }

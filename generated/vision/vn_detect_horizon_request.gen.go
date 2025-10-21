@@ -82,8 +82,8 @@ func NewDetectHorizonRequest() DetectHorizonRequest {
 // The results of the horizon detection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequest/results
-func (d_ DetectHorizonRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectHorizonRequest) Results() VNHorizonObservation {
+	rv := objc.Send[VNHorizonObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (d_ DetectHorizonRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthorizonrequest/results
-func (d_ DetectHorizonRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectHorizonRequest) SetResults(value IVNHorizonObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

@@ -102,8 +102,8 @@ func (i_ INGetReservationDetailsIntentResponse) SetCode(value unsafe.Pointer) {
 // An array containing reservations reqeusted by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/reservations
-func (i_ INGetReservationDetailsIntentResponse) Reservations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservations"))
+func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation {
+	rv := objc.Send[INReservation](i_.ID, objc.Sel("reservations"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (i_ INGetReservationDetailsIntentResponse) Reservations() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse/reservations
-func (i_ INGetReservationDetailsIntentResponse) SetReservations(value unsafe.Pointer) {
+func (i_ INGetReservationDetailsIntentResponse) SetReservations(value INReservation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservations:"), value)
 }
 

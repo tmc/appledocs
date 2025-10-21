@@ -31,7 +31,7 @@ type _RPBroadcastHandlerClass struct {
 // An interface definition for the [RPBroadcastHandler] class.
 type IRPBroadcastHandler interface {
 	objectivec.IObject
-	UpdateBroadcastURL(broadcastURL foundation.URL)
+	UpdateBroadcastURL(broadcastURL foundation.IURL)
 	UpdateServiceInfo(serviceInfo unsafe.Pointer)
 }
 
@@ -84,7 +84,7 @@ func NewRPBroadcastHandler() RPBroadcastHandler {
 // Sends the current broadcast URL to the broadcast controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastHandler/updateBroadcast(_:)
-func (r_ RPBroadcastHandler) UpdateBroadcastURL(broadcastURL foundation.URL) {
+func (r_ RPBroadcastHandler) UpdateBroadcastURL(broadcastURL foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("updateBroadcastURL:"), broadcastURL)
 }
 

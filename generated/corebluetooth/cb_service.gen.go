@@ -108,8 +108,8 @@ func (c_ CBService) IsPrimary() bool {
 // The peripheral to which this service belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBService/peripheral
-func (c_ CBService) Peripheral() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("peripheral"))
+func (c_ CBService) Peripheral() CBPeripheral {
+	rv := objc.Send[CBPeripheral](c_.ID, objc.Sel("peripheral"))
 	return rv
 }
 

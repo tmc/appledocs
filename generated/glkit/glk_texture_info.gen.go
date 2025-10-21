@@ -83,8 +83,8 @@ func NewGLKTextureInfo() GLKTextureInfo {
 // The state of the alpha component in the loaded texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/alphaState-swift.property
-func (g_ GLKTextureInfo) AlphaState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("alphaState"))
+func (g_ GLKTextureInfo) AlphaState() GLKTextureInfoAlphaState {
+	rv := objc.Send[GLKTextureInfoAlphaState](g_.ID, objc.Sel("alphaState"))
 	return rv
 }
 
@@ -144,8 +144,8 @@ func (g_ GLKTextureInfo) Target() unsafe.Pointer {
 // The location of the origin in the loaded texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo/textureOrigin-swift.property
-func (g_ GLKTextureInfo) TextureOrigin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureOrigin"))
+func (g_ GLKTextureInfo) TextureOrigin() GLKTextureInfoOrigin {
+	rv := objc.Send[GLKTextureInfoOrigin](g_.ID, objc.Sel("textureOrigin"))
 	return rv
 }
 

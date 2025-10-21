@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [DialogController] class.
@@ -30,7 +31,7 @@ type _DialogControllerClass struct {
 // An interface definition for the [DialogController] class.
 type IDialogController interface {
 	appkit.IResponder
-	Dismiss(sender objc.ID)
+	Dismiss(sender objectivec.IObject)
 }
 
 // An object that provides the ability to present the dashboard in macOS games.
@@ -86,15 +87,15 @@ func NewDialogController() DialogController {
 // Dismisses the dashboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKDialogController/dismiss(_:)
-func (d_ DialogController) Dismiss(sender objc.ID) {
+func (d_ DialogController) Dismiss(sender objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("dismiss:"), sender)
 }
 
 // The window that displays the dashboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-func (d_ DialogController) ParentWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("parentWindow"))
+func (d_ DialogController) ParentWindow() appkit.Window {
+	rv := objc.Send[appkit.Window](d_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
@@ -104,7 +105,7 @@ func (d_ DialogController) ParentWindow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow
-func (d_ DialogController) SetParentWindow(value unsafe.Pointer) {
+func (d_ DialogController) SetParentWindow(value appkit.IWindow) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }
 

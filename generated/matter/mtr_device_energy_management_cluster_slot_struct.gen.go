@@ -78,8 +78,8 @@ func NewMTRDeviceEnergyManagementClusterSlotStruct() MTRDeviceEnergyManagementCl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/costs
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) Costs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("costs"))
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) Costs() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("costs"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) Costs() unsafe.Pointer {
 // SetCosts sets the value of the costs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/costs
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetCosts(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetCosts(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCosts:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) DefaultDuration() foundatio
 // SetDefaultDuration sets the value of the defaultDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/defaultDuration
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetDefaultDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetDefaultDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultDuration:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) ElapsedSlotTime() foundatio
 // SetElapsedSlotTime sets the value of the elapsedSlotTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/elapsedSlotTime
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetElapsedSlotTime(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetElapsedSlotTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElapsedSlotTime:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) ManufacturerESAState() foun
 // SetManufacturerESAState sets the value of the manufacturerESAState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/manufacturerESAState
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetManufacturerESAState(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetManufacturerESAState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerESAState:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxDuration() foundation.Nu
 // SetMaxDuration sets the value of the maxDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxDuration
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDuration:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxDurationAdjustment() fou
 // SetMaxDurationAdjustment sets the value of the maxDurationAdjustment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxDurationAdjustment
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxDurationAdjustment(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxDurationAdjustment(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDurationAdjustment:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPauseDuration() foundati
 // SetMaxPauseDuration sets the value of the maxPauseDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxPauseDuration
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPauseDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPauseDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPauseDuration:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPower() foundation.Numbe
 // SetMaxPower sets the value of the maxPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxPower
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPower:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MaxPowerAdjustment() founda
 // SetMaxPowerAdjustment sets the value of the maxPowerAdjustment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/maxPowerAdjustment
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPowerAdjustment(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMaxPowerAdjustment(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPowerAdjustment:"), value)
 }
 
@@ -222,7 +222,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinDuration() foundation.Nu
 // SetMinDuration sets the value of the minDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minDuration
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDuration:"), value)
 }
 
@@ -237,7 +237,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinDurationAdjustment() fou
 // SetMinDurationAdjustment sets the value of the minDurationAdjustment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minDurationAdjustment
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinDurationAdjustment(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinDurationAdjustment(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDurationAdjustment:"), value)
 }
 
@@ -252,7 +252,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPauseDuration() foundati
 // SetMinPauseDuration sets the value of the minPauseDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minPauseDuration
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPauseDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPauseDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPauseDuration:"), value)
 }
 
@@ -267,7 +267,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPower() foundation.Numbe
 // SetMinPower sets the value of the minPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minPower
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPower:"), value)
 }
 
@@ -282,7 +282,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) MinPowerAdjustment() founda
 // SetMinPowerAdjustment sets the value of the minPowerAdjustment property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/minPowerAdjustment
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPowerAdjustment(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetMinPowerAdjustment(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPowerAdjustment:"), value)
 }
 
@@ -297,7 +297,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) NominalEnergy() foundation.
 // SetNominalEnergy sets the value of the nominalEnergy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/nominalEnergy
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetNominalEnergy(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetNominalEnergy(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalEnergy:"), value)
 }
 
@@ -312,7 +312,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) NominalPower() foundation.N
 // SetNominalPower sets the value of the nominalPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetNominalPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetNominalPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
@@ -327,7 +327,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) RemainingSlotTime() foundat
 // SetRemainingSlotTime sets the value of the remainingSlotTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/remainingSlotTime
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetRemainingSlotTime(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetRemainingSlotTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRemainingSlotTime:"), value)
 }
 
@@ -342,7 +342,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SlotIsPausable() foundation
 // SetSlotIsPausable sets the value of the slotIsPausable property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotStruct/slotIsPausable
-func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetSlotIsPausable(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotStruct) SetSlotIsPausable(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotIsPausable:"), value)
 }
 

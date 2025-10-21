@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,10 @@ type _HKUnitClass struct {
 type IHKUnit interface {
 	objectivec.IObject
 	IsNull() bool
-	ReciprocalUnit() unsafe.Pointer
-	UnitDividedByUnit(unit unsafe.Pointer) unsafe.Pointer
-	UnitMultipliedByUnit(unit unsafe.Pointer) unsafe.Pointer
-	UnitRaisedToPower(power int) unsafe.Pointer
+	ReciprocalUnit() HKUnit
+	UnitDividedByUnit(unit IHKUnit) HKUnit
+	UnitMultipliedByUnit(unit IHKUnit) HKUnit
+	UnitRaisedToPower(power int) HKUnit
 }
 
 // A class for managing the units of measure within HealthKit.
@@ -120,8 +121,8 @@ func NewHKUnitFromMassFormatterUnit(massFormatterUnit unsafe.Pointer) HKUnit {
 // Returns the unit instance described by the provided string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-9qont
-func NewHKUnitFromString(string_ string) HKUnit {
-	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromString:"), objc.String(string_))
+func NewHKUnitFromString(string_ appkit.string) HKUnit {
+	rv := objc.Send[HKUnit](objc.ID(getHKUnitClass().class), objc.Sel("unitFromString:"), string_)
 	return rv
 }
 
@@ -240,7 +241,7 @@ func (hc _HKUnitClass) DiopterUnit() unsafe.Pointer {
 // Converts a HealthKit unit object into a corresponding energy formatter enumeration value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/energyFormatterUnit(from:)
-func (hc _HKUnitClass) EnergyFormatterUnitFromUnit(unit unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) EnergyFormatterUnitFromUnit(unit IHKUnit) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("energyFormatterUnitFromUnit:"), unit)
 	return rv
 }
@@ -280,7 +281,7 @@ func (hc _HKUnitClass) GramUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring mass, using gram units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/gramUnit(with:)
-func (hc _HKUnitClass) GramUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) GramUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("gramUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -296,7 +297,7 @@ func (hc _HKUnitClass) HertzUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring frequency in hertz with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/hertzUnit(with:)
-func (hc _HKUnitClass) HertzUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) HertzUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hertzUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -352,8 +353,8 @@ func (hc _HKUnitClass) UnitFromMassFormatterUnit(massFormatterUnit unsafe.Pointe
 // Returns the unit instance described by the provided string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/init(from:)-9qont
-func (hc _HKUnitClass) UnitFromString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("unitFromString:"), objc.String(string_))
+func (hc _HKUnitClass) UnitFromString(string_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("unitFromString:"), string_)
 	return rv
 }
 
@@ -376,7 +377,7 @@ func (hc _HKUnitClass) JouleUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring energy, using joule units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/jouleUnit(with:)
-func (hc _HKUnitClass) JouleUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) JouleUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("jouleUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -408,7 +409,7 @@ func (hc _HKUnitClass) LargeCalorieUnit() unsafe.Pointer {
 // Converts a HealthKit unit object into a corresponding length formatter enumeration value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/lengthFormatterUnit(from:)
-func (hc _HKUnitClass) LengthFormatterUnitFromUnit(unit unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) LengthFormatterUnitFromUnit(unit IHKUnit) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("lengthFormatterUnitFromUnit:"), unit)
 	return rv
 }
@@ -424,7 +425,7 @@ func (hc _HKUnitClass) LiterUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring volume, using liter units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/literUnit(with:)
-func (hc _HKUnitClass) LiterUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) LiterUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("literUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -440,7 +441,7 @@ func (hc _HKUnitClass) LuxUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring illuminance, using lux units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/luxUnit(with:)
-func (hc _HKUnitClass) LuxUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) LuxUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("luxUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -448,7 +449,7 @@ func (hc _HKUnitClass) LuxUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Poi
 // Converts a HealthKit unit object into a corresponding mass formatter enumeration value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/massFormatterUnit(from:)
-func (hc _HKUnitClass) MassFormatterUnitFromUnit(unit unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) MassFormatterUnitFromUnit(unit IHKUnit) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("massFormatterUnitFromUnit:"), unit)
 	return rv
 }
@@ -464,7 +465,7 @@ func (hc _HKUnitClass) MeterUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring length, using meter units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/meterUnit(with:)
-func (hc _HKUnitClass) MeterUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) MeterUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("meterUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -496,7 +497,7 @@ func (hc _HKUnitClass) MinuteUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring mass in moles, with the given prefix and molar mass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/moleUnit(with:molarMass:)
-func (hc _HKUnitClass) MoleUnitWithMetricPrefixMolarMass(prefix unsafe.Pointer, gramsPerMole unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) MoleUnitWithMetricPrefixMolarMass(prefix IHKMetricPrefix, gramsPerMole unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("moleUnitWithMetricPrefix:molarMass:"), prefix, gramsPerMole)
 	return rv
 }
@@ -528,7 +529,7 @@ func (hc _HKUnitClass) PascalUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring pressure, using pascal units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/pascalUnit(with:)
-func (hc _HKUnitClass) PascalUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) PascalUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("pascalUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -584,7 +585,7 @@ func (hc _HKUnitClass) RadianAngleUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring angles, using radian units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/radianAngleUnit(with:)
-func (hc _HKUnitClass) RadianAngleUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) RadianAngleUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("radianAngleUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -600,7 +601,7 @@ func (hc _HKUnitClass) SecondUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring time, using second units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/secondUnit(with:)
-func (hc _HKUnitClass) SecondUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) SecondUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("secondUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -616,7 +617,7 @@ func (hc _HKUnitClass) SiemenUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring electrical conductance, using siemen units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/siemenUnit(with:)
-func (hc _HKUnitClass) SiemenUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) SiemenUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("siemenUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -648,7 +649,7 @@ func (hc _HKUnitClass) VoltUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring the electrical potential difference in volts with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/voltUnit(with:)
-func (hc _HKUnitClass) VoltUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) VoltUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("voltUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -664,7 +665,7 @@ func (hc _HKUnitClass) WattUnit() unsafe.Pointer {
 // Returns a HealthKit unit for measuring power, using watt units with the provided prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/wattUnit(with:)
-func (hc _HKUnitClass) WattUnitWithMetricPrefix(prefix unsafe.Pointer) unsafe.Pointer {
+func (hc _HKUnitClass) WattUnitWithMetricPrefix(prefix IHKMetricPrefix) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("wattUnitWithMetricPrefix:"), prefix)
 	return rv
 }
@@ -688,40 +689,40 @@ func (h_ HKUnit) IsNull() bool {
 // Returns a complex unit representing the unit’s reciprocal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/reciprocal()
-func (h_ HKUnit) ReciprocalUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("reciprocalUnit"))
+func (h_ HKUnit) ReciprocalUnit() HKUnit {
+	rv := objc.Send[HKUnit](h_.ID, objc.Sel("reciprocalUnit"))
 	return rv
 }
 
 // Creates a complex unit by dividing the receiving unit by another unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitDivided(by:)
-func (h_ HKUnit) UnitDividedByUnit(unit unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("unitDividedByUnit:"), unit)
+func (h_ HKUnit) UnitDividedByUnit(unit IHKUnit) HKUnit {
+	rv := objc.Send[HKUnit](h_.ID, objc.Sel("unitDividedByUnit:"), unit)
 	return rv
 }
 
 // Creates a complex unit by multiplying the receiving unit with another unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitMultiplied(by:)
-func (h_ HKUnit) UnitMultipliedByUnit(unit unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("unitMultipliedByUnit:"), unit)
+func (h_ HKUnit) UnitMultipliedByUnit(unit IHKUnit) HKUnit {
+	rv := objc.Send[HKUnit](h_.ID, objc.Sel("unitMultipliedByUnit:"), unit)
 	return rv
 }
 
 // Creates a complex unit by raising the unit to the given power.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitRaised(toPower:)
-func (h_ HKUnit) UnitRaisedToPower(power int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("unitRaisedToPower:"), power)
+func (h_ HKUnit) UnitRaisedToPower(power int) HKUnit {
+	rv := objc.Send[HKUnit](h_.ID, objc.Sel("unitRaisedToPower:"), power)
 	return rv
 }
 
 // A string representation of the unit object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUnit/unitString
-func (h_ HKUnit) UnitString() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("unitString"))
+func (h_ HKUnit) UnitString() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("unitString"))
 	return rv
 }
 

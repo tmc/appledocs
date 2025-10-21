@@ -81,8 +81,8 @@ func NewNEIPv4Route() NEIPv4Route {
 // The destination network address of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
-func (n_ NEIPv4Route) DestinationAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationAddress"))
+func (n_ NEIPv4Route) DestinationAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("destinationAddress"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (n_ NEIPv4Route) DestinationAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationaddress
-func (n_ NEIPv4Route) SetDestinationAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), objc.String(value))
+func (n_ NEIPv4Route) SetDestinationAddress(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), value)
 }
 
 // The destination network mask of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
-func (n_ NEIPv4Route) DestinationSubnetMask() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationSubnetMask"))
+func (n_ NEIPv4Route) DestinationSubnetMask() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("destinationSubnetMask"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (n_ NEIPv4Route) DestinationSubnetMask() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/destinationsubnetmask
-func (n_ NEIPv4Route) SetDestinationSubnetMask(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), objc.String(value))
+func (n_ NEIPv4Route) SetDestinationSubnetMask(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationSubnetMask:"), value)
 }
 
 // The address of the next-hop gateway of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
-func (n_ NEIPv4Route) GatewayAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
+func (n_ NEIPv4Route) GatewayAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("gatewayAddress"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (n_ NEIPv4Route) GatewayAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4route/gatewayaddress
-func (n_ NEIPv4Route) SetGatewayAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
+func (n_ NEIPv4Route) SetGatewayAddress(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), value)
 }
 
 // The IPv4 network traffic that the system routes to the primary physical interface, not the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/excludedroutes
-func (n_ NEIPv4Route) ExcludedRoutes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("excludedRoutes"))
+func (n_ NEIPv4Route) ExcludedRoutes() NEIPv4Route {
+	rv := objc.Send[NEIPv4Route](n_.ID, objc.Sel("excludedRoutes"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (n_ NEIPv4Route) ExcludedRoutes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/excludedroutes
-func (n_ NEIPv4Route) SetExcludedRoutes(value unsafe.Pointer) {
+func (n_ NEIPv4Route) SetExcludedRoutes(value INEIPv4Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), value)
 }
 
 // The IPv4 network traffic that the system routes to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
-func (n_ NEIPv4Route) IncludedRoutes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("includedRoutes"))
+func (n_ NEIPv4Route) IncludedRoutes() NEIPv4Route {
+	rv := objc.Send[NEIPv4Route](n_.ID, objc.Sel("includedRoutes"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (n_ NEIPv4Route) IncludedRoutes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv4settings/includedroutes
-func (n_ NEIPv4Route) SetIncludedRoutes(value unsafe.Pointer) {
+func (n_ NEIPv4Route) SetIncludedRoutes(value INEIPv4Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), value)
 }
 

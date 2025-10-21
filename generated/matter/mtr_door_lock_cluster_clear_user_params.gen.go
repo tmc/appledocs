@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterClearUserParams) ServerSideProcessingTimeout() founda
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterClearUserParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearUserParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterClearUserParams) TimedInvokeTimeoutMs() foundation.Nu
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearuserparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearUserParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearUserParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterClearUserParams) UserIndex() foundation.Number {
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearuserparams/userindex
-func (m_ MTRDoorLockClusterClearUserParams) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearUserParams) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 

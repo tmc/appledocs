@@ -31,12 +31,12 @@ type _MTRBaseClusterDeviceEnergyManagementClass struct {
 type IMTRBaseClusterDeviceEnergyManagement interface {
 	IMTRGenericBaseCluster
 	CancelPowerAdjustRequestWithCompletion(completion unsafe.Pointer)
-	CancelPowerAdjustRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
+	CancelPowerAdjustRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams, completion unsafe.Pointer)
 	CancelRequestWithCompletion(completion unsafe.Pointer)
-	CancelRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
-	ModifyForecastRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
-	PauseRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
-	PowerAdjustRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
+	CancelRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterCancelRequestParams, completion unsafe.Pointer)
+	ModifyForecastRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterModifyForecastRequestParams, completion unsafe.Pointer)
+	PauseRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterPauseRequestParams, completion unsafe.Pointer)
+	PowerAdjustRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterPowerAdjustRequestParams, completion unsafe.Pointer)
 	ReadAttributeAbsMaxPowerWithCompletion(completion unsafe.Pointer)
 	ReadAttributeAbsMinPowerWithCompletion(completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
@@ -50,23 +50,23 @@ type IMTRBaseClusterDeviceEnergyManagement interface {
 	ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeOptOutStateWithCompletion(completion unsafe.Pointer)
 	ReadAttributePowerAdjustmentCapabilityWithCompletion(completion unsafe.Pointer)
-	RequestConstraintBasedForecastWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
+	RequestConstraintBasedForecastWithParamsCompletion(params IMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams, completion unsafe.Pointer)
 	ResumeRequestWithCompletion(completion unsafe.Pointer)
-	ResumeRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
-	StartTimeAdjustRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
-	SubscribeAttributeAbsMaxPowerWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAbsMinPowerWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeESACanGenerateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeESAStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeESATypeWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeForecastWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeOptOutStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributePowerAdjustmentCapabilityWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	ResumeRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterResumeRequestParams, completion unsafe.Pointer)
+	StartTimeAdjustRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams, completion unsafe.Pointer)
+	SubscribeAttributeAbsMaxPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeAbsMinPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeESACanGenerateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeESAStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeESATypeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeForecastWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeOptOutStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributePowerAdjustmentCapabilityWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 }
 
 // Cluster Device Energy Management
@@ -124,7 +124,7 @@ func NewMTRBaseClusterDeviceEnergyManagement() MTRBaseClusterDeviceEnergyManagem
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/init(device:endpointID:queue:)
-func NewMTRBaseClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterDeviceEnergyManagement {
+func NewMTRBaseClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRBaseClusterDeviceEnergyManagement {
 	instance := getMTRBaseClusterDeviceEnergyManagementClass().Alloc()
 	rv := objc.Send[MTRBaseClusterDeviceEnergyManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -134,79 +134,79 @@ func NewMTRBaseClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAbsMaxPower(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMaxPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMaxPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAbsMaxPowerWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAbsMinPower(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMinPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAbsMinPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAbsMinPowerWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeESACanGenerate(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESACanGenerateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESACanGenerateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeESACanGenerateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeESAState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESAStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESAStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeESAStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeESAType(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESATypeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeESATypeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeESATypeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeForecast(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeForecastWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeForecastWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeForecastWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributeOptOutState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeOptOutStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributeOptOutStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeOptOutStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/readAttributePowerAdjustmentCapability(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributePowerAdjustmentCapabilityWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterDeviceEnergyManagementClass) ReadAttributePowerAdjustmentCapabilityWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributePowerAdjustmentCapabilityWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
@@ -219,7 +219,7 @@ func (m_ MTRBaseClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithCompl
 // Command CancelPowerAdjustRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/cancelPowerAdjustRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelPowerAdjustRequestWithParams:completion:"), params, completion)
 }
 
@@ -232,28 +232,28 @@ func (m_ MTRBaseClusterDeviceEnergyManagement) CancelRequestWithCompletion(compl
 // Command CancelRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/cancelRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) CancelRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) CancelRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterCancelRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelRequestWithParams:completion:"), params, completion)
 }
 
 // Command ModifyForecastRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/modifyForecastRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) ModifyForecastRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) ModifyForecastRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterModifyForecastRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("modifyForecastRequestWithParams:completion:"), params, completion)
 }
 
 // Command PauseRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/pauseRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) PauseRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) PauseRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterPauseRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("pauseRequestWithParams:completion:"), params, completion)
 }
 
 // Command PowerAdjustRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/powerAdjustRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) PowerAdjustRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) PowerAdjustRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterPowerAdjustRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("powerAdjustRequestWithParams:completion:"), params, completion)
 }
 
@@ -338,7 +338,7 @@ func (m_ MTRBaseClusterDeviceEnergyManagement) ReadAttributePowerAdjustmentCapab
 // Command RequestConstraintBasedForecast
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/requestConstraintBasedForecast(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) RequestConstraintBasedForecastWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) RequestConstraintBasedForecastWithParamsCompletion(params IMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("requestConstraintBasedForecastWithParams:completion:"), params, completion)
 }
 
@@ -351,92 +351,92 @@ func (m_ MTRBaseClusterDeviceEnergyManagement) ResumeRequestWithCompletion(compl
 // Command ResumeRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/resumeRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) ResumeRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) ResumeRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterResumeRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("resumeRequestWithParams:completion:"), params, completion)
 }
 
 // Command StartTimeAdjustRequest
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/startTimeAdjustRequest(with:completion:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) StartTimeAdjustRequestWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) StartTimeAdjustRequestWithParamsCompletion(params IMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startTimeAdjustRequestWithParams:completion:"), params, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeAbsMaxPower(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAbsMaxPowerWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAbsMaxPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAbsMaxPowerWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeAbsMinPower(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAbsMinPowerWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAbsMinPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAbsMinPowerWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeESACanGenerate(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeESACanGenerateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeESACanGenerateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeESACanGenerateWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeESAState(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeESAStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeESAStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeESAStateWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeESAType(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeESATypeWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeESATypeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeESATypeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeForecast(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeForecastWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeForecastWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeForecastWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributeOptOutState(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeOptOutStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributeOptOutStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeOptOutStateWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDeviceEnergyManagement/subscribeAttributePowerAdjustmentCapability(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributePowerAdjustmentCapabilityWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterDeviceEnergyManagement) SubscribeAttributePowerAdjustmentCapabilityWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributePowerAdjustmentCapabilityWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 

@@ -78,7 +78,7 @@ func NewGramMatrixCalculationNode() GramMatrixCalculationNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/init(source:)
-func NewGramMatrixCalculationNodeWithSource(sourceNode unsafe.Pointer) GramMatrixCalculationNode {
+func NewGramMatrixCalculationNodeWithSource(sourceNode IMPSNNImageNode) GramMatrixCalculationNode {
 	instance := getGramMatrixCalculationNodeClass().Alloc()
 	rv := objc.Send[GramMatrixCalculationNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
@@ -88,7 +88,7 @@ func NewGramMatrixCalculationNodeWithSource(sourceNode unsafe.Pointer) GramMatri
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/nodeWithSource:alpha:
-func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode unsafe.Pointer, alpha unsafe.Pointer) unsafe.Pointer {
+func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode IMPSNNImageNode, alpha unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithSource:alpha:"), sourceNode, alpha)
 	return rv
 }

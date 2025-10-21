@@ -82,8 +82,8 @@ func NewGenerateForegroundInstanceMaskRequest() GenerateForegroundInstanceMaskRe
 // The instance masks the request observes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
-func (g_ GenerateForegroundInstanceMaskRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+func (g_ GenerateForegroundInstanceMaskRequest) Results() VNInstanceMaskObservation {
+	rv := objc.Send[VNInstanceMaskObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (g_ GenerateForegroundInstanceMaskRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
-func (g_ GenerateForegroundInstanceMaskRequest) SetResults(value unsafe.Pointer) {
+func (g_ GenerateForegroundInstanceMaskRequest) SetResults(value IVNInstanceMaskObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRAccountLoginClusterLoggedOutEvent) Node() foundation.Number {
 // SetNode sets the value of the node property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoggedOutEvent/node
-func (m_ MTRAccountLoginClusterLoggedOutEvent) SetNode(value foundation.Number) {
+func (m_ MTRAccountLoginClusterLoggedOutEvent) SetNode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 

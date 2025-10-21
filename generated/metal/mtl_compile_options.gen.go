@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -149,8 +151,8 @@ func (c_ CompileOptions) SetFastMathEnabled(value bool) {
 // For a dynamic library, the name to use when installing the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
-func (c_ CompileOptions) InstallName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("installName"))
+func (c_ CompileOptions) InstallName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("installName"))
 	return rv
 }
 
@@ -160,8 +162,8 @@ func (c_ CompileOptions) InstallName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/installName
-func (c_ CompileOptions) SetInstallName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), objc.String(value))
+func (c_ CompileOptions) SetInstallName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInstallName:"), value)
 }
 
 // The language version for interpreting the library source code.
@@ -231,8 +233,8 @@ func (c_ CompileOptions) SetLibraryType(value unsafe.Pointer) {
 // The FP32 math functions Metal uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/mathFloatingPointFunctions
-func (c_ CompileOptions) MathFloatingPointFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mathFloatingPointFunctions"))
+func (c_ CompileOptions) MathFloatingPointFunctions() MathFloatingPointFunctions {
+	rv := objc.Send[MathFloatingPointFunctions](c_.ID, objc.Sel("mathFloatingPointFunctions"))
 	return rv
 }
 
@@ -242,7 +244,7 @@ func (c_ CompileOptions) MathFloatingPointFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/mathFloatingPointFunctions
-func (c_ CompileOptions) SetMathFloatingPointFunctions(value unsafe.Pointer) {
+func (c_ CompileOptions) SetMathFloatingPointFunctions(value IMathFloatingPointFunctions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMathFloatingPointFunctions:"), value)
 }
 
@@ -335,8 +337,8 @@ func (c_ CompileOptions) SetPreserveInvariance(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/requiredThreadsPerThreadgroup
-func (c_ CompileOptions) RequiredThreadsPerThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+func (c_ CompileOptions) RequiredThreadsPerThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](c_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
 }
 
@@ -344,7 +346,7 @@ func (c_ CompileOptions) RequiredThreadsPerThreadgroup() unsafe.Pointer {
 // SetRequiredThreadsPerThreadgroup sets the value of the requiredThreadsPerThreadgroup property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCompileOptions/requiredThreadsPerThreadgroup
-func (c_ CompileOptions) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+func (c_ CompileOptions) SetRequiredThreadsPerThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
 

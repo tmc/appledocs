@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,10 +35,10 @@ type IPHASESoundEvent interface {
 	Pause()
 	PrepareWithCompletion(handler unsafe.Pointer)
 	Resume()
-	ResumeAtTime(time unsafe.Pointer)
+	ResumeAtTime(time avfaudio.IAudioTime)
 	SeekToTimeCompletion(time unsafe.Pointer, handler unsafe.Pointer)
-	SeekToTimeResumeAtEngineTimeCompletion(time unsafe.Pointer, engineTime unsafe.Pointer, handler unsafe.Pointer)
-	StartAtTimeCompletion(when unsafe.Pointer, handler unsafe.Pointer)
+	SeekToTimeResumeAtEngineTimeCompletion(time unsafe.Pointer, engineTime avfaudio.IAudioTime, handler unsafe.Pointer)
+	StartAtTimeCompletion(when avfaudio.IAudioTime, handler unsafe.Pointer)
 	StartWithCompletion(handler unsafe.Pointer)
 	StopAndInvalidate()
 }
@@ -94,9 +96,9 @@ func NewPHASESoundEvent() PHASESoundEvent {
 // Creates a sound event node with the given asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:)
-func NewPHASESoundEventWithEngineAssetIdentifierError(engine unsafe.Pointer, assetIdentifier string, error_ unsafe.Pointer) PHASESoundEvent {
+func NewPHASESoundEventWithEngineAssetIdentifierError(engine IPHASEEngine, assetIdentifier appkit.string, error_ unsafe.Pointer) PHASESoundEvent {
 	instance := getPHASESoundEventClass().Alloc()
-	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:error:"), engine, objc.String(assetIdentifier), error_)
+	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:error:"), engine, assetIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -106,9 +108,9 @@ func NewPHASESoundEventWithEngineAssetIdentifierError(engine unsafe.Pointer, ass
 // Creates a sound event node with the given asset and mixer parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/init(engine:assetIdentifier:mixerParameters:)
-func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine unsafe.Pointer, assetIdentifier string, mixerParameters unsafe.Pointer, error_ unsafe.Pointer) PHASESoundEvent {
+func NewPHASESoundEventWithEngineAssetIdentifierMixerParametersError(engine IPHASEEngine, assetIdentifier appkit.string, mixerParameters IPHASEMixerParameters, error_ unsafe.Pointer) PHASESoundEvent {
 	instance := getPHASESoundEventClass().Alloc()
-	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:mixerParameters:error:"), engine, objc.String(assetIdentifier), mixerParameters, error_)
+	rv := objc.Send[PHASESoundEvent](instance.ID, objc.Sel("initWithEngine:assetIdentifier:mixerParameters:error:"), engine, assetIdentifier, mixerParameters, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -137,7 +139,7 @@ func (p_ PHASESoundEvent) Resume() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/resume(at:)
-func (p_ PHASESoundEvent) ResumeAtTime(time unsafe.Pointer) {
+func (p_ PHASESoundEvent) ResumeAtTime(time avfaudio.IAudioTime) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("resumeAtTime:"), time)
 }
 
@@ -150,13 +152,13 @@ func (p_ PHASESoundEvent) SeekToTimeCompletion(time unsafe.Pointer, handler unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/seek(to:resumeAt:completion:)
-func (p_ PHASESoundEvent) SeekToTimeResumeAtEngineTimeCompletion(time unsafe.Pointer, engineTime unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PHASESoundEvent) SeekToTimeResumeAtEngineTimeCompletion(time unsafe.Pointer, engineTime avfaudio.IAudioTime, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:resumeAtEngineTime:completion:"), time, engineTime, handler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/start(at:completion:)
-func (p_ PHASESoundEvent) StartAtTimeCompletion(when unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PHASESoundEvent) StartAtTimeCompletion(when avfaudio.IAudioTime, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startAtTime:completion:"), when, handler)
 }
 
@@ -201,8 +203,8 @@ func (p_ PHASESoundEvent) Mixers() unsafe.Pointer {
 // The status of sound-event preparation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/prepareState-swift.property
-func (p_ PHASESoundEvent) PrepareState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("prepareState"))
+func (p_ PHASESoundEvent) PrepareState() PHASESoundEventPrepareState {
+	rv := objc.Send[PHASESoundEventPrepareState](p_.ID, objc.Sel("prepareState"))
 	return rv
 }
 
@@ -224,16 +226,16 @@ func (p_ PHASESoundEvent) PushStreamNodes() unsafe.Pointer {
 // The sound event’s playback status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundEvent/renderingState-swift.property
-func (p_ PHASESoundEvent) RenderingState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderingState"))
+func (p_ PHASESoundEvent) RenderingState() PHASERenderingState {
+	rv := objc.Send[PHASERenderingState](p_.ID, objc.Sel("renderingState"))
 	return rv
 }
 
 // An option that determines whether the node’s audio plays in a loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode
-func (p_ PHASESoundEvent) PlaybackMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackMode"))
+func (p_ PHASESoundEvent) PlaybackMode() PHASEPlaybackMode {
+	rv := objc.Send[PHASEPlaybackMode](p_.ID, objc.Sel("playbackMode"))
 	return rv
 }
 
@@ -243,7 +245,7 @@ func (p_ PHASESoundEvent) PlaybackMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/playbackmode
-func (p_ PHASESoundEvent) SetPlaybackMode(value unsafe.Pointer) {
+func (p_ PHASESoundEvent) SetPlaybackMode(value PHASEPlaybackMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackMode:"), value)
 }
 

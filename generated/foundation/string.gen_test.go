@@ -15,11 +15,29 @@ func ExampleNewString() {
 	_ = foundation.NewString()
 	// Output:
 }
-// ExampleNewStringWithContentsOfFile demonstrates how to create a String instance using NewStringWithContentsOfFile.
-// Initializes the receiver, a newly allocated   object, by reading data from the file named by  .
-func ExampleNewStringWithContentsOfFile() {
-	_ = foundation.NewStringWithContentsOfFile(
-		"/tmp/test", // path string
+// ExampleNewStringWithCharactersLength demonstrates how to create a String instance using NewStringWithCharactersLength.
+// Returns an initialized   object that contains a given number of characters from a given C array of UTF-16 code units.
+func ExampleNewStringWithCharactersLength() {
+	_ = foundation.NewStringWithCharactersLength(
+		foundation.unichar{}, // characters unichar
+		0, // length uint
+	)
+	// Output:
+}
+// ExampleNewStringWithCharactersNoCopyLengthFreeWhenDone demonstrates how to create a String instance using NewStringWithCharactersNoCopyLengthFreeWhenDone.
+// Returns an initialized   object that contains a given number of characters from a given C array of UTF-16 code units.
+func ExampleNewStringWithCharactersNoCopyLengthFreeWhenDone() {
+	_ = foundation.NewStringWithCharactersNoCopyLengthFreeWhenDone(
+		foundation.unichar{}, // characters unichar
+		0, // length uint
+		false, // freeBuffer bool
+	)
+	// Output:
+}
+// ExampleNewStringWithCoder demonstrates how to create a String instance using NewStringWithCoder.
+func ExampleNewStringWithCoder() {
+	_ = foundation.NewStringWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
 	)
 	// Output:
 }
@@ -28,22 +46,6 @@ func ExampleNewStringWithContentsOfFile() {
 func ExampleNewStringWithContentsOfURL() {
 	_ = foundation.NewStringWithContentsOfURL(
 		foundation.URL{}, // url URL
-	)
-	// Output:
-}
-// ExampleNewStringWithFormat demonstrates how to create a String instance using NewStringWithFormat.
-// Returns an   object initialized by using a given format string as a template into which the remaining argument values are substituted.
-func ExampleNewStringWithFormat() {
-	_ = foundation.NewStringWithFormat(
-		"format", // format string
-	)
-	// Output:
-}
-// ExampleNewStringWithString demonstrates how to create a String instance using NewStringWithString.
-// Returns an   object initialized by copying the characters from another given string.
-func ExampleNewStringWithString() {
-	_ = foundation.NewStringWithString(
-		"aString", // aString string
 	)
 	// Output:
 }

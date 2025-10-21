@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [XMLElement] class.
@@ -29,15 +30,15 @@ type _XMLElementClass struct {
 // An interface definition for the [XMLElement] class.
 type IXMLElement interface {
 	IXMLNode
-	AddNamespace(aNamespace unsafe.Pointer)
-	AttributeForLocalNameURI(localName string, URI string) unsafe.Pointer
-	AttributeForName(name string) unsafe.Pointer
-	ElementsForName(name string) []XMLElement
-	InsertChildAtIndex(child unsafe.Pointer, index uint)
-	NamespaceForPrefix(name string) unsafe.Pointer
+	AddNamespace(aNamespace IXMLNode)
+	AttributeForLocalNameURI(localName appkit.string, URI appkit.string) XMLNode
+	AttributeForName(name appkit.string) XMLNode
+	ElementsForName(name appkit.string) []XMLElement
+	InsertChildAtIndex(child IXMLNode, index uint)
+	NamespaceForPrefix(name appkit.string) XMLNode
 	RemoveChildAtIndex(index uint)
-	RemoveNamespaceForPrefix(name string)
-	ReplaceChildAtIndexWithNode(index uint, node unsafe.Pointer)
+	RemoveNamespaceForPrefix(name appkit.string)
+	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
 }
 
 // The element nodes in an XML tree structure.
@@ -95,9 +96,9 @@ func NewXMLElement() XMLElement {
 // Returns an object initialized with a specified name and a single text-node child containing a specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:stringValue:)
-func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
+func NewXMLElementWithNameStringValue(name appkit.string, string_ appkit.string) XMLElement {
 	instance := getXMLElementClass().Alloc()
-	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), objc.String(name), objc.String(string_))
+	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:stringValue:"), name, string_)
 	rv.Autorelease()
 	return rv
 }
@@ -107,9 +108,9 @@ func NewXMLElementWithNameStringValue(name string, string_ string) XMLElement {
 // Returns an object initialized with the specified name and URI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:uri:)
-func NewXMLElementWithNameURI(name string, URI string) XMLElement {
+func NewXMLElementWithNameURI(name appkit.string, URI appkit.string) XMLElement {
 	instance := getXMLElementClass().Alloc()
-	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:URI:"), objc.String(name), objc.String(URI))
+	rv := objc.Send[XMLElement](instance.ID, objc.Sel("initWithName:URI:"), name, URI)
 	rv.Autorelease()
 	return rv
 }
@@ -118,46 +119,46 @@ func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 // Adds a namespace node to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/addNamespace(_:)
-func (x_ XMLElement) AddNamespace(aNamespace unsafe.Pointer) {
+func (x_ XMLElement) AddNamespace(aNamespace IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("addNamespace:"), aNamespace)
 }
 
 // Returns the attribute node of the receiver that is identified by a local name and URI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forLocalName:uri:)
-func (x_ XMLElement) AttributeForLocalNameURI(localName string, URI string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("attributeForLocalName:URI:"), objc.String(localName), objc.String(URI))
+func (x_ XMLElement) AttributeForLocalNameURI(localName appkit.string, URI appkit.string) XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForLocalName:URI:"), localName, URI)
 	return rv
 }
 
 // Returns the attribute node of the receiver with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/attribute(forName:)
-func (x_ XMLElement) AttributeForName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("attributeForName:"), objc.String(name))
+func (x_ XMLElement) AttributeForName(name appkit.string) XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("attributeForName:"), name)
 	return rv
 }
 
 // Returns the child element nodes (as objects) of the receiver that have a specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/elements(forName:)
-func (x_ XMLElement) ElementsForName(name string) []XMLElement {
-	rv := objc.Send[[]XMLElement](x_.ID, objc.Sel("elementsForName:"), objc.String(name))
+func (x_ XMLElement) ElementsForName(name appkit.string) []XMLElement {
+	rv := objc.Send[[]XMLElement](x_.ID, objc.Sel("elementsForName:"), name)
 	return rv
 }
 
 // Inserts a new child node at a specified location in the receiver’s list of child nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/insertChild(_:at:)
-func (x_ XMLElement) InsertChildAtIndex(child unsafe.Pointer, index uint) {
+func (x_ XMLElement) InsertChildAtIndex(child IXMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChild:atIndex:"), child, index)
 }
 
 // Returns the namespace node with a specified prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/namespace(forPrefix:)
-func (x_ XMLElement) NamespaceForPrefix(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("namespaceForPrefix:"), objc.String(name))
+func (x_ XMLElement) NamespaceForPrefix(name appkit.string) XMLNode {
+	rv := objc.Send[XMLNode](x_.ID, objc.Sel("namespaceForPrefix:"), name)
 	return rv
 }
 
@@ -171,22 +172,22 @@ func (x_ XMLElement) RemoveChildAtIndex(index uint) {
 // Removes a namespace node that is identified by a given prefix.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/removeNamespace(forPrefix:)
-func (x_ XMLElement) RemoveNamespaceForPrefix(name string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("removeNamespaceForPrefix:"), objc.String(name))
+func (x_ XMLElement) RemoveNamespaceForPrefix(name appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("removeNamespaceForPrefix:"), name)
 }
 
 // Replaces a child node at a specified location with another child node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/replaceChild(at:with:)
-func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node unsafe.Pointer) {
+func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
 
 // Sets all attributes of the receiver at once, replacing any existing attribute nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/attributes
-func (x_ XMLElement) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("attributes"))
+func (x_ XMLElement) Attributes() NSXMLNode {
+	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -196,15 +197,15 @@ func (x_ XMLElement) Attributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/attributes
-func (x_ XMLElement) SetAttributes(value unsafe.Pointer) {
+func (x_ XMLElement) SetAttributes(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAttributes:"), value)
 }
 
 // Sets all of the namespace nodes of the receiver at once, replacing any existing namespace nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
-func (x_ XMLElement) Namespaces() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("namespaces"))
+func (x_ XMLElement) Namespaces() NSXMLNode {
+	rv := objc.Send[NSXMLNode](x_.ID, objc.Sel("namespaces"))
 	return rv
 }
 
@@ -214,7 +215,7 @@ func (x_ XMLElement) Namespaces() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlelement/namespaces
-func (x_ XMLElement) SetNamespaces(value unsafe.Pointer) {
+func (x_ XMLElement) SetNamespaces(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNamespaces:"), value)
 }
 

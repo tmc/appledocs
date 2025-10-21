@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CTrainingGraph] class.
@@ -32,25 +33,25 @@ type ICTrainingGraph interface {
 	AddInputsLossLabels(inputs unsafe.Pointer, lossLabels unsafe.Pointer) bool
 	AddInputsLossLabelsLossLabelWeights(inputs unsafe.Pointer, lossLabels unsafe.Pointer, lossLabelWeights unsafe.Pointer) bool
 	AddOutputs(outputs unsafe.Pointer) bool
-	AllocateUserGradientForTensor(tensor unsafe.Pointer) unsafe.Pointer
-	BindOptimizerDataDeviceDataWithTensor(data unsafe.Pointer, deviceData unsafe.Pointer, tensor unsafe.Pointer) bool
-	CompileWithOptionsDevice(options unsafe.Pointer, device unsafe.Pointer) bool
-	CompileWithOptionsDeviceInputTensorsInputTensorsData(options unsafe.Pointer, device unsafe.Pointer, inputTensors unsafe.Pointer, inputTensorsData unsafe.Pointer) bool
+	AllocateUserGradientForTensor(tensor IMLCTensor) CTensor
+	BindOptimizerDataDeviceDataWithTensor(data []CTensorData, deviceData []CTensorOptimizerDeviceData, tensor IMLCTensor) bool
+	CompileWithOptionsDevice(options CGraphCompilationOptions, device IMLCDevice) bool
+	CompileWithOptionsDeviceInputTensorsInputTensorsData(options CGraphCompilationOptions, device IMLCDevice, inputTensors unsafe.Pointer, inputTensorsData unsafe.Pointer) bool
 	CompileOptimizer(optimizer unsafe.Pointer) bool
-	ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataOutputsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, outputsData unsafe.Pointer, batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	ExecuteForwardWithBatchSizeOptionsCompletionHandler(batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	ExecuteForwardWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options unsafe.Pointer, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	ExecuteGradientWithBatchSizeOptionsCompletionHandler(batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	ExecuteGradientWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options unsafe.Pointer, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	ExecuteOptimizerUpdateWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) bool
-	GradientDataForParameterLayer(parameter unsafe.Pointer, layer unsafe.Pointer) unsafe.Pointer
-	GradientTensorForInput(input unsafe.Pointer) unsafe.Pointer
-	LinkWithGraphs(graphs unsafe.Pointer) bool
-	ResultGradientTensorsForLayer(layer unsafe.Pointer) []CTensor
-	SetTrainingTensorParameters(parameters unsafe.Pointer) bool
-	SourceGradientTensorsForLayer(layer unsafe.Pointer) []CTensor
-	StopGradientForTensors(tensors unsafe.Pointer) bool
+	ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool
+	ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataOutputsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, outputsData unsafe.Pointer, batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool
+	ExecuteForwardWithBatchSizeOptionsCompletionHandler(batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool
+	ExecuteForwardWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options CExecutionOptions, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	ExecuteGradientWithBatchSizeOptionsCompletionHandler(batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool
+	ExecuteGradientWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options CExecutionOptions, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	ExecuteOptimizerUpdateWithOptionsCompletionHandler(options CExecutionOptions, completionHandler unsafe.Pointer) bool
+	GradientDataForParameterLayer(parameter IMLCTensor, layer IMLCLayer) foundation.Data
+	GradientTensorForInput(input IMLCTensor) CTensor
+	LinkWithGraphs(graphs []CTrainingGraph) bool
+	ResultGradientTensorsForLayer(layer IMLCLayer) []CTensor
+	SetTrainingTensorParameters(parameters []CTensorParameter) bool
+	SourceGradientTensorsForLayer(layer IMLCLayer) []CTensor
+	StopGradientForTensors(tensors []CTensor) bool
 	SynchronizeUpdates()
 }
 
@@ -109,7 +110,7 @@ func NewCTrainingGraph() CTrainingGraph {
 // Creates a training graph with the layers from the graph objects, loss layer, and optimizer you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/init(graphObjects:lossLayer:optimizer:)
-func NewCTrainingGraphWithGraphObjectsLossLayerOptimizer(graphObjects unsafe.Pointer, lossLayer unsafe.Pointer, optimizer unsafe.Pointer) CTrainingGraph {
+func NewCTrainingGraphWithGraphObjectsLossLayerOptimizer(graphObjects []CGraph, lossLayer IMLCLayer, optimizer unsafe.Pointer) CTrainingGraph {
 	rv := objc.Send[CTrainingGraph](objc.ID(getCTrainingGraphClass().class), objc.Sel("graphWithGraphObjects:lossLayer:optimizer:"), graphObjects, lossLayer, optimizer)
 	return rv
 }
@@ -118,7 +119,7 @@ func NewCTrainingGraphWithGraphObjectsLossLayerOptimizer(graphObjects unsafe.Poi
 // Creates a training graph with the layers from the graph objects, loss layer, and optimizer you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/init(graphObjects:lossLayer:optimizer:)
-func (cc _CTrainingGraphClass) GraphWithGraphObjectsLossLayerOptimizer(graphObjects unsafe.Pointer, lossLayer unsafe.Pointer, optimizer unsafe.Pointer) unsafe.Pointer {
+func (cc _CTrainingGraphClass) GraphWithGraphObjectsLossLayerOptimizer(graphObjects []CGraph, lossLayer IMLCLayer, optimizer unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("graphWithGraphObjects:lossLayer:optimizer:"), graphObjects, lossLayer, optimizer)
 	return rv
 }
@@ -150,15 +151,15 @@ func (c_ CTrainingGraph) AddOutputs(outputs unsafe.Pointer) bool {
 // Allocates an entry for a gradient for the result tensor you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/allocateUserGradient(for:)
-func (c_ CTrainingGraph) AllocateUserGradientForTensor(tensor unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allocateUserGradientForTensor:"), tensor)
+func (c_ CTrainingGraph) AllocateUserGradientForTensor(tensor IMLCTensor) CTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("allocateUserGradientForTensor:"), tensor)
 	return rv
 }
 
 // Associates the optimizer and device data you specify along with the tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/bindOptimizerData(_:deviceData:with:)
-func (c_ CTrainingGraph) BindOptimizerDataDeviceDataWithTensor(data unsafe.Pointer, deviceData unsafe.Pointer, tensor unsafe.Pointer) bool {
+func (c_ CTrainingGraph) BindOptimizerDataDeviceDataWithTensor(data []CTensorData, deviceData []CTensorOptimizerDeviceData, tensor IMLCTensor) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bindOptimizerData:deviceData:withTensor:"), data, deviceData, tensor)
 	return rv
 }
@@ -166,7 +167,7 @@ func (c_ CTrainingGraph) BindOptimizerDataDeviceDataWithTensor(data unsafe.Point
 // Compiles the training graph for the options and device you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/compile(options:device:)
-func (c_ CTrainingGraph) CompileWithOptionsDevice(options unsafe.Pointer, device unsafe.Pointer) bool {
+func (c_ CTrainingGraph) CompileWithOptionsDevice(options CGraphCompilationOptions, device IMLCDevice) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("compileWithOptions:device:"), options, device)
 	return rv
 }
@@ -174,7 +175,7 @@ func (c_ CTrainingGraph) CompileWithOptionsDevice(options unsafe.Pointer, device
 // Compiles the training graph for the options, device, and input tensors you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/compile(options:device:inputTensors:inputTensorsData:)
-func (c_ CTrainingGraph) CompileWithOptionsDeviceInputTensorsInputTensorsData(options unsafe.Pointer, device unsafe.Pointer, inputTensors unsafe.Pointer, inputTensorsData unsafe.Pointer) bool {
+func (c_ CTrainingGraph) CompileWithOptionsDeviceInputTensorsInputTensorsData(options CGraphCompilationOptions, device IMLCDevice, inputTensors unsafe.Pointer, inputTensorsData unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("compileWithOptions:device:inputTensors:inputTensorsData:"), options, device, inputTensors, inputTensorsData)
 	return rv
 }
@@ -190,7 +191,7 @@ func (c_ CTrainingGraph) CompileOptimizer(optimizer unsafe.Pointer) bool {
 // Executes the training graph with the input data, batch size, execution options, and completion handler you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:)
-func (c_ CTrainingGraph) ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:"), inputsData, lossLabelsData, lossLabelWeightsData, batchSize, options, completionHandler)
 	return rv
 }
@@ -198,7 +199,7 @@ func (c_ CTrainingGraph) ExecuteWithInputsDataLossLabelsDataLossLabelWeightsData
 // Executes the training graph with the input data, output data, batch size, execution options, and completion handler that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/execute(inputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:)
-func (c_ CTrainingGraph) ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataOutputsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, outputsData unsafe.Pointer, batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteWithInputsDataLossLabelsDataLossLabelWeightsDataOutputsDataBatchSizeOptionsCompletionHandler(inputsData unsafe.Pointer, lossLabelsData unsafe.Pointer, lossLabelWeightsData unsafe.Pointer, outputsData unsafe.Pointer, batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:"), inputsData, lossLabelsData, lossLabelWeightsData, outputsData, batchSize, options, completionHandler)
 	return rv
 }
@@ -206,7 +207,7 @@ func (c_ CTrainingGraph) ExecuteWithInputsDataLossLabelsDataLossLabelWeightsData
 // Executes the forward pass of the training graph with the batch size, execution options, and completion handler you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:completionHandler:)
-func (c_ CTrainingGraph) ExecuteForwardWithBatchSizeOptionsCompletionHandler(batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteForwardWithBatchSizeOptionsCompletionHandler(batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeForwardWithBatchSize:options:completionHandler:"), batchSize, options, completionHandler)
 	return rv
 }
@@ -214,7 +215,7 @@ func (c_ CTrainingGraph) ExecuteForwardWithBatchSizeOptionsCompletionHandler(bat
 // Executes the forward pass of the training graph with the batch size, execution options, output data, and completion handler you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/executeForward(batchSize:options:outputsData:completionHandler:)
-func (c_ CTrainingGraph) ExecuteForwardWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options unsafe.Pointer, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteForwardWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options CExecutionOptions, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeForwardWithBatchSize:options:outputsData:completionHandler:"), batchSize, options, outputsData, completionHandler)
 	return rv
 }
@@ -222,7 +223,7 @@ func (c_ CTrainingGraph) ExecuteForwardWithBatchSizeOptionsOutputsDataCompletion
 // Executes the gradient pass of the training graph with the batch size, execution options, and completion handler you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:completionHandler:)
-func (c_ CTrainingGraph) ExecuteGradientWithBatchSizeOptionsCompletionHandler(batchSize uint, options unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteGradientWithBatchSizeOptionsCompletionHandler(batchSize uint, options CExecutionOptions, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeGradientWithBatchSize:options:completionHandler:"), batchSize, options, completionHandler)
 	return rv
 }
@@ -230,7 +231,7 @@ func (c_ CTrainingGraph) ExecuteGradientWithBatchSizeOptionsCompletionHandler(ba
 // Executes the gradient pass of the training graph with the batch size, execution options, output data, and completion handler you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/executeGradient(batchSize:options:outputsData:completionHandler:)
-func (c_ CTrainingGraph) ExecuteGradientWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options unsafe.Pointer, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteGradientWithBatchSizeOptionsOutputsDataCompletionHandler(batchSize uint, options CExecutionOptions, outputsData unsafe.Pointer, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeGradientWithBatchSize:options:outputsData:completionHandler:"), batchSize, options, outputsData, completionHandler)
 	return rv
 }
@@ -238,7 +239,7 @@ func (c_ CTrainingGraph) ExecuteGradientWithBatchSizeOptionsOutputsDataCompletio
 // Executes the optimizer update pass of the training graph with the execution options and completion handler you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/executeOptimizerUpdate(options:completionHandler:)
-func (c_ CTrainingGraph) ExecuteOptimizerUpdateWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (c_ CTrainingGraph) ExecuteOptimizerUpdateWithOptionsCompletionHandler(options CExecutionOptions, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeOptimizerUpdateWithOptions:completionHandler:"), options, completionHandler)
 	return rv
 }
@@ -246,23 +247,23 @@ func (c_ CTrainingGraph) ExecuteOptimizerUpdateWithOptionsCompletionHandler(opti
 // Gets the gradient data for the trainable parameter and associated layer you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/gradientData(forParameter:layer:)
-func (c_ CTrainingGraph) GradientDataForParameterLayer(parameter unsafe.Pointer, layer unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gradientDataForParameter:layer:"), parameter, layer)
+func (c_ CTrainingGraph) GradientDataForParameterLayer(parameter IMLCTensor, layer IMLCLayer) foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("gradientDataForParameter:layer:"), parameter, layer)
 	return rv
 }
 
 // Gets the gradient tensor for the input tensor you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/gradientTensor(forInput:)
-func (c_ CTrainingGraph) GradientTensorForInput(input unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gradientTensorForInput:"), input)
+func (c_ CTrainingGraph) GradientTensorForInput(input IMLCTensor) CTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("gradientTensorForInput:"), input)
 	return rv
 }
 
 // Links the training graphs you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/link(with:)
-func (c_ CTrainingGraph) LinkWithGraphs(graphs unsafe.Pointer) bool {
+func (c_ CTrainingGraph) LinkWithGraphs(graphs []CTrainingGraph) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("linkWithGraphs:"), graphs)
 	return rv
 }
@@ -270,7 +271,7 @@ func (c_ CTrainingGraph) LinkWithGraphs(graphs unsafe.Pointer) bool {
 // Gets the result gradient tensors for the layer in the training graph you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/resultGradientTensors(for:)
-func (c_ CTrainingGraph) ResultGradientTensorsForLayer(layer unsafe.Pointer) []CTensor {
+func (c_ CTrainingGraph) ResultGradientTensorsForLayer(layer IMLCLayer) []CTensor {
 	rv := objc.Send[[]CTensor](c_.ID, objc.Sel("resultGradientTensorsForLayer:"), layer)
 	return rv
 }
@@ -278,7 +279,7 @@ func (c_ CTrainingGraph) ResultGradientTensorsForLayer(layer unsafe.Pointer) []C
 // Sets the input tensor parameters, which the optimizer then updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/setTrainingTensorParameters(_:)
-func (c_ CTrainingGraph) SetTrainingTensorParameters(parameters unsafe.Pointer) bool {
+func (c_ CTrainingGraph) SetTrainingTensorParameters(parameters []CTensorParameter) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setTrainingTensorParameters:"), parameters)
 	return rv
 }
@@ -286,7 +287,7 @@ func (c_ CTrainingGraph) SetTrainingTensorParameters(parameters unsafe.Pointer) 
 // Gets the source gradient tensors for the layer in the training graph you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/sourceGradientTensors(for:)
-func (c_ CTrainingGraph) SourceGradientTensorsForLayer(layer unsafe.Pointer) []CTensor {
+func (c_ CTrainingGraph) SourceGradientTensorsForLayer(layer IMLCLayer) []CTensor {
 	rv := objc.Send[[]CTensor](c_.ID, objc.Sel("sourceGradientTensorsForLayer:"), layer)
 	return rv
 }
@@ -294,7 +295,7 @@ func (c_ CTrainingGraph) SourceGradientTensorsForLayer(layer unsafe.Pointer) []C
 // Adds the tensors that you specify, to indicate which contributions the graph excludes when computing gradients during gradient pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTrainingGraph/stopGradient(for:)
-func (c_ CTrainingGraph) StopGradientForTensors(tensors unsafe.Pointer) bool {
+func (c_ CTrainingGraph) StopGradientForTensors(tensors []CTensor) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("stopGradientForTensors:"), tensors)
 	return rv
 }

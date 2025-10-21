@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -105,8 +106,8 @@ func (m_ MXHistogramBucket) BucketStart() unsafe.Pointer {
 // An enumerator for the buckets containing the data in the histogram.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator
-func (m_ MXHistogramBucket) BucketEnumerator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnumerator"))
+func (m_ MXHistogramBucket) BucketEnumerator() foundation.Enumerator {
+	rv := objc.Send[foundation.Enumerator](m_.ID, objc.Sel("bucketEnumerator"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (m_ MXHistogramBucket) BucketEnumerator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator
-func (m_ MXHistogramBucket) SetBucketEnumerator(value unsafe.Pointer) {
+func (m_ MXHistogramBucket) SetBucketEnumerator(value foundation.IEnumerator) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnumerator:"), value)
 }
 

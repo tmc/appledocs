@@ -83,8 +83,8 @@ func NewNEHotspotConfigurationManager() NEHotspotConfigurationManager {
 // The domain string for errors involving hotspot configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerrordomain
-func (n_ NEHotspotConfigurationManager) NEHotspotConfigurationErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEHotspotConfigurationErrorDomain"))
+func (n_ NEHotspotConfigurationManager) NEHotspotConfigurationErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEHotspotConfigurationErrorDomain"))
 	return rv
 }
 

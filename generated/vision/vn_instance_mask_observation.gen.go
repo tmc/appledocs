@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [InstanceMaskObservation] class.
@@ -29,9 +30,9 @@ type _InstanceMaskObservationClass struct {
 // An interface definition for the [InstanceMaskObservation] class.
 type IInstanceMaskObservation interface {
 	IObservation
-	GenerateMaskForInstancesError(instances unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances unsafe.Pointer, requestHandler unsafe.Pointer, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer
-	GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances unsafe.Pointer, requestHandler unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	GenerateMaskForInstancesError(instances foundation.IIndexSet, error_ unsafe.Pointer) unsafe.Pointer
+	GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer
+	GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An observation that contains an instance mask that labels instances in the mask.
@@ -85,7 +86,7 @@ func NewInstanceMaskObservation() InstanceMaskObservation {
 // Creates a low-resolution mask from the instances you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateMask(forInstances:)
-func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances foundation.IIndexSet, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("generateMaskForInstances:error:"), instances, error_)
 	return rv
 }
@@ -93,7 +94,7 @@ func (i_ InstanceMaskObservation) GenerateMaskForInstancesError(instances unsafe
 // Creates a high-resolution image where everything becomes transparent black, except for the instances you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateMaskedImage(ofInstances:from:croppedToInstancesExtent:)
-func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances unsafe.Pointer, requestHandler unsafe.Pointer, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer {
+func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandlerCroppedToInstancesExtentError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, cropResult bool, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("generateMaskedImageOfInstances:fromRequestHandler:croppedToInstancesExtent:error:"), instances, requestHandler, cropResult, error_)
 	return rv
 }
@@ -101,7 +102,7 @@ func (i_ InstanceMaskObservation) GenerateMaskedImageOfInstancesFromRequestHandl
 // Creates a high-resolution mask where everything becomes transparent black, except for the instances you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/generateScaledMaskForImage(forInstances:from:)
-func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances unsafe.Pointer, requestHandler unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequestHandlerError(instances foundation.IIndexSet, requestHandler IVNImageRequestHandler, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("generateScaledMaskForImageForInstances:fromRequestHandler:error:"), instances, requestHandler, error_)
 	return rv
 }
@@ -109,8 +110,8 @@ func (i_ InstanceMaskObservation) GenerateScaledMaskForImageForInstancesFromRequ
 // The collection that contains all instances, excluding the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNInstanceMaskObservation/allInstances
-func (i_ InstanceMaskObservation) AllInstances() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("allInstances"))
+func (i_ InstanceMaskObservation) AllInstances() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](i_.ID, objc.Sel("allInstances"))
 	return rv
 }
 

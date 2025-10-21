@@ -91,8 +91,8 @@ func (w_ WebsiteDataRecord) DataTypes() unsafe.Pointer {
 // The display name for the data record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
-func (w_ WebsiteDataRecord) DisplayName() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("displayName"))
+func (w_ WebsiteDataRecord) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (w_ WebsiteDataRecord) DisplayName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatarecord/displayname
-func (w_ WebsiteDataRecord) SetDisplayName(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (w_ WebsiteDataRecord) SetDisplayName(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 

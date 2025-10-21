@@ -15,3 +15,11 @@ func ExampleNewPlayer() {
 	_ = avfoundation.NewPlayer()
 	// Output:
 }
+// ExampleNewPlayerWithPlayerItem demonstrates how to create a Player instance using NewPlayerWithPlayerItem.
+// Creates a new player to play the specified player item.
+func ExampleNewPlayerWithPlayerItem() {
+	_ = avfoundation.NewPlayerWithPlayerItem(
+		avfoundation.AVPlayerItem{}, // item AVPlayerItem
+	)
+	// Output:
+}

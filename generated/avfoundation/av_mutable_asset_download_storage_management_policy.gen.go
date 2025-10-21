@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MutableAssetDownloadStorageManagementPolicy] class.
@@ -82,8 +83,8 @@ func NewMutableAssetDownloadStorageManagementPolicy() MutableAssetDownloadStorag
 // The expiration date for an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/expirationdate
-func (m_ MutableAssetDownloadStorageManagementPolicy) ExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expirationDate"))
+func (m_ MutableAssetDownloadStorageManagementPolicy) ExpirationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
@@ -93,7 +94,7 @@ func (m_ MutableAssetDownloadStorageManagementPolicy) ExpirationDate() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutableassetdownloadstoragemanagementpolicy/expirationdate
-func (m_ MutableAssetDownloadStorageManagementPolicy) SetExpirationDate(value unsafe.Pointer) {
+func (m_ MutableAssetDownloadStorageManagementPolicy) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpirationDate:"), value)
 }
 

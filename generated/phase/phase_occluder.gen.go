@@ -86,7 +86,7 @@ func NewPHASEOccluder() PHASEOccluder {
 // Creates an occluder with the given engine and shapes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEOccluder/init(engine:shapes:)
-func NewPHASEOccluderWithEngineShapes(engine unsafe.Pointer, shapes unsafe.Pointer) PHASEOccluder {
+func NewPHASEOccluderWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) PHASEOccluder {
 	instance := getPHASEOccluderClass().Alloc()
 	rv := objc.Send[PHASEOccluder](instance.ID, objc.Sel("initWithEngine:shapes:"), engine, shapes)
 	rv.Autorelease()

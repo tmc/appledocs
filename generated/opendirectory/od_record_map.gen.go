@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _ODRecordMapClass struct {
 // An interface definition for the [ODRecordMap] class.
 type IODRecordMap interface {
 	objectivec.IObject
-	AttributeMapForStandardAttribute(standardAttribute string) unsafe.Pointer
-	SetAttributeMapForStandardAttribute(attributeMap unsafe.Pointer, standardAttribute string)
+	AttributeMapForStandardAttribute(standardAttribute appkit.string) ODAttributeMap
+	SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute appkit.string)
 }
 
 //
@@ -86,28 +87,28 @@ func (oc _ODRecordMapClass) RecordMap() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/attributeMap(forStandardAttribute:)
-func (o_ ODRecordMap) AttributeMapForStandardAttribute(standardAttribute string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("attributeMapForStandardAttribute:"), objc.String(standardAttribute))
+func (o_ ODRecordMap) AttributeMapForStandardAttribute(standardAttribute appkit.string) ODAttributeMap {
+	rv := objc.Send[ODAttributeMap](o_.ID, objc.Sel("attributeMapForStandardAttribute:"), standardAttribute)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/setAttribute(_:forStandardAttribute:)
-func (o_ ODRecordMap) SetAttributeMapForStandardAttribute(attributeMap unsafe.Pointer, standardAttribute string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAttributeMap:forStandardAttribute:"), attributeMap, objc.String(standardAttribute))
+func (o_ ODRecordMap) SetAttributeMapForStandardAttribute(attributeMap IODAttributeMap, standardAttribute appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAttributeMap:forStandardAttribute:"), attributeMap, standardAttribute)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/attributes-swift.property
-func (o_ ODRecordMap) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("attributes"))
+func (o_ ODRecordMap) Attributes() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("attributes"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) Native() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("native"))
+func (o_ ODRecordMap) Native() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("native"))
 	return rv
 }
 
@@ -115,14 +116,14 @@ func (o_ ODRecordMap) Native() string {
 // SetNative sets the value of the native property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/native-swift.property
-func (o_ ODRecordMap) SetNative(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), objc.String(value))
+func (o_ ODRecordMap) SetNative(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setNative:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-swift.property
-func (o_ ODRecordMap) OdPredicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("odPredicate"))
+func (o_ ODRecordMap) OdPredicate() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("odPredicate"))
 	return rv
 }
 
@@ -130,14 +131,14 @@ func (o_ ODRecordMap) OdPredicate() unsafe.Pointer {
 // SetOdPredicate sets the value of the odPredicate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/odPredicate-swift.property
-func (o_ ODRecordMap) SetOdPredicate(value unsafe.Pointer) {
+func (o_ ODRecordMap) SetOdPredicate(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOdPredicate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordMap/standardAttributeTypes
-func (o_ ODRecordMap) StandardAttributeTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("standardAttributeTypes"))
+func (o_ ODRecordMap) StandardAttributeTypes() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("standardAttributeTypes"))
 	return rv
 }
 

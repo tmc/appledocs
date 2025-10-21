@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayMultiaryGradientKernel] class.
@@ -78,7 +80,7 @@ func NewNDArrayMultiaryGradientKernel() NDArrayMultiaryGradientKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryGradientKernel/init(coder:device:)
-func NewNDArrayMultiaryGradientKernelWithCoderDevice(coder unsafe.Pointer, device objc.ID) NDArrayMultiaryGradientKernel {
+func NewNDArrayMultiaryGradientKernelWithCoderDevice(coder foundation.ICoder, device objectivec.IObject) NDArrayMultiaryGradientKernel {
 	instance := getNDArrayMultiaryGradientKernelClass().Alloc()
 	rv := objc.Send[NDArrayMultiaryGradientKernel](instance.ID, objc.Sel("initWithCoder:device:"), coder, device)
 	rv.Autorelease()

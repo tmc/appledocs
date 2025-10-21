@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [UNTextInputNotificationAction] class.
@@ -86,8 +87,8 @@ func NewUNTextInputNotificationAction() UNTextInputNotificationAction {
 // Creates an action object with an icon that accepts text input from the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:)
-func NewUNTextInputNotificationActionWithIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, icon unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) UNTextInputNotificationAction {
-	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, icon, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
+func NewUNTextInputNotificationActionWithIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier appkit.string, title appkit.string, options UNNotificationActionOptions, icon IUNNotificationActionIcon, textInputButtonTitle appkit.string, textInputPlaceholder appkit.string) UNTextInputNotificationAction {
+	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:"), identifier, title, options, icon, textInputButtonTitle, textInputPlaceholder)
 	return rv
 }
 
@@ -96,8 +97,8 @@ func NewUNTextInputNotificationActionWithIdentifierTitleOptionsIconTextInputButt
 // Creates an action object that accepts text input from the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:textInputButtonTitle:textInputPlaceholder:)
-func NewUNTextInputNotificationActionWithIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) UNTextInputNotificationAction {
-	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
+func NewUNTextInputNotificationActionWithIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier appkit.string, title appkit.string, options UNNotificationActionOptions, textInputButtonTitle appkit.string, textInputPlaceholder appkit.string) UNTextInputNotificationAction {
+	rv := objc.Send[UNTextInputNotificationAction](objc.ID(getUNTextInputNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:"), identifier, title, options, textInputButtonTitle, textInputPlaceholder)
 	return rv
 }
 
@@ -105,32 +106,32 @@ func NewUNTextInputNotificationActionWithIdentifierTitleOptionsTextInputButtonTi
 // Creates an action object with an icon that accepts text input from the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:)
-func (uc _UNTextInputNotificationActionClass) ActionWithIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, icon unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, icon, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
+func (uc _UNTextInputNotificationActionClass) ActionWithIdentifierTitleOptionsIconTextInputButtonTitleTextInputPlaceholder(identifier appkit.string, title appkit.string, options UNNotificationActionOptions, icon IUNNotificationActionIcon, textInputButtonTitle appkit.string, textInputPlaceholder appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:icon:textInputButtonTitle:textInputPlaceholder:"), identifier, title, options, icon, textInputButtonTitle, textInputPlaceholder)
 	return rv
 }
 
 // Creates an action object that accepts text input from the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/init(identifier:title:options:textInputButtonTitle:textInputPlaceholder:)
-func (uc _UNTextInputNotificationActionClass) ActionWithIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier string, title string, options unsafe.Pointer, textInputButtonTitle string, textInputPlaceholder string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:"), objc.String(identifier), objc.String(title), options, objc.String(textInputButtonTitle), objc.String(textInputPlaceholder))
+func (uc _UNTextInputNotificationActionClass) ActionWithIdentifierTitleOptionsTextInputButtonTitleTextInputPlaceholder(identifier appkit.string, title appkit.string, options UNNotificationActionOptions, textInputButtonTitle appkit.string, textInputPlaceholder appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:options:textInputButtonTitle:textInputPlaceholder:"), identifier, title, options, textInputButtonTitle, textInputPlaceholder)
 	return rv
 }
 
 // The localized title of the text input button that the system displays to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/textInputButtonTitle
-func (u_ UNTextInputNotificationAction) TextInputButtonTitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("textInputButtonTitle"))
+func (u_ UNTextInputNotificationAction) TextInputButtonTitle() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("textInputButtonTitle"))
 	return rv
 }
 
 // The placeholder text that the system localizes and displays in the text input field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNTextInputNotificationAction/textInputPlaceholder
-func (u_ UNTextInputNotificationAction) TextInputPlaceholder() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("textInputPlaceholder"))
+func (u_ UNTextInputNotificationAction) TextInputPlaceholder() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("textInputPlaceholder"))
 	return rv
 }
 

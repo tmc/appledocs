@@ -31,10 +31,10 @@ type _URLConnectionClass struct {
 type IURLConnection interface {
 	objectivec.IObject
 	Cancel()
-	ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
-	SetDelegateQueue(queue unsafe.Pointer)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	SetDelegateQueue(queue IOperationQueue)
 	Start()
-	UnscheduleFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 }
 
 // An object that enables you to start and stop URL requests.
@@ -90,7 +90,7 @@ func NewURLConnection() URLConnection {
 // Returns an initialized URL connection and begins to load the data for the URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:)
-func NewURLConnectionWithRequestDelegate(request unsafe.Pointer, delegate objc.ID) URLConnection {
+func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -102,7 +102,7 @@ func NewURLConnectionWithRequestDelegate(request unsafe.Pointer, delegate objc.I
 // Returns an initialized URL connection and begins to load the data for the URL request, if specified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:startImmediately:)
-func NewURLConnectionWithRequestDelegateStartImmediately(request unsafe.Pointer, delegate objc.ID, startImmediately bool) URLConnection {
+func NewURLConnectionWithRequestDelegateStartImmediately(request IURLRequest, delegate objectivec.IObject, startImmediately bool) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:startImmediately:"), request, delegate, startImmediately)
 	rv.Autorelease()
@@ -113,7 +113,7 @@ func NewURLConnectionWithRequestDelegateStartImmediately(request unsafe.Pointer,
 // Returns whether a request can be handled based on a preflight evaluation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/canHandle(_:)
-func (uc _URLConnectionClass) CanHandleRequest(request unsafe.Pointer) bool {
+func (uc _URLConnectionClass) CanHandleRequest(request IURLRequest) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canHandleRequest:"), request)
 	return rv
 }
@@ -121,23 +121,23 @@ func (uc _URLConnectionClass) CanHandleRequest(request unsafe.Pointer) bool {
 // Creates and returns an initialized URL connection and begins to load the data for the URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/connectionWithRequest:delegate:
-func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request unsafe.Pointer, delegate objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("connectionWithRequest:delegate:"), request, delegate)
+func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLConnection {
+	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("connectionWithRequest:delegate:"), request, delegate)
 	return rv
 }
 
 // Loads the data for a URL request and executes a handler block on an operation queue when the request completes or fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendAsynchronousRequest(_:queue:completionHandler:)
-func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(request unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) {
+func (uc _URLConnectionClass) SendAsynchronousRequestQueueCompletionHandler(request IURLRequest, queue IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("sendAsynchronousRequest:queue:completionHandler:"), request, queue, handler)
 }
 
 // Performs a synchronous load of the specified URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/sendSynchronousRequest(_:returning:)
-func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request unsafe.Pointer, response unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error_)
+func (uc _URLConnectionClass) SendSynchronousRequestReturningResponseError(request IURLRequest, response IURLResponse, error_ IError) Data {
+	rv := objc.Send[Data](objc.ID(uc.class), objc.Sel("sendSynchronousRequest:returningResponse:error:"), request, response, error_)
 	return rv
 }
 
@@ -151,14 +151,14 @@ func (u_ URLConnection) Cancel() {
 // Determines the run loop and mode that the connection uses to call methods on its delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/schedule(in:forMode:)
-func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (u_ URLConnection) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
 // Determines the operation queue that is used to call methods on the connection’s delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/setDelegateQueue(_:)
-func (u_ URLConnection) SetDelegateQueue(queue unsafe.Pointer) {
+func (u_ URLConnection) SetDelegateQueue(queue IOperationQueue) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegateQueue:"), queue)
 }
 
@@ -172,23 +172,23 @@ func (u_ URLConnection) Start() {
 // Causes the connection to stop calling delegate methods in the specified run loop and mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/unschedule(from:forMode:)
-func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (u_ URLConnection) UnscheduleFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("unscheduleFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
 // The current connection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/currentRequest
-func (u_ URLConnection) CurrentRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("currentRequest"))
+func (u_ URLConnection) CurrentRequest() NSURLRequest {
+	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
 // A deep copy of the original connection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/originalRequest
-func (u_ URLConnection) OriginalRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalRequest"))
+func (u_ URLConnection) OriginalRequest() NSURLRequest {
+	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewSampleBufferAudioRenderer() SampleBufferAudioRenderer {
 // The unique identifier of the output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
-func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -94,8 +95,8 @@ func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
-func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
+func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
 }
 
 // The source audio channel layouts the audio renderer supports for spatialization.
@@ -119,8 +120,8 @@ func (s_ SampleBufferAudioRenderer) SetAllowedAudioSpatializationFormats(value u
 // The processing algorithm used to manage audio pitch at different rates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiotimepitchalgorithm
-func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
+	rv := objc.Send[AudioTimePitchAlgorithm](s_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (s_ SampleBufferAudioRenderer) AudioTimePitchAlgorithm() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/audiotimepitchalgorithm
-func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (s_ SampleBufferAudioRenderer) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
 // The error that caused the renderer to no longer render sample buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
-func (s_ SampleBufferAudioRenderer) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("error"))
+func (s_ SampleBufferAudioRenderer) Error() Error {
+	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (s_ SampleBufferAudioRenderer) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer/error
-func (s_ SampleBufferAudioRenderer) SetError(value unsafe.Pointer) {
+func (s_ SampleBufferAudioRenderer) SetError(value IError) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
@@ -209,8 +210,8 @@ func (s_ SampleBufferAudioRenderer) SetVolume(value unsafe.Pointer) {
 // The key that indicates the presentation timestamp of the first queued sample that was flushed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorendererflushtimekey
-func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
+func (s_ SampleBufferAudioRenderer) AVSampleBufferAudioRendererFlushTimeKey() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSampleBufferAudioRendererFlushTimeKey"))
 	return rv
 }
 

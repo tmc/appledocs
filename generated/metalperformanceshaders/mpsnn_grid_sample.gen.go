@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [GridSample] class.
@@ -78,7 +79,7 @@ func NewGridSample() GridSample {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGridSample/init(device:)
-func NewGridSampleWithDevice(device objc.ID) GridSample {
+func NewGridSampleWithDevice(device objectivec.IObject) GridSample {
 	instance := getGridSampleClass().Alloc()
 	rv := objc.Send[GridSample](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

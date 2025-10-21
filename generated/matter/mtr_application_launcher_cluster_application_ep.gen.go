@@ -79,8 +79,8 @@ func NewMTRApplicationLauncherClusterApplicationEP() MTRApplicationLauncherClust
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/application
-func (m_ MTRApplicationLauncherClusterApplicationEP) Application() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
+func (m_ MTRApplicationLauncherClusterApplicationEP) Application() MTRApplicationLauncherClusterApplicationStruct {
+	rv := objc.Send[MTRApplicationLauncherClusterApplicationStruct](m_.ID, objc.Sel("application"))
 	return rv
 }
 
@@ -88,7 +88,7 @@ func (m_ MTRApplicationLauncherClusterApplicationEP) Application() unsafe.Pointe
 // SetApplication sets the value of the application property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/application
-func (m_ MTRApplicationLauncherClusterApplicationEP) SetApplication(value unsafe.Pointer) {
+func (m_ MTRApplicationLauncherClusterApplicationEP) SetApplication(value IMTRApplicationLauncherClusterApplicationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRApplicationLauncherClusterApplicationEP) Endpoint() foundation.Numbe
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationep/endpoint
-func (m_ MTRApplicationLauncherClusterApplicationEP) SetEndpoint(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterApplicationEP) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

@@ -83,8 +83,8 @@ func NewRemoteLayerServer() RemoteLayerServer {
 // Returns the (singleton) instance of the shared remote layer server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerServer/shared()
-func (rc _RemoteLayerServerClass) SharedServer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("sharedServer"))
+func (rc _RemoteLayerServerClass) SharedServer() RemoteLayerServer {
+	rv := objc.Send[RemoteLayerServer](objc.ID(rc.class), objc.Sel("sharedServer"))
 	return rv
 }
 

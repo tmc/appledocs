@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -92,8 +93,8 @@ func (r_ RecursiveLock) TryLock() bool {
 // The name associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-func (r_ RecursiveLock) Name() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("name"))
+func (r_ RecursiveLock) Name() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (r_ RecursiveLock) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-func (r_ RecursiveLock) SetName(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), objc.String(value))
+func (r_ RecursiveLock) SetName(value appkit.string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), value)
 }
 
 

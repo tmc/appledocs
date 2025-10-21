@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRDeviceAttestationInfo() MTRDeviceAttestationInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/certificationdeclaration
-func (m_ MTRDeviceAttestationInfo) CertificationDeclaration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclaration"))
+func (m_ MTRDeviceAttestationInfo) CertificationDeclaration() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclaration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRDeviceAttestationInfo) CertificationDeclaration() unsafe.Pointer {
 // SetCertificationDeclaration sets the value of the certificationDeclaration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/certificationdeclaration
-func (m_ MTRDeviceAttestationInfo) SetCertificationDeclaration(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetCertificationDeclaration(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclaration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/challenge
-func (m_ MTRDeviceAttestationInfo) Challenge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("challenge"))
+func (m_ MTRDeviceAttestationInfo) Challenge() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("challenge"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRDeviceAttestationInfo) Challenge() unsafe.Pointer {
 // SetChallenge sets the value of the challenge property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/challenge
-func (m_ MTRDeviceAttestationInfo) SetChallenge(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetChallenge(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChallenge:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/deviceattestationcertificate
-func (m_ MTRDeviceAttestationInfo) DeviceAttestationCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceAttestationCertificate"))
+func (m_ MTRDeviceAttestationInfo) DeviceAttestationCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("deviceAttestationCertificate"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (m_ MTRDeviceAttestationInfo) DeviceAttestationCertificate() unsafe.Pointer
 // SetDeviceAttestationCertificate sets the value of the deviceAttestationCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/deviceattestationcertificate
-func (m_ MTRDeviceAttestationInfo) SetDeviceAttestationCertificate(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetDeviceAttestationCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceAttestationCertificate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementssignature
-func (m_ MTRDeviceAttestationInfo) ElementsSignature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("elementsSignature"))
+func (m_ MTRDeviceAttestationInfo) ElementsSignature() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("elementsSignature"))
 	return rv
 }
 
@@ -131,14 +132,14 @@ func (m_ MTRDeviceAttestationInfo) ElementsSignature() unsafe.Pointer {
 // SetElementsSignature sets the value of the elementsSignature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementssignature
-func (m_ MTRDeviceAttestationInfo) SetElementsSignature(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetElementsSignature(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsSignature:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementstlv
-func (m_ MTRDeviceAttestationInfo) ElementsTLV() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("elementsTLV"))
+func (m_ MTRDeviceAttestationInfo) ElementsTLV() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("elementsTLV"))
 	return rv
 }
 
@@ -146,14 +147,14 @@ func (m_ MTRDeviceAttestationInfo) ElementsTLV() unsafe.Pointer {
 // SetElementsTLV sets the value of the elementsTLV property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementstlv
-func (m_ MTRDeviceAttestationInfo) SetElementsTLV(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetElementsTLV(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsTLV:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/firmwareinfo
-func (m_ MTRDeviceAttestationInfo) FirmwareInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("firmwareInfo"))
+func (m_ MTRDeviceAttestationInfo) FirmwareInfo() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("firmwareInfo"))
 	return rv
 }
 
@@ -161,14 +162,14 @@ func (m_ MTRDeviceAttestationInfo) FirmwareInfo() unsafe.Pointer {
 // SetFirmwareInfo sets the value of the firmwareInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/firmwareinfo
-func (m_ MTRDeviceAttestationInfo) SetFirmwareInfo(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetFirmwareInfo(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFirmwareInfo:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/nonce
-func (m_ MTRDeviceAttestationInfo) Nonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nonce"))
+func (m_ MTRDeviceAttestationInfo) Nonce() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("nonce"))
 	return rv
 }
 
@@ -176,14 +177,14 @@ func (m_ MTRDeviceAttestationInfo) Nonce() unsafe.Pointer {
 // SetNonce sets the value of the nonce property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/nonce
-func (m_ MTRDeviceAttestationInfo) SetNonce(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetNonce(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNonce:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/productattestationintermediatecertificate
-func (m_ MTRDeviceAttestationInfo) ProductAttestationIntermediateCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productAttestationIntermediateCertificate"))
+func (m_ MTRDeviceAttestationInfo) ProductAttestationIntermediateCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("productAttestationIntermediateCertificate"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (m_ MTRDeviceAttestationInfo) ProductAttestationIntermediateCertificate() u
 // SetProductAttestationIntermediateCertificate sets the value of the productAttestationIntermediateCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/productattestationintermediatecertificate
-func (m_ MTRDeviceAttestationInfo) SetProductAttestationIntermediateCertificate(value unsafe.Pointer) {
+func (m_ MTRDeviceAttestationInfo) SetProductAttestationIntermediateCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationIntermediateCertificate:"), value)
 }
 

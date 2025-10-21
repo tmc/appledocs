@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [SpecifierTest] class.
@@ -86,7 +87,7 @@ func NewSpecifierTest() SpecifierTest {
 // Returns a specifier test initialized to evaluate a test object against an object specified by an object specifier using a given comparison operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(objectSpecifier:comparisonOperator:test:)
-func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 unsafe.Pointer, compOp unsafe.Pointer, obj2 objc.ID) SpecifierTest {
+func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 IScriptObjectSpecifier, compOp unsafe.Pointer, obj2 objectivec.IObject) SpecifierTest {
 	instance := getSpecifierTestClass().Alloc()
 	rv := objc.Send[SpecifierTest](instance.ID, objc.Sel("initWithObjectSpecifier:comparisonOperator:testObject:"), obj1, compOp, obj2)
 	rv.Autorelease()

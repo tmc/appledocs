@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,10 +31,10 @@ type _PHASEGroupClass struct {
 // An interface definition for the [PHASEGroup] class.
 type IPHASEGroup interface {
 	objectivec.IObject
-	FadeGainDurationCurveType(gain unsafe.Pointer, duration unsafe.Pointer, curveType unsafe.Pointer)
-	FadeRateDurationCurveType(rate unsafe.Pointer, duration unsafe.Pointer, curveType unsafe.Pointer)
+	FadeGainDurationCurveType(gain unsafe.Pointer, duration unsafe.Pointer, curveType PHASECurveType)
+	FadeRateDurationCurveType(rate unsafe.Pointer, duration unsafe.Pointer, curveType PHASECurveType)
 	Mute()
-	RegisterWithEngine(engine unsafe.Pointer)
+	RegisterWithEngine(engine IPHASEEngine)
 	Solo()
 	Unmute()
 	UnregisterFromEngine()
@@ -93,9 +94,9 @@ func NewPHASEGroup() PHASEGroup {
 // Creates a group with a unique name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/init(identifier:)
-func NewPHASEGroupWithIdentifier(identifier string) PHASEGroup {
+func NewPHASEGroupWithIdentifier(identifier appkit.string) PHASEGroup {
 	instance := getPHASEGroupClass().Alloc()
-	rv := objc.Send[PHASEGroup](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
+	rv := objc.Send[PHASEGroup](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -104,14 +105,14 @@ func NewPHASEGroupWithIdentifier(identifier string) PHASEGroup {
 // Adjusts the volume of the sounds in a group gradually.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/fadeGain(gain:duration:curveType:)
-func (p_ PHASEGroup) FadeGainDurationCurveType(gain unsafe.Pointer, duration unsafe.Pointer, curveType unsafe.Pointer) {
+func (p_ PHASEGroup) FadeGainDurationCurveType(gain unsafe.Pointer, duration unsafe.Pointer, curveType PHASECurveType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fadeGain:duration:curveType:"), gain, duration, curveType)
 }
 
 // Adjusts the playback speed of the sounds in a group gradually.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/fadeRate(rate:duration:curveType:)
-func (p_ PHASEGroup) FadeRateDurationCurveType(rate unsafe.Pointer, duration unsafe.Pointer, curveType unsafe.Pointer) {
+func (p_ PHASEGroup) FadeRateDurationCurveType(rate unsafe.Pointer, duration unsafe.Pointer, curveType PHASECurveType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("fadeRate:duration:curveType:"), rate, duration, curveType)
 }
 
@@ -125,7 +126,7 @@ func (p_ PHASEGroup) Mute() {
 // Adds the group to the engine’s dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/register(engine:)
-func (p_ PHASEGroup) RegisterWithEngine(engine unsafe.Pointer) {
+func (p_ PHASEGroup) RegisterWithEngine(engine IPHASEEngine) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("registerWithEngine:"), engine)
 }
 
@@ -178,8 +179,8 @@ func (p_ PHASEGroup) SetGain(value unsafe.Pointer) {
 // A unique name for the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroup/identifier
-func (p_ PHASEGroup) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEGroup) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

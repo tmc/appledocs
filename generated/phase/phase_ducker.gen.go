@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,7 +88,7 @@ func NewPHASEDucker() PHASEDucker {
 // Creates an object that manages competing sounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/init(engine:sourceGroups:targetGroups:gain:attackTime:releaseTime:attackCurve:releaseCurve:)
-func NewPHASEDuckerWithEngineSourceGroupsTargetGroupsGainAttackTimeReleaseTimeAttackCurveReleaseCurve(engine unsafe.Pointer, sourceGroups unsafe.Pointer, targetGroups unsafe.Pointer, gain unsafe.Pointer, attackTime unsafe.Pointer, releaseTime unsafe.Pointer, attackCurve unsafe.Pointer, releaseCurve unsafe.Pointer) PHASEDucker {
+func NewPHASEDuckerWithEngineSourceGroupsTargetGroupsGainAttackTimeReleaseTimeAttackCurveReleaseCurve(engine IPHASEEngine, sourceGroups unsafe.Pointer, targetGroups unsafe.Pointer, gain unsafe.Pointer, attackTime unsafe.Pointer, releaseTime unsafe.Pointer, attackCurve PHASECurveType, releaseCurve PHASECurveType) PHASEDucker {
 	instance := getPHASEDuckerClass().Alloc()
 	rv := objc.Send[PHASEDucker](instance.ID, objc.Sel("initWithEngine:sourceGroups:targetGroups:gain:attackTime:releaseTime:attackCurve:releaseCurve:"), engine, sourceGroups, targetGroups, gain, attackTime, releaseTime, attackCurve, releaseCurve)
 	rv.Autorelease()
@@ -112,8 +113,8 @@ func (p_ PHASEDucker) Deactivate() {
 // A mathematical curve that shapes transition progress as sound reduction begins.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/attackCurve
-func (p_ PHASEDucker) AttackCurve() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attackCurve"))
+func (p_ PHASEDucker) AttackCurve() PHASECurveType {
+	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("attackCurve"))
 	return rv
 }
 
@@ -136,8 +137,8 @@ func (p_ PHASEDucker) Gain() unsafe.Pointer {
 // A unique value for the ducker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/identifier
-func (p_ PHASEDucker) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEDucker) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -152,8 +153,8 @@ func (p_ PHASEDucker) Active() bool {
 // A mathematical curve that shapes transition progress as sound reduction ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDucker/releaseCurve
-func (p_ PHASEDucker) ReleaseCurve() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("releaseCurve"))
+func (p_ PHASEDucker) ReleaseCurve() PHASECurveType {
+	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("releaseCurve"))
 	return rv
 }
 

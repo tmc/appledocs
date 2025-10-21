@@ -84,8 +84,8 @@ func NewDetectDocumentSegmentationRequest() DetectDocumentSegmentationRequest {
 // The results of a document segmentation request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest/results
-func (d_ DetectDocumentSegmentationRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectDocumentSegmentationRequest) Results() VNRectangleObservation {
+	rv := objc.Send[VNRectangleObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (d_ DetectDocumentSegmentationRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest/results
-func (d_ DetectDocumentSegmentationRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectDocumentSegmentationRequest) SetResults(value IVNRectangleObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

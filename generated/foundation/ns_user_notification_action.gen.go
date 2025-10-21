@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,8 +86,8 @@ func NewUserNotificationAction() UserNotificationAction {
 // Creates a user notification action with a specified identifier and title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func NewUserNotificationActionWithIdentifierTitle(identifier string, title string) UserNotificationAction {
-	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
+func NewUserNotificationActionWithIdentifierTitle(identifier appkit.string, title appkit.string) UserNotificationAction {
+	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), identifier, title)
 	return rv
 }
 
@@ -94,32 +95,32 @@ func NewUserNotificationActionWithIdentifierTitle(identifier string, title strin
 // Creates a user notification action with a specified identifier and title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
-func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier string, title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
+func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier appkit.string, title appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("actionWithIdentifier:title:"), identifier, title)
 	return rv
 }
 
 // The identifier for the user notification action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
-func (u_ UserNotificationAction) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+func (u_ UserNotificationAction) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The localized title shown to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
-func (u_ UserNotificationAction) Title() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("title"))
+func (u_ UserNotificationAction) Title() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
 // The actions that can be taken on a notification in addition to the default action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
-func (u_ UserNotificationAction) AdditionalActions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("additionalActions"))
+func (u_ UserNotificationAction) AdditionalActions() NSUserNotificationAction {
+	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActions"))
 	return rv
 }
 
@@ -129,15 +130,15 @@ func (u_ UserNotificationAction) AdditionalActions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions
-func (u_ UserNotificationAction) SetAdditionalActions(value unsafe.Pointer) {
+func (u_ UserNotificationAction) SetAdditionalActions(value IUserNotificationAction) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), value)
 }
 
 // An additional action selected by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
-func (u_ UserNotificationAction) AdditionalActivationAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("additionalActivationAction"))
+func (u_ UserNotificationAction) AdditionalActivationAction() NSUserNotificationAction {
+	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (u_ UserNotificationAction) AdditionalActivationAction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction
-func (u_ UserNotificationAction) SetAdditionalActivationAction(value unsafe.Pointer) {
+func (u_ UserNotificationAction) SetAdditionalActivationAction(value IUserNotificationAction) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActivationAction:"), value)
 }
 

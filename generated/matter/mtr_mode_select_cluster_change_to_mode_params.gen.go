@@ -87,7 +87,7 @@ func (m_ MTRModeSelectClusterChangeToModeParams) NewMode() foundation.Number {
 // SetNewMode sets the value of the newMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/newmode
-func (m_ MTRModeSelectClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+func (m_ MTRModeSelectClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRModeSelectClusterChangeToModeParams) ServerSideProcessingTimeout() f
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/serversideprocessingtimeout
-func (m_ MTRModeSelectClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRModeSelectClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRModeSelectClusterChangeToModeParams) TimedInvokeTimeoutMs() foundati
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/timedinvoketimeoutms
-func (m_ MTRModeSelectClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRModeSelectClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

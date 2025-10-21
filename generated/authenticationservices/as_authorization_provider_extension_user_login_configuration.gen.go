@@ -85,8 +85,8 @@ func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetCustomAssertio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("loginUserName"))
+func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("loginUserName"))
 	return rv
 }
 
@@ -94,8 +94,8 @@ func (a_ AuthorizationProviderExtensionUserLoginConfiguration) LoginUserName() s
 // SetLoginUserName sets the value of the loginUserName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionuserloginconfiguration/loginusername
-func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), objc.String(value))
+func (a_ AuthorizationProviderExtensionUserLoginConfiguration) SetLoginUserName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLoginUserName:"), value)
 }
 
 

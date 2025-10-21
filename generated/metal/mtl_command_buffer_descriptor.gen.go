@@ -83,8 +83,8 @@ func NewCommandBufferDescriptor() CommandBufferDescriptor {
 // The reporting configuration that indicates which information the GPU driver stores in a command buffer’s error property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/errorOptions
-func (c_ CommandBufferDescriptor) ErrorOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("errorOptions"))
+func (c_ CommandBufferDescriptor) ErrorOptions() CommandBufferErrorOption {
+	rv := objc.Send[CommandBufferErrorOption](c_.ID, objc.Sel("errorOptions"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (c_ CommandBufferDescriptor) ErrorOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLCommandBufferDescriptor/errorOptions
-func (c_ CommandBufferDescriptor) SetErrorOptions(value unsafe.Pointer) {
+func (c_ CommandBufferDescriptor) SetErrorOptions(value ICommandBufferErrorOption) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setErrorOptions:"), value)
 }
 
@@ -137,8 +137,8 @@ func (c_ CommandBufferDescriptor) SetRetainedReferences(value bool) {
 // The domain for Metal command buffer errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcommandbuffererrordomain
-func (c_ CommandBufferDescriptor) MTLCommandBufferErrorDomain() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
+func (c_ CommandBufferDescriptor) MTLCommandBufferErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("MTLCommandBufferErrorDomain"))
 	return rv
 }
 

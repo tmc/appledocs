@@ -101,8 +101,8 @@ func (s_ SFVoiceAnalytics) SetIsFinal(value bool) {
 // The variation in pitch in each frame of a transcription segment, expressed as a percentage of the frame’s fundamental frequency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/jitter
-func (s_ SFVoiceAnalytics) Jitter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("jitter"))
+func (s_ SFVoiceAnalytics) Jitter() SFAcousticFeature {
+	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("jitter"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (s_ SFVoiceAnalytics) Jitter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/jitter
-func (s_ SFVoiceAnalytics) SetJitter(value unsafe.Pointer) {
+func (s_ SFVoiceAnalytics) SetJitter(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setJitter:"), value)
 }
 
 // The highness or lowness of the tone (fundamental frequency) in each frame of a transcription segment, expressed as a logarithm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
-func (s_ SFVoiceAnalytics) Pitch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pitch"))
+func (s_ SFVoiceAnalytics) Pitch() SFAcousticFeature {
+	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("pitch"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (s_ SFVoiceAnalytics) Pitch() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch
-func (s_ SFVoiceAnalytics) SetPitch(value unsafe.Pointer) {
+func (s_ SFVoiceAnalytics) SetPitch(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPitch:"), value)
 }
 
 // The variation in vocal volume stability (amplitude) in each frame of a transcription segment, expressed in decibels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/shimmer
-func (s_ SFVoiceAnalytics) Shimmer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("shimmer"))
+func (s_ SFVoiceAnalytics) Shimmer() SFAcousticFeature {
+	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("shimmer"))
 	return rv
 }
 
@@ -148,15 +148,15 @@ func (s_ SFVoiceAnalytics) Shimmer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/shimmer
-func (s_ SFVoiceAnalytics) SetShimmer(value unsafe.Pointer) {
+func (s_ SFVoiceAnalytics) SetShimmer(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShimmer:"), value)
 }
 
 // The likelihood of a voice in each frame of a transcription segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/voicing
-func (s_ SFVoiceAnalytics) Voicing() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voicing"))
+func (s_ SFVoiceAnalytics) Voicing() SFAcousticFeature {
+	rv := objc.Send[SFAcousticFeature](s_.ID, objc.Sel("voicing"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (s_ SFVoiceAnalytics) Voicing() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfvoiceanalytics/voicing
-func (s_ SFVoiceAnalytics) SetVoicing(value unsafe.Pointer) {
+func (s_ SFVoiceAnalytics) SetVoicing(value ISFAcousticFeature) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoicing:"), value)
 }
 

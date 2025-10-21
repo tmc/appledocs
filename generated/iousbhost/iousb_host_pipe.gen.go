@@ -30,11 +30,12 @@ type _USBHostPipeClass struct {
 // An interface definition for the [USBHostPipe] class.
 type IUSBHostPipe interface {
 	IUSBHostIOSource
-	CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) unsafe.Pointer
+	CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) USBHostStream
+	DisableStreamsWithError(error_ unsafe.Pointer) bool
 	EnableStreamsWithError(error_ unsafe.Pointer) bool
-	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data foundation.IMutableData, completionTimeout foundation.ITimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
 	SendControlRequestError(request unsafe.Pointer, error_ unsafe.Pointer) bool
-	SendIORequestWithDataBytesTransferredCompletionTimeoutError(data unsafe.Pointer, bytesTransferred unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer) bool
+	SendIORequestWithDataBytesTransferredCompletionTimeoutError(data foundation.IMutableData, bytesTransferred unsafe.Pointer, completionTimeout foundation.ITimeInterval, error_ unsafe.Pointer) bool
 }
 
 // The class that sends control, bulk, interrupt, and isochronous input/output requests for function drivers, and manages stream capabilities.
@@ -90,8 +91,16 @@ func NewUSBHostPipe() USBHostPipe {
 // Returns the stream for a stream ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/copyStream(withStreamID:)
-func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("copyStreamWithStreamID:error:"), streamID, error_)
+func (u_ USBHostPipe) CopyStreamWithStreamIDError(streamID uint, error_ unsafe.Pointer) USBHostStream {
+	rv := objc.Send[USBHostStream](u_.ID, objc.Sel("copyStreamWithStreamID:error:"), streamID, error_)
+	return rv
+}
+
+// Disables streams for the pipe.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/disableStreams()
+func (u_ USBHostPipe) DisableStreamsWithError(error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("disableStreamsWithError:"), error_)
 	return rv
 }
 
@@ -106,7 +115,7 @@ func (u_ USBHostPipe) EnableStreamsWithError(error_ unsafe.Pointer) bool {
 // Enqueues a request on a control endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/enqueueControlRequest:data:completionTimeout:error:completionHandler:
-func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (u_ USBHostPipe) EnqueueControlRequestDataCompletionTimeoutErrorCompletionHandler(request unsafe.Pointer, data foundation.IMutableData, completionTimeout foundation.ITimeInterval, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueControlRequest:data:completionTimeout:error:completionHandler:"), request, data, completionTimeout, error_, completionHandler)
 	return rv
 }
@@ -122,7 +131,7 @@ func (u_ USBHostPipe) SendControlRequestError(request unsafe.Pointer, error_ uns
 // Sends an input/output request on the pipe.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPipe/sendIORequestWithData:bytesTransferred:completionTimeout:error:
-func (u_ USBHostPipe) SendIORequestWithDataBytesTransferredCompletionTimeoutError(data unsafe.Pointer, bytesTransferred unsafe.Pointer, completionTimeout foundation.TimeInterval, error_ unsafe.Pointer) bool {
+func (u_ USBHostPipe) SendIORequestWithDataBytesTransferredCompletionTimeoutError(data foundation.IMutableData, bytesTransferred unsafe.Pointer, completionTimeout foundation.ITimeInterval, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sendIORequestWithData:bytesTransferred:completionTimeout:error:"), data, bytesTransferred, completionTimeout, error_)
 	return rv
 }

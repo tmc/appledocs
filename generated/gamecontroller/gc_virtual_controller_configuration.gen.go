@@ -101,8 +101,8 @@ func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
 // The input elements of a virtual controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-func (g_ GCVirtualControllerConfiguration) Elements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("elements"))
+func (g_ GCVirtualControllerConfiguration) Elements() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("elements"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (g_ GCVirtualControllerConfiguration) Elements() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-func (g_ GCVirtualControllerConfiguration) SetElements(value unsafe.Pointer) {
+func (g_ GCVirtualControllerConfiguration) SetElements(value appkit.string) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), value)
 }
 

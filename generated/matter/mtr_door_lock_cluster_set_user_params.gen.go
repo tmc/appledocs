@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterSetUserParams) CredentialRule() foundation.Number {
 // SetCredentialRule sets the value of the credentialRule property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/credentialrule
-func (m_ MTRDoorLockClusterSetUserParams) SetCredentialRule(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetCredentialRule(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialRule:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterSetUserParams) OperationType() foundation.Number {
 // SetOperationType sets the value of the operationType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/operationtype
-func (m_ MTRDoorLockClusterSetUserParams) SetOperationType(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetOperationType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationType:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterSetUserParams) ServerSideProcessingTimeout() foundati
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetUserParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterSetUserParams) TimedInvokeTimeoutMs() foundation.Numb
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetUserParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -147,14 +147,14 @@ func (m_ MTRDoorLockClusterSetUserParams) UserIndex() foundation.Number {
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/userindex
-func (m_ MTRDoorLockClusterSetUserParams) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/username
-func (m_ MTRDoorLockClusterSetUserParams) UserName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("userName"))
+func (m_ MTRDoorLockClusterSetUserParams) UserName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("userName"))
 	return rv
 }
 
@@ -162,8 +162,8 @@ func (m_ MTRDoorLockClusterSetUserParams) UserName() string {
 // SetUserName sets the value of the userName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/username
-func (m_ MTRDoorLockClusterSetUserParams) SetUserName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUserName:"), objc.String(value))
+func (m_ MTRDoorLockClusterSetUserParams) SetUserName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setUserName:"), value)
 }
 
 //
@@ -177,7 +177,7 @@ func (m_ MTRDoorLockClusterSetUserParams) UserStatus() foundation.Number {
 // SetUserStatus sets the value of the userStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/userstatus
-func (m_ MTRDoorLockClusterSetUserParams) SetUserStatus(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserStatus:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRDoorLockClusterSetUserParams) UserType() foundation.Number {
 // SetUserType sets the value of the userType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/usertype
-func (m_ MTRDoorLockClusterSetUserParams) SetUserType(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserType:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRDoorLockClusterSetUserParams) UserUniqueID() foundation.Number {
 // SetUserUniqueID sets the value of the userUniqueID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/useruniqueid-22tka
-func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueID(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserUniqueID:"), value)
 }
 
@@ -222,7 +222,7 @@ func (m_ MTRDoorLockClusterSetUserParams) UserUniqueId() foundation.Number {
 // SetUserUniqueId sets the value of the userUniqueId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetuserparams/useruniqueid-22tje
-func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueId(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetUserParams) SetUserUniqueId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserUniqueId:"), value)
 }
 

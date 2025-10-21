@@ -17,6 +17,13 @@ func ExampleNewNumberWithBool() {
 	)
 	// Output:
 }
+// ExampleNewNumberWithCoder demonstrates how to create a Number instance using NewNumberWithCoder.
+func ExampleNewNumberWithCoder() {
+	_ = foundation.NewNumberWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
+	)
+	// Output:
+}
 // ExampleNewNumberWithInteger demonstrates how to create a Number instance using NewNumberWithInteger.
 // Returns an   object initialized to contain a given value, treated as an  .
 func ExampleNewNumberWithInteger() {

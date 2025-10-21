@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewStorefront() Storefront {
 // The three-letter code representing the country or region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStorefront/countryCode
-func (s_ Storefront) CountryCode() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("countryCode"))
+func (s_ Storefront) CountryCode() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
 // A value defined by Apple that uniquely identifies an App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skstorefront/identifier
-func (s_ Storefront) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ Storefront) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (s_ Storefront) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skstorefront/identifier
-func (s_ Storefront) SetIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (s_ Storefront) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

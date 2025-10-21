@@ -102,8 +102,8 @@ func (c_ CKOperationConfiguration) SetAllowsCellularAccess(value bool) {
 // The configuration’s container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/container
-func (c_ CKOperationConfiguration) Container() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("container"))
+func (c_ CKOperationConfiguration) Container() CKContainer {
+	rv := objc.Send[CKContainer](c_.ID, objc.Sel("container"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (c_ CKOperationConfiguration) Container() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/container
-func (c_ CKOperationConfiguration) SetContainer(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetContainer(value ICKContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
 
@@ -167,7 +167,7 @@ func (c_ CKOperationConfiguration) TimeoutIntervalForRequest() foundation.TimeIn
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/timeoutIntervalForRequest
-func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value foundation.TimeInterval) {
+func (c_ CKOperationConfiguration) SetTimeoutIntervalForRequest(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
@@ -185,7 +185,7 @@ func (c_ CKOperationConfiguration) TimeoutIntervalForResource() foundation.TimeI
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/Configuration-swift.class/timeoutIntervalForResource
-func (c_ CKOperationConfiguration) SetTimeoutIntervalForResource(value foundation.TimeInterval) {
+func (c_ CKOperationConfiguration) SetTimeoutIntervalForResource(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 
@@ -210,8 +210,8 @@ func (c_ CKOperationConfiguration) SetIsLongLived(value bool) {
 // The operation’s configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
-func (c_ CKOperationConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("configuration"))
+func (c_ CKOperationConfiguration) Configuration() CKOperationConfiguration {
+	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -221,15 +221,15 @@ func (c_ CKOperationConfiguration) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
-func (c_ CKOperationConfiguration) SetConfiguration(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetConfiguration(value ICKOperationConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 // The operation’s group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationConfiguration) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CKOperationConfiguration) Group() CKOperationGroup {
+	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (c_ CKOperationConfiguration) Group() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationConfiguration) SetGroup(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetGroup(value ICKOperationGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
 }
 
@@ -264,8 +264,8 @@ func (c_ CKOperationConfiguration) SetLongLivedOperationWasPersistedBlock(value 
 // The default configuration for operations in the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperationgroup/defaultconfiguration
-func (c_ CKOperationConfiguration) DefaultConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultConfiguration"))
+func (c_ CKOperationConfiguration) DefaultConfiguration() CKOperationConfiguration {
+	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("defaultConfiguration"))
 	return rv
 }
 
@@ -275,7 +275,7 @@ func (c_ CKOperationConfiguration) DefaultConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperationgroup/defaultconfiguration
-func (c_ CKOperationConfiguration) SetDefaultConfiguration(value unsafe.Pointer) {
+func (c_ CKOperationConfiguration) SetDefaultConfiguration(value ICKOperationConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultConfiguration:"), value)
 }
 

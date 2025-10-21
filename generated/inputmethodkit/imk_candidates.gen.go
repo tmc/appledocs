@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [IMKCandidates] class.
@@ -30,11 +32,11 @@ type _IMKCandidatesClass struct {
 // An interface definition for the [IMKCandidates] class.
 type IIMKCandidates interface {
 	appkit.IResponder
-	AttachChildToCandidateType(child unsafe.Pointer, candidateIdentifier int, theType unsafe.Pointer)
-	Attributes() unsafe.Pointer
-	CandidateFrame() Rect
+	AttachChildToCandidateType(child IMKCandidates, candidateIdentifier int, theType IMKStyleType)
+	Attributes() foundation.Dictionary
+	CandidateFrame() foundation.Rect
 	CandidateIdentifierAtLineNumber(lineNumber int) int
-	CandidateStringIdentifier(candidateString objc.ID) int
+	CandidateStringIdentifier(candidateString objectivec.IObject) int
 	ClearSelection()
 	DetachChild(candidateIdentifier int)
 	DismissesAutomatically() bool
@@ -42,25 +44,25 @@ type IIMKCandidates interface {
 	HideChild()
 	IsVisible() bool
 	LineNumberForCandidateWithIdentifier(candidateIdentifier int) int
-	PanelType() unsafe.Pointer
+	PanelType() IMKCandidatePanelType
 	SelectCandidate(candidateIdentifier int)
 	SelectCandidateWithIdentifier(candidateIdentifier int) bool
 	SelectedCandidate() int
-	SelectedCandidateString() unsafe.Pointer
-	SelectionKeys() unsafe.Pointer
+	SelectedCandidateString() foundation.AttributedString
+	SelectionKeys() foundation.Array
 	SelectionKeysKeylayout() unsafe.Pointer
-	SetAttributes(attributes objc.ID)
-	SetCandidateData(candidatesArray objc.ID)
-	SetCandidateFrameTopLeft(point Point)
+	SetAttributes(attributes objectivec.IObject)
+	SetCandidateData(candidatesArray objectivec.IObject)
+	SetCandidateFrameTopLeft(point foundation.IPoint)
 	SetDismissesAutomatically(flag bool)
-	SetPanelType(panelType unsafe.Pointer)
-	SetSelectionKeys(keyCodes objc.ID)
+	SetPanelType(panelType IMKCandidatePanelType)
+	SetSelectionKeys(keyCodes objectivec.IObject)
 	SetSelectionKeysKeylayout(layout unsafe.Pointer)
 	ShowCandidates()
-	Show(locationHint unsafe.Pointer)
-	ShowAnnotation(annotationString unsafe.Pointer)
+	Show(locationHint IMKCandidatesLocationHint)
+	ShowAnnotation(annotationString foundation.IAttributedString)
 	ShowChild()
-	ShowSublistSubListDelegate(candidates objc.ID, delegate objc.ID)
+	ShowSublistSubListDelegate(candidates objectivec.IObject, delegate objectivec.IObject)
 	UpdateCandidates()
 }
 
@@ -119,7 +121,7 @@ func NewIMKCandidates() IMKCandidates {
 // Returns the initialized object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:)
-func NewIMKCandidatesWithServerPanelType(server unsafe.Pointer, panelType unsafe.Pointer) IMKCandidates {
+func NewIMKCandidatesWithServerPanelType(server IMKServer, panelType IMKCandidatePanelType) IMKCandidates {
 	instance := getIMKCandidatesClass().Alloc()
 	rv := objc.Send[IMKCandidates](instance.ID, objc.Sel("initWithServer:panelType:"), server, panelType)
 	rv.Autorelease()
@@ -128,7 +130,7 @@ func NewIMKCandidatesWithServerPanelType(server unsafe.Pointer, panelType unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/init(server:panelType:styleType:)
-func NewIMKCandidatesWithServerPanelTypeStyleType(server unsafe.Pointer, panelType unsafe.Pointer, style unsafe.Pointer) IMKCandidates {
+func NewIMKCandidatesWithServerPanelTypeStyleType(server IMKServer, panelType IMKCandidatePanelType, style IMKStyleType) IMKCandidates {
 	instance := getIMKCandidatesClass().Alloc()
 	rv := objc.Send[IMKCandidates](instance.ID, objc.Sel("initWithServer:panelType:styleType:"), server, panelType, style)
 	rv.Autorelease()
@@ -138,22 +140,22 @@ func NewIMKCandidatesWithServerPanelTypeStyleType(server unsafe.Pointer, panelTy
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attachChild(_:toCandidate:type:)
-func (i_ IMKCandidates) AttachChildToCandidateType(child unsafe.Pointer, candidateIdentifier int, theType unsafe.Pointer) {
+func (i_ IMKCandidates) AttachChildToCandidateType(child IMKCandidates, candidateIdentifier int, theType IMKStyleType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("attachChild:toCandidate:type:"), child, candidateIdentifier, theType)
 }
 
 // Returns a dictionary of the style attributes used for the candidates window..
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/attributes()
-func (i_ IMKCandidates) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("attributes"))
+func (i_ IMKCandidates) Attributes() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("attributes"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateFrame()
-func (i_ IMKCandidates) CandidateFrame() Rect {
-	rv := objc.Send[Rect](i_.ID, objc.Sel("candidateFrame"))
+func (i_ IMKCandidates) CandidateFrame() foundation.Rect {
+	rv := objc.Send[foundation.Rect](i_.ID, objc.Sel("candidateFrame"))
 	return rv
 }
 
@@ -166,7 +168,7 @@ func (i_ IMKCandidates) CandidateIdentifierAtLineNumber(lineNumber int) int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/candidateStringIdentifier(_:)
-func (i_ IMKCandidates) CandidateStringIdentifier(candidateString objc.ID) int {
+func (i_ IMKCandidates) CandidateStringIdentifier(candidateString objectivec.IObject) int {
 	rv := objc.Send[int](i_.ID, objc.Sel("candidateStringIdentifier:"), candidateString)
 	return rv
 }
@@ -222,8 +224,8 @@ func (i_ IMKCandidates) LineNumberForCandidateWithIdentifier(candidateIdentifier
 // Returns the style of the candidates window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/panelType()
-func (i_ IMKCandidates) PanelType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("panelType"))
+func (i_ IMKCandidates) PanelType() IMKCandidatePanelType {
+	rv := objc.Send[IMKCandidatePanelType](i_.ID, objc.Sel("panelType"))
 	return rv
 }
 
@@ -249,16 +251,16 @@ func (i_ IMKCandidates) SelectedCandidate() int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectedCandidateString()
-func (i_ IMKCandidates) SelectedCandidateString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectedCandidateString"))
+func (i_ IMKCandidates) SelectedCandidateString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](i_.ID, objc.Sel("selectedCandidateString"))
 	return rv
 }
 
 // Returns an array of objects where each object represents a virtual key code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/selectionKeys()
-func (i_ IMKCandidates) SelectionKeys() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectionKeys"))
+func (i_ IMKCandidates) SelectionKeys() foundation.Array {
+	rv := objc.Send[foundation.Array](i_.ID, objc.Sel("selectionKeys"))
 	return rv
 }
 
@@ -273,19 +275,19 @@ func (i_ IMKCandidates) SelectionKeysKeylayout() unsafe.Pointer {
 // Sets the style attributes for the candidates window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setAttributes(_:)
-func (i_ IMKCandidates) SetAttributes(attributes objc.ID) {
+func (i_ IMKCandidates) SetAttributes(attributes objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttributes:"), attributes)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setCandidateData(_:)
-func (i_ IMKCandidates) SetCandidateData(candidatesArray objc.ID) {
+func (i_ IMKCandidates) SetCandidateData(candidatesArray objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCandidateData:"), candidatesArray)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setCandidateFrameTopLeft(_:)
-func (i_ IMKCandidates) SetCandidateFrameTopLeft(point Point) {
+func (i_ IMKCandidates) SetCandidateFrameTopLeft(point foundation.IPoint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCandidateFrameTopLeft:"), point)
 }
 
@@ -299,14 +301,14 @@ func (i_ IMKCandidates) SetDismissesAutomatically(flag bool) {
 // Sets the style of the candidates window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setPanelType(_:)
-func (i_ IMKCandidates) SetPanelType(panelType unsafe.Pointer) {
+func (i_ IMKCandidates) SetPanelType(panelType IMKCandidatePanelType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPanelType:"), panelType)
 }
 
 // Sets the selection keys for the candidates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/setSelectionKeys(_:)
-func (i_ IMKCandidates) SetSelectionKeys(keyCodes objc.ID) {
+func (i_ IMKCandidates) SetSelectionKeys(keyCodes objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectionKeys:"), keyCodes)
 }
 
@@ -326,14 +328,14 @@ func (i_ IMKCandidates) ShowCandidates() {
 // Shows the candidates window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/show(_:)
-func (i_ IMKCandidates) Show(locationHint unsafe.Pointer) {
+func (i_ IMKCandidates) Show(locationHint IMKCandidatesLocationHint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("show:"), locationHint)
 }
 
 // Displays an annotation string in an annotation window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showAnnotation(_:)
-func (i_ IMKCandidates) ShowAnnotation(annotationString unsafe.Pointer) {
+func (i_ IMKCandidates) ShowAnnotation(annotationString foundation.IAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showAnnotation:"), annotationString)
 }
 
@@ -345,7 +347,7 @@ func (i_ IMKCandidates) ShowChild() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKCandidates/showSublist(_:subListDelegate:)
-func (i_ IMKCandidates) ShowSublistSubListDelegate(candidates objc.ID, delegate objc.ID) {
+func (i_ IMKCandidates) ShowSublistSubListDelegate(candidates objectivec.IObject, delegate objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("showSublist:subListDelegate:"), candidates, delegate)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (h_ Heading) MagneticHeading() unsafe.Pointer {
 // The time at which this heading was determined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/timestamp
-func (h_ Heading) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("timestamp"))
+func (h_ Heading) Timestamp() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -115,24 +116,24 @@ func (h_ Heading) TrueHeading() unsafe.Pointer {
 // The geomagnetic data (measured in microteslas) for the x-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/x
-func (h_ Heading) X() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("x"))
+func (h_ Heading) X() HeadingComponentValue {
+	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("x"))
 	return rv
 }
 
 // The geomagnetic data (measured in microteslas) for the y-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/y
-func (h_ Heading) Y() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("y"))
+func (h_ Heading) Y() HeadingComponentValue {
+	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("y"))
 	return rv
 }
 
 // The geomagnetic data (measured in microteslas) for the z-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeading/z
-func (h_ Heading) Z() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("z"))
+func (h_ Heading) Z() HeadingComponentValue {
+	rv := objc.Send[HeadingComponentValue](h_.ID, objc.Sel("z"))
 	return rv
 }
 

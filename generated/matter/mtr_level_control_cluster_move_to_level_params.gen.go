@@ -87,7 +87,7 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) Level() foundation.Number {
 // SetLevel sets the value of the level property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/level
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetLevel(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetLevel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLevel:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) OptionsMask() foundation.Numbe
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsmask
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) OptionsOverride() foundation.N
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/optionsoverride
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) ServerSideProcessingTimeout() 
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) TimedInvokeTimeoutMs() foundat
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRLevelControlClusterMoveToLevelParams) TransitionTime() foundation.Nu
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetolevelparams/transitiontime
-func (m_ MTRLevelControlClusterMoveToLevelParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToLevelParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

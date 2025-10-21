@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NETunnelProviderSession] class.
@@ -29,7 +30,7 @@ type _NETunnelProviderSessionClass struct {
 // An interface definition for the [NETunnelProviderSession] class.
 type INETunnelProviderSession interface {
 	INEVPNConnection
-	SendProviderMessageReturnErrorResponseHandler(messageData unsafe.Pointer, error_ unsafe.Pointer, responseHandler unsafe.Pointer) bool
+	SendProviderMessageReturnErrorResponseHandler(messageData foundation.IData, error_ unsafe.Pointer, responseHandler unsafe.Pointer) bool
 	StartTunnelWithOptionsAndReturnError(options unsafe.Pointer, error_ unsafe.Pointer) bool
 	StopTunnel()
 }
@@ -87,7 +88,7 @@ func NewNETunnelProviderSession() NETunnelProviderSession {
 // Send a message to the Tunnel Provider extension. If the extension is not running, it should be launched to handle the message. If this method can’t start sending the message it reports an error in the parameter. If an error occurs while sending the message or returning the result, should be sent to the response handler as notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderSession/sendProviderMessage(_:responseHandler:)
-func (n_ NETunnelProviderSession) SendProviderMessageReturnErrorResponseHandler(messageData unsafe.Pointer, error_ unsafe.Pointer, responseHandler unsafe.Pointer) bool {
+func (n_ NETunnelProviderSession) SendProviderMessageReturnErrorResponseHandler(messageData foundation.IData, error_ unsafe.Pointer, responseHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("sendProviderMessage:returnError:responseHandler:"), messageData, error_, responseHandler)
 	return rv
 }

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,10 +31,10 @@ type _MonitorClass struct {
 // An interface definition for the [Monitor] class.
 type IMonitor interface {
 	objectivec.IObject
-	AddConditionForMonitoringIdentifier(condition unsafe.Pointer, identifier string)
-	AddConditionForMonitoringIdentifierAssumedState(condition unsafe.Pointer, identifier string, state unsafe.Pointer)
-	MonitoringRecordForIdentifier(identifier string) unsafe.Pointer
-	RemoveConditionFromMonitoringWithIdentifier(identifier string)
+	AddConditionForMonitoringIdentifier(condition ICLCondition, identifier appkit.string)
+	AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier appkit.string, state MonitoringState)
+	MonitoringRecordForIdentifier(identifier appkit.string) MonitoringRecord
+	RemoveConditionFromMonitoringWithIdentifier(identifier appkit.string)
 }
 
 // An object that monitors the conditions you add to it.
@@ -87,37 +88,37 @@ func NewMonitor() Monitor {
 // Creates a location monitor with the configuration and event handler you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/requestMonitorWithConfiguration:completion:
-func (mc _MonitorClass) RequestMonitorWithConfigurationCompletion(config unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (mc _MonitorClass) RequestMonitorWithConfigurationCompletion(config ICLMonitorConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("requestMonitorWithConfiguration:completion:"), config, completionHandler)
 }
 
 // Adds a condition to monitor with the identifier you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:
-func (m_ Monitor) AddConditionForMonitoringIdentifier(condition unsafe.Pointer, identifier string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, objc.String(identifier))
+func (m_ Monitor) AddConditionForMonitoringIdentifier(condition ICLCondition, identifier appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:"), condition, identifier)
 }
 
 // Adds a condition to monitor with the state and identifier you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/addConditionForMonitoring:identifier:assumedState:
-func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition unsafe.Pointer, identifier string, state unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, objc.String(identifier), state)
+func (m_ Monitor) AddConditionForMonitoringIdentifierAssumedState(condition ICLCondition, identifier appkit.string, state MonitoringState) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addConditionForMonitoring:identifier:assumedState:"), condition, identifier, state)
 }
 
 // Gets the monitoring record containing the condition and most recent monitoring event for the identifier you supply, if applicable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/monitoringRecordForIdentifier:
-func (m_ Monitor) MonitoringRecordForIdentifier(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), objc.String(identifier))
+func (m_ Monitor) MonitoringRecordForIdentifier(identifier appkit.string) MonitoringRecord {
+	rv := objc.Send[MonitoringRecord](m_.ID, objc.Sel("monitoringRecordForIdentifier:"), identifier)
 	return rv
 }
 
 // Removes the monitoring record with the identifier from monitoring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/removeConditionFromMonitoringWithIdentifier:
-func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("removeConditionFromMonitoringWithIdentifier:"), objc.String(identifier))
+func (m_ Monitor) RemoveConditionFromMonitoringWithIdentifier(identifier appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeConditionFromMonitoringWithIdentifier:"), identifier)
 }
 
 // An array that contains all the identifiers for each condition that the monitor is monitoring.
@@ -131,8 +132,8 @@ func (m_ Monitor) MonitoredIdentifiers() []string {
 // The name associated with the location monitor instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitor-6ynwz/name
-func (m_ Monitor) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ Monitor) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

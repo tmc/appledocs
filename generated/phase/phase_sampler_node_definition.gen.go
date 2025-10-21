@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASESamplerNodeDefinition] class.
@@ -86,9 +87,9 @@ func NewPHASESamplerNodeDefinition() PHASESamplerNodeDefinition {
 // Creates a sampler node with the given sound asset and mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:)
-func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundAssetIdentifier string, mixerDefinition unsafe.Pointer) PHASESamplerNodeDefinition {
+func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundAssetIdentifier appkit.string, mixerDefinition IPHASEMixerDefinition) PHASESamplerNodeDefinition {
 	instance := getPHASESamplerNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:"), objc.String(soundAssetIdentifier), mixerDefinition)
+	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:"), soundAssetIdentifier, mixerDefinition)
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +99,9 @@ func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundA
 // Creates a named sampler node with the given sound asset and mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:identifier:)
-func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier string, mixerDefinition unsafe.Pointer, identifier string) PHASESamplerNodeDefinition {
+func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier appkit.string, mixerDefinition IPHASEMixerDefinition, identifier appkit.string) PHASESamplerNodeDefinition {
 	instance := getPHASESamplerNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:identifier:"), objc.String(soundAssetIdentifier), mixerDefinition, objc.String(identifier))
+	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:identifier:"), soundAssetIdentifier, mixerDefinition, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -109,16 +110,16 @@ func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentif
 // The name of the audio this node plays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/assetIdentifier
-func (p_ PHASESamplerNodeDefinition) AssetIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
+func (p_ PHASESamplerNodeDefinition) AssetIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetIdentifier"))
 	return rv
 }
 
 // The action the engine performs after it temporarily removes the node’s sound from the audio output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/cullOption
-func (p_ PHASESamplerNodeDefinition) CullOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cullOption"))
+func (p_ PHASESamplerNodeDefinition) CullOption() PHASECullOption {
+	rv := objc.Send[PHASECullOption](p_.ID, objc.Sel("cullOption"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (p_ PHASESamplerNodeDefinition) CullOption() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/cullOption
-func (p_ PHASESamplerNodeDefinition) SetCullOption(value unsafe.Pointer) {
+func (p_ PHASESamplerNodeDefinition) SetCullOption(value IPHASECullOption) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCullOption:"), value)
 }
 
 // An option that determines whether the node’s audio plays in a loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode
-func (p_ PHASESamplerNodeDefinition) PlaybackMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackMode"))
+func (p_ PHASESamplerNodeDefinition) PlaybackMode() PHASEPlaybackMode {
+	rv := objc.Send[PHASEPlaybackMode](p_.ID, objc.Sel("playbackMode"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (p_ PHASESamplerNodeDefinition) PlaybackMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode
-func (p_ PHASESamplerNodeDefinition) SetPlaybackMode(value unsafe.Pointer) {
+func (p_ PHASESamplerNodeDefinition) SetPlaybackMode(value PHASEPlaybackMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackMode:"), value)
 }
 

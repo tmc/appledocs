@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _GSSyncedDirectoryClass struct {
 // An interface definition for the [GSSyncedDirectory] class.
 type IGSSyncedDirectory interface {
 	objectivec.IObject
-	FinishSyncingCompletionHandler(statusDisplay unsafe.Pointer, completion unsafe.Pointer)
+	FinishSyncingCompletionHandler(statusDisplay appkit.IWindow, completion unsafe.Pointer)
 	FinishSyncingWithCompletionHandler(completion unsafe.Pointer)
 }
 
@@ -85,15 +86,15 @@ func NewGSSyncedDirectory() GSSyncedDirectory {
 // Requests an instance of the game-save directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/open(forContainerIdentifier:)
-func (gc _GSSyncedDirectoryClass) OpenDirectoryForContainerIdentifier(containerIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("openDirectoryForContainerIdentifier:"), objc.String(containerIdentifier))
+func (gc _GSSyncedDirectoryClass) OpenDirectoryForContainerIdentifier(containerIdentifier appkit.string) GSSyncedDirectory {
+	rv := objc.Send[GSSyncedDirectory](objc.ID(gc.class), objc.Sel("openDirectoryForContainerIdentifier:"), containerIdentifier)
 	return rv
 }
 
 // Waits for the directory sync to complete, showing the sync’s progress in a modal alert.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectory/finishSyncing(_:completionHandler:)
-func (g_ GSSyncedDirectory) FinishSyncingCompletionHandler(statusDisplay unsafe.Pointer, completion unsafe.Pointer) {
+func (g_ GSSyncedDirectory) FinishSyncingCompletionHandler(statusDisplay appkit.IWindow, completion unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("finishSyncing:completionHandler:"), statusDisplay, completion)
 }
 

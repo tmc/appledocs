@@ -82,8 +82,8 @@ func NewMultiArrayShapeConstraint() MultiArrayShapeConstraint {
 // The type for the multi array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/datatype
-func (m_ MultiArrayShapeConstraint) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataType"))
+func (m_ MultiArrayShapeConstraint) DataType() MultiArrayDataType {
+	rv := objc.Send[MultiArrayDataType](m_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (m_ MultiArrayShapeConstraint) DataType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/datatype
-func (m_ MultiArrayShapeConstraint) SetDataType(value unsafe.Pointer) {
+func (m_ MultiArrayShapeConstraint) SetDataType(value MultiArrayDataType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
 }
 
@@ -111,15 +111,15 @@ func (m_ MultiArrayShapeConstraint) Shape() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shape
-func (m_ MultiArrayShapeConstraint) SetShape(value foundation.Number) {
+func (m_ MultiArrayShapeConstraint) SetShape(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShape:"), value)
 }
 
 // The constraint on the shape of the multiarray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArrayShapeConstraint) ShapeConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shapeConstraint"))
+func (m_ MultiArrayShapeConstraint) ShapeConstraint() MLMultiArrayShapeConstraint {
+	rv := objc.Send[MLMultiArrayShapeConstraint](m_.ID, objc.Sel("shapeConstraint"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (m_ MultiArrayShapeConstraint) ShapeConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArrayShapeConstraint) SetShapeConstraint(value unsafe.Pointer) {
+func (m_ MultiArrayShapeConstraint) SetShapeConstraint(value IMLMultiArrayShapeConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShapeConstraint:"), value)
 }
 
@@ -147,15 +147,15 @@ func (m_ MultiArrayShapeConstraint) EnumeratedShapes() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/enumeratedshapes
-func (m_ MultiArrayShapeConstraint) SetEnumeratedShapes(value foundation.Number) {
+func (m_ MultiArrayShapeConstraint) SetEnumeratedShapes(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnumeratedShapes:"), value)
 }
 
 // The allowable range for a dimention of the multiarray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/sizerangefordimension
-func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sizeRangeForDimension"))
+func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() foundation.Value {
+	rv := objc.Send[foundation.Value](m_.ID, objc.Sel("sizeRangeForDimension"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (m_ MultiArrayShapeConstraint) SizeRangeForDimension() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint/sizerangefordimension
-func (m_ MultiArrayShapeConstraint) SetSizeRangeForDimension(value unsafe.Pointer) {
+func (m_ MultiArrayShapeConstraint) SetSizeRangeForDimension(value foundation.IValue) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSizeRangeForDimension:"), value)
 }
 

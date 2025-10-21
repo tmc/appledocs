@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -85,8 +86,8 @@ func NewINGetUserCurrentRestaurantReservationBookingsIntent() INGetUserCurrentRe
 // An identifier to use when searching for the user’s reservations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/reservationIdentifier
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("reservationIdentifier"))
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("reservationIdentifier"))
 	return rv
 }
 
@@ -96,8 +97,8 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentif
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetUserCurrentRestaurantReservationBookingsIntent/reservationIdentifier
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), objc.String(value))
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), value)
 }
 
 // A restaurant to use as a filter when searching for reservations.
@@ -121,8 +122,8 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetRestaurant(valu
 // The earliest date to associate with any reservations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDateForResults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("earliestBookingDateForResults"))
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDateForResults() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("earliestBookingDateForResults"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value unsafe.Pointer) {
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
 }
 
@@ -150,7 +151,7 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) MaximumNumberOfRes
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/maximumnumberofresults
-func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.Number) {
+func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)
 }
 

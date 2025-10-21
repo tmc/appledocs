@@ -87,7 +87,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) Direction() foundation.N
 // SetDirection sets the value of the direction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/direction
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetDirection(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetDirection(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) EnhancedHue() foundation
 // SetEnhancedHue sets the value of the enhancedHue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/enhancedhue
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetEnhancedHue(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetEnhancedHue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnhancedHue:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) OptionsMask() foundation
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/optionsmask
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) OptionsOverride() founda
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/optionsoverride
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) ServerSideProcessingTime
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRColorControlClusterEnhancedMoveToHueParams) TransitionTime() foundat
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovetohueparams/transitiontime
-func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveToHueParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

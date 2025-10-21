@@ -83,8 +83,8 @@ func NewVZEFIBootLoader() VZEFIBootLoader {
 // The boot loader’s EFI variable store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIBootLoader/variableStore
-func (v_ VZEFIBootLoader) VariableStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("variableStore"))
+func (v_ VZEFIBootLoader) VariableStore() VZEFIVariableStore {
+	rv := objc.Send[VZEFIVariableStore](v_.ID, objc.Sel("variableStore"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (v_ VZEFIBootLoader) VariableStore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIBootLoader/variableStore
-func (v_ VZEFIBootLoader) SetVariableStore(value unsafe.Pointer) {
+func (v_ VZEFIBootLoader) SetVariableStore(value IVZEFIVariableStore) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVariableStore:"), value)
 }
 

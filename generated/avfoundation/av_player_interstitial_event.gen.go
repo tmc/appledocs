@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewPlayerInterstitialEvent() PlayerInterstitialEvent {
 // Attributes of the event that the vendor or app defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEvent/userDefinedAttributes
-func (p_ PlayerInterstitialEvent) UserDefinedAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userDefinedAttributes"))
+func (p_ PlayerInterstitialEvent) UserDefinedAttributes() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userDefinedAttributes"))
 	return rv
 }
 
@@ -181,8 +182,8 @@ func (p_ PlayerInterstitialEvent) SetCue(value unsafe.Pointer) {
 // A date within the date range of the primary content that playback of interstitial content begins.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
-func (p_ PlayerInterstitialEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("date"))
+func (p_ PlayerInterstitialEvent) Date() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("date"))
 	return rv
 }
 
@@ -192,15 +193,15 @@ func (p_ PlayerInterstitialEvent) Date() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/date
-func (p_ PlayerInterstitialEvent) SetDate(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEvent) SetDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDate:"), value)
 }
 
 // An identifier for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
-func (p_ PlayerInterstitialEvent) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PlayerInterstitialEvent) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -210,8 +211,8 @@ func (p_ PlayerInterstitialEvent) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/identifier
-func (p_ PlayerInterstitialEvent) SetIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PlayerInterstitialEvent) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The planned duration of the event.
@@ -253,8 +254,8 @@ func (p_ PlayerInterstitialEvent) SetPlayoutLimit(value unsafe.Pointer) {
 // The player item that represents the primary content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/primaryitem
-func (p_ PlayerInterstitialEvent) PrimaryItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("primaryItem"))
+func (p_ PlayerInterstitialEvent) PrimaryItem() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("primaryItem"))
 	return rv
 }
 
@@ -264,7 +265,7 @@ func (p_ PlayerInterstitialEvent) PrimaryItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/primaryitem
-func (p_ PlayerInterstitialEvent) SetPrimaryItem(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEvent) SetPrimaryItem(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrimaryItem:"), value)
 }
 
@@ -307,8 +308,8 @@ func (p_ PlayerInterstitialEvent) SetResumptionOffset(value unsafe.Pointer) {
 // The key defined in the AVPlayerInterstitialEventController’s localizedStringsBundle that points to the localized label for the skip button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
-func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
+func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("skipControlLocalizedLabelBundleKey"))
 	return rv
 }
 
@@ -318,8 +319,8 @@ func (p_ PlayerInterstitialEvent) SkipControlLocalizedLabelBundleKey() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skipcontrollocalizedlabelbundlekey
-func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), objc.String(value))
+func (p_ PlayerInterstitialEvent) SetSkipControlLocalizedLabelBundleKey(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSkipControlLocalizedLabelBundleKey:"), value)
 }
 
 // The time range within the duration of the interstitial event for which a skip button should be displayed.
@@ -361,8 +362,8 @@ func (p_ PlayerInterstitialEvent) SetSupplementsPrimaryContent(value bool) {
 // An array of player item configurations to use as templates for player items that play interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
-func (p_ PlayerInterstitialEvent) TemplateItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("templateItems"))
+func (p_ PlayerInterstitialEvent) TemplateItems() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("templateItems"))
 	return rv
 }
 
@@ -372,7 +373,7 @@ func (p_ PlayerInterstitialEvent) TemplateItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
-func (p_ PlayerInterstitialEvent) SetTemplateItems(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEvent) SetTemplateItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateItems:"), value)
 }
 

@@ -82,7 +82,7 @@ func NewCKShareRequestAccessOperation() CKShareRequestAccessOperation {
 // Creates a share request access operation configured with specified share URLs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/init(shareURLs:)
-func NewCKShareRequestAccessOperationWithShareURLs(shareURLs unsafe.Pointer) CKShareRequestAccessOperation {
+func NewCKShareRequestAccessOperationWithShareURLs(shareURLs []foundation.IURL) CKShareRequestAccessOperation {
 	instance := getCKShareRequestAccessOperationClass().Alloc()
 	rv := objc.Send[CKShareRequestAccessOperation](instance.ID, objc.Sel("initWithShareURLs:"), shareURLs)
 	rv.Autorelease()
@@ -140,7 +140,7 @@ func (c_ CKShareRequestAccessOperation) ShareURLs() []foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShareRequestAccessOperation/shareURLs
-func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.URL) {
+func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.IURL) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -157,8 +157,8 @@ func (c_ CKShareRequestAccessOperation) SetShareURLs(value []foundation.URL) {
 // A block called once for each share URL processed by the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
-func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() foundation.URL {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("perShareAccessRequestResultBlock"))
+func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareAccessRequestResultBlock"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (c_ CKShareRequestAccessOperation) PerShareAccessRequestResultBlock() found
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksharerequestaccessoperation/pershareaccessrequestresultblock
-func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestResultBlock(value foundation.URL) {
+func (c_ CKShareRequestAccessOperation) SetPerShareAccessRequestResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareAccessRequestResultBlock:"), value)
 }
 

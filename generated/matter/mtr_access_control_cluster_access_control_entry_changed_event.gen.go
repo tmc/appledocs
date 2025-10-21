@@ -87,7 +87,7 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminNodeID() fo
 // SetAdminNodeID sets the value of the adminNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminnodeid
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminNodeID(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminNodeID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminPasscodeID(
 // SetAdminPasscodeID sets the value of the adminPasscodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminpasscodeid
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminPasscodeID(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminPasscodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminPasscodeID:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) ChangeType() fou
 // SetChangeType sets the value of the changeType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/changetype
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetChangeType(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetChangeType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChangeType:"), value)
 }
 
@@ -132,14 +132,14 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) FabricIndex() fo
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/fabricindex
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetFabricIndex(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/latestvalue
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) LatestValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("latestValue"))
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) LatestValue() MTRAccessControlClusterAccessControlEntryStruct {
+	rv := objc.Send[MTRAccessControlClusterAccessControlEntryStruct](m_.ID, objc.Sel("latestValue"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) LatestValue() un
 // SetLatestValue sets the value of the latestValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/latestvalue
-func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetLatestValue(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetLatestValue(value IMTRAccessControlClusterAccessControlEntryStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestValue:"), value)
 }
 

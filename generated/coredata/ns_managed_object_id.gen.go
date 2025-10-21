@@ -93,8 +93,8 @@ func (m_ ManagedObjectID) URIRepresentation() foundation.URL {
 // The entity description associated with the object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/entity
-func (m_ ManagedObjectID) Entity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entity"))
+func (m_ ManagedObjectID) Entity() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (m_ ManagedObjectID) TemporaryID() bool {
 // The persistent store that fetched the object for the object ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObjectID/persistentStore
-func (m_ ManagedObjectID) PersistentStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistentStore"))
+func (m_ ManagedObjectID) PersistentStore() NSPersistentStore {
+	rv := objc.Send[NSPersistentStore](m_.ID, objc.Sel("persistentStore"))
 	return rv
 }
 

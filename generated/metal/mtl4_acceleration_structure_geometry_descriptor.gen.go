@@ -119,8 +119,8 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTab
 // Assigns an optional label you can assign to this geometry for debugging purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 // Provides a hint to Metal that this geometry is opaque, potentially accelerating the ray/primitive intersection process.

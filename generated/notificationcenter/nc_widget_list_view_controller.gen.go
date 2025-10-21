@@ -30,8 +30,8 @@ type _NCWidgetListViewControllerClass struct {
 // An interface definition for the [NCWidgetListViewController] class.
 type INCWidgetListViewController interface {
 	appkit.IViewController
-	RowForViewController(viewController unsafe.Pointer) uint
-	ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) unsafe.Pointer
+	RowForViewController(viewController appkit.IViewController) uint
+	ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) appkit.ViewController
 }
 
 // An object that provides a list view for displaying content in a macOS Today widget.
@@ -87,7 +87,7 @@ func NewNCWidgetListViewController() NCWidgetListViewController {
 // Returns the row represented by the specified content view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/row(for:)
-func (n_ NCWidgetListViewController) RowForViewController(viewController unsafe.Pointer) uint {
+func (n_ NCWidgetListViewController) RowForViewController(viewController appkit.IViewController) uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("rowForViewController:"), viewController)
 	return rv
 }
@@ -95,8 +95,8 @@ func (n_ NCWidgetListViewController) RowForViewController(viewController unsafe.
 // Returns the content view controller associated with the specified row, or a new content view controller if desired.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetListViewController/viewController(atRow:makeIfNecessary:)
-func (n_ NCWidgetListViewController) ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("viewControllerAtRow:makeIfNecessary:"), row, makeIfNecesary)
+func (n_ NCWidgetListViewController) ViewControllerAtRowMakeIfNecessary(row uint, makeIfNecesary bool) appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](n_.ID, objc.Sel("viewControllerAtRow:makeIfNecessary:"), row, makeIfNecesary)
 	return rv
 }
 

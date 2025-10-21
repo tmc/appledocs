@@ -78,8 +78,8 @@ func NewMTRMessagesClusterCancelMessagesRequestParams() MTRMessagesClusterCancel
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/messageIDs
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) MessageIDs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("messageIDs"))
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) MessageIDs() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("messageIDs"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRMessagesClusterCancelMessagesRequestParams) MessageIDs() unsafe.Poin
 // SetMessageIDs sets the value of the messageIDs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/messageIDs
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetMessageIDs(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetMessageIDs(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageIDs:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRMessagesClusterCancelMessagesRequestParams) ServerSideProcessingTime
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/serverSideProcessingTimeout
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRMessagesClusterCancelMessagesRequestParams) TimedInvokeTimeoutMs() f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterCancelMessagesRequestParams/timedInvokeTimeoutMs
-func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMessagesClusterCancelMessagesRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

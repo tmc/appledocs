@@ -121,8 +121,8 @@ func (v_ VZVirtualMachineView) SetCapturesSystemKeys(value bool) {
 // The VM to display in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/virtualMachine
-func (v_ VZVirtualMachineView) VirtualMachine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("virtualMachine"))
+func (v_ VZVirtualMachineView) VirtualMachine() VZVirtualMachine {
+	rv := objc.Send[VZVirtualMachine](v_.ID, objc.Sel("virtualMachine"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (v_ VZVirtualMachineView) VirtualMachine() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineView/virtualMachine
-func (v_ VZVirtualMachineView) SetVirtualMachine(value unsafe.Pointer) {
+func (v_ VZVirtualMachineView) SetVirtualMachine(value IVZVirtualMachine) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVirtualMachine:"), value)
 }
 

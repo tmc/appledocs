@@ -138,8 +138,8 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingRight(value uint) {
 // The data layout of the input data in the forward pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/datalayout
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) DataLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataLayout"))
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) DataLayout() GraphTensorNamedDataLayout {
+	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("dataLayout"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) DataLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/datalayout
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDataLayout(value unsafe.Pointer) {
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDataLayout(value IGraphTensorNamedDataLayout) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
 }
 
@@ -192,8 +192,8 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingBottom(value int) {
 // The padding style for the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingstyle
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingStyle() GraphPaddingStyle {
+	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingStyle() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingstyle
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
 
@@ -264,8 +264,8 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetStrideInY(value int) {
 // The data layout of the weights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/weightslayout
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) WeightsLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("weightsLayout"))
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) WeightsLayout() GraphTensorNamedDataLayout {
+	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("weightsLayout"))
 	return rv
 }
 
@@ -275,7 +275,7 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) WeightsLayout() unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/weightslayout
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetWeightsLayout(value unsafe.Pointer) {
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetWeightsLayout(value IGraphTensorNamedDataLayout) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWeightsLayout:"), value)
 }
 

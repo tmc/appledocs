@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewPHObjectChangeDetails() PHObjectChangeDetails {
 // The indexes of objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
-func (p_ PHObjectChangeDetails) ChangedIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedIndexes"))
+func (p_ PHObjectChangeDetails) ChangedIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](p_.ID, objc.Sel("changedIndexes"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (p_ PHObjectChangeDetails) ChangedIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
-func (p_ PHObjectChangeDetails) SetChangedIndexes(value unsafe.Pointer) {
+func (p_ PHObjectChangeDetails) SetChangedIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
 }
 

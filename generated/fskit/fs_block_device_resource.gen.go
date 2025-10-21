@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [FSBlockDeviceResource] class.
@@ -31,9 +32,9 @@ type IFSBlockDeviceResource interface {
 	IFSResource
 	AsynchronousMetadataFlushWithError(error_ unsafe.Pointer) bool
 	DelayedMetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool
-	MetadataClearWithDelayedWritesError(rangesToClear unsafe.Pointer, withDelayedWrites bool, error_ unsafe.Pointer) bool
+	MetadataClearWithDelayedWritesError(rangesToClear []FSMetadataRange, withDelayedWrites bool, error_ unsafe.Pointer) bool
 	MetadataFlushWithError(error_ unsafe.Pointer) bool
-	MetadataPurgeError(rangesToPurge unsafe.Pointer, error_ unsafe.Pointer) bool
+	MetadataPurgeError(rangesToPurge []FSMetadataRange, error_ unsafe.Pointer) bool
 	MetadataReadIntoStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool
 	MetadataWriteFromStartingAtLengthError(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, error_ unsafe.Pointer) bool
 	ReadIntoStartingAtLengthCompletionHandler(buffer unsafe.Pointer, offset unsafe.Pointer, length unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -111,7 +112,7 @@ func (f_ FSBlockDeviceResource) DelayedMetadataWriteFromStartingAtLengthError(bu
 // Clears the given ranges within the buffer cache.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataClear(_:withDelayedWrites:)
-func (f_ FSBlockDeviceResource) MetadataClearWithDelayedWritesError(rangesToClear unsafe.Pointer, withDelayedWrites bool, error_ unsafe.Pointer) bool {
+func (f_ FSBlockDeviceResource) MetadataClearWithDelayedWritesError(rangesToClear []FSMetadataRange, withDelayedWrites bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("metadataClear:withDelayedWrites:error:"), rangesToClear, withDelayedWrites, error_)
 	return rv
 }
@@ -127,7 +128,7 @@ func (f_ FSBlockDeviceResource) MetadataFlushWithError(error_ unsafe.Pointer) bo
 // Synchronously purges the given ranges from the buffer cache.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/metadataPurge(_:)
-func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (f_ FSBlockDeviceResource) MetadataPurgeError(rangesToPurge []FSMetadataRange, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("metadataPurge:error:"), rangesToPurge, error_)
 	return rv
 }
@@ -197,8 +198,8 @@ func (f_ FSBlockDeviceResource) BlockSize() uint64 {
 // The device name of the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSBlockDeviceResource/bsdName
-func (f_ FSBlockDeviceResource) BSDName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("BSDName"))
+func (f_ FSBlockDeviceResource) BSDName() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("BSDName"))
 	return rv
 }
 

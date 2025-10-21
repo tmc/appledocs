@@ -30,7 +30,7 @@ type _NEHotspotHelperResponseClass struct {
 // An interface definition for the [NEHotspotHelperResponse] class.
 type INEHotspotHelperResponse interface {
 	objectivec.IObject
-	SetNetwork(network unsafe.Pointer)
+	SetNetwork(network INEHotspotNetwork)
 }
 
 // The hotspot helper’s response to a command.
@@ -82,7 +82,7 @@ func NewNEHotspotHelperResponse() NEHotspotHelperResponse {
 // Set the network that conveys the confidence level.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelperResponse/setNetwork(_:)
-func (n_ NEHotspotHelperResponse) SetNetwork(network unsafe.Pointer) {
+func (n_ NEHotspotHelperResponse) SetNetwork(network INEHotspotNetwork) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNetwork:"), network)
 }
 

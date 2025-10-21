@@ -87,7 +87,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) ClientNod
 // SetClientNodeID sets the value of the clientNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/clientNodeID
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetClientNodeID(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetClientNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientNodeID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) FabricInd
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/fabricIndex
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetFabricIndex(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) RequestID
 // SetRequestID sets the value of the requestID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/requestID
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetRequestID(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetRequestID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) StatusCod
 // SetStatusCode sets the value of the statusCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissioningRequestResultEvent/statusCode
-func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetStatusCode(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissioningRequestResultEvent) SetStatusCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 

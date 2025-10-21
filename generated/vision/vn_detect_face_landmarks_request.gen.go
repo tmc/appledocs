@@ -102,8 +102,8 @@ func (d_ DetectFaceLandmarksRequest) SetConstellation(value unsafe.Pointer) {
 // The results of the face landmarks request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/results
-func (d_ DetectFaceLandmarksRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectFaceLandmarksRequest) Results() VNFaceObservation {
+	rv := objc.Send[VNFaceObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (d_ DetectFaceLandmarksRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacelandmarksrequest/results
-func (d_ DetectFaceLandmarksRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectFaceLandmarksRequest) SetResults(value IVNFaceObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 
@@ -144,8 +144,8 @@ func (d_ DetectFaceLandmarksRequest) VNDetectFaceLandmarksRequestRevision3() int
 // An array of
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations
-func (d_ DetectFaceLandmarksRequest) InputFaceObservations() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("inputFaceObservations"))
+func (d_ DetectFaceLandmarksRequest) InputFaceObservations() VNFaceObservation {
+	rv := objc.Send[VNFaceObservation](d_.ID, objc.Sel("inputFaceObservations"))
 	return rv
 }
 
@@ -155,7 +155,7 @@ func (d_ DetectFaceLandmarksRequest) InputFaceObservations() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservationaccepting/inputfaceobservations
-func (d_ DetectFaceLandmarksRequest) SetInputFaceObservations(value unsafe.Pointer) {
+func (d_ DetectFaceLandmarksRequest) SetInputFaceObservations(value IVNFaceObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInputFaceObservations:"), value)
 }
 

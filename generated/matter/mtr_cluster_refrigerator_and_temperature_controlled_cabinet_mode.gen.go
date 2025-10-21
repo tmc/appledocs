@@ -30,14 +30,14 @@ type _MTRClusterRefrigeratorAndTemperatureControlledCabinetModeClass struct {
 // An interface definition for the [MTRClusterRefrigeratorAndTemperatureControlledCabinetMode] class.
 type IMTRClusterRefrigeratorAndTemperatureControlledCabinetMode interface {
 	IMTRGenericCluster
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeCurrentModeWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedModesWithParams(params unsafe.Pointer) unsafe.Pointer
+	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer
 }
 
 // Cluster Refrigerator And Temperature Controlled Cabinet Mode Attributes and commands for selecting a mode from a list of supported options.
@@ -93,7 +93,7 @@ func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetMode() MTRClusterRe
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/init(device:endpointID:queue:)
-func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterRefrigeratorAndTemperatureControlledCabinetMode {
+func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterRefrigeratorAndTemperatureControlledCabinetMode {
 	instance := getMTRClusterRefrigeratorAndTemperatureControlledCabinetModeClass().Alloc()
 	rv := objc.Send[MTRClusterRefrigeratorAndTemperatureControlledCabinetMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -103,55 +103,55 @@ func NewMTRClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeCurrentModeWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeSupportedModesWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
 	return rv
 }

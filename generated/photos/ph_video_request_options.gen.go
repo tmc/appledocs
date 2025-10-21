@@ -81,8 +81,8 @@ func NewPHVideoRequestOptions() PHVideoRequestOptions {
 // A mode specifying the requested video quality and delivery priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/deliveryMode
-func (p_ PHVideoRequestOptions) DeliveryMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("deliveryMode"))
+func (p_ PHVideoRequestOptions) DeliveryMode() PHVideoRequestOptionsDeliveryMode {
+	rv := objc.Send[PHVideoRequestOptionsDeliveryMode](p_.ID, objc.Sel("deliveryMode"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (p_ PHVideoRequestOptions) DeliveryMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/deliveryMode
-func (p_ PHVideoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
+func (p_ PHVideoRequestOptions) SetDeliveryMode(value PHVideoRequestOptionsDeliveryMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
 
@@ -135,8 +135,8 @@ func (p_ PHVideoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 // The version of the video to request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/version
-func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("version"))
+func (p_ PHVideoRequestOptions) Version() PHVideoRequestOptionsVersion {
+	rv := objc.Send[PHVideoRequestOptionsVersion](p_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHVideoRequestOptions/version
-func (p_ PHVideoRequestOptions) SetVersion(value unsafe.Pointer) {
+func (p_ PHVideoRequestOptions) SetVersion(value IPHVideoRequestOptionsVersion) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
 

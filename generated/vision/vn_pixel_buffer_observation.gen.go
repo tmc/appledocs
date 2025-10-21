@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [PixelBufferObservation] class.
@@ -84,8 +85,8 @@ func NewPixelBufferObservation() PixelBufferObservation {
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (p_ PixelBufferObservation) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modelDescription"))
+func (p_ PixelBufferObservation) ModelDescription() coreml.ModelDescription {
+	rv := objc.Send[coreml.ModelDescription](p_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (p_ PixelBufferObservation) ModelDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (p_ PixelBufferObservation) SetModelDescription(value unsafe.Pointer) {
+func (p_ PixelBufferObservation) SetModelDescription(value coreml.IModelDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
 }
 
 // A dictionary of output feature descriptions, which the model keys by the output’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (p_ PixelBufferObservation) OutputDescriptionsByName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("outputDescriptionsByName"))
+func (p_ PixelBufferObservation) OutputDescriptionsByName() coreml.FeatureDescription {
+	rv := objc.Send[coreml.FeatureDescription](p_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (p_ PixelBufferObservation) OutputDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (p_ PixelBufferObservation) SetOutputDescriptionsByName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+func (p_ PixelBufferObservation) SetOutputDescriptionsByName(value coreml.IFeatureDescription) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
 }
 
 // A feature name that the CoreML model defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
-func (p_ PixelBufferObservation) FeatureName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("featureName"))
+func (p_ PixelBufferObservation) FeatureName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("featureName"))
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (p_ PixelBufferObservation) FeatureName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
-func (p_ PixelBufferObservation) SetFeatureName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFeatureName:"), objc.String(value))
+func (p_ PixelBufferObservation) SetFeatureName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFeatureName:"), value)
 }
 
 // The image that results from a request with image output.

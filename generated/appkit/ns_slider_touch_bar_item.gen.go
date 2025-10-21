@@ -136,8 +136,8 @@ func (s_ SliderTouchBarItem) SetAction(value unsafe.Pointer) {
 // The double value of the slider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/doublevalue
-func (s_ SliderTouchBarItem) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("doubleValue"))
+func (s_ SliderTouchBarItem) DoubleValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (s_ SliderTouchBarItem) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/doublevalue
-func (s_ SliderTouchBarItem) SetDoubleValue(value unsafe.Pointer) {
+func (s_ SliderTouchBarItem) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

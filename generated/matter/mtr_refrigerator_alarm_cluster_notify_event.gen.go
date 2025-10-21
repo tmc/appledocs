@@ -87,7 +87,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Active() foundation.Number {
 // SetActive sets the value of the active property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/active
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetActive(value foundation.Number) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetActive(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActive:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Inactive() foundation.Number {
 // SetInactive sets the value of the inactive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/inactive
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetInactive(value foundation.Number) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetInactive(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInactive:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) Mask() foundation.Number {
 // SetMask sets the value of the mask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/mask
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetMask(value foundation.Number) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) State() foundation.Number {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRefrigeratorAlarmClusterNotifyEvent/state
-func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetState(value foundation.Number) {
+func (m_ MTRRefrigeratorAlarmClusterNotifyEvent) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

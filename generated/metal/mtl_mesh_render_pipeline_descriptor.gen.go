@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -112,15 +114,15 @@ func (m_ MeshRenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/colorAttachments
-func (m_ MeshRenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("colorAttachments"))
+func (m_ MeshRenderPipelineDescriptor) ColorAttachments() MTLRenderPipelineColorAttachmentDescriptorArray {
+	rv := objc.Send[MTLRenderPipelineColorAttachmentDescriptorArray](m_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/depthAttachmentPixelFormat
-func (m_ MeshRenderPipelineDescriptor) DepthAttachmentPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("depthAttachmentPixelFormat"))
+func (m_ MeshRenderPipelineDescriptor) DepthAttachmentPixelFormat() PixelFormat {
+	rv := objc.Send[PixelFormat](m_.ID, objc.Sel("depthAttachmentPixelFormat"))
 	return rv
 }
 
@@ -128,14 +130,14 @@ func (m_ MeshRenderPipelineDescriptor) DepthAttachmentPixelFormat() unsafe.Point
 // SetDepthAttachmentPixelFormat sets the value of the depthAttachmentPixelFormat property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/depthAttachmentPixelFormat
-func (m_ MeshRenderPipelineDescriptor) SetDepthAttachmentPixelFormat(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetDepthAttachmentPixelFormat(value PixelFormat) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDepthAttachmentPixelFormat:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/fragmentBuffers
-func (m_ MeshRenderPipelineDescriptor) FragmentBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fragmentBuffers"))
+func (m_ MeshRenderPipelineDescriptor) FragmentBuffers() MTLPipelineBufferDescriptorArray {
+	rv := objc.Send[MTLPipelineBufferDescriptorArray](m_.ID, objc.Sel("fragmentBuffers"))
 	return rv
 }
 
@@ -156,8 +158,8 @@ func (m_ MeshRenderPipelineDescriptor) SetFragmentFunction(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/fragmentLinkedFunctions
-func (m_ MeshRenderPipelineDescriptor) FragmentLinkedFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fragmentLinkedFunctions"))
+func (m_ MeshRenderPipelineDescriptor) FragmentLinkedFunctions() MTLLinkedFunctions {
+	rv := objc.Send[MTLLinkedFunctions](m_.ID, objc.Sel("fragmentLinkedFunctions"))
 	return rv
 }
 
@@ -165,7 +167,7 @@ func (m_ MeshRenderPipelineDescriptor) FragmentLinkedFunctions() unsafe.Pointer 
 // SetFragmentLinkedFunctions sets the value of the fragmentLinkedFunctions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/fragmentLinkedFunctions
-func (m_ MeshRenderPipelineDescriptor) SetFragmentLinkedFunctions(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetFragmentLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFragmentLinkedFunctions:"), value)
 }
 
@@ -216,8 +218,8 @@ func (m_ MeshRenderPipelineDescriptor) SetRasterizationEnabled(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/label
-func (m_ MeshRenderPipelineDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MeshRenderPipelineDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -225,8 +227,8 @@ func (m_ MeshRenderPipelineDescriptor) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/label
-func (m_ MeshRenderPipelineDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MeshRenderPipelineDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -291,8 +293,8 @@ func (m_ MeshRenderPipelineDescriptor) SetMaxVertexAmplificationCount(value uint
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/meshBuffers
-func (m_ MeshRenderPipelineDescriptor) MeshBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("meshBuffers"))
+func (m_ MeshRenderPipelineDescriptor) MeshBuffers() MTLPipelineBufferDescriptorArray {
+	rv := objc.Send[MTLPipelineBufferDescriptorArray](m_.ID, objc.Sel("meshBuffers"))
 	return rv
 }
 
@@ -313,8 +315,8 @@ func (m_ MeshRenderPipelineDescriptor) SetMeshFunction(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/meshLinkedFunctions
-func (m_ MeshRenderPipelineDescriptor) MeshLinkedFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("meshLinkedFunctions"))
+func (m_ MeshRenderPipelineDescriptor) MeshLinkedFunctions() MTLLinkedFunctions {
+	rv := objc.Send[MTLLinkedFunctions](m_.ID, objc.Sel("meshLinkedFunctions"))
 	return rv
 }
 
@@ -322,7 +324,7 @@ func (m_ MeshRenderPipelineDescriptor) MeshLinkedFunctions() unsafe.Pointer {
 // SetMeshLinkedFunctions sets the value of the meshLinkedFunctions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/meshLinkedFunctions
-func (m_ MeshRenderPipelineDescriptor) SetMeshLinkedFunctions(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetMeshLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshLinkedFunctions:"), value)
 }
 
@@ -343,8 +345,8 @@ func (m_ MeshRenderPipelineDescriptor) SetMeshThreadgroupSizeIsMultipleOfThreadE
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/objectBuffers
-func (m_ MeshRenderPipelineDescriptor) ObjectBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectBuffers"))
+func (m_ MeshRenderPipelineDescriptor) ObjectBuffers() MTLPipelineBufferDescriptorArray {
+	rv := objc.Send[MTLPipelineBufferDescriptorArray](m_.ID, objc.Sel("objectBuffers"))
 	return rv
 }
 
@@ -365,8 +367,8 @@ func (m_ MeshRenderPipelineDescriptor) SetObjectFunction(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/objectLinkedFunctions
-func (m_ MeshRenderPipelineDescriptor) ObjectLinkedFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectLinkedFunctions"))
+func (m_ MeshRenderPipelineDescriptor) ObjectLinkedFunctions() MTLLinkedFunctions {
+	rv := objc.Send[MTLLinkedFunctions](m_.ID, objc.Sel("objectLinkedFunctions"))
 	return rv
 }
 
@@ -374,7 +376,7 @@ func (m_ MeshRenderPipelineDescriptor) ObjectLinkedFunctions() unsafe.Pointer {
 // SetObjectLinkedFunctions sets the value of the objectLinkedFunctions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/objectLinkedFunctions
-func (m_ MeshRenderPipelineDescriptor) SetObjectLinkedFunctions(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetObjectLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectLinkedFunctions:"), value)
 }
 
@@ -425,8 +427,8 @@ func (m_ MeshRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/requiredThreadsPerMeshThreadgroup
-func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerMeshThreadgroup"))
+func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](m_.ID, objc.Sel("requiredThreadsPerMeshThreadgroup"))
 	return rv
 }
 
@@ -434,14 +436,14 @@ func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() unsaf
 // SetRequiredThreadsPerMeshThreadgroup sets the value of the requiredThreadsPerMeshThreadgroup property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/requiredThreadsPerMeshThreadgroup
-func (m_ MeshRenderPipelineDescriptor) SetRequiredThreadsPerMeshThreadgroup(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetRequiredThreadsPerMeshThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerMeshThreadgroup:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/requiredThreadsPerObjectThreadgroup
-func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerObjectThreadgroup"))
+func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](m_.ID, objc.Sel("requiredThreadsPerObjectThreadgroup"))
 	return rv
 }
 
@@ -449,15 +451,15 @@ func (m_ MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() uns
 // SetRequiredThreadsPerObjectThreadgroup sets the value of the requiredThreadsPerObjectThreadgroup property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/requiredThreadsPerObjectThreadgroup
-func (m_ MeshRenderPipelineDescriptor) SetRequiredThreadsPerObjectThreadgroup(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetRequiredThreadsPerObjectThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerObjectThreadgroup:"), value)
 }
 
 // A value that enables or disables shader validation for the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/shaderValidation
-func (m_ MeshRenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shaderValidation"))
+func (m_ MeshRenderPipelineDescriptor) ShaderValidation() ShaderValidation {
+	rv := objc.Send[ShaderValidation](m_.ID, objc.Sel("shaderValidation"))
 	return rv
 }
 
@@ -467,14 +469,14 @@ func (m_ MeshRenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/shaderValidation
-func (m_ MeshRenderPipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetShaderValidation(value IShaderValidation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShaderValidation:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/stencilAttachmentPixelFormat
-func (m_ MeshRenderPipelineDescriptor) StencilAttachmentPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("stencilAttachmentPixelFormat"))
+func (m_ MeshRenderPipelineDescriptor) StencilAttachmentPixelFormat() PixelFormat {
+	rv := objc.Send[PixelFormat](m_.ID, objc.Sel("stencilAttachmentPixelFormat"))
 	return rv
 }
 
@@ -482,7 +484,7 @@ func (m_ MeshRenderPipelineDescriptor) StencilAttachmentPixelFormat() unsafe.Poi
 // SetStencilAttachmentPixelFormat sets the value of the stencilAttachmentPixelFormat property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLMeshRenderPipelineDescriptor/stencilAttachmentPixelFormat
-func (m_ MeshRenderPipelineDescriptor) SetStencilAttachmentPixelFormat(value unsafe.Pointer) {
+func (m_ MeshRenderPipelineDescriptor) SetStencilAttachmentPixelFormat(value PixelFormat) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStencilAttachmentPixelFormat:"), value)
 }
 

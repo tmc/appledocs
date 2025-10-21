@@ -101,8 +101,8 @@ func (v_ VertexAttributeDescriptor) SetBufferIndex(value uint) {
 // The format of the vertex attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor/format
-func (v_ VertexAttributeDescriptor) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("format"))
+func (v_ VertexAttributeDescriptor) Format() VertexFormat {
+	rv := objc.Send[VertexFormat](v_.ID, objc.Sel("format"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (v_ VertexAttributeDescriptor) Format() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptor/format
-func (v_ VertexAttributeDescriptor) SetFormat(value unsafe.Pointer) {
+func (v_ VertexAttributeDescriptor) SetFormat(value VertexFormat) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFormat:"), value)
 }
 

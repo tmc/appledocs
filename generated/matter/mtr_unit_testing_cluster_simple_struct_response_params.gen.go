@@ -78,8 +78,8 @@ func NewMTRUnitTestingClusterSimpleStructResponseParams() MTRUnitTestingClusterS
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustersimplestructresponseparams/arg1
-func (m_ MTRUnitTestingClusterSimpleStructResponseParams) Arg1() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg1"))
+func (m_ MTRUnitTestingClusterSimpleStructResponseParams) Arg1() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("arg1"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterSimpleStructResponseParams) Arg1() unsafe.Pointer 
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustersimplestructresponseparams/arg1
-func (m_ MTRUnitTestingClusterSimpleStructResponseParams) SetArg1(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterSimpleStructResponseParams) SetArg1(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterSimpleStructResponseParams) TimedInvokeTimeoutMs()
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustersimplestructresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterSimpleStructResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterSimpleStructResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

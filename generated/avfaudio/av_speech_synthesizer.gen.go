@@ -30,7 +30,7 @@ type _SpeechSynthesizerClass struct {
 // An interface definition for the [SpeechSynthesizer] class.
 type ISpeechSynthesizer interface {
 	objectivec.IObject
-	SpeakUtterance(utterance unsafe.Pointer)
+	SpeakUtterance(utterance IAVSpeechUtterance)
 }
 
 // An object that produces synthesized speech from text utterances and enables monitoring or controlling of ongoing speech.
@@ -84,7 +84,7 @@ func NewSpeechSynthesizer() SpeechSynthesizer {
 // Adds the utterance you specify to the speech synthesizer’s queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/speak(_:)
-func (s_ SpeechSynthesizer) SpeakUtterance(utterance unsafe.Pointer) {
+func (s_ SpeechSynthesizer) SpeakUtterance(utterance IAVSpeechUtterance) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("speakUtterance:"), utterance)
 }
 
@@ -225,8 +225,8 @@ func (s_ SpeechSynthesizer) SetPreUtteranceDelay(value unsafe.Pointer) {
 // The voice the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-func (s_ SpeechSynthesizer) Voice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voice"))
+func (s_ SpeechSynthesizer) Voice() AVSpeechSynthesisVoice {
+	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
 }
 
@@ -236,7 +236,7 @@ func (s_ SpeechSynthesizer) Voice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice
-func (s_ SpeechSynthesizer) SetVoice(value unsafe.Pointer) {
+func (s_ SpeechSynthesizer) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }
 

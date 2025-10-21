@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _AssertionHandlerClass struct {
 // An interface definition for the [AssertionHandler] class.
 type IAssertionHandler interface {
 	objectivec.IObject
-	HandleFailureInFunctionFileLineNumberDescription(functionName string, fileName string, line int, format string)
-	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objc.ID, fileName string, line int, format string)
+	HandleFailureInFunctionFileLineNumberDescription(functionName appkit.string, fileName appkit.string, line int, format appkit.string)
+	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName appkit.string, line int, format appkit.string)
 }
 
 // An object that logs an assertion to the console.
@@ -85,27 +86,27 @@ func NewAssertionHandler() AssertionHandler {
 // Returns the object associated with the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
-func (ac _AssertionHandlerClass) CurrentHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("currentHandler"))
+func (ac _AssertionHandlerClass) CurrentHandler() AssertionHandler {
+	rv := objc.Send[NSAssertionHandler](objc.ID(ac.class), objc.Sel("currentHandler"))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName string, fileName string, line int, format string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInFunction:file:lineNumber:description:"), objc.String(functionName), objc.String(fileName), line, objc.String(format))
+func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName appkit.string, fileName appkit.string, line int, format appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInFunction:file:lineNumber:description:"), functionName, fileName, line, format)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objc.ID, fileName string, line int, format string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, objc.String(fileName), line, objc.String(format))
+func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName appkit.string, line int, format appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, fileName, line, format)
 }
 
 // Returns the object associated with the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
-func (a_ AssertionHandler) CurrentHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentHandler"))
+func (a_ AssertionHandler) CurrentHandler() NSAssertionHandler {
+	rv := objc.Send[NSAssertionHandler](a_.ID, objc.Sel("currentHandler"))
 	return rv
 }
 

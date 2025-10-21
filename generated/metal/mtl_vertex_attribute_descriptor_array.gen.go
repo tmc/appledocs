@@ -30,8 +30,8 @@ type _VertexAttributeDescriptorArrayClass struct {
 // An interface definition for the [VertexAttributeDescriptorArray] class.
 type IVertexAttributeDescriptorArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(attributeDesc unsafe.Pointer, index uint)
-	ObjectAtIndexedSubscript(index uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(attributeDesc IMTLVertexAttributeDescriptor, index uint)
+	ObjectAtIndexedSubscript(index uint) VertexAttributeDescriptor
 }
 
 // An array of vertex attribute descriptor instances.
@@ -85,15 +85,15 @@ func NewVertexAttributeDescriptorArray() VertexAttributeDescriptorArray {
 // Sets state for the specified vertex attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptorArray/setObject:atIndexedSubscript:
-func (v_ VertexAttributeDescriptorArray) SetObjectAtIndexedSubscript(attributeDesc unsafe.Pointer, index uint) {
+func (v_ VertexAttributeDescriptorArray) SetObjectAtIndexedSubscript(attributeDesc IMTLVertexAttributeDescriptor, index uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setObject:atIndexedSubscript:"), attributeDesc, index)
 }
 
 // Returns the state of the specified vertex attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttributeDescriptorArray/subscript(_:)
-func (v_ VertexAttributeDescriptorArray) ObjectAtIndexedSubscript(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
+func (v_ VertexAttributeDescriptorArray) ObjectAtIndexedSubscript(index uint) VertexAttributeDescriptor {
+	rv := objc.Send[VertexAttributeDescriptor](v_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
 	return rv
 }
 

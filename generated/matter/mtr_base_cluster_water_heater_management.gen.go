@@ -30,9 +30,9 @@ type _MTRBaseClusterWaterHeaterManagementClass struct {
 // An interface definition for the [MTRBaseClusterWaterHeaterManagement] class.
 type IMTRBaseClusterWaterHeaterManagement interface {
 	IMTRGenericBaseCluster
-	BoostWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
+	BoostWithParamsCompletion(params IMTRWaterHeaterManagementClusterBoostParams, completion unsafe.Pointer)
 	CancelBoostWithCompletion(completion unsafe.Pointer)
-	CancelBoostWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer)
+	CancelBoostWithParamsCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
 	ReadAttributeBoostStateWithCompletion(completion unsafe.Pointer)
@@ -44,17 +44,17 @@ type IMTRBaseClusterWaterHeaterManagement interface {
 	ReadAttributeHeaterTypesWithCompletion(completion unsafe.Pointer)
 	ReadAttributeTankPercentageWithCompletion(completion unsafe.Pointer)
 	ReadAttributeTankVolumeWithCompletion(completion unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeBoostStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeEstimatedHeatRequiredWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeHeatDemandWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeHeaterTypesWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeTankPercentageWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeTankVolumeWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeBoostStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeEstimatedHeatRequiredWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeHeatDemandWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeHeaterTypesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeTankPercentageWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+	SubscribeAttributeTankVolumeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 }
 
 // Cluster Water Heater Management
@@ -112,7 +112,7 @@ func NewMTRBaseClusterWaterHeaterManagement() MTRBaseClusterWaterHeaterManagemen
 // For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/init(device:endpointID:queue:)
-func NewMTRBaseClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRBaseClusterWaterHeaterManagement {
+func NewMTRBaseClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRBaseClusterWaterHeaterManagement {
 	instance := getMTRBaseClusterWaterHeaterManagementClass().Alloc()
 	rv := objc.Send[MTRBaseClusterWaterHeaterManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -122,74 +122,74 @@ func NewMTRBaseClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeBoostState(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeBoostStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeBoostStateWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeBoostStateWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeEstimatedHeatRequired(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeEstimatedHeatRequiredWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeEstimatedHeatRequiredWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeEstimatedHeatRequiredWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeHeatDemand(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeHeatDemandWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeHeatDemandWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeHeatDemandWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeHeaterTypes(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeHeaterTypesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeHeaterTypesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeHeaterTypesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeTankPercentage(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeTankPercentageWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeTankPercentageWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeTankPercentageWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/readAttributeTankVolume(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeTankVolumeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer unsafe.Pointer, endpoint foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (mc _MTRBaseClusterWaterHeaterManagementClass) ReadAttributeTankVolumeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeTankVolumeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
 }
 
 // Command Boost
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/boost(with:completion:)
-func (m_ MTRBaseClusterWaterHeaterManagement) BoostWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) BoostWithParamsCompletion(params IMTRWaterHeaterManagementClusterBoostParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("boostWithParams:completion:"), params, completion)
 }
 
@@ -202,7 +202,7 @@ func (m_ MTRBaseClusterWaterHeaterManagement) CancelBoostWithCompletion(completi
 // Command CancelBoost
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/cancelBoost(with:completion:)
-func (m_ MTRBaseClusterWaterHeaterManagement) CancelBoostWithParamsCompletion(params unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) CancelBoostWithParamsCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelBoostWithParams:completion:"), params, completion)
 }
 
@@ -274,67 +274,67 @@ func (m_ MTRBaseClusterWaterHeaterManagement) ReadAttributeTankVolumeWithComplet
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeBoostState(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeBoostStateWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeBoostStateWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeBoostStateWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeEstimatedHeatRequired(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeEstimatedHeatRequiredWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeEstimatedHeatRequiredWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeEstimatedHeatRequiredWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeHeatDemand(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeHeatDemandWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeHeatDemandWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeHeatDemandWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeHeaterTypes(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeHeaterTypesWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeHeaterTypesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeHeaterTypesWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeTankPercentage(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeTankPercentageWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeTankPercentageWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeTankPercentageWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWaterHeaterManagement/subscribeAttributeTankVolume(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeTankVolumeWithParamsSubscriptionEstablishedReportHandler(params unsafe.Pointer, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
+func (m_ MTRBaseClusterWaterHeaterManagement) SubscribeAttributeTankVolumeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeTankVolumeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +33,8 @@ type _GCPhysicalInputProfileClass struct {
 type IGCPhysicalInputProfile interface {
 	objectivec.IObject
 	Capture() unsafe.Pointer
-	MappedElementAliasForPhysicalInputName(inputName string) string
-	MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer
+	MappedElementAliasForPhysicalInputName(inputName appkit.string) foundation.String
+	MappedPhysicalInputNamesForElementAlias(elementAlias appkit.string) unsafe.Pointer
 }
 
 // The base class for controller profiles that support physical buttons, thumbsticks, and directional pads.
@@ -94,16 +96,16 @@ func (g_ GCPhysicalInputProfile) Capture() unsafe.Pointer {
 // Returns the name of the input element to which the user remaps the given physical element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedElementAlias(forPhysicalInputName:)
-func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName string) string {
-	rv := objc.Send[string](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), objc.String(inputName))
+func (g_ GCPhysicalInputProfile) MappedElementAliasForPhysicalInputName(inputName appkit.string) foundation.String {
+	rv := objc.Send[foundation.String](g_.ID, objc.Sel("mappedElementAliasForPhysicalInputName:"), inputName)
 	return rv
 }
 
 // Returns the physical input elements to which the user remaps the given input element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputProfile/mappedPhysicalInputNames(forElementAlias:)
-func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), objc.String(elementAlias))
+func (g_ GCPhysicalInputProfile) MappedPhysicalInputNamesForElementAlias(elementAlias appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mappedPhysicalInputNamesForElementAlias:"), elementAlias)
 	return rv
 }
 
@@ -158,8 +160,8 @@ func (g_ GCPhysicalInputProfile) HasRemappedElements() bool {
 // The extended gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCPhysicalInputProfile) ExtendedGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
+func (g_ GCPhysicalInputProfile) ExtendedGamepad() GCExtendedGamepad {
+	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
 }
 
@@ -169,7 +171,7 @@ func (g_ GCPhysicalInputProfile) ExtendedGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCPhysicalInputProfile) SetExtendedGamepad(value unsafe.Pointer) {
+func (g_ GCPhysicalInputProfile) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
 
@@ -194,8 +196,8 @@ func (g_ GCPhysicalInputProfile) SetGamepad(value unsafe.Pointer) {
 // The micro gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCPhysicalInputProfile) MicroGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
+func (g_ GCPhysicalInputProfile) MicroGamepad() GCMicroGamepad {
+	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
 
@@ -205,15 +207,15 @@ func (g_ GCPhysicalInputProfile) MicroGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCPhysicalInputProfile) SetMicroGamepad(value unsafe.Pointer) {
+func (g_ GCPhysicalInputProfile) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
 // The motion input profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCPhysicalInputProfile) Motion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+func (g_ GCPhysicalInputProfile) Motion() GCMotion {
+	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
 
@@ -223,15 +225,15 @@ func (g_ GCPhysicalInputProfile) Motion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCPhysicalInputProfile) SetMotion(value unsafe.Pointer) {
+func (g_ GCPhysicalInputProfile) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
 
 // The physical input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCPhysicalInputProfile) PhysicalInputProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
+func (g_ GCPhysicalInputProfile) PhysicalInputProfile() GCPhysicalInputProfile {
+	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
 }
 
@@ -241,15 +243,15 @@ func (g_ GCPhysicalInputProfile) PhysicalInputProfile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCPhysicalInputProfile) SetPhysicalInputProfile(value unsafe.Pointer) {
+func (g_ GCPhysicalInputProfile) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
 
 // The axes in the profile as key-value pairs for lookup by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/axes
-func (g_ GCPhysicalInputProfile) Axes() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("axes"))
+func (g_ GCPhysicalInputProfile) Axes() GCControllerAxisInput {
+	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("axes"))
 	return rv
 }
 
@@ -259,15 +261,15 @@ func (g_ GCPhysicalInputProfile) Axes() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/axes
-func (g_ GCPhysicalInputProfile) SetAxes(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setAxes:"), objc.String(value))
+func (g_ GCPhysicalInputProfile) SetAxes(value IGCControllerAxisInput) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAxes:"), value)
 }
 
 // The buttons in the profile as key-value pairs for lookup by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/buttons
-func (g_ GCPhysicalInputProfile) Buttons() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("buttons"))
+func (g_ GCPhysicalInputProfile) Buttons() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttons"))
 	return rv
 }
 
@@ -277,8 +279,8 @@ func (g_ GCPhysicalInputProfile) Buttons() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/buttons
-func (g_ GCPhysicalInputProfile) SetButtons(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setButtons:"), objc.String(value))
+func (g_ GCPhysicalInputProfile) SetButtons(value IGCControllerButtonInput) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setButtons:"), value)
 }
 
 // The physical device that the profile represents.
@@ -302,8 +304,8 @@ func (g_ GCPhysicalInputProfile) SetDevice(value unsafe.Pointer) {
 // The directional pads in the profile as key-value pairs for lookup by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/dpads
-func (g_ GCPhysicalInputProfile) Dpads() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("dpads"))
+func (g_ GCPhysicalInputProfile) Dpads() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("dpads"))
 	return rv
 }
 
@@ -313,15 +315,15 @@ func (g_ GCPhysicalInputProfile) Dpads() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/dpads
-func (g_ GCPhysicalInputProfile) SetDpads(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDpads:"), objc.String(value))
+func (g_ GCPhysicalInputProfile) SetDpads(value IGCControllerDirectionPad) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDpads:"), value)
 }
 
 // The elements in the profile as key-value pairs for lookup by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/elements
-func (g_ GCPhysicalInputProfile) Elements() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("elements"))
+func (g_ GCPhysicalInputProfile) Elements() GCControllerElement {
+	rv := objc.Send[GCControllerElement](g_.ID, objc.Sel("elements"))
 	return rv
 }
 
@@ -331,8 +333,8 @@ func (g_ GCPhysicalInputProfile) Elements() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/elements
-func (g_ GCPhysicalInputProfile) SetElements(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), objc.String(value))
+func (g_ GCPhysicalInputProfile) SetElements(value IGCControllerElement) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), value)
 }
 
 // The time of the most recent change to an element’s value.
@@ -356,8 +358,8 @@ func (g_ GCPhysicalInputProfile) SetLastEventTimestamp(value unsafe.Pointer) {
 // The touchpads in the profile as key-value pairs for lookup by name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/touchpads
-func (g_ GCPhysicalInputProfile) Touchpads() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("touchpads"))
+func (g_ GCPhysicalInputProfile) Touchpads() GCControllerTouchpad {
+	rv := objc.Send[GCControllerTouchpad](g_.ID, objc.Sel("touchpads"))
 	return rv
 }
 
@@ -367,8 +369,8 @@ func (g_ GCPhysicalInputProfile) Touchpads() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcphysicalinputprofile/touchpads
-func (g_ GCPhysicalInputProfile) SetTouchpads(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpads:"), objc.String(value))
+func (g_ GCPhysicalInputProfile) SetTouchpads(value IGCControllerTouchpad) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchpads:"), value)
 }
 
 // The block that the profile calls when an element’s value changes.

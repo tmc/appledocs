@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _ModelCollectionEntryClass struct {
 // An interface definition for the [ModelCollectionEntry] class.
 type IModelCollectionEntry interface {
 	objectivec.IObject
-	IsEqualToModelCollectionEntry(entry unsafe.Pointer) bool
+	IsEqualToModelCollectionEntry(entry IMLModelCollectionEntry) bool
 }
 
 // A model and its identifier within a model collection.
@@ -83,7 +84,7 @@ func NewModelCollectionEntry() ModelCollectionEntry {
 // Returns a Boolean value that indicates whether the two entries are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/isEqual(to:)
-func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry unsafe.Pointer) bool {
+func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry IMLModelCollectionEntry) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEqualToModelCollectionEntry:"), entry)
 	return rv
 }
@@ -91,8 +92,8 @@ func (m_ ModelCollectionEntry) IsEqualToModelCollectionEntry(entry unsafe.Pointe
 // The name of the model, which is unique to the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry/modelIdentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelIdentifier"))
+func (m_ ModelCollectionEntry) ModelIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("modelIdentifier"))
 	return rv
 }
 
@@ -107,8 +108,8 @@ func (m_ ModelCollectionEntry) ModelURL() foundation.URL {
 // A dictionary of model entries keyed to the models’ identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
-func (m_ ModelCollectionEntry) Entries() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("entries"))
+func (m_ ModelCollectionEntry) Entries() MLModelCollectionEntry {
+	rv := objc.Send[MLModelCollectionEntry](m_.ID, objc.Sel("entries"))
 	return rv
 }
 
@@ -118,8 +119,8 @@ func (m_ ModelCollectionEntry) Entries() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
-func (m_ ModelCollectionEntry) SetEntries(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEntries:"), objc.String(value))
+func (m_ ModelCollectionEntry) SetEntries(value IMLModelCollectionEntry) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEntries:"), value)
 }
 
 

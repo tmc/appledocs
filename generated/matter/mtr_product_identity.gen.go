@@ -87,7 +87,7 @@ func (m_ MTRProductIdentity) ProductID() foundation.Number {
 // SetProductID sets the value of the productID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/productid
-func (m_ MTRProductIdentity) SetProductID(value foundation.Number) {
+func (m_ MTRProductIdentity) SetProductID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRProductIdentity) VendorID() foundation.Number {
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrproductidentity/vendorid
-func (m_ MTRProductIdentity) SetVendorID(value foundation.Number) {
+func (m_ MTRProductIdentity) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

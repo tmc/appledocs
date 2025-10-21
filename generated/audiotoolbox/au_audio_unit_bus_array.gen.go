@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +32,11 @@ type _AudioUnitBusArrayClass struct {
 // An interface definition for the [AudioUnitBusArray] class.
 type IAudioUnitBusArray interface {
 	objectivec.IObject
-	AddObserverToAllBussesForKeyPathOptionsContext(observer unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer)
-	RemoveObserverFromAllBussesForKeyPathContext(observer unsafe.Pointer, keyPath string, context unsafe.Pointer)
-	ReplaceBusses(busArray unsafe.Pointer)
+	AddObserverToAllBussesForKeyPathOptionsContext(observer foundation.IObject, keyPath appkit.string, options unsafe.Pointer, context unsafe.Pointer)
+	RemoveObserverFromAllBussesForKeyPathContext(observer foundation.IObject, keyPath appkit.string, context unsafe.Pointer)
+	ReplaceBusses(busArray []AudioUnitBus)
 	SetBusCountError(count uint, outError unsafe.Pointer) bool
-	ObjectAtIndexedSubscript(index uint) unsafe.Pointer
+	ObjectAtIndexedSubscript(index uint) AudioUnitBus
 }
 
 // A class that defines a container for an audio unit’s input or output busses.
@@ -90,7 +92,7 @@ func NewAudioUnitBusArray() AudioUnitBusArray {
 // Initializes an empty bus array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:)
-func NewAudioUnitBusArrayWithAudioUnitBusType(owner unsafe.Pointer, busType unsafe.Pointer) AudioUnitBusArray {
+func NewAudioUnitBusArrayWithAudioUnitBusType(owner IAUAudioUnit, busType AudioUnitBusType) AudioUnitBusArray {
 	instance := getAudioUnitBusArrayClass().Alloc()
 	rv := objc.Send[AudioUnitBusArray](instance.ID, objc.Sel("initWithAudioUnit:busType:"), owner, busType)
 	rv.Autorelease()
@@ -102,7 +104,7 @@ func NewAudioUnitBusArrayWithAudioUnitBusType(owner unsafe.Pointer, busType unsa
 // Initializes a bus array by making a copy of the supplied busses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/init(audioUnit:busType:busses:)
-func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner unsafe.Pointer, busType unsafe.Pointer, busArray unsafe.Pointer) AudioUnitBusArray {
+func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner IAUAudioUnit, busType AudioUnitBusType, busArray []AudioUnitBus) AudioUnitBusArray {
 	instance := getAudioUnitBusArrayClass().Alloc()
 	rv := objc.Send[AudioUnitBusArray](instance.ID, objc.Sel("initWithAudioUnit:busType:busses:"), owner, busType, busArray)
 	rv.Autorelease()
@@ -113,21 +115,21 @@ func NewAudioUnitBusArrayWithAudioUnitBusTypeBusses(owner unsafe.Pointer, busTyp
 // Adds a KVO observer for a given property on all busses in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/addObserver(toAllBusses:forKeyPath:options:context:)
-func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(observer unsafe.Pointer, keyPath string, options unsafe.Pointer, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("addObserverToAllBusses:forKeyPath:options:context:"), observer, objc.String(keyPath), options, context)
+func (a_ AudioUnitBusArray) AddObserverToAllBussesForKeyPathOptionsContext(observer foundation.IObject, keyPath appkit.string, options unsafe.Pointer, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addObserverToAllBusses:forKeyPath:options:context:"), observer, keyPath, options, context)
 }
 
 // Removes a KVO observer for a given property on all busses in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/removeObserver(fromAllBusses:forKeyPath:context:)
-func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observer unsafe.Pointer, keyPath string, context unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserverFromAllBusses:forKeyPath:context:"), observer, objc.String(keyPath), context)
+func (a_ AudioUnitBusArray) RemoveObserverFromAllBussesForKeyPathContext(observer foundation.IObject, keyPath appkit.string, context unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeObserverFromAllBusses:forKeyPath:context:"), observer, keyPath, context)
 }
 
 // Replaces the current bus array with a copy of the supplied bus array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/replaceBusses(_:)
-func (a_ AudioUnitBusArray) ReplaceBusses(busArray unsafe.Pointer) {
+func (a_ AudioUnitBusArray) ReplaceBusses(busArray []AudioUnitBus) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("replaceBusses:"), busArray)
 }
 
@@ -142,16 +144,16 @@ func (a_ AudioUnitBusArray) SetBusCountError(count uint, outError unsafe.Pointer
 // Returns the bus at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/subscript(_:)
-func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
+func (a_ AudioUnitBusArray) ObjectAtIndexedSubscript(index uint) AudioUnitBus {
+	rv := objc.Send[AudioUnitBus](a_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
 	return rv
 }
 
 // Determines whether the bus array is for input or output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/busType
-func (a_ AudioUnitBusArray) BusType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("busType"))
+func (a_ AudioUnitBusArray) BusType() AudioUnitBusType {
+	rv := objc.Send[AudioUnitBusType](a_.ID, objc.Sel("busType"))
 	return rv
 }
 
@@ -174,16 +176,16 @@ func (a_ AudioUnitBusArray) CountChangeable() bool {
 // The audio unit that owns the bus array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBusArray/ownerAudioUnit
-func (a_ AudioUnitBusArray) OwnerAudioUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("ownerAudioUnit"))
+func (a_ AudioUnitBusArray) OwnerAudioUnit() AUAudioUnit {
+	rv := objc.Send[AUAudioUnit](a_.ID, objc.Sel("ownerAudioUnit"))
 	return rv
 }
 
 // An array containing the audio unit’s input connection points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
-func (a_ AudioUnitBusArray) InputBusses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputBusses"))
+func (a_ AudioUnitBusArray) InputBusses() AUAudioUnitBusArray {
+	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("inputBusses"))
 	return rv
 }
 
@@ -193,15 +195,15 @@ func (a_ AudioUnitBusArray) InputBusses() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses
-func (a_ AudioUnitBusArray) SetInputBusses(value unsafe.Pointer) {
+func (a_ AudioUnitBusArray) SetInputBusses(value IAUAudioUnitBusArray) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputBusses:"), value)
 }
 
 // An array containing the audio unit’s output connection points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
-func (a_ AudioUnitBusArray) OutputBusses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputBusses"))
+func (a_ AudioUnitBusArray) OutputBusses() AUAudioUnitBusArray {
+	rv := objc.Send[AUAudioUnitBusArray](a_.ID, objc.Sel("outputBusses"))
 	return rv
 }
 
@@ -211,7 +213,7 @@ func (a_ AudioUnitBusArray) OutputBusses() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses
-func (a_ AudioUnitBusArray) SetOutputBusses(value unsafe.Pointer) {
+func (a_ AudioUnitBusArray) SetOutputBusses(value IAUAudioUnitBusArray) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputBusses:"), value)
 }
 

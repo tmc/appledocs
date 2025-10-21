@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _BAAssetPackClass struct {
 // An interface definition for the [BAAssetPack] class.
 type IBAAssetPack interface {
 	objectivec.IObject
-	Download() unsafe.Pointer
-	DownloadForContentRequest(contentRequest unsafe.Pointer) unsafe.Pointer
+	Download() BADownload
+	DownloadForContentRequest(contentRequest IBAContentRequest) BADownload
 }
 
 // An archive of assets that the system downloads together.
@@ -85,16 +87,16 @@ func NewBAAssetPack() BAAssetPack {
 // Creates a download object for the asset pack that you schedule using a download manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/download
-func (b_ BAAssetPack) Download() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("download"))
+func (b_ BAAssetPack) Download() BADownload {
+	rv := objc.Send[BADownload](b_.ID, objc.Sel("download"))
 	return rv
 }
 
 // Creates a download object for the asset pack that you schedule using a download manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/downloadForContentRequest:
-func (b_ BAAssetPack) DownloadForContentRequest(contentRequest unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("downloadForContentRequest:"), contentRequest)
+func (b_ BAAssetPack) DownloadForContentRequest(contentRequest IBAContentRequest) BADownload {
+	rv := objc.Send[BADownload](b_.ID, objc.Sel("downloadForContentRequest:"), contentRequest)
 	return rv
 }
 
@@ -109,16 +111,16 @@ func (b_ BAAssetPack) DownloadSize() int {
 // A unique identifier for the asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/identifier
-func (b_ BAAssetPack) Identifier() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
+func (b_ BAAssetPack) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // JSON-encoded custom information that’s associated with the asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPack/userInfo
-func (b_ BAAssetPack) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("userInfo"))
+func (b_ BAAssetPack) UserInfo() foundation.NSData {
+	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("userInfo"))
 	return rv
 }
 

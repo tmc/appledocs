@@ -90,8 +90,8 @@ func (b_ BatchInsertResult) Result() objc.ID {
 // The type of result that Core Data returns from this request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchInsertResult/resultType
-func (b_ BatchInsertResult) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("resultType"))
+func (b_ BatchInsertResult) ResultType() BatchInsertRequestResultType {
+	rv := objc.Send[BatchInsertRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
 

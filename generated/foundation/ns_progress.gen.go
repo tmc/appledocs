@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _ProgressClass struct {
 type IProgress interface {
 	objectivec.IObject
 	PerformAsCurrentWithPendingUnitCountUsingBlock(unitCount unsafe.Pointer, work unsafe.Pointer)
-	AddChildWithPendingUnitCount(child unsafe.Pointer, inUnitCount unsafe.Pointer)
+	AddChildWithPendingUnitCount(child IProgress, inUnitCount unsafe.Pointer)
 	BecomeCurrentWithPendingUnitCount(unitCount unsafe.Pointer)
 	Cancel()
 	Pause()
@@ -92,7 +93,7 @@ func NewProgress() Progress {
 // Creates a new progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(parent:userInfo:)
-func NewProgressWithParentUserInfo(parentProgressOrNil unsafe.Pointer, userInfoOrNil unsafe.Pointer) Progress {
+func NewProgressWithParentUserInfo(parentProgressOrNil IProgress, userInfoOrNil unsafe.Pointer) Progress {
 	instance := getProgressClass().Alloc()
 	rv := objc.Send[Progress](instance.ID, objc.Sel("initWithParent:userInfo:"), parentProgressOrNil, userInfoOrNil)
 	rv.Autorelease()
@@ -113,31 +114,31 @@ func NewProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
 // Returns the progress instance, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/current()
-func (pc _ProgressClass) CurrentProgress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("currentProgress"))
+func (pc _ProgressClass) CurrentProgress() Progress {
+	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("currentProgress"))
 	return rv
 }
 
 // Creates and returns a progress instance with the specified unit count that isn’t part of any existing progress tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/discreteProgress(totalUnitCount:)
-func (pc _ProgressClass) DiscreteProgressWithTotalUnitCount(unitCount unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("discreteProgressWithTotalUnitCount:"), unitCount)
+func (pc _ProgressClass) DiscreteProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("discreteProgressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 
 // Creates and returns a progress instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/init(totalUnitCount:)
-func (pc _ProgressClass) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
+func (pc _ProgressClass) ProgressWithTotalUnitCount(unitCount unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](objc.ID(pc.class), objc.Sel("progressWithTotalUnitCount:"), unitCount)
 	return rv
 }
 
 // Removes a proxy progress object that the add subscriber method returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/removeSubscriber(_:)
-func (pc _ProgressClass) RemoveSubscriber(subscriber objc.ID) {
+func (pc _ProgressClass) RemoveSubscriber(subscriber objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("removeSubscriber:"), subscriber)
 }
 
@@ -151,7 +152,7 @@ func (p_ Progress) PerformAsCurrentWithPendingUnitCountUsingBlock(unitCount unsa
 // Adds a process object as a suboperation of a progress tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/addChild(_:withPendingUnitCount:)
-func (p_ Progress) AddChildWithPendingUnitCount(child unsafe.Pointer, inUnitCount unsafe.Pointer) {
+func (p_ Progress) AddChildWithPendingUnitCount(child IProgress, inUnitCount unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addChild:withPendingUnitCount:"), child, inUnitCount)
 }
 
@@ -204,7 +205,7 @@ func (p_ Progress) EstimatedTimeRemaining() Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/estimatedTimeRemaining
-func (p_ Progress) SetEstimatedTimeRemaining(value Number) {
+func (p_ Progress) SetEstimatedTimeRemaining(value INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEstimatedTimeRemaining:"), value)
 }
 
@@ -222,7 +223,7 @@ func (p_ Progress) FileCompletedCount() Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileCompletedCount
-func (p_ Progress) SetFileCompletedCount(value Number) {
+func (p_ Progress) SetFileCompletedCount(value INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileCompletedCount:"), value)
 }
 
@@ -240,8 +241,26 @@ func (p_ Progress) FileTotalCount() Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProgress/fileTotalCount
-func (p_ Progress) SetFileTotalCount(value Number) {
+func (p_ Progress) SetFileTotalCount(value INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileTotalCount:"), value)
+}
+
+// The block to invoke when canceling progress.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancellationHandler
+func (p_ Progress) CancellationHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cancellationHandler"))
+	return rv
+}
+
+
+// SetCancellationHandler sets the value of the cancellationHandler property.
+// The block to invoke when canceling progress.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/cancellationHandler
+func (p_ Progress) SetCancellationHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCancellationHandler:"), value)
 }
 
 // The number of completed units of work for the current job.
@@ -265,8 +284,8 @@ func (p_ Progress) SetCompletedUnitCount(value unsafe.Pointer) {
 // The kind of file operation for the progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
-func (p_ Progress) FileOperationKind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fileOperationKind"))
+func (p_ Progress) FileOperationKind() ProgressFileOperationKind {
+	rv := objc.Send[ProgressFileOperationKind](p_.ID, objc.Sel("fileOperationKind"))
 	return rv
 }
 
@@ -276,7 +295,7 @@ func (p_ Progress) FileOperationKind() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
-func (p_ Progress) SetFileOperationKind(value unsafe.Pointer) {
+func (p_ Progress) SetFileOperationKind(value ProgressFileOperationKind) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileOperationKind:"), value)
 }
 
@@ -294,7 +313,7 @@ func (p_ Progress) FileURL() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileURL
-func (p_ Progress) SetFileURL(value URL) {
+func (p_ Progress) SetFileURL(value IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFileURL:"), value)
 }
 
@@ -395,8 +414,8 @@ func (p_ Progress) SetKind(value unsafe.Pointer) {
 // A more specific localized description of tracked progress for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) LocalizedAdditionalDescription() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedAdditionalDescription"))
+func (p_ Progress) LocalizedAdditionalDescription() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedAdditionalDescription"))
 	return rv
 }
 
@@ -406,15 +425,15 @@ func (p_ Progress) LocalizedAdditionalDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedAdditionalDescription
-func (p_ Progress) SetLocalizedAdditionalDescription(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), objc.String(value))
+func (p_ Progress) SetLocalizedAdditionalDescription(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedAdditionalDescription:"), value)
 }
 
 // A localized description of tracked progress for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) LocalizedDescription() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedDescription"))
+func (p_ Progress) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -424,8 +443,44 @@ func (p_ Progress) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/localizedDescription
-func (p_ Progress) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (p_ Progress) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), value)
+}
+
+// The block to invoke when pausing progress.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/pausingHandler
+func (p_ Progress) PausingHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pausingHandler"))
+	return rv
+}
+
+
+// SetPausingHandler sets the value of the pausingHandler property.
+// The block to invoke when pausing progress.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/pausingHandler
+func (p_ Progress) SetPausingHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPausingHandler:"), value)
+}
+
+// The block to invoke when progress resumes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/resumingHandler
+func (p_ Progress) ResumingHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resumingHandler"))
+	return rv
+}
+
+
+// SetResumingHandler sets the value of the resumingHandler property.
+// The block to invoke when progress resumes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/resumingHandler
+func (p_ Progress) SetResumingHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setResumingHandler:"), value)
 }
 
 // The total number of tracked units of work for the current progress.

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MediaPropertyPredicate] class.
@@ -86,8 +88,8 @@ func NewMediaPropertyPredicate() MediaPropertyPredicate {
 // Creates a media property predicate with the default comparison type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/init(value:forProperty:)
-func NewMediaPropertyPredicateWithValueForProperty(value objc.ID, property string) MediaPropertyPredicate {
-	rv := objc.Send[MediaPropertyPredicate](objc.ID(getMediaPropertyPredicateClass().class), objc.Sel("predicateWithValue:forProperty:"), value, objc.String(property))
+func NewMediaPropertyPredicateWithValueForProperty(value objectivec.IObject, property appkit.string) MediaPropertyPredicate {
+	rv := objc.Send[MediaPropertyPredicate](objc.ID(getMediaPropertyPredicateClass().class), objc.Sel("predicateWithValue:forProperty:"), value, property)
 	return rv
 }
 
@@ -96,8 +98,8 @@ func NewMediaPropertyPredicateWithValueForProperty(value objc.ID, property strin
 // Creates a media property predicate with a specified comparison type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/init(value:forProperty:comparisonType:)
-func NewMediaPropertyPredicateWithValueForPropertyComparisonType(value objc.ID, property string, comparisonType unsafe.Pointer) MediaPropertyPredicate {
-	rv := objc.Send[MediaPropertyPredicate](objc.ID(getMediaPropertyPredicateClass().class), objc.Sel("predicateWithValue:forProperty:comparisonType:"), value, objc.String(property), comparisonType)
+func NewMediaPropertyPredicateWithValueForPropertyComparisonType(value objectivec.IObject, property appkit.string, comparisonType IMediaPredicateComparison) MediaPropertyPredicate {
+	rv := objc.Send[MediaPropertyPredicate](objc.ID(getMediaPropertyPredicateClass().class), objc.Sel("predicateWithValue:forProperty:comparisonType:"), value, property, comparisonType)
 	return rv
 }
 
@@ -105,32 +107,32 @@ func NewMediaPropertyPredicateWithValueForPropertyComparisonType(value objc.ID, 
 // Creates a media property predicate with the default comparison type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/init(value:forProperty:)
-func (mc _MediaPropertyPredicateClass) PredicateWithValueForProperty(value objc.ID, property string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("predicateWithValue:forProperty:"), value, objc.String(property))
+func (mc _MediaPropertyPredicateClass) PredicateWithValueForProperty(value objectivec.IObject, property appkit.string) MediaPropertyPredicate {
+	rv := objc.Send[MediaPropertyPredicate](objc.ID(mc.class), objc.Sel("predicateWithValue:forProperty:"), value, property)
 	return rv
 }
 
 // Creates a media property predicate with a specified comparison type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/init(value:forProperty:comparisonType:)
-func (mc _MediaPropertyPredicateClass) PredicateWithValueForPropertyComparisonType(value objc.ID, property string, comparisonType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("predicateWithValue:forProperty:comparisonType:"), value, objc.String(property), comparisonType)
+func (mc _MediaPropertyPredicateClass) PredicateWithValueForPropertyComparisonType(value objectivec.IObject, property appkit.string, comparisonType IMediaPredicateComparison) MediaPropertyPredicate {
+	rv := objc.Send[MediaPropertyPredicate](objc.ID(mc.class), objc.Sel("predicateWithValue:forProperty:comparisonType:"), value, property, comparisonType)
 	return rv
 }
 
 // The type of matching comparison that the media property predicate performs when you invoke a query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/comparisonType
-func (m_ MediaPropertyPredicate) ComparisonType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("comparisonType"))
+func (m_ MediaPropertyPredicate) ComparisonType() MediaPredicateComparison {
+	rv := objc.Send[MediaPredicateComparison](m_.ID, objc.Sel("comparisonType"))
 	return rv
 }
 
 // The property that the media property predicate uses when you invoke a query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPropertyPredicate/property
-func (m_ MediaPropertyPredicate) Property() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("property"))
+func (m_ MediaPropertyPredicate) Property() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("property"))
 	return rv
 }
 

@@ -30,7 +30,7 @@ type _NDArrayClass struct {
 // An interface definition for the [NDArray] class.
 type INDArray interface {
 	objectivec.IObject
-	ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) unsafe.Pointer
+	ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) NDArray
 }
 
 //
@@ -78,8 +78,8 @@ func NewNDArray() NDArray {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArray/arrayView(withShape:strides:)
-func (n_ NDArray) ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("arrayViewWithShape:strides:"), shape, strides)
+func (n_ NDArray) ArrayViewWithShapeStrides(shape unsafe.Pointer, strides unsafe.Pointer) NDArray {
+	rv := objc.Send[NDArray](n_.ID, objc.Sel("arrayViewWithShape:strides:"), shape, strides)
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (n_ NDArray) SetDevice(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) Label() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("label"))
+func (n_ NDArray) Label() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (n_ NDArray) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/label
-func (n_ NDArray) SetLabel(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (n_ NDArray) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -160,8 +160,8 @@ func (n_ NDArray) SetNumberOfDimensions(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
-func (n_ NDArray) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("parent"))
+func (n_ NDArray) Parent() MPSNDArray {
+	rv := objc.Send[MPSNDArray](n_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -169,7 +169,7 @@ func (n_ NDArray) Parent() unsafe.Pointer {
 // SetParent sets the value of the parent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsndarray/parent
-func (n_ NDArray) SetParent(value unsafe.Pointer) {
+func (n_ NDArray) SetParent(value IMPSNDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setParent:"), value)
 }
 

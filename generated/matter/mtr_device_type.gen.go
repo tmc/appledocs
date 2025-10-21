@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,7 +85,7 @@ func NewMTRDeviceType() MTRDeviceType {
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)
-func NewMTRDeviceTypeForID(deviceTypeID foundation.Number) MTRDeviceType {
+func NewMTRDeviceTypeForID(deviceTypeID foundation.INumber) MTRDeviceType {
 	rv := objc.Send[MTRDeviceType](objc.ID(getMTRDeviceTypeClass().class), objc.Sel("deviceTypeForID:"), deviceTypeID)
 	return rv
 }
@@ -93,8 +94,8 @@ func NewMTRDeviceTypeForID(deviceTypeID foundation.Number) MTRDeviceType {
 // Returns an MTRDeviceType for the given ID, if the ID is known. Returns nil for unknown IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/init(forID:)
-func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID foundation.Number) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("deviceTypeForID:"), deviceTypeID)
+func (mc _MTRDeviceTypeClass) DeviceTypeForID(deviceTypeID foundation.INumber) MTRDeviceType {
+	rv := objc.Send[MTRDeviceType](objc.ID(mc.class), objc.Sel("deviceTypeForID:"), deviceTypeID)
 	return rv
 }
 
@@ -117,8 +118,8 @@ func (m_ MTRDeviceType) IsUtility() bool {
 // Returns the name of the device type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceType/name
-func (m_ MTRDeviceType) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRDeviceType) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

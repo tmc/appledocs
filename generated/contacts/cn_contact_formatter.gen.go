@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -29,9 +30,9 @@ type _CNContactFormatterClass struct {
 
 // An interface definition for the [CNContactFormatter] class.
 type ICNContactFormatter interface {
-	objectivec.IObject
-	AttributedStringFromContactDefaultAttributes(contact unsafe.Pointer, attributes objc.ID) unsafe.Pointer
-	StringFromContact(contact unsafe.Pointer) string
+	foundation.IFormatter
+	AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) foundation.AttributedString
+	StringFromContact(contact ICNContact) foundation.String
 }
 
 // An object that you use to format contact information before displaying it to the user.
@@ -40,14 +41,16 @@ type ICNContactFormatter interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter
 type CNContactFormatter struct {
-	objectivec.Object
+	foundation.Formatter
 }
 
 // CNContactFormatterFrom constructs a [CNContactFormatter] from an unsafe.Pointer.
 //
 // An object that you use to format contact information before displaying it to the user.
 func CNContactFormatterFrom(ptr unsafe.Pointer) CNContactFormatter {
-	return CNContactFormatter{objectivec.Object{objc.ID(ptr)}}
+	return CNContactFormatter{
+		Formatter: foundation.FormatterFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -85,23 +88,23 @@ func NewCNContactFormatter() CNContactFormatter {
 // Formats the contact name as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:style:defaultAttributes:)
-func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttributes(contact unsafe.Pointer, style unsafe.Pointer, attributes objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("attributedStringFromContact:style:defaultAttributes:"), contact, style, attributes)
+func (cc _CNContactFormatterClass) AttributedStringFromContactStyleDefaultAttributes(contact ICNContact, style CNContactFormatterStyle, attributes objectivec.IObject) foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](objc.ID(cc.class), objc.Sel("attributedStringFromContact:style:defaultAttributes:"), contact, style, attributes)
 	return rv
 }
 
 // Returns the delimiter to use between name components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/delimiter(for:)
-func (cc _CNContactFormatterClass) DelimiterForContact(contact unsafe.Pointer) string {
-	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
+func (cc _CNContactFormatterClass) DelimiterForContact(contact ICNContact) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("delimiterForContact:"), contact)
 	return rv
 }
 
 // Returns the required key descriptor for the specified formatting style of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/descriptorForRequiredKeys(for:)
-func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForStyle(style unsafe.Pointer) objc.ID {
+func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForStyle(style CNContactFormatterStyle) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("descriptorForRequiredKeysForStyle:"), style)
 	return rv
 }
@@ -109,16 +112,16 @@ func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForStyle(style unsaf
 // Returns the display name order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/nameOrder(for:)
-func (cc _CNContactFormatterClass) NameOrderForContact(contact unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nameOrderForContact:"), contact)
+func (cc _CNContactFormatterClass) NameOrderForContact(contact ICNContact) CNContactDisplayNameOrder {
+	rv := objc.Send[CNContactDisplayNameOrder](objc.ID(cc.class), objc.Sel("nameOrderForContact:"), contact)
 	return rv
 }
 
 // Returns the contact name, formatted with the specified formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:style:)
-func (cc _CNContactFormatterClass) StringFromContactStyle(contact unsafe.Pointer, style unsafe.Pointer) string {
-	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
+func (cc _CNContactFormatterClass) StringFromContactStyle(contact ICNContact, style CNContactFormatterStyle) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("stringFromContact:style:"), contact, style)
 	return rv
 }
 
@@ -139,16 +142,16 @@ func (cc _CNContactFormatterClass) DescriptorForRequiredKeysForNameOrder() objc.
 // Formats the contact name as an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/attributedString(from:defaultAttributes:)
-func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contact unsafe.Pointer, attributes objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attributedStringFromContact:defaultAttributes:"), contact, attributes)
+func (c_ CNContactFormatter) AttributedStringFromContactDefaultAttributes(contact ICNContact, attributes objectivec.IObject) foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("attributedStringFromContact:defaultAttributes:"), contact, attributes)
 	return rv
 }
 
 // Formats the contact name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/string(from:)
-func (c_ CNContactFormatter) StringFromContact(contact unsafe.Pointer) string {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringFromContact:"), contact)
+func (c_ CNContactFormatter) StringFromContact(contact ICNContact) foundation.String {
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("stringFromContact:"), contact)
 	return rv
 }
 
@@ -171,8 +174,8 @@ func (c_ CNContactFormatter) DescriptorForRequiredKeysForNameOrder() objc.ID {
 // The formatting style for the contact name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/style
-func (c_ CNContactFormatter) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
+func (c_ CNContactFormatter) Style() CNContactFormatterStyle {
+	rv := objc.Send[CNContactFormatterStyle](c_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -182,7 +185,7 @@ func (c_ CNContactFormatter) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFormatter/style
-func (c_ CNContactFormatter) SetStyle(value unsafe.Pointer) {
+func (c_ CNContactFormatter) SetStyle(value CNContactFormatterStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
 }
 

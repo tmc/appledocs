@@ -85,8 +85,8 @@ func NewAudioMixerNode() AudioMixerNode {
 // An audio bus that isn’t in a connected state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioMixerNode/nextAvailableInputBus
-func (a_ AudioMixerNode) NextAvailableInputBus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nextAvailableInputBus"))
+func (a_ AudioMixerNode) NextAvailableInputBus() AudioNodeBus {
+	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 

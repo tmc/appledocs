@@ -82,8 +82,8 @@ func NewCLayerNormalizationLayer() CLayerNormalizationLayer {
 // The beta tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/beta
-func (c_ CLayerNormalizationLayer) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+func (c_ CLayerNormalizationLayer) Beta() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
@@ -93,15 +93,15 @@ func (c_ CLayerNormalizationLayer) Beta() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/beta
-func (c_ CLayerNormalizationLayer) SetBeta(value unsafe.Pointer) {
+func (c_ CLayerNormalizationLayer) SetBeta(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
 // The beta tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/betaparameter
-func (c_ CLayerNormalizationLayer) BetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
+func (c_ CLayerNormalizationLayer) BetaParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("betaParameter"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (c_ CLayerNormalizationLayer) BetaParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/betaparameter
-func (c_ CLayerNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
+func (c_ CLayerNormalizationLayer) SetBetaParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
 // The gamma tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gamma
-func (c_ CLayerNormalizationLayer) Gamma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
+func (c_ CLayerNormalizationLayer) Gamma() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("gamma"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (c_ CLayerNormalizationLayer) Gamma() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gamma
-func (c_ CLayerNormalizationLayer) SetGamma(value unsafe.Pointer) {
+func (c_ CLayerNormalizationLayer) SetGamma(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
 // The gamma tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gammaparameter
-func (c_ CLayerNormalizationLayer) GammaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gammaParameter"))
+func (c_ CLayerNormalizationLayer) GammaParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("gammaParameter"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (c_ CLayerNormalizationLayer) GammaParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayernormalizationlayer/gammaparameter
-func (c_ CLayerNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
+func (c_ CLayerNormalizationLayer) SetGammaParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
 }
 

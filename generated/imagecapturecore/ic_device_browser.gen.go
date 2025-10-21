@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/mlcompute"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -124,8 +125,8 @@ func (i_ ICDeviceBrowser) SetDelegate(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/contentsauthorizationstatus
-func (i_ ICDeviceBrowser) ContentsAuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contentsAuthorizationStatus"))
+func (i_ ICDeviceBrowser) ContentsAuthorizationStatus() ICAuthorizationStatus {
+	rv := objc.Send[ICAuthorizationStatus](i_.ID, objc.Sel("contentsAuthorizationStatus"))
 	return rv
 }
 
@@ -133,14 +134,14 @@ func (i_ ICDeviceBrowser) ContentsAuthorizationStatus() unsafe.Pointer {
 // SetContentsAuthorizationStatus sets the value of the contentsAuthorizationStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/contentsauthorizationstatus
-func (i_ ICDeviceBrowser) SetContentsAuthorizationStatus(value unsafe.Pointer) {
+func (i_ ICDeviceBrowser) SetContentsAuthorizationStatus(value ICAuthorizationStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContentsAuthorizationStatus:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
-func (i_ ICDeviceBrowser) ControlAuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("controlAuthorizationStatus"))
+func (i_ ICDeviceBrowser) ControlAuthorizationStatus() ICAuthorizationStatus {
+	rv := objc.Send[ICAuthorizationStatus](i_.ID, objc.Sel("controlAuthorizationStatus"))
 	return rv
 }
 
@@ -148,15 +149,15 @@ func (i_ ICDeviceBrowser) ControlAuthorizationStatus() unsafe.Pointer {
 // SetControlAuthorizationStatus sets the value of the controlAuthorizationStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/controlauthorizationstatus
-func (i_ ICDeviceBrowser) SetControlAuthorizationStatus(value unsafe.Pointer) {
+func (i_ ICDeviceBrowser) SetControlAuthorizationStatus(value ICAuthorizationStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setControlAuthorizationStatus:"), value)
 }
 
 // All devices found by the browser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/devices
-func (i_ ICDeviceBrowser) Devices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("devices"))
+func (i_ ICDeviceBrowser) Devices() mlcompute.ICDevice {
+	rv := objc.Send[mlcompute.ICDevice](i_.ID, objc.Sel("devices"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (i_ ICDeviceBrowser) Devices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/devices
-func (i_ ICDeviceBrowser) SetDevices(value unsafe.Pointer) {
+func (i_ ICDeviceBrowser) SetDevices(value mlcompute.ICDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDevices:"), value)
 }
 
@@ -206,8 +207,8 @@ func (i_ ICDeviceBrowser) SetIsSuspended(value bool) {
 // Returns a device object that the client application should select when it launches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/preferreddevice
-func (i_ ICDeviceBrowser) PreferredDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredDevice"))
+func (i_ ICDeviceBrowser) PreferredDevice() mlcompute.ICDevice {
+	rv := objc.Send[mlcompute.ICDevice](i_.ID, objc.Sel("preferredDevice"))
 	return rv
 }
 
@@ -217,7 +218,7 @@ func (i_ ICDeviceBrowser) PreferredDevice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/icdevicebrowser/preferreddevice
-func (i_ ICDeviceBrowser) SetPreferredDevice(value unsafe.Pointer) {
+func (i_ ICDeviceBrowser) SetPreferredDevice(value mlcompute.ICDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredDevice:"), value)
 }
 

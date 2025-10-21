@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewHKVerifiableClinicalRecordSubject() HKVerifiableClinicalRecordSubject {
 // The subject’s birthdate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dateOfBirthComponents"))
+func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateOfBirthComponents"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value unsafe.Pointer) {
+func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateOfBirthComponents:"), value)
 }
 
 // The subject’s full name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("fullName"))
+func (h_ HKVerifiableClinicalRecordSubject) FullName() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("fullName"))
 	return rv
 }
 
@@ -112,8 +113,8 @@ func (h_ HKVerifiableClinicalRecordSubject) FullName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), objc.String(value))
+func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), value)
 }
 
 

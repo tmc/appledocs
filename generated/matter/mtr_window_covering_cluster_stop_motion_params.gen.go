@@ -87,7 +87,7 @@ func (m_ MTRWindowCoveringClusterStopMotionParams) ServerSideProcessingTimeout()
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclusterstopmotionparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterStopMotionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterStopMotionParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWindowCoveringClusterStopMotionParams) TimedInvokeTimeoutMs() founda
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclusterstopmotionparams/timedinvoketimeoutms
-func (m_ MTRWindowCoveringClusterStopMotionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterStopMotionParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

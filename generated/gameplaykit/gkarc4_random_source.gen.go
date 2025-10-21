@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ARC4RandomSource] class.
@@ -87,7 +88,7 @@ func NewARC4RandomSource() ARC4RandomSource {
 // Initializes a random source with the specified seed data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/init(seed:)
-func NewARC4RandomSourceWithSeed(seed unsafe.Pointer) ARC4RandomSource {
+func NewARC4RandomSourceWithSeed(seed foundation.IData) ARC4RandomSource {
 	instance := getARC4RandomSourceClass().Alloc()
 	rv := objc.Send[ARC4RandomSource](instance.ID, objc.Sel("initWithSeed:"), seed)
 	rv.Autorelease()
@@ -105,8 +106,8 @@ func (c_ ARC4RandomSource) DropValuesWithCount(count uint) {
 // The seed data that determines the random source’s behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-func (c_ ARC4RandomSource) Seed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("seed"))
+func (c_ ARC4RandomSource) Seed() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("seed"))
 	return rv
 }
 
@@ -116,7 +117,7 @@ func (c_ ARC4RandomSource) Seed() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKARC4RandomSource/seed
-func (c_ ARC4RandomSource) SetSeed(value unsafe.Pointer) {
+func (c_ ARC4RandomSource) SetSeed(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSeed:"), value)
 }
 

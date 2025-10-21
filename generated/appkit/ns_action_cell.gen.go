@@ -156,8 +156,8 @@ func (a_ ActionCell) SetControlView(value IView) {
 // The cell’s value as a single-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
-func (a_ ActionCell) FloatValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("floatValue"))
+func (a_ ActionCell) FloatValue() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("floatValue"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (a_ ActionCell) FloatValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscell/floatvalue
-func (a_ ActionCell) SetFloatValue(value unsafe.Pointer) {
+func (a_ ActionCell) SetFloatValue(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFloatValue:"), value)
 }
 

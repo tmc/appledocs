@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewINVoiceShortcut() INVoiceShortcut {
 // The unique identifier for the shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/identifier
-func (i_ INVoiceShortcut) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("identifier"))
+func (i_ INVoiceShortcut) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (i_ INVoiceShortcut) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/identifier
-func (i_ INVoiceShortcut) SetIdentifier(value unsafe.Pointer) {
+func (i_ INVoiceShortcut) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The phrase the user speaks to invoke the shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/invocationphrase
-func (i_ INVoiceShortcut) InvocationPhrase() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("invocationPhrase"))
+func (i_ INVoiceShortcut) InvocationPhrase() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("invocationPhrase"))
 	return rv
 }
 
@@ -112,15 +113,15 @@ func (i_ INVoiceShortcut) InvocationPhrase() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/invocationphrase
-func (i_ INVoiceShortcut) SetInvocationPhrase(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInvocationPhrase:"), objc.String(value))
+func (i_ INVoiceShortcut) SetInvocationPhrase(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInvocationPhrase:"), value)
 }
 
 // The shortcut Siri invokes when the user speaks the invocation phrase.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/shortcut
-func (i_ INVoiceShortcut) Shortcut() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("shortcut"))
+func (i_ INVoiceShortcut) Shortcut() INShortcut {
+	rv := objc.Send[INShortcut](i_.ID, objc.Sel("shortcut"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (i_ INVoiceShortcut) Shortcut() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/invoiceshortcut/shortcut
-func (i_ INVoiceShortcut) SetShortcut(value unsafe.Pointer) {
+func (i_ INVoiceShortcut) SetShortcut(value INShortcut) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcut:"), value)
 }
 

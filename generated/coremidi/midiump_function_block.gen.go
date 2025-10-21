@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,22 +78,22 @@ func NewMIDIUMPFunctionBlock() MIDIUMPFunctionBlock {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/direction
-func (m_ MIDIUMPFunctionBlock) Direction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("direction"))
+func (m_ MIDIUMPFunctionBlock) Direction() MIDIUMPFunctionBlockDirection {
+	rv := objc.Send[MIDIUMPFunctionBlockDirection](m_.ID, objc.Sel("direction"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/firstGroup
-func (m_ MIDIUMPFunctionBlock) FirstGroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("firstGroup"))
+func (m_ MIDIUMPFunctionBlock) FirstGroup() MIDIUMPGroupNumber {
+	rv := objc.Send[MIDIUMPGroupNumber](m_.ID, objc.Sel("firstGroup"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/functionBlockID
-func (m_ MIDIUMPFunctionBlock) FunctionBlockID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("functionBlockID"))
+func (m_ MIDIUMPFunctionBlock) FunctionBlockID() MIDIUMPFunctionBlockID {
+	rv := objc.Send[MIDIUMPFunctionBlockID](m_.ID, objc.Sel("functionBlockID"))
 	return rv
 }
 
@@ -112,43 +113,43 @@ func (m_ MIDIUMPFunctionBlock) MaxSysEx8Streams() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/midi1Info
-func (m_ MIDIUMPFunctionBlock) MIDI1Info() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MIDI1Info"))
+func (m_ MIDIUMPFunctionBlock) MIDI1Info() MIDIUMPFunctionBlockMIDI1Info {
+	rv := objc.Send[MIDIUMPFunctionBlockMIDI1Info](m_.ID, objc.Sel("MIDI1Info"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/midiCIDevice
-func (m_ MIDIUMPFunctionBlock) MidiCIDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("midiCIDevice"))
+func (m_ MIDIUMPFunctionBlock) MidiCIDevice() MIDICIDevice {
+	rv := objc.Send[MIDICIDevice](m_.ID, objc.Sel("midiCIDevice"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/name
-func (m_ MIDIUMPFunctionBlock) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPFunctionBlock) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/totalGroupsSpanned
-func (m_ MIDIUMPFunctionBlock) TotalGroupsSpanned() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalGroupsSpanned"))
+func (m_ MIDIUMPFunctionBlock) TotalGroupsSpanned() MIDIUInteger7 {
+	rv := objc.Send[MIDIUInteger7](m_.ID, objc.Sel("totalGroupsSpanned"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/uiHint
-func (m_ MIDIUMPFunctionBlock) UIHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("UIHint"))
+func (m_ MIDIUMPFunctionBlock) UIHint() MIDIUMPFunctionBlockUIHint {
+	rv := objc.Send[MIDIUMPFunctionBlockUIHint](m_.ID, objc.Sel("UIHint"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPFunctionBlock/umpEndpoint
-func (m_ MIDIUMPFunctionBlock) UMPEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("UMPEndpoint"))
+func (m_ MIDIUMPFunctionBlock) UMPEndpoint() MIDIUMPEndpoint {
+	rv := objc.Send[MIDIUMPEndpoint](m_.ID, objc.Sel("UMPEndpoint"))
 	return rv
 }
 

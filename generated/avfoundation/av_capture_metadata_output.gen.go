@@ -82,6 +82,14 @@ func NewCaptureMetadataOutput() CaptureMetadataOutput {
 }
 
 
+// The dispatch queue on which to execute the delegate’s methods.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMetadataOutput/metadataObjectsCallbackQueue
+func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsCallbackQueue"))
+	return rv
+}
+
 // An array of strings identifying the types of metadata objects that can be captured.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/availablemetadataobjecttypes
@@ -116,24 +124,6 @@ func (c_ CaptureMetadataOutput) MetadataObjectTypes() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjecttypes
 func (c_ CaptureMetadataOutput) SetMetadataObjectTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectTypes:"), value)
-}
-
-// The dispatch queue on which to execute the delegate’s methods.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectscallbackqueue
-func (c_ CaptureMetadataOutput) MetadataObjectsCallbackQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadataObjectsCallbackQueue"))
-	return rv
-}
-
-
-// SetMetadataObjectsCallbackQueue sets the value of the metadataObjectsCallbackQueue property.
-// The dispatch queue on which to execute the delegate’s methods.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectscallbackqueue
-func (c_ CaptureMetadataOutput) SetMetadataObjectsCallbackQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadataObjectsCallbackQueue:"), value)
 }
 
 // The delegate of the capture metadata output object.

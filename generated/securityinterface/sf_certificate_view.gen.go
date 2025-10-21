@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -29,13 +31,13 @@ type _SFCertificateViewClass struct {
 
 // An interface definition for the [SFCertificateView] class.
 type ISFCertificateView interface {
-	objectivec.IObject
+	appkit.IVisualEffectView
 	Certificate() unsafe.Pointer
 	DetailsDisclosed() bool
 	DetailsDisplayed() bool
 	IsEditable() bool
 	IsTrustDisplayed() bool
-	Policies() unsafe.Pointer
+	Policies() foundation.Array
 	PoliciesDisclosed() bool
 	SaveTrustSettings()
 	SetCertificate(certificate unsafe.Pointer)
@@ -43,7 +45,7 @@ type ISFCertificateView interface {
 	SetDisplayDetails(display bool)
 	SetDisplayTrust(display bool)
 	SetEditableTrust(editable bool)
-	SetPolicies(policies objc.ID)
+	SetPolicies(policies objectivec.IObject)
 	SetPoliciesDisclosed(disclosed bool)
 }
 
@@ -53,14 +55,16 @@ type ISFCertificateView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateView
 type SFCertificateView struct {
-	objectivec.Object
+	appkit.VisualEffectView
 }
 
 // SFCertificateViewFrom constructs a [SFCertificateView] from an unsafe.Pointer.
 //
 // A view that displays the contents of a certificate, with options to display certificate details, display trust settings, and allow users to edit a certificate’s trust settings.
 func SFCertificateViewFrom(ptr unsafe.Pointer) SFCertificateView {
-	return SFCertificateView{objectivec.Object{objc.ID(ptr)}}
+	return SFCertificateView{
+		VisualEffectView: appkit.VisualEffectViewFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -138,8 +142,8 @@ func (s_ SFCertificateView) IsTrustDisplayed() bool {
 // Returns an array of policies used to evaluate the status of the displayed certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateView/policies()
-func (s_ SFCertificateView) Policies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("policies"))
+func (s_ SFCertificateView) Policies() foundation.Array {
+	rv := objc.Send[foundation.Array](s_.ID, objc.Sel("policies"))
 	return rv
 }
 
@@ -196,7 +200,7 @@ func (s_ SFCertificateView) SetEditableTrust(editable bool) {
 // Specifies the policies to use when evaluating this certificate’s status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFCertificateView/setPolicies(_:)
-func (s_ SFCertificateView) SetPolicies(policies objc.ID) {
+func (s_ SFCertificateView) SetPolicies(policies objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPolicies:"), policies)
 }
 

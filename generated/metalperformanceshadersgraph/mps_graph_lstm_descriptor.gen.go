@@ -84,8 +84,8 @@ func NewGraphLSTMDescriptor() GraphLSTMDescriptor {
 // A parameter that defines the activation function used with the cell gate of the LSTM operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphLSTMDescriptor/cellGateActivation
-func (g_ GraphLSTMDescriptor) CellGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("cellGateActivation"))
+func (g_ GraphLSTMDescriptor) CellGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("cellGateActivation"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (g_ GraphLSTMDescriptor) CellGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphLSTMDescriptor/cellGateActivation
-func (g_ GraphLSTMDescriptor) SetCellGateActivation(value unsafe.Pointer) {
+func (g_ GraphLSTMDescriptor) SetCellGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCellGateActivation:"), value)
 }
 
 // A parameter that defines the activation function used with the current cell value of the LSTM operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/activation
-func (g_ GraphLSTMDescriptor) Activation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("activation"))
+func (g_ GraphLSTMDescriptor) Activation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("activation"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (g_ GraphLSTMDescriptor) Activation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/activation
-func (g_ GraphLSTMDescriptor) SetActivation(value unsafe.Pointer) {
+func (g_ GraphLSTMDescriptor) SetActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActivation:"), value)
 }
 
@@ -138,8 +138,8 @@ func (g_ GraphLSTMDescriptor) SetBidirectional(value bool) {
 // A parameter that defines the activation function used with the forget gate of the LSTM operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/forgetgateactivation
-func (g_ GraphLSTMDescriptor) ForgetGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("forgetGateActivation"))
+func (g_ GraphLSTMDescriptor) ForgetGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("forgetGateActivation"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (g_ GraphLSTMDescriptor) ForgetGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/forgetgateactivation
-func (g_ GraphLSTMDescriptor) SetForgetGateActivation(value unsafe.Pointer) {
+func (g_ GraphLSTMDescriptor) SetForgetGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setForgetGateActivation:"), value)
 }
 
@@ -174,8 +174,8 @@ func (g_ GraphLSTMDescriptor) SetForgetGateLast(value bool) {
 // A parameter that defines the activation function used with the input gate of the LSTM operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/inputgateactivation
-func (g_ GraphLSTMDescriptor) InputGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("inputGateActivation"))
+func (g_ GraphLSTMDescriptor) InputGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("inputGateActivation"))
 	return rv
 }
 
@@ -185,15 +185,15 @@ func (g_ GraphLSTMDescriptor) InputGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/inputgateactivation
-func (g_ GraphLSTMDescriptor) SetInputGateActivation(value unsafe.Pointer) {
+func (g_ GraphLSTMDescriptor) SetInputGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputGateActivation:"), value)
 }
 
 // A parameter that defines the activation function used with the output gate of the LSTM operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/outputgateactivation
-func (g_ GraphLSTMDescriptor) OutputGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputGateActivation"))
+func (g_ GraphLSTMDescriptor) OutputGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("outputGateActivation"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (g_ GraphLSTMDescriptor) OutputGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphlstmdescriptor/outputgateactivation
-func (g_ GraphLSTMDescriptor) SetOutputGateActivation(value unsafe.Pointer) {
+func (g_ GraphLSTMDescriptor) SetOutputGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputGateActivation:"), value)
 }
 

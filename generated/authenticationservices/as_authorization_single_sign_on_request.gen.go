@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AuthorizationSingleSignOnRequest] class.
@@ -82,8 +83,8 @@ func NewAuthorizationSingleSignOnRequest() AuthorizationSingleSignOnRequest {
 // Options that control the authorization process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("authorizationOptions"))
+func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []foundation.URLQueryItem {
+	rv := objc.Send[[]foundation.URLQueryItem](a_.ID, objc.Sel("authorizationOptions"))
 	return rv
 }
 
@@ -93,7 +94,7 @@ func (a_ AuthorizationSingleSignOnRequest) AuthorizationOptions() []unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnRequest/authorizationOptions
-func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []unsafe.Pointer) {
+func (a_ AuthorizationSingleSignOnRequest) SetAuthorizationOptions(value []foundation.IURLQueryItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

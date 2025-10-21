@@ -30,7 +30,7 @@ type _AttitudeClass struct {
 // An interface definition for the [Attitude] class.
 type IAttitude interface {
 	objectivec.IObject
-	MultiplyByInverseOfAttitude(attitude unsafe.Pointer)
+	MultiplyByInverseOfAttitude(attitude ICMAttitude)
 }
 
 // The device’s orientation relative to a known frame of reference at a point in time.
@@ -84,7 +84,7 @@ func NewAttitude() Attitude {
 // Yields the change in attitude given a specific attitude.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAttitude/multiply(byInverseOf:)
-func (a_ Attitude) MultiplyByInverseOfAttitude(attitude unsafe.Pointer) {
+func (a_ Attitude) MultiplyByInverseOfAttitude(attitude ICMAttitude) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("multiplyByInverseOfAttitude:"), attitude)
 }
 

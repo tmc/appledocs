@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BluetoothPairingController] class.
@@ -30,9 +31,9 @@ type _BluetoothPairingControllerClass struct {
 // An interface definition for the [BluetoothPairingController] class.
 type IBluetoothPairingController interface {
 	appkit.IWindowController
-	GetPrompt() string
-	GetTitle() string
-	SetPrompt(prompt string)
+	GetPrompt() foundation.String
+	GetTitle() foundation.String
+	SetPrompt(prompt appkit.string)
 }
 
 // A NSWindowController subclass to display a window to initiate pairing to other bluetooth devices.
@@ -88,24 +89,24 @@ func NewBluetoothPairingController() BluetoothPairingController {
 // Returns the title of the default/select button in the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getPrompt()
-func (b_ BluetoothPairingController) GetPrompt() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("getPrompt"))
+func (b_ BluetoothPairingController) GetPrompt() foundation.String {
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getPrompt"))
 	return rv
 }
 
 // Returns the title of the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/getTitle()
-func (b_ BluetoothPairingController) GetTitle() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("getTitle"))
+func (b_ BluetoothPairingController) GetTitle() foundation.String {
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("getTitle"))
 	return rv
 }
 
 // Sets the title of the default/select button in the device selector panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPairingController/setPrompt(_:)
-func (b_ BluetoothPairingController) SetPrompt(prompt string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setPrompt:"), objc.String(prompt))
+func (b_ BluetoothPairingController) SetPrompt(prompt appkit.string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setPrompt:"), prompt)
 }
 
 

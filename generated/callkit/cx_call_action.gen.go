@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXCallAction] class.
@@ -86,7 +87,7 @@ func NewCXCallAction() CXCallAction {
 // Initializes a new action for a call identified by a given UUID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(call:)
-func NewCXCallActionWithCallUUID(callUUID unsafe.Pointer) CXCallAction {
+func NewCXCallActionWithCallUUID(callUUID foundation.IUUID) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCallUUID:"), callUUID)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCXCallActionWithCallUUID(callUUID unsafe.Pointer) CXCallAction {
 // Creates a new action for a call with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/init(coder:)
-func NewCXCallActionWithCoder(aDecoder unsafe.Pointer) CXCallAction {
+func NewCXCallActionWithCoder(aDecoder foundation.ICoder) CXCallAction {
 	instance := getCXCallActionClass().Alloc()
 	rv := objc.Send[CXCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -109,8 +110,8 @@ func NewCXCallActionWithCoder(aDecoder unsafe.Pointer) CXCallAction {
 // The unique identifier for the call associated with the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/callUUID
-func (c_ CXCallAction) CallUUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callUUID"))
+func (c_ CXCallAction) CallUUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("callUUID"))
 	return rv
 }
 

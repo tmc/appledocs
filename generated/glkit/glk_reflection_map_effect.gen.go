@@ -92,8 +92,8 @@ func (g_ GLKReflectionMapEffect) PrepareToDraw() {
 // The reflection matrix to apply to the normals of the submitted vertices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
-func (g_ GLKReflectionMapEffect) Matrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("matrix"))
+func (g_ GLKReflectionMapEffect) Matrix() GLKMatrix3 {
+	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("matrix"))
 	return rv
 }
 
@@ -103,23 +103,23 @@ func (g_ GLKReflectionMapEffect) Matrix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/matrix
-func (g_ GLKReflectionMapEffect) SetMatrix(value unsafe.Pointer) {
+func (g_ GLKReflectionMapEffect) SetMatrix(value IGLKMatrix3) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMatrix:"), value)
 }
 
 // The texture map to apply in the reflection stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKReflectionMapEffect/textureCubeMap
-func (g_ GLKReflectionMapEffect) TextureCubeMap() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureCubeMap"))
+func (g_ GLKReflectionMapEffect) TextureCubeMap() GLKEffectPropertyTexture {
+	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
 }
 
 // The order in which textures are applied to rendered primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
-func (g_ GLKReflectionMapEffect) TextureOrder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureOrder"))
+func (g_ GLKReflectionMapEffect) TextureOrder() GLKEffectPropertyTexture {
+	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureOrder"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (g_ GLKReflectionMapEffect) TextureOrder() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder
-func (g_ GLKReflectionMapEffect) SetTextureOrder(value unsafe.Pointer) {
+func (g_ GLKReflectionMapEffect) SetTextureOrder(value IGLKEffectPropertyTexture) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTextureOrder:"), value)
 }
 

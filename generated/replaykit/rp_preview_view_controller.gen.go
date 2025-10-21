@@ -85,8 +85,8 @@ func NewRPPreviewViewController() RPPreviewViewController {
 // The type of screen that appears when the view is presented.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/mode
-func (r_ RPPreviewViewController) Mode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("mode"))
+func (r_ RPPreviewViewController) Mode() RPPreviewViewControllerMode {
+	rv := objc.Send[RPPreviewViewControllerMode](r_.ID, objc.Sel("mode"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (r_ RPPreviewViewController) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewController/mode
-func (r_ RPPreviewViewController) SetMode(value unsafe.Pointer) {
+func (r_ RPPreviewViewController) SetMode(value RPPreviewViewControllerMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setMode:"), value)
 }
 

@@ -97,8 +97,8 @@ func (p_ PHImageRequestOptions) SetAllowSecondaryDegradedImage(value bool) {
 // The requested image quality and delivery priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/deliveryMode
-func (p_ PHImageRequestOptions) DeliveryMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("deliveryMode"))
+func (p_ PHImageRequestOptions) DeliveryMode() PHImageRequestOptionsDeliveryMode {
+	rv := objc.Send[PHImageRequestOptionsDeliveryMode](p_.ID, objc.Sel("deliveryMode"))
 	return rv
 }
 
@@ -108,7 +108,7 @@ func (p_ PHImageRequestOptions) DeliveryMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/deliveryMode
-func (p_ PHImageRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
+func (p_ PHImageRequestOptions) SetDeliveryMode(value PHImageRequestOptionsDeliveryMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
 
@@ -187,8 +187,8 @@ func (p_ PHImageRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 // A mode that specifies how to resize the requested image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/resizeMode
-func (p_ PHImageRequestOptions) ResizeMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resizeMode"))
+func (p_ PHImageRequestOptions) ResizeMode() PHImageRequestOptionsResizeMode {
+	rv := objc.Send[PHImageRequestOptionsResizeMode](p_.ID, objc.Sel("resizeMode"))
 	return rv
 }
 
@@ -198,15 +198,15 @@ func (p_ PHImageRequestOptions) ResizeMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/resizeMode
-func (p_ PHImageRequestOptions) SetResizeMode(value unsafe.Pointer) {
+func (p_ PHImageRequestOptions) SetResizeMode(value PHImageRequestOptionsResizeMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResizeMode:"), value)
 }
 
 // The version of the image to be requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/version
-func (p_ PHImageRequestOptions) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("version"))
+func (p_ PHImageRequestOptions) Version() PHImageRequestOptionsVersion {
+	rv := objc.Send[PHImageRequestOptionsVersion](p_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -216,7 +216,7 @@ func (p_ PHImageRequestOptions) Version() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageRequestOptions/version
-func (p_ PHImageRequestOptions) SetVersion(value unsafe.Pointer) {
+func (p_ PHImageRequestOptions) SetVersion(value IPHImageRequestOptionsVersion) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
 

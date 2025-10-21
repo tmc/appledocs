@@ -82,8 +82,8 @@ func NewNEIPv6Route() NEIPv6Route {
 // The destination network address of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationaddress
-func (n_ NEIPv6Route) DestinationAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("destinationAddress"))
+func (n_ NEIPv6Route) DestinationAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("destinationAddress"))
 	return rv
 }
 
@@ -93,8 +93,8 @@ func (n_ NEIPv6Route) DestinationAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationaddress
-func (n_ NEIPv6Route) SetDestinationAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), objc.String(value))
+func (n_ NEIPv6Route) SetDestinationAddress(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationAddress:"), value)
 }
 
 // The destination network prefix length of the route.
@@ -111,15 +111,15 @@ func (n_ NEIPv6Route) DestinationNetworkPrefixLength() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/destinationnetworkprefixlength
-func (n_ NEIPv6Route) SetDestinationNetworkPrefixLength(value foundation.Number) {
+func (n_ NEIPv6Route) SetDestinationNetworkPrefixLength(value foundation.INumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDestinationNetworkPrefixLength:"), value)
 }
 
 // The address of the next-hop gateway of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/gatewayaddress
-func (n_ NEIPv6Route) GatewayAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("gatewayAddress"))
+func (n_ NEIPv6Route) GatewayAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("gatewayAddress"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (n_ NEIPv6Route) GatewayAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6route/gatewayaddress
-func (n_ NEIPv6Route) SetGatewayAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), objc.String(value))
+func (n_ NEIPv6Route) SetGatewayAddress(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setGatewayAddress:"), value)
 }
 
 // The IPv6 network traffic that the system routes to the primary physical interface, not the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/excludedroutes
-func (n_ NEIPv6Route) ExcludedRoutes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("excludedRoutes"))
+func (n_ NEIPv6Route) ExcludedRoutes() NEIPv6Route {
+	rv := objc.Send[NEIPv6Route](n_.ID, objc.Sel("excludedRoutes"))
 	return rv
 }
 
@@ -147,15 +147,15 @@ func (n_ NEIPv6Route) ExcludedRoutes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/excludedroutes
-func (n_ NEIPv6Route) SetExcludedRoutes(value unsafe.Pointer) {
+func (n_ NEIPv6Route) SetExcludedRoutes(value INEIPv6Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExcludedRoutes:"), value)
 }
 
 // The IPv6 network traffic that the system routes to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/includedroutes
-func (n_ NEIPv6Route) IncludedRoutes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("includedRoutes"))
+func (n_ NEIPv6Route) IncludedRoutes() NEIPv6Route {
+	rv := objc.Send[NEIPv6Route](n_.ID, objc.Sel("includedRoutes"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (n_ NEIPv6Route) IncludedRoutes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neipv6settings/includedroutes
-func (n_ NEIPv6Route) SetIncludedRoutes(value unsafe.Pointer) {
+func (n_ NEIPv6Route) SetIncludedRoutes(value INEIPv6Route) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedRoutes:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -85,9 +87,9 @@ func NewINRestaurantReservation() INRestaurantReservation {
 // Creates a new restaurant reservation with the provided information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:
-func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference unsafe.Pointer, reservationNumber string, bookingTime unsafe.Pointer, reservationStatus unsafe.Pointer, reservationHolderName string, actions unsafe.Pointer, reservationDuration unsafe.Pointer, partySize foundation.Number, restaurantLocation unsafe.Pointer) INRestaurantReservation {
+func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeReservationStatusReservationHolderNameActionsReservationDurationPartySizeRestaurantLocation(itemReference INSpeakableString, reservationNumber appkit.string, bookingTime foundation.IDate, reservationStatus INReservationStatus, reservationHolderName appkit.string, actions []INReservationAction, reservationDuration INDateComponentsRange, partySize foundation.INumber, restaurantLocation corelocation.IPlacemark) INRestaurantReservation {
 	instance := getINRestaurantReservationClass().Alloc()
-	rv := objc.Send[INRestaurantReservation](instance.ID, objc.Sel("initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:"), itemReference, objc.String(reservationNumber), bookingTime, reservationStatus, objc.String(reservationHolderName), actions, reservationDuration, partySize, restaurantLocation)
+	rv := objc.Send[INRestaurantReservation](instance.ID, objc.Sel("initWithItemReference:reservationNumber:bookingTime:reservationStatus:reservationHolderName:actions:reservationDuration:partySize:restaurantLocation:"), itemReference, reservationNumber, bookingTime, reservationStatus, reservationHolderName, actions, reservationDuration, partySize, restaurantLocation)
 	rv.Autorelease()
 	return rv
 }
@@ -96,8 +98,8 @@ func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeRese
 // The name and location of the restaurant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRestaurantReservation/restaurantLocation
-func (i_ INRestaurantReservation) RestaurantLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("restaurantLocation"))
+func (i_ INRestaurantReservation) RestaurantLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("restaurantLocation"))
 	return rv
 }
 
@@ -122,8 +124,8 @@ func (i_ INRestaurantReservation) SetPartySize(value int) {
 // The date and time range that defines beginning and end of the restaurant reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
-func (i_ INRestaurantReservation) ReservationDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationDuration"))
+func (i_ INRestaurantReservation) ReservationDuration() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("reservationDuration"))
 	return rv
 }
 
@@ -133,7 +135,7 @@ func (i_ INRestaurantReservation) ReservationDuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrestaurantreservation/reservationduration
-func (i_ INRestaurantReservation) SetReservationDuration(value unsafe.Pointer) {
+func (i_ INRestaurantReservation) SetReservationDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
 

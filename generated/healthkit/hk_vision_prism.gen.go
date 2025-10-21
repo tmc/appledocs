@@ -83,8 +83,8 @@ func NewHKVisionPrism() HKVisionPrism {
 // The strength of the correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
-func (h_ HKVisionPrism) Amount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("amount"))
+func (h_ HKVisionPrism) Amount() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("amount"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (h_ HKVisionPrism) Amount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/amount
-func (h_ HKVisionPrism) SetAmount(value unsafe.Pointer) {
+func (h_ HKVisionPrism) SetAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAmount:"), value)
 }
 
 // The orientation of the adjustment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
-func (h_ HKVisionPrism) Angle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("angle"))
+func (h_ HKVisionPrism) Angle() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("angle"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (h_ HKVisionPrism) Angle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/angle
-func (h_ HKVisionPrism) SetAngle(value unsafe.Pointer) {
+func (h_ HKVisionPrism) SetAngle(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAngle:"), value)
 }
 
@@ -137,8 +137,8 @@ func (h_ HKVisionPrism) SetEye(value unsafe.Pointer) {
 // The strength of the horizontal correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
-func (h_ HKVisionPrism) HorizontalAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("horizontalAmount"))
+func (h_ HKVisionPrism) HorizontalAmount() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("horizontalAmount"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (h_ HKVisionPrism) HorizontalAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/horizontalamount
-func (h_ HKVisionPrism) SetHorizontalAmount(value unsafe.Pointer) {
+func (h_ HKVisionPrism) SetHorizontalAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setHorizontalAmount:"), value)
 }
 
@@ -173,8 +173,8 @@ func (h_ HKVisionPrism) SetHorizontalBase(value unsafe.Pointer) {
 // The strength of the vertical correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
-func (h_ HKVisionPrism) VerticalAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("verticalAmount"))
+func (h_ HKVisionPrism) VerticalAmount() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("verticalAmount"))
 	return rv
 }
 
@@ -184,7 +184,7 @@ func (h_ HKVisionPrism) VerticalAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprism/verticalamount
-func (h_ HKVisionPrism) SetVerticalAmount(value unsafe.Pointer) {
+func (h_ HKVisionPrism) SetVerticalAmount(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVerticalAmount:"), value)
 }
 

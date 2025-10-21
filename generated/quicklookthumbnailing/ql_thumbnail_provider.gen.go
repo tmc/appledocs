@@ -30,7 +30,7 @@ type _ThumbnailProviderClass struct {
 // An interface definition for the [ThumbnailProvider] class.
 type IThumbnailProvider interface {
 	objectivec.IObject
-	ProvideThumbnailForFileRequestCompletionHandler(request unsafe.Pointer, handler unsafe.Pointer)
+	ProvideThumbnailForFileRequestCompletionHandler(request IQLFileThumbnailRequest, handler unsafe.Pointer)
 }
 
 // An abstract base class for creating thumbnails of custom file types.
@@ -82,7 +82,7 @@ func NewThumbnailProvider() ThumbnailProvider {
 // Creates a thumbnail of a custom file type for a specific request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailProvider/provideThumbnail(for:_:)
-func (t_ ThumbnailProvider) ProvideThumbnailForFileRequestCompletionHandler(request unsafe.Pointer, handler unsafe.Pointer) {
+func (t_ ThumbnailProvider) ProvideThumbnailForFileRequestCompletionHandler(request IQLFileThumbnailRequest, handler unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("provideThumbnailForFileRequest:completionHandler:"), request, handler)
 }
 

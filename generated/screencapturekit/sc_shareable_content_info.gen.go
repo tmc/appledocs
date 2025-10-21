@@ -90,8 +90,8 @@ func (s_ ShareableContentInfo) ContentRect() coregraphics.CGRect {
 // The current presentation style of the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/style
-func (s_ ShareableContentInfo) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("style"))
+func (s_ ShareableContentInfo) Style() ShareableContentStyle {
+	rv := objc.Send[ShareableContentStyle](s_.ID, objc.Sel("style"))
 	return rv
 }
 

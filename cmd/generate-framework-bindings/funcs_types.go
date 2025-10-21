@@ -32,7 +32,7 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 func mapObjCTypeToGo(objcType, framework string) string {
 	objcType = strings.TrimSpace(objcType)
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "CellAttribute") || strings.Contains(objcType, "NSApplication")) {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "CellAttribute") || strings.Contains(objcType, "NSApplication") || strings.Contains(objcType, "ErrorDomain")) {
 		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo ENTRY: objcType=%s framework=%s\n", objcType, framework)
 	}
 
@@ -223,12 +223,12 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Resolve cross-framework types (e.g., CGAffineTransform -> coregraphics.CGAffineTransform)
 	resolvedType := resolveType(framework, goType)
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "NSApplication")) {
-		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: before resolve goType=%s, after resolve=%s\n", goType, resolvedType)
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "AttributedString") || strings.Contains(objcType, "NSApplication") || objcType == "NSString *" || goType == "string") {
+		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo: objcType=%s framework=%s before resolve goType=%s, after resolve=%s\n", objcType, framework, goType, resolvedType)
 	}
 	goType = resolvedType
 
-	if os.Getenv("DEBUG_TYPEMAP") == "1" && strings.Contains(objcType, "NSApplication") {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (strings.Contains(objcType, "NSApplication") || goType == "appkit.string") {
 		fmt.Fprintf(os.Stderr, "DEBUG mapObjCTypeToGo EXIT: objcType=%s framework=%s returning=%s\n", objcType, framework, goType)
 	}
 
@@ -246,8 +246,49 @@ func mapObjCTypeToGo(objcType, framework string) string {
 //	resolveType("AppKit", "MutableAttributedString") -> "foundation.MutableAttributedString" (cross-framework)
 //	resolveType("Foundation", "Array") -> "Array" (same framework)
 func resolveType(framework, typeName string) string {
+	if os.Getenv("DEBUG_TYPEMAP") == "1" && (typeName == "string" || strings.Contains(typeName, "string")) {
+		fmt.Fprintf(os.Stderr, "DEBUG resolveType ENTRY: framework=%s typeName=%q\n", framework, typeName)
+	}
+
 	if typeName == "" {
 		return ""
+	}
+
+	// Never qualify Go primitives - they should always be unqualified
+	goPrimitives := map[string]bool{
+		"string":         true,
+		"int":            true,
+		"int8":           true,
+		"int16":          true,
+		"int32":          true,
+		"int64":          true,
+		"uint":           true,
+		"uint8":          true,
+		"uint16":         true,
+		"uint32":         true,
+		"uint64":         true,
+		"float32":        true,
+		"float64":        true,
+		"bool":           true,
+		"byte":           true,
+		"rune":           true,
+		"uintptr":        true,
+		"unsafe.Pointer": true,
+	}
+	if goPrimitives[typeName] {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" && typeName == "string" {
+			fmt.Fprintf(os.Stderr, "DEBUG resolveType: returning primitive 'string' unqualified for framework %s\n", framework)
+		}
+		return typeName
+	}
+
+	// ALSO check for capital-S String which should map to lowercase string
+	// This happens when NSString typedef resolves to "String" instead of "string"
+	if typeName == "String" {
+		if os.Getenv("DEBUG_TYPEMAP") == "1" {
+			fmt.Fprintf(os.Stderr, "DEBUG resolveType: converting 'String' to 'string' for framework %s\n", framework)
+		}
+		return "string"
 	}
 
 	// Strip self-package qualifications (e.g., foundation.NSString in Foundation -> NSString)

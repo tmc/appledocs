@@ -86,7 +86,7 @@ func NewPHASESwitchNodeDefinition() PHASESwitchNodeDefinition {
 // Creates a node that invokes a child node based on the value of the given parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESwitchNodeDefinition/init(switchMetaParameterDefinition:)
-func NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(switchMetaParameterDefinition unsafe.Pointer) PHASESwitchNodeDefinition {
+func NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(switchMetaParameterDefinition IPHASEStringMetaParameterDefinition) PHASESwitchNodeDefinition {
 	instance := getPHASESwitchNodeDefinitionClass().Alloc()
 	rv := objc.Send[PHASESwitchNodeDefinition](instance.ID, objc.Sel("initWithSwitchMetaParameterDefinition:"), switchMetaParameterDefinition)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(switchMetaPar
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASESwitchNodeDefinition) GlobalMetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+func (p_ PHASESwitchNodeDefinition) GlobalMetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
@@ -108,15 +108,15 @@ func (p_ PHASESwitchNodeDefinition) GlobalMetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASESwitchNodeDefinition) SetGlobalMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+func (p_ PHASESwitchNodeDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
 // The object’s meta parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASESwitchNodeDefinition) MetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+func (p_ PHASESwitchNodeDefinition) MetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
@@ -126,15 +126,15 @@ func (p_ PHASESwitchNodeDefinition) MetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASESwitchNodeDefinition) SetMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+func (p_ PHASESwitchNodeDefinition) SetMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
 // The meta parameter that holds the name of the child node to invoke.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition
-func (p_ PHASESwitchNodeDefinition) SwitchMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("switchMetaParameterDefinition"))
+func (p_ PHASESwitchNodeDefinition) SwitchMetaParameterDefinition() PHASEStringMetaParameterDefinition {
+	rv := objc.Send[PHASEStringMetaParameterDefinition](p_.ID, objc.Sel("switchMetaParameterDefinition"))
 	return rv
 }
 
@@ -144,7 +144,7 @@ func (p_ PHASESwitchNodeDefinition) SwitchMetaParameterDefinition() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseswitchnodedefinition/switchmetaparameterdefinition
-func (p_ PHASESwitchNodeDefinition) SetSwitchMetaParameterDefinition(value unsafe.Pointer) {
+func (p_ PHASESwitchNodeDefinition) SetSwitchMetaParameterDefinition(value IPHASEStringMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSwitchMetaParameterDefinition:"), value)
 }
 

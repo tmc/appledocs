@@ -125,8 +125,8 @@ func (r_ RectangleFeature) TopRight() coregraphics.CGPoint {
 // A detector that searches for rectangular areas in a still image or video, returning
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortyperectangle
-func (r_ RectangleFeature) CIDetectorTypeRectangle() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
+func (r_ RectangleFeature) CIDetectorTypeRectangle() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("CIDetectorTypeRectangle"))
 	return rv
 }
 

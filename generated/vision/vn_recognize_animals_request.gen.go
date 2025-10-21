@@ -84,8 +84,8 @@ func NewRecognizeAnimalsRequest() RecognizeAnimalsRequest {
 // The results of the request to recognize animals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/results
-func (r_ RecognizeAnimalsRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("results"))
+func (r_ RecognizeAnimalsRequest) Results() VNRecognizedObjectObservation {
+	rv := objc.Send[VNRecognizedObjectObservation](r_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (r_ RecognizeAnimalsRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizeanimalsrequest/results
-func (r_ RecognizeAnimalsRequest) SetResults(value unsafe.Pointer) {
+func (r_ RecognizeAnimalsRequest) SetResults(value IVNRecognizedObjectObservation) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setResults:"), value)
 }
 

@@ -85,7 +85,7 @@ func NewCKReference() CKReference {
 // Creates a reference object that points to the specified record object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(record:action:)
-func NewCKReferenceWithRecordAction(record unsafe.Pointer, action unsafe.Pointer) CKReference {
+func NewCKReferenceWithRecordAction(record ICKRecord, action ICKReferenceAction) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecord:action:"), record, action)
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewCKReferenceWithRecordAction(record unsafe.Pointer, action unsafe.Pointer
 // Creates a reference object that points to the record with the specified ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/init(recordID:action:)
-func NewCKReferenceWithRecordIDAction(recordID unsafe.Pointer, action unsafe.Pointer) CKReference {
+func NewCKReferenceWithRecordIDAction(recordID ICKRecordID, action ICKReferenceAction) CKReference {
 	instance := getCKReferenceClass().Alloc()
 	rv := objc.Send[CKReference](instance.ID, objc.Sel("initWithRecordID:action:"), recordID, action)
 	rv.Autorelease()
@@ -108,16 +108,16 @@ func NewCKReferenceWithRecordIDAction(recordID unsafe.Pointer, action unsafe.Poi
 // The ownership behavior for the records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/action-swift.property
-func (c_ CKReference) ReferenceAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("referenceAction"))
+func (c_ CKReference) ReferenceAction() CKReferenceAction {
+	rv := objc.Send[CKReferenceAction](c_.ID, objc.Sel("referenceAction"))
 	return rv
 }
 
 // The ID of the referenced record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/Reference/recordID
-func (c_ CKReference) RecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
+func (c_ CKReference) RecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 

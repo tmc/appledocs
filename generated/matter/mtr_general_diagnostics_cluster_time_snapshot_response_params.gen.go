@@ -100,7 +100,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) PosixTimeMs() f
 // SetPosixTimeMs sets the value of the posixTimeMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/posixTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetPosixTimeMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosixTimeMs:"), value)
 }
 
@@ -115,7 +115,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SystemTimeMs() 
 // SetSystemTimeMs sets the value of the systemTimeMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams/systemTimeMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams) SetSystemTimeMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemTimeMs:"), value)
 }
 

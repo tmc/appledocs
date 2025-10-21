@@ -6,10 +6,11 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
+	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
-// Accelerate Functions (241 total)
+// Accelerate Functions (255 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -41,10 +42,13 @@ var (
 	_BNNSGraphCompileOptionsGetOptimizationPreference func(unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetMessageLogCallback func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetMessageLogMask func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphCompileOptionsSetOptimizationPreference func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetOutputFD func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphCompileOptionsSetOutputPath func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphCompileOptionsSetTargetSingleThread func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphContextEnableNanAndInfChecks func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphContextExecute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSGraphContextGetTensor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphContextGetWorkspaceSize func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphContextMakeStreaming func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSGraphContextSetStreamingAdvanceCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -61,6 +65,7 @@ var (
 	_BNNSNDArrayFullyConnectedSparsifySparseCSR func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSNDArrayGetDataSize func(unsafe.Pointer) unsafe.Pointer
 	_BNNSOptimizerStep func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_BNNSRandomGeneratorGetState func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSScatter func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSScatterND func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_BNNSShuffle func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -100,16 +105,20 @@ var (
 	_vDSP_biquad_CreateSetupD func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_biquad_DestroySetupD func(unsafe.Pointer) unsafe.Pointer
 	_vDSP_biquad_SetCoefficientsDouble func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vDSP_biquad_SetCoefficientsSingle func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_ctoz func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_ctozD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_fft2d_zip func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_fft_zrip func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_fftm_zrip func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vDSP_normalize func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_normalizeD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vDSP_sve func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_sve_svesq func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_sve_svesqD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_svsD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_vpoly func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vDSP_vsub func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_vsubD func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_vtmerg func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vDSP_ztoc func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -117,6 +126,7 @@ var (
 	_vImageAffineWarpD_ARGBFFFF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageAlphaBlend_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageAlphaBlend_PlanarF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageBuffer_InitWithCGImage func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, coregraphics.CGImageRef, unsafe.Pointer) unsafe.Pointer
 	_vImageBuffer_InitWithCVPixelBuffer func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageCVImageFormat_CopyConversionMatrix func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageCVImageFormat_CreateWithCVPixelBuffer func(unsafe.Pointer) unsafe.Pointer
@@ -131,7 +141,7 @@ var (
 	_vImageConvert_YpCbCrToARGB_GenerateConversion func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConverter_CreateForCGToCVImageFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConverter_CreateForCVToCGImageFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_vImageConverter_CreateWithCGColorConversionInfo func(CGColorConversionInfoRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageConverter_CreateWithCGColorConversionInfo func(coregraphics.CGColorConversionInfoRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConverter_CreateWithCGImageFormat func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConverter_CreateWithColorSyncCodeFragment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageConverter_GetNumberOfSourceBuffers func(unsafe.Pointer) unsafe.Pointer
@@ -143,18 +153,23 @@ var (
 	_vImageErode_PlanarF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageHorizontalShear_ARGB16U func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageHorizontalShear_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageMatrixMultiply_ARGB8888ToPlanar8 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageMax_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageMax_ARGBFFFF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageMin_ARGBFFFF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageMultiDimensionalInterpolatedLookupTable_PlanarF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageMultidimensionalTable_Create func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageMultidimensionalTable_Release func(unsafe.Pointer) unsafe.Pointer
 	_vImageMultidimensionalTable_Retain func(unsafe.Pointer) unsafe.Pointer
+	_vImagePremultipliedAlphaBlendLighten_RGBA8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultipliedAlphaBlend_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultipliedAlphaBlend_Planar8 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultipliedAlphaBlend_PlanarF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultipliedConstAlphaBlend_ARGB8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultiplyData_ARGB16U func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImagePremultiplyData_RGBA8888 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_vImageScale_Planar16F func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageScale_Planar8 func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageSepConvolve_Planar16U func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_vImageSymmetricPiecewisePolynomial_PlanarF func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -289,10 +304,13 @@ func init() {
 	tryRegister(&_BNNSGraphCompileOptionsGetOptimizationPreference, lib, "BNNSGraphCompileOptionsGetOptimizationPreference")
 	tryRegister(&_BNNSGraphCompileOptionsSetMessageLogCallback, lib, "BNNSGraphCompileOptionsSetMessageLogCallback")
 	tryRegister(&_BNNSGraphCompileOptionsSetMessageLogMask, lib, "BNNSGraphCompileOptionsSetMessageLogMask")
+	tryRegister(&_BNNSGraphCompileOptionsSetOptimizationPreference, lib, "BNNSGraphCompileOptionsSetOptimizationPreference")
 	tryRegister(&_BNNSGraphCompileOptionsSetOutputFD, lib, "BNNSGraphCompileOptionsSetOutputFD")
+	tryRegister(&_BNNSGraphCompileOptionsSetOutputPath, lib, "BNNSGraphCompileOptionsSetOutputPath")
 	tryRegister(&_BNNSGraphCompileOptionsSetTargetSingleThread, lib, "BNNSGraphCompileOptionsSetTargetSingleThread")
 	tryRegister(&_BNNSGraphContextEnableNanAndInfChecks, lib, "BNNSGraphContextEnableNanAndInfChecks")
 	tryRegister(&_BNNSGraphContextExecute, lib, "BNNSGraphContextExecute")
+	tryRegister(&_BNNSGraphContextGetTensor, lib, "BNNSGraphContextGetTensor")
 	tryRegister(&_BNNSGraphContextGetWorkspaceSize, lib, "BNNSGraphContextGetWorkspaceSize")
 	tryRegister(&_BNNSGraphContextMakeStreaming, lib, "BNNSGraphContextMakeStreaming")
 	tryRegister(&_BNNSGraphContextSetStreamingAdvanceCount, lib, "BNNSGraphContextSetStreamingAdvanceCount")
@@ -309,6 +327,7 @@ func init() {
 	tryRegister(&_BNNSNDArrayFullyConnectedSparsifySparseCSR, lib, "BNNSNDArrayFullyConnectedSparsifySparseCSR")
 	tryRegister(&_BNNSNDArrayGetDataSize, lib, "BNNSNDArrayGetDataSize")
 	tryRegister(&_BNNSOptimizerStep, lib, "BNNSOptimizerStep")
+	tryRegister(&_BNNSRandomGeneratorGetState, lib, "BNNSRandomGeneratorGetState")
 	tryRegister(&_BNNSScatter, lib, "BNNSScatter")
 	tryRegister(&_BNNSScatterND, lib, "BNNSScatterND")
 	tryRegister(&_BNNSShuffle, lib, "BNNSShuffle")
@@ -348,16 +367,20 @@ func init() {
 	tryRegister(&_vDSP_biquad_CreateSetupD, lib, "vDSP_biquad_CreateSetupD")
 	tryRegister(&_vDSP_biquad_DestroySetupD, lib, "vDSP_biquad_DestroySetupD")
 	tryRegister(&_vDSP_biquad_SetCoefficientsDouble, lib, "vDSP_biquad_SetCoefficientsDouble")
+	tryRegister(&_vDSP_biquad_SetCoefficientsSingle, lib, "vDSP_biquad_SetCoefficientsSingle")
 	tryRegister(&_vDSP_ctoz, lib, "vDSP_ctoz")
 	tryRegister(&_vDSP_ctozD, lib, "vDSP_ctozD")
 	tryRegister(&_vDSP_fft2d_zip, lib, "vDSP_fft2d_zip")
 	tryRegister(&_vDSP_fft_zrip, lib, "vDSP_fft_zrip")
 	tryRegister(&_vDSP_fftm_zrip, lib, "vDSP_fftm_zrip")
+	tryRegister(&_vDSP_normalize, lib, "vDSP_normalize")
 	tryRegister(&_vDSP_normalizeD, lib, "vDSP_normalizeD")
+	tryRegister(&_vDSP_sve, lib, "vDSP_sve")
 	tryRegister(&_vDSP_sve_svesq, lib, "vDSP_sve_svesq")
 	tryRegister(&_vDSP_sve_svesqD, lib, "vDSP_sve_svesqD")
 	tryRegister(&_vDSP_svsD, lib, "vDSP_svsD")
 	tryRegister(&_vDSP_vpoly, lib, "vDSP_vpoly")
+	tryRegister(&_vDSP_vsub, lib, "vDSP_vsub")
 	tryRegister(&_vDSP_vsubD, lib, "vDSP_vsubD")
 	tryRegister(&_vDSP_vtmerg, lib, "vDSP_vtmerg")
 	tryRegister(&_vDSP_ztoc, lib, "vDSP_ztoc")
@@ -365,6 +388,7 @@ func init() {
 	tryRegister(&_vImageAffineWarpD_ARGBFFFF, lib, "vImageAffineWarpD_ARGBFFFF")
 	tryRegister(&_vImageAlphaBlend_ARGB8888, lib, "vImageAlphaBlend_ARGB8888")
 	tryRegister(&_vImageAlphaBlend_PlanarF, lib, "vImageAlphaBlend_PlanarF")
+	tryRegister(&_vImageBuffer_InitWithCGImage, lib, "vImageBuffer_InitWithCGImage")
 	tryRegister(&_vImageBuffer_InitWithCVPixelBuffer, lib, "vImageBuffer_InitWithCVPixelBuffer")
 	tryRegister(&_vImageCVImageFormat_CopyConversionMatrix, lib, "vImageCVImageFormat_CopyConversionMatrix")
 	tryRegister(&_vImageCVImageFormat_CreateWithCVPixelBuffer, lib, "vImageCVImageFormat_CreateWithCVPixelBuffer")
@@ -391,18 +415,23 @@ func init() {
 	tryRegister(&_vImageErode_PlanarF, lib, "vImageErode_PlanarF")
 	tryRegister(&_vImageHorizontalShear_ARGB16U, lib, "vImageHorizontalShear_ARGB16U")
 	tryRegister(&_vImageHorizontalShear_ARGB8888, lib, "vImageHorizontalShear_ARGB8888")
+	tryRegister(&_vImageMatrixMultiply_ARGB8888ToPlanar8, lib, "vImageMatrixMultiply_ARGB8888ToPlanar8")
+	tryRegister(&_vImageMax_ARGB8888, lib, "vImageMax_ARGB8888")
 	tryRegister(&_vImageMax_ARGBFFFF, lib, "vImageMax_ARGBFFFF")
 	tryRegister(&_vImageMin_ARGBFFFF, lib, "vImageMin_ARGBFFFF")
+	tryRegister(&_vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12, lib, "vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12")
 	tryRegister(&_vImageMultiDimensionalInterpolatedLookupTable_PlanarF, lib, "vImageMultiDimensionalInterpolatedLookupTable_PlanarF")
 	tryRegister(&_vImageMultidimensionalTable_Create, lib, "vImageMultidimensionalTable_Create")
 	tryRegister(&_vImageMultidimensionalTable_Release, lib, "vImageMultidimensionalTable_Release")
 	tryRegister(&_vImageMultidimensionalTable_Retain, lib, "vImageMultidimensionalTable_Retain")
+	tryRegister(&_vImagePremultipliedAlphaBlendLighten_RGBA8888, lib, "vImagePremultipliedAlphaBlendLighten_RGBA8888")
 	tryRegister(&_vImagePremultipliedAlphaBlend_ARGB8888, lib, "vImagePremultipliedAlphaBlend_ARGB8888")
 	tryRegister(&_vImagePremultipliedAlphaBlend_Planar8, lib, "vImagePremultipliedAlphaBlend_Planar8")
 	tryRegister(&_vImagePremultipliedAlphaBlend_PlanarF, lib, "vImagePremultipliedAlphaBlend_PlanarF")
 	tryRegister(&_vImagePremultipliedConstAlphaBlend_ARGB8888, lib, "vImagePremultipliedConstAlphaBlend_ARGB8888")
 	tryRegister(&_vImagePremultiplyData_ARGB16U, lib, "vImagePremultiplyData_ARGB16U")
 	tryRegister(&_vImagePremultiplyData_RGBA8888, lib, "vImagePremultiplyData_RGBA8888")
+	tryRegister(&_vImageScale_Planar16F, lib, "vImageScale_Planar16F")
 	tryRegister(&_vImageScale_Planar8, lib, "vImageScale_Planar8")
 	tryRegister(&_vImageSepConvolve_Planar16U, lib, "vImageSepConvolve_Planar16U")
 	tryRegister(&_vImageSymmetricPiecewisePolynomial_PlanarF, lib, "vImageSymmetricPiecewisePolynomial_PlanarF")
@@ -808,6 +837,16 @@ func BNNSGraphCompileOptionsSetMessageLogMask(options unsafe.Pointer, log_level_
 	}
 
 
+// Sets the option for the compiled graph to optimize for either size or performance. [Full Topic]
+//
+// Added in macOS 15.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphCompileOptionsSetOptimizationPreference(_:_:)
+func BNNSGraphCompileOptionsSetOptimizationPreference(options unsafe.Pointer, preference unsafe.Pointer) {
+	_BNNSGraphCompileOptionsSetOptimizationPreference(options, preference)
+	}
+
+
 // Sets the option for graph compilation to generate the graph object directly to the specified file descriptor. [Full Topic]
 //
 // Added in macOS 15.0.
@@ -815,6 +854,16 @@ func BNNSGraphCompileOptionsSetMessageLogMask(options unsafe.Pointer, log_level_
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphCompileOptionsSetOutputFD(_:_:)
 func BNNSGraphCompileOptionsSetOutputFD(options unsafe.Pointer, fd unsafe.Pointer) {
 	_BNNSGraphCompileOptionsSetOutputFD(options, fd)
+	}
+
+
+// Sets the option for graph compilation to generate the graph object directly to the specified file. [Full Topic]
+//
+// Added in macOS 15.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphCompileOptionsSetOutputPath(_:_:)
+func BNNSGraphCompileOptionsSetOutputPath(options unsafe.Pointer, path unsafe.Pointer) {
+	_BNNSGraphCompileOptionsSetOutputPath(options, path)
 	}
 
 
@@ -845,6 +894,16 @@ func BNNSGraphContextEnableNanAndInfChecks(context unsafe.Pointer, enable_check_
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextExecute(_:_:_:_:_:_:)
 func BNNSGraphContextExecute(context unsafe.Pointer, function unsafe.Pointer, argument_count unsafe.Pointer, arguments unsafe.Pointer, workspace_size unsafe.Pointer, workspace unsafe.Pointer) unsafe.Pointer {
 	return _BNNSGraphContextExecute(context, function, argument_count, arguments, workspace_size, workspace)
+	}
+
+
+// Sets the properties of a tensor for the specified function argument. [Full Topic]
+//
+// Added in macOS 15.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSGraphContextGetTensor(_:_:_:_:_:)
+func BNNSGraphContextGetTensor(context unsafe.Pointer, function unsafe.Pointer, argument unsafe.Pointer, fill_known_dynamic_shapes unsafe.Pointer, tensor unsafe.Pointer) unsafe.Pointer {
+	return _BNNSGraphContextGetTensor(context, function, argument, fill_known_dynamic_shapes, tensor)
 	}
 
 
@@ -1015,6 +1074,16 @@ func BNNSNDArrayGetDataSize(array unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSOptimizerStep(_:_:_:_:_:_:_:)
 func BNNSOptimizerStep(function unsafe.Pointer, OptimizerAlgFields unsafe.Pointer, number_of_parameters unsafe.Pointer, parameters unsafe.Pointer, gradients unsafe.Pointer, accumulators unsafe.Pointer, filter_params unsafe.Pointer) unsafe.Pointer {
 	return _BNNSOptimizerStep(function, OptimizerAlgFields, number_of_parameters, parameters, gradients, accumulators, filter_params)
+	}
+
+
+// Returns the state of a random number generator. [Full Topic]
+//
+// Added in macOS 12.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/BNNSRandomGeneratorGetState(_:_:_:)
+func BNNSRandomGeneratorGetState(generator unsafe.Pointer, state_size unsafe.Pointer, state unsafe.Pointer) unsafe.Pointer {
+	return _BNNSRandomGeneratorGetState(generator, state_size, state)
 	}
 
 
@@ -1418,6 +1487,16 @@ func vDSP_biquad_SetCoefficientsDouble(__setup unsafe.Pointer, __coeffs unsafe.P
 	}
 
 
+// Sets single-precision coefficients of the specified single-channel biquadratic filter setup object. [Full Topic]
+//
+// Added in macOS 12.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_biquad_SetCoefficientsSingle
+func vDSP_biquad_SetCoefficientsSingle(__setup unsafe.Pointer, __coeffs unsafe.Pointer, __start_sec unsafe.Pointer, __nsec unsafe.Pointer) {
+	_vDSP_biquad_SetCoefficientsSingle(__setup, __coeffs, __start_sec, __nsec)
+	}
+
+
 // Copies the contents of an interleaved single-precision complex vector to a split complex vector. [Full Topic]
 //
 // Added in macOS 10.0.
@@ -1468,6 +1547,16 @@ func vDSP_fftm_zrip(__Setup unsafe.Pointer, __C unsafe.Pointer, __IC unsafe.Poin
 	}
 
 
+// Computes single-precision mean and standard deviation, and then calculates new elements to have a zero mean and a unit standard deviation. [Full Topic]
+//
+// Added in macOS 10.8.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_normalize
+func vDSP_normalize(__A unsafe.Pointer, __IA unsafe.Pointer, __C unsafe.Pointer, __IC unsafe.Pointer, __Mean unsafe.Pointer, __StandardDeviation unsafe.Pointer, __N unsafe.Pointer) {
+	_vDSP_normalize(__A, __IA, __C, __IC, __Mean, __StandardDeviation, __N)
+	}
+
+
 // Computes double-precision mean and standard deviation, and then calculates new elements to have a zero mean and a unit standard deviation. [Full Topic]
 //
 // Added in macOS 10.8.
@@ -1475,6 +1564,16 @@ func vDSP_fftm_zrip(__Setup unsafe.Pointer, __C unsafe.Pointer, __IC unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_normalizeD
 func vDSP_normalizeD(__A unsafe.Pointer, __IA unsafe.Pointer, __C unsafe.Pointer, __IC unsafe.Pointer, __Mean unsafe.Pointer, __StandardDeviation unsafe.Pointer, __N unsafe.Pointer) {
 	_vDSP_normalizeD(__A, __IA, __C, __IC, __Mean, __StandardDeviation, __N)
+	}
+
+
+// Calculates the sum of values in a single-precision vector. [Full Topic]
+//
+// Added in macOS 10.4.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_sve
+func vDSP_sve(__A unsafe.Pointer, __I unsafe.Pointer, __C unsafe.Pointer, __N unsafe.Pointer) {
+	_vDSP_sve(__A, __I, __C, __N)
 	}
 
 
@@ -1515,6 +1614,16 @@ func vDSP_svsD(__A unsafe.Pointer, __IA unsafe.Pointer, __C unsafe.Pointer, __N 
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_vpoly
 func vDSP_vpoly(__A unsafe.Pointer, __IA unsafe.Pointer, __B unsafe.Pointer, __IB unsafe.Pointer, __C unsafe.Pointer, __IC unsafe.Pointer, __N unsafe.Pointer, __P unsafe.Pointer) {
 	_vDSP_vpoly(__A, __IA, __B, __IB, __C, __IC, __N, __P)
+	}
+
+
+// Calculates the single-precision element-wise subtraction of two vectors, using the specified stride. [Full Topic]
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vDSP_vsub
+func vDSP_vsub(__B unsafe.Pointer, __IB unsafe.Pointer, __A unsafe.Pointer, __IA unsafe.Pointer, __C unsafe.Pointer, __IC unsafe.Pointer, __N unsafe.Pointer) {
+	_vDSP_vsub(__B, __IB, __A, __IA, __C, __IC, __N)
 	}
 
 
@@ -1585,6 +1694,16 @@ func vImageAlphaBlend_ARGB8888(srcTop unsafe.Pointer, srcBottom unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageAlphaBlend_PlanarF(_:_:_:_:_:_:_:)
 func vImageAlphaBlend_PlanarF(srcTop unsafe.Pointer, srcTopAlpha unsafe.Pointer, srcBottom unsafe.Pointer, srcBottomAlpha unsafe.Pointer, alpha unsafe.Pointer, dest unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _vImageAlphaBlend_PlanarF(srcTop, srcTopAlpha, srcBottom, srcBottomAlpha, alpha, dest, flags)
+	}
+
+
+// Initializes a vImage buffer with the contents of a Core Graphics image. [Full Topic]
+//
+// Added in macOS 10.9.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageBuffer_InitWithCGImage(_:_:_:_:_:)
+func vImageBuffer_InitWithCGImage(buf unsafe.Pointer, format unsafe.Pointer, backgroundColor unsafe.Pointer, image coregraphics.CGImageRef, flags unsafe.Pointer) unsafe.Pointer {
+	return _vImageBuffer_InitWithCGImage(buf, format, backgroundColor, image, flags)
 	}
 
 
@@ -1733,7 +1852,7 @@ func vImageConverter_CreateForCVToCGImageFormat(srcFormat unsafe.Pointer, destFo
 // Added in macOS 11.0.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageConverter_CreateWithCGColorConversionInfo(_:_:_:_:_:_:)
-func vImageConverter_CreateWithCGColorConversionInfo(colorConversionInfoRef CGColorConversionInfoRef, sFormat unsafe.Pointer, dFormat unsafe.Pointer, bg unsafe.Pointer, flags unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func vImageConverter_CreateWithCGColorConversionInfo(colorConversionInfoRef coregraphics.CGColorConversionInfoRef, sFormat unsafe.Pointer, dFormat unsafe.Pointer, bg unsafe.Pointer, flags unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	return _vImageConverter_CreateWithCGColorConversionInfo(colorConversionInfoRef, sFormat, dFormat, bg, flags, error_)
 	}
 
@@ -1848,6 +1967,26 @@ func vImageHorizontalShear_ARGB8888(src unsafe.Pointer, dest unsafe.Pointer, src
 	}
 
 
+// Multiplies each pixel in an interleaved four-channel, 8-bit source image by a matrix to produce a planar 8-bit destination image. [Full Topic]
+//
+// Added in macOS 10.11.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageMatrixMultiply_ARGB8888ToPlanar8(_:_:_:_:_:_:_:)
+func vImageMatrixMultiply_ARGB8888ToPlanar8(src unsafe.Pointer, dest unsafe.Pointer, matrix unsafe.Pointer, divisor unsafe.Pointer, pre_bias unsafe.Pointer, post_bias unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+	return _vImageMatrixMultiply_ARGB8888ToPlanar8(src, dest, matrix, divisor, pre_bias, post_bias, flags)
+	}
+
+
+// Maximizes an 8-bit-per-channel, 4-channel interleaved buffer. [Full Topic]
+//
+// Added in macOS 10.3.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageMax_ARGB8888(_:_:_:_:_:_:_:_:)
+func vImageMax_ARGB8888(src unsafe.Pointer, dest unsafe.Pointer, tempBuffer unsafe.Pointer, srcOffsetToROI_X unsafe.Pointer, srcOffsetToROI_Y unsafe.Pointer, kernel_height unsafe.Pointer, kernel_width unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+	return _vImageMax_ARGB8888(src, dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y, kernel_height, kernel_width, flags)
+	}
+
+
 // Maximizes a 32-bit-per-channel, 4-channel interleaved buffer. [Full Topic]
 //
 // Added in macOS 10.3.
@@ -1865,6 +2004,16 @@ func vImageMax_ARGBFFFF(src unsafe.Pointer, dest unsafe.Pointer, tempBuffer unsa
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageMin_ARGBFFFF(_:_:_:_:_:_:_:_:)
 func vImageMin_ARGBFFFF(src unsafe.Pointer, dest unsafe.Pointer, tempBuffer unsafe.Pointer, srcOffsetToROI_X unsafe.Pointer, srcOffsetToROI_Y unsafe.Pointer, kernel_height unsafe.Pointer, kernel_width unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _vImageMin_ARGBFFFF(src, dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y, kernel_height, kernel_width, flags)
+	}
+
+
+// Uses a multidimensional lookup table to transform a 16Q12 planar image. [Full Topic]
+//
+// Added in macOS 10.9.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(_:_:_:_:_:_:)
+func vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(srcs unsafe.Pointer, dests unsafe.Pointer, tempBuffer unsafe.Pointer, table unsafe.Pointer, method unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+	return _vImageMultiDimensionalInterpolatedLookupTable_Planar16Q12(srcs, dests, tempBuffer, table, method, flags)
 	}
 
 
@@ -1905,6 +2054,16 @@ func vImageMultidimensionalTable_Release(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageMultidimensionalTable_Retain(_:)
 func vImageMultidimensionalTable_Retain(table unsafe.Pointer) unsafe.Pointer {
 	return _vImageMultidimensionalTable_Retain(table)
+	}
+
+
+// Performs alpha compositing of two 8-bit-per-channel, 4-channel BGRA buffers using the lighten blend mode. [Full Topic]
+//
+// Added in macOS 10.11.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImagePremultipliedAlphaBlendLighten_RGBA8888(_:_:_:_:)
+func vImagePremultipliedAlphaBlendLighten_RGBA8888(srcTop unsafe.Pointer, srcBottom unsafe.Pointer, dest unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+	return _vImagePremultipliedAlphaBlendLighten_RGBA8888(srcTop, srcBottom, dest, flags)
 	}
 
 
@@ -1965,6 +2124,16 @@ func vImagePremultiplyData_ARGB16U(src unsafe.Pointer, dest unsafe.Pointer, flag
 // [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImagePremultiplyData_RGBA8888(_:_:_:)
 func vImagePremultiplyData_RGBA8888(src unsafe.Pointer, dest unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _vImagePremultiplyData_RGBA8888(src, dest, flags)
+	}
+
+
+// Scales a floating-point 16-bit planar image to fit a destination buffer. [Full Topic]
+//
+// Added in macOS 13.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accelerate/vImageScale_Planar16F(_:_:_:_:)
+func vImageScale_Planar16F(src unsafe.Pointer, dest unsafe.Pointer, tempBuffer unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+	return _vImageScale_Planar16F(src, dest, tempBuffer, flags)
 	}
 
 

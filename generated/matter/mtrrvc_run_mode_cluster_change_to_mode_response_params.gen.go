@@ -87,14 +87,14 @@ func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) Status() foundation.Num
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/status
-func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/statustext
-func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) StatusText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
+func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) StatusText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) StatusText() string {
 // SetStatusText sets the value of the statusText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/statustext
-func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) SetStatusText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
+func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) SetStatusText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
 
 

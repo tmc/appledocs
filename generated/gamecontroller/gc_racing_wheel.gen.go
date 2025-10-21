@@ -30,7 +30,7 @@ type _GCRacingWheelClass struct {
 // An interface definition for the [GCRacingWheel] class.
 type IGCRacingWheel interface {
 	objectivec.IObject
-	Capture() unsafe.Pointer
+	Capture() GCRacingWheel
 	RelinquishDevice()
 }
 
@@ -83,8 +83,8 @@ func NewGCRacingWheel() GCRacingWheel {
 // Returns a snapshot of the racing wheel with its current element values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCRacingWheel/capture()
-func (g_ GCRacingWheel) Capture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("capture"))
+func (g_ GCRacingWheel) Capture() GCRacingWheel {
+	rv := objc.Send[GCRacingWheel](g_.ID, objc.Sel("capture"))
 	return rv
 }
 

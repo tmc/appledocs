@@ -102,8 +102,8 @@ func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechSynthesisOutputMetadataBlock
 // A list of voices the audio unit provides to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechVoices"))
+func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() AVSpeechSynthesisProviderVoice {
+	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (s_ SpeechSynthesisProviderAudioUnit) SpeechVoices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechVoices(value unsafe.Pointer) {
+func (s_ SpeechSynthesisProviderAudioUnit) SetSpeechVoices(value IAVSpeechSynthesisProviderVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
 }
 

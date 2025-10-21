@@ -101,8 +101,8 @@ func (m_ MKRouteStep) SetDistance(value unsafe.Pointer) {
 // The written instructions for following the path that the step represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) Instructions() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
+func (m_ MKRouteStep) Instructions() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("instructions"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (m_ MKRouteStep) Instructions() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) SetInstructions(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
+func (m_ MKRouteStep) SetInstructions(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), value)
 }
 
 // Additional notices that apply to the step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
-func (m_ MKRouteStep) Notice() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("notice"))
+func (m_ MKRouteStep) Notice() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("notice"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (m_ MKRouteStep) Notice() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
-func (m_ MKRouteStep) SetNotice(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), objc.String(value))
+func (m_ MKRouteStep) SetNotice(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), value)
 }
 
 // The detailed step geometry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
-func (m_ MKRouteStep) Polyline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polyline"))
+func (m_ MKRouteStep) Polyline() MKPolyline {
+	rv := objc.Send[MKPolyline](m_.ID, objc.Sel("polyline"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (m_ MKRouteStep) Polyline() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
-func (m_ MKRouteStep) SetPolyline(value unsafe.Pointer) {
+func (m_ MKRouteStep) SetPolyline(value IMKPolyline) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPolyline:"), value)
 }
 

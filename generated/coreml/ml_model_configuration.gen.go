@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -101,8 +102,8 @@ func (m_ ModelConfiguration) SetAllowLowPrecisionAccumulationOnGPU(value bool) {
 // The processing unit or units the model uses to make predictions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
-func (m_ ModelConfiguration) ComputeUnits() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("computeUnits"))
+func (m_ ModelConfiguration) ComputeUnits() ComputeUnits {
+	rv := objc.Send[ComputeUnits](m_.ID, objc.Sel("computeUnits"))
 	return rv
 }
 
@@ -112,15 +113,15 @@ func (m_ ModelConfiguration) ComputeUnits() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/computeUnits
-func (m_ ModelConfiguration) SetComputeUnits(value unsafe.Pointer) {
+func (m_ ModelConfiguration) SetComputeUnits(value IComputeUnits) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComputeUnits:"), value)
 }
 
 // Function name that will use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-func (m_ ModelConfiguration) FunctionName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("functionName"))
+func (m_ ModelConfiguration) FunctionName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("functionName"))
 	return rv
 }
 
@@ -130,15 +131,33 @@ func (m_ ModelConfiguration) FunctionName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/functionName
-func (m_ ModelConfiguration) SetFunctionName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), objc.String(value))
+func (m_ ModelConfiguration) SetFunctionName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFunctionName:"), value)
+}
+
+// A human readable name of a model for display purposes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
+func (m_ ModelConfiguration) ModelDisplayName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("modelDisplayName"))
+	return rv
+}
+
+
+// SetModelDisplayName sets the value of the modelDisplayName property.
+// A human readable name of a model for display purposes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/modelDisplayName
+func (m_ ModelConfiguration) SetModelDisplayName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), value)
 }
 
 // A group of hints for CoreML to optimize
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
-func (m_ ModelConfiguration) OptimizationHints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("optimizationHints"))
+func (m_ ModelConfiguration) OptimizationHints() MLOptimizationHints {
+	rv := objc.Send[MLOptimizationHints](m_.ID, objc.Sel("optimizationHints"))
 	return rv
 }
 
@@ -148,7 +167,7 @@ func (m_ ModelConfiguration) OptimizationHints() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/optimizationHints-81u6f
-func (m_ ModelConfiguration) SetOptimizationHints(value unsafe.Pointer) {
+func (m_ ModelConfiguration) SetOptimizationHints(value IMLOptimizationHints) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptimizationHints:"), value)
 }
 
@@ -186,24 +205,6 @@ func (m_ ModelConfiguration) PreferredMetalDevice() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelConfiguration/preferredMetalDevice
 func (m_ ModelConfiguration) SetPreferredMetalDevice(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredMetalDevice:"), value)
-}
-
-// A human readable name of a model for display purposes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) ModelDisplayName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("modelDisplayName"))
-	return rv
-}
-
-
-// SetModelDisplayName sets the value of the modelDisplayName property.
-// A human readable name of a model for display purposes.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/modeldisplayname
-func (m_ ModelConfiguration) SetModelDisplayName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDisplayName:"), objc.String(value))
 }
 
 

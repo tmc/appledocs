@@ -89,16 +89,16 @@ func (m_ MetalDisplayLinkUpdate) Drawable() objc.ID {
 // The time the system estimates until the display of the next frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/targetPresentationTimestamp
-func (m_ MetalDisplayLinkUpdate) TargetPresentationTimestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetPresentationTimestamp"))
+func (m_ MetalDisplayLinkUpdate) TargetPresentationTimestamp() TimeInterval {
+	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("targetPresentationTimestamp"))
 	return rv
 }
 
 // A deadline that indicates when your app needs to finish rendering to the drawable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/Update/targetTimestamp
-func (m_ MetalDisplayLinkUpdate) TargetTimestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetTimestamp"))
+func (m_ MetalDisplayLinkUpdate) TargetTimestamp() TimeInterval {
+	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("targetTimestamp"))
 	return rv
 }
 

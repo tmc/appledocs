@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [BasicAnimation] class.
@@ -138,8 +139,8 @@ func (b_ BasicAnimation) SetToValue(value objc.ID) {
 // The background color of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (b_ BasicAnimation) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backgroundColor"))
+func (b_ BasicAnimation) BackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](b_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (b_ BasicAnimation) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (b_ BasicAnimation) SetBackgroundColor(value unsafe.Pointer) {
+func (b_ BasicAnimation) SetBackgroundColor(value appkit.IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 

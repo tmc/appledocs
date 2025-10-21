@@ -82,8 +82,8 @@ func NewMXAppLaunchDiagnostic() MXAppLaunchDiagnostic {
 // The call stack tree associated with the app launch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppLaunchDiagnostic/callStackTree
-func (m_ MXAppLaunchDiagnostic) CallStackTree() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("callStackTree"))
+func (m_ MXAppLaunchDiagnostic) CallStackTree() MXCallStackTree {
+	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 

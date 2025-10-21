@@ -31,8 +31,8 @@ type _CNObjectTrackerClass struct {
 // An interface definition for the [CNObjectTracker] class.
 type ICNObjectTracker interface {
 	objectivec.IObject
-	FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) unsafe.Pointer
-	FinishDetectionTrack() unsafe.Pointer
+	FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) CNBoundsPrediction
+	FinishDetectionTrack() CNDetectionTrack
 }
 
 // An object that converts a normalized point or rectangle into a detection track that tracks an object over time.
@@ -86,7 +86,7 @@ func NewCNObjectTracker() CNObjectTracker {
 // Creates a new detection track builder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/initWithCommandQueue:
-func NewCNObjectTrackerWithCommandQueue(commandQueue objc.ID) CNObjectTracker {
+func NewCNObjectTrackerWithCommandQueue(commandQueue objectivec.IObject) CNObjectTracker {
 	instance := getCNObjectTrackerClass().Alloc()
 	rv := objc.Send[CNObjectTracker](instance.ID, objc.Sel("initWithCommandQueue:"), commandQueue)
 	rv.Autorelease()
@@ -104,16 +104,16 @@ func (cc _CNObjectTrackerClass) IsSupported() bool {
 // Finds the bounds of an object at the given point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/findObjectAtPoint:sourceImage:
-func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("findObjectAtPoint:sourceImage:"), point, sourceImage)
+func (c_ CNObjectTracker) FindObjectAtPointSourceImage(point coregraphics.CGPoint, sourceImage unsafe.Pointer) CNBoundsPrediction {
+	rv := objc.Send[CNBoundsPrediction](c_.ID, objc.Sel("findObjectAtPoint:sourceImage:"), point, sourceImage)
 	return rv
 }
 
 // Finish constructing the detection track and return it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNObjectTracker-7aliq/finishDetectionTrack
-func (c_ CNObjectTracker) FinishDetectionTrack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("finishDetectionTrack"))
+func (c_ CNObjectTracker) FinishDetectionTrack() CNDetectionTrack {
+	rv := objc.Send[CNDetectionTrack](c_.ID, objc.Sel("finishDetectionTrack"))
 	return rv
 }
 

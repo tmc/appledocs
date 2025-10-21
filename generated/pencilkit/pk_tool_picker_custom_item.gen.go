@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [ToolPickerCustomItem] class.
@@ -87,7 +88,7 @@ func NewToolPickerCustomItem() ToolPickerCustomItem {
 // Creates a new custom item with the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/initWithConfiguration:
-func NewToolPickerCustomItemWithConfiguration(configuration unsafe.Pointer) ToolPickerCustomItem {
+func NewToolPickerCustomItemWithConfiguration(configuration IPKToolPickerCustomItemConfiguration) ToolPickerCustomItem {
 	instance := getToolPickerCustomItemClass().Alloc()
 	rv := objc.Send[ToolPickerCustomItem](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -123,8 +124,8 @@ func (t_ ToolPickerCustomItem) SetAllowsColorSelection(value bool) {
 // The current color of the custom tool item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/color
-func (t_ ToolPickerCustomItem) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
+func (t_ ToolPickerCustomItem) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](t_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -134,15 +135,15 @@ func (t_ ToolPickerCustomItem) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/color
-func (t_ ToolPickerCustomItem) SetColor(value unsafe.Pointer) {
+func (t_ ToolPickerCustomItem) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
 
 // The configuration of the custom tool item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/configuration-v7e5
-func (t_ ToolPickerCustomItem) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("configuration"))
+func (t_ ToolPickerCustomItem) Configuration() PKToolPickerCustomItemConfiguration {
+	rv := objc.Send[PKToolPickerCustomItemConfiguration](t_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (t_ ToolPickerCustomItem) SetWidth(value float64) {
 // A closure to provide an image that represents the custom tool item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
-func (t_ ToolPickerCustomItem) ImageProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("imageProvider"))
+func (t_ ToolPickerCustomItem) ImageProvider() appkit.Image {
+	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("imageProvider"))
 	return rv
 }
 
@@ -178,7 +179,7 @@ func (t_ ToolPickerCustomItem) ImageProvider() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
-func (t_ ToolPickerCustomItem) SetImageProvider(value unsafe.Pointer) {
+func (t_ ToolPickerCustomItem) SetImageProvider(value appkit.IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageProvider:"), value)
 }
 

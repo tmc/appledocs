@@ -138,8 +138,8 @@ func (t_ TrackOpticalFlowRequest) SetOutputPixelFormat(value unsafe.Pointer) {
 // The optical flow results the request observes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/results
-func (t_ TrackOpticalFlowRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("results"))
+func (t_ TrackOpticalFlowRequest) Results() VNPixelBufferObservation {
+	rv := objc.Send[VNPixelBufferObservation](t_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (t_ TrackOpticalFlowRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/results
-func (t_ TrackOpticalFlowRequest) SetResults(value unsafe.Pointer) {
+func (t_ TrackOpticalFlowRequest) SetResults(value IVNPixelBufferObservation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)
 }
 

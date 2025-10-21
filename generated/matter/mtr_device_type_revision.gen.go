@@ -87,7 +87,7 @@ func (m_ MTRDeviceTypeRevision) DeviceTypeID() foundation.Number {
 // SetDeviceTypeID sets the value of the deviceTypeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
-func (m_ MTRDeviceTypeRevision) SetDeviceTypeID(value foundation.Number) {
+func (m_ MTRDeviceTypeRevision) SetDeviceTypeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeID:"), value)
 }
 
@@ -102,15 +102,15 @@ func (m_ MTRDeviceTypeRevision) DeviceTypeRevision() foundation.Number {
 // SetDeviceTypeRevision sets the value of the deviceTypeRevision property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
-func (m_ MTRDeviceTypeRevision) SetDeviceTypeRevision(value foundation.Number) {
+func (m_ MTRDeviceTypeRevision) SetDeviceTypeRevision(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeRevision:"), value)
 }
 
 // Returns the MTRDeviceType corresponding to deviceTypeID,
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/typeinformation
-func (m_ MTRDeviceTypeRevision) TypeInformation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("typeInformation"))
+func (m_ MTRDeviceTypeRevision) TypeInformation() MTRDeviceType {
+	rv := objc.Send[MTRDeviceType](m_.ID, objc.Sel("typeInformation"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRDeviceTypeRevision) TypeInformation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/typeinformation
-func (m_ MTRDeviceTypeRevision) SetTypeInformation(value unsafe.Pointer) {
+func (m_ MTRDeviceTypeRevision) SetTypeInformation(value MTRDeviceType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTypeInformation:"), value)
 }
 

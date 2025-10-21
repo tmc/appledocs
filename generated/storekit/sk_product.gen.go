@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,8 +93,8 @@ func (p_ Product) Discounts() []ProductDiscount {
 // The object containing introductory price information for the product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/introductoryPrice
-func (p_ Product) IntroductoryPrice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("introductoryPrice"))
+func (p_ Product) IntroductoryPrice() SKProductDiscount {
+	rv := objc.Send[SKProductDiscount](p_.ID, objc.Sel("introductoryPrice"))
 	return rv
 }
 
@@ -108,32 +109,32 @@ func (p_ Product) IsFamilyShareable() bool {
 // The cost of the product in the local currency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/price
-func (p_ Product) Price() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("price"))
+func (p_ Product) Price() foundation.DecimalNumber {
+	rv := objc.Send[foundation.DecimalNumber](p_.ID, objc.Sel("price"))
 	return rv
 }
 
 // The locale used to format the price of the product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/priceLocale
-func (p_ Product) PriceLocale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("priceLocale"))
+func (p_ Product) PriceLocale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](p_.ID, objc.Sel("priceLocale"))
 	return rv
 }
 
 // The string that identifies the product to the Apple App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/productIdentifier
-func (p_ Product) ProductIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("productIdentifier"))
+func (p_ Product) ProductIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
 // The identifier of the subscription group to which the subscription belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProduct/subscriptionGroupIdentifier
-func (p_ Product) SubscriptionGroupIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("subscriptionGroupIdentifier"))
+func (p_ Product) SubscriptionGroupIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("subscriptionGroupIdentifier"))
 	return rv
 }
 
@@ -151,15 +152,15 @@ func (p_ Product) ContentLengths() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentlengths
-func (p_ Product) SetContentLengths(value foundation.Number) {
+func (p_ Product) SetContentLengths(value foundation.INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentLengths:"), value)
 }
 
 // A string that identifies the version of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentversion
-func (p_ Product) ContentVersion() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("contentVersion"))
+func (p_ Product) ContentVersion() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("contentVersion"))
 	return rv
 }
 
@@ -169,8 +170,8 @@ func (p_ Product) ContentVersion() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/contentversion
-func (p_ Product) SetContentVersion(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentVersion:"), objc.String(value))
+func (p_ Product) SetContentVersion(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentVersion:"), value)
 }
 
 // The lengths of the downloadable files available for this product.
@@ -187,15 +188,15 @@ func (p_ Product) DownloadContentLengths() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentlengths
-func (p_ Product) SetDownloadContentLengths(value foundation.Number) {
+func (p_ Product) SetDownloadContentLengths(value foundation.INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentLengths:"), value)
 }
 
 // A string that identifies which version of the content is available for download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentversion
-func (p_ Product) DownloadContentVersion() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("downloadContentVersion"))
+func (p_ Product) DownloadContentVersion() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("downloadContentVersion"))
 	return rv
 }
 
@@ -205,8 +206,8 @@ func (p_ Product) DownloadContentVersion() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/downloadcontentversion
-func (p_ Product) SetDownloadContentVersion(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentVersion:"), objc.String(value))
+func (p_ Product) SetDownloadContentVersion(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDownloadContentVersion:"), value)
 }
 
 // A Boolean value that indicates whether the App Store has downloadable content for this product.
@@ -248,8 +249,8 @@ func (p_ Product) SetIsDownloadable(value bool) {
 // A description of the product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizeddescription
-func (p_ Product) LocalizedDescription() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedDescription"))
+func (p_ Product) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -259,15 +260,15 @@ func (p_ Product) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizeddescription
-func (p_ Product) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (p_ Product) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
 
 // The name of the product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizedtitle
-func (p_ Product) LocalizedTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
+func (p_ Product) LocalizedTitle() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 
@@ -277,8 +278,8 @@ func (p_ Product) LocalizedTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/localizedtitle
-func (p_ Product) SetLocalizedTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+func (p_ Product) SetLocalizedTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), value)
 }
 
 // The period details for products that are subscriptions.

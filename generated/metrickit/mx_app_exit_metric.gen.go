@@ -82,16 +82,16 @@ func NewMXAppExitMetric() MXAppExitMetric {
 // The metrics for the background app exits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppExitMetric/backgroundExitData
-func (m_ MXAppExitMetric) BackgroundExitData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("backgroundExitData"))
+func (m_ MXAppExitMetric) BackgroundExitData() MXBackgroundExitData {
+	rv := objc.Send[MXBackgroundExitData](m_.ID, objc.Sel("backgroundExitData"))
 	return rv
 }
 
 // The metrics for the foreground app exits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXAppExitMetric/foregroundExitData
-func (m_ MXAppExitMetric) ForegroundExitData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("foregroundExitData"))
+func (m_ MXAppExitMetric) ForegroundExitData() MXForegroundExitData {
+	rv := objc.Send[MXForegroundExitData](m_.ID, objc.Sel("foregroundExitData"))
 	return rv
 }
 

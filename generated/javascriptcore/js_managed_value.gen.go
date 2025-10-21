@@ -85,7 +85,7 @@ func NewJSManagedValue() JSManagedValue {
 // Initializes a managed value with the specified JavaScript value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/init(value:)
-func NewJSManagedValueWithValue(value unsafe.Pointer) JSManagedValue {
+func NewJSManagedValueWithValue(value IJSValue) JSManagedValue {
 	instance := getJSManagedValueClass().Alloc()
 	rv := objc.Send[JSManagedValue](instance.ID, objc.Sel("initWithValue:"), value)
 	rv.Autorelease()
@@ -96,16 +96,16 @@ func NewJSManagedValueWithValue(value unsafe.Pointer) JSManagedValue {
 // Creates a managed value with the specified JavaScript value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/managedValueWithValue:
-func (jc _JSManagedValueClass) ManagedValueWithValue(value unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(jc.class), objc.Sel("managedValueWithValue:"), value)
+func (jc _JSManagedValueClass) ManagedValueWithValue(value IJSValue) JSManagedValue {
+	rv := objc.Send[JSManagedValue](objc.ID(jc.class), objc.Sel("managedValueWithValue:"), value)
 	return rv
 }
 
 // The managed value’s underlying JavaScript value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSManagedValue/value
-func (j_ JSManagedValue) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("value"))
+func (j_ JSManagedValue) Value() JSValue {
+	rv := objc.Send[JSValue](j_.ID, objc.Sel("value"))
 	return rv
 }
 

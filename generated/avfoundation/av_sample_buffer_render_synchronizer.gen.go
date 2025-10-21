@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +32,7 @@ type _SampleBufferRenderSynchronizerClass struct {
 // An interface definition for the [SampleBufferRenderSynchronizer] class.
 type ISampleBufferRenderSynchronizer interface {
 	objectivec.IObject
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.IValue, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
 	SetRateTime(rate unsafe.Pointer, time unsafe.Pointer)
 }
 
@@ -85,7 +87,7 @@ func NewSampleBufferRenderSynchronizer() SampleBufferRenderSynchronizer {
 // Requests invocation of a block when specified times are traversed during normal rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferRenderSynchronizer/addBoundaryTimeObserver(forTimes:queue:using:)
-func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (s_ SampleBufferRenderSynchronizer) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.IValue, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
@@ -118,8 +120,8 @@ func (s_ SampleBufferRenderSynchronizer) SetDelaysRateChangeUntilHasSufficientMe
 // The synchronizer’s intended Spatial Audio experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/intendedspatialaudioexperience-3z7d3
-func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("intendedSpatialAudioExperience"))
+func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience {
+	rv := objc.Send[audiotoolbox.SpatialAudioExperience](s_.ID, objc.Sel("intendedSpatialAudioExperience"))
 	return rv
 }
 
@@ -129,7 +131,7 @@ func (s_ SampleBufferRenderSynchronizer) IntendedSpatialAudioExperience() unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/intendedspatialaudioexperience-3z7d3
-func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value unsafe.Pointer) {
+func (s_ SampleBufferRenderSynchronizer) SetIntendedSpatialAudioExperience(value audiotoolbox.ISpatialAudioExperience) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIntendedSpatialAudioExperience:"), value)
 }
 

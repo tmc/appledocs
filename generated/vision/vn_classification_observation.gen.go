@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [ClassificationObservation] class.
@@ -110,8 +111,8 @@ func (c_ ClassificationObservation) HasPrecisionRecallCurve() bool {
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ ClassificationObservation) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelDescription"))
+func (c_ ClassificationObservation) ModelDescription() coreml.ModelDescription {
+	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -121,15 +122,15 @@ func (c_ ClassificationObservation) ModelDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ ClassificationObservation) SetModelDescription(value unsafe.Pointer) {
+func (c_ ClassificationObservation) SetModelDescription(value coreml.IModelDescription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
 }
 
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ ClassificationObservation) PredictedFeatureName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
@@ -139,15 +140,15 @@ func (c_ ClassificationObservation) PredictedFeatureName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ ClassificationObservation) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+func (c_ ClassificationObservation) SetPredictedFeatureName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 
 // Classification label identifying the type of observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ ClassificationObservation) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -157,8 +158,8 @@ func (c_ ClassificationObservation) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnclassificationobservation/identifier
-func (c_ ClassificationObservation) SetIdentifier(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (c_ ClassificationObservation) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

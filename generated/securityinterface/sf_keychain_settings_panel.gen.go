@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [SFKeychainSettingsPanel] class.
@@ -30,7 +31,7 @@ type _SFKeychainSettingsPanelClass struct {
 // An interface definition for the [SFKeychainSettingsPanel] class.
 type ISFKeychainSettingsPanel interface {
 	appkit.IPanel
-	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings unsafe.Pointer, keychain unsafe.Pointer)
+	BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings unsafe.Pointer, keychain unsafe.Pointer)
 	RunModalForSettingsKeychain(settings unsafe.Pointer, keychain unsafe.Pointer) int
 }
 
@@ -87,15 +88,15 @@ func NewSFKeychainSettingsPanel() SFKeychainSettingsPanel {
 // Returns a shared keychain settings panel object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSettingsPanel/shared()
-func (sc _SFKeychainSettingsPanelClass) SharedKeychainSettingsPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sharedKeychainSettingsPanel"))
+func (sc _SFKeychainSettingsPanelClass) SharedKeychainSettingsPanel() SFKeychainSettingsPanel {
+	rv := objc.Send[SFKeychainSettingsPanel](objc.ID(sc.class), objc.Sel("sharedKeychainSettingsPanel"))
 	return rv
 }
 
 // Displays a sheet that allows users to change keychain settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSettingsPanel/beginSheet(for:modalDelegate:didEnd:contextInfo:settings:keychain:)
-func (s_ SFKeychainSettingsPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings unsafe.Pointer, keychain unsafe.Pointer) {
+func (s_ SFKeychainSettingsPanel) BeginSheetForWindowModalDelegateDidEndSelectorContextInfoSettingsKeychain(docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer, settings unsafe.Pointer, keychain unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForWindow:modalDelegate:didEndSelector:contextInfo:settings:keychain:"), docWindow, delegate, didEndSelector, contextInfo, settings, keychain)
 }
 

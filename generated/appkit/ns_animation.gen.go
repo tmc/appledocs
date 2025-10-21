@@ -138,8 +138,8 @@ func (a_ Animation) SetAnimationCurve(value unsafe.Pointer) {
 // The current value of the animation effect, based on the current progress
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-func (a_ Animation) CurrentValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentValue"))
+func (a_ Animation) CurrentValue() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("currentValue"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (a_ Animation) CurrentValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/currentvalue
-func (a_ Animation) SetCurrentValue(value unsafe.Pointer) {
+func (a_ Animation) SetCurrentValue(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentValue:"), value)
 }
 
@@ -192,8 +192,8 @@ func (a_ Animation) SetDuration(value unsafe.Pointer) {
 // The number of frame updates per second to generate for the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-func (a_ Animation) FrameRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("frameRate"))
+func (a_ Animation) FrameRate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("frameRate"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (a_ Animation) FrameRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsanimation/framerate
-func (a_ Animation) SetFrameRate(value unsafe.Pointer) {
+func (a_ Animation) SetFrameRate(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameRate:"), value)
 }
 

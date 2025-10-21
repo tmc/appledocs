@@ -30,14 +30,14 @@ type _MTRClusterDishwasherModeClass struct {
 // An interface definition for the [MTRClusterDishwasherMode] class.
 type IMTRClusterDishwasherMode interface {
 	IMTRGenericCluster
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeCurrentModeWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedModesWithParams(params unsafe.Pointer) unsafe.Pointer
+	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDishwasherModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer
 }
 
 // Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
@@ -93,7 +93,7 @@ func NewMTRClusterDishwasherMode() MTRClusterDishwasherMode {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/init(device:endpointID:queue:)
-func NewMTRClusterDishwasherModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterDishwasherMode {
+func NewMTRClusterDishwasherModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterDishwasherMode {
 	instance := getMTRClusterDishwasherModeClass().Alloc()
 	rv := objc.Send[MTRClusterDishwasherMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -103,55 +103,55 @@ func NewMTRClusterDishwasherModeWithDeviceEndpointIDQueue(device unsafe.Pointer,
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDishwasherMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterDishwasherMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDishwasherModeClusterChangeToModeParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeCurrentModeWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeSupportedModesWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterDishwasherMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
 	return rv
 }

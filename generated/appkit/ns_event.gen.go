@@ -694,8 +694,8 @@ func (e_ Event) SetPointingDeviceType(value unsafe.Pointer) {
 // A normalized value that indicates the degree of pressure applied to an appropriate input device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pressure
-func (e_ Event) Pressure() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("pressure"))
+func (e_ Event) Pressure() float32 {
+	rv := objc.Send[float32](e_.ID, objc.Sel("pressure"))
 	return rv
 }
 
@@ -705,7 +705,7 @@ func (e_ Event) Pressure() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pressure
-func (e_ Event) SetPressure(value unsafe.Pointer) {
+func (e_ Event) SetPressure(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPressure:"), value)
 }
 
@@ -730,8 +730,8 @@ func (e_ Event) SetPressureBehavior(value unsafe.Pointer) {
 // The rotation in degrees of the tablet pointing device associated with this event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/rotation
-func (e_ Event) Rotation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("rotation"))
+func (e_ Event) Rotation() float32 {
+	rv := objc.Send[float32](e_.ID, objc.Sel("rotation"))
 	return rv
 }
 
@@ -741,7 +741,7 @@ func (e_ Event) Rotation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/rotation
-func (e_ Event) SetRotation(value unsafe.Pointer) {
+func (e_ Event) SetRotation(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRotation:"), value)
 }
 
@@ -892,8 +892,8 @@ func (e_ Event) SetTabletID(value int) {
 // The tangential pressure on the device that generated this event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tangentialpressure
-func (e_ Event) TangentialPressure() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("tangentialPressure"))
+func (e_ Event) TangentialPressure() float32 {
+	rv := objc.Send[float32](e_.ID, objc.Sel("tangentialPressure"))
 	return rv
 }
 
@@ -903,7 +903,7 @@ func (e_ Event) TangentialPressure() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tangentialpressure
-func (e_ Event) SetTangentialPressure(value unsafe.Pointer) {
+func (e_ Event) SetTangentialPressure(value float32) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTangentialPressure:"), value)
 }
 

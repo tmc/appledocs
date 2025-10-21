@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKEvent] class.
@@ -29,7 +31,7 @@ type _EKEventClass struct {
 // An interface definition for the [EKEvent] class.
 type IEKEvent interface {
 	IEKCalendarItem
-	CompareStartDateWithEvent(other unsafe.Pointer) unsafe.Pointer
+	CompareStartDateWithEvent(other IEKEvent) unsafe.Pointer
 	Refresh() bool
 }
 
@@ -88,7 +90,7 @@ func NewEKEvent() EKEvent {
 // Creates and returns a new event belonging to a specified event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/init(eventStore:)
-func NewEKEventWithEventStore(eventStore unsafe.Pointer) EKEvent {
+func NewEKEventWithEventStore(eventStore IEKEventStore) EKEvent {
 	rv := objc.Send[EKEvent](objc.ID(getEKEventClass().class), objc.Sel("eventWithEventStore:"), eventStore)
 	return rv
 }
@@ -97,15 +99,15 @@ func NewEKEventWithEventStore(eventStore unsafe.Pointer) EKEvent {
 // Creates and returns a new event belonging to a specified event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/init(eventStore:)
-func (ec _EKEventClass) EventWithEventStore(eventStore unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("eventWithEventStore:"), eventStore)
+func (ec _EKEventClass) EventWithEventStore(eventStore IEKEventStore) EKEvent {
+	rv := objc.Send[EKEvent](objc.ID(ec.class), objc.Sel("eventWithEventStore:"), eventStore)
 	return rv
 }
 
 // Compares the start date of the receiving event with the start date of another event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/compareStartDate(with:)
-func (e_ EKEvent) CompareStartDateWithEvent(other unsafe.Pointer) unsafe.Pointer {
+func (e_ EKEvent) CompareStartDateWithEvent(other IEKEvent) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("compareStartDateWithEvent:"), other)
 	return rv
 }
@@ -121,8 +123,8 @@ func (e_ EKEvent) Refresh() bool {
 // The availability setting for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/availability
-func (e_ EKEvent) Availability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("availability"))
+func (e_ EKEvent) Availability() EKEventAvailability {
+	rv := objc.Send[EKEventAvailability](e_.ID, objc.Sel("availability"))
 	return rv
 }
 
@@ -132,15 +134,15 @@ func (e_ EKEvent) Availability() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/availability
-func (e_ EKEvent) SetAvailability(value unsafe.Pointer) {
+func (e_ EKEvent) SetAvailability(value IEKEventAvailability) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAvailability:"), value)
 }
 
 // The contact identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayContactIdentifier
-func (e_ EKEvent) BirthdayContactIdentifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("birthdayContactIdentifier"))
+func (e_ EKEvent) BirthdayContactIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("birthdayContactIdentifier"))
 	return rv
 }
 
@@ -155,16 +157,16 @@ func (e_ EKEvent) BirthdayPersonID() int {
 // The Address Book framework record identifier of the person for this birthday event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/birthdayPersonUniqueID
-func (e_ EKEvent) BirthdayPersonUniqueID() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("birthdayPersonUniqueID"))
+func (e_ EKEvent) BirthdayPersonUniqueID() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("birthdayPersonUniqueID"))
 	return rv
 }
 
 // The end date for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/endDate
-func (e_ EKEvent) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("endDate"))
+func (e_ EKEvent) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -174,15 +176,15 @@ func (e_ EKEvent) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/endDate
-func (e_ EKEvent) SetEndDate(value unsafe.Pointer) {
+func (e_ EKEvent) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEndDate:"), value)
 }
 
 // A unique identifier for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/eventIdentifier
-func (e_ EKEvent) EventIdentifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("eventIdentifier"))
+func (e_ EKEvent) EventIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("eventIdentifier"))
 	return rv
 }
 
@@ -215,24 +217,24 @@ func (e_ EKEvent) IsDetached() bool {
 // The original occurrence date of an event if it is part of a recurring series.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/occurrenceDate
-func (e_ EKEvent) OccurrenceDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("occurrenceDate"))
+func (e_ EKEvent) OccurrenceDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("occurrenceDate"))
 	return rv
 }
 
 // The organizer associated with the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/organizer
-func (e_ EKEvent) Organizer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("organizer"))
+func (e_ EKEvent) Organizer() EKParticipant {
+	rv := objc.Send[EKParticipant](e_.ID, objc.Sel("organizer"))
 	return rv
 }
 
 // The start date of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/startDate
-func (e_ EKEvent) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("startDate"))
+func (e_ EKEvent) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -242,23 +244,23 @@ func (e_ EKEvent) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/startDate
-func (e_ EKEvent) SetStartDate(value unsafe.Pointer) {
+func (e_ EKEvent) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDate:"), value)
 }
 
 // The status of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/status
-func (e_ EKEvent) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("status"))
+func (e_ EKEvent) Status() EKEventStatus {
+	rv := objc.Send[EKEventStatus](e_.ID, objc.Sel("status"))
 	return rv
 }
 
 // The event’s location with a potential geocoordinate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/structuredLocation
-func (e_ EKEvent) StructuredLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("structuredLocation"))
+func (e_ EKEvent) StructuredLocation() EKStructuredLocation {
+	rv := objc.Send[EKStructuredLocation](e_.ID, objc.Sel("structuredLocation"))
 	return rv
 }
 
@@ -268,7 +270,7 @@ func (e_ EKEvent) StructuredLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEvent/structuredLocation
-func (e_ EKEvent) SetStructuredLocation(value unsafe.Pointer) {
+func (e_ EKEvent) SetStructuredLocation(value IEKStructuredLocation) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStructuredLocation:"), value)
 }
 

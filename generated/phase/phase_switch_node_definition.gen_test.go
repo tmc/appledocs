@@ -9,4 +9,12 @@ import (
 // Suppress unused import errors
 var _ = phase.NewPHASESwitchNodeDefinition
 
+// ExampleNewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition demonstrates how to create a PHASESwitchNodeDefinition instance using NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition.
+// Creates a node that invokes a child node based on the value of the given parameter.
+func ExampleNewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition() {
+	_ = phase.NewPHASESwitchNodeDefinitionWithSwitchMetaParameterDefinition(
+		phase.PHASEStringMetaParameterDefinition{}, // switchMetaParameterDefinition PHASEStringMetaParameterDefinition
+	)
+	// Output:
+}
 

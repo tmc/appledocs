@@ -90,8 +90,8 @@ func (i_ ImageAestheticsScoresObservation) OverallScore() unsafe.Pointer {
 // The results of the aesthetics request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
-func (i_ ImageAestheticsScoresObservation) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("results"))
+func (i_ ImageAestheticsScoresObservation) Results() VNImageAestheticsScoresObservation {
+	rv := objc.Send[VNImageAestheticsScoresObservation](i_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -101,7 +101,7 @@ func (i_ ImageAestheticsScoresObservation) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest/results
-func (i_ ImageAestheticsScoresObservation) SetResults(value unsafe.Pointer) {
+func (i_ ImageAestheticsScoresObservation) SetResults(value IVNImageAestheticsScoresObservation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setResults:"), value)
 }
 

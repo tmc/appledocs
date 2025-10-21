@@ -86,8 +86,8 @@ func NewGradientLayer() GradientLayer {
 // An array of objects defining the color of each gradient stop. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/colors
-func (g_ GradientLayer) Colors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("colors"))
+func (g_ GradientLayer) Colors() objc.ID {
+	rv := objc.Send[objc.ID](g_.ID, objc.Sel("colors"))
 	return rv
 }
 
@@ -97,7 +97,7 @@ func (g_ GradientLayer) Colors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/colors
-func (g_ GradientLayer) SetColors(value unsafe.Pointer) {
+func (g_ GradientLayer) SetColors(value objc.ID) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColors:"), value)
 }
 
@@ -133,7 +133,7 @@ func (g_ GradientLayer) Locations() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/locations
-func (g_ GradientLayer) SetLocations(value []foundation.Number) {
+func (g_ GradientLayer) SetLocations(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -168,8 +168,8 @@ func (g_ GradientLayer) SetStartPoint(value coregraphics.CGPoint) {
 // Style of gradient drawn by the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/type
-func (g_ GradientLayer) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("type"))
+func (g_ GradientLayer) Type() GradientLayerType {
+	rv := objc.Send[GradientLayerType](g_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -179,7 +179,7 @@ func (g_ GradientLayer) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAGradientLayer/type
-func (g_ GradientLayer) SetType(value unsafe.Pointer) {
+func (g_ GradientLayer) SetType(value GradientLayerType) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setType:"), value)
 }
 

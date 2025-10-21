@@ -117,8 +117,8 @@ func (m_ MKMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer) {
 // The characteristics of the map view, including the map type and features the map displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKMapConfiguration) PreferredConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+func (m_ MKMapConfiguration) PreferredConfiguration() MKMapConfiguration {
+	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
 	return rv
 }
 
@@ -128,7 +128,7 @@ func (m_ MKMapConfiguration) PreferredConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+func (m_ MKMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 

@@ -84,8 +84,8 @@ func NewHKContactsLensSpecification() HKContactsLensSpecification {
 // Part of the contact’s fit, it measures the curve of the back side of the contact, measured in mm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
-func (h_ HKContactsLensSpecification) BaseCurve() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("baseCurve"))
+func (h_ HKContactsLensSpecification) BaseCurve() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("baseCurve"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (h_ HKContactsLensSpecification) BaseCurve() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/basecurve
-func (h_ HKContactsLensSpecification) SetBaseCurve(value unsafe.Pointer) {
+func (h_ HKContactsLensSpecification) SetBaseCurve(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setBaseCurve:"), value)
 }
 
 // Part of the contact’s fit, it measures the diameter of the lens, measured in mm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
-func (h_ HKContactsLensSpecification) Diameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("diameter"))
+func (h_ HKContactsLensSpecification) Diameter() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("diameter"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (h_ HKContactsLensSpecification) Diameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactslensspecification/diameter
-func (h_ HKContactsLensSpecification) SetDiameter(value unsafe.Pointer) {
+func (h_ HKContactsLensSpecification) SetDiameter(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDiameter:"), value)
 }
 

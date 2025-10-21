@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,23 +32,23 @@ type _ABAddressBookClass struct {
 // An interface definition for the [ABAddressBook] class.
 type IABAddressBook interface {
 	objectivec.IObject
-	AddRecord(record unsafe.Pointer) bool
-	AddRecordError(record unsafe.Pointer, error_ unsafe.Pointer) bool
-	DefaultCountryCode() string
+	AddRecord(record IABRecord) bool
+	AddRecordError(record IABRecord, error_ unsafe.Pointer) bool
+	DefaultCountryCode() foundation.String
 	DefaultNameOrdering() int
-	FormattedAddressFromDictionary(address objc.ID) unsafe.Pointer
-	Groups() unsafe.Pointer
+	FormattedAddressFromDictionary(address objectivec.IObject) foundation.AttributedString
+	Groups() foundation.Array
 	HasUnsavedChanges() bool
-	Me() unsafe.Pointer
-	People() unsafe.Pointer
-	RecordForUniqueId(uniqueId string) unsafe.Pointer
-	RecordClassFromUniqueId(uniqueId string) string
-	RecordsMatchingSearchElement(search unsafe.Pointer) unsafe.Pointer
-	RemoveRecord(record unsafe.Pointer) bool
-	RemoveRecordError(record unsafe.Pointer, error_ unsafe.Pointer) bool
+	Me() ABPerson
+	People() foundation.Array
+	RecordForUniqueId(uniqueId appkit.string) ABRecord
+	RecordClassFromUniqueId(uniqueId appkit.string) foundation.String
+	RecordsMatchingSearchElement(search IABSearchElement) foundation.Array
+	RemoveRecord(record IABRecord) bool
+	RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool
 	Save() bool
 	SaveAndReturnError(error_ unsafe.Pointer) bool
-	SetMe(moi unsafe.Pointer)
+	SetMe(moi IABPerson)
 }
 
 // The main object you use to access the Address Book database.
@@ -100,23 +102,23 @@ func NewABAddressBook() ABAddressBook {
 // Returns a new instance of , or if the Address Book database can’t be initialized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/addressBook
-func (ac _ABAddressBookClass) AddressBook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("addressBook"))
+func (ac _ABAddressBookClass) AddressBook() ABAddressBook {
+	rv := objc.Send[ABAddressBook](objc.ID(ac.class), objc.Sel("addressBook"))
 	return rv
 }
 
 // Returns the unique shared instance of , or if the Address Book database can’t be initialized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/shared()
-func (ac _ABAddressBookClass) SharedAddressBook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedAddressBook"))
+func (ac _ABAddressBookClass) SharedAddressBook() ABAddressBook {
+	rv := objc.Send[ABAddressBook](objc.ID(ac.class), objc.Sel("sharedAddressBook"))
 	return rv
 }
 
 // Adds an or record to the Address Book database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/add(_:)
-func (a_ ABAddressBook) AddRecord(record unsafe.Pointer) bool {
+func (a_ ABAddressBook) AddRecord(record IABRecord) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addRecord:"), record)
 	return rv
 }
@@ -124,7 +126,7 @@ func (a_ ABAddressBook) AddRecord(record unsafe.Pointer) bool {
 // Adds an or record to the Address Book database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/add(_:error:)
-func (a_ ABAddressBook) AddRecordError(record unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (a_ ABAddressBook) AddRecordError(record IABRecord, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addRecord:error:"), record, error_)
 	return rv
 }
@@ -132,8 +134,8 @@ func (a_ ABAddressBook) AddRecordError(record unsafe.Pointer, error_ unsafe.Poin
 // Returns the default country code for records with unspecified country codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/defaultCountryCode()
-func (a_ ABAddressBook) DefaultCountryCode() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("defaultCountryCode"))
+func (a_ ABAddressBook) DefaultCountryCode() foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("defaultCountryCode"))
 	return rv
 }
 
@@ -148,16 +150,16 @@ func (a_ ABAddressBook) DefaultNameOrdering() int {
 // Returns an attributed string containing the formatted address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/formattedAddress(from:)
-func (a_ ABAddressBook) FormattedAddressFromDictionary(address objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("formattedAddressFromDictionary:"), address)
+func (a_ ABAddressBook) FormattedAddressFromDictionary(address objectivec.IObject) foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("formattedAddressFromDictionary:"), address)
 	return rv
 }
 
 // Returns an array of all the groups in the Address Book database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/groups()
-func (a_ ABAddressBook) Groups() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("groups"))
+func (a_ ABAddressBook) Groups() foundation.Array {
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("groups"))
 	return rv
 }
 
@@ -172,47 +174,47 @@ func (a_ ABAddressBook) HasUnsavedChanges() bool {
 // Returns the record that represents the logged-in user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/me()
-func (a_ ABAddressBook) Me() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("me"))
+func (a_ ABAddressBook) Me() ABPerson {
+	rv := objc.Send[ABPerson](a_.ID, objc.Sel("me"))
 	return rv
 }
 
 // Returns an array of all the people in the Address Book database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/people()
-func (a_ ABAddressBook) People() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("people"))
+func (a_ ABAddressBook) People() foundation.Array {
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("people"))
 	return rv
 }
 
 // Returns the person or group record that matches the given unique ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/record(forUniqueId:)
-func (a_ ABAddressBook) RecordForUniqueId(uniqueId string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recordForUniqueId:"), objc.String(uniqueId))
+func (a_ ABAddressBook) RecordForUniqueId(uniqueId appkit.string) ABRecord {
+	rv := objc.Send[ABRecord](a_.ID, objc.Sel("recordForUniqueId:"), uniqueId)
 	return rv
 }
 
 // Returns the class name of the record that matches the given unique ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/recordClass(fromUniqueId:)
-func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId string) string {
-	rv := objc.Send[string](a_.ID, objc.Sel("recordClassFromUniqueId:"), objc.String(uniqueId))
+func (a_ ABAddressBook) RecordClassFromUniqueId(uniqueId appkit.string) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("recordClassFromUniqueId:"), uniqueId)
 	return rv
 }
 
 // Returns an array of records that match the given search element, or returns an empty array if no records match the search element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/records(matching:)
-func (a_ ABAddressBook) RecordsMatchingSearchElement(search unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recordsMatchingSearchElement:"), search)
+func (a_ ABAddressBook) RecordsMatchingSearchElement(search IABSearchElement) foundation.Array {
+	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("recordsMatchingSearchElement:"), search)
 	return rv
 }
 
 // Removes an or record from the Address Book database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/remove(_:)
-func (a_ ABAddressBook) RemoveRecord(record unsafe.Pointer) bool {
+func (a_ ABAddressBook) RemoveRecord(record IABRecord) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeRecord:"), record)
 	return rv
 }
@@ -220,7 +222,7 @@ func (a_ ABAddressBook) RemoveRecord(record unsafe.Pointer) bool {
 // Removes an or record from the Address Book database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/remove(_:error:)
-func (a_ ABAddressBook) RemoveRecordError(record unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (a_ ABAddressBook) RemoveRecordError(record IABRecord, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeRecord:error:"), record, error_)
 	return rv
 }
@@ -244,7 +246,7 @@ func (a_ ABAddressBook) SaveAndReturnError(error_ unsafe.Pointer) bool {
 // Sets the record that represents the logged-in user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook/setMe(_:)
-func (a_ ABAddressBook) SetMe(moi unsafe.Pointer) {
+func (a_ ABAddressBook) SetMe(moi IABPerson) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMe:"), moi)
 }
 

@@ -30,8 +30,8 @@ type _FXFrameInterpolatorDescriptorClass struct {
 // An interface definition for the [FXFrameInterpolatorDescriptor] class.
 type IFXFrameInterpolatorDescriptor interface {
 	objectivec.IObject
-	NewFrameInterpolatorWithDevice(device objc.ID) objc.ID
-	NewFrameInterpolatorWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID
+	NewFrameInterpolatorWithDevice(device objectivec.IObject) objc.ID
+	NewFrameInterpolatorWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
 // A set of properties that configure a frame interpolator, and a factory method that creates the effect.
@@ -85,7 +85,7 @@ func NewFXFrameInterpolatorDescriptor() FXFrameInterpolatorDescriptor {
 // Queries whether a Metal device supports frame interpolation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/supportsDevice(_:)
-func (fc _FXFrameInterpolatorDescriptorClass) SupportsDevice(device objc.ID) bool {
+func (fc _FXFrameInterpolatorDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
@@ -93,7 +93,7 @@ func (fc _FXFrameInterpolatorDescriptorClass) SupportsDevice(device objc.ID) boo
 // Queries whether a Metal device supports frame interpolation compatible with a Metal 4 command buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/supportsMetal4FX(_:)
-func (fc _FXFrameInterpolatorDescriptorClass) SupportsMetal4FX(device objc.ID) bool {
+func (fc _FXFrameInterpolatorDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
@@ -101,7 +101,7 @@ func (fc _FXFrameInterpolatorDescriptorClass) SupportsMetal4FX(device objc.ID) b
 // Creates a frame interpolator instance for a Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/makeFrameInterpolator(device:)
-func (f_ FXFrameInterpolatorDescriptor) NewFrameInterpolatorWithDevice(device objc.ID) objc.ID {
+func (f_ FXFrameInterpolatorDescriptor) NewFrameInterpolatorWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newFrameInterpolatorWithDevice:"), device)
 	return rv
 }
@@ -109,7 +109,7 @@ func (f_ FXFrameInterpolatorDescriptor) NewFrameInterpolatorWithDevice(device ob
 // Creates a frame interpolator instance for a Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXFrameInterpolatorDescriptor/makeFrameInterpolator(device:compiler:)
-func (f_ FXFrameInterpolatorDescriptor) NewFrameInterpolatorWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID {
+func (f_ FXFrameInterpolatorDescriptor) NewFrameInterpolatorWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newFrameInterpolatorWithDevice:compiler:"), device, compiler)
 	return rv
 }

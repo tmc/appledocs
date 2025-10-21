@@ -78,6 +78,14 @@ func NewMKMapItemRequest() MKMapItemRequest {
 }
 
 
+// A Boolean value that indicates if the request is loading.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemRequest/isLoading
+func (m_ MKMapItemRequest) Loading() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("loading"))
+	return rv
+}
+
 // The map feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/feature
@@ -99,8 +107,8 @@ func (m_ MKMapItemRequest) SetFeature(value unsafe.Pointer) {
 // The feature annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/featureannotation
-func (m_ MKMapItemRequest) FeatureAnnotation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("featureAnnotation"))
+func (m_ MKMapItemRequest) FeatureAnnotation() MKMapFeatureAnnotation {
+	rv := objc.Send[MKMapFeatureAnnotation](m_.ID, objc.Sel("featureAnnotation"))
 	return rv
 }
 
@@ -110,7 +118,7 @@ func (m_ MKMapItemRequest) FeatureAnnotation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/featureannotation
-func (m_ MKMapItemRequest) SetFeatureAnnotation(value unsafe.Pointer) {
+func (m_ MKMapItemRequest) SetFeatureAnnotation(value IMKMapFeatureAnnotation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFeatureAnnotation:"), value)
 }
 
@@ -171,8 +179,8 @@ func (m_ MKMapItemRequest) SetMapFeature(value unsafe.Pointer) {
 // The feature annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapfeatureannotation
-func (m_ MKMapItemRequest) MapFeatureAnnotation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapFeatureAnnotation"))
+func (m_ MKMapItemRequest) MapFeatureAnnotation() MKMapFeatureAnnotation {
+	rv := objc.Send[MKMapFeatureAnnotation](m_.ID, objc.Sel("mapFeatureAnnotation"))
 	return rv
 }
 
@@ -182,15 +190,15 @@ func (m_ MKMapItemRequest) MapFeatureAnnotation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapfeatureannotation
-func (m_ MKMapItemRequest) SetMapFeatureAnnotation(value unsafe.Pointer) {
+func (m_ MKMapItemRequest) SetMapFeatureAnnotation(value IMKMapFeatureAnnotation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapFeatureAnnotation:"), value)
 }
 
 // The map item identifer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapitemidentifier
-func (m_ MKMapItemRequest) MapItemIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapItemIdentifier"))
+func (m_ MKMapItemRequest) MapItemIdentifier() MKMapItemIdentifier {
+	rv := objc.Send[MKMapItemIdentifier](m_.ID, objc.Sel("mapItemIdentifier"))
 	return rv
 }
 
@@ -200,7 +208,7 @@ func (m_ MKMapItemRequest) MapItemIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapitemrequest/mapitemidentifier
-func (m_ MKMapItemRequest) SetMapItemIdentifier(value unsafe.Pointer) {
+func (m_ MKMapItemRequest) SetMapItemIdentifier(value IMKMapItemIdentifier) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapItemIdentifier:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -188,8 +190,8 @@ func (n_ NEVPNProtocol) SetExcludeLocalNetworks(value bool) {
 // The certificate and private key components of the tunneling protocol authentication credential, in PKCS12 format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityData
-func (n_ NEVPNProtocol) IdentityData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identityData"))
+func (n_ NEVPNProtocol) IdentityData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("identityData"))
 	return rv
 }
 
@@ -199,15 +201,15 @@ func (n_ NEVPNProtocol) IdentityData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityData
-func (n_ NEVPNProtocol) SetIdentityData(value unsafe.Pointer) {
+func (n_ NEVPNProtocol) SetIdentityData(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityData:"), value)
 }
 
 // The password for the PKCS12 tunneling protocol authentication credentials.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityDataPassword
-func (n_ NEVPNProtocol) IdentityDataPassword() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("identityDataPassword"))
+func (n_ NEVPNProtocol) IdentityDataPassword() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("identityDataPassword"))
 	return rv
 }
 
@@ -217,15 +219,15 @@ func (n_ NEVPNProtocol) IdentityDataPassword() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityDataPassword
-func (n_ NEVPNProtocol) SetIdentityDataPassword(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), objc.String(value))
+func (n_ NEVPNProtocol) SetIdentityDataPassword(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityDataPassword:"), value)
 }
 
 // A persistent keychain reference to a keychain item containing the certificate and private key components of the tunneling protocol authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityReference
-func (n_ NEVPNProtocol) IdentityReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identityReference"))
+func (n_ NEVPNProtocol) IdentityReference() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("identityReference"))
 	return rv
 }
 
@@ -235,7 +237,7 @@ func (n_ NEVPNProtocol) IdentityReference() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/identityReference
-func (n_ NEVPNProtocol) SetIdentityReference(value unsafe.Pointer) {
+func (n_ NEVPNProtocol) SetIdentityReference(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityReference:"), value)
 }
 
@@ -260,8 +262,8 @@ func (n_ NEVPNProtocol) SetIncludeAllNetworks(value bool) {
 // A persistent keychain reference to a keychain item containing the password component of the tunneling protocol authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/passwordReference
-func (n_ NEVPNProtocol) PasswordReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("passwordReference"))
+func (n_ NEVPNProtocol) PasswordReference() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("passwordReference"))
 	return rv
 }
 
@@ -271,15 +273,15 @@ func (n_ NEVPNProtocol) PasswordReference() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/passwordReference
-func (n_ NEVPNProtocol) SetPasswordReference(value unsafe.Pointer) {
+func (n_ NEVPNProtocol) SetPasswordReference(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPasswordReference:"), value)
 }
 
 // The proxy settings to use for HTTP and HTTPS connections that route through the VPN.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/proxySettings
-func (n_ NEVPNProtocol) ProxySettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("proxySettings"))
+func (n_ NEVPNProtocol) ProxySettings() NEProxySettings {
+	rv := objc.Send[NEProxySettings](n_.ID, objc.Sel("proxySettings"))
 	return rv
 }
 
@@ -289,15 +291,15 @@ func (n_ NEVPNProtocol) ProxySettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/proxySettings
-func (n_ NEVPNProtocol) SetProxySettings(value unsafe.Pointer) {
+func (n_ NEVPNProtocol) SetProxySettings(value INEProxySettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProxySettings:"), value)
 }
 
 // The address of the VPN server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/serverAddress
-func (n_ NEVPNProtocol) ServerAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("serverAddress"))
+func (n_ NEVPNProtocol) ServerAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("serverAddress"))
 	return rv
 }
 
@@ -307,14 +309,14 @@ func (n_ NEVPNProtocol) ServerAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/serverAddress
-func (n_ NEVPNProtocol) SetServerAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), objc.String(value))
+func (n_ NEVPNProtocol) SetServerAddress(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/sliceUUID
-func (n_ NEVPNProtocol) SliceUUID() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("sliceUUID"))
+func (n_ NEVPNProtocol) SliceUUID() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sliceUUID"))
 	return rv
 }
 
@@ -322,15 +324,15 @@ func (n_ NEVPNProtocol) SliceUUID() string {
 // SetSliceUUID sets the value of the sliceUUID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/sliceUUID
-func (n_ NEVPNProtocol) SetSliceUUID(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSliceUUID:"), objc.String(value))
+func (n_ NEVPNProtocol) SetSliceUUID(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSliceUUID:"), value)
 }
 
 // The user name component of the tunneling protocol authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/username
-func (n_ NEVPNProtocol) Username() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("username"))
+func (n_ NEVPNProtocol) Username() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -340,8 +342,8 @@ func (n_ NEVPNProtocol) Username() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocol/username
-func (n_ NEVPNProtocol) SetUsername(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (n_ NEVPNProtocol) SetUsername(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), value)
 }
 
 

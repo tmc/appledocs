@@ -90,7 +90,7 @@ func (m_ MTRServiceAreaClusterSkipAreaParams) ServerSideProcessingTimeout() foun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/serverSideProcessingTimeout
-func (m_ MTRServiceAreaClusterSkipAreaParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRServiceAreaClusterSkipAreaParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRServiceAreaClusterSkipAreaParams) SkippedArea() foundation.Number {
 // SetSkippedArea sets the value of the skippedArea property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/skippedArea
-func (m_ MTRServiceAreaClusterSkipAreaParams) SetSkippedArea(value foundation.Number) {
+func (m_ MTRServiceAreaClusterSkipAreaParams) SetSkippedArea(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSkippedArea:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRServiceAreaClusterSkipAreaParams) TimedInvokeTimeoutMs() foundation.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSkipAreaParams/timedInvokeTimeoutMs
-func (m_ MTRServiceAreaClusterSkipAreaParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRServiceAreaClusterSkipAreaParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

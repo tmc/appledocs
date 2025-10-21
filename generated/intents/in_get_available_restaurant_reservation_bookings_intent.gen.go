@@ -85,8 +85,8 @@ func NewINGetAvailableRestaurantReservationBookingsIntent() INGetAvailableRestau
 // The earliest date for which to return results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/earliestbookingdateforresults
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateForResults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("earliestBookingDateForResults"))
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateForResults() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("earliestBookingDateForResults"))
 	return rv
 }
 
@@ -96,15 +96,15 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateF
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/earliestbookingdateforresults
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value unsafe.Pointer) {
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
 }
 
 // The latest date for which to return results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/latestbookingdateforresults
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateForResults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("latestBookingDateForResults"))
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateForResults() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("latestBookingDateForResults"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateFor
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/latestbookingdateforresults
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetLatestBookingDateForResults(value unsafe.Pointer) {
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetLatestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLatestBookingDateForResults:"), value)
 }
 
@@ -132,7 +132,7 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) MaximumNumberOfResul
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/maximumnumberofresults
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.Number) {
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)
 }
 
@@ -157,8 +157,8 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPartySize(value i
 // The date and time preferred by the user for the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/preferredbookingdatecomponents
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredBookingDateComponents"))
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("preferredBookingDateComponents"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDate
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent/preferredbookingdatecomponents
-func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPreferredBookingDateComponents(value unsafe.Pointer) {
+func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPreferredBookingDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredBookingDateComponents:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [USBHostInterface] class.
@@ -30,6 +31,7 @@ type _USBHostInterfaceClass struct {
 // An interface definition for the [USBHostInterface] class.
 type IUSBHostInterface interface {
 	IUSBHostObject
+	CopyPipeWithAddressError(address uint, error_ unsafe.Pointer) USBHostPipe
 	SelectAlternateSettingError(alternateSetting uint, error_ unsafe.Pointer) bool
 }
 
@@ -86,8 +88,16 @@ func NewUSBHostInterface() USBHostInterface {
 // Creates a matching dictionary to find a USB interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:
-func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.Number, productID foundation.Number, bcdDevice foundation.Number, interfaceNumber foundation.Number, configurationValue foundation.Number, interfaceClass foundation.Number, interfaceSubclass foundation.Number, interfaceProtocol foundation.Number, speed foundation.Number, productIDArray objc.ID) unsafe.Pointer {
+func (uc _USBHostInterfaceClass) CreateMatchingDictionaryWithVendorIDProductIDBcdDeviceInterfaceNumberConfigurationValueInterfaceClassInterfaceSubclassInterfaceProtocolSpeedProductIDArray(vendorID foundation.INumber, productID foundation.INumber, bcdDevice foundation.INumber, interfaceNumber foundation.INumber, configurationValue foundation.INumber, interfaceClass foundation.INumber, interfaceSubclass foundation.INumber, interfaceProtocol foundation.INumber, speed foundation.INumber, productIDArray objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("createMatchingDictionaryWithVendorID:productID:bcdDevice:interfaceNumber:configurationValue:interfaceClass:interfaceSubclass:interfaceProtocol:speed:productIDArray:"), vendorID, productID, bcdDevice, interfaceNumber, configurationValue, interfaceClass, interfaceSubclass, interfaceProtocol, speed, productIDArray)
+	return rv
+}
+
+// Copies a pipe for a specific endpoint address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostInterface/copyPipe(withAddress:)
+func (u_ USBHostInterface) CopyPipeWithAddressError(address uint, error_ unsafe.Pointer) USBHostPipe {
+	rv := objc.Send[USBHostPipe](u_.ID, objc.Sel("copyPipeWithAddress:error:"), address, error_)
 	return rv
 }
 

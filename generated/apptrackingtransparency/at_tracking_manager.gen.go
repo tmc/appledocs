@@ -88,15 +88,15 @@ func (ac _ATTrackingManagerClass) RequestTrackingAuthorizationWithCompletionHand
 // The authorization status that is current for the calling application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus
-func (ac _ATTrackingManagerClass) TrackingAuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("trackingAuthorizationStatus"))
+func (ac _ATTrackingManagerClass) TrackingAuthorizationStatus() ATTrackingManagerAuthorizationStatus {
+	rv := objc.Send[ATTrackingManagerAuthorizationStatus](objc.ID(ac.class), objc.Sel("trackingAuthorizationStatus"))
 	return rv
 }
 // The authorization status that is current for the calling application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/trackingAuthorizationStatus
-func (a_ ATTrackingManager) TrackingAuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackingAuthorizationStatus"))
+func (a_ ATTrackingManager) TrackingAuthorizationStatus() ATTrackingManagerAuthorizationStatus {
+	rv := objc.Send[ATTrackingManagerAuthorizationStatus](a_.ID, objc.Sel("trackingAuthorizationStatus"))
 	return rv
 }
 

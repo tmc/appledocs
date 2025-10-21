@@ -87,14 +87,14 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) AutoPlay() foundation.Num
 // SetAutoPlay sets the value of the autoPlay property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/autoplay
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetAutoPlay(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetAutoPlay(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoPlay:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
-func (m_ MTRContentLauncherClusterLaunchContentParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentLauncherClusterLaunchContentParams) Data() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) Data() string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetData(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/search
-func (m_ MTRContentLauncherClusterLaunchContentParams) Search() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("search"))
+func (m_ MTRContentLauncherClusterLaunchContentParams) Search() MTRContentLauncherClusterContentSearchStruct {
+	rv := objc.Send[MTRContentLauncherClusterContentSearchStruct](m_.ID, objc.Sel("search"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) Search() unsafe.Pointer {
 // SetSearch sets the value of the search property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/search
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetSearch(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetSearch(value IMTRContentLauncherClusterContentSearchStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSearch:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) ServerSideProcessingTimeo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) UseCurrentContext() found
 // SetUseCurrentContext sets the value of the useCurrentContext property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
-func (m_ MTRContentLauncherClusterLaunchContentParams) SetUseCurrentContext(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchContentParams) SetUseCurrentContext(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUseCurrentContext:"), value)
 }
 

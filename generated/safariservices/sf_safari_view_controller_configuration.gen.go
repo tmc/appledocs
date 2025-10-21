@@ -82,8 +82,8 @@ func NewSFSafariViewControllerConfiguration() SFSafariViewControllerConfiguratio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/Configuration-swift.class/activityButton
-func (s_ SFSafariViewControllerConfiguration) ActivityButton() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("activityButton"))
+func (s_ SFSafariViewControllerConfiguration) ActivityButton() SFSafariViewControllerActivityButton {
+	rv := objc.Send[SFSafariViewControllerActivityButton](s_.ID, objc.Sel("activityButton"))
 	return rv
 }
 
@@ -91,7 +91,7 @@ func (s_ SFSafariViewControllerConfiguration) ActivityButton() unsafe.Pointer {
 // SetActivityButton sets the value of the activityButton property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/Configuration-swift.class/activityButton
-func (s_ SFSafariViewControllerConfiguration) SetActivityButton(value unsafe.Pointer) {
+func (s_ SFSafariViewControllerConfiguration) SetActivityButton(value ISFSafariViewControllerActivityButton) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setActivityButton:"), value)
 }
 

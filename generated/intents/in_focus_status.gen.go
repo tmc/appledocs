@@ -86,7 +86,7 @@ func NewINFocusStatus() INFocusStatus {
 // Creates an object that indicates the user’s ability to receive communication notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatus/initWithIsFocused:
-func NewINFocusStatusWithIsFocused(isFocused foundation.Number) INFocusStatus {
+func NewINFocusStatusWithIsFocused(isFocused foundation.INumber) INFocusStatus {
 	instance := getINFocusStatusClass().Alloc()
 	rv := objc.Send[INFocusStatus](instance.ID, objc.Sel("initWithIsFocused:"), isFocused)
 	rv.Autorelease()

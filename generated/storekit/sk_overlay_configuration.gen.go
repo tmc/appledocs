@@ -81,8 +81,8 @@ func NewOverlayConfiguration() OverlayConfiguration {
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("configuration"))
+func (o_ OverlayConfiguration) Configuration() SKOverlayConfiguration {
+	rv := objc.Send[SKOverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (o_ OverlayConfiguration) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayConfiguration) SetConfiguration(value unsafe.Pointer) {
+func (o_ OverlayConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
 }
 

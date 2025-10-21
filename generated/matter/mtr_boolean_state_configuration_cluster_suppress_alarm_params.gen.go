@@ -87,7 +87,7 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) AlarmsToSuppres
 // SetAlarmsToSuppress sets the value of the alarmsToSuppress property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
-func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetAlarmsToSuppress(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetAlarmsToSuppress(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsToSuppress:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) ServerSideProce
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/serversideprocessingtimeout
-func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) TimedInvokeTime
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/timedinvoketimeoutms
-func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,8 +87,8 @@ func NewNEDNSSettingsManager() NEDNSSettingsManager {
 // Access the single instance of a DNS settings manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/shared()
-func (nc _NEDNSSettingsManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("sharedManager"))
+func (nc _NEDNSSettingsManagerClass) SharedManager() NEDNSSettingsManager {
+	rv := objc.Send[NEDNSSettingsManager](objc.ID(nc.class), objc.Sel("sharedManager"))
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (n_ NEDNSSettingsManager) SaveToPreferencesWithCompletionHandler(completion
 // An object that contains the configuration settings for a DNS server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/dnsSettings
-func (n_ NEDNSSettingsManager) DnsSettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("dnsSettings"))
+func (n_ NEDNSSettingsManager) DnsSettings() NEDNSSettings {
+	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("dnsSettings"))
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (n_ NEDNSSettingsManager) DnsSettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/dnsSettings
-func (n_ NEDNSSettingsManager) SetDnsSettings(value unsafe.Pointer) {
+func (n_ NEDNSSettingsManager) SetDnsSettings(value INEDNSSettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsSettings:"), value)
 }
 
@@ -141,8 +142,8 @@ func (n_ NEDNSSettingsManager) Enabled() bool {
 // A string that contains the display name of the DNS settings configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/localizedDescription
-func (n_ NEDNSSettingsManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEDNSSettingsManager) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -152,8 +153,8 @@ func (n_ NEDNSSettingsManager) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEDNSSettingsManager/localizedDescription
-func (n_ NEDNSSettingsManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEDNSSettingsManager) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
 
 // A list of ordered rules that defines the networks on which the DNS settings will apply.
@@ -187,8 +188,8 @@ func (n_ NEDNSSettingsManager) SetOnDemandRules(value []NEOnDemandRule) {
 // The domain for errors resulting from calls to the DNS settings manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednssettingserrordomain
-func (n_ NEDNSSettingsManager) NEDNSSettingsErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSSettingsErrorDomain"))
+func (n_ NEDNSSettingsManager) NEDNSSettingsErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEDNSSettingsErrorDomain"))
 	return rv
 }
 

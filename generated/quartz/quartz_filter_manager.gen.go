@@ -30,7 +30,7 @@ type _QuartzFilterManagerClass struct {
 // An interface definition for the [QuartzFilterManager] class.
 type IQuartzFilterManager interface {
 	objectivec.IObject
-	ImportFilter(filterProperties objc.ID) unsafe.Pointer
+	ImportFilter(filterProperties objectivec.IObject) QuartzFilter
 }
 
 //
@@ -78,8 +78,8 @@ func NewQuartzFilterManager() QuartzFilterManager {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilterManager/importFilter(_:)
-func (q_ QuartzFilterManager) ImportFilter(filterProperties objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("importFilter:"), filterProperties)
+func (q_ QuartzFilterManager) ImportFilter(filterProperties objectivec.IObject) QuartzFilter {
+	rv := objc.Send[QuartzFilter](q_.ID, objc.Sel("importFilter:"), filterProperties)
 	return rv
 }
 

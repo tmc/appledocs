@@ -87,7 +87,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) Attr
 // SetAttributeId sets the value of the attributeId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofilecommandparams/attributeid
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetAttributeId(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetAttributeId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeId:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) Numb
 // SetNumberOfIntervals sets the value of the numberOfIntervals property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofilecommandparams/numberofintervals
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetNumberOfIntervals(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetNumberOfIntervals(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfIntervals:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) Serv
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofilecommandparams/serversideprocessingtimeout
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) Star
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofilecommandparams/starttime
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetStartTime(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetStartTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) Time
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofilecommandparams/timedinvoketimeoutms
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

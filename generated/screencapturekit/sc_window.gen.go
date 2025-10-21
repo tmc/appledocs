@@ -146,8 +146,8 @@ func (w_ Window) SetIsOnScreen(value bool) {
 // The app that owns the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
-func (w_ Window) OwningApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("owningApplication"))
+func (w_ Window) OwningApplication() SCRunningApplication {
+	rv := objc.Send[SCRunningApplication](w_.ID, objc.Sel("owningApplication"))
 	return rv
 }
 
@@ -157,15 +157,15 @@ func (w_ Window) OwningApplication() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/owningapplication
-func (w_ Window) SetOwningApplication(value unsafe.Pointer) {
+func (w_ Window) SetOwningApplication(value ISCRunningApplication) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setOwningApplication:"), value)
 }
 
 // The string that displays in a window’s title bar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) Title() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("title"))
+func (w_ Window) Title() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -175,8 +175,8 @@ func (w_ Window) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scwindow/title
-func (w_ Window) SetTitle(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (w_ Window) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
 }
 
 // The Core Graphics window identifier.

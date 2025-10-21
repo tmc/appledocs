@@ -84,8 +84,8 @@ func NewGLKEffectPropertyFog() GLKEffectPropertyFog {
 // The color of the fog at maximum density.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-func (g_ GLKEffectPropertyFog) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("color"))
+func (g_ GLKEffectPropertyFog) Color() GLKVector4 {
+	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (g_ GLKEffectPropertyFog) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyFog/color
-func (g_ GLKEffectPropertyFog) SetColor(value unsafe.Pointer) {
+func (g_ GLKEffectPropertyFog) SetColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
 

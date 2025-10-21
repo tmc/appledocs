@@ -87,14 +87,14 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) Breadcrum
 // SetBreadcrumb sets the value of the breadcrumb property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetBreadcrumb(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetBreadcrumb(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) OperationalDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalDataset"))
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) OperationalDataset() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalDataset"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) Operation
 // SetOperationalDataset sets the value of the operationalDataset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/operationaldataset
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetOperationalDataset(value unsafe.Pointer) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetOperationalDataset(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) ServerSid
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) TimedInvo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatethreadnetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

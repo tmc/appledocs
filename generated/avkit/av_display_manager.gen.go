@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
 // A hint for the TV to set the display mode to best match the currently playing content’s display criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-func (d_ DisplayManager) PreferredDisplayCriteria() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("preferredDisplayCriteria"))
+func (d_ DisplayManager) PreferredDisplayCriteria() avfoundation.DisplayCriteria {
+	rv := objc.Send[avfoundation.DisplayCriteria](d_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
 
@@ -110,7 +111,7 @@ func (d_ DisplayManager) PreferredDisplayCriteria() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-func (d_ DisplayManager) SetPreferredDisplayCriteria(value unsafe.Pointer) {
+func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.IDisplayCriteria) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 

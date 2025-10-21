@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -96,7 +97,7 @@ func (m_ MoviePlayerController) ContentURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerController/contentURL
-func (m_ MoviePlayerController) SetContentURL(value foundation.URL) {
+func (m_ MoviePlayerController) SetContentURL(value foundation.IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), value)
 }
 
@@ -111,8 +112,8 @@ func (m_ MoviePlayerController) AirPlayVideoActive() bool {
 // The network load state of the movie player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerController/loadState
-func (m_ MoviePlayerController) LoadState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("loadState"))
+func (m_ MoviePlayerController) LoadState() MovieLoadState {
+	rv := objc.Send[MovieLoadState](m_.ID, objc.Sel("loadState"))
 	return rv
 }
 
@@ -163,8 +164,8 @@ func (m_ MoviePlayerController) SetShouldAutoplay(value bool) {
 // Obtains the most recent time-based metadata provided by the streamed movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMoviePlayerController/timedMetadata
-func (m_ MoviePlayerController) TimedMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timedMetadata"))
+func (m_ MoviePlayerController) TimedMetadata() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("timedMetadata"))
 	return rv
 }
 
@@ -189,8 +190,8 @@ func (m_ MoviePlayerController) SetImageCropRect(value coregraphics.CGRect) {
 // A snapshot of the network playback log for the movie player if it is playing a network stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
-func (m_ MoviePlayerController) AccessLog() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accessLog"))
+func (m_ MoviePlayerController) AccessLog() MPMovieAccessLog {
+	rv := objc.Send[MPMovieAccessLog](m_.ID, objc.Sel("accessLog"))
 	return rv
 }
 
@@ -200,7 +201,7 @@ func (m_ MoviePlayerController) AccessLog() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
-func (m_ MoviePlayerController) SetAccessLog(value unsafe.Pointer) {
+func (m_ MoviePlayerController) SetAccessLog(value IMPMovieAccessLog) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessLog:"), value)
 }
 
@@ -225,8 +226,8 @@ func (m_ MoviePlayerController) SetAllowsAirPlay(value bool) {
 // A customizable view that is displayed behind the movie content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/backgroundview
-func (m_ MoviePlayerController) BackgroundView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("backgroundView"))
+func (m_ MoviePlayerController) BackgroundView() appkit.View {
+	rv := objc.Send[appkit.View](m_.ID, objc.Sel("backgroundView"))
 	return rv
 }
 
@@ -236,7 +237,7 @@ func (m_ MoviePlayerController) BackgroundView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/backgroundview
-func (m_ MoviePlayerController) SetBackgroundView(value unsafe.Pointer) {
+func (m_ MoviePlayerController) SetBackgroundView(value appkit.IView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundView:"), value)
 }
 
@@ -297,8 +298,8 @@ func (m_ MoviePlayerController) SetEndPlaybackTime(value unsafe.Pointer) {
 // A snapshot of the playback failure error log for the movie player if it is playing a network stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/errorlog
-func (m_ MoviePlayerController) ErrorLog() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("errorLog"))
+func (m_ MoviePlayerController) ErrorLog() MPMovieErrorLog {
+	rv := objc.Send[MPMovieErrorLog](m_.ID, objc.Sel("errorLog"))
 	return rv
 }
 
@@ -308,7 +309,7 @@ func (m_ MoviePlayerController) ErrorLog() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/errorlog
-func (m_ MoviePlayerController) SetErrorLog(value unsafe.Pointer) {
+func (m_ MoviePlayerController) SetErrorLog(value IMPMovieErrorLog) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorLog:"), value)
 }
 
@@ -369,8 +370,8 @@ func (m_ MoviePlayerController) SetIsFullscreen(value bool) {
 // The types of media available in the movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/moviemediatypes
-func (m_ MoviePlayerController) MovieMediaTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("movieMediaTypes"))
+func (m_ MoviePlayerController) MovieMediaTypes() MovieMediaTypeMask {
+	rv := objc.Send[MovieMediaTypeMask](m_.ID, objc.Sel("movieMediaTypes"))
 	return rv
 }
 
@@ -380,7 +381,7 @@ func (m_ MoviePlayerController) MovieMediaTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/moviemediatypes
-func (m_ MoviePlayerController) SetMovieMediaTypes(value unsafe.Pointer) {
+func (m_ MoviePlayerController) SetMovieMediaTypes(value MovieMediaTypeMask) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMovieMediaTypes:"), value)
 }
 
@@ -495,8 +496,8 @@ func (m_ MoviePlayerController) SetUseApplicationAudioSession(value bool) {
 // The view containing the movie content and controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/view
-func (m_ MoviePlayerController) View() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("view"))
+func (m_ MoviePlayerController) View() appkit.View {
+	rv := objc.Send[appkit.View](m_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -506,14 +507,14 @@ func (m_ MoviePlayerController) View() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/view
-func (m_ MoviePlayerController) SetView(value unsafe.Pointer) {
+func (m_ MoviePlayerController) SetView(value appkit.IView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setView:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerplaybackdidfinishreasonuserinfokey
-func (m_ MoviePlayerController) MPMoviePlayerPlaybackDidFinishReasonUserInfoKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"))
+func (m_ MoviePlayerController) MPMoviePlayerPlaybackDidFinishReasonUserInfoKey() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"))
 	return rv
 }
 

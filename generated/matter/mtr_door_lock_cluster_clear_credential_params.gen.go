@@ -78,8 +78,8 @@ func NewMTRDoorLockClusterClearCredentialParams() MTRDoorLockClusterClearCredent
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/credential
-func (m_ MTRDoorLockClusterClearCredentialParams) Credential() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credential"))
+func (m_ MTRDoorLockClusterClearCredentialParams) Credential() MTRDoorLockClusterCredentialStruct {
+	rv := objc.Send[MTRDoorLockClusterCredentialStruct](m_.ID, objc.Sel("credential"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterClearCredentialParams) Credential() unsafe.Pointer {
 // SetCredential sets the value of the credential property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/credential
-func (m_ MTRDoorLockClusterClearCredentialParams) SetCredential(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterClearCredentialParams) SetCredential(value IMTRDoorLockClusterCredentialStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredential:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterClearCredentialParams) ServerSideProcessingTimeout() 
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterClearCredentialParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearCredentialParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterClearCredentialParams) TimedInvokeTimeoutMs() foundat
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterclearcredentialparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterClearCredentialParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearCredentialParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

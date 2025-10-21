@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SScoreItem] class.
@@ -86,9 +87,9 @@ func NewSScoreItem() SScoreItem {
 // Initializes an activity item that holds a score value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSScoreItem/init(identifier:title:score:maxScore:)
-func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier string, title string, score unsafe.Pointer, maxScore unsafe.Pointer) SScoreItem {
+func NewSScoreItemWithIdentifierTitleScoreMaxScore(identifier appkit.string, title appkit.string, score unsafe.Pointer, maxScore unsafe.Pointer) SScoreItem {
 	instance := getSScoreItemClass().Alloc()
-	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), objc.String(identifier), objc.String(title), score, maxScore)
+	rv := objc.Send[SScoreItem](instance.ID, objc.Sel("initWithIdentifier:title:score:maxScore:"), identifier, title, score, maxScore)
 	rv.Autorelease()
 	return rv
 }

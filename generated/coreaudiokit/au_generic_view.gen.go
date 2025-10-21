@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [GenericView] class.
@@ -85,7 +86,7 @@ func NewGenericView() GenericView {
 // Creates a generic view for an audio unit, setting all display flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/init(audioUnit:)
-func NewGenericViewWithAudioUnit(au unsafe.Pointer) GenericView {
+func NewGenericViewWithAudioUnit(au audiotoolbox.IAudioUnit) GenericView {
 	instance := getGenericViewClass().Alloc()
 	rv := objc.Send[GenericView](instance.ID, objc.Sel("initWithAudioUnit:"), au)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewGenericViewWithAudioUnit(au unsafe.Pointer) GenericView {
 // Initializes a generic view for an audio unit, setting specific display flags.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/init(audioUnit:displayFlags:)
-func NewGenericViewWithAudioUnitDisplayFlags(inAudioUnit unsafe.Pointer, inFlags unsafe.Pointer) GenericView {
+func NewGenericViewWithAudioUnitDisplayFlags(inAudioUnit audiotoolbox.IAudioUnit, inFlags GenericViewDisplayFlags) GenericView {
 	instance := getGenericViewClass().Alloc()
 	rv := objc.Send[GenericView](instance.ID, objc.Sel("initWithAudioUnit:displayFlags:"), inAudioUnit, inFlags)
 	rv.Autorelease()
@@ -108,8 +109,8 @@ func NewGenericViewWithAudioUnitDisplayFlags(inAudioUnit unsafe.Pointer, inFlags
 // The audio unit associated with the generic view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericView/audioUnit
-func (g_ GenericView) AudioUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("audioUnit"))
+func (g_ GenericView) AudioUnit() audiotoolbox.AudioUnit {
+	rv := objc.Send[audiotoolbox.AudioUnit](g_.ID, objc.Sel("audioUnit"))
 	return rv
 }
 

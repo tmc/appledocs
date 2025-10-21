@@ -15,3 +15,11 @@ func ExampleNewCKFetchRecordsOperation() {
 	_ = cloudkit.NewCKFetchRecordsOperation()
 	// Output:
 }
+// ExampleNewCKFetchRecordsOperationWithRecordIDs demonstrates how to create a CKFetchRecordsOperation instance using NewCKFetchRecordsOperationWithRecordIDs.
+// Creates a fetch operation for retrieving the records with the specified IDs.
+func ExampleNewCKFetchRecordsOperationWithRecordIDs() {
+	_ = cloudkit.NewCKFetchRecordsOperationWithRecordIDs(
+		[]cloudkit.CKRecordID{}, // recordIDs []CKRecordID
+	)
+	// Output:
+}

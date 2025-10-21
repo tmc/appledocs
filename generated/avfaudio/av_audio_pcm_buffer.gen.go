@@ -86,7 +86,7 @@ func NewAudioPCMBuffer() AudioPCMBuffer {
 // Creates a PCM audio buffer instance without copying samples, for PCM audio data, with a specified buffer list and a deallocator closure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/init(pcmFormat:bufferListNoCopy:deallocator:)
-func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format unsafe.Pointer, bufferList unsafe.Pointer, deallocator unsafe.Pointer) AudioPCMBuffer {
+func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format AVAudioFormat, bufferList unsafe.Pointer, deallocator unsafe.Pointer) AudioPCMBuffer {
 	instance := getAudioPCMBufferClass().Alloc()
 	rv := objc.Send[AudioPCMBuffer](instance.ID, objc.Sel("initWithPCMFormat:bufferListNoCopy:deallocator:"), format, bufferList, deallocator)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewAudioPCMBufferWithPCMFormatBufferListNoCopyDeallocator(format unsafe.Poi
 // Creates a PCM audio buffer instance for PCM audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/init(pcmFormat:frameCapacity:)
-func NewAudioPCMBufferWithPCMFormatFrameCapacity(format unsafe.Pointer, frameCapacity unsafe.Pointer) AudioPCMBuffer {
+func NewAudioPCMBufferWithPCMFormatFrameCapacity(format AVAudioFormat, frameCapacity IAudioFrameCount) AudioPCMBuffer {
 	instance := getAudioPCMBufferClass().Alloc()
 	rv := objc.Send[AudioPCMBuffer](instance.ID, objc.Sel("initWithPCMFormat:frameCapacity:"), format, frameCapacity)
 	rv.Autorelease()
@@ -117,16 +117,16 @@ func (a_ AudioPCMBuffer) FloatChannelData() unsafe.Pointer {
 // The buffer’s capacity, in audio sample frames.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameCapacity
-func (a_ AudioPCMBuffer) FrameCapacity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("frameCapacity"))
+func (a_ AudioPCMBuffer) FrameCapacity() AudioFrameCount {
+	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("frameCapacity"))
 	return rv
 }
 
 // The current number of valid sample frames in the buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameLength
-func (a_ AudioPCMBuffer) FrameLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("frameLength"))
+func (a_ AudioPCMBuffer) FrameLength() AudioFrameCount {
+	rv := objc.Send[AudioFrameCount](a_.ID, objc.Sel("frameLength"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (a_ AudioPCMBuffer) FrameLength() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPCMBuffer/frameLength
-func (a_ AudioPCMBuffer) SetFrameLength(value unsafe.Pointer) {
+func (a_ AudioPCMBuffer) SetFrameLength(value IAudioFrameCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFrameLength:"), value)
 }
 

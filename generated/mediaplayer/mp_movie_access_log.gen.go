@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -120,8 +121,8 @@ func (m_ MovieAccessLog) SetEvents(value unsafe.Pointer) {
 // A textual version of the web server access log for the associated movie player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdata
-func (m_ MovieAccessLog) ExtendedLogData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedLogData"))
+func (m_ MovieAccessLog) ExtendedLogData() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("extendedLogData"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MovieAccessLog) ExtendedLogData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdata
-func (m_ MovieAccessLog) SetExtendedLogData(value unsafe.Pointer) {
+func (m_ MovieAccessLog) SetExtendedLogData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogData:"), value)
 }
 
@@ -156,8 +157,8 @@ func (m_ MovieAccessLog) SetExtendedLogDataStringEncoding(value uint) {
 // A snapshot of the network playback log for the movie player if it is playing a network stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
-func (m_ MovieAccessLog) AccessLog() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accessLog"))
+func (m_ MovieAccessLog) AccessLog() MPMovieAccessLog {
+	rv := objc.Send[MPMovieAccessLog](m_.ID, objc.Sel("accessLog"))
 	return rv
 }
 
@@ -167,7 +168,7 @@ func (m_ MovieAccessLog) AccessLog() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
-func (m_ MovieAccessLog) SetAccessLog(value unsafe.Pointer) {
+func (m_ MovieAccessLog) SetAccessLog(value IMPMovieAccessLog) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessLog:"), value)
 }
 

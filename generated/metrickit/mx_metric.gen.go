@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _MXMetricClass struct {
 // An interface definition for the [MXMetric] class.
 type IMXMetric interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An abstract data class for a metric.
@@ -83,24 +84,24 @@ func NewMXMetric() MXMetric {
 // Returns the contents of a metric as a Dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetric/DictionaryRepresentation-4728j
-func (m_ MXMetric) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("DictionaryRepresentation"))
+func (m_ MXMetric) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("DictionaryRepresentation"))
 	return rv
 }
 
 // Returns the contents of the metric in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetric/jsonRepresentation()
-func (m_ MXMetric) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXMetric) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXMetric) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXMetric) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

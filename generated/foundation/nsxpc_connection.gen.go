@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,7 +36,7 @@ type IXPCConnection interface {
 	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 	Resume()
 	ScheduleSendBarrierBlock(block unsafe.Pointer)
-	SetCodeSigningRequirement(requirement string)
+	SetCodeSigningRequirement(requirement appkit.string)
 	Suspend()
 	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 }
@@ -93,7 +94,7 @@ func NewXPCConnection() XPCConnection {
 // Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
-func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection {
+func NewXPCConnectionWithListenerEndpoint(endpoint IXPCListenerEndpoint) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithListenerEndpoint:"), endpoint)
 	rv.Autorelease()
@@ -105,9 +106,9 @@ func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection
 // Initializes an object to connect to a LaunchAgent or LaunchDaemon with a name advertised in a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(machServiceName:options:)
-func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
+func NewXPCConnectionWithMachServiceNameOptions(name appkit.string, options XPCConnectionOptions) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), name, options)
 	rv.Autorelease()
 	return rv
 }
@@ -117,9 +118,9 @@ func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Poin
 // Initializes an object to connect to an object in an XPC service, identified by a service name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
-func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
+func NewXPCConnectionWithServiceName(serviceName appkit.string) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), serviceName)
 	rv.Autorelease()
 	return rv
 }
@@ -128,8 +129,8 @@ func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
 // Returns the current connection, in the context of a call to a method on your exported object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/current()
-func (xc _XPCConnectionClass) CurrentConnection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(xc.class), objc.Sel("currentConnection"))
+func (xc _XPCConnectionClass) CurrentConnection() XPCConnection {
+	rv := objc.Send[XPCConnection](objc.ID(xc.class), objc.Sel("currentConnection"))
 	return rv
 }
 
@@ -172,8 +173,8 @@ func (x_ XPCConnection) ScheduleSendBarrierBlock(block unsafe.Pointer) {
 // Sets the code signing requirement for this connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/setCodeSigningRequirement(_:)
-func (x_ XPCConnection) SetCodeSigningRequirement(requirement string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), objc.String(requirement))
+func (x_ XPCConnection) SetCodeSigningRequirement(requirement appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCodeSigningRequirement:"), requirement)
 }
 
 // Suspends the connection.
@@ -217,16 +218,16 @@ func (x_ XPCConnection) EffectiveUserIdentifier() unsafe.Pointer {
 // If the connection was created with an object, returns the endpoint object used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/endpoint
-func (x_ XPCConnection) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("endpoint"))
+func (x_ XPCConnection) Endpoint() NSXPCListenerEndpoint {
+	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
 // The object that describes the protocol for the exported object on this connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
-func (x_ XPCConnection) ExportedInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("exportedInterface"))
+func (x_ XPCConnection) ExportedInterface() NSXPCInterface {
+	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("exportedInterface"))
 	return rv
 }
 
@@ -236,7 +237,7 @@ func (x_ XPCConnection) ExportedInterface() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/exportedInterface
-func (x_ XPCConnection) SetExportedInterface(value unsafe.Pointer) {
+func (x_ XPCConnection) SetExportedInterface(value IXPCInterface) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedInterface:"), value)
 }
 
@@ -258,6 +259,42 @@ func (x_ XPCConnection) SetExportedObject(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setExportedObject:"), value)
 }
 
+// An interruption handler that is called if the remote process exits or crashes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/interruptionHandler
+func (x_ XPCConnection) InterruptionHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("interruptionHandler"))
+	return rv
+}
+
+
+// SetInterruptionHandler sets the value of the interruptionHandler property.
+// An interruption handler that is called if the remote process exits or crashes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/interruptionHandler
+func (x_ XPCConnection) SetInterruptionHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setInterruptionHandler:"), value)
+}
+
+// An invalidation handler that is called if the connection can not be formed or the connection has terminated and may not be re-established.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidationHandler
+func (x_ XPCConnection) InvalidationHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("invalidationHandler"))
+	return rv
+}
+
+
+// SetInvalidationHandler sets the value of the invalidationHandler property.
+// An invalidation handler that is called if the connection can not be formed or the connection has terminated and may not be re-established.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/invalidationHandler
+func (x_ XPCConnection) SetInvalidationHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setInvalidationHandler:"), value)
+}
+
 // The process ID (PID) of the connecting process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/processIdentifier
@@ -269,8 +306,8 @@ func (x_ XPCConnection) ProcessIdentifier() unsafe.Pointer {
 // Defines the object that describes the protocol for the object represented by the .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
-func (x_ XPCConnection) RemoteObjectInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("remoteObjectInterface"))
+func (x_ XPCConnection) RemoteObjectInterface() NSXPCInterface {
+	rv := objc.Send[NSXPCInterface](x_.ID, objc.Sel("remoteObjectInterface"))
 	return rv
 }
 
@@ -280,7 +317,7 @@ func (x_ XPCConnection) RemoteObjectInterface() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/remoteObjectInterface
-func (x_ XPCConnection) SetRemoteObjectInterface(value unsafe.Pointer) {
+func (x_ XPCConnection) SetRemoteObjectInterface(value IXPCInterface) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRemoteObjectInterface:"), value)
 }
 
@@ -295,8 +332,8 @@ func (x_ XPCConnection) RemoteObjectProxy() objc.ID {
 // The name of the XPC service that this connection was configured to connect to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/serviceName
-func (x_ XPCConnection) ServiceName() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("serviceName"))
+func (x_ XPCConnection) ServiceName() appkit.string {
+	rv := objc.Send[appkit.string](x_.ID, objc.Sel("serviceName"))
 	return rv
 }
 

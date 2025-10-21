@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,18 +32,18 @@ type _EmbeddingClass struct {
 // An interface definition for the [Embedding] class.
 type IEmbedding interface {
 	objectivec.IObject
-	ContainsString(string_ string) bool
-	DistanceBetweenStringAndStringDistanceType(firstString string, secondString string, distanceType unsafe.Pointer) unsafe.Pointer
-	EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ string, maxCount uint, distanceType unsafe.Pointer, block unsafe.Pointer)
-	EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ string, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer, block unsafe.Pointer)
-	EnumerateNeighborsForVectorMaximumCountDistanceTypeUsingBlock(vector unsafe.Pointer, maxCount uint, distanceType unsafe.Pointer, block unsafe.Pointer)
-	EnumerateNeighborsForVectorMaximumCountMaximumDistanceDistanceTypeUsingBlock(vector unsafe.Pointer, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer, block unsafe.Pointer)
-	GetVectorForString(vector unsafe.Pointer, string_ string) bool
-	NeighborsForStringMaximumCountDistanceType(string_ string, maxCount uint, distanceType unsafe.Pointer) []string
-	NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ string, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string
-	NeighborsForVectorMaximumCountDistanceType(vector unsafe.Pointer, maxCount uint, distanceType unsafe.Pointer) []string
-	NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector unsafe.Pointer, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string
-	VectorForString(string_ string) []foundation.Number
+	ContainsString(string_ appkit.string) bool
+	DistanceBetweenStringAndStringDistanceType(firstString appkit.string, secondString appkit.string, distanceType DistanceType) Distance
+	EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, distanceType DistanceType, block unsafe.Pointer)
+	EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer)
+	EnumerateNeighborsForVectorMaximumCountDistanceTypeUsingBlock(vector []foundation.INumber, maxCount uint, distanceType DistanceType, block unsafe.Pointer)
+	EnumerateNeighborsForVectorMaximumCountMaximumDistanceDistanceTypeUsingBlock(vector []foundation.INumber, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer)
+	GetVectorForString(vector unsafe.Pointer, string_ appkit.string) bool
+	NeighborsForStringMaximumCountDistanceType(string_ appkit.string, maxCount uint, distanceType DistanceType) []string
+	NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string
+	NeighborsForVectorMaximumCountDistanceType(vector []foundation.INumber, maxCount uint, distanceType DistanceType) []string
+	NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector []foundation.INumber, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string
+	VectorForString(string_ appkit.string) []foundation.Number
 }
 
 // A map of strings to vectors, which locates neighboring, similar strings.
@@ -98,7 +99,7 @@ func NewEmbedding() Embedding {
 // Creates a word embedding from a model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/init(contentsOf:)
-func NewEmbeddingWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Embedding {
+func NewEmbeddingWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) Embedding {
 	rv := objc.Send[Embedding](objc.ID(getEmbeddingClass().class), objc.Sel("embeddingWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -107,7 +108,7 @@ func NewEmbeddingWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointe
 // Retrieves the current version of a word embedding for the given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/currentRevision(for:)
-func (ec _EmbeddingClass) CurrentRevisionForLanguage(language unsafe.Pointer) uint {
+func (ec _EmbeddingClass) CurrentRevisionForLanguage(language ILanguage) uint {
 	rv := objc.Send[uint](objc.ID(ec.class), objc.Sel("currentRevisionForLanguage:"), language)
 	return rv
 }
@@ -115,7 +116,7 @@ func (ec _EmbeddingClass) CurrentRevisionForLanguage(language unsafe.Pointer) ui
 // Retrieves the current version of a sentence embedding for the given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/currentSentenceEmbeddingRevision(for:)
-func (ec _EmbeddingClass) CurrentSentenceEmbeddingRevisionForLanguage(language unsafe.Pointer) uint {
+func (ec _EmbeddingClass) CurrentSentenceEmbeddingRevisionForLanguage(language ILanguage) uint {
 	rv := objc.Send[uint](objc.ID(ec.class), objc.Sel("currentSentenceEmbeddingRevisionForLanguage:"), language)
 	return rv
 }
@@ -123,7 +124,7 @@ func (ec _EmbeddingClass) CurrentSentenceEmbeddingRevisionForLanguage(language u
 // Creates a word embedding from a model file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/init(contentsOf:)
-func (ec _EmbeddingClass) EmbeddingWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
+func (ec _EmbeddingClass) EmbeddingWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("embeddingWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -131,55 +132,55 @@ func (ec _EmbeddingClass) EmbeddingWithContentsOfURLError(url foundation.URL, er
 // Retrieves a sentence embedding for a given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/sentenceEmbedding(for:)
-func (ec _EmbeddingClass) SentenceEmbeddingForLanguage(language unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("sentenceEmbeddingForLanguage:"), language)
+func (ec _EmbeddingClass) SentenceEmbeddingForLanguage(language ILanguage) Embedding {
+	rv := objc.Send[Embedding](objc.ID(ec.class), objc.Sel("sentenceEmbeddingForLanguage:"), language)
 	return rv
 }
 
 // Retrieves a sentence embedding for a given language and revision.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/sentenceEmbedding(for:revision:)
-func (ec _EmbeddingClass) SentenceEmbeddingForLanguageRevision(language unsafe.Pointer, revision uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("sentenceEmbeddingForLanguage:revision:"), language, revision)
+func (ec _EmbeddingClass) SentenceEmbeddingForLanguageRevision(language ILanguage, revision uint) Embedding {
+	rv := objc.Send[Embedding](objc.ID(ec.class), objc.Sel("sentenceEmbeddingForLanguage:revision:"), language, revision)
 	return rv
 }
 
 // Retrieves all version numbers of a word embedding for the given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/supportedRevisions(for:)
-func (ec _EmbeddingClass) SupportedRevisionsForLanguage(language unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("supportedRevisionsForLanguage:"), language)
+func (ec _EmbeddingClass) SupportedRevisionsForLanguage(language ILanguage) foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](objc.ID(ec.class), objc.Sel("supportedRevisionsForLanguage:"), language)
 	return rv
 }
 
 // Retrieves all version numbers of a sentence embedding for the given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/supportedSentenceEmbeddingRevisions(for:)
-func (ec _EmbeddingClass) SupportedSentenceEmbeddingRevisionsForLanguage(language unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("supportedSentenceEmbeddingRevisionsForLanguage:"), language)
+func (ec _EmbeddingClass) SupportedSentenceEmbeddingRevisionsForLanguage(language ILanguage) foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](objc.ID(ec.class), objc.Sel("supportedSentenceEmbeddingRevisionsForLanguage:"), language)
 	return rv
 }
 
 // Retrieves a word embedding for a given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/wordEmbedding(for:)
-func (ec _EmbeddingClass) WordEmbeddingForLanguage(language unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("wordEmbeddingForLanguage:"), language)
+func (ec _EmbeddingClass) WordEmbeddingForLanguage(language ILanguage) Embedding {
+	rv := objc.Send[Embedding](objc.ID(ec.class), objc.Sel("wordEmbeddingForLanguage:"), language)
 	return rv
 }
 
 // Retrieves a word embedding for a given language and revision.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/wordEmbedding(for:revision:)
-func (ec _EmbeddingClass) WordEmbeddingForLanguageRevision(language unsafe.Pointer, revision uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("wordEmbeddingForLanguage:revision:"), language, revision)
+func (ec _EmbeddingClass) WordEmbeddingForLanguageRevision(language ILanguage, revision uint) Embedding {
+	rv := objc.Send[Embedding](objc.ID(ec.class), objc.Sel("wordEmbeddingForLanguage:revision:"), language, revision)
 	return rv
 }
 
 // Exports the word embedding contained within a Core ML model file at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/writeEmbeddingForDictionary:language:revision:toURL:error:
-func (ec _EmbeddingClass) WriteEmbeddingForDictionaryLanguageRevisionToURLError(dictionary unsafe.Pointer, language unsafe.Pointer, revision uint, url foundation.URL, error_ unsafe.Pointer) bool {
+func (ec _EmbeddingClass) WriteEmbeddingForDictionaryLanguageRevisionToURLError(dictionary unsafe.Pointer, language ILanguage, revision uint, url foundation.IURL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("writeEmbeddingForDictionary:language:revision:toURL:error:"), dictionary, language, revision, url, error_)
 	return rv
 }
@@ -187,75 +188,75 @@ func (ec _EmbeddingClass) WriteEmbeddingForDictionaryLanguageRevisionToURLError(
 // Requests a Boolean value that indicates whether the term is in the vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/contains(_:)
-func (e_ Embedding) ContainsString(string_ string) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("containsString:"), objc.String(string_))
+func (e_ Embedding) ContainsString(string_ appkit.string) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("containsString:"), string_)
 	return rv
 }
 
 // Calculates the distance between two strings in the vocabulary space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/distanceBetweenString:andString:distanceType:
-func (e_ Embedding) DistanceBetweenStringAndStringDistanceType(firstString string, secondString string, distanceType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("distanceBetweenString:andString:distanceType:"), objc.String(firstString), objc.String(secondString), distanceType)
+func (e_ Embedding) DistanceBetweenStringAndStringDistanceType(firstString appkit.string, secondString appkit.string, distanceType DistanceType) Distance {
+	rv := objc.Send[Distance](e_.ID, objc.Sel("distanceBetweenString:andString:distanceType:"), firstString, secondString, distanceType)
 	return rv
 }
 
 // Passes the nearest strings of a string in the vocabulary to a block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/enumerateNeighborsForString:maximumCount:distanceType:usingBlock:
-func (e_ Embedding) EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ string, maxCount uint, distanceType unsafe.Pointer, block unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:distanceType:usingBlock:"), objc.String(string_), maxCount, distanceType, block)
+func (e_ Embedding) EnumerateNeighborsForStringMaximumCountDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, distanceType DistanceType, block unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:distanceType:usingBlock:"), string_, maxCount, distanceType, block)
 }
 
 // Passes the nearest strings, within a radius of a string in the vocabulary, to a block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:
-func (e_ Embedding) EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ string, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer, block unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:"), objc.String(string_), maxCount, maxDistance, distanceType, block)
+func (e_ Embedding) EnumerateNeighborsForStringMaximumCountMaximumDistanceDistanceTypeUsingBlock(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForString:maximumCount:maximumDistance:distanceType:usingBlock:"), string_, maxCount, maxDistance, distanceType, block)
 }
 
 // Passes the nearest strings of a location in the vocabulary space to a closure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/enumerateNeighborsForVector:maximumCount:distanceType:usingBlock:
-func (e_ Embedding) EnumerateNeighborsForVectorMaximumCountDistanceTypeUsingBlock(vector unsafe.Pointer, maxCount uint, distanceType unsafe.Pointer, block unsafe.Pointer) {
+func (e_ Embedding) EnumerateNeighborsForVectorMaximumCountDistanceTypeUsingBlock(vector []foundation.INumber, maxCount uint, distanceType DistanceType, block unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForVector:maximumCount:distanceType:usingBlock:"), vector, maxCount, distanceType, block)
 }
 
 // Passes the nearest strings, within a radius of a location in the vocabulary space, to a block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/enumerateNeighborsForVector:maximumCount:maximumDistance:distanceType:usingBlock:
-func (e_ Embedding) EnumerateNeighborsForVectorMaximumCountMaximumDistanceDistanceTypeUsingBlock(vector unsafe.Pointer, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer, block unsafe.Pointer) {
+func (e_ Embedding) EnumerateNeighborsForVectorMaximumCountMaximumDistanceDistanceTypeUsingBlock(vector []foundation.INumber, maxCount uint, maxDistance IDistance, distanceType DistanceType, block unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("enumerateNeighborsForVector:maximumCount:maximumDistance:distanceType:usingBlock:"), vector, maxCount, maxDistance, distanceType, block)
 }
 
 // Copies a vector into the given a pointer to a float array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/getVector:forString:
-func (e_ Embedding) GetVectorForString(vector unsafe.Pointer, string_ string) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("getVector:forString:"), vector, objc.String(string_))
+func (e_ Embedding) GetVectorForString(vector unsafe.Pointer, string_ appkit.string) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("getVector:forString:"), vector, string_)
 	return rv
 }
 
 // Retrieves a limited number of strings near a string in the vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/neighborsForString:maximumCount:distanceType:
-func (e_ Embedding) NeighborsForStringMaximumCountDistanceType(string_ string, maxCount uint, distanceType unsafe.Pointer) []string {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:distanceType:"), objc.String(string_), maxCount, distanceType)
+func (e_ Embedding) NeighborsForStringMaximumCountDistanceType(string_ appkit.string, maxCount uint, distanceType DistanceType) []string {
+	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:distanceType:"), string_, maxCount, distanceType)
 	return rv
 }
 
 // Retrieves a limited number of strings, within a radius of a string, in the vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/neighborsForString:maximumCount:maximumDistance:distanceType:
-func (e_ Embedding) NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ string, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string {
-	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:maximumDistance:distanceType:"), objc.String(string_), maxCount, maxDistance, distanceType)
+func (e_ Embedding) NeighborsForStringMaximumCountMaximumDistanceDistanceType(string_ appkit.string, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string {
+	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForString:maximumCount:maximumDistance:distanceType:"), string_, maxCount, maxDistance, distanceType)
 	return rv
 }
 
 // Retrieves a limited number of strings near a location in the vocabulary space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/neighborsForVector:maximumCount:distanceType:
-func (e_ Embedding) NeighborsForVectorMaximumCountDistanceType(vector unsafe.Pointer, maxCount uint, distanceType unsafe.Pointer) []string {
+func (e_ Embedding) NeighborsForVectorMaximumCountDistanceType(vector []foundation.INumber, maxCount uint, distanceType DistanceType) []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForVector:maximumCount:distanceType:"), vector, maxCount, distanceType)
 	return rv
 }
@@ -263,7 +264,7 @@ func (e_ Embedding) NeighborsForVectorMaximumCountDistanceType(vector unsafe.Poi
 // Retrieves a limited number of strings within a radius of a location in the vocabulary space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/neighborsForVector:maximumCount:maximumDistance:distanceType:
-func (e_ Embedding) NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector unsafe.Pointer, maxCount uint, maxDistance unsafe.Pointer, distanceType unsafe.Pointer) []string {
+func (e_ Embedding) NeighborsForVectorMaximumCountMaximumDistanceDistanceType(vector []foundation.INumber, maxCount uint, maxDistance IDistance, distanceType DistanceType) []string {
 	rv := objc.Send[[]string](e_.ID, objc.Sel("neighborsForVector:maximumCount:maximumDistance:distanceType:"), vector, maxCount, maxDistance, distanceType)
 	return rv
 }
@@ -271,8 +272,8 @@ func (e_ Embedding) NeighborsForVectorMaximumCountMaximumDistanceDistanceType(ve
 // Requests the vector for the given term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/vectorForString:
-func (e_ Embedding) VectorForString(string_ string) []foundation.Number {
-	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("vectorForString:"), objc.String(string_))
+func (e_ Embedding) VectorForString(string_ appkit.string) []foundation.Number {
+	rv := objc.Send[[]foundation.Number](e_.ID, objc.Sel("vectorForString:"), string_)
 	return rv
 }
 
@@ -287,8 +288,8 @@ func (e_ Embedding) Dimension() uint {
 // The language of the text in the word embedding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLEmbedding/language
-func (e_ Embedding) Language() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("language"))
+func (e_ Embedding) Language() Language {
+	rv := objc.Send[Language](e_.ID, objc.Sel("language"))
 	return rv
 }
 

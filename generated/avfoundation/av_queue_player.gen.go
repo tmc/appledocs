@@ -30,7 +30,7 @@ type _QueuePlayerClass struct {
 type IQueuePlayer interface {
 	IPlayer
 	Items() []PlayerItem
-	RemoveItem(item unsafe.Pointer)
+	RemoveItem(item IAVPlayerItem)
 	RemoveAllItems()
 }
 
@@ -89,7 +89,7 @@ func NewQueuePlayer() QueuePlayer {
 // Creates an object that plays a queue of items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/init(items:)
-func NewQueuePlayerWithItems(items unsafe.Pointer) QueuePlayer {
+func NewQueuePlayerWithItems(items []PlayerItem) QueuePlayer {
 	instance := getQueuePlayerClass().Alloc()
 	rv := objc.Send[QueuePlayer](instance.ID, objc.Sel("initWithItems:"), items)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewQueuePlayerWithItems(items unsafe.Pointer) QueuePlayer {
 // Returns an object that plays a queue of items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/queuePlayerWithItems:
-func (qc _QueuePlayerClass) QueuePlayerWithItems(items unsafe.Pointer) unsafe.Pointer {
+func (qc _QueuePlayerClass) QueuePlayerWithItems(items []PlayerItem) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("queuePlayerWithItems:"), items)
 	return rv
 }
@@ -116,7 +116,7 @@ func (q_ QueuePlayer) Items() []PlayerItem {
 // Removes a given player item from the queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVQueuePlayer/remove(_:)
-func (q_ QueuePlayer) RemoveItem(item unsafe.Pointer) {
+func (q_ QueuePlayer) RemoveItem(item IAVPlayerItem) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("removeItem:"), item)
 }
 

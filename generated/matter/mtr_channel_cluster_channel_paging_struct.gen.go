@@ -77,8 +77,8 @@ func NewMTRChannelClusterChannelPagingStruct() MTRChannelClusterChannelPagingStr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/nextToken
-func (m_ MTRChannelClusterChannelPagingStruct) NextToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nextToken"))
+func (m_ MTRChannelClusterChannelPagingStruct) NextToken() MTRChannelClusterPageTokenStruct {
+	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("nextToken"))
 	return rv
 }
 
@@ -86,14 +86,14 @@ func (m_ MTRChannelClusterChannelPagingStruct) NextToken() unsafe.Pointer {
 // SetNextToken sets the value of the nextToken property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/nextToken
-func (m_ MTRChannelClusterChannelPagingStruct) SetNextToken(value unsafe.Pointer) {
+func (m_ MTRChannelClusterChannelPagingStruct) SetNextToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextToken:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
-func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previousToken"))
+func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() MTRChannelClusterPageTokenStruct {
+	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("previousToken"))
 	return rv
 }
 
@@ -101,7 +101,7 @@ func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() unsafe.Pointer {
 // SetPreviousToken sets the value of the previousToken property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
-func (m_ MTRChannelClusterChannelPagingStruct) SetPreviousToken(value unsafe.Pointer) {
+func (m_ MTRChannelClusterChannelPagingStruct) SetPreviousToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousToken:"), value)
 }
 

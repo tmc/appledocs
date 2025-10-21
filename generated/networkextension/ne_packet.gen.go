@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,7 +81,7 @@ func NewNEPacket() NEPacket {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/init(data:protocolFamily:)
-func NewNEPacketWithDataProtocolFamily(data unsafe.Pointer, protocolFamily unsafe.Pointer) NEPacket {
+func NewNEPacketWithDataProtocolFamily(data foundation.IData, protocolFamily unsafe.Pointer) NEPacket {
 	instance := getNEPacketClass().Alloc()
 	rv := objc.Send[NEPacket](instance.ID, objc.Sel("initWithData:protocolFamily:"), data, protocolFamily)
 	rv.Autorelease()
@@ -90,23 +91,23 @@ func NewNEPacketWithDataProtocolFamily(data unsafe.Pointer, protocolFamily unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/data
-func (n_ NEPacket) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("data"))
+func (n_ NEPacket) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("data"))
 	return rv
 }
 
 // The direction of the packet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/direction
-func (n_ NEPacket) Direction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
+func (n_ NEPacket) Direction() NETrafficDirection {
+	rv := objc.Send[NETrafficDirection](n_.ID, objc.Sel("direction"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/metadata
-func (n_ NEPacket) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("metadata"))
+func (n_ NEPacket) Metadata() NEFlowMetaData {
+	rv := objc.Send[NEFlowMetaData](n_.ID, objc.Sel("metadata"))
 	return rv
 }
 

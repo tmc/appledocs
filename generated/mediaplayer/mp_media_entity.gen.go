@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _MediaEntityClass struct {
 type IMediaEntity interface {
 	objectivec.IObject
 	EnumerateValuesForPropertiesUsingBlock(properties unsafe.Pointer, block unsafe.Pointer)
-	ObjectForKeyedSubscript(key objc.ID) objc.ID
-	ValueForProperty(property string) objc.ID
+	ObjectForKeyedSubscript(key objectivec.IObject) objc.ID
+	ValueForProperty(property appkit.string) objc.ID
 }
 
 // The abstract superclass for media items, media item collections, and media playlist instances.
@@ -86,8 +87,8 @@ func NewMediaEntity() MediaEntity {
 // Indicates whether you can use the media property key that you specify to construct a media property predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaEntity/canFilter(byProperty:)
-func (mc _MediaEntityClass) CanFilterByProperty(property string) bool {
-	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("canFilterByProperty:"), objc.String(property))
+func (mc _MediaEntityClass) CanFilterByProperty(property appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("canFilterByProperty:"), property)
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MediaEntity) EnumerateValuesForPropertiesUsingBlock(properties unsafe.P
 // Returns the object specified by the key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaEntity/subscript(_:)
-func (m_ MediaEntity) ObjectForKeyedSubscript(key objc.ID) objc.ID {
+func (m_ MediaEntity) ObjectForKeyedSubscript(key objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("objectForKeyedSubscript:"), key)
 	return rv
 }
@@ -109,16 +110,16 @@ func (m_ MediaEntity) ObjectForKeyedSubscript(key objc.ID) objc.ID {
 // Retrieves the value for a specified media property key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaEntity/value(forProperty:)
-func (m_ MediaEntity) ValueForProperty(property string) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForProperty:"), objc.String(property))
+func (m_ MediaEntity) ValueForProperty(property appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForProperty:"), property)
 	return rv
 }
 
 // The persistent identifier for a media entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaEntity/persistentID
-func (m_ MediaEntity) PersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistentID"))
+func (m_ MediaEntity) PersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("persistentID"))
 	return rv
 }
 

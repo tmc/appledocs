@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [CoreMLFeatureValueObservation] class.
@@ -81,11 +83,19 @@ func NewCoreMLFeatureValueObservation() CoreMLFeatureValueObservation {
 }
 
 
+// The name used in the model description of the CoreML model that produced this observation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLFeatureValueObservation/featureName
+func (c_ CoreMLFeatureValueObservation) FeatureName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("featureName"))
+	return rv
+}
+
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLFeatureValueObservation) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelDescription"))
+func (c_ CoreMLFeatureValueObservation) ModelDescription() coreml.ModelDescription {
+	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -95,15 +105,15 @@ func (c_ CoreMLFeatureValueObservation) ModelDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLFeatureValueObservation) SetModelDescription(value unsafe.Pointer) {
+func (c_ CoreMLFeatureValueObservation) SetModelDescription(value coreml.IModelDescription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
 }
 
 // A dictionary of output feature descriptions, which the model keys by the output’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (c_ CoreMLFeatureValueObservation) OutputDescriptionsByName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("outputDescriptionsByName"))
+func (c_ CoreMLFeatureValueObservation) OutputDescriptionsByName() coreml.FeatureDescription {
+	rv := objc.Send[coreml.FeatureDescription](c_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
 }
 
@@ -113,15 +123,15 @@ func (c_ CoreMLFeatureValueObservation) OutputDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (c_ CoreMLFeatureValueObservation) SetOutputDescriptionsByName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+func (c_ CoreMLFeatureValueObservation) SetOutputDescriptionsByName(value coreml.IFeatureDescription) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
 }
 
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
@@ -131,33 +141,15 @@ func (c_ CoreMLFeatureValueObservation) PredictedFeatureName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
-}
-
-// The name used in the model description of the CoreML model that produced this observation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurename
-func (c_ CoreMLFeatureValueObservation) FeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("featureName"))
-	return rv
-}
-
-
-// SetFeatureName sets the value of the featureName property.
-// The name used in the model description of the CoreML model that produced this observation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurename
-func (c_ CoreMLFeatureValueObservation) SetFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureName:"), objc.String(value))
+func (c_ CoreMLFeatureValueObservation) SetPredictedFeatureName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 
 // The feature result of a
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurevalue
-func (c_ CoreMLFeatureValueObservation) FeatureValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("featureValue"))
+func (c_ CoreMLFeatureValueObservation) FeatureValue() coreml.FeatureValue {
+	rv := objc.Send[coreml.FeatureValue](c_.ID, objc.Sel("featureValue"))
 	return rv
 }
 
@@ -167,7 +159,7 @@ func (c_ CoreMLFeatureValueObservation) FeatureValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation/featurevalue
-func (c_ CoreMLFeatureValueObservation) SetFeatureValue(value unsafe.Pointer) {
+func (c_ CoreMLFeatureValueObservation) SetFeatureValue(value coreml.IFeatureValue) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureValue:"), value)
 }
 

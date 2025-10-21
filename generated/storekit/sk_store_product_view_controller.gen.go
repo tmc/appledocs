@@ -31,7 +31,7 @@ type _StoreProductViewControllerClass struct {
 type IStoreProductViewController interface {
 	appkit.IViewController
 	LoadProductWithParametersCompletionBlock(parameters unsafe.Pointer, block unsafe.Pointer)
-	LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression unsafe.Pointer, block unsafe.Pointer)
+	LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression ISKAdImpression, block unsafe.Pointer)
 }
 
 // A view controller that provides a page where customers can purchase media from the App Store.
@@ -93,7 +93,7 @@ func (s_ StoreProductViewController) LoadProductWithParametersCompletionBlock(pa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreProductViewController/loadProduct(withParameters:impression:completionBlock:)
-func (s_ StoreProductViewController) LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression unsafe.Pointer, block unsafe.Pointer) {
+func (s_ StoreProductViewController) LoadProductWithParametersImpressionCompletionBlock(parameters unsafe.Pointer, impression ISKAdImpression, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("loadProductWithParameters:impression:completionBlock:"), parameters, impression, block)
 }
 

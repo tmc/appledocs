@@ -88,7 +88,7 @@ func NewFaceObservation() FaceObservation {
 // Creates an observation that contains the roll and yaw of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
 }
@@ -98,7 +98,7 @@ func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uin
 // Creates an observation that contains the roll, yaw, and pitch of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number, pitch foundation.Number) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber, pitch foundation.INumber) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
 }
@@ -107,7 +107,7 @@ func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevisio
 // Creates an observation that contains the roll and yaw of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number) unsafe.Pointer {
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
 }
@@ -115,7 +115,7 @@ func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRol
 // Creates an observation that contains the roll, yaw, and pitch of the face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.Number, yaw foundation.Number, pitch foundation.Number) unsafe.Pointer {
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber, pitch foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
 }
@@ -139,8 +139,8 @@ func (f_ FaceObservation) Landmarks() unsafe.Pointer {
 // The results of the face-capture quality request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
-func (f_ FaceObservation) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("results"))
+func (f_ FaceObservation) Results() VNFaceObservation {
+	rv := objc.Send[VNFaceObservation](f_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (f_ FaceObservation) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
-func (f_ FaceObservation) SetResults(value unsafe.Pointer) {
+func (f_ FaceObservation) SetResults(value IVNFaceObservation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResults:"), value)
 }
 
@@ -168,7 +168,7 @@ func (f_ FaceObservation) Pitch() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
-func (f_ FaceObservation) SetPitch(value foundation.Number) {
+func (f_ FaceObservation) SetPitch(value foundation.INumber) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPitch:"), value)
 }
 
@@ -186,7 +186,7 @@ func (f_ FaceObservation) Roll() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/roll
-func (f_ FaceObservation) SetRoll(value foundation.Number) {
+func (f_ FaceObservation) SetRoll(value foundation.INumber) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRoll:"), value)
 }
 
@@ -204,7 +204,7 @@ func (f_ FaceObservation) Yaw() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/yaw
-func (f_ FaceObservation) SetYaw(value foundation.Number) {
+func (f_ FaceObservation) SetYaw(value foundation.INumber) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setYaw:"), value)
 }
 

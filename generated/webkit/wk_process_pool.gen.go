@@ -83,8 +83,8 @@ func NewProcessPool() ProcessPool {
 // The object that coordinates the processes the web view uses to render its web content and execute scripts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool
-func (p_ ProcessPool) ProcessPool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processPool"))
+func (p_ ProcessPool) ProcessPool() WKProcessPool {
+	rv := objc.Send[WKProcessPool](p_.ID, objc.Sel("processPool"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (p_ ProcessPool) ProcessPool() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool
-func (p_ ProcessPool) SetProcessPool(value unsafe.Pointer) {
+func (p_ ProcessPool) SetProcessPool(value IWKProcessPool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessPool:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewUserNotification() UserNotification {
 // Specifies the title of the action button displayed in the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
-func (u_ UserNotification) ActionButtonTitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("actionButtonTitle"))
+func (u_ UserNotification) ActionButtonTitle() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("actionButtonTitle"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (u_ UserNotification) ActionButtonTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
-func (u_ UserNotification) SetActionButtonTitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), objc.String(value))
+func (u_ UserNotification) SetActionButtonTitle(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), value)
 }
 
 // Specifies what caused a user notification to occur.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/activationType-swift.property
-func (u_ UserNotification) ActivationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("activationType"))
+func (u_ UserNotification) ActivationType() UserNotificationActivationType {
+	rv := objc.Send[UserNotificationActivationType](u_.ID, objc.Sel("activationType"))
 	return rv
 }
 
@@ -137,16 +138,16 @@ func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) 
 // An additional action selected by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActivationAction
-func (u_ UserNotification) AdditionalActivationAction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("additionalActivationAction"))
+func (u_ UserNotification) AdditionalActivationAction() NSUserNotificationAction {
+	rv := objc.Send[NSUserNotificationAction](u_.ID, objc.Sel("additionalActivationAction"))
 	return rv
 }
 
 // Image shown in the content of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/contentImage
-func (u_ UserNotification) ContentImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("contentImage"))
+func (u_ UserNotification) ContentImage() appkit.Image {
+	rv := objc.Send[appkit.Image](u_.ID, objc.Sel("contentImage"))
 	return rv
 }
 
@@ -156,15 +157,15 @@ func (u_ UserNotification) ContentImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/contentImage
-func (u_ UserNotification) SetContentImage(value unsafe.Pointer) {
+func (u_ UserNotification) SetContentImage(value appkit.IImage) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setContentImage:"), value)
 }
 
 // Specifies when the notification should be delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryDate
-func (u_ UserNotification) DeliveryDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryDate"))
+func (u_ UserNotification) DeliveryDate() NSDate {
+	rv := objc.Send[NSDate](u_.ID, objc.Sel("deliveryDate"))
 	return rv
 }
 
@@ -174,15 +175,15 @@ func (u_ UserNotification) DeliveryDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/deliveryDate
-func (u_ UserNotification) SetDeliveryDate(value unsafe.Pointer) {
+func (u_ UserNotification) SetDeliveryDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryDate:"), value)
 }
 
 // The body text of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
-func (u_ UserNotification) InformativeText() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("informativeText"))
+func (u_ UserNotification) InformativeText() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("informativeText"))
 	return rv
 }
 
@@ -192,8 +193,8 @@ func (u_ UserNotification) InformativeText() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
-func (u_ UserNotification) SetInformativeText(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), objc.String(value))
+func (u_ UserNotification) SetInformativeText(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), value)
 }
 
 // Specifies whether the user notification has been presented.
@@ -215,8 +216,8 @@ func (u_ UserNotification) Remote() bool {
 // Specifies a custom title for the close button in an alert-style notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/otherButtonTitle
-func (u_ UserNotification) OtherButtonTitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("otherButtonTitle"))
+func (u_ UserNotification) OtherButtonTitle() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("otherButtonTitle"))
 	return rv
 }
 
@@ -226,23 +227,23 @@ func (u_ UserNotification) OtherButtonTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/otherButtonTitle
-func (u_ UserNotification) SetOtherButtonTitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), objc.String(value))
+func (u_ UserNotification) SetOtherButtonTitle(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), value)
 }
 
 // The response with which the user responded to a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/response
-func (u_ UserNotification) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("response"))
+func (u_ UserNotification) Response() NSAttributedString {
+	rv := objc.Send[NSAttributedString](u_.ID, objc.Sel("response"))
 	return rv
 }
 
 // Specifies the title of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/title
-func (u_ UserNotification) Title() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("title"))
+func (u_ UserNotification) Title() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -252,15 +253,15 @@ func (u_ UserNotification) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/title
-func (u_ UserNotification) SetTitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (u_ UserNotification) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
 }
 
 // The date this notification was actually delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-func (u_ UserNotification) ActualDeliveryDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("actualDeliveryDate"))
+func (u_ UserNotification) ActualDeliveryDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("actualDeliveryDate"))
 	return rv
 }
 
@@ -270,15 +271,15 @@ func (u_ UserNotification) ActualDeliveryDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate
-func (u_ UserNotification) SetActualDeliveryDate(value unsafe.Pointer) {
+func (u_ UserNotification) SetActualDeliveryDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setActualDeliveryDate:"), value)
 }
 
 // Specifies the date components that control how often a user notification is repeated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliveryrepeatinterval
-func (u_ UserNotification) DeliveryRepeatInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryRepeatInterval"))
+func (u_ UserNotification) DeliveryRepeatInterval() DateComponents {
+	rv := objc.Send[DateComponents](u_.ID, objc.Sel("deliveryRepeatInterval"))
 	return rv
 }
 
@@ -288,15 +289,15 @@ func (u_ UserNotification) DeliveryRepeatInterval() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliveryrepeatinterval
-func (u_ UserNotification) SetDeliveryRepeatInterval(value unsafe.Pointer) {
+func (u_ UserNotification) SetDeliveryRepeatInterval(value IDateComponents) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryRepeatInterval:"), value)
 }
 
 // Specify the time zone to interpret the delivery date in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverytimezone
-func (u_ UserNotification) DeliveryTimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("deliveryTimeZone"))
+func (u_ UserNotification) DeliveryTimeZone() TimeZone {
+	rv := objc.Send[TimeZone](u_.ID, objc.Sel("deliveryTimeZone"))
 	return rv
 }
 
@@ -306,7 +307,7 @@ func (u_ UserNotification) DeliveryTimeZone() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/deliverytimezone
-func (u_ UserNotification) SetDeliveryTimeZone(value unsafe.Pointer) {
+func (u_ UserNotification) SetDeliveryTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeliveryTimeZone:"), value)
 }
 
@@ -349,8 +350,8 @@ func (u_ UserNotification) SetHasReplyButton(value bool) {
 // A string that uniquely identifies a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/identifier
-func (u_ UserNotification) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+func (u_ UserNotification) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -360,8 +361,8 @@ func (u_ UserNotification) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/identifier
-func (u_ UserNotification) SetIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (u_ UserNotification) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // Specifies whether the user notification has been presented.
@@ -403,8 +404,8 @@ func (u_ UserNotification) SetIsRemote(value bool) {
 // Optional placeholder string for inline reply field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/responseplaceholder
-func (u_ UserNotification) ResponsePlaceholder() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("responsePlaceholder"))
+func (u_ UserNotification) ResponsePlaceholder() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("responsePlaceholder"))
 	return rv
 }
 
@@ -414,15 +415,15 @@ func (u_ UserNotification) ResponsePlaceholder() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/responseplaceholder
-func (u_ UserNotification) SetResponsePlaceholder(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setResponsePlaceholder:"), objc.String(value))
+func (u_ UserNotification) SetResponsePlaceholder(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setResponsePlaceholder:"), value)
 }
 
 // Specifies the name of the sound to play when the notification is delivered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/soundname
-func (u_ UserNotification) SoundName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("soundName"))
+func (u_ UserNotification) SoundName() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("soundName"))
 	return rv
 }
 
@@ -432,15 +433,15 @@ func (u_ UserNotification) SoundName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/soundname
-func (u_ UserNotification) SetSoundName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSoundName:"), objc.String(value))
+func (u_ UserNotification) SetSoundName(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSoundName:"), value)
 }
 
 // Specifies the subtitle of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/subtitle
-func (u_ UserNotification) Subtitle() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("subtitle"))
+func (u_ UserNotification) Subtitle() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -450,15 +451,15 @@ func (u_ UserNotification) Subtitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/subtitle
-func (u_ UserNotification) SetSubtitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (u_ UserNotification) SetSubtitle(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 // Application-specific user info that can be attached to the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/userinfo
-func (u_ UserNotification) UserInfo() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("userInfo"))
+func (u_ UserNotification) UserInfo() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -468,15 +469,15 @@ func (u_ UserNotification) UserInfo() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotification/userinfo
-func (u_ UserNotification) SetUserInfo(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), objc.String(value))
+func (u_ UserNotification) SetUserInfo(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 // The default notification sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname
-func (u_ UserNotification) NSUserNotificationDefaultSoundName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("NSUserNotificationDefaultSoundName"))
+func (u_ UserNotification) NSUserNotificationDefaultSoundName() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("NSUserNotificationDefaultSoundName"))
 	return rv
 }
 

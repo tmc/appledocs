@@ -84,8 +84,8 @@ func NewGCControllerTouchpad() GCControllerTouchpad {
 // The element that represents the button component on the touchpad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerTouchpad/button
-func (g_ GCControllerTouchpad) Button() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("button"))
+func (g_ GCControllerTouchpad) Button() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("button"))
 	return rv
 }
 
@@ -164,8 +164,8 @@ func (g_ GCControllerTouchpad) SetTouchState(value unsafe.Pointer) {
 // The element that represents the state of the user’s touch on the surface of the touchpad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-func (g_ GCControllerTouchpad) TouchSurface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("touchSurface"))
+func (g_ GCControllerTouchpad) TouchSurface() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("touchSurface"))
 	return rv
 }
 
@@ -175,7 +175,7 @@ func (g_ GCControllerTouchpad) TouchSurface() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchsurface
-func (g_ GCControllerTouchpad) SetTouchSurface(value unsafe.Pointer) {
+func (g_ GCControllerTouchpad) SetTouchSurface(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTouchSurface:"), value)
 }
 

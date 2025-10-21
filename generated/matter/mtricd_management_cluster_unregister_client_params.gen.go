@@ -87,7 +87,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) CheckInNodeID() foundati
 // SetCheckInNodeID sets the value of the checkInNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/checkInNodeID
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value foundation.Number) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetCheckInNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) ServerSideProcessingTime
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,14 +123,14 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) TimedInvokeTimeoutMs() f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/verificationKey
-func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("verificationKey"))
+func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("verificationKey"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRICDManagementClusterUnregisterClientParams) VerificationKey() unsafe
 // SetVerificationKey sets the value of the verificationKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterUnregisterClientParams/verificationKey
-func (m_ MTRICDManagementClusterUnregisterClientParams) SetVerificationKey(value unsafe.Pointer) {
+func (m_ MTRICDManagementClusterUnregisterClientParams) SetVerificationKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
 }
 

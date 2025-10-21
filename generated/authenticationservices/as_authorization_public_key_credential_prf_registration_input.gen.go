@@ -77,7 +77,7 @@ func NewAuthorizationPublicKeyCredentialPRFRegistrationInput() AuthorizationPubl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationInput-c.class/initWithInputValues:
-func NewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues(inputValues unsafe.Pointer) AuthorizationPublicKeyCredentialPRFRegistrationInput {
+func NewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues(inputValues IASAuthorizationPublicKeyCredentialPRFAssertionInputValues) AuthorizationPublicKeyCredentialPRFRegistrationInput {
 	instance := getAuthorizationPublicKeyCredentialPRFRegistrationInputClass().Alloc()
 	rv := objc.Send[AuthorizationPublicKeyCredentialPRFRegistrationInput](instance.ID, objc.Sel("initWithInputValues:"), inputValues)
 	rv.Autorelease()

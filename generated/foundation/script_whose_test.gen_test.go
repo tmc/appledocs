@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewScriptWhoseTest
 
+// ExampleNewScriptWhoseTestWithCoder demonstrates how to create a ScriptWhoseTest instance using NewScriptWhoseTestWithCoder.
+func ExampleNewScriptWhoseTestWithCoder() {
+	_ = foundation.NewScriptWhoseTestWithCoder(
+		foundation.NSCoder{}, // inCoder NSCoder
+	)
+	// Output:
+}

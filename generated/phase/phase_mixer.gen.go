@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,16 +92,16 @@ func (p_ PHASEMixer) Gain() unsafe.Pointer {
 // A parameter that changes the mixer’s volume gradually over a period of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/gainMetaParameter
-func (p_ PHASEMixer) GainMetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gainMetaParameter"))
+func (p_ PHASEMixer) GainMetaParameter() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("gainMetaParameter"))
 	return rv
 }
 
 // A unique name for the mixer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMixer/identifier
-func (p_ PHASEMixer) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASEMixer) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 

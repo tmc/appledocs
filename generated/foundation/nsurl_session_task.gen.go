@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -176,8 +177,8 @@ func (u_ URLSessionTask) CountOfBytesSent() unsafe.Pointer {
 // The URL request object currently being handled by the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/currentRequest
-func (u_ URLSessionTask) CurrentRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("currentRequest"))
+func (u_ URLSessionTask) CurrentRequest() NSURLRequest {
+	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
@@ -202,8 +203,8 @@ func (u_ URLSessionTask) SetDelegate(value objc.ID) {
 // The earliest date at which the network load should begin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/earliestBeginDate
-func (u_ URLSessionTask) EarliestBeginDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("earliestBeginDate"))
+func (u_ URLSessionTask) EarliestBeginDate() NSDate {
+	rv := objc.Send[NSDate](u_.ID, objc.Sel("earliestBeginDate"))
 	return rv
 }
 
@@ -213,23 +214,23 @@ func (u_ URLSessionTask) EarliestBeginDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/earliestBeginDate
-func (u_ URLSessionTask) SetEarliestBeginDate(value unsafe.Pointer) {
+func (u_ URLSessionTask) SetEarliestBeginDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setEarliestBeginDate:"), value)
 }
 
 // An error object that indicates why the task failed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/error
-func (u_ URLSessionTask) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("error"))
+func (u_ URLSessionTask) Error() NSError {
+	rv := objc.Send[NSError](u_.ID, objc.Sel("error"))
 	return rv
 }
 
 // The original request object passed when the task was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/originalRequest
-func (u_ URLSessionTask) OriginalRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalRequest"))
+func (u_ URLSessionTask) OriginalRequest() NSURLRequest {
+	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 
@@ -272,32 +273,32 @@ func (u_ URLSessionTask) SetPriority(value unsafe.Pointer) {
 // A representation of the overall task progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/progress
-func (u_ URLSessionTask) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("progress"))
+func (u_ URLSessionTask) Progress() NSProgress {
+	rv := objc.Send[NSProgress](u_.ID, objc.Sel("progress"))
 	return rv
 }
 
 // The server’s response to the currently active request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/response
-func (u_ URLSessionTask) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("response"))
+func (u_ URLSessionTask) Response() NSURLResponse {
+	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 
 // The current state of the task—active, suspended, in the process of being canceled, or completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/state-swift.property
-func (u_ URLSessionTask) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("state"))
+func (u_ URLSessionTask) State() URLSessionTaskState {
+	rv := objc.Send[URLSessionTaskState](u_.ID, objc.Sel("state"))
 	return rv
 }
 
 // An app-provided string value for the current task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) TaskDescription() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("taskDescription"))
+func (u_ URLSessionTask) TaskDescription() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("taskDescription"))
 	return rv
 }
 
@@ -307,8 +308,8 @@ func (u_ URLSessionTask) TaskDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) SetTaskDescription(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), objc.String(value))
+func (u_ URLSessionTask) SetTaskDescription(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), value)
 }
 
 // An identifier uniquely identifying the task within a given session.

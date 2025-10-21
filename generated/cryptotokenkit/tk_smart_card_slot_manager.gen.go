@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _TKSmartCardSlotManagerClass struct {
 // An interface definition for the [TKSmartCardSlotManager] class.
 type ITKSmartCardSlotManager interface {
 	objectivec.IObject
-	CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer)
+	CreateNFCSlotWithMessageCompletion(message appkit.string, completion unsafe.Pointer)
 	IsNFCSupported() bool
-	SlotNamed(name string) unsafe.Pointer
+	SlotNamed(name appkit.string) TKSmartCardSlot
 }
 
 // An interface to all available smart card reader slots.
@@ -86,15 +87,15 @@ func NewTKSmartCardSlotManager() TKSmartCardSlotManager {
 // The shared singleton Smart Card reader slot manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
-func (tc _TKSmartCardSlotManagerClass) DefaultManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("defaultManager"))
+func (tc _TKSmartCardSlotManagerClass) DefaultManager() TKSmartCardSlotManager {
+	rv := objc.Send[TKSmartCardSlotManager](objc.ID(tc.class), objc.Sel("defaultManager"))
 	return rv
 }
 // Creates an NFC smart card slot using the device’s hardware and presents a system UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/createNFCSlot(message:completion:)
-func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), objc.String(message), completion)
+func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message appkit.string, completion unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), message, completion)
 }
 
 // Determines whether NFC (Near Field Communication) is supported on this device.
@@ -108,16 +109,16 @@ func (t_ TKSmartCardSlotManager) IsNFCSupported() bool {
 // Returns the Smart Card slot with a given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/slotNamed(_:)
-func (t_ TKSmartCardSlotManager) SlotNamed(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("slotNamed:"), objc.String(name))
+func (t_ TKSmartCardSlotManager) SlotNamed(name appkit.string) TKSmartCardSlot {
+	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slotNamed:"), name)
 	return rv
 }
 
 // The shared singleton Smart Card reader slot manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/default
-func (t_ TKSmartCardSlotManager) DefaultManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("defaultManager"))
+func (t_ TKSmartCardSlotManager) DefaultManager() TKSmartCardSlotManager {
+	rv := objc.Send[TKSmartCardSlotManager](t_.ID, objc.Sel("defaultManager"))
 	return rv
 }
 

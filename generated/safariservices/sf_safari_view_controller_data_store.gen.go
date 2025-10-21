@@ -77,14 +77,14 @@ func NewSFSafariViewControllerDataStore() SFSafariViewControllerDataStore {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/DataStore/default
-func (sc _SFSafariViewControllerDataStoreClass) DefaultDataStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultDataStore"))
+func (sc _SFSafariViewControllerDataStoreClass) DefaultDataStore() SFSafariViewControllerDataStore {
+	rv := objc.Send[SFSafariViewControllerDataStore](objc.ID(sc.class), objc.Sel("defaultDataStore"))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/DataStore/default
-func (s_ SFSafariViewControllerDataStore) DefaultDataStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("defaultDataStore"))
+func (s_ SFSafariViewControllerDataStore) DefaultDataStore() SFSafariViewControllerDataStore {
+	rv := objc.Send[SFSafariViewControllerDataStore](s_.ID, objc.Sel("defaultDataStore"))
 	return rv
 }
 

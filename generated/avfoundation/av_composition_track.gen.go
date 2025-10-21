@@ -30,7 +30,7 @@ type _CompositionTrackClass struct {
 // An interface definition for the [CompositionTrack] class.
 type ICompositionTrack interface {
 	IAssetTrack
-	MetadataForFormat(format unsafe.Pointer) []MetadataItem
+	MetadataForFormat(format MetadataFormat) []MetadataItem
 }
 
 // A track in a composition that presents media of a uniform type.
@@ -86,7 +86,7 @@ func NewCompositionTrack() CompositionTrack {
 // Returns metadata items that a track contains for the specified format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCompositionTrack/metadata(forFormat:)
-func (c_ CompositionTrack) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
+func (c_ CompositionTrack) MetadataForFormat(format MetadataFormat) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("metadataForFormat:"), format)
 	return rv
 }
@@ -94,8 +94,8 @@ func (c_ CompositionTrack) MetadataForFormat(format unsafe.Pointer) []MetadataIt
 // An array of metadata formats available for the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/availablemetadataformats
-func (c_ CompositionTrack) AvailableMetadataFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableMetadataFormats"))
+func (c_ CompositionTrack) AvailableMetadataFormats() MetadataFormat {
+	rv := objc.Send[MetadataFormat](c_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (c_ CompositionTrack) AvailableMetadataFormats() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/availablemetadataformats
-func (c_ CompositionTrack) SetAvailableMetadataFormats(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetAvailableMetadataFormats(value MetadataFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
@@ -148,8 +148,8 @@ func (c_ CompositionTrack) SetCanProvideSampleCursors(value bool) {
 // An array of metadata items for all common metadata keys that have a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/commonmetadata
-func (c_ CompositionTrack) CommonMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("commonMetadata"))
+func (c_ CompositionTrack) CommonMetadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -159,7 +159,7 @@ func (c_ CompositionTrack) CommonMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/commonmetadata
-func (c_ CompositionTrack) SetCommonMetadata(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCommonMetadata:"), value)
 }
 
@@ -184,8 +184,8 @@ func (c_ CompositionTrack) SetEstimatedDataRate(value unsafe.Pointer) {
 // The language tag of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/extendedlanguagetag
-func (c_ CompositionTrack) ExtendedLanguageTag() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("extendedLanguageTag"))
+func (c_ CompositionTrack) ExtendedLanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -195,8 +195,8 @@ func (c_ CompositionTrack) ExtendedLanguageTag() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/extendedlanguagetag
-func (c_ CompositionTrack) SetExtendedLanguageTag(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+func (c_ CompositionTrack) SetExtendedLanguageTag(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setExtendedLanguageTag:"), value)
 }
 
 // The replacement format descriptions.
@@ -328,8 +328,8 @@ func (c_ CompositionTrack) SetIsSelfContained(value bool) {
 // The language code of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/languagecode
-func (c_ CompositionTrack) LanguageCode() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("languageCode"))
+func (c_ CompositionTrack) LanguageCode() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
@@ -339,15 +339,15 @@ func (c_ CompositionTrack) LanguageCode() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/languagecode
-func (c_ CompositionTrack) SetLanguageCode(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
+func (c_ CompositionTrack) SetLanguageCode(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageCode:"), value)
 }
 
 // An array of metadata items for all metadata identifiers that have a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/metadata
-func (c_ CompositionTrack) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadata"))
+func (c_ CompositionTrack) Metadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -357,7 +357,7 @@ func (c_ CompositionTrack) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/metadata
-func (c_ CompositionTrack) SetMetadata(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
 
@@ -490,8 +490,8 @@ func (c_ CompositionTrack) SetRequiresFrameReordering(value bool) {
 // The time mappings from the track’s media samples to its timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/segments
-func (c_ CompositionTrack) Segments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("segments"))
+func (c_ CompositionTrack) Segments() AVCompositionTrackSegment {
+	rv := objc.Send[AVCompositionTrackSegment](c_.ID, objc.Sel("segments"))
 	return rv
 }
 
@@ -501,7 +501,7 @@ func (c_ CompositionTrack) Segments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontrack/segments
-func (c_ CompositionTrack) SetSegments(value unsafe.Pointer) {
+func (c_ CompositionTrack) SetSegments(value IAVCompositionTrackSegment) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSegments:"), value)
 }
 

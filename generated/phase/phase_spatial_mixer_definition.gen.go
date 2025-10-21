@@ -84,8 +84,8 @@ func NewPHASESpatialMixerDefinition() PHASESpatialMixerDefinition {
 // An effect that changes sound as it carries over a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/distanceModelParameters
-func (p_ PHASESpatialMixerDefinition) DistanceModelParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceModelParameters"))
+func (p_ PHASESpatialMixerDefinition) DistanceModelParameters() PHASEDistanceModelParameters {
+	rv := objc.Send[PHASEDistanceModelParameters](p_.ID, objc.Sel("distanceModelParameters"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (p_ PHASESpatialMixerDefinition) DistanceModelParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/distanceModelParameters
-func (p_ PHASESpatialMixerDefinition) SetDistanceModelParameters(value unsafe.Pointer) {
+func (p_ PHASESpatialMixerDefinition) SetDistanceModelParameters(value IPHASEDistanceModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
 }
 
 // A data set that determines how well the listener hears depending on its direction relative to a sound source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/listenerDirectivityModelParameters
-func (p_ PHASESpatialMixerDefinition) ListenerDirectivityModelParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("listenerDirectivityModelParameters"))
+func (p_ PHASESpatialMixerDefinition) ListenerDirectivityModelParameters() PHASEDirectivityModelParameters {
+	rv := objc.Send[PHASEDirectivityModelParameters](p_.ID, objc.Sel("listenerDirectivityModelParameters"))
 	return rv
 }
 
@@ -113,23 +113,23 @@ func (p_ PHASESpatialMixerDefinition) ListenerDirectivityModelParameters() unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/listenerDirectivityModelParameters
-func (p_ PHASESpatialMixerDefinition) SetListenerDirectivityModelParameters(value unsafe.Pointer) {
+func (p_ PHASESpatialMixerDefinition) SetListenerDirectivityModelParameters(value IPHASEDirectivityModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setListenerDirectivityModelParameters:"), value)
 }
 
 // An object that adds sound layers for environmental effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialMixerDefinition/spatialPipeline
-func (p_ PHASESpatialMixerDefinition) SpatialPipeline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("spatialPipeline"))
+func (p_ PHASESpatialMixerDefinition) SpatialPipeline() PHASESpatialPipeline {
+	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
 	return rv
 }
 
 // A data set that directs sound such that it’s louder when directed at the listener.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
-func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sourceDirectivityModelParameters"))
+func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() PHASEDirectivityModelParameters {
+	rv := objc.Send[PHASEDirectivityModelParameters](p_.ID, objc.Sel("sourceDirectivityModelParameters"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (p_ PHASESpatialMixerDefinition) SourceDirectivityModelParameters() unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/sourcedirectivitymodelparameters
-func (p_ PHASESpatialMixerDefinition) SetSourceDirectivityModelParameters(value unsafe.Pointer) {
+func (p_ PHASESpatialMixerDefinition) SetSourceDirectivityModelParameters(value IPHASEDirectivityModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSourceDirectivityModelParameters:"), value)
 }
 

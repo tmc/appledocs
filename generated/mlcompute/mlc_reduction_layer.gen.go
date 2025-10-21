@@ -120,8 +120,8 @@ func (c_ CReductionLayer) SetDimensions(value int) {
 // The function reduction type the system uses for reduction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/reductiontype
-func (c_ CReductionLayer) ReductionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reductionType"))
+func (c_ CReductionLayer) ReductionType() CReductionType {
+	rv := objc.Send[CReductionType](c_.ID, objc.Sel("reductionType"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (c_ CReductionLayer) ReductionType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcreductionlayer/reductiontype
-func (c_ CReductionLayer) SetReductionType(value unsafe.Pointer) {
+func (c_ CReductionLayer) SetReductionType(value CReductionType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReductionType:"), value)
 }
 

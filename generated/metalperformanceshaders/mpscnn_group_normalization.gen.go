@@ -77,7 +77,7 @@ func NewCNNGroupNormalization() CNNGroupNormalization {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalization/init(device:dataSource:)
-func NewCNNGroupNormalizationWithDeviceDataSource(device objc.ID, dataSource objc.ID) CNNGroupNormalization {
+func NewCNNGroupNormalizationWithDeviceDataSource(device objectivec.IObject, dataSource objectivec.IObject) CNNGroupNormalization {
 	instance := getCNNGroupNormalizationClass().Alloc()
 	rv := objc.Send[CNNGroupNormalization](instance.ID, objc.Sel("initWithDevice:dataSource:"), device, dataSource)
 	rv.Autorelease()

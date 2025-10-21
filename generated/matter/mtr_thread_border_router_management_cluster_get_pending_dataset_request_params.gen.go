@@ -90,7 +90,7 @@ func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) S
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) T
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

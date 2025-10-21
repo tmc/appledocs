@@ -84,30 +84,30 @@ func NewUnitAngle() UnitAngle {
 // The arc seconds unit of angle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
-func (uc _UnitAngleClass) ArcSeconds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("arcSeconds"))
+func (uc _UnitAngleClass) ArcSeconds() UnitAngle {
+	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("arcSeconds"))
 	return rv
 }
 // The degrees unit of angle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
-func (uc _UnitAngleClass) Degrees() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("degrees"))
+func (uc _UnitAngleClass) Degrees() UnitAngle {
+	rv := objc.Send[NSUnitAngle](objc.ID(uc.class), objc.Sel("degrees"))
 	return rv
 }
 // The arc seconds unit of angle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/arcSeconds
-func (u_ UnitAngle) ArcSeconds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("arcSeconds"))
+func (u_ UnitAngle) ArcSeconds() NSUnitAngle {
+	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("arcSeconds"))
 	return rv
 }
 
 // The degrees unit of angle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAngle/degrees
-func (u_ UnitAngle) Degrees() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("degrees"))
+func (u_ UnitAngle) Degrees() NSUnitAngle {
+	rv := objc.Send[NSUnitAngle](u_.ID, objc.Sel("degrees"))
 	return rv
 }
 

@@ -83,8 +83,8 @@ func NewJSValue() JSValue {
 // The JavaScript context hosting this value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValue/context
-func (j_ JSValue) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("context"))
+func (j_ JSValue) Context() JSContext {
+	rv := objc.Send[JSContext](j_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -268,8 +268,8 @@ func (j_ JSValue) SetIsUndefined(value bool) {
 // Returns the C representation of the JavaScript value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/jsvalueref
-func (j_ JSValue) JsValueRef() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](j_.ID, objc.Sel("jsValueRef"))
+func (j_ JSValue) JsValueRef() JSValueRef {
+	rv := objc.Send[JSValueRef](j_.ID, objc.Sel("jsValueRef"))
 	return rv
 }
 
@@ -279,7 +279,7 @@ func (j_ JSValue) JsValueRef() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/javascriptcore/jsvalue/jsvalueref
-func (j_ JSValue) SetJsValueRef(value unsafe.Pointer) {
+func (j_ JSValue) SetJsValueRef(value IJSValueRef) {
 	objc.Send[objc.ID](j_.ID, objc.Sel("setJsValueRef:"), value)
 }
 

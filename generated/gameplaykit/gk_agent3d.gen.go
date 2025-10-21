@@ -30,7 +30,7 @@ type _Agent3DClass struct {
 // An interface definition for the [Agent3D] class.
 type IAgent3D interface {
 	IAgent
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 }
 
 // An agent that operates in a three-dimensional space.
@@ -86,7 +86,7 @@ func NewAgent3D() Agent3D {
 // Causes the agent to evaluate its goals and update its position, rotation, and velocity accordingly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent3D/update(deltaTime:)
-func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (a_ Agent3D) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

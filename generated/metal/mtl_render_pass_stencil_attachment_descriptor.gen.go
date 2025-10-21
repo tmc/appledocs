@@ -100,8 +100,8 @@ func (r_ RenderPassStencilAttachmentDescriptor) SetClearStencil(value unsafe.Poi
 // The filter used for stencil multisample resolve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor/stencilResolveFilter
-func (r_ RenderPassStencilAttachmentDescriptor) StencilResolveFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("stencilResolveFilter"))
+func (r_ RenderPassStencilAttachmentDescriptor) StencilResolveFilter() MultisampleStencilResolveFilter {
+	rv := objc.Send[MultisampleStencilResolveFilter](r_.ID, objc.Sel("stencilResolveFilter"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (r_ RenderPassStencilAttachmentDescriptor) StencilResolveFilter() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassStencilAttachmentDescriptor/stencilResolveFilter
-func (r_ RenderPassStencilAttachmentDescriptor) SetStencilResolveFilter(value unsafe.Pointer) {
+func (r_ RenderPassStencilAttachmentDescriptor) SetStencilResolveFilter(value IMultisampleStencilResolveFilter) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStencilResolveFilter:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayAffineInt4Dequantize] class.
@@ -78,7 +79,7 @@ func NewNDArrayAffineInt4Dequantize() NDArrayAffineInt4Dequantize {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayAffineInt4Dequantize/init(device:quantizationDescriptor:)
-func NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor(device objc.ID, quantizationDescriptor unsafe.Pointer) NDArrayAffineInt4Dequantize {
+func NewNDArrayAffineInt4DequantizeWithDeviceQuantizationDescriptor(device objectivec.IObject, quantizationDescriptor IMPSNDArrayAffineQuantizationDescriptor) NDArrayAffineInt4Dequantize {
 	instance := getNDArrayAffineInt4DequantizeClass().Alloc()
 	rv := objc.Send[NDArrayAffineInt4Dequantize](instance.ID, objc.Sel("initWithDevice:quantizationDescriptor:"), device, quantizationDescriptor)
 	rv.Autorelease()

@@ -84,8 +84,8 @@ func NewHKGlassesPrescription() HKGlassesPrescription {
 // The lens specification for the left eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
-func (h_ HKGlassesPrescription) LeftEye() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("leftEye"))
+func (h_ HKGlassesPrescription) LeftEye() HKGlassesLensSpecification {
+	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (h_ HKGlassesPrescription) LeftEye() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/lefteye
-func (h_ HKGlassesPrescription) SetLeftEye(value unsafe.Pointer) {
+func (h_ HKGlassesPrescription) SetLeftEye(value IHKGlassesLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
 }
 
 // The lens specification for the right eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-func (h_ HKGlassesPrescription) RightEye() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("rightEye"))
+func (h_ HKGlassesPrescription) RightEye() HKGlassesLensSpecification {
+	rv := objc.Send[HKGlassesLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (h_ HKGlassesPrescription) RightEye() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglassesprescription/righteye
-func (h_ HKGlassesPrescription) SetRightEye(value unsafe.Pointer) {
+func (h_ HKGlassesPrescription) SetRightEye(value IHKGlassesLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }
 
 // A description of the glasses prescription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmetadatakeyglassesprescriptiondescription
-func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
+func (h_ HKGlassesPrescription) HKMetadataKeyGlassesPrescriptionDescription() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKMetadataKeyGlassesPrescriptionDescription"))
 	return rv
 }
 

@@ -30,8 +30,8 @@ type _MinmaxStrategistClass struct {
 // An interface definition for the [MinmaxStrategist] class.
 type IMinmaxStrategist interface {
 	objectivec.IObject
-	BestMoveForPlayer(player objc.ID) objc.ID
-	RandomMoveForPlayerFromNumberOfBestMoves(player objc.ID, numMovesToConsider int) objc.ID
+	BestMoveForPlayer(player objectivec.IObject) objc.ID
+	RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID
 }
 
 // An AI that chooses moves in turn-based games using a strategy.
@@ -85,7 +85,7 @@ func NewMinmaxStrategist() MinmaxStrategist {
 // Computes and returns the best possible move for the specified player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/bestMove(for:)
-func (m_ MinmaxStrategist) BestMoveForPlayer(player objc.ID) objc.ID {
+func (m_ MinmaxStrategist) BestMoveForPlayer(player objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("bestMoveForPlayer:"), player)
 	return rv
 }
@@ -93,7 +93,7 @@ func (m_ MinmaxStrategist) BestMoveForPlayer(player objc.ID) objc.ID {
 // Computes several of the best possible moves for the specified player, and returns a move randomly selected from among them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMinmaxStrategist/randomMove(for:fromNumberOfBestMoves:)
-func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objc.ID, numMovesToConsider int) objc.ID {
+func (m_ MinmaxStrategist) RandomMoveForPlayerFromNumberOfBestMoves(player objectivec.IObject, numMovesToConsider int) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("randomMoveForPlayer:fromNumberOfBestMoves:"), player, numMovesToConsider)
 	return rv
 }

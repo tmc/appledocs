@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/intents"
 )
 
 // The class instance for the [INUIEditVoiceShortcutViewController] class.
@@ -82,6 +83,19 @@ func NewINUIEditVoiceShortcutViewController() INUIEditVoiceShortcutViewControlle
 }
 
 
+
+
+// Creates a view controller with the shortcut to edit or remove.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController/init(voiceShortcut:)
+func NewINUIEditVoiceShortcutViewControllerWithVoiceShortcut(voiceShortcut intents.INVoiceShortcut) INUIEditVoiceShortcutViewController {
+	instance := getINUIEditVoiceShortcutViewControllerClass().Alloc()
+	rv := objc.Send[INUIEditVoiceShortcutViewController](instance.ID, objc.Sel("initWithVoiceShortcut:"), voiceShortcut)
+	rv.Autorelease()
+	return rv
+}
+
+
 // The object that retrieves notifications from the view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIEditVoiceShortcutViewController/delegate
@@ -99,7 +113,5 @@ func (i_ INUIEditVoiceShortcutViewController) Delegate() objc.ID {
 func (i_ INUIEditVoiceShortcutViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
-
-
 
 

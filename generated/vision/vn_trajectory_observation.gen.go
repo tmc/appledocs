@@ -90,8 +90,8 @@ func (t_ TrajectoryObservation) MovingAverageRadius() float64 {
 // The array of detected trajectory observations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/results
-func (t_ TrajectoryObservation) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("results"))
+func (t_ TrajectoryObservation) Results() VNTrajectoryObservation {
+	rv := objc.Send[VNTrajectoryObservation](t_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -101,15 +101,15 @@ func (t_ TrajectoryObservation) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest/results
-func (t_ TrajectoryObservation) SetResults(value unsafe.Pointer) {
+func (t_ TrajectoryObservation) SetResults(value IVNTrajectoryObservation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResults:"), value)
 }
 
 // The centroid points of the detected contour along the trajectory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/detectedpoints
-func (t_ TrajectoryObservation) DetectedPoints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("detectedPoints"))
+func (t_ TrajectoryObservation) DetectedPoints() VNPoint {
+	rv := objc.Send[VNPoint](t_.ID, objc.Sel("detectedPoints"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (t_ TrajectoryObservation) DetectedPoints() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/detectedpoints
-func (t_ TrajectoryObservation) SetDetectedPoints(value unsafe.Pointer) {
+func (t_ TrajectoryObservation) SetDetectedPoints(value IVNPoint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDetectedPoints:"), value)
 }
 
@@ -144,8 +144,8 @@ func (t_ TrajectoryObservation) SetEquationCoefficients(value unsafe.Pointer) {
 // The centroids of the calculated trajectory from the detected points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/projectedpoints
-func (t_ TrajectoryObservation) ProjectedPoints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("projectedPoints"))
+func (t_ TrajectoryObservation) ProjectedPoints() VNPoint {
+	rv := objc.Send[VNPoint](t_.ID, objc.Sel("projectedPoints"))
 	return rv
 }
 
@@ -155,7 +155,7 @@ func (t_ TrajectoryObservation) ProjectedPoints() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrajectoryobservation/projectedpoints
-func (t_ TrajectoryObservation) SetProjectedPoints(value unsafe.Pointer) {
+func (t_ TrajectoryObservation) SetProjectedPoints(value IVNPoint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setProjectedPoints:"), value)
 }
 

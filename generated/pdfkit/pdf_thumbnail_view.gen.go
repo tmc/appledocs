@@ -120,8 +120,8 @@ func (p_ PDFThumbnailView) SetAllowsMultipleSelection(value bool) {
 // Returns the color used in the background of the thumbnail view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/backgroundColor
-func (p_ PDFThumbnailView) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("backgroundColor"))
+func (p_ PDFThumbnailView) BackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (p_ PDFThumbnailView) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/backgroundColor
-func (p_ PDFThumbnailView) SetBackgroundColor(value unsafe.Pointer) {
+func (p_ PDFThumbnailView) SetBackgroundColor(value appkit.IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -153,8 +153,8 @@ func (p_ PDFThumbnailView) SetContentInset(value unsafe.Pointer) {
 // Returns the font used to label the thumbnails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/labelFont
-func (p_ PDFThumbnailView) LabelFont() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("labelFont"))
+func (p_ PDFThumbnailView) LabelFont() appkit.Font {
+	rv := objc.Send[appkit.Font](p_.ID, objc.Sel("labelFont"))
 	return rv
 }
 
@@ -164,14 +164,14 @@ func (p_ PDFThumbnailView) LabelFont() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/labelFont
-func (p_ PDFThumbnailView) SetLabelFont(value unsafe.Pointer) {
+func (p_ PDFThumbnailView) SetLabelFont(value appkit.IFont) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLabelFont:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/layoutMode
-func (p_ PDFThumbnailView) LayoutMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("layoutMode"))
+func (p_ PDFThumbnailView) LayoutMode() PDFThumbnailLayoutMode {
+	rv := objc.Send[PDFThumbnailLayoutMode](p_.ID, objc.Sel("layoutMode"))
 	return rv
 }
 
@@ -179,7 +179,7 @@ func (p_ PDFThumbnailView) LayoutMode() unsafe.Pointer {
 // SetLayoutMode sets the value of the layoutMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/layoutMode
-func (p_ PDFThumbnailView) SetLayoutMode(value unsafe.Pointer) {
+func (p_ PDFThumbnailView) SetLayoutMode(value PDFThumbnailLayoutMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLayoutMode:"), value)
 }
 
@@ -204,8 +204,8 @@ func (p_ PDFThumbnailView) SetMaximumNumberOfColumns(value uint) {
 // Returns the object associated with the thumbnail view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/pdfView
-func (p_ PDFThumbnailView) PDFView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("PDFView"))
+func (p_ PDFThumbnailView) PDFView() PDFView {
+	rv := objc.Send[PDFView](p_.ID, objc.Sel("PDFView"))
 	return rv
 }
 
@@ -215,7 +215,7 @@ func (p_ PDFThumbnailView) PDFView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/pdfView
-func (p_ PDFThumbnailView) SetPDFView(value unsafe.Pointer) {
+func (p_ PDFThumbnailView) SetPDFView(value IPDFView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPDFView:"), value)
 }
 

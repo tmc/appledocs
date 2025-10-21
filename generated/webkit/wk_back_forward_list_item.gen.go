@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,8 +93,8 @@ func (b_ BackForwardListItem) InitialURL() foundation.URL {
 // The title of the webpage this item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKBackForwardListItem/title
-func (b_ BackForwardListItem) Title() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("title"))
+func (b_ BackForwardListItem) Title() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("title"))
 	return rv
 }
 

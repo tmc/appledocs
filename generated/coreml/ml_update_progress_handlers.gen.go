@@ -83,7 +83,7 @@ func NewUpdateProgressHandlers() UpdateProgressHandlers {
 // Creates the collection of closures an update task uses to notify your app of its progress.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateProgressHandlers/init(forEvents:progressHandler:completionHandler:)
-func NewUpdateProgressHandlersForEventsProgressHandlerCompletionHandler(interestedEvents unsafe.Pointer, progressHandler unsafe.Pointer, completionHandler unsafe.Pointer) UpdateProgressHandlers {
+func NewUpdateProgressHandlersForEventsProgressHandlerCompletionHandler(interestedEvents IUpdateProgressEvent, progressHandler unsafe.Pointer, completionHandler unsafe.Pointer) UpdateProgressHandlers {
 	instance := getUpdateProgressHandlersClass().Alloc()
 	rv := objc.Send[UpdateProgressHandlers](instance.ID, objc.Sel("initForEvents:progressHandler:completionHandler:"), interestedEvents, progressHandler, completionHandler)
 	rv.Autorelease()

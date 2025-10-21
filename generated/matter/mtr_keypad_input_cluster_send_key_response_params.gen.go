@@ -87,7 +87,7 @@ func (m_ MTRKeypadInputClusterSendKeyResponseParams) Status() foundation.Number 
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/status
-func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRKeypadInputClusterSendKeyResponseParams) TimedInvokeTimeoutMs() foun
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyresponseparams/timedinvoketimeoutms
-func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRKeypadInputClusterSendKeyResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

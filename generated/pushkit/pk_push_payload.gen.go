@@ -81,16 +81,16 @@ func NewPushPayload() PushPayload {
 // The contents of the received payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushPayload/dictionaryPayload
-func (p_ PushPayload) DictionaryPayload() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("dictionaryPayload"))
+func (p_ PushPayload) DictionaryPayload() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("dictionaryPayload"))
 	return rv
 }
 
 // The type value indicating how to interpret the payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushPayload/type
-func (p_ PushPayload) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PushPayload) Type() PushType {
+	rv := objc.Send[PushType](p_.ID, objc.Sel("type"))
 	return rv
 }
 

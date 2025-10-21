@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -111,8 +113,8 @@ func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value unsafe.Pointer) {
 // Optional custom metadata associated with the proposed item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/metadata
-func (c_ ContentProposal) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadata"))
+func (c_ ContentProposal) Metadata() avfoundation.MetadataItem {
+	rv := objc.Send[avfoundation.MetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -122,15 +124,15 @@ func (c_ ContentProposal) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/metadata
-func (c_ ContentProposal) SetMetadata(value unsafe.Pointer) {
+func (c_ ContentProposal) SetMetadata(value avfoundation.IMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // The preview image of the proposed item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/previewimage
-func (c_ ContentProposal) PreviewImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previewImage"))
+func (c_ ContentProposal) PreviewImage() appkit.Image {
+	rv := objc.Send[appkit.Image](c_.ID, objc.Sel("previewImage"))
 	return rv
 }
 
@@ -140,15 +142,15 @@ func (c_ ContentProposal) PreviewImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/previewimage
-func (c_ ContentProposal) SetPreviewImage(value unsafe.Pointer) {
+func (c_ ContentProposal) SetPreviewImage(value appkit.IImage) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewImage:"), value)
 }
 
 // The title of the proposed content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
-func (c_ ContentProposal) Title() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ ContentProposal) Title() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -158,8 +160,8 @@ func (c_ ContentProposal) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/title
-func (c_ ContentProposal) SetTitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ ContentProposal) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 // The URL of the proposed content.
@@ -176,15 +178,15 @@ func (c_ ContentProposal) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposal/url
-func (c_ ContentProposal) SetUrl(value foundation.URL) {
+func (c_ ContentProposal) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 
 // A prosal of content to play.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/contentproposal
-func (c_ ContentProposal) ContentProposal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contentProposal"))
+func (c_ ContentProposal) ContentProposal() AVContentProposal {
+	rv := objc.Send[AVContentProposal](c_.ID, objc.Sel("contentProposal"))
 	return rv
 }
 
@@ -194,15 +196,15 @@ func (c_ ContentProposal) ContentProposal() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/contentproposal
-func (c_ ContentProposal) SetContentProposal(value unsafe.Pointer) {
+func (c_ ContentProposal) SetContentProposal(value IAVContentProposal) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentProposal:"), value)
 }
 
 // The date that the system automatically accepts a proposal if the user doesn’t intervene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
-func (c_ ContentProposal) DateOfAutomaticAcceptance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
+func (c_ ContentProposal) DateOfAutomaticAcceptance() foundation.Date {
+	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("dateOfAutomaticAcceptance"))
 	return rv
 }
 
@@ -212,15 +214,15 @@ func (c_ ContentProposal) DateOfAutomaticAcceptance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/dateofautomaticacceptance
-func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value unsafe.Pointer) {
+func (c_ ContentProposal) SetDateOfAutomaticAcceptance(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDateOfAutomaticAcceptance:"), value)
 }
 
 // A layout guide that tracks the size and location of the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
-func (c_ ContentProposal) PlayerLayoutGuide() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("playerLayoutGuide"))
+func (c_ ContentProposal) PlayerLayoutGuide() appkit.LayoutGuide {
+	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
 }
 
@@ -230,7 +232,7 @@ func (c_ ContentProposal) PlayerLayoutGuide() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avcontentproposalviewcontroller/playerlayoutguide
-func (c_ ContentProposal) SetPlayerLayoutGuide(value unsafe.Pointer) {
+func (c_ ContentProposal) SetPlayerLayoutGuide(value appkit.ILayoutGuide) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPlayerLayoutGuide:"), value)
 }
 

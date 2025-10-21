@@ -86,7 +86,7 @@ func NewINSetMessageAttributeIntent() INSetMessageAttributeIntent {
 // Initializes the set message attribute intent object with the specified identifiers and attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSetMessageAttributeIntent/init(identifiers:attribute:)
-func NewINSetMessageAttributeIntentWithIdentifiersAttribute(identifiers unsafe.Pointer, attribute unsafe.Pointer) INSetMessageAttributeIntent {
+func NewINSetMessageAttributeIntentWithIdentifiersAttribute(identifiers []string, attribute unsafe.Pointer) INSetMessageAttributeIntent {
 	instance := getINSetMessageAttributeIntentClass().Alloc()
 	rv := objc.Send[INSetMessageAttributeIntent](instance.ID, objc.Sel("initWithIdentifiers:attribute:"), identifiers, attribute)
 	rv.Autorelease()

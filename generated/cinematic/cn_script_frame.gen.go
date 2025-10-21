@@ -30,7 +30,7 @@ type _CNScriptFrameClass struct {
 // An interface definition for the [CNScriptFrame] class.
 type ICNScriptFrame interface {
 	objectivec.IObject
-	DetectionForID(detectionID unsafe.Pointer) unsafe.Pointer
+	DetectionForID(detectionID ICNDetectionID) CNDetection
 }
 
 // An object that represents what to focus on, and where to focus, in a given movie frame.
@@ -82,8 +82,8 @@ func NewCNScriptFrame() CNScriptFrame {
 // The detection in the frame with the given detection ID, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/detectionForID:
-func (c_ CNScriptFrame) DetectionForID(detectionID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("detectionForID:"), detectionID)
+func (c_ CNScriptFrame) DetectionForID(detectionID ICNDetectionID) CNDetection {
+	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionForID:"), detectionID)
 	return rv
 }
 
@@ -98,8 +98,8 @@ func (c_ CNScriptFrame) AllDetections() []CNDetection {
 // What to focus on in a given frame of the movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptFrame/focusDetection
-func (c_ CNScriptFrame) FocusDetection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("focusDetection"))
+func (c_ CNScriptFrame) FocusDetection() CNDetection {
+	rv := objc.Send[CNDetection](c_.ID, objc.Sel("focusDetection"))
 	return rv
 }
 

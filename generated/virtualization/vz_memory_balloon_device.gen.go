@@ -83,8 +83,8 @@ func NewVZMemoryBalloonDevice() VZMemoryBalloonDevice {
 // An array that you configure with a memory balloon device, used to update the memory in the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/memoryballoondevices
-func (v_ VZMemoryBalloonDevice) MemoryBalloonDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("memoryBalloonDevices"))
+func (v_ VZMemoryBalloonDevice) MemoryBalloonDevices() VZMemoryBalloonDeviceConfiguration {
+	rv := objc.Send[VZMemoryBalloonDeviceConfiguration](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (v_ VZMemoryBalloonDevice) MemoryBalloonDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/memoryballoondevices
-func (v_ VZMemoryBalloonDevice) SetMemoryBalloonDevices(value unsafe.Pointer) {
+func (v_ VZMemoryBalloonDevice) SetMemoryBalloonDevices(value IVZMemoryBalloonDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)
 }
 

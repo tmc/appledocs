@@ -30,7 +30,7 @@ type _VZVirtioConsolePortArrayClass struct {
 // An interface definition for the [VZVirtioConsolePortArray] class.
 type IVZVirtioConsolePortArray interface {
 	objectivec.IObject
-	ObjectAtIndexedSubscript(portIndex uint) unsafe.Pointer
+	ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePort
 }
 
 // A class that represents a collection of Virtio console ports.
@@ -82,8 +82,8 @@ func NewVZVirtioConsolePortArray() VZVirtioConsolePortArray {
 // Returns the Virtio console port at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortArray/subscript(_:)
-func (v_ VZVirtioConsolePortArray) ObjectAtIndexedSubscript(portIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
+func (v_ VZVirtioConsolePortArray) ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePort {
+	rv := objc.Send[VZVirtioConsolePort](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
 	return rv
 }
 

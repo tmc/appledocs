@@ -84,8 +84,8 @@ func NewCKRecordZoneNotification() CKRecordZoneNotification {
 // The ID of the record zone that has changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZoneNotification/recordZoneID
-func (c_ CKRecordZoneNotification) RecordZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneID"))
+func (c_ CKRecordZoneNotification) RecordZoneID() CKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("recordZoneID"))
 	return rv
 }
 
@@ -164,8 +164,8 @@ func (c_ CKRecordZoneNotification) SetShouldSendContentAvailable(value bool) {
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneNotification) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKRecordZoneNotification) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -175,7 +175,7 @@ func (c_ CKRecordZoneNotification) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKRecordZoneNotification) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKRecordZoneNotification) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

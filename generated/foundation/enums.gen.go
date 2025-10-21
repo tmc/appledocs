@@ -665,6 +665,11 @@ const (
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/Options
 type LinguisticTaggerOptions uint
 
+// NSLinguisticTaggerUnit - Constants representing linguistic units.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTaggerUnit
+type LinguisticTaggerUnit uint
+
 // NSMachPortOptions - Used to remove access rights to a mach port when the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options

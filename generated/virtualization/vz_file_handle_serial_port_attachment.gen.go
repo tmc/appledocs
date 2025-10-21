@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZFileHandleSerialPortAttachment] class.
@@ -86,7 +87,7 @@ func NewVZFileHandleSerialPortAttachment() VZFileHandleSerialPortAttachment {
 // Creates a serial port attachment object from the specified file handles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/init(fileHandleForReading:fileHandleForWriting:)
-func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWriting(fileHandleForReading unsafe.Pointer, fileHandleForWriting unsafe.Pointer) VZFileHandleSerialPortAttachment {
+func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWriting(fileHandleForReading foundation.IFileHandle, fileHandleForWriting foundation.IFileHandle) VZFileHandleSerialPortAttachment {
 	instance := getVZFileHandleSerialPortAttachmentClass().Alloc()
 	rv := objc.Send[VZFileHandleSerialPortAttachment](instance.ID, objc.Sel("initWithFileHandleForReading:fileHandleForWriting:"), fileHandleForReading, fileHandleForWriting)
 	rv.Autorelease()
@@ -97,16 +98,16 @@ func NewVZFileHandleSerialPortAttachmentWithFileHandleForReadingFileHandleForWri
 // The file handle that the guest operating system uses to read data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/fileHandleForReading
-func (v_ VZFileHandleSerialPortAttachment) FileHandleForReading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fileHandleForReading"))
+func (v_ VZFileHandleSerialPortAttachment) FileHandleForReading() foundation.FileHandle {
+	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandleForReading"))
 	return rv
 }
 
 // The file handle that the guest operating system uses to write data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleSerialPortAttachment/fileHandleForWriting
-func (v_ VZFileHandleSerialPortAttachment) FileHandleForWriting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fileHandleForWriting"))
+func (v_ VZFileHandleSerialPortAttachment) FileHandleForWriting() foundation.FileHandle {
+	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }
 

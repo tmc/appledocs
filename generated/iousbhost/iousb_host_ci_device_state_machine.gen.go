@@ -93,8 +93,8 @@ func (u_ USBHostCIDeviceStateMachine) RespondToCommandStatusError(command unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/controllerInterface
-func (u_ USBHostCIDeviceStateMachine) ControllerInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
+func (u_ USBHostCIDeviceStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CBPeripheralManager] class.
@@ -29,16 +31,16 @@ type _CBPeripheralManagerClass struct {
 // An interface definition for the [CBPeripheralManager] class.
 type ICBPeripheralManager interface {
 	ICBManager
-	AddService(service unsafe.Pointer)
+	AddService(service ICBMutableService)
 	PublishL2CAPChannelWithEncryption(encryptionRequired bool)
-	RemoveService(service unsafe.Pointer)
+	RemoveService(service ICBMutableService)
 	RemoveAllServices()
-	RespondToRequestWithResult(request unsafe.Pointer, result unsafe.Pointer)
-	SetDesiredConnectionLatencyForCentral(latency unsafe.Pointer, central unsafe.Pointer)
+	RespondToRequestWithResult(request ICBATTRequest, result ICBATTError)
+	SetDesiredConnectionLatencyForCentral(latency ICBPeripheralManagerConnectionLatency, central ICBCentral)
 	StartAdvertising(advertisementData unsafe.Pointer)
 	StopAdvertising()
-	UnpublishL2CAPChannel(PSM unsafe.Pointer)
-	UpdateValueForCharacteristicOnSubscribedCentrals(value unsafe.Pointer, characteristic unsafe.Pointer, centrals unsafe.Pointer) bool
+	UnpublishL2CAPChannel(PSM ICBL2CAPPSM)
+	UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.IData, characteristic ICBMutableCharacteristic, centrals []CBCentral) bool
 }
 
 // An object that manages and advertises peripheral services exposed by this app.
@@ -96,7 +98,7 @@ func NewCBPeripheralManager() CBPeripheralManager {
 // Initializes the peripheral manager with a specified delegate and dispatch queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:)
-func NewCBPeripheralManagerWithDelegateQueue(delegate objc.ID, queue unsafe.Pointer) CBPeripheralManager {
+func NewCBPeripheralManagerWithDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) CBPeripheralManager {
 	instance := getCBPeripheralManagerClass().Alloc()
 	rv := objc.Send[CBPeripheralManager](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewCBPeripheralManagerWithDelegateQueue(delegate objc.ID, queue unsafe.Poin
 // Initializes the peripheral manager with a specified delegate, dispatch queue, and initialization options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/init(delegate:queue:options:)
-func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsafe.Pointer, options unsafe.Pointer) CBPeripheralManager {
+func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objectivec.IObject, queue unsafe.Pointer, options unsafe.Pointer) CBPeripheralManager {
 	instance := getCBPeripheralManagerClass().Alloc()
 	rv := objc.Send[CBPeripheralManager](instance.ID, objc.Sel("initWithDelegate:queue:options:"), delegate, queue, options)
 	rv.Autorelease()
@@ -119,15 +121,15 @@ func NewCBPeripheralManagerWithDelegateQueueOptions(delegate objc.ID, queue unsa
 // Returns the app’s authorization status for sharing data while in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/authorizationStatus()
-func (cc _CBPeripheralManagerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("authorizationStatus"))
+func (cc _CBPeripheralManagerClass) AuthorizationStatus() CBPeripheralManagerAuthorizationStatus {
+	rv := objc.Send[CBPeripheralManagerAuthorizationStatus](objc.ID(cc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
 // Publishes a service and any of its associated characteristics and characteristic descriptors to the local GATT database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/add(_:)
-func (c_ CBPeripheralManager) AddService(service unsafe.Pointer) {
+func (c_ CBPeripheralManager) AddService(service ICBMutableService) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addService:"), service)
 }
 
@@ -141,7 +143,7 @@ func (c_ CBPeripheralManager) PublishL2CAPChannelWithEncryption(encryptionRequir
 // Removes a specified published service from the local GATT database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/remove(_:)
-func (c_ CBPeripheralManager) RemoveService(service unsafe.Pointer) {
+func (c_ CBPeripheralManager) RemoveService(service ICBMutableService) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeService:"), service)
 }
 
@@ -155,14 +157,14 @@ func (c_ CBPeripheralManager) RemoveAllServices() {
 // Responds to a read or write request from a connected central.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/respond(to:withResult:)
-func (c_ CBPeripheralManager) RespondToRequestWithResult(request unsafe.Pointer, result unsafe.Pointer) {
+func (c_ CBPeripheralManager) RespondToRequestWithResult(request ICBATTRequest, result ICBATTError) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("respondToRequest:withResult:"), request, result)
 }
 
 // Sets the desired connection latency for an existing connection to a central device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/setDesiredConnectionLatency(_:for:)
-func (c_ CBPeripheralManager) SetDesiredConnectionLatencyForCentral(latency unsafe.Pointer, central unsafe.Pointer) {
+func (c_ CBPeripheralManager) SetDesiredConnectionLatencyForCentral(latency ICBPeripheralManagerConnectionLatency, central ICBCentral) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredConnectionLatency:forCentral:"), latency, central)
 }
 
@@ -183,14 +185,14 @@ func (c_ CBPeripheralManager) StopAdvertising() {
 // Removes a published service from the local system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/unpublishL2CAPChannel(_:)
-func (c_ CBPeripheralManager) UnpublishL2CAPChannel(PSM unsafe.Pointer) {
+func (c_ CBPeripheralManager) UnpublishL2CAPChannel(PSM ICBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("unpublishL2CAPChannel:"), PSM)
 }
 
 // Send an updated characteristic value to one or more subscribed centrals, using a notification or indication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheralManager/updateValue(_:for:onSubscribedCentrals:)
-func (c_ CBPeripheralManager) UpdateValueForCharacteristicOnSubscribedCentrals(value unsafe.Pointer, characteristic unsafe.Pointer, centrals unsafe.Pointer) bool {
+func (c_ CBPeripheralManager) UpdateValueForCharacteristicOnSubscribedCentrals(value foundation.IData, characteristic ICBMutableCharacteristic, centrals []CBCentral) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("updateValue:forCharacteristic:onSubscribedCentrals:"), value, characteristic, centrals)
 	return rv
 }

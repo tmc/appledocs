@@ -84,8 +84,8 @@ func NewGenerateImageFeaturePrintRequest() GenerateImageFeaturePrintRequest {
 // An optional setting that tells the algorithm how to scale an input image before generating the feature print.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
-func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("imageCropAndScaleOption"))
+func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() ImageCropAndScaleOption {
+	rv := objc.Send[ImageCropAndScaleOption](g_.ID, objc.Sel("imageCropAndScaleOption"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (g_ GenerateImageFeaturePrintRequest) ImageCropAndScaleOption() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/imagecropandscaleoption
-func (g_ GenerateImageFeaturePrintRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
+func (g_ GenerateImageFeaturePrintRequest) SetImageCropAndScaleOption(value IImageCropAndScaleOption) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
 
 // The results of the feature print request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/results
-func (g_ GenerateImageFeaturePrintRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+func (g_ GenerateImageFeaturePrintRequest) Results() VNFeaturePrintObservation {
+	rv := objc.Send[VNFeaturePrintObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (g_ GenerateImageFeaturePrintRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateimagefeatureprintrequest/results
-func (g_ GenerateImageFeaturePrintRequest) SetResults(value unsafe.Pointer) {
+func (g_ GenerateImageFeaturePrintRequest) SetResults(value IVNFeaturePrintObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 

@@ -138,8 +138,8 @@ func (g_ GenerateOpticalFlowRequest) SetOutputPixelFormat(value unsafe.Pointer) 
 // The results of the request to generate optical flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
-func (g_ GenerateOpticalFlowRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+func (g_ GenerateOpticalFlowRequest) Results() VNPixelBufferObservation {
+	rv := objc.Send[VNPixelBufferObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (g_ GenerateOpticalFlowRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateopticalflowrequest/results
-func (g_ GenerateOpticalFlowRequest) SetResults(value unsafe.Pointer) {
+func (g_ GenerateOpticalFlowRequest) SetResults(value IVNPixelBufferObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 

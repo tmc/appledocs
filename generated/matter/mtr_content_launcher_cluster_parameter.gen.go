@@ -103,14 +103,14 @@ func (m_ MTRContentLauncherClusterParameter) Type() foundation.Number {
 // SetType sets the value of the type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/type
-func (m_ MTRContentLauncherClusterParameter) SetType(value foundation.Number) {
+func (m_ MTRContentLauncherClusterParameter) SetType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
-func (m_ MTRContentLauncherClusterParameter) Value() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+func (m_ MTRContentLauncherClusterParameter) Value() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -118,8 +118,8 @@ func (m_ MTRContentLauncherClusterParameter) Value() string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
-func (m_ MTRContentLauncherClusterParameter) SetValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+func (m_ MTRContentLauncherClusterParameter) SetValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

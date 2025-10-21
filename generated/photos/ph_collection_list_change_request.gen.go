@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PHCollectionListChangeRequest] class.
@@ -29,9 +32,9 @@ type _PHCollectionListChangeRequestClass struct {
 // An interface definition for the [PHCollectionListChangeRequest] class.
 type IPHCollectionListChangeRequest interface {
 	IPHChangeRequest
-	AddChildCollections(collections objc.ID)
-	InsertChildCollectionsAtIndexes(collections objc.ID, indexes unsafe.Pointer)
-	ReplaceChildCollectionsAtIndexesWithChildCollections(indexes unsafe.Pointer, collections objc.ID)
+	AddChildCollections(collections objectivec.IObject)
+	InsertChildCollectionsAtIndexes(collections objectivec.IObject, indexes foundation.IIndexSet)
+	ReplaceChildCollectionsAtIndexesWithChildCollections(indexes foundation.IIndexSet, collections objectivec.IObject)
 }
 
 // A request to create, delete, or modify a Photos collection list, for use in a photo library change block.
@@ -89,7 +92,7 @@ func NewPHCollectionListChangeRequest() PHCollectionListChangeRequest {
 // Creates a request for modifying the specified collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:)
-func NewPHCollectionListChangeRequestForCollectionList(collectionList unsafe.Pointer) PHCollectionListChangeRequest {
+func NewPHCollectionListChangeRequestForCollectionList(collectionList IPHCollectionList) PHCollectionListChangeRequest {
 	rv := objc.Send[PHCollectionListChangeRequest](objc.ID(getPHCollectionListChangeRequestClass().class), objc.Sel("changeRequestForCollectionList:"), collectionList)
 	return rv
 }
@@ -99,7 +102,7 @@ func NewPHCollectionListChangeRequestForCollectionList(collectionList unsafe.Poi
 // Creates a request for modifying the specified collection list, with a fetch result for tracking changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:childCollections:)
-func NewPHCollectionListChangeRequestForCollectionListChildCollections(collectionList unsafe.Pointer, childCollections unsafe.Pointer) PHCollectionListChangeRequest {
+func NewPHCollectionListChangeRequestForCollectionListChildCollections(collectionList IPHCollectionList, childCollections unsafe.Pointer) PHCollectionListChangeRequest {
 	rv := objc.Send[PHCollectionListChangeRequest](objc.ID(getPHCollectionListChangeRequestClass().class), objc.Sel("changeRequestForCollectionList:childCollections:"), collectionList, childCollections)
 	return rv
 }
@@ -118,22 +121,22 @@ func NewPHCollectionListChangeRequestForTopLevelCollectionListUserCollections(ch
 // Creates a request for adding a new collection list to the Photos library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/creationRequestForCollectionList(withTitle:)
-func (pc _PHCollectionListChangeRequestClass) CreationRequestForCollectionListWithTitle(title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForCollectionListWithTitle:"), objc.String(title))
+func (pc _PHCollectionListChangeRequestClass) CreationRequestForCollectionListWithTitle(title appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForCollectionListWithTitle:"), title)
 	return rv
 }
 
 // Requests to delete the specified asset collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/deleteCollectionLists(_:)
-func (pc _PHCollectionListChangeRequestClass) DeleteCollectionLists(collectionLists objc.ID) {
+func (pc _PHCollectionListChangeRequestClass) DeleteCollectionLists(collectionLists objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("deleteCollectionLists:"), collectionLists)
 }
 
 // Creates a request for modifying the specified collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:)
-func (pc _PHCollectionListChangeRequestClass) ChangeRequestForCollectionList(collectionList unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListChangeRequestClass) ChangeRequestForCollectionList(collectionList IPHCollectionList) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("changeRequestForCollectionList:"), collectionList)
 	return rv
 }
@@ -141,7 +144,7 @@ func (pc _PHCollectionListChangeRequestClass) ChangeRequestForCollectionList(col
 // Creates a request for modifying the specified collection list, with a fetch result for tracking changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/init(for:childCollections:)
-func (pc _PHCollectionListChangeRequestClass) ChangeRequestForCollectionListChildCollections(collectionList unsafe.Pointer, childCollections unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListChangeRequestClass) ChangeRequestForCollectionListChildCollections(collectionList IPHCollectionList, childCollections unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("changeRequestForCollectionList:childCollections:"), collectionList, childCollections)
 	return rv
 }
@@ -157,37 +160,37 @@ func (pc _PHCollectionListChangeRequestClass) ChangeRequestForTopLevelCollection
 // Adds the specified collections as children of the collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/addChildCollections(_:)
-func (p_ PHCollectionListChangeRequest) AddChildCollections(collections objc.ID) {
+func (p_ PHCollectionListChangeRequest) AddChildCollections(collections objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addChildCollections:"), collections)
 }
 
 // Inserts the specified collections into the collection list at the specified indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/insertChildCollections(_:at:)
-func (p_ PHCollectionListChangeRequest) InsertChildCollectionsAtIndexes(collections objc.ID, indexes unsafe.Pointer) {
+func (p_ PHCollectionListChangeRequest) InsertChildCollectionsAtIndexes(collections objectivec.IObject, indexes foundation.IIndexSet) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("insertChildCollections:atIndexes:"), collections, indexes)
 }
 
 // Replaces the child collections at the specified indexes in the collection list with the specified collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/replaceChildCollections(at:withChildCollections:)
-func (p_ PHCollectionListChangeRequest) ReplaceChildCollectionsAtIndexesWithChildCollections(indexes unsafe.Pointer, collections objc.ID) {
+func (p_ PHCollectionListChangeRequest) ReplaceChildCollectionsAtIndexesWithChildCollections(indexes foundation.IIndexSet, collections objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("replaceChildCollectionsAtIndexes:withChildCollections:"), indexes, collections)
 }
 
 // A placeholder object for the collection list that the change request creates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListChangeRequest/placeholderForCreatedCollectionList
-func (p_ PHCollectionListChangeRequest) PlaceholderForCreatedCollectionList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderForCreatedCollectionList"))
+func (p_ PHCollectionListChangeRequest) PlaceholderForCreatedCollectionList() PHObjectPlaceholder {
+	rv := objc.Send[PHObjectPlaceholder](p_.ID, objc.Sel("placeholderForCreatedCollectionList"))
 	return rv
 }
 
 // The displayed name of the collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/title
-func (p_ PHCollectionListChangeRequest) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+func (p_ PHCollectionListChangeRequest) Title() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -197,8 +200,8 @@ func (p_ PHCollectionListChangeRequest) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollectionlistchangerequest/title
-func (p_ PHCollectionListChangeRequest) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (p_ PHCollectionListChangeRequest) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AXMathExpressionOperator] class.
@@ -78,9 +79,9 @@ func NewAXMathExpressionOperator() AXMathExpressionOperator {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/init(content:)
-func NewAXMathExpressionOperatorWithContent(content string) AXMathExpressionOperator {
+func NewAXMathExpressionOperatorWithContent(content appkit.string) AXMathExpressionOperator {
 	instance := getAXMathExpressionOperatorClass().Alloc()
-	rv := objc.Send[AXMathExpressionOperator](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
+	rv := objc.Send[AXMathExpressionOperator](instance.ID, objc.Sel("initWithContent:"), content)
 	rv.Autorelease()
 	return rv
 }
@@ -88,8 +89,8 @@ func NewAXMathExpressionOperatorWithContent(content string) AXMathExpressionOper
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionOperator/content
-func (a_ AXMathExpressionOperator) Content() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionOperator) Content() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("content"))
 	return rv
 }
 

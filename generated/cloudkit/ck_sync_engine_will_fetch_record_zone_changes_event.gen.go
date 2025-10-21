@@ -82,8 +82,8 @@ func NewCKSyncEngineWillFetchRecordZoneChangesEvent() CKSyncEngineWillFetchRecor
 // The associated record zone’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchRecordZoneChangesEvent/zoneID
-func (c_ CKSyncEngineWillFetchRecordZoneChangesEvent) ZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+func (c_ CKSyncEngineWillFetchRecordZoneChangesEvent) ZoneID() CKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
 }
 

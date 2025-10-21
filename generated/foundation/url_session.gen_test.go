@@ -14,3 +14,11 @@ func ExampleNewURLSession() {
 	_ = foundation.NewURLSession()
 	// Output:
 }
+// ExampleNewURLSessionWithConfiguration demonstrates how to create a URLSession instance using NewURLSessionWithConfiguration.
+// Creates a session with the specified session configuration.
+func ExampleNewURLSessionWithConfiguration() {
+	_ = foundation.NewURLSessionWithConfiguration(
+		foundation.NSURLSessionConfiguration{}, // configuration NSURLSessionConfiguration
+	)
+	// Output:
+}

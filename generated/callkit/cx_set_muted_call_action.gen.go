@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetMutedCallAction] class.
@@ -86,7 +87,7 @@ func NewCXSetMutedCallAction() CXSetMutedCallAction {
 // Initializes a new action for a call identified by a given UUID, as well as whether the call is muted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(call:muted:)
-func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID unsafe.Pointer, muted bool) CXSetMutedCallAction {
+func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID foundation.IUUID, muted bool) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCallUUID:muted:"), callUUID, muted)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCXSetMutedCallActionWithCallUUIDMuted(callUUID unsafe.Pointer, muted boo
 // Creates a new action for a call with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetMutedCallAction/init(coder:)
-func NewCXSetMutedCallActionWithCoder(aDecoder unsafe.Pointer) CXSetMutedCallAction {
+func NewCXSetMutedCallActionWithCoder(aDecoder foundation.ICoder) CXSetMutedCallAction {
 	instance := getCXSetMutedCallActionClass().Alloc()
 	rv := objc.Send[CXSetMutedCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

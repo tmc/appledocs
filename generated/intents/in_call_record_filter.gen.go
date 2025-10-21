@@ -83,8 +83,8 @@ func NewINCallRecordFilter() INCallRecordFilter {
 // An indicator of whether the call supports audio or video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/callcapability
-func (i_ INCallRecordFilter) CallCapability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callCapability"))
+func (i_ INCallRecordFilter) CallCapability() INCallCapability {
+	rv := objc.Send[INCallCapability](i_.ID, objc.Sel("callCapability"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (i_ INCallRecordFilter) CallCapability() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/callcapability
-func (i_ INCallRecordFilter) SetCallCapability(value unsafe.Pointer) {
+func (i_ INCallRecordFilter) SetCallCapability(value INCallCapability) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
 
@@ -119,8 +119,8 @@ func (i_ INCallRecordFilter) SetCallTypes(value unsafe.Pointer) {
 // The recipient of the user’s call request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/participants
-func (i_ INCallRecordFilter) Participants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("participants"))
+func (i_ INCallRecordFilter) Participants() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("participants"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (i_ INCallRecordFilter) Participants() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecordfilter/participants
-func (i_ INCallRecordFilter) SetParticipants(value unsafe.Pointer) {
+func (i_ INCallRecordFilter) SetParticipants(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
 }
 

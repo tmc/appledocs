@@ -78,8 +78,8 @@ func NewMTRThreadNetworkDirectoryClusterGetOperationalDatasetParams() MTRThreadN
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ExtendedPanID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedPanID"))
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ExtendedPanID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("extendedPanID"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ExtendedPa
 // SetExtendedPanID sets the value of the extendedPanID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetExtendedPanID(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetExtendedPanID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) ServerSide
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) TimedInvok
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

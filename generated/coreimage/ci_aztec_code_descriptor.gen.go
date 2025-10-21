@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AztecCodeDescriptor] class.
@@ -86,7 +87,7 @@ func NewAztecCodeDescriptor() AztecCodeDescriptor {
 // Initializes an Aztec code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/init(payload:isCompact:layerCount:dataCodewordCount:)
-func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, layerCount int, dataCodewordCount int) AztecCodeDescriptor {
+func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload foundation.IData, isCompact bool, layerCount int, dataCodewordCount int) AztecCodeDescriptor {
 	instance := getAztecCodeDescriptorClass().Alloc()
 	rv := objc.Send[AztecCodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:layerCount:dataCodewordCount:"), errorCorrectedPayload, isCompact, layerCount, dataCodewordCount)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewAztecCodeDescriptorWithPayloadIsCompactLayerCountDataCodewordCount(error
 // Creates an Aztec code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/descriptorWithPayload:isCompact:layerCount:dataCodewordCount:
-func (ac _AztecCodeDescriptorClass) DescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, layerCount int, dataCodewordCount int) unsafe.Pointer {
+func (ac _AztecCodeDescriptorClass) DescriptorWithPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload foundation.IData, isCompact bool, layerCount int, dataCodewordCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("descriptorWithPayload:isCompact:layerCount:dataCodewordCount:"), errorCorrectedPayload, isCompact, layerCount, dataCodewordCount)
 	return rv
 }
@@ -113,8 +114,8 @@ func (a_ AztecCodeDescriptor) DataCodewordCount() int {
 // The error-corrected payload that comprises the the Aztec code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-swift.property
-func (a_ AztecCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("errorCorrectedPayload"))
+func (a_ AztecCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
 

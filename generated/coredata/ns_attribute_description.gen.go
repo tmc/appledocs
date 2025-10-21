@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AttributeDescription] class.
@@ -120,8 +121,8 @@ func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 // The attribute’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) AttributeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributeType"))
+func (a_ AttributeDescription) AttributeType() AttributeType {
+	rv := objc.Send[AttributeType](a_.ID, objc.Sel("attributeType"))
 	return rv
 }
 
@@ -131,15 +132,15 @@ func (a_ AttributeDescription) AttributeType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSAttributeDescription/attributeType-swift.property
-func (a_ AttributeDescription) SetAttributeType(value unsafe.Pointer) {
+func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
 }
 
 // The class name that represents the attribute’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) AttributeValueClassName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("attributeValueClassName"))
+func (a_ AttributeDescription) AttributeValueClassName() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("attributeValueClassName"))
 	return rv
 }
 
@@ -149,8 +150,8 @@ func (a_ AttributeDescription) AttributeValueClassName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/attributevalueclassname
-func (a_ AttributeDescription) SetAttributeValueClassName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), objc.String(value))
+func (a_ AttributeDescription) SetAttributeValueClassName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), value)
 }
 
 // The default value of the attribute.
@@ -192,8 +193,8 @@ func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) 
 // The attribute’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("type"))
+func (a_ AttributeDescription) Type() AttributeType {
+	rv := objc.Send[AttributeType](a_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -203,15 +204,15 @@ func (a_ AttributeDescription) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/type
-func (a_ AttributeDescription) SetType(value unsafe.Pointer) {
+func (a_ AttributeDescription) SetType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
 
 // The name of the transformer to use for the attribute value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) ValueTransformerName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("valueTransformerName"))
+func (a_ AttributeDescription) ValueTransformerName() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("valueTransformerName"))
 	return rv
 }
 
@@ -221,15 +222,15 @@ func (a_ AttributeDescription) ValueTransformerName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/valuetransformername
-func (a_ AttributeDescription) SetValueTransformerName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), objc.String(value))
+func (a_ AttributeDescription) SetValueTransformerName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), value)
 }
 
 // The version hash for the attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) VersionHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("versionHash"))
+func (a_ AttributeDescription) VersionHash() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("versionHash"))
 	return rv
 }
 
@@ -239,7 +240,7 @@ func (a_ AttributeDescription) VersionHash() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsattributedescription/versionhash
-func (a_ AttributeDescription) SetVersionHash(value unsafe.Pointer) {
+func (a_ AttributeDescription) SetVersionHash(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
 }
 

@@ -156,8 +156,8 @@ func (c_ CKDatabaseNotification) SetShouldSendContentAvailable(value bool) {
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseNotification) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKDatabaseNotification) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (c_ CKDatabaseNotification) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseNotification) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKDatabaseNotification) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

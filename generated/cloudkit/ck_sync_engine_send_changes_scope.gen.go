@@ -30,8 +30,8 @@ type _CKSyncEngineSendChangesScopeClass struct {
 // An interface definition for the [CKSyncEngineSendChangesScope] class.
 type ICKSyncEngineSendChangesScope interface {
 	objectivec.IObject
-	ContainsPendingRecordZoneChange(pendingRecordZoneChange unsafe.Pointer) bool
-	ContainsRecordID(recordID unsafe.Pointer) bool
+	ContainsPendingRecordZoneChange(pendingRecordZoneChange ICKSyncEnginePendingRecordZoneChange) bool
+	ContainsRecordID(recordID ICKRecordID) bool
 }
 
 //
@@ -107,14 +107,14 @@ func NewCKSyncEngineSendChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEn
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/containsPendingRecordZoneChange:
-func (c_ CKSyncEngineSendChangesScope) ContainsPendingRecordZoneChange(pendingRecordZoneChange unsafe.Pointer) bool {
+func (c_ CKSyncEngineSendChangesScope) ContainsPendingRecordZoneChange(pendingRecordZoneChange ICKSyncEnginePendingRecordZoneChange) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsPendingRecordZoneChange:"), pendingRecordZoneChange)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/containsRecordID:
-func (c_ CKSyncEngineSendChangesScope) ContainsRecordID(recordID unsafe.Pointer) bool {
+func (c_ CKSyncEngineSendChangesScope) ContainsRecordID(recordID ICKRecordID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsRecordID:"), recordID)
 	return rv
 }

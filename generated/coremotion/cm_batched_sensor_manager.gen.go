@@ -83,8 +83,8 @@ func NewBatchedSensorManager() BatchedSensorManager {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/authorizationStatus
-func (bc _BatchedSensorManagerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("authorizationStatus"))
+func (bc _BatchedSensorManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(bc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 //
@@ -151,8 +151,8 @@ func (b_ BatchedSensorManager) AccelerometerDataFrequency() int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/authorizationStatus
-func (b_ BatchedSensorManager) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("authorizationStatus"))
+func (b_ BatchedSensorManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](b_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

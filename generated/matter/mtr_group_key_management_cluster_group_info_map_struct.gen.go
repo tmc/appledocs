@@ -102,7 +102,7 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) FabricIndex() foundatio
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/fabricindex
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetFabricIndex(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupId() foundation.Nu
 // SetGroupId sets the value of the groupId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupId(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("groupName"))
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() string {
 // SetGroupName sets the value of the groupName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
-func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), objc.String(value))
+func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), value)
 }
 
 

@@ -157,8 +157,8 @@ func (r_ ReplicatorLayer) SetInstanceCount(value int) {
 // Specifies the delay, in seconds, between replicated copies. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceDelay
-func (r_ ReplicatorLayer) InstanceDelay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("instanceDelay"))
+func (r_ ReplicatorLayer) InstanceDelay() TimeInterval {
+	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("instanceDelay"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (r_ ReplicatorLayer) InstanceDelay() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAReplicatorLayer/instanceDelay
-func (r_ ReplicatorLayer) SetInstanceDelay(value unsafe.Pointer) {
+func (r_ ReplicatorLayer) SetInstanceDelay(value ITimeInterval) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInstanceDelay:"), value)
 }
 

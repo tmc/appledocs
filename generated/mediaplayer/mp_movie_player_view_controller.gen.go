@@ -104,8 +104,8 @@ func (m_ MoviePlayerViewController) SetImageCropRect(value coregraphics.CGRect) 
 // The movie player controller object used to present the movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
-func (m_ MoviePlayerViewController) MoviePlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("moviePlayer"))
+func (m_ MoviePlayerViewController) MoviePlayer() MPMoviePlayerController {
+	rv := objc.Send[MPMoviePlayerController](m_.ID, objc.Sel("moviePlayer"))
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (m_ MoviePlayerViewController) MoviePlayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayerviewcontroller/movieplayer
-func (m_ MoviePlayerViewController) SetMoviePlayer(value unsafe.Pointer) {
+func (m_ MoviePlayerViewController) SetMoviePlayer(value IMPMoviePlayerController) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMoviePlayer:"), value)
 }
 

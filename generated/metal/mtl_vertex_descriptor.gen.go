@@ -84,8 +84,8 @@ func NewVertexDescriptor() VertexDescriptor {
 // Creates and returns a new vertex descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/vertexDescriptor
-func (vc _VertexDescriptorClass) VertexDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("vertexDescriptor"))
+func (vc _VertexDescriptorClass) VertexDescriptor() VertexDescriptor {
+	rv := objc.Send[VertexDescriptor](objc.ID(vc.class), objc.Sel("vertexDescriptor"))
 	return rv
 }
 
@@ -99,16 +99,16 @@ func (v_ VertexDescriptor) Reset() {
 // An array of state data that describes how vertex attribute data is stored in memory and is mapped to arguments for a vertex shader function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/attributes
-func (v_ VertexDescriptor) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attributes"))
+func (v_ VertexDescriptor) Attributes() MTLVertexAttributeDescriptorArray {
+	rv := objc.Send[MTLVertexAttributeDescriptorArray](v_.ID, objc.Sel("attributes"))
 	return rv
 }
 
 // An array of state data that describes how data are fetched by a vertex shader function when rendering primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexDescriptor/layouts
-func (v_ VertexDescriptor) Layouts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("layouts"))
+func (v_ VertexDescriptor) Layouts() MTLVertexBufferLayoutDescriptorArray {
+	rv := objc.Send[MTLVertexBufferLayoutDescriptorArray](v_.ID, objc.Sel("layouts"))
 	return rv
 }
 
@@ -122,8 +122,8 @@ func (v_ VertexDescriptor) MTLBufferLayoutStrideDynamic() int {
 // The organization of vertex data in an attribute’s argument table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
-func (v_ VertexDescriptor) VertexDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("vertexDescriptor"))
+func (v_ VertexDescriptor) VertexDescriptor() MTLVertexDescriptor {
+	rv := objc.Send[MTLVertexDescriptor](v_.ID, objc.Sel("vertexDescriptor"))
 	return rv
 }
 
@@ -133,7 +133,7 @@ func (v_ VertexDescriptor) VertexDescriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor
-func (v_ VertexDescriptor) SetVertexDescriptor(value unsafe.Pointer) {
+func (v_ VertexDescriptor) SetVertexDescriptor(value IMTLVertexDescriptor) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexDescriptor:"), value)
 }
 

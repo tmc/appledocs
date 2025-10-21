@@ -30,24 +30,24 @@ type _MTRClusterICDManagementClass struct {
 // An interface definition for the [MTRClusterICDManagement] class.
 type IMTRClusterICDManagement interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeActiveModeDurationWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeActiveModeThresholdWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClientsSupportedPerFabricWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeICDCounterWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeIdleModeDurationWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeMaximumCheckInBackOffWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeOperatingModeWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeRegisteredClientsWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeUserActiveModeTriggerHintWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeUserActiveModeTriggerInstructionWithParams(params unsafe.Pointer) unsafe.Pointer
-	RegisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	StayActiveRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	UnregisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeActiveModeDurationWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeActiveModeThresholdWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClientsSupportedPerFabricWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeICDCounterWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeIdleModeDurationWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeMaximumCheckInBackOffWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeOperatingModeWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeRegisteredClientsWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeUserActiveModeTriggerHintWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeUserActiveModeTriggerInstructionWithParams(params IMTRReadParams) unsafe.Pointer
+	RegisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterRegisterClientParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	StayActiveRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterStayActiveRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	UnregisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterUnregisterClientParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
 }
 
 // Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
@@ -103,7 +103,7 @@ func NewMTRClusterICDManagement() MTRClusterICDManagement {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/init(device:endpointID:queue:)
-func NewMTRClusterICDManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterICDManagement {
+func NewMTRClusterICDManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterICDManagement {
 	instance := getMTRClusterICDManagementClass().Alloc()
 	rv := objc.Send[MTRClusterICDManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -113,124 +113,124 @@ func NewMTRClusterICDManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeActiveModeDuration(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeActiveModeDurationWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeActiveModeDurationWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeActiveModeDurationWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeActiveModeThreshold(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeActiveModeThresholdWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeActiveModeThresholdWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeActiveModeThresholdWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeClientsSupportedPerFabric(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeClientsSupportedPerFabricWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeClientsSupportedPerFabricWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClientsSupportedPerFabricWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeICDCounter(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeICDCounterWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeICDCounterWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeICDCounterWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeIdleModeDuration(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeIdleModeDurationWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeIdleModeDurationWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeIdleModeDurationWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeMaximumCheckInBackOff(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeMaximumCheckInBackOffWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeMaximumCheckInBackOffWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeMaximumCheckInBackOffWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeOperatingMode(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeOperatingModeWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeOperatingModeWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeOperatingModeWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeRegisteredClients(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeRegisteredClientsWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeRegisteredClientsWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeRegisteredClientsWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeUserActiveModeTriggerHint(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeUserActiveModeTriggerHintWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeUserActiveModeTriggerHintWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeUserActiveModeTriggerHintWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeUserActiveModeTriggerInstruction(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeUserActiveModeTriggerInstructionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterICDManagement) ReadAttributeUserActiveModeTriggerInstructionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeUserActiveModeTriggerInstructionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/registerClient(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterICDManagement) RegisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterICDManagement) RegisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterRegisterClientParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("registerClientWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/stayActiveRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterICDManagement) StayActiveRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterICDManagement) StayActiveRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterStayActiveRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("stayActiveRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/unregisterClient(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterICDManagement) UnregisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterICDManagement) UnregisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterUnregisterClientParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("unregisterClientWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

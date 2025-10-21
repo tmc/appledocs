@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
 // Initializes a background activity scheduler object with a specified unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/init(identifier:)
-func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundActivityScheduler {
+func NewBackgroundActivitySchedulerWithIdentifier(identifier appkit.string) BackgroundActivityScheduler {
 	instance := getBackgroundActivitySchedulerClass().Alloc()
-	rv := objc.Send[BackgroundActivityScheduler](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
+	rv := objc.Send[BackgroundActivityScheduler](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -96,8 +97,8 @@ func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundA
 // A unique reverse DNS notation string, such as
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-func (b_ BackgroundActivityScheduler) Identifier() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
+func (b_ BackgroundActivityScheduler) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -107,15 +108,15 @@ func (b_ BackgroundActivityScheduler) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/identifier
-func (b_ BackgroundActivityScheduler) SetIdentifier(value string) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (b_ BackgroundActivityScheduler) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // An integer providing a suggested interval between scheduling and invoking the activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
-func (b_ BackgroundActivityScheduler) Interval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("interval"))
+func (b_ BackgroundActivityScheduler) Interval() TimeInterval {
+	rv := objc.Send[TimeInterval](b_.ID, objc.Sel("interval"))
 	return rv
 }
 
@@ -125,15 +126,15 @@ func (b_ BackgroundActivityScheduler) Interval() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/interval
-func (b_ BackgroundActivityScheduler) SetInterval(value unsafe.Pointer) {
+func (b_ BackgroundActivityScheduler) SetInterval(value ITimeInterval) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setInterval:"), value)
 }
 
 // A value of type
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
-func (b_ BackgroundActivityScheduler) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("qualityOfService"))
+func (b_ BackgroundActivityScheduler) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](b_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -143,7 +144,7 @@ func (b_ BackgroundActivityScheduler) QualityOfService() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/qualityofservice
-func (b_ BackgroundActivityScheduler) SetQualityOfService(value unsafe.Pointer) {
+func (b_ BackgroundActivityScheduler) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -186,8 +187,8 @@ func (b_ BackgroundActivityScheduler) SetShouldDefer(value bool) {
 // A value of type
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
-func (b_ BackgroundActivityScheduler) Tolerance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tolerance"))
+func (b_ BackgroundActivityScheduler) Tolerance() TimeInterval {
+	rv := objc.Send[TimeInterval](b_.ID, objc.Sel("tolerance"))
 	return rv
 }
 
@@ -197,7 +198,7 @@ func (b_ BackgroundActivityScheduler) Tolerance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler/tolerance
-func (b_ BackgroundActivityScheduler) SetTolerance(value unsafe.Pointer) {
+func (b_ BackgroundActivityScheduler) SetTolerance(value ITimeInterval) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTolerance:"), value)
 }
 

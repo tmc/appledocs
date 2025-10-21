@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewObservation() Observation {
 // The level of confidence in the observation’s accuracy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/confidence
-func (o_ Observation) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("confidence"))
+func (o_ Observation) Confidence() Confidence {
+	rv := objc.Send[Confidence](o_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -99,8 +100,8 @@ func (o_ Observation) TimeRange() unsafe.Pointer {
 // A unique identifier assigned to the Vision observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNObservation/uuid
-func (o_ Observation) Uuid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("uuid"))
+func (o_ Observation) Uuid() foundation.UUID {
+	rv := objc.Send[foundation.UUID](o_.ID, objc.Sel("uuid"))
 	return rv
 }
 

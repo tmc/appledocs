@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) TimedInvokeTimeou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) Value() foundatio
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventresponseparams/value
-func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) SetValue(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

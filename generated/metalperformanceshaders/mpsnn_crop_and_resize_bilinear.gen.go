@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,7 +82,7 @@ func NewCropAndResizeBilinear() CropAndResizeBilinear {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/init(coder:device:)
-func NewCropAndResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) CropAndResizeBilinear {
+func NewCropAndResizeBilinearWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) CropAndResizeBilinear {
 	instance := getCropAndResizeBilinearClass().Alloc()
 	rv := objc.Send[CropAndResizeBilinear](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -90,8 +92,8 @@ func NewCropAndResizeBilinearWithCoderDevice(aDecoder unsafe.Pointer, device obj
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
-func (c_ CropAndResizeBilinear) Regions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("regions"))
+func (c_ CropAndResizeBilinear) Regions() corelocation.Region {
+	rv := objc.Send[corelocation.Region](c_.ID, objc.Sel("regions"))
 	return rv
 }
 

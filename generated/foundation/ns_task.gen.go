@@ -30,7 +30,7 @@ type _TaskClass struct {
 // An interface definition for the [Task] class.
 type ITask interface {
 	objectivec.IObject
-	LaunchAndReturnError(error_ unsafe.Pointer) bool
+	LaunchAndReturnError(error_ IError) bool
 	Terminate()
 }
 
@@ -86,7 +86,7 @@ func NewTask() Task {
 // Runs the process with the current environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run()
-func (t_ Task) LaunchAndReturnError(error_ unsafe.Pointer) bool {
+func (t_ Task) LaunchAndReturnError(error_ IError) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("launchAndReturnError:"), error_)
 	return rv
 }
@@ -130,14 +130,14 @@ func (t_ Task) ExecutableURL() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
-func (t_ Task) SetExecutableURL(value URL) {
+func (t_ Task) SetExecutableURL(value IURL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExecutableURL:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-func (t_ Task) LaunchRequirementData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("launchRequirementData"))
+func (t_ Task) LaunchRequirementData() NSData {
+	rv := objc.Send[NSData](t_.ID, objc.Sel("launchRequirementData"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (t_ Task) LaunchRequirementData() unsafe.Pointer {
 // SetLaunchRequirementData sets the value of the launchRequirementData property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
-func (t_ Task) SetLaunchRequirementData(value unsafe.Pointer) {
+func (t_ Task) SetLaunchRequirementData(value IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirementData:"), value)
 }
 
@@ -160,8 +160,8 @@ func (t_ Task) ProcessIdentifier() unsafe.Pointer {
 // The command arguments that the system uses to launch the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-func (t_ Task) Arguments() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("arguments"))
+func (t_ Task) Arguments() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("arguments"))
 	return rv
 }
 
@@ -171,15 +171,15 @@ func (t_ Task) Arguments() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/arguments
-func (t_ Task) SetArguments(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), objc.String(value))
+func (t_ Task) SetArguments(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setArguments:"), value)
 }
 
 // Sets the current directory for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-func (t_ Task) CurrentDirectoryPath() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("currentDirectoryPath"))
+func (t_ Task) CurrentDirectoryPath() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("currentDirectoryPath"))
 	return rv
 }
 
@@ -189,8 +189,8 @@ func (t_ Task) CurrentDirectoryPath() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectorypath
-func (t_ Task) SetCurrentDirectoryPath(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), objc.String(value))
+func (t_ Task) SetCurrentDirectoryPath(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryPath:"), value)
 }
 
 // The current directory for the receiver.
@@ -207,7 +207,7 @@ func (t_ Task) CurrentDirectoryURL() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/currentdirectoryurl
-func (t_ Task) SetCurrentDirectoryURL(value URL) {
+func (t_ Task) SetCurrentDirectoryURL(value IURL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentDirectoryURL:"), value)
 }
 
@@ -232,8 +232,8 @@ func (t_ Task) SetIsRunning(value bool) {
 // Sets the receiver’s executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-func (t_ Task) LaunchPath() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("launchPath"))
+func (t_ Task) LaunchPath() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("launchPath"))
 	return rv
 }
 
@@ -243,8 +243,8 @@ func (t_ Task) LaunchPath() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/launchpath
-func (t_ Task) SetLaunchPath(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), objc.String(value))
+func (t_ Task) SetLaunchPath(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchPath:"), value)
 }
 
 //
@@ -265,8 +265,8 @@ func (t_ Task) SetLaunchRequirement(value unsafe.Pointer) {
 // The default quality of service level the system applies to operations the task executes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/qualityofservice
-func (t_ Task) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("qualityOfService"))
+func (t_ Task) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -276,7 +276,7 @@ func (t_ Task) QualityOfService() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/process/qualityofservice
-func (t_ Task) SetQualityOfService(value unsafe.Pointer) {
+func (t_ Task) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
 

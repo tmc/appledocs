@@ -82,16 +82,16 @@ func NewCNChangeHistoryAddSubgroupToGroupEvent() CNChangeHistoryAddSubgroupToGro
 // The group where the user added a subgroup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent/group
-func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
 // The subgroup that the user added to the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent/subgroup
-func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Subgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subgroup"))
+func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Subgroup() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv
 }
 

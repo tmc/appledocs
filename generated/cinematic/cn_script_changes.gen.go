@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (c_ CNScriptChanges) AddedDetectionTracks() []CNDetectionTrack {
 // Persistent data representation of changes for later restoration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNScriptChanges/dataRepresentation
-func (c_ CNScriptChanges) DataRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataRepresentation"))
+func (c_ CNScriptChanges) DataRepresentation() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 

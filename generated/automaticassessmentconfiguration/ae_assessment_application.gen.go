@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewAEAssessmentApplication() AEAssessmentApplication {
 // Creates a representation of an app using its bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEAssessmentApplication {
+func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier appkit.string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(bundleIdentifier))
+	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), bundleIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -97,9 +98,9 @@ func NewAEAssessmentApplicationWithBundleIdentifier(bundleIdentifier string) AEA
 // Creates a representation of an app using its bundle and team identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/init(bundleIdentifier:teamIdentifier:)
-func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier string, teamIdentifier string) AEAssessmentApplication {
+func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifier appkit.string, teamIdentifier appkit.string) AEAssessmentApplication {
 	instance := getAEAssessmentApplicationClass().Alloc()
-	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), objc.String(bundleIdentifier), objc.String(teamIdentifier))
+	rv := objc.Send[AEAssessmentApplication](instance.ID, objc.Sel("initWithBundleIdentifier:teamIdentifier:"), bundleIdentifier, teamIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -108,8 +109,8 @@ func NewAEAssessmentApplicationWithBundleIdentifierTeamIdentifier(bundleIdentifi
 // The bundle identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/bundleIdentifier
-func (a_ AEAssessmentApplication) BundleIdentifier() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("bundleIdentifier"))
+func (a_ AEAssessmentApplication) BundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -134,16 +135,16 @@ func (a_ AEAssessmentApplication) SetRequiresSignatureValidation(value bool) {
 // The team identifier of the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentApplication/teamIdentifier
-func (a_ AEAssessmentApplication) TeamIdentifier() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("teamIdentifier"))
+func (a_ AEAssessmentApplication) TeamIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("teamIdentifier"))
 	return rv
 }
 
 // The collection of apps available during an assessment, along with their associated configurations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-func (a_ AEAssessmentApplication) ConfigurationsByApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configurationsByApplication"))
+func (a_ AEAssessmentApplication) ConfigurationsByApplication() AEAssessmentParticipantConfiguration {
+	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
 }
 
@@ -153,15 +154,15 @@ func (a_ AEAssessmentApplication) ConfigurationsByApplication() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-func (a_ AEAssessmentApplication) SetConfigurationsByApplication(value unsafe.Pointer) {
+func (a_ AEAssessmentApplication) SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationsByApplication:"), value)
 }
 
 // The app-specific configuration for the app that invokes the assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-func (a_ AEAssessmentApplication) MainParticipantConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mainParticipantConfiguration"))
+func (a_ AEAssessmentApplication) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
+	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
 }
 
@@ -171,7 +172,7 @@ func (a_ AEAssessmentApplication) MainParticipantConfiguration() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-func (a_ AEAssessmentApplication) SetMainParticipantConfiguration(value unsafe.Pointer) {
+func (a_ AEAssessmentApplication) SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMainParticipantConfiguration:"), value)
 }
 

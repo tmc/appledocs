@@ -33,7 +33,7 @@ type IProgressIndicator interface {
 	IView
 	Animate(sender objectivec.IObject)
 	AnimationDelay() float64
-	IncrementBy(delta unsafe.Pointer)
+	IncrementBy(delta float64)
 	SetAnimationDelay(delay float64)
 	SizeToFit()
 	StartAnimation(sender objectivec.IObject)
@@ -108,7 +108,7 @@ func (p_ ProgressIndicator) AnimationDelay() float64 {
 // Advances the progress bar of a determinate progress indicator by the specified amount.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/increment(by:)
-func (p_ ProgressIndicator) IncrementBy(delta unsafe.Pointer) {
+func (p_ ProgressIndicator) IncrementBy(delta float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("incrementBy:"), delta)
 }
 
@@ -179,8 +179,8 @@ func (p_ ProgressIndicator) SetControlTint(value IControlTint) {
 // The value that indicates the current extent of the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/doubleValue
-func (p_ ProgressIndicator) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("doubleValue"))
+func (p_ ProgressIndicator) DoubleValue() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -190,7 +190,7 @@ func (p_ ProgressIndicator) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/doubleValue
-func (p_ ProgressIndicator) SetDoubleValue(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
@@ -251,8 +251,8 @@ func (p_ ProgressIndicator) SetIndeterminate(value bool) {
 // The maximum value for the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/maxValue
-func (p_ ProgressIndicator) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maxValue"))
+func (p_ ProgressIndicator) MaxValue() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
@@ -262,15 +262,15 @@ func (p_ ProgressIndicator) MaxValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/maxValue
-func (p_ ProgressIndicator) SetMaxValue(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetMaxValue(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 // The minimum value for the progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/minValue
-func (p_ ProgressIndicator) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("minValue"))
+func (p_ ProgressIndicator) MinValue() float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("minValue"))
 	return rv
 }
 
@@ -280,7 +280,7 @@ func (p_ ProgressIndicator) MinValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/minValue
-func (p_ ProgressIndicator) SetMinValue(value unsafe.Pointer) {
+func (p_ ProgressIndicator) SetMinValue(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMinValue:"), value)
 }
 

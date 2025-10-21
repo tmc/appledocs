@@ -87,7 +87,7 @@ func (m_ MTRWindowCoveringClusterGoToTiltValueParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWindowCoveringClusterGoToTiltValueParams) TiltValue() foundation.Num
 // SetTiltValue sets the value of the tiltValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/tiltvalue
-func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetTiltValue(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetTiltValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTiltValue:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRWindowCoveringClusterGoToTiltValueParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergototiltvalueparams/timedinvoketimeoutms
-func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterGoToTiltValueParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

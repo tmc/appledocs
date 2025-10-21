@@ -84,7 +84,7 @@ func NewFSPathURLResource() FSPathURLResource {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSPathURLResource/init(url:writable:)
-func NewFSPathURLResourceWithURLWritable(URL foundation.URL, writable bool) FSPathURLResource {
+func NewFSPathURLResourceWithURLWritable(URL foundation.IURL, writable bool) FSPathURLResource {
 	instance := getFSPathURLResourceClass().Alloc()
 	rv := objc.Send[FSPathURLResource](instance.ID, objc.Sel("initWithURL:writable:"), URL, writable)
 	rv.Autorelease()

@@ -82,8 +82,8 @@ func NewChangeShuffleModeCommand() ChangeShuffleModeCommand {
 // The current shuffle mode for a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangeShuffleModeCommand/currentShuffleType
-func (c_ ChangeShuffleModeCommand) CurrentShuffleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentShuffleType"))
+func (c_ ChangeShuffleModeCommand) CurrentShuffleType() ShuffleType {
+	rv := objc.Send[ShuffleType](c_.ID, objc.Sel("currentShuffleType"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (c_ ChangeShuffleModeCommand) CurrentShuffleType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangeShuffleModeCommand/currentShuffleType
-func (c_ ChangeShuffleModeCommand) SetCurrentShuffleType(value unsafe.Pointer) {
+func (c_ ChangeShuffleModeCommand) SetCurrentShuffleType(value ShuffleType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentShuffleType:"), value)
 }
 

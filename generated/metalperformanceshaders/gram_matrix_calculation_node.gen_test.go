@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewGramMatrixCalculationNode
 
+// ExampleNewGramMatrixCalculationNodeWithSource demonstrates how to create a GramMatrixCalculationNode instance using NewGramMatrixCalculationNodeWithSource.
+func ExampleNewGramMatrixCalculationNodeWithSource() {
+	_ = metalperformanceshaders.NewGramMatrixCalculationNodeWithSource(
+		metalperformanceshaders.MPSNNImageNode{}, // sourceNode MPSNNImageNode
+	)
+	// Output:
+}

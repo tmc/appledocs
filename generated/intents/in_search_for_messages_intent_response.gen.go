@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INSearchForMessagesIntentResponse] class.
@@ -86,7 +87,7 @@ func NewINSearchForMessagesIntentResponse() INSearchForMessagesIntentResponse {
 // Initializes the response object with the specified code and user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/init(code:userActivity:)
-func NewINSearchForMessagesIntentResponseWithCodeUserActivity(code unsafe.Pointer, userActivity unsafe.Pointer) INSearchForMessagesIntentResponse {
+func NewINSearchForMessagesIntentResponseWithCodeUserActivity(code INSearchForMessagesIntentResponseCode, userActivity foundation.IUserActivity) INSearchForMessagesIntentResponse {
 	instance := getINSearchForMessagesIntentResponseClass().Alloc()
 	rv := objc.Send[INSearchForMessagesIntentResponse](instance.ID, objc.Sel("initWithCode:userActivity:"), code, userActivity)
 	rv.Autorelease()
@@ -97,8 +98,8 @@ func NewINSearchForMessagesIntentResponseWithCodeUserActivity(code unsafe.Pointe
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForMessagesIntentResponse/code
-func (i_ INSearchForMessagesIntentResponse) Code() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+func (i_ INSearchForMessagesIntentResponse) Code() INSearchForMessagesIntentResponseCode {
+	rv := objc.Send[INSearchForMessagesIntentResponseCode](i_.ID, objc.Sel("code"))
 	return rv
 }
 

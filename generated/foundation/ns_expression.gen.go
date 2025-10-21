@@ -31,7 +31,7 @@ type _ExpressionClass struct {
 type IExpression interface {
 	objectivec.IObject
 	AllowEvaluation()
-	ExpressionValueWithObjectContext(object objc.ID, context unsafe.Pointer) objc.ID
+	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
 }
 
 // An expression for use in a comparison predicate.
@@ -92,7 +92,7 @@ func (e_ Expression) AllowEvaluation() {
 // Evaluates an expression using a specified object and context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionValue(with:context:)
-func (e_ Expression) ExpressionValueWithObjectContext(object objc.ID, context unsafe.Pointer) objc.ID {
+func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("expressionValueWithObject:context:"), object, context)
 	return rv
 }
@@ -100,32 +100,32 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objc.ID, context un
 // An expression to evalutate if a conditional expression’s predicate evaluates to false.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/false
-func (e_ Expression) FalseExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("falseExpression"))
+func (e_ Expression) FalseExpression() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("falseExpression"))
 	return rv
 }
 
 // The predicate of a subquery expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/predicate
-func (e_ Expression) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("predicate"))
+func (e_ Expression) Predicate() NSPredicate {
+	rv := objc.Send[NSPredicate](e_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 // An expression to evalutate if a conditional expression’s predicate evaluates to true.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/true
-func (e_ Expression) TrueExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("trueExpression"))
+func (e_ Expression) TrueExpression() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("trueExpression"))
 	return rv
 }
 
 // The arguments for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) Arguments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("arguments"))
+func (e_ Expression) Arguments() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("arguments"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (e_ Expression) Arguments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/arguments
-func (e_ Expression) SetArguments(value unsafe.Pointer) {
+func (e_ Expression) SetArguments(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setArguments:"), value)
 }
 
@@ -178,8 +178,8 @@ func (e_ Expression) SetConstantValue(value unsafe.Pointer) {
 // The block that executes to evaluate the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-func (e_ Expression) ExpressionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("expressionBlock"))
+func (e_ Expression) ExpressionBlock() NSMutableDictionary {
+	rv := objc.Send[NSMutableDictionary](e_.ID, objc.Sel("expressionBlock"))
 	return rv
 }
 
@@ -189,7 +189,7 @@ func (e_ Expression) ExpressionBlock() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/expressionblock
-func (e_ Expression) SetExpressionBlock(value unsafe.Pointer) {
+func (e_ Expression) SetExpressionBlock(value IMutableDictionary) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionBlock:"), value)
 }
 
@@ -214,8 +214,8 @@ func (e_ Expression) SetExpressionType(value unsafe.Pointer) {
 // An expression to evalutate if a conditional expression’s predicate evaluates to false.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) False() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("false"))
+func (e_ Expression) False() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("false"))
 	return rv
 }
 
@@ -225,15 +225,15 @@ func (e_ Expression) False() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/false
-func (e_ Expression) SetFalse(value unsafe.Pointer) {
+func (e_ Expression) SetFalse(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFalse:"), value)
 }
 
 // The function for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) Function() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("function"))
+func (e_ Expression) Function() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("function"))
 	return rv
 }
 
@@ -243,15 +243,15 @@ func (e_ Expression) Function() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/function
-func (e_ Expression) SetFunction(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), objc.String(value))
+func (e_ Expression) SetFunction(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setFunction:"), value)
 }
 
 // The key path for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-func (e_ Expression) KeyPath() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("keyPath"))
+func (e_ Expression) KeyPath() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("keyPath"))
 	return rv
 }
 
@@ -261,15 +261,15 @@ func (e_ Expression) KeyPath() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/keypath
-func (e_ Expression) SetKeyPath(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), objc.String(value))
+func (e_ Expression) SetKeyPath(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setKeyPath:"), value)
 }
 
 // The left expression of an aggregate expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-func (e_ Expression) Left() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("left"))
+func (e_ Expression) Left() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("left"))
 	return rv
 }
 
@@ -279,15 +279,15 @@ func (e_ Expression) Left() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/left
-func (e_ Expression) SetLeft(value unsafe.Pointer) {
+func (e_ Expression) SetLeft(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setLeft:"), value)
 }
 
 // The operand for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) Operand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("operand"))
+func (e_ Expression) Operand() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("operand"))
 	return rv
 }
 
@@ -297,15 +297,15 @@ func (e_ Expression) Operand() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/operand
-func (e_ Expression) SetOperand(value unsafe.Pointer) {
+func (e_ Expression) SetOperand(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setOperand:"), value)
 }
 
 // The right expression of an aggregate expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-func (e_ Expression) Right() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("right"))
+func (e_ Expression) Right() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("right"))
 	return rv
 }
 
@@ -315,15 +315,15 @@ func (e_ Expression) Right() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/right
-func (e_ Expression) SetRight(value unsafe.Pointer) {
+func (e_ Expression) SetRight(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRight:"), value)
 }
 
 // An expression to evalutate if a conditional expression’s predicate evaluates to true.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) True() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("true"))
+func (e_ Expression) True() NSExpression {
+	rv := objc.Send[NSExpression](e_.ID, objc.Sel("true"))
 	return rv
 }
 
@@ -333,15 +333,15 @@ func (e_ Expression) True() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/true
-func (e_ Expression) SetTrue(value unsafe.Pointer) {
+func (e_ Expression) SetTrue(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTrue:"), value)
 }
 
 // The variable for the expression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-func (e_ Expression) Variable() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("variable"))
+func (e_ Expression) Variable() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("variable"))
 	return rv
 }
 
@@ -351,8 +351,8 @@ func (e_ Expression) Variable() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexpression/variable
-func (e_ Expression) SetVariable(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), objc.String(value))
+func (e_ Expression) SetVariable(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setVariable:"), value)
 }
 
 

@@ -78,7 +78,7 @@ func NewPadNode() PadNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadNode/nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:
-func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source unsafe.Pointer, paddingSizeBefore unsafe.Pointer, paddingSizeAfter unsafe.Pointer, edgeMode unsafe.Pointer) unsafe.Pointer {
+func (pc _PadNodeClass) NodeWithSourcePaddingSizeBeforePaddingSizeAfterEdgeMode(source IMPSNNImageNode, paddingSizeBefore unsafe.Pointer, paddingSizeAfter unsafe.Pointer, edgeMode unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("nodeWithSource:paddingSizeBefore:paddingSizeAfter:edgeMode:"), source, paddingSizeBefore, paddingSizeAfter, edgeMode)
 	return rv
 }

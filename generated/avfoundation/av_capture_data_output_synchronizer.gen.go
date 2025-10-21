@@ -91,8 +91,8 @@ func (c_ CaptureDataOutputSynchronizer) DelegateCallbackQueue() unsafe.Pointer {
 // The list of data outputs governed by this data output synchronizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
-func (c_ CaptureDataOutputSynchronizer) DataOutputs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataOutputs"))
+func (c_ CaptureDataOutputSynchronizer) DataOutputs() AVCaptureOutput {
+	rv := objc.Send[AVCaptureOutput](c_.ID, objc.Sel("dataOutputs"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (c_ CaptureDataOutputSynchronizer) DataOutputs() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedataoutputsynchronizer/dataoutputs
-func (c_ CaptureDataOutputSynchronizer) SetDataOutputs(value unsafe.Pointer) {
+func (c_ CaptureDataOutputSynchronizer) SetDataOutputs(value IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataOutputs:"), value)
 }
 

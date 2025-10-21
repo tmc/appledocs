@@ -109,8 +109,8 @@ func (c_ CKFetchRecordZoneChangesOptions) SetDesiredKeys(value []string) {
 // The token that identifies the starting point for retrieving changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
-func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previousServerChangeToken"))
+func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() CKServerChangeToken {
+	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (c_ CKFetchRecordZoneChangesOptions) PreviousServerChangeToken() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions/previousserverchangetoken
-func (c_ CKFetchRecordZoneChangesOptions) SetPreviousServerChangeToken(value unsafe.Pointer) {
+func (c_ CKFetchRecordZoneChangesOptions) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
 }
 

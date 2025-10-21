@@ -87,7 +87,7 @@ func NewVZFileSerialPortAttachment() VZFileSerialPortAttachment {
 // Creates a file-based serial port attachment object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileSerialPortAttachment/init(url:append:)
-func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.URL, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
+func NewVZFileSerialPortAttachmentWithURLAppendError(url foundation.IURL, shouldAppend bool, error_ unsafe.Pointer) VZFileSerialPortAttachment {
 	instance := getVZFileSerialPortAttachmentClass().Alloc()
 	rv := objc.Send[VZFileSerialPortAttachment](instance.ID, objc.Sel("initWithURL:append:error:"), url, shouldAppend, error_)
 	rv.Autorelease()

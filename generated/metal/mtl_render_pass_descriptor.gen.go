@@ -85,8 +85,8 @@ func NewRenderPassDescriptor() RenderPassDescriptor {
 // Creates a default render pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/renderPassDescriptor
-func (rc _RenderPassDescriptorClass) RenderPassDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("renderPassDescriptor"))
+func (rc _RenderPassDescriptorClass) RenderPassDescriptor() RenderPassDescriptor {
+	rv := objc.Send[RenderPassDescriptor](objc.ID(rc.class), objc.Sel("renderPassDescriptor"))
 	return rv
 }
 
@@ -108,8 +108,8 @@ func (r_ RenderPassDescriptor) SetSamplePositionsCount(positions unsafe.Pointer,
 // An array of state information for attachments that store color data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/colorAttachments
-func (r_ RenderPassDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("colorAttachments"))
+func (r_ RenderPassDescriptor) ColorAttachments() MTLRenderPassColorAttachmentDescriptorArray {
+	rv := objc.Send[MTLRenderPassColorAttachmentDescriptorArray](r_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
@@ -134,8 +134,8 @@ func (r_ RenderPassDescriptor) SetDefaultRasterSampleCount(value uint) {
 // State information for an attachment that stores depth data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/depthAttachment
-func (r_ RenderPassDescriptor) DepthAttachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("depthAttachment"))
+func (r_ RenderPassDescriptor) DepthAttachment() MTLRenderPassDepthAttachmentDescriptor {
+	rv := objc.Send[MTLRenderPassDepthAttachmentDescriptor](r_.ID, objc.Sel("depthAttachment"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (r_ RenderPassDescriptor) DepthAttachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/depthAttachment
-func (r_ RenderPassDescriptor) SetDepthAttachment(value unsafe.Pointer) {
+func (r_ RenderPassDescriptor) SetDepthAttachment(value IMTLRenderPassDepthAttachmentDescriptor) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDepthAttachment:"), value)
 }
 
@@ -242,16 +242,16 @@ func (r_ RenderPassDescriptor) SetRenderTargetWidth(value uint) {
 // The array of sample buffers that the render pass can access.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/sampleBufferAttachments
-func (r_ RenderPassDescriptor) SampleBufferAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sampleBufferAttachments"))
+func (r_ RenderPassDescriptor) SampleBufferAttachments() MTLRenderPassSampleBufferAttachmentDescriptorArray {
+	rv := objc.Send[MTLRenderPassSampleBufferAttachmentDescriptorArray](r_.ID, objc.Sel("sampleBufferAttachments"))
 	return rv
 }
 
 // State information for an attachment that stores stencil data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/stencilAttachment
-func (r_ RenderPassDescriptor) StencilAttachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("stencilAttachment"))
+func (r_ RenderPassDescriptor) StencilAttachment() MTLRenderPassStencilAttachmentDescriptor {
+	rv := objc.Send[MTLRenderPassStencilAttachmentDescriptor](r_.ID, objc.Sel("stencilAttachment"))
 	return rv
 }
 
@@ -261,7 +261,7 @@ func (r_ RenderPassDescriptor) StencilAttachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/stencilAttachment
-func (r_ RenderPassDescriptor) SetStencilAttachment(value unsafe.Pointer) {
+func (r_ RenderPassDescriptor) SetStencilAttachment(value IMTLRenderPassStencilAttachmentDescriptor) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStencilAttachment:"), value)
 }
 
@@ -358,8 +358,8 @@ func (r_ RenderPassDescriptor) SetVisibilityResultBuffer(value objc.ID) {
 // Specifies if Metal accumulates visibility results between render encoders or resets them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/visibilityResultType
-func (r_ RenderPassDescriptor) VisibilityResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("visibilityResultType"))
+func (r_ RenderPassDescriptor) VisibilityResultType() VisibilityResultType {
+	rv := objc.Send[VisibilityResultType](r_.ID, objc.Sel("visibilityResultType"))
 	return rv
 }
 
@@ -369,15 +369,15 @@ func (r_ RenderPassDescriptor) VisibilityResultType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassDescriptor/visibilityResultType
-func (r_ RenderPassDescriptor) SetVisibilityResultType(value unsafe.Pointer) {
+func (r_ RenderPassDescriptor) SetVisibilityResultType(value VisibilityResultType) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVisibilityResultType:"), value)
 }
 
 // Options that determine how you can use the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltexturedescriptor/usage
-func (r_ RenderPassDescriptor) Usage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("usage"))
+func (r_ RenderPassDescriptor) Usage() TextureUsage {
+	rv := objc.Send[TextureUsage](r_.ID, objc.Sel("usage"))
 	return rv
 }
 
@@ -387,7 +387,7 @@ func (r_ RenderPassDescriptor) Usage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltexturedescriptor/usage
-func (r_ RenderPassDescriptor) SetUsage(value unsafe.Pointer) {
+func (r_ RenderPassDescriptor) SetUsage(value ITextureUsage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setUsage:"), value)
 }
 

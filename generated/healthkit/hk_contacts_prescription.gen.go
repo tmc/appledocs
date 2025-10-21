@@ -84,8 +84,8 @@ func NewHKContactsPrescription() HKContactsPrescription {
 // The name of the prescribed brand, based on the contact lens fitting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-func (h_ HKContactsPrescription) Brand() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("brand"))
+func (h_ HKContactsPrescription) Brand() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("brand"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (h_ HKContactsPrescription) Brand() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/brand
-func (h_ HKContactsPrescription) SetBrand(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), objc.String(value))
+func (h_ HKContactsPrescription) SetBrand(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setBrand:"), value)
 }
 
 // The lens specification for the left eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
-func (h_ HKContactsPrescription) LeftEye() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("leftEye"))
+func (h_ HKContactsPrescription) LeftEye() HKContactsLensSpecification {
+	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("leftEye"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (h_ HKContactsPrescription) LeftEye() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/lefteye
-func (h_ HKContactsPrescription) SetLeftEye(value unsafe.Pointer) {
+func (h_ HKContactsPrescription) SetLeftEye(value IHKContactsLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEye:"), value)
 }
 
 // The lens specification for the right eye.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
-func (h_ HKContactsPrescription) RightEye() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("rightEye"))
+func (h_ HKContactsPrescription) RightEye() HKContactsLensSpecification {
+	rv := objc.Send[HKContactsLensSpecification](h_.ID, objc.Sel("rightEye"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (h_ HKContactsPrescription) RightEye() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcontactsprescription/righteye
-func (h_ HKContactsPrescription) SetRightEye(value unsafe.Pointer) {
+func (h_ HKContactsPrescription) SetRightEye(value IHKContactsLensSpecification) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEye:"), value)
 }
 

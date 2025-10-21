@@ -84,8 +84,8 @@ func NewHKCumulativeQuantitySample() HKCumulativeQuantitySample {
 // The sum of all the quantities contained by the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample/sumquantity
-func (h_ HKCumulativeQuantitySample) SumQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sumQuantity"))
+func (h_ HKCumulativeQuantitySample) SumQuantity() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sumQuantity"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (h_ HKCumulativeQuantitySample) SumQuantity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample/sumquantity
-func (h_ HKCumulativeQuantitySample) SetSumQuantity(value unsafe.Pointer) {
+func (h_ HKCumulativeQuantitySample) SetSumQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSumQuantity:"), value)
 }
 

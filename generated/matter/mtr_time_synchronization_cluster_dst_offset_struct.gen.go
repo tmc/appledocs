@@ -87,7 +87,7 @@ func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) Offset() foundation.Numbe
 // SetOffset sets the value of the offset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/offset
-func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetOffset(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetOffset(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) ValidStarting() foundatio
 // SetValidStarting sets the value of the validStarting property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validstarting
-func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidStarting(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidStarting(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidStarting:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) ValidUntil() foundation.N
 // SetValidUntil sets the value of the validUntil property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclusterdstoffsetstruct/validuntil
-func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidUntil(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterDSTOffsetStruct) SetValidUntil(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValidUntil:"), value)
 }
 

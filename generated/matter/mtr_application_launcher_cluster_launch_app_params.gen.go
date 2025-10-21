@@ -78,8 +78,8 @@ func NewMTRApplicationLauncherClusterLaunchAppParams() MTRApplicationLauncherClu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() MTRApplicationLauncherClusterApplicationStruct {
+	rv := objc.Send[MTRApplicationLauncherClusterApplicationStruct](m_.ID, objc.Sel("application"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRApplicationLauncherClusterLaunchAppParams) Application() unsafe.Poin
 // SetApplication sets the value of the application property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/application
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetApplication(value unsafe.Pointer) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetApplication(value IMTRApplicationLauncherClusterApplicationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/data
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRApplicationLauncherClusterLaunchAppParams) Data() unsafe.Pointer {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/data
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetData(value unsafe.Pointer) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRApplicationLauncherClusterLaunchAppParams) ServerSideProcessingTimeo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRApplicationLauncherClusterLaunchAppParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlaunchappparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterLaunchAppParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

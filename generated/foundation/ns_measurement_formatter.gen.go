@@ -84,8 +84,8 @@ func NewMeasurementFormatter() MeasurementFormatter {
 // The locale of the formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
-func (m_ MeasurementFormatter) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locale"))
+func (m_ MeasurementFormatter) Locale() Locale {
+	rv := objc.Send[Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (m_ MeasurementFormatter) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/locale
-func (m_ MeasurementFormatter) SetLocale(value unsafe.Pointer) {
+func (m_ MeasurementFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
 // The number formatter used to format the quantity of a measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
-func (m_ MeasurementFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("numberFormatter"))
+func (m_ MeasurementFormatter) NumberFormatter() NSNumberFormatter {
+	rv := objc.Send[NSNumberFormatter](m_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (m_ MeasurementFormatter) NumberFormatter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/measurementformatter/numberformatter
-func (m_ MeasurementFormatter) SetNumberFormatter(value unsafe.Pointer) {
+func (m_ MeasurementFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 

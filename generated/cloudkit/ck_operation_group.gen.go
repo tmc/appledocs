@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewCKOperationGroup() CKOperationGroup {
 // Creates an operation group from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/init(coder:)
-func NewCKOperationGroupWithCoder(aDecoder unsafe.Pointer) CKOperationGroup {
+func NewCKOperationGroupWithCoder(aDecoder foundation.ICoder) CKOperationGroup {
 	instance := getCKOperationGroupClass().Alloc()
 	rv := objc.Send[CKOperationGroup](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -96,8 +97,8 @@ func NewCKOperationGroupWithCoder(aDecoder unsafe.Pointer) CKOperationGroup {
 // The default configuration for operations in the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/defaultConfiguration
-func (c_ CKOperationGroup) DefaultConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultConfiguration"))
+func (c_ CKOperationGroup) DefaultConfiguration() CKOperationConfiguration {
+	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("defaultConfiguration"))
 	return rv
 }
 
@@ -107,15 +108,15 @@ func (c_ CKOperationGroup) DefaultConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/defaultConfiguration
-func (c_ CKOperationGroup) SetDefaultConfiguration(value unsafe.Pointer) {
+func (c_ CKOperationGroup) SetDefaultConfiguration(value ICKOperationConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultConfiguration:"), value)
 }
 
 // The estimated size of traffic to download from CloudKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedReceiveSize
-func (c_ CKOperationGroup) ExpectedReceiveSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("expectedReceiveSize"))
+func (c_ CKOperationGroup) ExpectedReceiveSize() CKOperationGroupTransferSize {
+	rv := objc.Send[CKOperationGroupTransferSize](c_.ID, objc.Sel("expectedReceiveSize"))
 	return rv
 }
 
@@ -125,15 +126,15 @@ func (c_ CKOperationGroup) ExpectedReceiveSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedReceiveSize
-func (c_ CKOperationGroup) SetExpectedReceiveSize(value unsafe.Pointer) {
+func (c_ CKOperationGroup) SetExpectedReceiveSize(value ICKOperationGroupTransferSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpectedReceiveSize:"), value)
 }
 
 // The estimated size of traffic to upload to CloudKit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedSendSize
-func (c_ CKOperationGroup) ExpectedSendSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("expectedSendSize"))
+func (c_ CKOperationGroup) ExpectedSendSize() CKOperationGroupTransferSize {
+	rv := objc.Send[CKOperationGroupTransferSize](c_.ID, objc.Sel("expectedSendSize"))
 	return rv
 }
 
@@ -143,7 +144,7 @@ func (c_ CKOperationGroup) ExpectedSendSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/expectedSendSize
-func (c_ CKOperationGroup) SetExpectedSendSize(value unsafe.Pointer) {
+func (c_ CKOperationGroup) SetExpectedSendSize(value ICKOperationGroupTransferSize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setExpectedSendSize:"), value)
 }
 
@@ -194,8 +195,8 @@ func (c_ CKOperationGroup) SetQuantity(value uint) {
 // The operation’s group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationGroup) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CKOperationGroup) Group() CKOperationGroup {
+	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
@@ -205,7 +206,7 @@ func (c_ CKOperationGroup) Group() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/group
-func (c_ CKOperationGroup) SetGroup(value unsafe.Pointer) {
+func (c_ CKOperationGroup) SetGroup(value ICKOperationGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
 }
 

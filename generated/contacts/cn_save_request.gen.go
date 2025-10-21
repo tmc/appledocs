@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,16 +31,16 @@ type _CNSaveRequestClass struct {
 // An interface definition for the [CNSaveRequest] class.
 type ICNSaveRequest interface {
 	objectivec.IObject
-	AddGroupToContainerWithIdentifier(group unsafe.Pointer, identifier string)
-	AddContactToContainerWithIdentifier(contact unsafe.Pointer, identifier string)
-	AddMemberToGroup(contact unsafe.Pointer, group unsafe.Pointer)
-	AddSubgroupToGroup(subgroup unsafe.Pointer, group unsafe.Pointer)
-	DeleteGroup(group unsafe.Pointer)
-	DeleteContact(contact unsafe.Pointer)
-	RemoveMemberFromGroup(contact unsafe.Pointer, group unsafe.Pointer)
-	RemoveSubgroupFromGroup(subgroup unsafe.Pointer, group unsafe.Pointer)
-	UpdateContact(contact unsafe.Pointer)
-	UpdateGroup(group unsafe.Pointer)
+	AddGroupToContainerWithIdentifier(group ICNMutableGroup, identifier appkit.string)
+	AddContactToContainerWithIdentifier(contact ICNMutableContact, identifier appkit.string)
+	AddMemberToGroup(contact ICNContact, group ICNGroup)
+	AddSubgroupToGroup(subgroup ICNGroup, group ICNGroup)
+	DeleteGroup(group ICNMutableGroup)
+	DeleteContact(contact ICNMutableContact)
+	RemoveMemberFromGroup(contact ICNContact, group ICNGroup)
+	RemoveSubgroupFromGroup(subgroup ICNGroup, group ICNGroup)
+	UpdateContact(contact ICNMutableContact)
+	UpdateGroup(group ICNMutableGroup)
 }
 
 // An object that collects the changes you want to save to the user’s contacts database.
@@ -93,70 +94,70 @@ func NewCNSaveRequest() CNSaveRequest {
 // Adds a group to the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/add(_:toContainerWithIdentifier:)-4ikaa
-func (c_ CNSaveRequest) AddGroupToContainerWithIdentifier(group unsafe.Pointer, identifier string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addGroup:toContainerWithIdentifier:"), group, objc.String(identifier))
+func (c_ CNSaveRequest) AddGroupToContainerWithIdentifier(group ICNMutableGroup, identifier appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addGroup:toContainerWithIdentifier:"), group, identifier)
 }
 
 // Adds the specified contact to the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/add(_:toContainerWithIdentifier:)-7eut4
-func (c_ CNSaveRequest) AddContactToContainerWithIdentifier(contact unsafe.Pointer, identifier string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("addContact:toContainerWithIdentifier:"), contact, objc.String(identifier))
+func (c_ CNSaveRequest) AddContactToContainerWithIdentifier(contact ICNMutableContact, identifier appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("addContact:toContainerWithIdentifier:"), contact, identifier)
 }
 
 // Adds a contact as a member of a group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/addMember(_:to:)
-func (c_ CNSaveRequest) AddMemberToGroup(contact unsafe.Pointer, group unsafe.Pointer) {
+func (c_ CNSaveRequest) AddMemberToGroup(contact ICNContact, group ICNGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addMember:toGroup:"), contact, group)
 }
 
 // Add the specified group to a parent group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/addSubgroup(_:to:)
-func (c_ CNSaveRequest) AddSubgroupToGroup(subgroup unsafe.Pointer, group unsafe.Pointer) {
+func (c_ CNSaveRequest) AddSubgroupToGroup(subgroup ICNGroup, group ICNGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addSubgroup:toGroup:"), subgroup, group)
 }
 
 // Deletes a group from the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/delete(_:)-29lsm
-func (c_ CNSaveRequest) DeleteGroup(group unsafe.Pointer) {
+func (c_ CNSaveRequest) DeleteGroup(group ICNMutableGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteGroup:"), group)
 }
 
 // Deletes a contact from the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/delete(_:)-8m1tc
-func (c_ CNSaveRequest) DeleteContact(contact unsafe.Pointer) {
+func (c_ CNSaveRequest) DeleteContact(contact ICNMutableContact) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteContact:"), contact)
 }
 
 // Removes a contact as a member of a group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/removeMember(_:from:)
-func (c_ CNSaveRequest) RemoveMemberFromGroup(contact unsafe.Pointer, group unsafe.Pointer) {
+func (c_ CNSaveRequest) RemoveMemberFromGroup(contact ICNContact, group ICNGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeMember:fromGroup:"), contact, group)
 }
 
 // Remove a subgroup from the specified parent group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/removeSubgroup(_:from:)
-func (c_ CNSaveRequest) RemoveSubgroupFromGroup(subgroup unsafe.Pointer, group unsafe.Pointer) {
+func (c_ CNSaveRequest) RemoveSubgroupFromGroup(subgroup ICNGroup, group ICNGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeSubgroup:fromGroup:"), subgroup, group)
 }
 
 // Updates an existing contact in the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/update(_:)-3gaig
-func (c_ CNSaveRequest) UpdateContact(contact unsafe.Pointer) {
+func (c_ CNSaveRequest) UpdateContact(contact ICNMutableContact) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateContact:"), contact)
 }
 
 // Updates an existing group in the contact store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/update(_:)-8h6f6
-func (c_ CNSaveRequest) UpdateGroup(group unsafe.Pointer) {
+func (c_ CNSaveRequest) UpdateGroup(group ICNMutableGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateGroup:"), group)
 }
 
@@ -181,8 +182,8 @@ func (c_ CNSaveRequest) SetShouldRefetchContacts(value bool) {
 // A string that identifies the author of the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
-func (c_ CNSaveRequest) TransactionAuthor() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("transactionAuthor"))
+func (c_ CNSaveRequest) TransactionAuthor() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("transactionAuthor"))
 	return rv
 }
 
@@ -192,15 +193,15 @@ func (c_ CNSaveRequest) TransactionAuthor() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNSaveRequest/transactionAuthor
-func (c_ CNSaveRequest) SetTransactionAuthor(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), objc.String(value))
+func (c_ CNSaveRequest) SetTransactionAuthor(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTransactionAuthor:"), value)
 }
 
 // The contact, group, and container objects for which the error code applies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey
-func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
+func (c_ CNSaveRequest) CNErrorUserInfoAffectedRecordsKey() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNErrorUserInfoAffectedRecordsKey"))
 	return rv
 }
 

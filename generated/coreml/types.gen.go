@@ -14,5 +14,7 @@ type MLModelMetadataKey unsafe.Pointer
 
 type MLMultiArrayShapeConstraintType unsafe.Pointer
 
+type MLParameterDescription unsafe.Pointer
+
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayVectorLUTDequantize] class.
@@ -78,7 +79,7 @@ func NewNDArrayVectorLUTDequantize() NDArrayVectorLUTDequantize {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayVectorLUTDequantize/init(device:axis:)
-func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device objc.ID, axis uint) NDArrayVectorLUTDequantize {
+func NewNDArrayVectorLUTDequantizeWithDeviceAxis(device objectivec.IObject, axis uint) NDArrayVectorLUTDequantize {
 	instance := getNDArrayVectorLUTDequantizeClass().Alloc()
 	rv := objc.Send[NDArrayVectorLUTDequantize](instance.ID, objc.Sel("initWithDevice:axis:"), device, axis)
 	rv.Autorelease()

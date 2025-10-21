@@ -90,7 +90,7 @@ func (m_ MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams) Se
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams) Ti
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

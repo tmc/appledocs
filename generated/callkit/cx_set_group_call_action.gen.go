@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetGroupCallAction] class.
@@ -86,7 +87,7 @@ func NewCXSetGroupCallAction() CXSetGroupCallAction {
 // Initializes a new action for a call identified by a given UUID, as well as a call to group with identified by another UUID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(call:callUUIDToGroupWith:)
-func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID unsafe.Pointer, callUUIDToGroupWith unsafe.Pointer) CXSetGroupCallAction {
+func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID foundation.IUUID, callUUIDToGroupWith foundation.IUUID) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCallUUID:callUUIDToGroupWith:"), callUUID, callUUIDToGroupWith)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCXSetGroupCallActionWithCallUUIDCallUUIDToGroupWith(callUUID unsafe.Poin
 // Creates a new action to group calls with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/init(coder:)
-func NewCXSetGroupCallActionWithCoder(aDecoder unsafe.Pointer) CXSetGroupCallAction {
+func NewCXSetGroupCallActionWithCoder(aDecoder foundation.ICoder) CXSetGroupCallAction {
 	instance := getCXSetGroupCallActionClass().Alloc()
 	rv := objc.Send[CXSetGroupCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -109,8 +110,8 @@ func NewCXSetGroupCallActionWithCoder(aDecoder unsafe.Pointer) CXSetGroupCallAct
 // The unique identifier of the call to be grouped with the call associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("callUUIDToGroupWith"))
+func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("callUUIDToGroupWith"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (c_ CXSetGroupCallAction) CallUUIDToGroupWith() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetGroupCallAction/callUUIDToGroupWith
-func (c_ CXSetGroupCallAction) SetCallUUIDToGroupWith(value unsafe.Pointer) {
+func (c_ CXSetGroupCallAction) SetCallUUIDToGroupWith(value foundation.IUUID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCallUUIDToGroupWith:"), value)
 }
 

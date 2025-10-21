@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZVirtioFileSystemDevice] class.
@@ -84,8 +85,8 @@ func NewVZVirtioFileSystemDevice() VZVirtioFileSystemDevice {
 // A value that defines the directory share the host exposes to the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/share
-func (v_ VZVirtioFileSystemDevice) Share() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("share"))
+func (v_ VZVirtioFileSystemDevice) Share() VZDirectoryShare {
+	rv := objc.Send[VZDirectoryShare](v_.ID, objc.Sel("share"))
 	return rv
 }
 
@@ -95,23 +96,23 @@ func (v_ VZVirtioFileSystemDevice) Share() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/share
-func (v_ VZVirtioFileSystemDevice) SetShare(value unsafe.Pointer) {
+func (v_ VZVirtioFileSystemDevice) SetShare(value IVZDirectoryShare) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setShare:"), value)
 }
 
 // A string that identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDevice/tag
-func (v_ VZVirtioFileSystemDevice) Tag() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("tag"))
+func (v_ VZVirtioFileSystemDevice) Tag() appkit.string {
+	rv := objc.Send[appkit.string](v_.ID, objc.Sel("tag"))
 	return rv
 }
 
 // The list of configured directory-sharing devices on the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices
-func (v_ VZVirtioFileSystemDevice) DirectorySharingDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("directorySharingDevices"))
+func (v_ VZVirtioFileSystemDevice) DirectorySharingDevices() VZDirectorySharingDevice {
+	rv := objc.Send[VZDirectorySharingDevice](v_.ID, objc.Sel("directorySharingDevices"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (v_ VZVirtioFileSystemDevice) DirectorySharingDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/directorysharingdevices
-func (v_ VZVirtioFileSystemDevice) SetDirectorySharingDevices(value unsafe.Pointer) {
+func (v_ VZVirtioFileSystemDevice) SetDirectorySharingDevices(value IVZDirectorySharingDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectorySharingDevices:"), value)
 }
 

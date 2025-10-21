@@ -81,8 +81,8 @@ func NewIndirectCommandBufferDescriptor() IndirectCommandBufferDescriptor {
 // The set of command types that you can encode into the indirect command buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIndirectCommandBufferDescriptor/commandTypes
-func (i_ IndirectCommandBufferDescriptor) CommandTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("commandTypes"))
+func (i_ IndirectCommandBufferDescriptor) CommandTypes() IndirectCommandType {
+	rv := objc.Send[IndirectCommandType](i_.ID, objc.Sel("commandTypes"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (i_ IndirectCommandBufferDescriptor) CommandTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIndirectCommandBufferDescriptor/commandTypes
-func (i_ IndirectCommandBufferDescriptor) SetCommandTypes(value unsafe.Pointer) {
+func (i_ IndirectCommandBufferDescriptor) SetCommandTypes(value IndirectCommandType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCommandTypes:"), value)
 }
 

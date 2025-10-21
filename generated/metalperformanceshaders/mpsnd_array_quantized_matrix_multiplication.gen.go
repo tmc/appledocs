@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayQuantizedMatrixMultiplication] class.
@@ -78,7 +79,7 @@ func NewNDArrayQuantizedMatrixMultiplication() NDArrayQuantizedMatrixMultiplicat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayQuantizedMatrixMultiplication/init(device:leftQuantizationDescriptor:rightQuantizationDescriptor:)
-func NewNDArrayQuantizedMatrixMultiplicationWithDeviceLeftQuantizationDescriptorRightQuantizationDescriptor(device objc.ID, leftQuantizationDescriptor unsafe.Pointer, rightQuantizationDescriptor unsafe.Pointer) NDArrayQuantizedMatrixMultiplication {
+func NewNDArrayQuantizedMatrixMultiplicationWithDeviceLeftQuantizationDescriptorRightQuantizationDescriptor(device objectivec.IObject, leftQuantizationDescriptor IMPSNDArrayQuantizationDescriptor, rightQuantizationDescriptor IMPSNDArrayQuantizationDescriptor) NDArrayQuantizedMatrixMultiplication {
 	instance := getNDArrayQuantizedMatrixMultiplicationClass().Alloc()
 	rv := objc.Send[NDArrayQuantizedMatrixMultiplication](instance.ID, objc.Sel("initWithDevice:leftQuantizationDescriptor:rightQuantizationDescriptor:"), device, leftQuantizationDescriptor, rightQuantizationDescriptor)
 	rv.Autorelease()

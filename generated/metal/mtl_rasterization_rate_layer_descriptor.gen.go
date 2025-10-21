@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewRasterizationRateLayerDescriptor() RasterizationRateLayerDescriptor {
 // Initializes the layer map with an empty grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/init(sampleCount:)
-func NewRasterizationRateLayerDescriptorWithSampleCount(sampleCount unsafe.Pointer) RasterizationRateLayerDescriptor {
+func NewRasterizationRateLayerDescriptorWithSampleCount(sampleCount coregraphics.ISize) RasterizationRateLayerDescriptor {
 	instance := getRasterizationRateLayerDescriptorClass().Alloc()
 	rv := objc.Send[RasterizationRateLayerDescriptor](instance.ID, objc.Sel("initWithSampleCount:"), sampleCount)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewRasterizationRateLayerDescriptorWithSampleCount(sampleCount unsafe.Point
 // Initializes the layer map with the provided grid size and rasterization rates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/initWithSampleCount:horizontal:vertical:
-func NewRasterizationRateLayerDescriptorWithSampleCountHorizontalVertical(sampleCount unsafe.Pointer, horizontal unsafe.Pointer, vertical unsafe.Pointer) RasterizationRateLayerDescriptor {
+func NewRasterizationRateLayerDescriptorWithSampleCountHorizontalVertical(sampleCount coregraphics.ISize, horizontal unsafe.Pointer, vertical unsafe.Pointer) RasterizationRateLayerDescriptor {
 	instance := getRasterizationRateLayerDescriptorClass().Alloc()
 	rv := objc.Send[RasterizationRateLayerDescriptor](instance.ID, objc.Sel("initWithSampleCount:horizontal:vertical:"), sampleCount, horizontal, vertical)
 	rv.Autorelease()
@@ -108,8 +109,8 @@ func NewRasterizationRateLayerDescriptorWithSampleCountHorizontalVertical(sample
 // The horizontal rasterization rates for the layer map’s rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/horizontal
-func (r_ RasterizationRateLayerDescriptor) Horizontal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("horizontal"))
+func (r_ RasterizationRateLayerDescriptor) Horizontal() MTLRasterizationRateSampleArray {
+	rv := objc.Send[MTLRasterizationRateSampleArray](r_.ID, objc.Sel("horizontal"))
 	return rv
 }
 
@@ -124,24 +125,24 @@ func (r_ RasterizationRateLayerDescriptor) HorizontalSampleStorage() unsafe.Poin
 // The maximum number of rows and columns in the layer map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/maxSampleCount
-func (r_ RasterizationRateLayerDescriptor) MaxSampleCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("maxSampleCount"))
+func (r_ RasterizationRateLayerDescriptor) MaxSampleCount() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](r_.ID, objc.Sel("maxSampleCount"))
 	return rv
 }
 
 // The number of rows and columns in the layer map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/sampleCount
-func (r_ RasterizationRateLayerDescriptor) SampleCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sampleCount"))
+func (r_ RasterizationRateLayerDescriptor) SampleCount() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](r_.ID, objc.Sel("sampleCount"))
 	return rv
 }
 
 // The vertical rasterization rates for the layer map’s rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerDescriptor/vertical
-func (r_ RasterizationRateLayerDescriptor) Vertical() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("vertical"))
+func (r_ RasterizationRateLayerDescriptor) Vertical() MTLRasterizationRateSampleArray {
+	rv := objc.Send[MTLRasterizationRateSampleArray](r_.ID, objc.Sel("vertical"))
 	return rv
 }
 

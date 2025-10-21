@@ -87,7 +87,7 @@ func (m_ MTRGroupsClusterRemoveGroupParams) GroupID() foundation.Number {
 // SetGroupID sets the value of the groupID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/groupid-44m5l
-func (m_ MTRGroupsClusterRemoveGroupParams) SetGroupID(value foundation.Number) {
+func (m_ MTRGroupsClusterRemoveGroupParams) SetGroupID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGroupsClusterRemoveGroupParams) GroupId() foundation.Number {
 // SetGroupId sets the value of the groupId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/groupid-44m4p
-func (m_ MTRGroupsClusterRemoveGroupParams) SetGroupId(value foundation.Number) {
+func (m_ MTRGroupsClusterRemoveGroupParams) SetGroupId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupsClusterRemoveGroupParams) ServerSideProcessingTimeout() founda
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterRemoveGroupParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGroupsClusterRemoveGroupParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRGroupsClusterRemoveGroupParams) TimedInvokeTimeoutMs() foundation.Nu
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterRemoveGroupParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupsClusterRemoveGroupParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

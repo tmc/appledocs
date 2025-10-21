@@ -137,8 +137,8 @@ func (m_ MKLookAroundViewController) SetIsNavigationEnabled(value bool) {
 // The filter used to determine the points of interest shown on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/pointofinterestfilter
-func (m_ MKLookAroundViewController) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+func (m_ MKLookAroundViewController) PointOfInterestFilter() MKPointOfInterestFilter {
+	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
@@ -148,15 +148,15 @@ func (m_ MKLookAroundViewController) PointOfInterestFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/pointofinterestfilter
-func (m_ MKLookAroundViewController) SetPointOfInterestFilter(value unsafe.Pointer) {
+func (m_ MKLookAroundViewController) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
 // The LookAround scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/scene
-func (m_ MKLookAroundViewController) Scene() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("scene"))
+func (m_ MKLookAroundViewController) Scene() MKLookAroundScene {
+	rv := objc.Send[MKLookAroundScene](m_.ID, objc.Sel("scene"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (m_ MKLookAroundViewController) Scene() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller/scene
-func (m_ MKLookAroundViewController) SetScene(value unsafe.Pointer) {
+func (m_ MKLookAroundViewController) SetScene(value IMKLookAroundScene) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScene:"), value)
 }
 

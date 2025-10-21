@@ -85,8 +85,8 @@ func NewVZVirtioSoundDeviceOutputStreamConfiguration() VZVirtioSoundDeviceOutput
 // An audio stream sink that defines how the host handles audio data produced by the guest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration/sink
-func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("sink"))
+func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() VZAudioOutputStreamSink {
+	rv := objc.Send[VZAudioOutputStreamSink](v_.ID, objc.Sel("sink"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration/sink
-func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) SetSink(value unsafe.Pointer) {
+func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) SetSink(value IVZAudioOutputStreamSink) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSink:"), value)
 }
 

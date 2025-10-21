@@ -78,8 +78,8 @@ func NewMTRThreadNetworkDirectoryClusterRemoveNetworkParams() MTRThreadNetworkDi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterRemoveNetworkParams/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) ExtendedPanID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedPanID"))
+func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) ExtendedPanID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("extendedPanID"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) ExtendedPanID() un
 // SetExtendedPanID sets the value of the extendedPanID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterRemoveNetworkParams/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetExtendedPanID(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetExtendedPanID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) ServerSideProcessi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterRemoveNetworkParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) TimedInvokeTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterRemoveNetworkParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterRemoveNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

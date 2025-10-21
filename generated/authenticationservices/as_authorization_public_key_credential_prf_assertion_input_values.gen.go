@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInputValues() AuthorizationP
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInputValues/saltInput2
-func (a_ AuthorizationPublicKeyCredentialPRFAssertionInputValues) SaltInput2() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("saltInput2"))
+func (a_ AuthorizationPublicKeyCredentialPRFAssertionInputValues) SaltInput2() foundation.NSData {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("saltInput2"))
 	return rv
 }
 

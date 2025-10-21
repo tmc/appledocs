@@ -82,8 +82,8 @@ func NewAccelerationStructureMotionBoundingBoxGeometryDescriptor() AccelerationS
 // A array of motion keyframes, each containing bounding box data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
-func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("boundingBoxBuffers"))
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxBuffers() MTLMotionKeyframeData {
+	rv := objc.Send[MTLMotionKeyframeData](a_.ID, objc.Sel("boundingBoxBuffers"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) BoundingBoxBu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotionboundingboxgeometrydescriptor/boundingboxbuffers
-func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxBuffers(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionBoundingBoxGeometryDescriptor) SetBoundingBoxBuffers(value IMTLMotionKeyframeData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBoundingBoxBuffers:"), value)
 }
 

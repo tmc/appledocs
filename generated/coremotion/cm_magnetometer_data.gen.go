@@ -92,8 +92,8 @@ func (m_ MagnetometerData) MagneticField() unsafe.Pointer {
 // The latest sample of magnetometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata
-func (m_ MagnetometerData) MagnetometerData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("magnetometerData"))
+func (m_ MagnetometerData) MagnetometerData() CMMagnetometerData {
+	rv := objc.Send[CMMagnetometerData](m_.ID, objc.Sel("magnetometerData"))
 	return rv
 }
 
@@ -103,7 +103,7 @@ func (m_ MagnetometerData) MagnetometerData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata
-func (m_ MagnetometerData) SetMagnetometerData(value unsafe.Pointer) {
+func (m_ MagnetometerData) SetMagnetometerData(value ICMMagnetometerData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMagnetometerData:"), value)
 }
 

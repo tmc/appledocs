@@ -78,8 +78,8 @@ func NewMTRServerCluster() MTRServerCluster {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/accessgrants
-func (m_ MTRServerCluster) AccessGrants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accessGrants"))
+func (m_ MTRServerCluster) AccessGrants() MTRAccessGrant {
+	rv := objc.Send[MTRAccessGrant](m_.ID, objc.Sel("accessGrants"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRServerCluster) AccessGrants() unsafe.Pointer {
 // SetAccessGrants sets the value of the accessGrants property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/accessgrants
-func (m_ MTRServerCluster) SetAccessGrants(value unsafe.Pointer) {
+func (m_ MTRServerCluster) SetAccessGrants(value IMTRAccessGrant) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessGrants:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/attributes
-func (m_ MTRServerCluster) Attributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attributes"))
+func (m_ MTRServerCluster) Attributes() MTRServerAttribute {
+	rv := objc.Send[MTRServerAttribute](m_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRServerCluster) Attributes() unsafe.Pointer {
 // SetAttributes sets the value of the attributes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/attributes
-func (m_ MTRServerCluster) SetAttributes(value unsafe.Pointer) {
+func (m_ MTRServerCluster) SetAttributes(value MTRServerAttribute) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRServerCluster) ClusterID() foundation.Number {
 // SetClusterID sets the value of the clusterID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterid
-func (m_ MTRServerCluster) SetClusterID(value foundation.Number) {
+func (m_ MTRServerCluster) SetClusterID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClusterID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRServerCluster) ClusterRevision() foundation.Number {
 // SetClusterRevision sets the value of the clusterRevision property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterrevision
-func (m_ MTRServerCluster) SetClusterRevision(value foundation.Number) {
+func (m_ MTRServerCluster) SetClusterRevision(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClusterRevision:"), value)
 }
 

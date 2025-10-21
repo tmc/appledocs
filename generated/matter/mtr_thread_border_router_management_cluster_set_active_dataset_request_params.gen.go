@@ -78,8 +78,8 @@ func NewMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams() MT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/activeDataset
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ActiveDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("activeDataset"))
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) ActiveDataset() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("activeDataset"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Ac
 // SetActiveDataset sets the value of the activeDataset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/activeDataset
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetActiveDataset(value unsafe.Pointer) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetActiveDataset(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveDataset:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Br
 // SetBreadcrumb sets the value of the breadcrumb property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/breadcrumb
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetBreadcrumb(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Se
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) Ti
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -83,8 +83,8 @@ func NewVertexAttribute() VertexAttribute {
 // An array that describes the vertex input attributes to a vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
-func (v_ VertexAttribute) VertexAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("vertexAttributes"))
+func (v_ VertexAttribute) VertexAttributes() MTLVertexAttribute {
+	rv := objc.Send[MTLVertexAttribute](v_.ID, objc.Sel("vertexAttributes"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (v_ VertexAttribute) VertexAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
-func (v_ VertexAttribute) SetVertexAttributes(value unsafe.Pointer) {
+func (v_ VertexAttribute) SetVertexAttributes(value MTLVertexAttribute) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexAttributes:"), value)
 }
 
@@ -191,8 +191,8 @@ func (v_ VertexAttribute) SetIsPatchData(value bool) {
 // The name of the attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+func (v_ VertexAttribute) Name() appkit.string {
+	rv := objc.Send[appkit.string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -202,8 +202,8 @@ func (v_ VertexAttribute) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) SetName(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
+func (v_ VertexAttribute) SetName(value appkit.string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
 }
 
 

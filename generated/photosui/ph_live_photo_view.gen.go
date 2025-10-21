@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/photos"
 )
 
 // The class instance for the [PHLivePhotoView] class.
@@ -31,7 +32,7 @@ type _PHLivePhotoViewClass struct {
 // An interface definition for the [PHLivePhotoView] class.
 type IPHLivePhotoView interface {
 	appkit.IView
-	StartPlaybackWithStyle(playbackStyle unsafe.Pointer)
+	StartPlaybackWithStyle(playbackStyle PHLivePhotoViewPlaybackStyle)
 	StopPlayback()
 	StopPlaybackAnimated(animated bool)
 }
@@ -89,15 +90,15 @@ func NewPHLivePhotoView() PHLivePhotoView {
 // Returns an icon image for the specified Live Photo semantic options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhotoBadgeImage(options:)
-func (pc _PHLivePhotoViewClass) LivePhotoBadgeImageWithOptions(badgeOptions unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("livePhotoBadgeImageWithOptions:"), badgeOptions)
+func (pc _PHLivePhotoViewClass) LivePhotoBadgeImageWithOptions(badgeOptions PHLivePhotoBadgeOptions) appkit.Image {
+	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("livePhotoBadgeImageWithOptions:"), badgeOptions)
 	return rv
 }
 
 // Begins playback of Live Photo content in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/startPlayback(with:)
-func (p_ PHLivePhotoView) StartPlaybackWithStyle(playbackStyle unsafe.Pointer) {
+func (p_ PHLivePhotoView) StartPlaybackWithStyle(playbackStyle PHLivePhotoViewPlaybackStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPlaybackWithStyle:"), playbackStyle)
 }
 
@@ -136,8 +137,8 @@ func (p_ PHLivePhotoView) SetAudioVolume(value unsafe.Pointer) {
 // The mode in which the view displays its content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentMode
-func (p_ PHLivePhotoView) ContentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentMode"))
+func (p_ PHLivePhotoView) ContentMode() PHLivePhotoViewContentMode {
+	rv := objc.Send[PHLivePhotoViewContentMode](p_.ID, objc.Sel("contentMode"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (p_ PHLivePhotoView) ContentMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/contentMode
-func (p_ PHLivePhotoView) SetContentMode(value unsafe.Pointer) {
+func (p_ PHLivePhotoView) SetContentMode(value PHLivePhotoViewContentMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentMode:"), value)
 }
 
@@ -205,8 +206,8 @@ func (p_ PHLivePhotoView) SetMuted(value bool) {
 // The Live Photo displayed in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhoto
-func (p_ PHLivePhotoView) LivePhoto() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("livePhoto"))
+func (p_ PHLivePhotoView) LivePhoto() photos.PHLivePhoto {
+	rv := objc.Send[photos.PHLivePhoto](p_.ID, objc.Sel("livePhoto"))
 	return rv
 }
 
@@ -216,23 +217,23 @@ func (p_ PHLivePhotoView) LivePhoto() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhoto
-func (p_ PHLivePhotoView) SetLivePhoto(value unsafe.Pointer) {
+func (p_ PHLivePhotoView) SetLivePhoto(value photos.IPHLivePhoto) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
 }
 
 // A view for displaying Live Photo status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/livePhotoBadgeView
-func (p_ PHLivePhotoView) LivePhotoBadgeView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("livePhotoBadgeView"))
+func (p_ PHLivePhotoView) LivePhotoBadgeView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("livePhotoBadgeView"))
 	return rv
 }
 
 // A gesture recognizer that controls playback of the Live Photo in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoView/playbackGestureRecognizer
-func (p_ PHLivePhotoView) PlaybackGestureRecognizer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackGestureRecognizer"))
+func (p_ PHLivePhotoView) PlaybackGestureRecognizer() appkit.GestureRecognizer {
+	rv := objc.Send[appkit.GestureRecognizer](p_.ID, objc.Sel("playbackGestureRecognizer"))
 	return rv
 }
 

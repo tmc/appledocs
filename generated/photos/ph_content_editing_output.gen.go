@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [PHContentEditingOutput] class.
@@ -84,8 +85,8 @@ func NewPHContentEditingOutput() PHContentEditingOutput {
 // An object describing the changes made to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/adjustmentData
-func (p_ PHContentEditingOutput) AdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
+func (p_ PHContentEditingOutput) AdjustmentData() PHAdjustmentData {
+	rv := objc.Send[PHAdjustmentData](p_.ID, objc.Sel("adjustmentData"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (p_ PHContentEditingOutput) AdjustmentData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingOutput/adjustmentData
-func (p_ PHContentEditingOutput) SetAdjustmentData(value unsafe.Pointer) {
+func (p_ PHContentEditingOutput) SetAdjustmentData(value IPHAdjustmentData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
 }
 
@@ -110,8 +111,8 @@ func (p_ PHContentEditingOutput) RenderedContentURL() foundation.URL {
 // The output of an asset content editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingOutput) ContentEditingOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+func (p_ PHContentEditingOutput) ContentEditingOutput() PHContentEditingOutput {
+	rv := objc.Send[PHContentEditingOutput](p_.ID, objc.Sel("contentEditingOutput"))
 	return rv
 }
 
@@ -121,14 +122,14 @@ func (p_ PHContentEditingOutput) ContentEditingOutput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingOutput) SetContentEditingOutput(value unsafe.Pointer) {
+func (p_ PHContentEditingOutput) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
-func (p_ PHContentEditingOutput) DefaultRenderedContentType() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("defaultRenderedContentType"))
+func (p_ PHContentEditingOutput) DefaultRenderedContentType() uniformtypeidentifiers.UTType {
+	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("defaultRenderedContentType"))
 	return rv
 }
 
@@ -136,14 +137,14 @@ func (p_ PHContentEditingOutput) DefaultRenderedContentType() UTType {
 // SetDefaultRenderedContentType sets the value of the defaultRenderedContentType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
-func (p_ PHContentEditingOutput) SetDefaultRenderedContentType(value UTType) {
+func (p_ PHContentEditingOutput) SetDefaultRenderedContentType(value uniformtypeidentifiers.UTType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRenderedContentType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
-func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("supportedRenderedContentTypes"))
+func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() uniformtypeidentifiers.UTType {
+	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("supportedRenderedContentTypes"))
 	return rv
 }
 
@@ -151,7 +152,7 @@ func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() UTType {
 // SetSupportedRenderedContentTypes sets the value of the supportedRenderedContentTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
-func (p_ PHContentEditingOutput) SetSupportedRenderedContentTypes(value UTType) {
+func (p_ PHContentEditingOutput) SetSupportedRenderedContentTypes(value uniformtypeidentifiers.UTType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSupportedRenderedContentTypes:"), value)
 }
 

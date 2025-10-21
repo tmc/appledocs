@@ -83,16 +83,16 @@ func NewMonitoringRecord() MonitoringRecord {
 // The condition that the framework is monitoring events for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord/condition
-func (m_ MonitoringRecord) Condition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("condition"))
+func (m_ MonitoringRecord) Condition() CLCondition {
+	rv := objc.Send[CLCondition](m_.ID, objc.Sel("condition"))
 	return rv
 }
 
 // An object that contains the specifics of the most recent event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringRecord/lastEvent
-func (m_ MonitoringRecord) LastEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lastEvent"))
+func (m_ MonitoringRecord) LastEvent() CLMonitoringEvent {
+	rv := objc.Send[CLMonitoringEvent](m_.ID, objc.Sel("lastEvent"))
 	return rv
 }
 

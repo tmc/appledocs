@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewPedometerEvent() PedometerEvent {
 // The date on which the pedometer event was recorded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent/date
-func (p_ PedometerEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("date"))
+func (p_ PedometerEvent) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("date"))
 	return rv
 }
 
 // The type of change that occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent/type
-func (p_ PedometerEvent) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PedometerEvent) Type() PedometerEventType {
+	rv := objc.Send[PedometerEventType](p_.ID, objc.Sel("type"))
 	return rv
 }
 

@@ -84,30 +84,30 @@ func NewUnitPower() UnitPower {
 // The kilowatts unit of power.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/kilowatts
-func (uc _UnitPowerClass) Kilowatts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("kilowatts"))
+func (uc _UnitPowerClass) Kilowatts() UnitPower {
+	rv := objc.Send[NSUnitPower](objc.ID(uc.class), objc.Sel("kilowatts"))
 	return rv
 }
 // The microwatts unit of power.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/microwatts
-func (uc _UnitPowerClass) Microwatts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("microwatts"))
+func (uc _UnitPowerClass) Microwatts() UnitPower {
+	rv := objc.Send[NSUnitPower](objc.ID(uc.class), objc.Sel("microwatts"))
 	return rv
 }
 // The kilowatts unit of power.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/kilowatts
-func (u_ UnitPower) Kilowatts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("kilowatts"))
+func (u_ UnitPower) Kilowatts() NSUnitPower {
+	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("kilowatts"))
 	return rv
 }
 
 // The microwatts unit of power.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPower/microwatts
-func (u_ UnitPower) Microwatts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("microwatts"))
+func (u_ UnitPower) Microwatts() NSUnitPower {
+	rv := objc.Send[NSUnitPower](u_.ID, objc.Sel("microwatts"))
 	return rv
 }
 

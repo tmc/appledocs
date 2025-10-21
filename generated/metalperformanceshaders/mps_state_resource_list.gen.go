@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/metal"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,7 +82,7 @@ func NewStateResourceList() StateResourceList {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSStateResourceList/resourceListWithTextureDescriptors:
-func (sc _StateResourceListClass) ResourceListWithTextureDescriptors(d unsafe.Pointer) unsafe.Pointer {
+func (sc _StateResourceListClass) ResourceListWithTextureDescriptors(d metal.ITextureDescriptor) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("resourceListWithTextureDescriptors:"), d)
 	return rv
 }

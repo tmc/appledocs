@@ -15,3 +15,11 @@ func ExampleNewRight() {
 	_ = localauthentication.NewRight()
 	// Output:
 }
+// ExampleNewRightWithRequirement demonstrates how to create a Right instance using NewRightWithRequirement.
+// Creates a right with the authentication requirements you supply.
+func ExampleNewRightWithRequirement() {
+	_ = localauthentication.NewRightWithRequirement(
+		localauthentication.LAAuthenticationRequirement{}, // requirement LAAuthenticationRequirement
+	)
+	// Output:
+}

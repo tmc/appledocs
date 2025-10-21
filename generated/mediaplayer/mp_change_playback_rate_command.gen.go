@@ -96,7 +96,7 @@ func (c_ ChangePlaybackRateCommand) SupportedPlaybackRates() []foundation.Number
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackRateCommand/supportedPlaybackRates
-func (c_ ChangePlaybackRateCommand) SetSupportedPlaybackRates(value []foundation.Number) {
+func (c_ ChangePlaybackRateCommand) SetSupportedPlaybackRates(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

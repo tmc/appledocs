@@ -85,8 +85,8 @@ func NewVZVirtioNetworkDeviceConfiguration() VZVirtioNetworkDeviceConfiguration 
 // The object that defines how the virtual network device communicates with the host system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZVirtioNetworkDeviceConfiguration) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+func (v_ VZVirtioNetworkDeviceConfiguration) Attachment() VZNetworkDeviceAttachment {
+	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
@@ -96,15 +96,15 @@ func (v_ VZVirtioNetworkDeviceConfiguration) Attachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZVirtioNetworkDeviceConfiguration) SetAttachment(value unsafe.Pointer) {
+func (v_ VZVirtioNetworkDeviceConfiguration) SetAttachment(value IVZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
 // The array of network devices that you expose to the guest operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZVirtioNetworkDeviceConfiguration) NetworkDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("networkDevices"))
+func (v_ VZVirtioNetworkDeviceConfiguration) NetworkDevices() VZNetworkDeviceConfiguration {
+	rv := objc.Send[VZNetworkDeviceConfiguration](v_.ID, objc.Sel("networkDevices"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (v_ VZVirtioNetworkDeviceConfiguration) NetworkDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZVirtioNetworkDeviceConfiguration) SetNetworkDevices(value unsafe.Pointer) {
+func (v_ VZVirtioNetworkDeviceConfiguration) SetNetworkDevices(value IVZNetworkDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
 }
 

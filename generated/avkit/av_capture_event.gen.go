@@ -30,7 +30,7 @@ type _CaptureEventClass struct {
 // An interface definition for the [CaptureEvent] class.
 type ICaptureEvent interface {
 	objectivec.IObject
-	PlaySound(sound unsafe.Pointer) bool
+	PlaySound(sound IAVCaptureEventSound) bool
 }
 
 // An object that describes a user interaction with a system hardware button.
@@ -84,7 +84,7 @@ func NewCaptureEvent() CaptureEvent {
 // Plays the specified capture sound through AirPods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/play(_:)
-func (c_ CaptureEvent) PlaySound(sound unsafe.Pointer) bool {
+func (c_ CaptureEvent) PlaySound(sound IAVCaptureEventSound) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("playSound:"), sound)
 	return rv
 }
@@ -92,8 +92,8 @@ func (c_ CaptureEvent) PlaySound(sound unsafe.Pointer) bool {
 // The current phase of a capture event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEvent/phase
-func (c_ CaptureEvent) Phase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phase"))
+func (c_ CaptureEvent) Phase() CaptureEventPhase {
+	rv := objc.Send[CaptureEventPhase](c_.ID, objc.Sel("phase"))
 	return rv
 }
 

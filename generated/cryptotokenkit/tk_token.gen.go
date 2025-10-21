@@ -83,7 +83,7 @@ func NewTKToken() TKToken {
 // Initializes a token with the driver you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/init(tokenDriver:instanceID:)
-func NewTKTokenWithTokenDriverInstanceID(tokenDriver unsafe.Pointer, instanceID unsafe.Pointer) TKToken {
+func NewTKTokenWithTokenDriverInstanceID(tokenDriver ITKTokenDriver, instanceID ITKTokenInstanceID) TKToken {
 	instance := getTKTokenClass().Alloc()
 	rv := objc.Send[TKToken](instance.ID, objc.Sel("initWithTokenDriver:instanceID:"), tokenDriver, instanceID)
 	rv.Autorelease()
@@ -120,8 +120,8 @@ func (t_ TKToken) SetDelegate(value unsafe.Pointer) {
 // The contents of the keychain for this token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-func (t_ TKToken) KeychainContents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keychainContents"))
+func (t_ TKToken) KeychainContents() TKTokenKeychainContents {
+	rv := objc.Send[TKTokenKeychainContents](t_.ID, objc.Sel("keychainContents"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (t_ TKToken) KeychainContents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-func (t_ TKToken) SetKeychainContents(value unsafe.Pointer) {
+func (t_ TKToken) SetKeychainContents(value ITKTokenKeychainContents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainContents:"), value)
 }
 
 // The token driver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
-func (t_ TKToken) TokenDriver() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tokenDriver"))
+func (t_ TKToken) TokenDriver() TKTokenDriver {
+	rv := objc.Send[TKTokenDriver](t_.ID, objc.Sel("tokenDriver"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (t_ TKToken) TokenDriver() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
-func (t_ TKToken) SetTokenDriver(value unsafe.Pointer) {
+func (t_ TKToken) SetTokenDriver(value ITKTokenDriver) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenDriver:"), value)
 }
 

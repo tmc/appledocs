@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _MXMetricManagerClass struct {
 // An interface definition for the [MXMetricManager] class.
 type IMXMetricManager interface {
 	objectivec.IObject
-	AddSubscriber(subscriber objc.ID)
-	RemoveSubscriber(subscriber objc.ID)
+	AddSubscriber(subscriber objectivec.IObject)
+	RemoveSubscriber(subscriber objectivec.IObject)
 }
 
 // The shared object that registers you to receive metrics, creates logs for custom metrics, and gives access to past reports.
@@ -85,7 +86,7 @@ func NewMXMetricManager() MXMetricManager {
 // Starts to measure an extended launch task with the given task identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/extendLaunchMeasurement(forTaskID:)
-func (mc _MXMetricManagerClass) ExtendLaunchMeasurementForTaskIDError(taskID unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (mc _MXMetricManagerClass) ExtendLaunchMeasurementForTaskIDError(taskID IMXLaunchTaskID, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("extendLaunchMeasurementForTaskID:error:"), taskID, error_)
 	return rv
 }
@@ -93,7 +94,7 @@ func (mc _MXMetricManagerClass) ExtendLaunchMeasurementForTaskIDError(taskID uns
 // Signals the end of an extended launch task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/finishExtendedLaunchMeasurement(forTaskID:)
-func (mc _MXMetricManagerClass) FinishExtendedLaunchMeasurementForTaskIDError(taskID unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (mc _MXMetricManagerClass) FinishExtendedLaunchMeasurementForTaskIDError(taskID IMXLaunchTaskID, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("finishExtendedLaunchMeasurementForTaskID:error:"), taskID, error_)
 	return rv
 }
@@ -101,29 +102,29 @@ func (mc _MXMetricManagerClass) FinishExtendedLaunchMeasurementForTaskIDError(ta
 // Returns a log handle used for writing custom metric events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/makeLogHandle(category:)
-func (mc _MXMetricManagerClass) MakeLogHandleWithCategory(category string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("makeLogHandleWithCategory:"), objc.String(category))
+func (mc _MXMetricManagerClass) MakeLogHandleWithCategory(category appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("makeLogHandleWithCategory:"), category)
 	return rv
 }
 
 // An object that returns the shared metrics manager instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/shared
-func (mc _MXMetricManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("sharedManager"))
+func (mc _MXMetricManagerClass) SharedManager() MXMetricManager {
+	rv := objc.Send[MXMetricManager](objc.ID(mc.class), objc.Sel("sharedManager"))
 	return rv
 }
 // Registers to receive a daily report of app metrics from the metrics manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/add(_:)
-func (m_ MXMetricManager) AddSubscriber(subscriber objc.ID) {
+func (m_ MXMetricManager) AddSubscriber(subscriber objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addSubscriber:"), subscriber)
 }
 
 // Unsubscribes from daily reports of app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/remove(_:)
-func (m_ MXMetricManager) RemoveSubscriber(subscriber objc.ID) {
+func (m_ MXMetricManager) RemoveSubscriber(subscriber objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeSubscriber:"), subscriber)
 }
 
@@ -146,8 +147,8 @@ func (m_ MXMetricManager) PastPayloads() []MXMetricPayload {
 // An object that returns the shared metrics manager instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricManager/shared
-func (m_ MXMetricManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sharedManager"))
+func (m_ MXMetricManager) SharedManager() MXMetricManager {
+	rv := objc.Send[MXMetricManager](m_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

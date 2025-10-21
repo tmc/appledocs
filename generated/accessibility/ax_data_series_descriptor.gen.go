@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +85,7 @@ func NewAXDataSeriesDescriptor() AXDataSeriesDescriptor {
 // Creates a data series with the specified attributed name, a Boolean value that indicates whether the series is continuous, and data points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/init(attributedName:isContinuous:dataPoints:)
-func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attributedName unsafe.Pointer, isContinuous bool, dataPoints unsafe.Pointer) AXDataSeriesDescriptor {
+func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attributedName foundation.IAttributedString, isContinuous bool, dataPoints []AXDataPoint) AXDataSeriesDescriptor {
 	instance := getAXDataSeriesDescriptorClass().Alloc()
 	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithAttributedName:isContinuous:dataPoints:"), attributedName, isContinuous, dataPoints)
 	rv.Autorelease()
@@ -95,9 +97,9 @@ func NewAXDataSeriesDescriptorWithAttributedNameIsContinuousDataPoints(attribute
 // Creates a data series with the specified name, a Boolean value that indicates whether the series is continuous, and data points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/init(name:isContinuous:dataPoints:)
-func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name string, isContinuous bool, dataPoints unsafe.Pointer) AXDataSeriesDescriptor {
+func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name appkit.string, isContinuous bool, dataPoints []AXDataPoint) AXDataSeriesDescriptor {
 	instance := getAXDataSeriesDescriptorClass().Alloc()
-	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithName:isContinuous:dataPoints:"), objc.String(name), isContinuous, dataPoints)
+	rv := objc.Send[AXDataSeriesDescriptor](instance.ID, objc.Sel("initWithName:isContinuous:dataPoints:"), name, isContinuous, dataPoints)
 	rv.Autorelease()
 	return rv
 }
@@ -106,8 +108,8 @@ func NewAXDataSeriesDescriptorWithNameIsContinuousDataPoints(name string, isCont
 // An attributed version of the data series name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/attributedName
-func (a_ AXDataSeriesDescriptor) AttributedName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributedName"))
+func (a_ AXDataSeriesDescriptor) AttributedName() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedName"))
 	return rv
 }
 
@@ -117,7 +119,7 @@ func (a_ AXDataSeriesDescriptor) AttributedName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/attributedName
-func (a_ AXDataSeriesDescriptor) SetAttributedName(value unsafe.Pointer) {
+func (a_ AXDataSeriesDescriptor) SetAttributedName(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedName:"), value)
 }
 
@@ -170,8 +172,8 @@ func (a_ AXDataSeriesDescriptor) SetIsContinuous(value bool) {
 // The name of the data series.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
-func (a_ AXDataSeriesDescriptor) Name() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+func (a_ AXDataSeriesDescriptor) Name() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -181,8 +183,8 @@ func (a_ AXDataSeriesDescriptor) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXDataSeriesDescriptor/name
-func (a_ AXDataSeriesDescriptor) SetName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
+func (a_ AXDataSeriesDescriptor) SetName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
 }
 
 

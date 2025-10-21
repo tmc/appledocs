@@ -88,7 +88,7 @@ func (m_ MTRTestClusterClusterTestEventEvent) Arg1() foundation.Number {
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg1
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg1(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRTestClusterClusterTestEventEvent) Arg2() foundation.Number {
 // SetArg2 sets the value of the arg2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg2
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg2(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg2(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
@@ -118,14 +118,14 @@ func (m_ MTRTestClusterClusterTestEventEvent) Arg3() foundation.Number {
 // SetArg3 sets the value of the arg3 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg3
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg3(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg3(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg4
-func (m_ MTRTestClusterClusterTestEventEvent) Arg4() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arg4"))
+func (m_ MTRTestClusterClusterTestEventEvent) Arg4() MTRTestClusterClusterSimpleStruct {
+	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("arg4"))
 	return rv
 }
 
@@ -133,7 +133,7 @@ func (m_ MTRTestClusterClusterTestEventEvent) Arg4() unsafe.Pointer {
 // SetArg4 sets the value of the arg4 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertesteventevent/arg4
-func (m_ MTRTestClusterClusterTestEventEvent) SetArg4(value unsafe.Pointer) {
+func (m_ MTRTestClusterClusterTestEventEvent) SetArg4(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
 

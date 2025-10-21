@@ -87,14 +87,14 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) Breadcrumb() founda
 // SetBreadcrumb sets the value of the breadcrumb property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/breadcrumb
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetBreadcrumb(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetBreadcrumb(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/networkid
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) NetworkID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkID"))
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) NetworkID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("networkID"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) NetworkID() unsafe.
 // SetNetworkID sets the value of the networkID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/networkid
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetNetworkID(value unsafe.Pointer) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetNetworkID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) ServerSideProcessin
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/serversideprocessingtimeout
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

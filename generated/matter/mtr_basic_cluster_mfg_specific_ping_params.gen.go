@@ -87,7 +87,7 @@ func (m_ MTRBasicClusterMfgSpecificPingParams) ServerSideProcessingTimeout() fou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustermfgspecificpingparams/serversideprocessingtimeout
-func (m_ MTRBasicClusterMfgSpecificPingParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRBasicClusterMfgSpecificPingParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBasicClusterMfgSpecificPingParams) TimedInvokeTimeoutMs() foundation
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustermfgspecificpingparams/timedinvoketimeoutms
-func (m_ MTRBasicClusterMfgSpecificPingParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRBasicClusterMfgSpecificPingParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

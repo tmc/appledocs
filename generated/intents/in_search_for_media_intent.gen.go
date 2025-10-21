@@ -84,8 +84,8 @@ func NewINSearchForMediaIntent() INSearchForMediaIntent {
 // The media items for which to search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediaitems
-func (i_ INSearchForMediaIntent) MediaItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaItems"))
+func (i_ INSearchForMediaIntent) MediaItems() INMediaItem {
+	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (i_ INSearchForMediaIntent) MediaItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediaitems
-func (i_ INSearchForMediaIntent) SetMediaItems(value unsafe.Pointer) {
+func (i_ INSearchForMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
 // The location to search for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediasearch
-func (i_ INSearchForMediaIntent) MediaSearch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaSearch"))
+func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch {
+	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (i_ INSearchForMediaIntent) MediaSearch() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchformediaintent/mediasearch
-func (i_ INSearchForMediaIntent) SetMediaSearch(value unsafe.Pointer) {
+func (i_ INSearchForMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 

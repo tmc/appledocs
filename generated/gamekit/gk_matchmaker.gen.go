@@ -30,8 +30,8 @@ type _MatchmakerClass struct {
 // An interface definition for the [Matchmaker] class.
 type IMatchmaker interface {
 	objectivec.IObject
-	AddPlayersToMatchMatchRequestCompletionHandler(match unsafe.Pointer, matchRequest unsafe.Pointer, completionHandler unsafe.Pointer)
-	FindPlayersForHostedMatchRequestWithCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer)
+	AddPlayersToMatchMatchRequestCompletionHandler(match IGKMatch, matchRequest IGKMatchRequest, completionHandler unsafe.Pointer)
+	FindPlayersForHostedMatchRequestWithCompletionHandler(request IGKMatchRequest, completionHandler unsafe.Pointer)
 }
 
 // An object that creates matches with other players without presenting an interface to the players.
@@ -85,14 +85,14 @@ func NewMatchmaker() Matchmaker {
 // Invites additional players to an existing match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker/addPlayers(to:matchRequest:completionHandler:)
-func (m_ Matchmaker) AddPlayersToMatchMatchRequestCompletionHandler(match unsafe.Pointer, matchRequest unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (m_ Matchmaker) AddPlayersToMatchMatchRequestCompletionHandler(match IGKMatch, matchRequest IGKMatchRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addPlayersToMatch:matchRequest:completionHandler:"), match, matchRequest, completionHandler)
 }
 
 // Initiates a request to find players for a hosted match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmaker/findPlayers(forHostedMatchRequest:withCompletionHandler:)
-func (m_ Matchmaker) FindPlayersForHostedMatchRequestWithCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (m_ Matchmaker) FindPlayersForHostedMatchRequestWithCompletionHandler(request IGKMatchRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("findPlayersForHostedMatchRequest:withCompletionHandler:"), request, completionHandler)
 }
 

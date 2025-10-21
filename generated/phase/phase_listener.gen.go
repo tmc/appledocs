@@ -86,7 +86,7 @@ func NewPHASEListener() PHASEListener {
 // Creates a listener with the given engine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/init(engine:)
-func NewPHASEListenerWithEngine(engine unsafe.Pointer) PHASEListener {
+func NewPHASEListenerWithEngine(engine IPHASEEngine) PHASEListener {
 	instance := getPHASEListenerClass().Alloc()
 	rv := objc.Send[PHASEListener](instance.ID, objc.Sel("initWithEngine:"), engine)
 	rv.Autorelease()
@@ -96,8 +96,8 @@ func NewPHASEListenerWithEngine(engine unsafe.Pointer) PHASEListener {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/automaticHeadTrackingFlags
-func (p_ PHASEListener) AutomaticHeadTrackingFlags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("automaticHeadTrackingFlags"))
+func (p_ PHASEListener) AutomaticHeadTrackingFlags() PHASEAutomaticHeadTrackingFlags {
+	rv := objc.Send[PHASEAutomaticHeadTrackingFlags](p_.ID, objc.Sel("automaticHeadTrackingFlags"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (p_ PHASEListener) AutomaticHeadTrackingFlags() unsafe.Pointer {
 // SetAutomaticHeadTrackingFlags sets the value of the automaticHeadTrackingFlags property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEListener/automaticHeadTrackingFlags
-func (p_ PHASEListener) SetAutomaticHeadTrackingFlags(value unsafe.Pointer) {
+func (p_ PHASEListener) SetAutomaticHeadTrackingFlags(value PHASEAutomaticHeadTrackingFlags) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticHeadTrackingFlags:"), value)
 }
 

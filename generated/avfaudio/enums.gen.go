@@ -70,6 +70,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.enum/granted
 	AudioApplicationRecordPermissionGranted AudioApplicationRecordPermission = 0
+	// AudioApplicationRecordPermissionUndetermined - Indicates the app hasn’t requested recording permission.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.enum/undetermined
+	AudioApplicationRecordPermissionUndetermined AudioApplicationRecordPermission = 0
 )
 
 // AVAudioCommonFormat - The format options that describe common audio formats.

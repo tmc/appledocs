@@ -102,8 +102,8 @@ func (d_ DetectBarcodesRequest) SetCoalesceCompositeSymbologies(value bool) {
 // The results of a barcode detection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (d_ DetectBarcodesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectBarcodesRequest) Results() VNBarcodeObservation {
+	rv := objc.Send[VNBarcodeObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (d_ DetectBarcodesRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (d_ DetectBarcodesRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectBarcodesRequest) SetResults(value IVNBarcodeObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

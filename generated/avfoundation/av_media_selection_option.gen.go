@@ -82,8 +82,8 @@ func NewMediaSelectionOption() MediaSelectionOption {
 // The metadata formats that contain metadata associated with the option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/availablemetadataformats
-func (m_ MediaSelectionOption) AvailableMetadataFormats() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("availableMetadataFormats"))
+func (m_ MediaSelectionOption) AvailableMetadataFormats() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
 
@@ -93,15 +93,15 @@ func (m_ MediaSelectionOption) AvailableMetadataFormats() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/availablemetadataformats
-func (m_ MediaSelectionOption) SetAvailableMetadataFormats(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAvailableMetadataFormats:"), objc.String(value))
+func (m_ MediaSelectionOption) SetAvailableMetadataFormats(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
 // An array of metadata items for each common metadata key for which a value is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/commonmetadata
-func (m_ MediaSelectionOption) CommonMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commonMetadata"))
+func (m_ MediaSelectionOption) CommonMetadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (m_ MediaSelectionOption) CommonMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/commonmetadata
-func (m_ MediaSelectionOption) SetCommonMetadata(value unsafe.Pointer) {
+func (m_ MediaSelectionOption) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonMetadata:"), value)
 }
 
 // A string suitable for display using the current system locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/displayname
-func (m_ MediaSelectionOption) DisplayName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("displayName"))
+func (m_ MediaSelectionOption) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (m_ MediaSelectionOption) DisplayName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/displayname
-func (m_ MediaSelectionOption) SetDisplayName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayName:"), objc.String(value))
+func (m_ MediaSelectionOption) SetDisplayName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayName:"), value)
 }
 
 // The IETF BCP 47 language tag associated with the option
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/extendedlanguagetag
-func (m_ MediaSelectionOption) ExtendedLanguageTag() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
+func (m_ MediaSelectionOption) ExtendedLanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (m_ MediaSelectionOption) ExtendedLanguageTag() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/extendedlanguagetag
-func (m_ MediaSelectionOption) SetExtendedLanguageTag(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+func (m_ MediaSelectionOption) SetExtendedLanguageTag(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
 }
 
 // A Boolean value that indicates whether the media selection option is playable.
@@ -172,8 +172,8 @@ func (m_ MediaSelectionOption) SetIsPlayable(value bool) {
 // The locale for which the media option was authored.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locale"))
+func (m_ MediaSelectionOption) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -183,7 +183,7 @@ func (m_ MediaSelectionOption) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/locale
-func (m_ MediaSelectionOption) SetLocale(value unsafe.Pointer) {
+func (m_ MediaSelectionOption) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -201,15 +201,15 @@ func (m_ MediaSelectionOption) MediaSubTypes() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediasubtypes
-func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.Number) {
+func (m_ MediaSelectionOption) SetMediaSubTypes(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSubTypes:"), value)
 }
 
 // The media type of the media data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
-func (m_ MediaSelectionOption) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaType"))
+func (m_ MediaSelectionOption) MediaType() MediaType {
+	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -219,7 +219,7 @@ func (m_ MediaSelectionOption) MediaType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectionoption/mediatype
-func (m_ MediaSelectionOption) SetMediaType(value unsafe.Pointer) {
+func (m_ MediaSelectionOption) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
 }
 

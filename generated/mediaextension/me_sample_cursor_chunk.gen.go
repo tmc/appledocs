@@ -83,8 +83,8 @@ func NewMESampleCursorChunk() MESampleCursorChunk {
 // The byte source to use to read the data for the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk/byteSource
-func (m_ MESampleCursorChunk) ByteSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("byteSource"))
+func (m_ MESampleCursorChunk) ByteSource() MEByteSource {
+	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSource"))
 	return rv
 }
 

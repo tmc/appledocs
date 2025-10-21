@@ -78,8 +78,8 @@ func NewMTRChannelClusterChangeChannelParams() MTRChannelClusterChangeChannelPar
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
-func (m_ MTRChannelClusterChangeChannelParams) Match() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("match"))
+func (m_ MTRChannelClusterChangeChannelParams) Match() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("match"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRChannelClusterChangeChannelParams) Match() string {
 // SetMatch sets the value of the match property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/match
-func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), objc.String(value))
+func (m_ MTRChannelClusterChangeChannelParams) SetMatch(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMatch:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRChannelClusterChangeChannelParams) ServerSideProcessingTimeout() fou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/serversideprocessingtimeout
-func (m_ MTRChannelClusterChangeChannelParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRChannelClusterChangeChannelParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRChannelClusterChangeChannelParams) TimedInvokeTimeoutMs() foundation
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRChannelClusterChangeChannelParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

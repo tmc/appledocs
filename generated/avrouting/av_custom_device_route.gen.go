@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCustomDeviceRoute() CustomDeviceRoute {
 // An identifier to use to establish a connection to a Bluetooth device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomDeviceRoute/bluetoothIdentifier
-func (c_ CustomDeviceRoute) BluetoothIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bluetoothIdentifier"))
+func (c_ CustomDeviceRoute) BluetoothIdentifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("bluetoothIdentifier"))
 	return rv
 }
 
@@ -99,8 +100,8 @@ func (c_ CustomDeviceRoute) NetworkEndpoint() unsafe.Pointer {
 // A reason for an event, such as a user request to activate or deactivate a route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomDeviceRoute) Reason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reason"))
+func (c_ CustomDeviceRoute) Reason() CustomRoutingEventReason {
+	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (c_ CustomDeviceRoute) Reason() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomDeviceRoute) SetReason(value unsafe.Pointer) {
+func (c_ CustomDeviceRoute) SetReason(value ICustomRoutingEventReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
 }
 
 // A route for the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-func (c_ CustomDeviceRoute) Route() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("route"))
+func (c_ CustomDeviceRoute) Route() AVCustomDeviceRoute {
+	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("route"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (c_ CustomDeviceRoute) Route() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-func (c_ CustomDeviceRoute) SetRoute(value unsafe.Pointer) {
+func (c_ CustomDeviceRoute) SetRoute(value IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRoute:"), value)
 }
 

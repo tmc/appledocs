@@ -103,7 +103,7 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) TimedInvokeTim
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

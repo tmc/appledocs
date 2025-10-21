@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,10 +36,10 @@ type ICaptureDevice interface {
 	LockForConfiguration(outError unsafe.Pointer) bool
 	RampToVideoZoomFactorWithRate(factor float64, rate unsafe.Pointer)
 	SetCameraLensSmudgeDetectionEnabledDetectionInterval(cameraLensSmudgeDetectionEnabled bool, detectionInterval unsafe.Pointer)
-	SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode unsafe.Pointer)
-	SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode unsafe.Pointer)
+	SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode)
+	SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode)
 	SetDynamicAspectRatioCompletionHandler(dynamicAspectRatio unsafe.Pointer, handler unsafe.Pointer)
-	SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior unsafe.Pointer, restrictedSwitchingBehaviorConditions unsafe.Pointer)
+	SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions)
 	SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGainsCompletionHandler(whiteBalanceGains unsafe.Pointer, handler unsafe.Pointer)
 	UnlockForConfiguration()
 }
@@ -96,8 +97,8 @@ func NewCaptureDevice() CaptureDevice {
 // Creates an object that represents a device with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
-func NewCaptureDeviceWithUniqueID(deviceUniqueID string) CaptureDevice {
-	rv := objc.Send[CaptureDevice](objc.ID(getCaptureDeviceClass().class), objc.Sel("deviceWithUniqueID:"), objc.String(deviceUniqueID))
+func NewCaptureDeviceWithUniqueID(deviceUniqueID appkit.string) CaptureDevice {
+	rv := objc.Send[CaptureDevice](objc.ID(getCaptureDeviceClass().class), objc.Sel("deviceWithUniqueID:"), deviceUniqueID)
 	return rv
 }
 
@@ -105,31 +106,31 @@ func NewCaptureDeviceWithUniqueID(deviceUniqueID string) CaptureDevice {
 // Returns an authorization status that indicates whether the user grants the app permission to capture media of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/authorizationStatus(for:)
-func (cc _CaptureDeviceClass) AuthorizationStatusForMediaType(mediaType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("authorizationStatusForMediaType:"), mediaType)
+func (cc _CaptureDeviceClass) AuthorizationStatusForMediaType(mediaType MediaType) AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(cc.class), objc.Sel("authorizationStatusForMediaType:"), mediaType)
 	return rv
 }
 
 // Returns the default device for the specified device type, media type, and position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/default(_:for:position:)
-func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType unsafe.Pointer, mediaType unsafe.Pointer, position unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultDeviceWithDeviceType:mediaType:position:"), deviceType, mediaType, position)
+func (cc _CaptureDeviceClass) DefaultDeviceWithDeviceTypeMediaTypePosition(deviceType unsafe.Pointer, mediaType MediaType, position CaptureDevicePosition) CaptureDevice {
+	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("defaultDeviceWithDeviceType:mediaType:position:"), deviceType, mediaType, position)
 	return rv
 }
 
 // Returns the default device that captures the specified media type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/default(for:)
-func (cc _CaptureDeviceClass) DefaultDeviceWithMediaType(mediaType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultDeviceWithMediaType:"), mediaType)
+func (cc _CaptureDeviceClass) DefaultDeviceWithMediaType(mediaType MediaType) CaptureDevice {
+	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("defaultDeviceWithMediaType:"), mediaType)
 	return rv
 }
 
 // Returns devices capable of capturing media of the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/devices(for:)
-func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType unsafe.Pointer) []CaptureDevice {
+func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType MediaType) []CaptureDevice {
 	rv := objc.Send[[]CaptureDevice](objc.ID(cc.class), objc.Sel("devicesWithMediaType:"), mediaType)
 	return rv
 }
@@ -137,15 +138,15 @@ func (cc _CaptureDeviceClass) DevicesWithMediaType(mediaType unsafe.Pointer) []C
 // Creates an object that represents a device with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/init(uniqueID:)
-func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithUniqueID:"), objc.String(deviceUniqueID))
+func (cc _CaptureDeviceClass) DeviceWithUniqueID(deviceUniqueID appkit.string) CaptureDevice {
+	rv := objc.Send[CaptureDevice](objc.ID(cc.class), objc.Sel("deviceWithUniqueID:"), deviceUniqueID)
 	return rv
 }
 
 // Requests the user’s permission to allow the app to capture media of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/requestAccess(for:completionHandler:)
-func (cc _CaptureDeviceClass) RequestAccessForMediaTypeCompletionHandler(mediaType unsafe.Pointer, handler unsafe.Pointer) {
+func (cc _CaptureDeviceClass) RequestAccessForMediaTypeCompletionHandler(mediaType MediaType, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("requestAccessForMediaType:completionHandler:"), mediaType, handler)
 }
 
@@ -166,15 +167,15 @@ func (cc _CaptureDeviceClass) BackgroundReplacementEnabled() bool {
 // A camera the system prefers to use for video and photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera
-func (cc _CaptureDeviceClass) SystemPreferredCamera() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("systemPreferredCamera"))
+func (cc _CaptureDeviceClass) SystemPreferredCamera() CaptureDevice {
+	rv := objc.Send[AVCaptureDevice](objc.ID(cc.class), objc.Sel("systemPreferredCamera"))
 	return rv
 }
 // A camera the user prefers to use for video and photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera
-func (cc _CaptureDeviceClass) UserPreferredCamera() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("userPreferredCamera"))
+func (cc _CaptureDeviceClass) UserPreferredCamera() CaptureDevice {
+	rv := objc.Send[AVCaptureDevice](objc.ID(cc.class), objc.Sel("userPreferredCamera"))
 	return rv
 }
 // Returns a Boolean value that indicates whether the device supports the specified focus mode.
@@ -210,14 +211,14 @@ func (c_ CaptureDevice) SetCameraLensSmudgeDetectionEnabledDetectionInterval(cam
 // Fix focus at a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoFixedFocus(at:focusMode:)
-func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode unsafe.Pointer) {
+func (c_ CaptureDevice) SetCinematicVideoFixedFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoFixedFocusAtPoint:focusMode:"), point, focusMode)
 }
 
 // Focus on and start tracking an object if it can be detected at the region specified by the point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setCinematicVideoTrackingFocus(at:focusMode:)
-func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode unsafe.Pointer) {
+func (c_ CaptureDevice) SetCinematicVideoTrackingFocusAtPointFocusMode(point coregraphics.CGPoint, focusMode CaptureCinematicVideoFocusMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoTrackingFocusAtPoint:focusMode:"), point, focusMode)
 }
 
@@ -231,7 +232,7 @@ func (c_ CaptureDevice) SetDynamicAspectRatioCompletionHandler(dynamicAspectRati
 // Sets the switching behavior of the primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/setPrimaryConstituentDeviceSwitchingBehavior(_:restrictedSwitchingBehaviorConditions:)
-func (c_ CaptureDevice) SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior unsafe.Pointer, restrictedSwitchingBehaviorConditions unsafe.Pointer) {
+func (c_ CaptureDevice) SetPrimaryConstituentDeviceSwitchingBehaviorRestrictedSwitchingBehaviorConditions(switchingBehavior CapturePrimaryConstituentDeviceSwitchingBehavior, restrictedSwitchingBehaviorConditions ICapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:"), switchingBehavior, restrictedSwitchingBehaviorConditions)
 }
 
@@ -314,24 +315,24 @@ func (c_ CaptureDevice) ActiveMicrophoneMode() unsafe.Pointer {
 // A virtual device’s active primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituent
-func (c_ CaptureDevice) ActivePrimaryConstituentDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activePrimaryConstituentDevice"))
+func (c_ CaptureDevice) ActivePrimaryConstituentDevice() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("activePrimaryConstituentDevice"))
 	return rv
 }
 
 // The conditions that restrict camera switching behavior for the active primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
-func (c_ CaptureDevice) ActivePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"))
+func (c_ CaptureDevice) ActivePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions() CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions {
+	rv := objc.Send[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions](c_.ID, objc.Sel("activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions"))
 	return rv
 }
 
 // The switching behavior of the active constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/activePrimaryConstituentDeviceSwitchingBehavior
-func (c_ CaptureDevice) ActivePrimaryConstituentDeviceSwitchingBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activePrimaryConstituentDeviceSwitchingBehavior"))
+func (c_ CaptureDevice) ActivePrimaryConstituentDeviceSwitchingBehavior() CapturePrimaryConstituentDeviceSwitchingBehavior {
+	rv := objc.Send[CapturePrimaryConstituentDeviceSwitchingBehavior](c_.ID, objc.Sel("activePrimaryConstituentDeviceSwitchingBehavior"))
 	return rv
 }
 
@@ -369,8 +370,8 @@ func (c_ CaptureDevice) CenterStageRectOfInterestSupported() bool {
 // A Desk View camera associated with a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/companionDeskViewCamera
-func (c_ CaptureDevice) CompanionDeskViewCamera() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("companionDeskViewCamera"))
+func (c_ CaptureDevice) CompanionDeskViewCamera() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("companionDeskViewCamera"))
 	return rv
 }
 
@@ -689,24 +690,24 @@ func (c_ CaptureDevice) NominalFocalLengthIn35mmFilm() unsafe.Pointer {
 // The conditions that restrict the primary constituent device’s switching behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceRestrictedSwitchingBehaviorConditions-swift.property
-func (c_ CaptureDevice) PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("primaryConstituentDeviceRestrictedSwitchingBehaviorConditions"))
+func (c_ CaptureDevice) PrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions() CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions {
+	rv := objc.Send[CapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions](c_.ID, objc.Sel("primaryConstituentDeviceRestrictedSwitchingBehaviorConditions"))
 	return rv
 }
 
 // The switching behavior for the primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/primaryConstituentDeviceSwitchingBehavior-swift.property
-func (c_ CaptureDevice) PrimaryConstituentDeviceSwitchingBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("primaryConstituentDeviceSwitchingBehavior"))
+func (c_ CaptureDevice) PrimaryConstituentDeviceSwitchingBehavior() CapturePrimaryConstituentDeviceSwitchingBehavior {
+	rv := objc.Send[CapturePrimaryConstituentDeviceSwitchingBehavior](c_.ID, objc.Sel("primaryConstituentDeviceSwitchingBehavior"))
 	return rv
 }
 
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/smartFramingMonitor
-func (c_ CaptureDevice) SmartFramingMonitor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("smartFramingMonitor"))
+func (c_ CaptureDevice) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
+	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
 }
 
@@ -721,16 +722,16 @@ func (c_ CaptureDevice) SupportedFallbackPrimaryConstituentDevices() []CaptureDe
 // A camera the system prefers to use for video and photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPreferredCamera
-func (c_ CaptureDevice) SystemPreferredCamera() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemPreferredCamera"))
+func (c_ CaptureDevice) SystemPreferredCamera() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("systemPreferredCamera"))
 	return rv
 }
 
 // A value that indicates the capture device’s current system pressure state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/systemPressureState-swift.property
-func (c_ CaptureDevice) SystemPressureState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemPressureState"))
+func (c_ CaptureDevice) SystemPressureState() AVCaptureSystemPressureState {
+	rv := objc.Send[AVCaptureSystemPressureState](c_.ID, objc.Sel("systemPressureState"))
 	return rv
 }
 
@@ -745,16 +746,16 @@ func (c_ CaptureDevice) TransportType() unsafe.Pointer {
 // An identifier that uniquely identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/uniqueID
-func (c_ CaptureDevice) UniqueID() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("uniqueID"))
+func (c_ CaptureDevice) UniqueID() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("uniqueID"))
 	return rv
 }
 
 // A camera the user prefers to use for video and photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera
-func (c_ CaptureDevice) UserPreferredCamera() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userPreferredCamera"))
+func (c_ CaptureDevice) UserPreferredCamera() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("userPreferredCamera"))
 	return rv
 }
 
@@ -764,15 +765,15 @@ func (c_ CaptureDevice) UserPreferredCamera() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/userPreferredCamera
-func (c_ CaptureDevice) SetUserPreferredCamera(value unsafe.Pointer) {
+func (c_ CaptureDevice) SetUserPreferredCamera(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserPreferredCamera:"), value)
 }
 
 // A virtual device’s active primary constituent device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeprimaryconstituent
-func (c_ CaptureDevice) ActivePrimaryConstituent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activePrimaryConstituent"))
+func (c_ CaptureDevice) ActivePrimaryConstituent() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("activePrimaryConstituent"))
 	return rv
 }
 
@@ -782,15 +783,15 @@ func (c_ CaptureDevice) ActivePrimaryConstituent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeprimaryconstituent
-func (c_ CaptureDevice) SetActivePrimaryConstituent(value unsafe.Pointer) {
+func (c_ CaptureDevice) SetActivePrimaryConstituent(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActivePrimaryConstituent:"), value)
 }
 
 // The current scene monitoring statuses related to Cinematic Video capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideocapturescenemonitoringstatuses
-func (c_ CaptureDevice) CinematicVideoCaptureSceneMonitoringStatuses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cinematicVideoCaptureSceneMonitoringStatuses"))
+func (c_ CaptureDevice) CinematicVideoCaptureSceneMonitoringStatuses() CaptureSceneMonitoringStatus {
+	rv := objc.Send[CaptureSceneMonitoringStatus](c_.ID, objc.Sel("cinematicVideoCaptureSceneMonitoringStatuses"))
 	return rv
 }
 
@@ -800,7 +801,7 @@ func (c_ CaptureDevice) CinematicVideoCaptureSceneMonitoringStatuses() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideocapturescenemonitoringstatuses
-func (c_ CaptureDevice) SetCinematicVideoCaptureSceneMonitoringStatuses(value unsafe.Pointer) {
+func (c_ CaptureDevice) SetCinematicVideoCaptureSceneMonitoringStatuses(value CaptureSceneMonitoringStatus) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCinematicVideoCaptureSceneMonitoringStatuses:"), value)
 }
 
@@ -1005,8 +1006,8 @@ func (c_ CaptureDevice) SetIsVirtualDevice(value bool) {
 // A localized device name for display in the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/localizedname
-func (c_ CaptureDevice) LocalizedName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
+func (c_ CaptureDevice) LocalizedName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -1016,15 +1017,15 @@ func (c_ CaptureDevice) LocalizedName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/localizedname
-func (c_ CaptureDevice) SetLocalizedName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (c_ CaptureDevice) SetLocalizedName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 // A human-readable string for the manufacturer of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/manufacturer
-func (c_ CaptureDevice) Manufacturer() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("manufacturer"))
+func (c_ CaptureDevice) Manufacturer() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("manufacturer"))
 	return rv
 }
 
@@ -1034,8 +1035,8 @@ func (c_ CaptureDevice) Manufacturer() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/manufacturer
-func (c_ CaptureDevice) SetManufacturer(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setManufacturer:"), objc.String(value))
+func (c_ CaptureDevice) SetManufacturer(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setManufacturer:"), value)
 }
 
 // The maximum frame rate (expressed as a minimum duration) that can be set on an input associated with this device.
@@ -1059,8 +1060,8 @@ func (c_ CaptureDevice) SetMinSupportedLockedVideoFrameDuration(value unsafe.Poi
 // A model identifier for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/modelid
-func (c_ CaptureDevice) ModelID() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("modelID"))
+func (c_ CaptureDevice) ModelID() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("modelID"))
 	return rv
 }
 
@@ -1070,8 +1071,8 @@ func (c_ CaptureDevice) ModelID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/modelid
-func (c_ CaptureDevice) SetModelID(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setModelID:"), objc.String(value))
+func (c_ CaptureDevice) SetModelID(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModelID:"), value)
 }
 
 // The physical position of the capture device hardware.
@@ -1095,8 +1096,8 @@ func (c_ CaptureDevice) SetPosition(value unsafe.Pointer) {
 // Reasons why current environmental conditions aren’t suitable to capturing spatial videos that are comfortable to view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/spatialcapturediscomfortreasons
-func (c_ CaptureDevice) SpatialCaptureDiscomfortReasons() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("spatialCaptureDiscomfortReasons"))
+func (c_ CaptureDevice) SpatialCaptureDiscomfortReasons() SpatialCaptureDiscomfortReason {
+	rv := objc.Send[SpatialCaptureDiscomfortReason](c_.ID, objc.Sel("spatialCaptureDiscomfortReasons"))
 	return rv
 }
 
@@ -1106,15 +1107,15 @@ func (c_ CaptureDevice) SpatialCaptureDiscomfortReasons() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/spatialcapturediscomfortreasons
-func (c_ CaptureDevice) SetSpatialCaptureDiscomfortReasons(value unsafe.Pointer) {
+func (c_ CaptureDevice) SetSpatialCaptureDiscomfortReasons(value ISpatialCaptureDiscomfortReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSpatialCaptureDiscomfortReasons:"), value)
 }
 
 // A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
-func (c_ CaptureDevice) AVCaptureSessionInterruptionSystemPressureStateKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
+func (c_ CaptureDevice) AVCaptureSessionInterruptionSystemPressureStateKey() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
 	return rv
 }
 

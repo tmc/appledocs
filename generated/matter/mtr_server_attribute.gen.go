@@ -87,7 +87,7 @@ func (m_ MTRServerAttribute) AttributeID() foundation.Number {
 // SetAttributeID sets the value of the attributeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/attributeid
-func (m_ MTRServerAttribute) SetAttributeID(value foundation.Number) {
+func (m_ MTRServerAttribute) SetAttributeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
 }
 
@@ -108,8 +108,8 @@ func (m_ MTRServerAttribute) SetIsWritable(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
-func (m_ MTRServerAttribute) RequiredReadPrivilege() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredReadPrivilege"))
+func (m_ MTRServerAttribute) RequiredReadPrivilege() MTRAccessControlEntryPrivilege {
+	rv := objc.Send[MTRAccessControlEntryPrivilege](m_.ID, objc.Sel("requiredReadPrivilege"))
 	return rv
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRServerAttribute) RequiredReadPrivilege() unsafe.Pointer {
 // SetRequiredReadPrivilege sets the value of the requiredReadPrivilege property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
-func (m_ MTRServerAttribute) SetRequiredReadPrivilege(value unsafe.Pointer) {
+func (m_ MTRServerAttribute) SetRequiredReadPrivilege(value IMTRAccessControlEntryPrivilege) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredReadPrivilege:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
-func (m_ MTRServerAttribute) Value() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+func (m_ MTRServerAttribute) Value() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (m_ MTRServerAttribute) Value() string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
-func (m_ MTRServerAttribute) SetValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+func (m_ MTRServerAttribute) SetValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

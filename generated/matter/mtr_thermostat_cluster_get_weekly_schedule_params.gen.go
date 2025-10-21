@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterGetWeeklyScheduleParams) DaysToReturn() foundation.
 // SetDaysToReturn sets the value of the daysToReturn property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/daystoreturn
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetDaysToReturn(value foundation.Number) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetDaysToReturn(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDaysToReturn:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterGetWeeklyScheduleParams) ModeToReturn() foundation.
 // SetModeToReturn sets the value of the modeToReturn property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/modetoreturn
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetModeToReturn(value foundation.Number) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetModeToReturn(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeToReturn:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThermostatClusterGetWeeklyScheduleParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRThermostatClusterGetWeeklyScheduleParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustergetweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThermostatClusterGetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

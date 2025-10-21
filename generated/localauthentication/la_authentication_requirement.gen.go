@@ -81,7 +81,7 @@ func NewAuthenticationRequirement() AuthenticationRequirement {
 // Creates a requirement that requires biometric authentication or a fallback requirement that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry(fallback:)
-func (ac _AuthenticationRequirementClass) BiometryRequirementWithFallback(fallback unsafe.Pointer) unsafe.Pointer {
+func (ac _AuthenticationRequirementClass) BiometryRequirementWithFallback(fallback ILABiometryFallbackRequirement) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("biometryRequirementWithFallback:"), fallback)
 	return rv
 }
@@ -89,45 +89,45 @@ func (ac _AuthenticationRequirementClass) BiometryRequirementWithFallback(fallba
 // The requirement that requires biometric authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry
-func (ac _AuthenticationRequirementClass) BiometryRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("biometryRequirement"))
+func (ac _AuthenticationRequirementClass) BiometryRequirement() AuthenticationRequirement {
+	rv := objc.Send[LAAuthenticationRequirement](objc.ID(ac.class), objc.Sel("biometryRequirement"))
 	return rv
 }
 // The requirement that requires user authentication with the current set of biometrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometryCurrentSet
-func (ac _AuthenticationRequirementClass) BiometryCurrentSetRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("biometryCurrentSetRequirement"))
+func (ac _AuthenticationRequirementClass) BiometryCurrentSetRequirement() AuthenticationRequirement {
+	rv := objc.Send[LAAuthenticationRequirement](objc.ID(ac.class), objc.Sel("biometryCurrentSetRequirement"))
 	return rv
 }
 // The requirement that requires user authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/default
-func (ac _AuthenticationRequirementClass) DefaultRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("defaultRequirement"))
+func (ac _AuthenticationRequirementClass) DefaultRequirement() AuthenticationRequirement {
+	rv := objc.Send[LAAuthenticationRequirement](objc.ID(ac.class), objc.Sel("defaultRequirement"))
 	return rv
 }
 // The requirement that requires biometric authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometry
-func (a_ AuthenticationRequirement) BiometryRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("biometryRequirement"))
+func (a_ AuthenticationRequirement) BiometryRequirement() LAAuthenticationRequirement {
+	rv := objc.Send[LAAuthenticationRequirement](a_.ID, objc.Sel("biometryRequirement"))
 	return rv
 }
 
 // The requirement that requires user authentication with the current set of biometrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/biometryCurrentSet
-func (a_ AuthenticationRequirement) BiometryCurrentSetRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("biometryCurrentSetRequirement"))
+func (a_ AuthenticationRequirement) BiometryCurrentSetRequirement() LAAuthenticationRequirement {
+	rv := objc.Send[LAAuthenticationRequirement](a_.ID, objc.Sel("biometryCurrentSetRequirement"))
 	return rv
 }
 
 // The requirement that requires user authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAAuthenticationRequirement/default
-func (a_ AuthenticationRequirement) DefaultRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("defaultRequirement"))
+func (a_ AuthenticationRequirement) DefaultRequirement() LAAuthenticationRequirement {
+	rv := objc.Send[LAAuthenticationRequirement](a_.ID, objc.Sel("defaultRequirement"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _AMWorkspaceClass struct {
 // An interface definition for the [AMWorkspace] class.
 type IAMWorkspace interface {
 	objectivec.IObject
-	RunWorkflowAtPathWithInputError(path string, input objc.ID, error_ unsafe.Pointer) objc.ID
+	RunWorkflowAtPathWithInputError(path appkit.string, input objectivec.IObject, error_ unsafe.Pointer) objc.ID
 }
 
 // A workspace for running an Automator workflow.
@@ -84,23 +85,23 @@ func NewAMWorkspace() AMWorkspace {
 // The shared workspace object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-func (ac _AMWorkspaceClass) SharedWorkspace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedWorkspace"))
+func (ac _AMWorkspaceClass) SharedWorkspace() AMWorkspace {
+	rv := objc.Send[AMWorkspace](objc.ID(ac.class), objc.Sel("sharedWorkspace"))
 	return rv
 }
 // Loads and runs the specified workflow file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/runWorkflow(atPath:withInput:)
-func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path string, input objc.ID, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), objc.String(path), input, error_)
+func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path appkit.string, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), path, input, error_)
 	return rv
 }
 
 // The shared workspace object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-func (a_ AMWorkspace) SharedWorkspace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedWorkspace"))
+func (a_ AMWorkspace) SharedWorkspace() AMWorkspace {
+	rv := objc.Send[AMWorkspace](a_.ID, objc.Sel("sharedWorkspace"))
 	return rv
 }
 

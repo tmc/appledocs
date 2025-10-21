@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) Arg1() fo
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestsimpleoptionalargumentrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) SetArg1(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) SetArg1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) ServerSid
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestsimpleoptionalargumentrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) TimedInvo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

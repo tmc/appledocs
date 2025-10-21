@@ -160,8 +160,8 @@ func (i_ Image) SetHeight(value int) {
 // A string to help identify this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/label
-func (i_ Image) Label() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("label"))
+func (i_ Image) Label() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -171,8 +171,8 @@ func (i_ Image) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/label
-func (i_ Image) SetLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (i_ Image) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The number of images for batch processing.
@@ -195,8 +195,8 @@ func (i_ Image) SetNumberOfImages(value int) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/parent
-func (i_ Image) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("parent"))
+func (i_ Image) Parent() MPSImage {
+	rv := objc.Send[MPSImage](i_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -204,7 +204,7 @@ func (i_ Image) Parent() unsafe.Pointer {
 // SetParent sets the value of the parent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/parent
-func (i_ Image) SetParent(value unsafe.Pointer) {
+func (i_ Image) SetParent(value IMPSImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParent:"), value)
 }
 

@@ -88,7 +88,7 @@ func NewSFSafariViewController() SFSafariViewController {
 // Initializes a Safari view controller that loads the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:)
-func NewSFSafariViewControllerWithURL(URL foundation.URL) SFSafariViewController {
+func NewSFSafariViewControllerWithURL(URL foundation.IURL) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewSFSafariViewControllerWithURL(URL foundation.URL) SFSafariViewController
 // Initializes and configures a Safari view controller that loads the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:configuration:)
-func NewSFSafariViewControllerWithURLConfiguration(URL foundation.URL, configuration unsafe.Pointer) SFSafariViewController {
+func NewSFSafariViewControllerWithURLConfiguration(URL foundation.IURL, configuration ISFSafariViewControllerConfiguration) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:configuration:"), URL, configuration)
 	rv.Autorelease()
@@ -112,7 +112,7 @@ func NewSFSafariViewControllerWithURLConfiguration(URL foundation.URL, configura
 // Initializes a Safari view controller that will load the specified URL, entering Reader mode if Reader mode is requested and available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/init(url:entersReaderIfAvailable:)
-func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL foundation.URL, entersReaderIfAvailable bool) SFSafariViewController {
+func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL foundation.IURL, entersReaderIfAvailable bool) SFSafariViewController {
 	instance := getSFSafariViewControllerClass().Alloc()
 	rv := objc.Send[SFSafariViewController](instance.ID, objc.Sel("initWithURL:entersReaderIfAvailable:"), URL, entersReaderIfAvailable)
 	rv.Autorelease()
@@ -122,16 +122,16 @@ func NewSFSafariViewControllerWithURLEntersReaderIfAvailable(URL foundation.URL,
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/prewarmConnections(to:)
-func (sc _SFSafariViewControllerClass) PrewarmConnectionsToURLs(URLs unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("prewarmConnectionsToURLs:"), URLs)
+func (sc _SFSafariViewControllerClass) PrewarmConnectionsToURLs(URLs []foundation.IURL) SFSafariViewControllerPrewarmingToken {
+	rv := objc.Send[SFSafariViewControllerPrewarmingToken](objc.ID(sc.class), objc.Sel("prewarmConnectionsToURLs:"), URLs)
 	return rv
 }
 
 // A copy of the Safari view controller’s initialized configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/configuration-swift.property
-func (s_ SFSafariViewController) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("configuration"))
+func (s_ SFSafariViewController) Configuration() SFSafariViewControllerConfiguration {
+	rv := objc.Send[SFSafariViewControllerConfiguration](s_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -156,8 +156,8 @@ func (s_ SFSafariViewController) SetDelegate(value objc.ID) {
 // The style of dismiss button to use in the navigation bar to close the Safari view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/dismissButtonStyle-swift.property
-func (s_ SFSafariViewController) DismissButtonStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dismissButtonStyle"))
+func (s_ SFSafariViewController) DismissButtonStyle() SFSafariViewControllerDismissButtonStyle {
+	rv := objc.Send[SFSafariViewControllerDismissButtonStyle](s_.ID, objc.Sel("dismissButtonStyle"))
 	return rv
 }
 
@@ -167,15 +167,15 @@ func (s_ SFSafariViewController) DismissButtonStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/dismissButtonStyle-swift.property
-func (s_ SFSafariViewController) SetDismissButtonStyle(value unsafe.Pointer) {
+func (s_ SFSafariViewController) SetDismissButtonStyle(value SFSafariViewControllerDismissButtonStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDismissButtonStyle:"), value)
 }
 
 // The color to tint the background of the navigation bar and the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredBarTintColor
-func (s_ SFSafariViewController) PreferredBarTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preferredBarTintColor"))
+func (s_ SFSafariViewController) PreferredBarTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("preferredBarTintColor"))
 	return rv
 }
 
@@ -185,15 +185,15 @@ func (s_ SFSafariViewController) PreferredBarTintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredBarTintColor
-func (s_ SFSafariViewController) SetPreferredBarTintColor(value unsafe.Pointer) {
+func (s_ SFSafariViewController) SetPreferredBarTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredBarTintColor:"), value)
 }
 
 // The color to tint the control buttons on the navigation bar and the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
-func (s_ SFSafariViewController) PreferredControlTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("preferredControlTintColor"))
+func (s_ SFSafariViewController) PreferredControlTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("preferredControlTintColor"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (s_ SFSafariViewController) PreferredControlTintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
-func (s_ SFSafariViewController) SetPreferredControlTintColor(value unsafe.Pointer) {
+func (s_ SFSafariViewController) SetPreferredControlTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredControlTintColor:"), value)
 }
 

@@ -86,7 +86,7 @@ func NewEraserTool() EraserTool {
 // Creates an eraser tool object that removes objects wholly or partially from a canvas view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/init(eraserType:)
-func NewEraserToolWithEraserType(eraserType unsafe.Pointer) EraserTool {
+func NewEraserToolWithEraserType(eraserType EraserType) EraserTool {
 	instance := getEraserToolClass().Alloc()
 	rv := objc.Send[EraserTool](instance.ID, objc.Sel("initWithEraserType:"), eraserType)
 	rv.Autorelease()
@@ -95,7 +95,7 @@ func NewEraserToolWithEraserType(eraserType unsafe.Pointer) EraserTool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/init(eraserType:width:)
-func NewEraserToolWithEraserTypeWidth(eraserType unsafe.Pointer, width float64) EraserTool {
+func NewEraserToolWithEraserTypeWidth(eraserType EraserType, width float64) EraserTool {
 	instance := getEraserToolClass().Alloc()
 	rv := objc.Send[EraserTool](instance.ID, objc.Sel("initWithEraserType:width:"), eraserType, width)
 	rv.Autorelease()
@@ -106,7 +106,7 @@ func NewEraserToolWithEraserTypeWidth(eraserType unsafe.Pointer, width float64) 
 // The default width for the specified eraser type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/defaultWidth(for:)
-func (ec _EraserToolClass) DefaultWidthForEraserType(eraserType unsafe.Pointer) float64 {
+func (ec _EraserToolClass) DefaultWidthForEraserType(eraserType EraserType) float64 {
 	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("defaultWidthForEraserType:"), eraserType)
 	return rv
 }
@@ -114,7 +114,7 @@ func (ec _EraserToolClass) DefaultWidthForEraserType(eraserType unsafe.Pointer) 
 // The maximum width for the specified eraser type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/maximumWidth(for:)
-func (ec _EraserToolClass) MaximumWidthForEraserType(eraserType unsafe.Pointer) float64 {
+func (ec _EraserToolClass) MaximumWidthForEraserType(eraserType EraserType) float64 {
 	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("maximumWidthForEraserType:"), eraserType)
 	return rv
 }
@@ -122,7 +122,7 @@ func (ec _EraserToolClass) MaximumWidthForEraserType(eraserType unsafe.Pointer) 
 // The minimum width for the specified eraser type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/minimumWidth(for:)
-func (ec _EraserToolClass) MinimumWidthForEraserType(eraserType unsafe.Pointer) float64 {
+func (ec _EraserToolClass) MinimumWidthForEraserType(eraserType EraserType) float64 {
 	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("minimumWidthForEraserType:"), eraserType)
 	return rv
 }
@@ -130,8 +130,8 @@ func (ec _EraserToolClass) MinimumWidthForEraserType(eraserType unsafe.Pointer) 
 // The behavior adopted by the eraser when deleting content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKEraserToolReference/eraserType
-func (e_ EraserTool) EraserType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("eraserType"))
+func (e_ EraserTool) EraserType() EraserType {
+	rv := objc.Send[EraserType](e_.ID, objc.Sel("eraserType"))
 	return rv
 }
 

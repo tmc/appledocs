@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,24 +82,24 @@ func NewPasswordCredential() PasswordCredential {
 // Creates a password credential instance with a given user name and password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/credentialWithUser:password:
-func (pc _PasswordCredentialClass) CredentialWithUserPassword(user string, password string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("credentialWithUser:password:"), objc.String(user), objc.String(password))
+func (pc _PasswordCredentialClass) CredentialWithUserPassword(user appkit.string, password appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("credentialWithUser:password:"), user, password)
 	return rv
 }
 
 // The password for a password credential object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredential/password
-func (p_ PasswordCredential) Password() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("password"))
+func (p_ PasswordCredential) Password() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("password"))
 	return rv
 }
 
 // The user for a password credential object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-func (p_ PasswordCredential) User() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("user"))
+func (p_ PasswordCredential) User() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -108,8 +109,8 @@ func (p_ PasswordCredential) User() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasswordcredential/user
-func (p_ PasswordCredential) SetUser(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), objc.String(value))
+func (p_ PasswordCredential) SetUser(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUser:"), value)
 }
 
 

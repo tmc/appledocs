@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,24 +84,24 @@ func NewWebsiteDataStore() WebsiteDataStore {
 // Returns the default data store, which stores data persistently to disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataStore/default()
-func (wc _WebsiteDataStoreClass) DefaultDataStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("defaultDataStore"))
+func (wc _WebsiteDataStoreClass) DefaultDataStore() WebsiteDataStore {
+	rv := objc.Send[WebsiteDataStore](objc.ID(wc.class), objc.Sel("defaultDataStore"))
 	return rv
 }
 
 // Creates a new data store object that stores website data in memory, and doesn’t write that data to disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebsiteDataStore/nonPersistent()
-func (wc _WebsiteDataStoreClass) NonPersistentDataStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("nonPersistentDataStore"))
+func (wc _WebsiteDataStoreClass) NonPersistentDataStore() WebsiteDataStore {
+	rv := objc.Send[WebsiteDataStore](objc.ID(wc.class), objc.Sel("nonPersistentDataStore"))
 	return rv
 }
 
 // The object you use to get and set the site’s cookies and to track the cached data objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/websitedatastore
-func (w_ WebsiteDataStore) WebsiteDataStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("websiteDataStore"))
+func (w_ WebsiteDataStore) WebsiteDataStore() WKWebsiteDataStore {
+	rv := objc.Send[WKWebsiteDataStore](w_.ID, objc.Sel("websiteDataStore"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (w_ WebsiteDataStore) WebsiteDataStore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/websitedatastore
-func (w_ WebsiteDataStore) SetWebsiteDataStore(value unsafe.Pointer) {
+func (w_ WebsiteDataStore) SetWebsiteDataStore(value IWKWebsiteDataStore) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebsiteDataStore:"), value)
 }
 
 // The object that manages the HTTP cookies for your website.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/httpcookiestore
-func (w_ WebsiteDataStore) HttpCookieStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("httpCookieStore"))
+func (w_ WebsiteDataStore) HttpCookieStore() WKHTTPCookieStore {
+	rv := objc.Send[WKHTTPCookieStore](w_.ID, objc.Sel("httpCookieStore"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (w_ WebsiteDataStore) HttpCookieStore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/httpcookiestore
-func (w_ WebsiteDataStore) SetHttpCookieStore(value unsafe.Pointer) {
+func (w_ WebsiteDataStore) SetHttpCookieStore(value IWKHTTPCookieStore) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHttpCookieStore:"), value)
 }
 
 // An identifier that uniquely identifies a data store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/identifier
-func (w_ WebsiteDataStore) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("identifier"))
+func (w_ WebsiteDataStore) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](w_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (w_ WebsiteDataStore) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebsitedatastore/identifier
-func (w_ WebsiteDataStore) SetIdentifier(value unsafe.Pointer) {
+func (w_ WebsiteDataStore) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setIdentifier:"), value)
 }
 

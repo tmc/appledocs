@@ -83,8 +83,8 @@ func NewPHContentEditingInputRequestOptions() PHContentEditingInputRequestOption
 // A block to be called when Photos needs to determine whether your app can continue previous edits made to an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/canHandleAdjustmentData
-func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("canHandleAdjustmentData"))
+func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("canHandleAdjustmentData"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/canHandleAdjustmentData
-func (p_ PHContentEditingInputRequestOptions) SetCanHandleAdjustmentData(value bool) {
+func (p_ PHContentEditingInputRequestOptions) SetCanHandleAdjustmentData(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanHandleAdjustmentData:"), value)
 }
 
@@ -114,6 +114,24 @@ func (p_ PHContentEditingInputRequestOptions) NetworkAccessAllowed() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/isNetworkAccessAllowed
 func (p_ PHContentEditingInputRequestOptions) SetNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkAccessAllowed:"), value)
+}
+
+// A block Photos calls periodically while downloading the asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/progressHandler
+func (p_ PHContentEditingInputRequestOptions) ProgressHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progressHandler"))
+	return rv
+}
+
+
+// SetProgressHandler sets the value of the progressHandler property.
+// A block Photos calls periodically while downloading the asset.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInputRequestOptions/progressHandler
+func (p_ PHContentEditingInputRequestOptions) SetProgressHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
 
 // A Boolean value that specifies whether Photos can download the asset from iCloud.

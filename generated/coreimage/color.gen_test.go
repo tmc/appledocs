@@ -9,6 +9,13 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewColor
 
+// ExampleNewColorWithColor demonstrates how to create a Color instance using NewColorWithColor.
+func ExampleNewColorWithColor() {
+	_ = coreimage.NewColorWithColor(
+		coreimage.Color{}, // color Color
+	)
+	// Output:
+}
 // ExampleNewColorWithRedGreenBlue demonstrates how to create a Color instance using NewColorWithRedGreenBlue.
 // Initialize a Core Image color object in the sRGB color space   with the specified red, green, and blue component values.
 func ExampleNewColorWithRedGreenBlue() {
@@ -27,14 +34,6 @@ func ExampleNewColorWithRedGreenBlueAlpha() {
 		0.0, // green float64
 		0.0, // blue float64
 		0.0, // alpha float64
-	)
-	// Output:
-}
-// ExampleNewColorWithString demonstrates how to create a Color instance using NewColorWithString.
-// Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
-func ExampleNewColorWithString() {
-	_ = coreimage.NewColorWithString(
-		"representation", // representation string
 	)
 	// Output:
 }

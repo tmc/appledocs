@@ -90,8 +90,8 @@ func (s_ StateConstraint) BufferShape() []foundation.Number {
 // The data type of scalars in the state buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLStateConstraint/dataType
-func (s_ StateConstraint) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dataType"))
+func (s_ StateConstraint) DataType() MultiArrayDataType {
+	rv := objc.Send[MultiArrayDataType](s_.ID, objc.Sel("dataType"))
 	return rv
 }
 

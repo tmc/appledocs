@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,7 +78,7 @@ func NewGramMatrixCalculationGradient() GramMatrixCalculationGradient {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationGradient/init(coder:device:)
-func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) GramMatrixCalculationGradient {
+func NewGramMatrixCalculationGradientWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) GramMatrixCalculationGradient {
 	instance := getGramMatrixCalculationGradientClass().Alloc()
 	rv := objc.Send[GramMatrixCalculationGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

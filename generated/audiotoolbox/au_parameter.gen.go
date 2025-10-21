@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,11 +31,11 @@ type _ParameterClass struct {
 // An interface definition for the [Parameter] class.
 type IParameter interface {
 	IParameterNode
-	SetValueOriginator(value unsafe.Pointer, originator unsafe.Pointer)
-	SetValueOriginatorAtHostTime(value unsafe.Pointer, originator unsafe.Pointer, hostTime uint64)
-	SetValueOriginatorAtHostTimeEventType(value unsafe.Pointer, originator unsafe.Pointer, hostTime uint64, eventType unsafe.Pointer)
-	StringFromValue(value unsafe.Pointer) string
-	ValueFromString(string_ string) unsafe.Pointer
+	SetValueOriginator(value IValue, originator IParameterObserverToken)
+	SetValueOriginatorAtHostTime(value IValue, originator IParameterObserverToken, hostTime uint64)
+	SetValueOriginatorAtHostTimeEventType(value IValue, originator IParameterObserverToken, hostTime uint64, eventType ParameterAutomationEventType)
+	StringFromValue(value IAUValue) foundation.String
+	ValueFromString(string_ appkit.string) Value
 }
 
 // An object that represents a single audio unit parameter.
@@ -88,44 +89,44 @@ func NewParameter() Parameter {
 // Sets the parameter’s value, avoiding redundant notifications to the originator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:)
-func (p_ Parameter) SetValueOriginator(value unsafe.Pointer, originator unsafe.Pointer) {
+func (p_ Parameter) SetValueOriginator(value IValue, originator IParameterObserverToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:"), value, originator)
 }
 
 // Sets the parameter’s value, preserving the host time of the gesture that initiated the change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:)
-func (p_ Parameter) SetValueOriginatorAtHostTime(value unsafe.Pointer, originator unsafe.Pointer, hostTime uint64) {
+func (p_ Parameter) SetValueOriginatorAtHostTime(value IValue, originator IParameterObserverToken, hostTime uint64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:"), value, originator, hostTime)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/setValue(_:originator:atHostTime:eventType:)
-func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value unsafe.Pointer, originator unsafe.Pointer, hostTime uint64, eventType unsafe.Pointer) {
+func (p_ Parameter) SetValueOriginatorAtHostTimeEventType(value IValue, originator IParameterObserverToken, hostTime uint64, eventType ParameterAutomationEventType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:originator:atHostTime:eventType:"), value, originator, hostTime, eventType)
 }
 
 // Gets the string representation of a parameter value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/string(fromValue:)
-func (p_ Parameter) StringFromValue(value unsafe.Pointer) string {
-	rv := objc.Send[string](p_.ID, objc.Sel("stringFromValue:"), value)
+func (p_ Parameter) StringFromValue(value IAUValue) foundation.String {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("stringFromValue:"), value)
 	return rv
 }
 
 // Converts a string into a parameter value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value(from:)
-func (p_ Parameter) ValueFromString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("valueFromString:"), objc.String(string_))
+func (p_ Parameter) ValueFromString(string_ appkit.string) Value {
+	rv := objc.Send[Value](p_.ID, objc.Sel("valueFromString:"), string_)
 	return rv
 }
 
 // The parameter’s address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/address
-func (p_ Parameter) Address() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("address"))
+func (p_ Parameter) Address() ParameterAddress {
+	rv := objc.Send[ParameterAddress](p_.ID, objc.Sel("address"))
 	return rv
 }
 
@@ -140,48 +141,48 @@ func (p_ Parameter) DependentParameters() []foundation.Number {
 // The parameter’s characteristic details.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/flags
-func (p_ Parameter) Flags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("flags"))
+func (p_ Parameter) Flags() AudioUnitParameterOptions {
+	rv := objc.Send[AudioUnitParameterOptions](p_.ID, objc.Sel("flags"))
 	return rv
 }
 
 // The parameter’s maximum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/maxValue
-func (p_ Parameter) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("maxValue"))
+func (p_ Parameter) MaxValue() Value {
+	rv := objc.Send[Value](p_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
 // The parameter’s minimum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/minValue
-func (p_ Parameter) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("minValue"))
+func (p_ Parameter) MinValue() Value {
+	rv := objc.Send[Value](p_.ID, objc.Sel("minValue"))
 	return rv
 }
 
 // The parameter’s unit of measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unit
-func (p_ Parameter) Unit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("unit"))
+func (p_ Parameter) Unit() AudioUnitParameterUnit {
+	rv := objc.Send[AudioUnitParameterUnit](p_.ID, objc.Sel("unit"))
 	return rv
 }
 
 // The parameter’s localized unit name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/unitName
-func (p_ Parameter) UnitName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("unitName"))
+func (p_ Parameter) UnitName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("unitName"))
 	return rv
 }
 
 // The parameter’s current value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
-func (p_ Parameter) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("value"))
+func (p_ Parameter) Value() Value {
+	rv := objc.Send[Value](p_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (p_ Parameter) Value() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameter/value
-func (p_ Parameter) SetValue(value unsafe.Pointer) {
+func (p_ Parameter) SetValue(value IValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:"), value)
 }
 

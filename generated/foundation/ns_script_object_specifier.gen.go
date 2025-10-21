@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewScriptObjectSpecifier() ScriptObjectSpecifier {
 // Returns an object initialized with the given attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerClassDescription:containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc unsafe.Pointer, container unsafe.Pointer, property string) ScriptObjectSpecifier {
+func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc IScriptClassDescription, container IScriptObjectSpecifier, property appkit.string) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, objc.String(property))
+	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, property)
 	rv.Autorelease()
 	return rv
 }
@@ -97,9 +98,9 @@ func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(
 // Returns an object initialized with a given container specifier and key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerSpecifierKey(container unsafe.Pointer, property string) ScriptObjectSpecifier {
+func NewScriptObjectSpecifierWithContainerSpecifierKey(container IScriptObjectSpecifier, property appkit.string) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, objc.String(property))
+	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, property)
 	rv.Autorelease()
 	return rv
 }
@@ -108,8 +109,8 @@ func NewScriptObjectSpecifierWithContainerSpecifierKey(container unsafe.Pointer,
 // Sets the receiver’s child reference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/child
-func (s_ ScriptObjectSpecifier) Child() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("child"))
+func (s_ ScriptObjectSpecifier) Child() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("child"))
 	return rv
 }
 
@@ -119,15 +120,15 @@ func (s_ ScriptObjectSpecifier) Child() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/child
-func (s_ ScriptObjectSpecifier) SetChild(value unsafe.Pointer) {
+func (s_ ScriptObjectSpecifier) SetChild(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setChild:"), value)
 }
 
 // Sets the container specifier of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/container
-func (s_ ScriptObjectSpecifier) Container() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("container"))
+func (s_ ScriptObjectSpecifier) Container() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("container"))
 	return rv
 }
 
@@ -137,15 +138,15 @@ func (s_ ScriptObjectSpecifier) Container() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/container
-func (s_ ScriptObjectSpecifier) SetContainer(value unsafe.Pointer) {
+func (s_ ScriptObjectSpecifier) SetContainer(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainer:"), value)
 }
 
 // Sets the class description of the receiver’s container specifier to a given specifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerclassdescription
-func (s_ ScriptObjectSpecifier) ContainerClassDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("containerClassDescription"))
+func (s_ ScriptObjectSpecifier) ContainerClassDescription() NSScriptClassDescription {
+	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("containerClassDescription"))
 	return rv
 }
 
@@ -155,7 +156,7 @@ func (s_ ScriptObjectSpecifier) ContainerClassDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/containerclassdescription
-func (s_ ScriptObjectSpecifier) SetContainerClassDescription(value unsafe.Pointer) {
+func (s_ ScriptObjectSpecifier) SetContainerClassDescription(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setContainerClassDescription:"), value)
 }
 
@@ -198,8 +199,8 @@ func (s_ ScriptObjectSpecifier) SetContainerIsRangeContainerObject(value bool) {
 // Returns an Apple event descriptor that represents the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/descriptor
-func (s_ ScriptObjectSpecifier) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("descriptor"))
+func (s_ ScriptObjectSpecifier) Descriptor() NSAppleEventDescriptor {
+	rv := objc.Send[NSAppleEventDescriptor](s_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
@@ -209,15 +210,15 @@ func (s_ ScriptObjectSpecifier) Descriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/descriptor
-func (s_ ScriptObjectSpecifier) SetDescriptor(value unsafe.Pointer) {
+func (s_ ScriptObjectSpecifier) SetDescriptor(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDescriptor:"), value)
 }
 
 // Returns the object specifier in which an evaluation error occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerror
-func (s_ ScriptObjectSpecifier) EvaluationError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("evaluationError"))
+func (s_ ScriptObjectSpecifier) EvaluationError() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](s_.ID, objc.Sel("evaluationError"))
 	return rv
 }
 
@@ -227,7 +228,7 @@ func (s_ ScriptObjectSpecifier) EvaluationError() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/evaluationerror
-func (s_ ScriptObjectSpecifier) SetEvaluationError(value unsafe.Pointer) {
+func (s_ ScriptObjectSpecifier) SetEvaluationError(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluationError:"), value)
 }
 
@@ -252,8 +253,8 @@ func (s_ ScriptObjectSpecifier) SetEvaluationErrorNumber(value int) {
 // Sets the key of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
-func (s_ ScriptObjectSpecifier) Key() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("key"))
+func (s_ ScriptObjectSpecifier) Key() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -263,15 +264,15 @@ func (s_ ScriptObjectSpecifier) Key() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/key
-func (s_ ScriptObjectSpecifier) SetKey(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), objc.String(value))
+func (s_ ScriptObjectSpecifier) SetKey(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setKey:"), value)
 }
 
 // Returns the class description of the objects specified by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
-func (s_ ScriptObjectSpecifier) KeyClassDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("keyClassDescription"))
+func (s_ ScriptObjectSpecifier) KeyClassDescription() NSScriptClassDescription {
+	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("keyClassDescription"))
 	return rv
 }
 
@@ -281,7 +282,7 @@ func (s_ ScriptObjectSpecifier) KeyClassDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
-func (s_ ScriptObjectSpecifier) SetKeyClassDescription(value unsafe.Pointer) {
+func (s_ ScriptObjectSpecifier) SetKeyClassDescription(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyClassDescription:"), value)
 }
 

@@ -88,7 +88,7 @@ func (m_ MTRSubscribeParams) AutoResubscribe() foundation.Number {
 // SetAutoResubscribe sets the value of the autoResubscribe property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/autoresubscribe
-func (m_ MTRSubscribeParams) SetAutoResubscribe(value foundation.Number) {
+func (m_ MTRSubscribeParams) SetAutoResubscribe(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoResubscribe:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRSubscribeParams) KeepPreviousSubscriptions() foundation.Number {
 // SetKeepPreviousSubscriptions sets the value of the keepPreviousSubscriptions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/keepprevioussubscriptions
-func (m_ MTRSubscribeParams) SetKeepPreviousSubscriptions(value foundation.Number) {
+func (m_ MTRSubscribeParams) SetKeepPreviousSubscriptions(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeepPreviousSubscriptions:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRSubscribeParams) MaxInterval() foundation.Number {
 // SetMaxInterval sets the value of the maxInterval property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/maxinterval
-func (m_ MTRSubscribeParams) SetMaxInterval(value foundation.Number) {
+func (m_ MTRSubscribeParams) SetMaxInterval(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxInterval:"), value)
 }
 
@@ -133,7 +133,7 @@ func (m_ MTRSubscribeParams) MinInterval() foundation.Number {
 // SetMinInterval sets the value of the minInterval property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsubscribeparams/mininterval
-func (m_ MTRSubscribeParams) SetMinInterval(value foundation.Number) {
+func (m_ MTRSubscribeParams) SetMinInterval(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinInterval:"), value)
 }
 

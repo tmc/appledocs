@@ -156,8 +156,8 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPoint
 // Sets the curve basis function, determining how Metal interpolates the control points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvebasis
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("curveBasis"))
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() CurveBasis {
+	rv := objc.Send[CurveBasis](m_.ID, objc.Sel("curveBasis"))
 	return rv
 }
 
@@ -167,15 +167,15 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvebasis
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveBasis(value unsafe.Pointer) {
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveBasis(value ICurveBasis) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurveBasis:"), value)
 }
 
 // Configures the type of curve end caps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curveendcaps
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("curveEndCaps"))
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() CurveEndCaps {
+	rv := objc.Send[CurveEndCaps](m_.ID, objc.Sel("curveEndCaps"))
 	return rv
 }
 
@@ -185,15 +185,15 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curveendcaps
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(value unsafe.Pointer) {
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(value ICurveEndCaps) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurveEndCaps:"), value)
 }
 
 // Controls the curve type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvetype
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("curveType"))
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveType() CurveType {
+	rv := objc.Send[CurveType](m_.ID, objc.Sel("curveType"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveType() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvetype
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveType(value unsafe.Pointer) {
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveType(value CurveType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurveType:"), value)
 }
 
@@ -228,8 +228,8 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBuffer(
 // Configures the size of the indices the
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/indextype
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("indexType"))
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](m_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) IndexType() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/indextype
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndexType:"), value)
 }
 

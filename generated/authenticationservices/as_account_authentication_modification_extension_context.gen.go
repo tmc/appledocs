@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [AccountAuthenticationModificationExtensionContext] class.
@@ -30,7 +31,7 @@ type _AccountAuthenticationModificationExtensionContextClass struct {
 // An interface definition for the [AccountAuthenticationModificationExtensionContext] class.
 type IAccountAuthenticationModificationExtensionContext interface {
 	foundation.IExtensionContext
-	CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential unsafe.Pointer, userInfo objc.ID)
+	CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential IASPasswordCredential, userInfo objectivec.IObject)
 }
 
 // An object that you interact with to change an account’s password or to upgrade to Sign in with Apple.
@@ -84,15 +85,15 @@ func NewAccountAuthenticationModificationExtensionContext() AccountAuthenticatio
 // Completes a request to update an account’s authentication credentials from using a weak password to using a strong password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationExtensionContext/completeChangePasswordRequest(updatedCredential:userInfo:)
-func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential unsafe.Pointer, userInfo objc.ID) {
+func (a_ AccountAuthenticationModificationExtensionContext) CompleteChangePasswordRequestWithUpdatedCredentialUserInfo(updatedCredential IASPasswordCredential, userInfo objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("completeChangePasswordRequestWithUpdatedCredential:userInfo:"), updatedCredential, userInfo)
 }
 
 // A key that specifies a string value to show to the user when a request fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey
-func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
+func (a_ AccountAuthenticationModificationExtensionContext) ASExtensionLocalizedFailureReasonErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("ASExtensionLocalizedFailureReasonErrorKey"))
 	return rv
 }
 

@@ -30,9 +30,9 @@ type _AppleEventDescriptorClass struct {
 // An interface definition for the [AppleEventDescriptor] class.
 type IAppleEventDescriptor interface {
 	objectivec.IObject
-	DescriptorAtIndex(index int) unsafe.Pointer
-	AttributeDescriptorForKeyword(keyword unsafe.Pointer) unsafe.Pointer
-	InsertDescriptorAtIndex(descriptor unsafe.Pointer, index int)
+	DescriptorAtIndex(index int) AppleEventDescriptor
+	AttributeDescriptorForKeyword(keyword unsafe.Pointer) AppleEventDescriptor
+	InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int)
 	RemoveDescriptorWithKeyword(keyword unsafe.Pointer)
 }
 
@@ -100,47 +100,47 @@ func NewAppleEventDescriptorWithAEDescNoCopy(aeDesc unsafe.Pointer) AppleEventDe
 // Creates a descriptor that represents an Apple event, initialized according to the specified information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/appleEvent(withEventClass:eventID:targetDescriptor:returnID:transactionID:)
-func (ac _AppleEventDescriptorClass) AppleEventWithEventClassEventIDTargetDescriptorReturnIDTransactionID(eventClass unsafe.Pointer, eventID unsafe.Pointer, targetDescriptor unsafe.Pointer, returnID unsafe.Pointer, transactionID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("appleEventWithEventClass:eventID:targetDescriptor:returnID:transactionID:"), eventClass, eventID, targetDescriptor, returnID, transactionID)
+func (ac _AppleEventDescriptorClass) AppleEventWithEventClassEventIDTargetDescriptorReturnIDTransactionID(eventClass unsafe.Pointer, eventID unsafe.Pointer, targetDescriptor IAppleEventDescriptor, returnID unsafe.Pointer, transactionID unsafe.Pointer) AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("appleEventWithEventClass:eventID:targetDescriptor:returnID:transactionID:"), eventClass, eventID, targetDescriptor, returnID, transactionID)
 	return rv
 }
 
 // Creates a descriptor initialized with the specified event type that stores the specified data (from a series of bytes).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/descriptorWithDescriptorType:bytes:length:
-func (ac _AppleEventDescriptorClass) DescriptorWithDescriptorTypeBytesLength(descriptorType unsafe.Pointer, bytes unsafe.Pointer, byteCount uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("descriptorWithDescriptorType:bytes:length:"), descriptorType, bytes, byteCount)
+func (ac _AppleEventDescriptorClass) DescriptorWithDescriptorTypeBytesLength(descriptorType unsafe.Pointer, bytes unsafe.Pointer, byteCount uint) AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("descriptorWithDescriptorType:bytes:length:"), descriptorType, bytes, byteCount)
 	return rv
 }
 
 // Creates and initializes a descriptor with no parameter or attribute values set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/null()
-func (ac _AppleEventDescriptorClass) NullDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("nullDescriptor"))
+func (ac _AppleEventDescriptorClass) NullDescriptor() AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](objc.ID(ac.class), objc.Sel("nullDescriptor"))
 	return rv
 }
 
 // Returns the descriptor at the specified (one-based) position in the receiving descriptor list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/atIndex(_:)
-func (a_ AppleEventDescriptor) DescriptorAtIndex(index int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("descriptorAtIndex:"), index)
+func (a_ AppleEventDescriptor) DescriptorAtIndex(index int) AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("descriptorAtIndex:"), index)
 	return rv
 }
 
 // Returns a descriptor for the receiver’s Apple event attribute identified by the specified keyword.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/attributeDescriptor(forKeyword:)
-func (a_ AppleEventDescriptor) AttributeDescriptorForKeyword(keyword unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributeDescriptorForKeyword:"), keyword)
+func (a_ AppleEventDescriptor) AttributeDescriptorForKeyword(keyword unsafe.Pointer) AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("attributeDescriptorForKeyword:"), keyword)
 	return rv
 }
 
 // Inserts a descriptor at the specified (one-based) position in the receiving descriptor list, replacing the existing descriptor, if any, at that position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/insert(_:at:)
-func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor unsafe.Pointer, index int) {
+func (a_ AppleEventDescriptor) InsertDescriptorAtIndex(descriptor IAppleEventDescriptor, index int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertDescriptor:atIndex:"), descriptor, index)
 }
 
@@ -187,8 +187,8 @@ func (a_ AppleEventDescriptor) SetBooleanValue(value bool) {
 // The receiver’s data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/data
-func (a_ AppleEventDescriptor) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("data"))
+func (a_ AppleEventDescriptor) Data() Data {
+	rv := objc.Send[Data](a_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -198,14 +198,14 @@ func (a_ AppleEventDescriptor) Data() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/data
-func (a_ AppleEventDescriptor) SetData(value unsafe.Pointer) {
+func (a_ AppleEventDescriptor) SetData(value IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/datevalue
-func (a_ AppleEventDescriptor) DateValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dateValue"))
+func (a_ AppleEventDescriptor) DateValue() Date {
+	rv := objc.Send[Date](a_.ID, objc.Sel("dateValue"))
 	return rv
 }
 
@@ -213,7 +213,7 @@ func (a_ AppleEventDescriptor) DateValue() unsafe.Pointer {
 // SetDateValue sets the value of the dateValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/datevalue
-func (a_ AppleEventDescriptor) SetDateValue(value unsafe.Pointer) {
+func (a_ AppleEventDescriptor) SetDateValue(value IDate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -300,7 +300,7 @@ func (a_ AppleEventDescriptor) FileURLValue() URL {
 // SetFileURLValue sets the value of the fileURLValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/fileurlvalue
-func (a_ AppleEventDescriptor) SetFileURLValue(value URL) {
+func (a_ AppleEventDescriptor) SetFileURLValue(value IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFileURLValue:"), value)
 }
 
@@ -376,8 +376,8 @@ func (a_ AppleEventDescriptor) SetReturnID(value unsafe.Pointer) {
 // The contents of the receiver as a Unicode text string, coercing to
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/stringvalue
-func (a_ AppleEventDescriptor) StringValue() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("stringValue"))
+func (a_ AppleEventDescriptor) StringValue() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -387,8 +387,8 @@ func (a_ AppleEventDescriptor) StringValue() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventdescriptor/stringvalue
-func (a_ AppleEventDescriptor) SetStringValue(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (a_ AppleEventDescriptor) SetStringValue(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setStringValue:"), value)
 }
 
 // The receiver’s transaction ID, if any.

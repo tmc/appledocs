@@ -31,12 +31,12 @@ type _FilterShapeClass struct {
 // An interface definition for the [FilterShape] class.
 type IFilterShape interface {
 	objectivec.IObject
-	InsetByXY(dx unsafe.Pointer, dy unsafe.Pointer) unsafe.Pointer
-	IntersectWithRect(r coregraphics.CGRect) unsafe.Pointer
-	IntersectWith(s2 unsafe.Pointer) unsafe.Pointer
-	TransformByInterior(m coregraphics.CGAffineTransform, flag bool) unsafe.Pointer
-	UnionWith(s2 unsafe.Pointer) unsafe.Pointer
-	UnionWithRect(r coregraphics.CGRect) unsafe.Pointer
+	InsetByXY(dx unsafe.Pointer, dy unsafe.Pointer) FilterShape
+	IntersectWithRect(r coregraphics.CGRect) FilterShape
+	IntersectWith(s2 ICIFilterShape) FilterShape
+	TransformByInterior(m coregraphics.CGAffineTransform, flag bool) FilterShape
+	UnionWith(s2 ICIFilterShape) FilterShape
+	UnionWithRect(r coregraphics.CGRect) FilterShape
 }
 
 // A description of the bounding shape of a filter and the domain of definition for a filter operation.
@@ -111,48 +111,48 @@ func (fc _FilterShapeClass) ShapeWithRect(r coregraphics.CGRect) unsafe.Pointer 
 // Modifies a filter shape object so that it is inset by the specified x and y values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/insetBy(x:y:)
-func (f_ FilterShape) InsetByXY(dx unsafe.Pointer, dy unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("insetByX:Y:"), dx, dy)
+func (f_ FilterShape) InsetByXY(dx unsafe.Pointer, dy unsafe.Pointer) FilterShape {
+	rv := objc.Send[FilterShape](f_.ID, objc.Sel("insetByX:Y:"), dx, dy)
 	return rv
 }
 
 // Creates a filter shape that represents the intersection of the current filter shape and a rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/intersect(with:)-2o2n8
-func (f_ FilterShape) IntersectWithRect(r coregraphics.CGRect) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("intersectWithRect:"), r)
+func (f_ FilterShape) IntersectWithRect(r coregraphics.CGRect) FilterShape {
+	rv := objc.Send[FilterShape](f_.ID, objc.Sel("intersectWithRect:"), r)
 	return rv
 }
 
 // Creates a filter shape object that represents the intersection of the current filter shape and the specified filter shape object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/intersect(with:)-8iw
-func (f_ FilterShape) IntersectWith(s2 unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("intersectWith:"), s2)
+func (f_ FilterShape) IntersectWith(s2 ICIFilterShape) FilterShape {
+	rv := objc.Send[FilterShape](f_.ID, objc.Sel("intersectWith:"), s2)
 	return rv
 }
 
 // Creates a filter shape that results from applying a transform to the current filter shape.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/transform(by:interior:)
-func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("transformBy:interior:"), m, flag)
+func (f_ FilterShape) TransformByInterior(m coregraphics.CGAffineTransform, flag bool) FilterShape {
+	rv := objc.Send[FilterShape](f_.ID, objc.Sel("transformBy:interior:"), m, flag)
 	return rv
 }
 
 // Creates a filter shape that results from the union of the current filter shape and another filter shape object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/union(with:)-52mnd
-func (f_ FilterShape) UnionWith(s2 unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("unionWith:"), s2)
+func (f_ FilterShape) UnionWith(s2 ICIFilterShape) FilterShape {
+	rv := objc.Send[FilterShape](f_.ID, objc.Sel("unionWith:"), s2)
 	return rv
 }
 
 // Creates a filter shape that results from the union of the current filter shape and a rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterShape/union(with:)-75ebo
-func (f_ FilterShape) UnionWithRect(r coregraphics.CGRect) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("unionWithRect:"), r)
+func (f_ FilterShape) UnionWithRect(r coregraphics.CGRect) FilterShape {
+	rv := objc.Send[FilterShape](f_.ID, objc.Sel("unionWithRect:"), r)
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [ScriptClassDescription] class.
@@ -29,7 +30,7 @@ type _ScriptClassDescriptionClass struct {
 // An interface definition for the [ScriptClassDescription] class.
 type IScriptClassDescription interface {
 	IClassDescription
-	TypeForKey(key string) string
+	TypeForKey(key appkit.string) String
 }
 
 // A scriptable class that a macOS app supports.
@@ -85,8 +86,8 @@ func NewScriptClassDescription() ScriptClassDescription {
 // Returns the name of the declared type of the attribute or relationship identified by the passed key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
-func (s_ ScriptClassDescription) TypeForKey(key string) string {
-	rv := objc.Send[string](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
+func (s_ ScriptClassDescription) TypeForKey(key appkit.string) String {
+	rv := objc.Send[String](s_.ID, objc.Sel("typeForKey:"), key)
 	return rv
 }
 
@@ -111,8 +112,8 @@ func (s_ ScriptClassDescription) SetAppleEventCode(value unsafe.Pointer) {
 // Returns the name of the class the receiver describes, as provided at initialization time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
-func (s_ ScriptClassDescription) ClassName() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("className"))
+func (s_ ScriptClassDescription) ClassName() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("className"))
 	return rv
 }
 
@@ -122,15 +123,15 @@ func (s_ ScriptClassDescription) ClassName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
-func (s_ ScriptClassDescription) SetClassName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), objc.String(value))
+func (s_ ScriptClassDescription) SetClassName(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), value)
 }
 
 // Returns the value of the
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
-func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
+func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
 	return rv
 }
 
@@ -140,15 +141,15 @@ func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
-func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), objc.String(value))
+func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), value)
 }
 
 // Returns the name of the Objective-C class instantiated to implement the scripting class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
-func (s_ ScriptClassDescription) ImplementationClassName() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("implementationClassName"))
+func (s_ ScriptClassDescription) ImplementationClassName() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("implementationClassName"))
 	return rv
 }
 
@@ -158,15 +159,15 @@ func (s_ ScriptClassDescription) ImplementationClassName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
-func (s_ ScriptClassDescription) SetImplementationClassName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), objc.String(value))
+func (s_ ScriptClassDescription) SetImplementationClassName(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), value)
 }
 
 // Returns the name of the receiver’s suite.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
-func (s_ ScriptClassDescription) SuiteName() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("suiteName"))
+func (s_ ScriptClassDescription) SuiteName() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("suiteName"))
 	return rv
 }
 
@@ -176,15 +177,15 @@ func (s_ ScriptClassDescription) SuiteName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
-func (s_ ScriptClassDescription) SetSuiteName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), objc.String(value))
+func (s_ ScriptClassDescription) SetSuiteName(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), value)
 }
 
 // Returns the class description instance for the superclass of the receiver’s class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) Superclass() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("superclass"))
+func (s_ ScriptClassDescription) Superclass() NSScriptClassDescription {
+	rv := objc.Send[NSScriptClassDescription](s_.ID, objc.Sel("superclass"))
 	return rv
 }
 
@@ -194,7 +195,7 @@ func (s_ ScriptClassDescription) Superclass() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
-func (s_ ScriptClassDescription) SetSuperclass(value unsafe.Pointer) {
+func (s_ ScriptClassDescription) SetSuperclass(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
 }
 

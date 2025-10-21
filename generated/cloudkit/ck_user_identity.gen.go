@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,24 +100,24 @@ func (c_ CKUserIdentity) HasiCloudAccount() bool {
 // The lookup info for retrieving the user identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/lookupInfo-swift.property
-func (c_ CKUserIdentity) LookupInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lookupInfo"))
+func (c_ CKUserIdentity) LookupInfo() CKUserIdentityLookupInfo {
+	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("lookupInfo"))
 	return rv
 }
 
 // The user’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/nameComponents
-func (c_ CKUserIdentity) NameComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nameComponents"))
+func (c_ CKUserIdentity) NameComponents() foundation.PersonNameComponents {
+	rv := objc.Send[foundation.PersonNameComponents](c_.ID, objc.Sel("nameComponents"))
 	return rv
 }
 
 // The user record ID for the corresponding user record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKUserIdentity/userRecordID
-func (c_ CKUserIdentity) UserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
+func (c_ CKUserIdentity) UserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
 }
 

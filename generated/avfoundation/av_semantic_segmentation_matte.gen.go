@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +32,7 @@ type _SemanticSegmentationMatteClass struct {
 // An interface definition for the [SemanticSegmentationMatte] class.
 type ISemanticSegmentationMatte interface {
 	objectivec.IObject
-	DictionaryRepresentationForAuxiliaryDataType(outAuxDataType string) unsafe.Pointer
+	DictionaryRepresentationForAuxiliaryDataType(outAuxDataType appkit.string) foundation.Dictionary
 }
 
 // An object that wraps a matting image for a particular semantic segmentation.
@@ -84,8 +86,8 @@ func NewSemanticSegmentationMatte() SemanticSegmentationMatte {
 // Returns a dictionary of primitive map information to use when writing an image file with a semantic segmentation matte.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/dictionaryRepresentation(forAuxiliaryDataType:)
-func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType(outAuxDataType string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dictionaryRepresentationForAuxiliaryDataType:"), objc.String(outAuxDataType))
+func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType(outAuxDataType appkit.string) foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](s_.ID, objc.Sel("dictionaryRepresentationForAuxiliaryDataType:"), outAuxDataType)
 	return rv
 }
 
@@ -94,6 +96,14 @@ func (s_ SemanticSegmentationMatte) DictionaryRepresentationForAuxiliaryDataType
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/matteType-swift.property
 func (s_ SemanticSegmentationMatte) MatteType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("matteType"))
+	return rv
+}
+
+// The pixel format type for this object’s internal matting image.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSemanticSegmentationMatte/pixelFormatType
+func (s_ SemanticSegmentationMatte) PixelFormatType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pixelFormatType"))
 	return rv
 }
 
@@ -113,24 +123,6 @@ func (s_ SemanticSegmentationMatte) MattingImage() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattingimage
 func (s_ SemanticSegmentationMatte) SetMattingImage(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMattingImage:"), value)
-}
-
-// The pixel format type for this object’s internal matting image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/pixelformattype
-func (s_ SemanticSegmentationMatte) PixelFormatType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pixelFormatType"))
-	return rv
-}
-
-
-// SetPixelFormatType sets the value of the pixelFormatType property.
-// The pixel format type for this object’s internal matting image.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/pixelformattype
-func (s_ SemanticSegmentationMatte) SetPixelFormatType(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPixelFormatType:"), value)
 }
 
 // 8-bit one component, black is zero.

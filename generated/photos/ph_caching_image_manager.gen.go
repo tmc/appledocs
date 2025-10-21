@@ -30,8 +30,8 @@ type _PHCachingImageManagerClass struct {
 // An interface definition for the [PHCachingImageManager] class.
 type IPHCachingImageManager interface {
 	IPHImageManager
-	StartCachingImagesForAssetsTargetSizeContentModeOptions(assets unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer)
-	StopCachingImagesForAssetsTargetSizeContentModeOptions(assets unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer)
+	StartCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions)
+	StopCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions)
 	StopCachingImagesForAllAssets()
 }
 
@@ -88,14 +88,14 @@ func NewPHCachingImageManager() PHCachingImageManager {
 // Prepares image representations of the specified assets for later use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/startCachingImages(for:targetSize:contentMode:options:)
-func (p_ PHCachingImageManager) StartCachingImagesForAssetsTargetSizeContentModeOptions(assets unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer) {
+func (p_ PHCachingImageManager) StartCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startCachingImagesForAssets:targetSize:contentMode:options:"), assets, targetSize, contentMode, options)
 }
 
 // Cancels image preparation for the specified assets and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCachingImageManager/stopCachingImages(for:targetSize:contentMode:options:)
-func (p_ PHCachingImageManager) StopCachingImagesForAssetsTargetSizeContentModeOptions(assets unsafe.Pointer, targetSize coregraphics.CGSize, contentMode unsafe.Pointer, options unsafe.Pointer) {
+func (p_ PHCachingImageManager) StopCachingImagesForAssetsTargetSizeContentModeOptions(assets []PHAsset, targetSize coregraphics.CGSize, contentMode PHImageContentMode, options PHImageRequestOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopCachingImagesForAssets:targetSize:contentMode:options:"), assets, targetSize, contentMode, options)
 }
 

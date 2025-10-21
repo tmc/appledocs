@@ -88,7 +88,7 @@ func (m_ MTRModeSelectClusterSemanticTag) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictag/mfgcode
-func (m_ MTRModeSelectClusterSemanticTag) SetMfgCode(value foundation.Number) {
+func (m_ MTRModeSelectClusterSemanticTag) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRModeSelectClusterSemanticTag) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictag/value
-func (m_ MTRModeSelectClusterSemanticTag) SetValue(value foundation.Number) {
+func (m_ MTRModeSelectClusterSemanticTag) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

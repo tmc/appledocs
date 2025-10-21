@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewPHAssetResource() PHAssetResource {
 // Returns the list of data resources associated with an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/assetResources(for:)-27o4l
-func (pc _PHAssetResourceClass) AssetResourcesForAsset(asset unsafe.Pointer) []PHAssetResource {
+func (pc _PHAssetResourceClass) AssetResourcesForAsset(asset IPHAsset) []PHAssetResource {
 	rv := objc.Send[[]PHAssetResource](objc.ID(pc.class), objc.Sel("assetResourcesForAsset:"), asset)
 	return rv
 }
@@ -91,7 +92,7 @@ func (pc _PHAssetResourceClass) AssetResourcesForAsset(asset unsafe.Pointer) []P
 // Returns the list of data resources associated with a Live Photo object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/assetResources(for:)-2fedw
-func (pc _PHAssetResourceClass) AssetResourcesForLivePhoto(livePhoto unsafe.Pointer) []PHAssetResource {
+func (pc _PHAssetResourceClass) AssetResourcesForLivePhoto(livePhoto IPHLivePhoto) []PHAssetResource {
 	rv := objc.Send[[]PHAssetResource](objc.ID(pc.class), objc.Sel("assetResourcesForLivePhoto:"), livePhoto)
 	return rv
 }
@@ -99,24 +100,24 @@ func (pc _PHAssetResourceClass) AssetResourcesForLivePhoto(livePhoto unsafe.Poin
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/assetLocalIdentifier
-func (p_ PHAssetResource) AssetLocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("assetLocalIdentifier"))
+func (p_ PHAssetResource) AssetLocalIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetLocalIdentifier"))
 	return rv
 }
 
 // The type of data associated with this asset resource (the data can be retrieved via PHAssetResourceManager)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/contentType
-func (p_ PHAssetResource) ContentType() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHAssetResource) ContentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
 // The original filename of the asset resource from when it was created or imported.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/originalFilename
-func (p_ PHAssetResource) OriginalFilename() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("originalFilename"))
+func (p_ PHAssetResource) OriginalFilename() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("originalFilename"))
 	return rv
 }
 
@@ -139,16 +140,16 @@ func (p_ PHAssetResource) PixelWidth() int {
 // The relationship of an asset resource to its owning asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/type
-func (p_ PHAssetResource) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PHAssetResource) Type() PHAssetResourceType {
+	rv := objc.Send[PHAssetResourceType](p_.ID, objc.Sel("type"))
 	return rv
 }
 
 // The uniform type identifier for the asset resource’s image or video data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResource/uniformTypeIdentifier
-func (p_ PHAssetResource) UniformTypeIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHAssetResource) UniformTypeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 

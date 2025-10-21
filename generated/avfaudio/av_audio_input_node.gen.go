@@ -29,7 +29,7 @@ type _AudioInputNodeClass struct {
 // An interface definition for the [AudioInputNode] class.
 type IAudioInputNode interface {
 	IAudioIONode
-	SetManualRenderingInputPCMFormatInputBlock(format unsafe.Pointer, block unsafe.Pointer) bool
+	SetManualRenderingInputPCMFormatInputBlock(format AVAudioFormat, block unsafe.Pointer) bool
 }
 
 // An object that connects to the system’s audio input.
@@ -85,7 +85,7 @@ func NewAudioInputNode() AudioInputNode {
 // Supplies the data through the input node to the engine while operating in the manual rendering mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioInputNode/setManualRenderingInputPCMFormat(_:inputBlock:)
-func (a_ AudioInputNode) SetManualRenderingInputPCMFormatInputBlock(format unsafe.Pointer, block unsafe.Pointer) bool {
+func (a_ AudioInputNode) SetManualRenderingInputPCMFormatInputBlock(format AVAudioFormat, block unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setManualRenderingInputPCMFormat:inputBlock:"), format, block)
 	return rv
 }

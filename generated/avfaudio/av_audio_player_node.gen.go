@@ -84,8 +84,8 @@ func NewAudioPlayerNode() AudioPlayerNode {
 // The most recent render time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime
-func (a_ AudioPlayerNode) LastRenderTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("lastRenderTime"))
+func (a_ AudioPlayerNode) LastRenderTime() AVAudioTime {
+	rv := objc.Send[AVAudioTime](a_.ID, objc.Sel("lastRenderTime"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (a_ AudioPlayerNode) LastRenderTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudionode/lastrendertime
-func (a_ AudioPlayerNode) SetLastRenderTime(value unsafe.Pointer) {
+func (a_ AudioPlayerNode) SetLastRenderTime(value IAVAudioTime) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLastRenderTime:"), value)
 }
 

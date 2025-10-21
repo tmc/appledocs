@@ -78,8 +78,8 @@ func NewMTRGroupKeyManagementClusterGroupKeySetStruct() MTRGroupKeyManagementClu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey0
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey0() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("epochKey0"))
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey0() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("epochKey0"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey0() unsafe.Point
 // SetEpochKey0 sets the value of the epochKey0 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey0
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey0(value unsafe.Pointer) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey0(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochKey0:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey1
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey1() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("epochKey1"))
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey1() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("epochKey1"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey1() unsafe.Point
 // SetEpochKey1 sets the value of the epochKey1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey1
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey1(value unsafe.Pointer) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey1(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochKey1:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey2
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey2() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("epochKey2"))
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey2() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("epochKey2"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey2() unsafe.Point
 // SetEpochKey2 sets the value of the epochKey2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey2
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey2(value unsafe.Pointer) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey2(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochKey2:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochStartTime0() founda
 // SetEpochStartTime0 sets the value of the epochStartTime0 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime0
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime0(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime0(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochStartTime0:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochStartTime1() founda
 // SetEpochStartTime1 sets the value of the epochStartTime1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime1
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime1(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochStartTime1:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochStartTime2() founda
 // SetEpochStartTime2 sets the value of the epochStartTime2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime2
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime2(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime2(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochStartTime2:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) GroupKeySecurityPolicy()
 // SetGroupKeySecurityPolicy sets the value of the groupKeySecurityPolicy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/groupkeysecuritypolicy
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetGroupKeySecurityPolicy(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetGroupKeySecurityPolicy(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySecurityPolicy:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) GroupKeySetID() foundati
 // SetGroupKeySetID sets the value of the groupKeySetID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetGroupKeySetID(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetGroupKeySetID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
 

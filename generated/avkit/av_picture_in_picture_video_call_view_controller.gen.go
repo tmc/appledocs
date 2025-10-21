@@ -83,8 +83,8 @@ func NewPictureInPictureVideoCallViewController() PictureInPictureVideoCallViewC
 // The view controller that presents the video call content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("activeVideoCallContentViewController"))
+func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController {
+	rv := objc.Send[AVPictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallContentViewCont
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewController(value unsafe.Pointer) {
+func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallContentViewController:"), value)
 }
 
 // The view that contains the video content of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("activeVideoCallSourceView"))
+func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (p_ PictureInPictureVideoCallViewController) ActiveVideoCallSourceView() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value unsafe.Pointer) {
+func (p_ PictureInPictureVideoCallViewController) SetActiveVideoCallSourceView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
 }
 

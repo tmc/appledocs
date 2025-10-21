@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) FabricIndex() foundation.Num
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/fabricindex
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetFabricIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) LockOperationType() foundati
 // SetLockOperationType sets the value of the lockOperationType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/lockoperationtype
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetLockOperationType(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetLockOperationType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLockOperationType:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) OperationError() foundation.
 // SetOperationError sets the value of the operationError property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/operationerror
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationError(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationError(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationError:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) OperationSource() foundation
 // SetOperationSource sets the value of the operationSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/operationsource
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationSource(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetOperationSource(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationSource:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) SourceNode() foundation.Numb
 // SetSourceNode sets the value of the sourceNode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/sourcenode
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetSourceNode(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetSourceNode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceNode:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRDoorLockClusterLockOperationErrorEvent) UserIndex() foundation.Numbe
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockoperationerrorevent/userindex
-func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockOperationErrorEvent) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 

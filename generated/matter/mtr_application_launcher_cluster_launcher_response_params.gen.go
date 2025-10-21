@@ -78,8 +78,8 @@ func NewMTRApplicationLauncherClusterLauncherResponseParams() MTRApplicationLaun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/data
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Data() unsafe.Poin
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/data
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetData(value unsafe.Pointer) {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRApplicationLauncherClusterLauncherResponseParams) Status() foundatio
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/status
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRApplicationLauncherClusterLauncherResponseParams) TimedInvokeTimeout
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterlauncherresponseparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterLauncherResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

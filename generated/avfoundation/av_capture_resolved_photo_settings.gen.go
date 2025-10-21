@@ -109,8 +109,8 @@ func (c_ CaptureResolvedPhotoSettings) SetFlashMode(value unsafe.Pointer) {
 // A dictionary describing the format for delivery of preview-sized images alongside the main photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CaptureResolvedPhotoSettings) PreviewPhotoFormat() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("previewPhotoFormat"))
+func (c_ CaptureResolvedPhotoSettings) PreviewPhotoFormat() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("previewPhotoFormat"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (c_ CaptureResolvedPhotoSettings) PreviewPhotoFormat() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CaptureResolvedPhotoSettings) SetPreviewPhotoFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), objc.String(value))
+func (c_ CaptureResolvedPhotoSettings) SetPreviewPhotoFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), value)
 }
 
 // A unique identifier for this photo settings instance.

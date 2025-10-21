@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -87,7 +88,7 @@ func NewGraphTensorData() GraphTensorData {
 // Initializes a tensor data with an MPS vector enforcing rank of the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphTensorData/init(_:rank:)-1e4ks
-func NewGraphTensorDataWithMPSVectorRank(vector unsafe.Pointer, rank uint) GraphTensorData {
+func NewGraphTensorDataWithMPSVectorRank(vector coregraphics.IVector, rank uint) GraphTensorData {
 	instance := getGraphTensorDataClass().Alloc()
 	rv := objc.Send[GraphTensorData](instance.ID, objc.Sel("initWithMPSVector:rank:"), vector, rank)
 	rv.Autorelease()
@@ -106,8 +107,8 @@ func (g_ GraphTensorData) DataType() unsafe.Pointer {
 // The device of the tensor data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/device
-func (g_ GraphTensorData) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("device"))
+func (g_ GraphTensorData) Device() MPSGraphDevice {
+	rv := objc.Send[MPSGraphDevice](g_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -117,7 +118,7 @@ func (g_ GraphTensorData) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/device
-func (g_ GraphTensorData) SetDevice(value unsafe.Pointer) {
+func (g_ GraphTensorData) SetDevice(value IMPSGraphDevice) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDevice:"), value)
 }
 
@@ -135,7 +136,7 @@ func (g_ GraphTensorData) Shape() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata/shape
-func (g_ GraphTensorData) SetShape(value foundation.Number) {
+func (g_ GraphTensorData) SetShape(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setShape:"), value)
 }
 

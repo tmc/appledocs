@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXAnswerCallAction] class.
@@ -29,7 +30,7 @@ type _CXAnswerCallActionClass struct {
 // An interface definition for the [CXAnswerCallAction] class.
 type ICXAnswerCallAction interface {
 	ICXCallAction
-	FulfillWithDateConnected(dateConnected unsafe.Pointer)
+	FulfillWithDateConnected(dateConnected foundation.IDate)
 }
 
 // An encapsulation of the act of answering an incoming call.
@@ -85,7 +86,7 @@ func NewCXAnswerCallAction() CXAnswerCallAction {
 // Reports the successful execution of the action at the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAnswerCallAction/fulfill(withDateConnected:)
-func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected unsafe.Pointer) {
+func (c_ CXAnswerCallAction) FulfillWithDateConnected(dateConnected foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateConnected:"), dateConnected)
 }
 

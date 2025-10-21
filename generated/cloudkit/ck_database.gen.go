@@ -30,19 +30,19 @@ type _CKDatabaseClass struct {
 // An interface definition for the [CKDatabase] class.
 type ICKDatabase interface {
 	objectivec.IObject
-	AddOperation(operation unsafe.Pointer)
-	DeleteRecordWithIDCompletionHandler(recordID unsafe.Pointer, completionHandler unsafe.Pointer)
-	DeleteRecordZoneWithIDCompletionHandler(zoneID unsafe.Pointer, completionHandler unsafe.Pointer)
+	AddOperation(operation ICKDatabaseOperation)
+	DeleteRecordWithIDCompletionHandler(recordID ICKRecordID, completionHandler unsafe.Pointer)
+	DeleteRecordZoneWithIDCompletionHandler(zoneID ICKRecordZoneID, completionHandler unsafe.Pointer)
 	DeleteSubscriptionWithIDCompletionHandler(subscriptionID unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchRecordWithIDCompletionHandler(recordID unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchRecordZoneWithIDCompletionHandler(zoneID unsafe.Pointer, completionHandler unsafe.Pointer)
+	FetchRecordWithIDCompletionHandler(recordID ICKRecordID, completionHandler unsafe.Pointer)
+	FetchRecordZoneWithIDCompletionHandler(zoneID ICKRecordZoneID, completionHandler unsafe.Pointer)
 	FetchAllRecordZonesWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchAllSubscriptionsWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchSubscriptionWithIDCompletionHandler(subscriptionID unsafe.Pointer, completionHandler unsafe.Pointer)
-	PerformQueryInZoneWithIDCompletionHandler(query unsafe.Pointer, zoneID unsafe.Pointer, completionHandler unsafe.Pointer)
-	SaveRecordZoneCompletionHandler(zone unsafe.Pointer, completionHandler unsafe.Pointer)
-	SaveRecordCompletionHandler(record unsafe.Pointer, completionHandler unsafe.Pointer)
-	SaveSubscriptionCompletionHandler(subscription unsafe.Pointer, completionHandler unsafe.Pointer)
+	PerformQueryInZoneWithIDCompletionHandler(query ICKQuery, zoneID ICKRecordZoneID, completionHandler unsafe.Pointer)
+	SaveRecordZoneCompletionHandler(zone ICKRecordZone, completionHandler unsafe.Pointer)
+	SaveRecordCompletionHandler(record ICKRecord, completionHandler unsafe.Pointer)
+	SaveSubscriptionCompletionHandler(subscription ICKSubscription, completionHandler unsafe.Pointer)
 }
 
 // An object that represents a collection of record zones and subscriptions.
@@ -96,21 +96,21 @@ func NewCKDatabase() CKDatabase {
 // Executes the specified operation in the current database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/add(_:)
-func (c_ CKDatabase) AddOperation(operation unsafe.Pointer) {
+func (c_ CKDatabase) AddOperation(operation ICKDatabaseOperation) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addOperation:"), operation)
 }
 
 // Deletes a specific record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/delete(withRecordID:completionHandler:)
-func (c_ CKDatabase) DeleteRecordWithIDCompletionHandler(recordID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) DeleteRecordWithIDCompletionHandler(recordID ICKRecordID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteRecordWithID:completionHandler:"), recordID, completionHandler)
 }
 
 // Deletes a specific record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/delete(withRecordZoneID:completionHandler:)
-func (c_ CKDatabase) DeleteRecordZoneWithIDCompletionHandler(zoneID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) DeleteRecordZoneWithIDCompletionHandler(zoneID ICKRecordZoneID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteRecordZoneWithID:completionHandler:"), zoneID, completionHandler)
 }
 
@@ -124,14 +124,14 @@ func (c_ CKDatabase) DeleteSubscriptionWithIDCompletionHandler(subscriptionID un
 // Fetches a specific record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/fetch(withRecordID:completionHandler:)
-func (c_ CKDatabase) FetchRecordWithIDCompletionHandler(recordID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) FetchRecordWithIDCompletionHandler(recordID ICKRecordID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchRecordWithID:completionHandler:"), recordID, completionHandler)
 }
 
 // Fetches a specific record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/fetch(withRecordZoneID:completionHandler:)
-func (c_ CKDatabase) FetchRecordZoneWithIDCompletionHandler(zoneID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) FetchRecordZoneWithIDCompletionHandler(zoneID ICKRecordZoneID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchRecordZoneWithID:completionHandler:"), zoneID, completionHandler)
 }
 
@@ -159,36 +159,36 @@ func (c_ CKDatabase) FetchSubscriptionWithIDCompletionHandler(subscriptionID uns
 // Searches for records matching a predicate in the specified record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/perform(_:inZoneWith:completionHandler:)
-func (c_ CKDatabase) PerformQueryInZoneWithIDCompletionHandler(query unsafe.Pointer, zoneID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) PerformQueryInZoneWithIDCompletionHandler(query ICKQuery, zoneID ICKRecordZoneID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performQuery:inZoneWithID:completionHandler:"), query, zoneID, completionHandler)
 }
 
 // Saves a specific record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/save(_:completionHandler:)-32ffr
-func (c_ CKDatabase) SaveRecordZoneCompletionHandler(zone unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) SaveRecordZoneCompletionHandler(zone ICKRecordZone, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("saveRecordZone:completionHandler:"), zone, completionHandler)
 }
 
 // Saves a specific record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/save(_:completionHandler:)-3tatz
-func (c_ CKDatabase) SaveRecordCompletionHandler(record unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) SaveRecordCompletionHandler(record ICKRecord, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("saveRecord:completionHandler:"), record, completionHandler)
 }
 
 // Saves a specific subscription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/save(_:completionHandler:)-9pona
-func (c_ CKDatabase) SaveSubscriptionCompletionHandler(subscription unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKDatabase) SaveSubscriptionCompletionHandler(subscription ICKSubscription, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("saveSubscription:completionHandler:"), subscription, completionHandler)
 }
 
 // The type of database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/databaseScope
-func (c_ CKDatabase) DatabaseScope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseScope"))
+func (c_ CKDatabase) DatabaseScope() CKDatabaseScope {
+	rv := objc.Send[CKDatabaseScope](c_.ID, objc.Sel("databaseScope"))
 	return rv
 }
 

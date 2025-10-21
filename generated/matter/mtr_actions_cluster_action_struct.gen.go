@@ -87,7 +87,7 @@ func (m_ MTRActionsClusterActionStruct) ActionID() foundation.Number {
 // SetActionID sets the value of the actionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/actionid
-func (m_ MTRActionsClusterActionStruct) SetActionID(value foundation.Number) {
+func (m_ MTRActionsClusterActionStruct) SetActionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRActionsClusterActionStruct) EndpointListID() foundation.Number {
 // SetEndpointListID sets the value of the endpointListID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/endpointlistid
-func (m_ MTRActionsClusterActionStruct) SetEndpointListID(value foundation.Number) {
+func (m_ MTRActionsClusterActionStruct) SetEndpointListID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointListID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/name
-func (m_ MTRActionsClusterActionStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRActionsClusterActionStruct) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (m_ MTRActionsClusterActionStruct) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/name
-func (m_ MTRActionsClusterActionStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRActionsClusterActionStruct) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
@@ -132,7 +132,7 @@ func (m_ MTRActionsClusterActionStruct) State() foundation.Number {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/state
-func (m_ MTRActionsClusterActionStruct) SetState(value foundation.Number) {
+func (m_ MTRActionsClusterActionStruct) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRActionsClusterActionStruct) SupportedCommands() foundation.Number {
 // SetSupportedCommands sets the value of the supportedCommands property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/supportedcommands
-func (m_ MTRActionsClusterActionStruct) SetSupportedCommands(value foundation.Number) {
+func (m_ MTRActionsClusterActionStruct) SetSupportedCommands(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSupportedCommands:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRActionsClusterActionStruct) Type() foundation.Number {
 // SetType sets the value of the type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusteractionstruct/type
-func (m_ MTRActionsClusterActionStruct) SetType(value foundation.Number) {
+func (m_ MTRActionsClusterActionStruct) SetType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

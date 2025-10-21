@@ -108,8 +108,8 @@ func (d_ DistributedLock) Unlock() {
 // Returns the time the receiver was acquired by any of the objects using the same path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/lockDate
-func (d_ DistributedLock) LockDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("lockDate"))
+func (d_ DistributedLock) LockDate() NSDate {
+	rv := objc.Send[NSDate](d_.ID, objc.Sel("lockDate"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (f_ FrameInfo) MainFrame() bool {
 // The frame’s current request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/request
-func (f_ FrameInfo) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("request"))
+func (f_ FrameInfo) Request() foundation.URLRequest {
+	rv := objc.Send[foundation.URLRequest](f_.ID, objc.Sel("request"))
 	return rv
 }
 
@@ -117,8 +118,8 @@ func (f_ FrameInfo) SetIsMainFrame(value bool) {
 // The frame’s security origin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
-func (f_ FrameInfo) SecurityOrigin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("securityOrigin"))
+func (f_ FrameInfo) SecurityOrigin() WKSecurityOrigin {
+	rv := objc.Send[WKSecurityOrigin](f_.ID, objc.Sel("securityOrigin"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (f_ FrameInfo) SecurityOrigin() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
-func (f_ FrameInfo) SetSecurityOrigin(value unsafe.Pointer) {
+func (f_ FrameInfo) SetSecurityOrigin(value IWKSecurityOrigin) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSecurityOrigin:"), value)
 }
 
 // The web view that contains this frame and the containing webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
-func (f_ FrameInfo) WebView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("webView"))
+func (f_ FrameInfo) WebView() WKWebView {
+	rv := objc.Send[WKWebView](f_.ID, objc.Sel("webView"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (f_ FrameInfo) WebView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
-func (f_ FrameInfo) SetWebView(value unsafe.Pointer) {
+func (f_ FrameInfo) SetWebView(value IWKWebView) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setWebView:"), value)
 }
 

@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,48 +87,48 @@ func NewPHContentEditingInput() PHContentEditingInput {
 // An object that describes the most recent edit to the asset’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/adjustmentData
-func (p_ PHContentEditingInput) AdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
+func (p_ PHContentEditingInput) AdjustmentData() PHAdjustmentData {
+	rv := objc.Send[PHAdjustmentData](p_.ID, objc.Sel("adjustmentData"))
 	return rv
 }
 
 // The video asset, as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/audiovisualAsset
-func (p_ PHContentEditingInput) AudiovisualAsset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audiovisualAsset"))
+func (p_ PHContentEditingInput) AudiovisualAsset() avfoundation.Asset {
+	rv := objc.Send[avfoundation.Asset](p_.ID, objc.Sel("audiovisualAsset"))
 	return rv
 }
 
 // The video asset, as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/avAsset
-func (p_ PHContentEditingInput) AvAsset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("avAsset"))
+func (p_ PHContentEditingInput) AvAsset() avfoundation.Asset {
+	rv := objc.Send[avfoundation.Asset](p_.ID, objc.Sel("avAsset"))
 	return rv
 }
 
 // The type of data provided as the asset’s content editing input image or video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/contentType
-func (p_ PHContentEditingInput) ContentType() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHContentEditingInput) ContentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
 // The date and time when the asset was originally created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/creationDate
-func (p_ PHContentEditingInput) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
+func (p_ PHContentEditingInput) CreationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
 // An image of the asset’s contents, appropriately sized for display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/displaySizeImage
-func (p_ PHContentEditingInput) DisplaySizeImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("displaySizeImage"))
+func (p_ PHContentEditingInput) DisplaySizeImage() appkit.Image {
+	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("displaySizeImage"))
 	return rv
 }
 
@@ -148,56 +151,56 @@ func (p_ PHContentEditingInput) FullSizeImageURL() foundation.URL {
 // The unedited Live Photo content of the editing input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/livePhoto
-func (p_ PHContentEditingInput) LivePhoto() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("livePhoto"))
+func (p_ PHContentEditingInput) LivePhoto() PHLivePhoto {
+	rv := objc.Send[PHLivePhoto](p_.ID, objc.Sel("livePhoto"))
 	return rv
 }
 
 // The location information that was saved with the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/location
-func (p_ PHContentEditingInput) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("location"))
+func (p_ PHContentEditingInput) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](p_.ID, objc.Sel("location"))
 	return rv
 }
 
 // The subtypes of the asset, identifying special kinds of assets such as a panoramic photo or a high-frame-rate video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/mediaSubtypes
-func (p_ PHContentEditingInput) MediaSubtypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaSubtypes"))
+func (p_ PHContentEditingInput) MediaSubtypes() PHAssetMediaSubtype {
+	rv := objc.Send[PHAssetMediaSubtype](p_.ID, objc.Sel("mediaSubtypes"))
 	return rv
 }
 
 // The type of the asset, such as video or audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/mediaType
-func (p_ PHContentEditingInput) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaType"))
+func (p_ PHContentEditingInput) MediaType() PHAssetMediaType {
+	rv := objc.Send[PHAssetMediaType](p_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
 // The style in which to present this content to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/playbackStyle
-func (p_ PHContentEditingInput) PlaybackStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackStyle"))
+func (p_ PHContentEditingInput) PlaybackStyle() PHAssetPlaybackStyle {
+	rv := objc.Send[PHAssetPlaybackStyle](p_.ID, objc.Sel("playbackStyle"))
 	return rv
 }
 
 // The uniform type identifier for the asset’s image or video data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHContentEditingInput/uniformTypeIdentifier
-func (p_ PHContentEditingInput) UniformTypeIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("uniformTypeIdentifier"))
+func (p_ PHContentEditingInput) UniformTypeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("uniformTypeIdentifier"))
 	return rv
 }
 
 // The output of an asset content editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingInput) ContentEditingOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+func (p_ PHContentEditingInput) ContentEditingOutput() PHContentEditingOutput {
+	rv := objc.Send[PHContentEditingOutput](p_.ID, objc.Sel("contentEditingOutput"))
 	return rv
 }
 
@@ -207,7 +210,7 @@ func (p_ PHContentEditingInput) ContentEditingOutput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHContentEditingInput) SetContentEditingOutput(value unsafe.Pointer) {
+func (p_ PHContentEditingInput) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 

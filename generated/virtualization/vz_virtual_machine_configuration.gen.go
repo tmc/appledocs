@@ -157,8 +157,8 @@ func (v_ VZVirtualMachineConfiguration) SetAudioDevices(value []VZAudioDeviceCon
 // The guest system to boot when the VM starts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/bootLoader
-func (v_ VZVirtualMachineConfiguration) BootLoader() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("bootLoader"))
+func (v_ VZVirtualMachineConfiguration) BootLoader() VZBootLoader {
+	rv := objc.Send[VZBootLoader](v_.ID, objc.Sel("bootLoader"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (v_ VZVirtualMachineConfiguration) BootLoader() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/bootLoader
-func (v_ VZVirtualMachineConfiguration) SetBootLoader(value unsafe.Pointer) {
+func (v_ VZVirtualMachineConfiguration) SetBootLoader(value IVZBootLoader) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setBootLoader:"), value)
 }
 
@@ -439,8 +439,8 @@ func (v_ VZVirtualMachineConfiguration) SetNetworkDevices(value []VZNetworkDevic
 // The hardware platform to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/platform
-func (v_ VZVirtualMachineConfiguration) Platform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("platform"))
+func (v_ VZVirtualMachineConfiguration) Platform() VZPlatformConfiguration {
+	rv := objc.Send[VZPlatformConfiguration](v_.ID, objc.Sel("platform"))
 	return rv
 }
 
@@ -450,7 +450,7 @@ func (v_ VZVirtualMachineConfiguration) Platform() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/platform
-func (v_ VZVirtualMachineConfiguration) SetPlatform(value unsafe.Pointer) {
+func (v_ VZVirtualMachineConfiguration) SetPlatform(value IVZPlatformConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
 }
 

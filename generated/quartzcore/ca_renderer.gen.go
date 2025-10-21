@@ -32,11 +32,11 @@ type _RendererClass struct {
 type IRenderer interface {
 	objectivec.IObject
 	AddUpdateRect(r coregraphics.CGRect)
-	BeginFrameAtTimeTimeStamp(t unsafe.Pointer, ts unsafe.Pointer)
+	BeginFrameAtTimeTimeStamp(t ITimeInterval, ts unsafe.Pointer)
 	EndFrame()
-	NextFrameTime() unsafe.Pointer
+	NextFrameTime() TimeInterval
 	Render()
-	SetDestination(tex objc.ID)
+	SetDestination(tex objectivec.IObject)
 	UpdateBounds() coregraphics.CGRect
 }
 
@@ -93,7 +93,7 @@ func NewRenderer() Renderer {
 // Creates and returns a instance with the render target specified by the Core OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(cglContext:options:)
-func NewRendererWithCGLContextOptions(ctx unsafe.Pointer, dict objc.ID) Renderer {
+func NewRendererWithCGLContextOptions(ctx unsafe.Pointer, dict objectivec.IObject) Renderer {
 	rv := objc.Send[Renderer](objc.ID(getRendererClass().class), objc.Sel("rendererWithCGLContext:options:"), ctx, dict)
 	return rv
 }
@@ -103,7 +103,7 @@ func NewRendererWithCGLContextOptions(ctx unsafe.Pointer, dict objc.ID) Renderer
 // Creates a layer renderer from a Metal texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(mtlTexture:options:)
-func NewRendererWithMTLTextureOptions(tex objc.ID, dict objc.ID) Renderer {
+func NewRendererWithMTLTextureOptions(tex objectivec.IObject, dict objectivec.IObject) Renderer {
 	rv := objc.Send[Renderer](objc.ID(getRendererClass().class), objc.Sel("rendererWithMTLTexture:options:"), tex, dict)
 	return rv
 }
@@ -112,16 +112,16 @@ func NewRendererWithMTLTextureOptions(tex objc.ID, dict objc.ID) Renderer {
 // Creates and returns a instance with the render target specified by the Core OpenGL context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(cglContext:options:)
-func (rc _RendererClass) RendererWithCGLContextOptions(ctx unsafe.Pointer, dict objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("rendererWithCGLContext:options:"), ctx, dict)
+func (rc _RendererClass) RendererWithCGLContextOptions(ctx unsafe.Pointer, dict objectivec.IObject) Renderer {
+	rv := objc.Send[Renderer](objc.ID(rc.class), objc.Sel("rendererWithCGLContext:options:"), ctx, dict)
 	return rv
 }
 
 // Creates a layer renderer from a Metal texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/init(mtlTexture:options:)
-func (rc _RendererClass) RendererWithMTLTextureOptions(tex objc.ID, dict objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("rendererWithMTLTexture:options:"), tex, dict)
+func (rc _RendererClass) RendererWithMTLTextureOptions(tex objectivec.IObject, dict objectivec.IObject) Renderer {
+	rv := objc.Send[Renderer](objc.ID(rc.class), objc.Sel("rendererWithMTLTexture:options:"), tex, dict)
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (r_ Renderer) AddUpdateRect(r coregraphics.CGRect) {
 // Begin rendering a frame at the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/beginFrame(atTime:timeStamp:)
-func (r_ Renderer) BeginFrameAtTimeTimeStamp(t unsafe.Pointer, ts unsafe.Pointer) {
+func (r_ Renderer) BeginFrameAtTimeTimeStamp(t ITimeInterval, ts unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("beginFrameAtTime:timeStamp:"), t, ts)
 }
 
@@ -149,8 +149,8 @@ func (r_ Renderer) EndFrame() {
 // Returns the time at which the next update should happen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/nextFrameTime()
-func (r_ Renderer) NextFrameTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("nextFrameTime"))
+func (r_ Renderer) NextFrameTime() TimeInterval {
+	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("nextFrameTime"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (r_ Renderer) Render() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/setDestination(_:)
-func (r_ Renderer) SetDestination(tex objc.ID) {
+func (r_ Renderer) SetDestination(tex objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDestination:"), tex)
 }
 
@@ -196,8 +196,8 @@ func (r_ Renderer) SetBounds(value coregraphics.CGRect) {
 // The root layer of the layer-tree the receiver should render.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/layer
-func (r_ Renderer) Layer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("layer"))
+func (r_ Renderer) Layer() CALayer {
+	rv := objc.Send[CALayer](r_.ID, objc.Sel("layer"))
 	return rv
 }
 
@@ -207,7 +207,7 @@ func (r_ Renderer) Layer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARenderer/layer
-func (r_ Renderer) SetLayer(value unsafe.Pointer) {
+func (r_ Renderer) SetLayer(value ILayer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:"), value)
 }
 

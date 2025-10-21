@@ -7,7 +7,10 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,14 +36,14 @@ type IPlayerItem interface {
 	objectivec.IObject
 	CancelPlaybackRestrictionsAuthorizationRequest()
 	CurrentTime() unsafe.Pointer
-	EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer
+	EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) unsafe.Pointer
 	RequestPlaybackRestrictionsAuthorization(completion unsafe.Pointer)
-	SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting unsafe.Pointer, mediaSelectionGroup unsafe.Pointer)
-	SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption unsafe.Pointer, mediaSelectionGroup unsafe.Pointer)
-	SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer)
-	SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup unsafe.Pointer)
-	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) string
-	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer
+	SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting IAVMediaPresentationSetting, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption IAVMediaSelectionOption, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectMediaPresentationLanguageForMediaSelectionGroup(language appkit.string, mediaSelectionGroup IAVMediaSelectionGroup)
+	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String
+	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) unsafe.Pointer
 }
 
 // An object that models the timing and presentation state of an asset during playback.
@@ -109,7 +112,7 @@ func (p_ PlayerItem) CurrentTime() unsafe.Pointer {
 // Indicates the media presentation settings with media characteristics that are possessed by the currently selected AVMediaSelectionOption in the specified AVMediaSelectionGroup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/effectiveMediaPresentationSettings(for:)
-func (p_ PlayerItem) EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer {
+func (p_ PlayerItem) EffectiveMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("effectiveMediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
@@ -124,43 +127,43 @@ func (p_ PlayerItem) RequestPlaybackRestrictionsAuthorization(completion unsafe.
 // When the associated AVPlayer’s appliesMediaSelectionCriteriaAutomatically property is set to YES, configures the player item to prefer a particular presentation setting, replacing any previous preference for settings of the same media presentation selector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/select(_:for:)
-func (p_ PlayerItem) SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting unsafe.Pointer, mediaSelectionGroup unsafe.Pointer) {
+func (p_ PlayerItem) SelectMediaPresentationSettingForMediaSelectionGroup(mediaPresentationSetting IAVMediaPresentationSetting, mediaSelectionGroup IAVMediaSelectionGroup) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationSetting:forMediaSelectionGroup:"), mediaPresentationSetting, mediaSelectionGroup)
 }
 
 // Selects a media option in a given media selection group and deselects all other options in that group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/select(_:in:)
-func (p_ PlayerItem) SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption unsafe.Pointer, mediaSelectionGroup unsafe.Pointer) {
+func (p_ PlayerItem) SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption IAVMediaSelectionOption, mediaSelectionGroup IAVMediaSelectionGroup) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaOption:inMediaSelectionGroup:"), mediaSelectionOption, mediaSelectionGroup)
 }
 
 // Selects the media option in the specified media selection group that best matches the receiver’s automatic selection criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectMediaOptionAutomatically(in:)
-func (p_ PlayerItem) SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) {
+func (p_ PlayerItem) SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaOptionAutomaticallyInMediaSelectionGroup:"), mediaSelectionGroup)
 }
 
 // When the associated AVPlayer’s appliesMediaSelectionCriteriaAutomatically property is set to YES, configures the player item to prefer a particular language, replacing any previous preference for available languages of the specified group’s custom media selection scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectMediaPresentationLanguage(_:for:)
-func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationLanguage:forMediaSelectionGroup:"), objc.String(language), mediaSelectionGroup)
+func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(language appkit.string, mediaSelectionGroup IAVMediaSelectionGroup) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("selectMediaPresentationLanguage:forMediaSelectionGroup:"), language, mediaSelectionGroup)
 }
 
 // Returns the selected media presentation language for the specified media selection group, if any language has previously been selected via use of -selectMediaPresentationLanguages:forMediaSelectionGroup:.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationLanguage(for:)
-func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) string {
-	rv := objc.Send[string](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
+func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) foundation.String {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
 
 // Indicates the media presentation settings that have most recently been selected for each AVMediaPresentationSelector of the AVCustomMediaSelectionScheme of the specified AVMediaSelectionGroup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationSettings(for:)
-func (p_ PlayerItem) SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer {
+func (p_ PlayerItem) SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup IAVMediaSelectionGroup) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedMediaPresentationSettingsForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
@@ -194,16 +197,16 @@ func (p_ PlayerItem) CanPlaySlowForward() bool {
 // The current media selections for each of the receiver’s media selection groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/currentMediaSelection
-func (p_ PlayerItem) CurrentMediaSelection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentMediaSelection"))
+func (p_ PlayerItem) CurrentMediaSelection() AVMediaSelection {
+	rv := objc.Send[AVMediaSelection](p_.ID, objc.Sel("currentMediaSelection"))
 	return rv
 }
 
 // The error that caused the player item to fail.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/error
-func (p_ PlayerItem) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
+func (p_ PlayerItem) Error() Error {
+	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -256,8 +259,8 @@ func (p_ PlayerItem) SetForwardPlaybackEndTime(value unsafe.Pointer) {
 // An array of time ranges that identify interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/interstitialTimeRanges
-func (p_ PlayerItem) InterstitialTimeRanges() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("interstitialTimeRanges"))
+func (p_ PlayerItem) InterstitialTimeRanges() []avkit.InterstitialTimeRange {
+	rv := objc.Send[[]avkit.InterstitialTimeRange](p_.ID, objc.Sel("interstitialTimeRanges"))
 	return rv
 }
 
@@ -282,8 +285,8 @@ func (p_ PlayerItem) SetAudioSpatializationAllowed(value bool) {
 // The time marker groups that provide ways to navigate the player item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) NavigationMarkerGroups() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("navigationMarkerGroups"))
+func (p_ PlayerItem) NavigationMarkerGroups() []avkit.NavigationMarkersGroup {
+	rv := objc.Send[[]avkit.NavigationMarkersGroup](p_.ID, objc.Sel("navigationMarkerGroups"))
 	return rv
 }
 
@@ -293,7 +296,7 @@ func (p_ PlayerItem) NavigationMarkerGroups() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/navigationMarkerGroups
-func (p_ PlayerItem) SetNavigationMarkerGroups(value []unsafe.Pointer) {
+func (p_ PlayerItem) SetNavigationMarkerGroups(value []avkit.INavigationMarkersGroup) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -310,8 +313,8 @@ func (p_ PlayerItem) SetNavigationMarkerGroups(value []unsafe.Pointer) {
 // The item proposed to follow the current content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
-func (p_ PlayerItem) NextContentProposal() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("nextContentProposal"))
+func (p_ PlayerItem) NextContentProposal() avkit.ContentProposal {
+	rv := objc.Send[avkit.ContentProposal](p_.ID, objc.Sel("nextContentProposal"))
 	return rv
 }
 
@@ -321,7 +324,7 @@ func (p_ PlayerItem) NextContentProposal() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/nextContentProposal
-func (p_ PlayerItem) SetNextContentProposal(value unsafe.Pointer) {
+func (p_ PlayerItem) SetNextContentProposal(value avkit.IContentProposal) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNextContentProposal:"), value)
 }
 
@@ -357,7 +360,7 @@ func (p_ PlayerItem) PreferredCustomMediaSelectionSchemes() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/preferredCustomMediaSelectionSchemes
-func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []unsafe.Pointer) {
+func (p_ PlayerItem) SetPreferredCustomMediaSelectionSchemes(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -410,8 +413,8 @@ func (p_ PlayerItem) SetReversePlaybackEndTime(value unsafe.Pointer) {
 // The status of the player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/status-swift.property
-func (p_ PlayerItem) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("status"))
+func (p_ PlayerItem) Status() PlayerItemStatus {
+	rv := objc.Send[PlayerItemStatus](p_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -454,8 +457,8 @@ func (p_ PlayerItem) SetAppliesPerFrameHDRDisplayMetadata(value bool) {
 // The asset provided during initialization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/asset
-func (p_ PlayerItem) Asset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("asset"))
+func (p_ PlayerItem) Asset() AVAsset {
+	rv := objc.Send[AVAsset](p_.ID, objc.Sel("asset"))
 	return rv
 }
 
@@ -465,15 +468,15 @@ func (p_ PlayerItem) Asset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/asset
-func (p_ PlayerItem) SetAsset(value unsafe.Pointer) {
+func (p_ PlayerItem) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAsset:"), value)
 }
 
 // The audio mix parameters to be applied during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiomix
-func (p_ PlayerItem) AudioMix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioMix"))
+func (p_ PlayerItem) AudioMix() AVAudioMix {
+	rv := objc.Send[AVAudioMix](p_.ID, objc.Sel("audioMix"))
 	return rv
 }
 
@@ -483,15 +486,15 @@ func (p_ PlayerItem) AudioMix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiomix
-func (p_ PlayerItem) SetAudioMix(value unsafe.Pointer) {
+func (p_ PlayerItem) SetAudioMix(value IAVAudioMix) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioMix:"), value)
 }
 
 // The processing algorithm used to manage audio pitch for scaled audio edits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiotimepitchalgorithm
-func (p_ PlayerItem) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (p_ PlayerItem) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
+	rv := objc.Send[AudioTimePitchAlgorithm](p_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -501,7 +504,7 @@ func (p_ PlayerItem) AudioTimePitchAlgorithm() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/audiotimepitchalgorithm
-func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (p_ PlayerItem) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -526,8 +529,8 @@ func (p_ PlayerItem) SetAutomaticallyHandlesInterstitialEvents(value bool) {
 // The array of asset keys to be automatically loaded before the player item is ready to play.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyloadedassetkeys
-func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
+func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("automaticallyLoadedAssetKeys"))
 	return rv
 }
 
@@ -537,8 +540,8 @@ func (p_ PlayerItem) AutomaticallyLoadedAssetKeys() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/automaticallyloadedassetkeys
-func (p_ PlayerItem) SetAutomaticallyLoadedAssetKeys(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyLoadedAssetKeys:"), objc.String(value))
+func (p_ PlayerItem) SetAutomaticallyLoadedAssetKeys(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyLoadedAssetKeys:"), value)
 }
 
 // A Boolean value that indicates whether the player preserves its time offset from the live time after a buffering operation.
@@ -760,8 +763,8 @@ func (p_ PlayerItem) SetDuration(value unsafe.Pointer) {
 // An integrated timeline that represents the player item timing including its scheduled interstitial events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/integratedtimeline
-func (p_ PlayerItem) IntegratedTimeline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("integratedTimeline"))
+func (p_ PlayerItem) IntegratedTimeline() AVPlayerItemIntegratedTimeline {
+	rv := objc.Send[AVPlayerItemIntegratedTimeline](p_.ID, objc.Sel("integratedTimeline"))
 	return rv
 }
 
@@ -771,7 +774,7 @@ func (p_ PlayerItem) IntegratedTimeline() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/integratedtimeline
-func (p_ PlayerItem) SetIntegratedTimeline(value unsafe.Pointer) {
+func (p_ PlayerItem) SetIntegratedTimeline(value IAVPlayerItemIntegratedTimeline) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntegratedTimeline:"), value)
 }
 
@@ -904,8 +907,8 @@ func (p_ PlayerItem) SetIsPlaybackLikelyToKeepUp(value bool) {
 // An array of time ranges indicating media data that is readily available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/loadedtimeranges
-func (p_ PlayerItem) LoadedTimeRanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("loadedTimeRanges"))
+func (p_ PlayerItem) LoadedTimeRanges() foundation.Value {
+	rv := objc.Send[foundation.Value](p_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
 }
 
@@ -915,7 +918,7 @@ func (p_ PlayerItem) LoadedTimeRanges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/loadedtimeranges
-func (p_ PlayerItem) SetLoadedTimeRanges(value unsafe.Pointer) {
+func (p_ PlayerItem) SetLoadedTimeRanges(value foundation.IValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoadedTimeRanges:"), value)
 }
 
@@ -1066,8 +1069,8 @@ func (p_ PlayerItem) SetRecommendedTimeOffsetFromLive(value unsafe.Pointer) {
 // An array of time ranges within which it is possible to seek.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/seekabletimeranges
-func (p_ PlayerItem) SeekableTimeRanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("seekableTimeRanges"))
+func (p_ PlayerItem) SeekableTimeRanges() foundation.Value {
+	rv := objc.Send[foundation.Value](p_.ID, objc.Sel("seekableTimeRanges"))
 	return rv
 }
 
@@ -1077,7 +1080,7 @@ func (p_ PlayerItem) SeekableTimeRanges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/seekabletimeranges
-func (p_ PlayerItem) SetSeekableTimeRanges(value unsafe.Pointer) {
+func (p_ PlayerItem) SetSeekableTimeRanges(value foundation.IValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSeekableTimeRanges:"), value)
 }
 
@@ -1120,8 +1123,8 @@ func (p_ PlayerItem) SetStartsOnFirstEligibleVariant(value bool) {
 // The template player item that initializes this instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/template
-func (p_ PlayerItem) Template() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("template"))
+func (p_ PlayerItem) Template() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("template"))
 	return rv
 }
 
@@ -1131,7 +1134,7 @@ func (p_ PlayerItem) Template() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/template
-func (p_ PlayerItem) SetTemplate(value unsafe.Pointer) {
+func (p_ PlayerItem) SetTemplate(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplate:"), value)
 }
 
@@ -1174,8 +1177,8 @@ func (p_ PlayerItem) SetTimebase(value unsafe.Pointer) {
 // An array of player item track objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/tracks
-func (p_ PlayerItem) Tracks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tracks"))
+func (p_ PlayerItem) Tracks() AVPlayerItemTrack {
+	rv := objc.Send[AVPlayerItemTrack](p_.ID, objc.Sel("tracks"))
 	return rv
 }
 
@@ -1185,7 +1188,7 @@ func (p_ PlayerItem) Tracks() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/tracks
-func (p_ PlayerItem) SetTracks(value unsafe.Pointer) {
+func (p_ PlayerItem) SetTracks(value IAVPlayerItemTrack) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTracks:"), value)
 }
 
@@ -1228,8 +1231,8 @@ func (p_ PlayerItem) SetVideoApertureMode(value unsafe.Pointer) {
 // The video composition settings to be applied during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/videocomposition
-func (p_ PlayerItem) VideoComposition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoComposition"))
+func (p_ PlayerItem) VideoComposition() AVVideoComposition {
+	rv := objc.Send[AVVideoComposition](p_.ID, objc.Sel("videoComposition"))
 	return rv
 }
 
@@ -1239,7 +1242,7 @@ func (p_ PlayerItem) VideoComposition() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/videocomposition
-func (p_ PlayerItem) SetVideoComposition(value unsafe.Pointer) {
+func (p_ PlayerItem) SetVideoComposition(value IAVVideoComposition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoComposition:"), value)
 }
 

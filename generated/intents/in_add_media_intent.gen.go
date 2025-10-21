@@ -102,8 +102,8 @@ func (i_ INAddMediaIntent) SetMediaDestination(value unsafe.Pointer) {
 // The media content to add.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
-func (i_ INAddMediaIntent) MediaItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaItems"))
+func (i_ INAddMediaIntent) MediaItems() INMediaItem {
+	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (i_ INAddMediaIntent) MediaItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediaitems
-func (i_ INAddMediaIntent) SetMediaItems(value unsafe.Pointer) {
+func (i_ INAddMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
 
 // The location to search for the media item to add.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
-func (i_ INAddMediaIntent) MediaSearch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaSearch"))
+func (i_ INAddMediaIntent) MediaSearch() INMediaSearch {
+	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INAddMediaIntent) MediaSearch() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddmediaintent/mediasearch
-func (i_ INAddMediaIntent) SetMediaSearch(value unsafe.Pointer) {
+func (i_ INAddMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
 

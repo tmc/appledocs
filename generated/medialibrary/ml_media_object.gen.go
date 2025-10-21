@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,8 +93,8 @@ func (m_ MediaObject) Attributes() unsafe.Pointer {
 // The UTI associated with the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/contentType
-func (m_ MediaObject) ContentType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("contentType"))
+func (m_ MediaObject) ContentType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -108,24 +109,24 @@ func (m_ MediaObject) FileSize() uint {
 // An identifier for the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/identifier
-func (m_ MediaObject) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
+func (m_ MediaObject) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // An identifier for the source that loaded the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/mediaSourceIdentifier
-func (m_ MediaObject) MediaSourceIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
+func (m_ MediaObject) MediaSourceIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("mediaSourceIdentifier"))
 	return rv
 }
 
 // The name of the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaObject/name
-func (m_ MediaObject) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MediaObject) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -140,8 +141,8 @@ func (m_ MediaObject) ThumbnailURL() foundation.URL {
 // Album artwork associated with the media object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/artworkimage
-func (m_ MediaObject) ArtworkImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("artworkImage"))
+func (m_ MediaObject) ArtworkImage() appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("artworkImage"))
 	return rv
 }
 
@@ -151,15 +152,15 @@ func (m_ MediaObject) ArtworkImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/artworkimage
-func (m_ MediaObject) SetArtworkImage(value unsafe.Pointer) {
+func (m_ MediaObject) SetArtworkImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArtworkImage:"), value)
 }
 
 // A pointer to the media library instance that loaded the media object’s source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/medialibrary
-func (m_ MediaObject) MediaLibrary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaLibrary"))
+func (m_ MediaObject) MediaLibrary() MLMediaLibrary {
+	rv := objc.Send[MLMediaLibrary](m_.ID, objc.Sel("mediaLibrary"))
 	return rv
 }
 
@@ -169,7 +170,7 @@ func (m_ MediaObject) MediaLibrary() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/medialibrary
-func (m_ MediaObject) SetMediaLibrary(value unsafe.Pointer) {
+func (m_ MediaObject) SetMediaLibrary(value IMLMediaLibrary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibrary:"), value)
 }
 
@@ -194,8 +195,8 @@ func (m_ MediaObject) SetMediaType(value unsafe.Pointer) {
 // The date and time when the media object was last altered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/modificationdate
-func (m_ MediaObject) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modificationDate"))
+func (m_ MediaObject) ModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -205,7 +206,7 @@ func (m_ MediaObject) ModificationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/modificationdate
-func (m_ MediaObject) SetModificationDate(value unsafe.Pointer) {
+func (m_ MediaObject) SetModificationDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModificationDate:"), value)
 }
 
@@ -223,7 +224,7 @@ func (m_ MediaObject) OriginalURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/originalurl
-func (m_ MediaObject) SetOriginalURL(value foundation.URL) {
+func (m_ MediaObject) SetOriginalURL(value foundation.IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOriginalURL:"), value)
 }
 
@@ -241,7 +242,7 @@ func (m_ MediaObject) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediaobject/url
-func (m_ MediaObject) SetUrl(value foundation.URL) {
+func (m_ MediaObject) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 

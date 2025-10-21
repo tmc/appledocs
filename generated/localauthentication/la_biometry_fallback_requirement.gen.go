@@ -81,30 +81,30 @@ func NewBiometryFallbackRequirement() BiometryFallbackRequirement {
 // The default biometric fallback requirement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/default
-func (bc _BiometryFallbackRequirementClass) DefaultRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("defaultRequirement"))
+func (bc _BiometryFallbackRequirementClass) DefaultRequirement() BiometryFallbackRequirement {
+	rv := objc.Send[LABiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("defaultRequirement"))
 	return rv
 }
 // The fallback requirement that requires entering the device passcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/devicePasscode
-func (bc _BiometryFallbackRequirementClass) DevicePasscodeRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("devicePasscodeRequirement"))
+func (bc _BiometryFallbackRequirementClass) DevicePasscodeRequirement() BiometryFallbackRequirement {
+	rv := objc.Send[LABiometryFallbackRequirement](objc.ID(bc.class), objc.Sel("devicePasscodeRequirement"))
 	return rv
 }
 // The default biometric fallback requirement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/default
-func (b_ BiometryFallbackRequirement) DefaultRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("defaultRequirement"))
+func (b_ BiometryFallbackRequirement) DefaultRequirement() LABiometryFallbackRequirement {
+	rv := objc.Send[LABiometryFallbackRequirement](b_.ID, objc.Sel("defaultRequirement"))
 	return rv
 }
 
 // The fallback requirement that requires entering the device passcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LABiometryFallbackRequirement/devicePasscode
-func (b_ BiometryFallbackRequirement) DevicePasscodeRequirement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("devicePasscodeRequirement"))
+func (b_ BiometryFallbackRequirement) DevicePasscodeRequirement() LABiometryFallbackRequirement {
+	rv := objc.Send[LABiometryFallbackRequirement](b_.ID, objc.Sel("devicePasscodeRequirement"))
 	return rv
 }
 

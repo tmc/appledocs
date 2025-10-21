@@ -30,8 +30,8 @@ type _RPBroadcastMP4ClipHandlerClass struct {
 // An interface definition for the [RPBroadcastMP4ClipHandler] class.
 type IRPBroadcastMP4ClipHandler interface {
 	IRPBroadcastHandler
-	FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration unsafe.Pointer, error_ unsafe.Pointer)
-	ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.URL, setupInfo unsafe.Pointer, finished bool)
+	FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration IRPBroadcastConfiguration, error_ foundation.IError)
+	ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.IURL, setupInfo unsafe.Pointer, finished bool)
 }
 
 // An object that processes MP4 movie clips from ReplayKit.
@@ -87,14 +87,14 @@ func NewRPBroadcastMP4ClipHandler() RPBroadcastMP4ClipHandler {
 // Applies configuration update changes to the next MP4 movie clip.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastMP4ClipHandler/finishedProcessingMP4Clip(withUpdatedBroadcastConfiguration:error:)
-func (r_ RPBroadcastMP4ClipHandler) FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration unsafe.Pointer, error_ unsafe.Pointer) {
+func (r_ RPBroadcastMP4ClipHandler) FinishedProcessingMP4ClipWithUpdatedBroadcastConfigurationError(broadcastConfiguration IRPBroadcastConfiguration, error_ foundation.IError) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("finishedProcessingMP4ClipWithUpdatedBroadcastConfiguration:error:"), broadcastConfiguration, error_)
 }
 
 // Processes MP4 movie clips for a live broadcast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastMP4ClipHandler/processMP4Clip(with:setupInfo:finished:)
-func (r_ RPBroadcastMP4ClipHandler) ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.URL, setupInfo unsafe.Pointer, finished bool) {
+func (r_ RPBroadcastMP4ClipHandler) ProcessMP4ClipWithURLSetupInfoFinished(mp4ClipURL foundation.IURL, setupInfo unsafe.Pointer, finished bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("processMP4ClipWithURL:setupInfo:finished:"), mp4ClipURL, setupInfo, finished)
 }
 

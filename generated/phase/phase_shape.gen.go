@@ -85,7 +85,7 @@ func NewPHASEShape() PHASEShape {
 // Creates an object that the given geometric data shapes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:)
-func NewPHASEShapeWithEngineMesh(engine unsafe.Pointer, mesh unsafe.Pointer) PHASEShape {
+func NewPHASEShapeWithEngineMesh(engine IPHASEEngine, mesh unsafe.Pointer) PHASEShape {
 	instance := getPHASEShapeClass().Alloc()
 	rv := objc.Send[PHASEShape](instance.ID, objc.Sel("initWithEngine:mesh:"), engine, mesh)
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewPHASEShapeWithEngineMesh(engine unsafe.Pointer, mesh unsafe.Pointer) PHA
 // Creates an object of a specific material that the given geometric data shapes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/init(engine:mesh:materials:)
-func NewPHASEShapeWithEngineMeshMaterials(engine unsafe.Pointer, mesh unsafe.Pointer, materials unsafe.Pointer) PHASEShape {
+func NewPHASEShapeWithEngineMeshMaterials(engine IPHASEEngine, mesh unsafe.Pointer, materials []PHASEMaterial) PHASEShape {
 	instance := getPHASEShapeClass().Alloc()
 	rv := objc.Send[PHASEShape](instance.ID, objc.Sel("initWithEngine:mesh:materials:"), engine, mesh, materials)
 	rv.Autorelease()
@@ -116,8 +116,8 @@ func (p_ PHASEShape) Elements() []PHASEShapeElement {
 // An array of shapes that collectively define the audio-emitting surface area of a volumetric source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesource/shapes
-func (p_ PHASEShape) Shapes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("shapes"))
+func (p_ PHASEShape) Shapes() PHASEShape {
+	rv := objc.Send[PHASEShape](p_.ID, objc.Sel("shapes"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (p_ PHASEShape) Shapes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesource/shapes
-func (p_ PHASEShape) SetShapes(value unsafe.Pointer) {
+func (p_ PHASEShape) SetShapes(value IPHASEShape) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShapes:"), value)
 }
 

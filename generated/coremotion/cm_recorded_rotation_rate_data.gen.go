@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RecordedRotationRateData] class.
@@ -82,8 +83,8 @@ func NewRecordedRotationRateData() RecordedRotationRateData {
 // The time when the gyroscope measured the rotation data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedRotationRateData/startDate
-func (r_ RecordedRotationRateData) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startDate"))
+func (r_ RecordedRotationRateData) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }
 

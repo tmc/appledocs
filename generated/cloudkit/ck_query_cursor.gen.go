@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCKQueryCursor() CKQueryCursor {
 // The cursor for continuing the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
-func (c_ CKQueryCursor) Cursor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cursor"))
+func (c_ CKQueryCursor) Cursor() CKQueryCursor {
+	rv := objc.Send[CKQueryCursor](c_.ID, objc.Sel("cursor"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (c_ CKQueryCursor) Cursor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.property
-func (c_ CKQueryCursor) SetCursor(value unsafe.Pointer) {
+func (c_ CKQueryCursor) SetCursor(value ICKQueryCursor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCursor:"), value)
 }
 
@@ -119,8 +120,8 @@ func (c_ CKQueryCursor) SetDesiredKeys(value unsafe.Pointer) {
 // The query for the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
-func (c_ CKQueryCursor) Query() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("query"))
+func (c_ CKQueryCursor) Query() CKQuery {
+	rv := objc.Send[CKQuery](c_.ID, objc.Sel("query"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (c_ CKQueryCursor) Query() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/query
-func (c_ CKQueryCursor) SetQuery(value unsafe.Pointer) {
+func (c_ CKQueryCursor) SetQuery(value ICKQuery) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setQuery:"), value)
 }
 
@@ -155,8 +156,8 @@ func (c_ CKQueryCursor) SetResultsLimit(value int) {
 // The ID of the record zone that contains the records to search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
-func (c_ CKQueryCursor) ZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+func (c_ CKQueryCursor) ZoneID() CKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (c_ CKQueryCursor) ZoneID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckqueryoperation/zoneid
-func (c_ CKQueryCursor) SetZoneID(value unsafe.Pointer) {
+func (c_ CKQueryCursor) SetZoneID(value ICKRecordZoneID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
 }
 

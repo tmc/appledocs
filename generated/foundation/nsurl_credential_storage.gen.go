@@ -30,8 +30,8 @@ type _URLCredentialStorageClass struct {
 // An interface definition for the [URLCredentialStorage] class.
 type IURLCredentialStorage interface {
 	objectivec.IObject
-	CredentialsForProtectionSpace(space unsafe.Pointer) unsafe.Pointer
-	SetDefaultCredentialForProtectionSpace(credential unsafe.Pointer, space unsafe.Pointer)
+	CredentialsForProtectionSpace(space IURLProtectionSpace) unsafe.Pointer
+	SetDefaultCredentialForProtectionSpace(credential IURLCredential, space IURLProtectionSpace)
 }
 
 // The manager of a shared credentials cache.
@@ -85,7 +85,7 @@ func NewURLCredentialStorage() URLCredentialStorage {
 // Returns a dictionary containing the credentials for the specified protection space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/credentials(for:)
-func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space unsafe.Pointer) unsafe.Pointer {
+func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space IURLProtectionSpace) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("credentialsForProtectionSpace:"), space)
 	return rv
 }
@@ -93,15 +93,15 @@ func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space unsafe.Pointe
 // Sets the default credential for a specified protection space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/setDefaultCredential(_:for:)
-func (u_ URLCredentialStorage) SetDefaultCredentialForProtectionSpace(credential unsafe.Pointer, space unsafe.Pointer) {
+func (u_ URLCredentialStorage) SetDefaultCredentialForProtectionSpace(credential IURLCredential, space IURLProtectionSpace) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaultCredential:forProtectionSpace:"), credential, space)
 }
 
 // The credentials for all available protection spaces.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
-func (u_ URLCredentialStorage) AllCredentials() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("allCredentials"))
+func (u_ URLCredentialStorage) AllCredentials() NSURLCredential {
+	rv := objc.Send[NSURLCredential](u_.ID, objc.Sel("allCredentials"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (u_ URLCredentialStorage) AllCredentials() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredentialstorage/allcredentials
-func (u_ URLCredentialStorage) SetAllCredentials(value unsafe.Pointer) {
+func (u_ URLCredentialStorage) SetAllCredentials(value IURLCredential) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setAllCredentials:"), value)
 }
 

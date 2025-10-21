@@ -15,3 +15,11 @@ func ExampleNewCKFetchShareParticipantsOperation() {
 	_ = cloudkit.NewCKFetchShareParticipantsOperation()
 	// Output:
 }
+// ExampleNewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos demonstrates how to create a CKFetchShareParticipantsOperation instance using NewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos.
+// Creates an operation for generating share participants from the specified user data.
+func ExampleNewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos() {
+	_ = cloudkit.NewCKFetchShareParticipantsOperationWithUserIdentityLookupInfos(
+		[]cloudkit.CKUserIdentityLookupInfo{}, // userIdentityLookupInfos []CKUserIdentityLookupInfo
+	)
+	// Output:
+}

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +32,7 @@ type _IMKServerClass struct {
 // An interface definition for the [IMKServer] class.
 type IIMKServer interface {
 	objectivec.IObject
-	Bundle() unsafe.Pointer
+	Bundle() foundation.Bundle
 	LastKeyEventWasDeadKey() bool
 	PaletteWillTerminate() bool
 }
@@ -86,9 +88,9 @@ func NewIMKServer() IMKServer {
 // Creates and returns a server object from property list information contained in the provided bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:bundleIdentifier:)
-func NewIMKServerWithNameBundleIdentifier(name string, bundleIdentifier string) IMKServer {
+func NewIMKServerWithNameBundleIdentifier(name appkit.string, bundleIdentifier appkit.string) IMKServer {
 	instance := getIMKServerClass().Alloc()
-	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), objc.String(name), objc.String(bundleIdentifier))
+	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), name, bundleIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +100,9 @@ func NewIMKServerWithNameBundleIdentifier(name string, bundleIdentifier string) 
 // Creates and returns a server object initialized with the provided parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/init(name:controllerClass:delegateClass:)
-func NewIMKServerWithNameControllerClassDelegateClass(name string, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
+func NewIMKServerWithNameControllerClassDelegateClass(name appkit.string, controllerClassID objc.Class, delegateClassID objc.Class) IMKServer {
 	instance := getIMKServerClass().Alloc()
-	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), objc.String(name), controllerClassID, delegateClassID)
+	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), name, controllerClassID, delegateClassID)
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +111,8 @@ func NewIMKServerWithNameControllerClassDelegateClass(name string, controllerCla
 // Returns an object for the input method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/bundle()
-func (i_ IMKServer) Bundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bundle"))
+func (i_ IMKServer) Bundle() foundation.Bundle {
+	rv := objc.Send[foundation.Bundle](i_.ID, objc.Sel("bundle"))
 	return rv
 }
 

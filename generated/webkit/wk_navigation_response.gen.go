@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -109,8 +110,8 @@ func (n_ NavigationResponse) SetIsForMainFrame(value bool) {
 // The frame’s response.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
-func (n_ NavigationResponse) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("response"))
+func (n_ NavigationResponse) Response() foundation.URLResponse {
+	rv := objc.Send[foundation.URLResponse](n_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (n_ NavigationResponse) Response() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationresponse/response
-func (n_ NavigationResponse) SetResponse(value unsafe.Pointer) {
+func (n_ NavigationResponse) SetResponse(value foundation.IURLResponse) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
 }
 

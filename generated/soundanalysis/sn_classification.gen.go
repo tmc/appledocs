@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewSNClassification() SNClassification {
 // A prediction label that’s one of the classifications a sound classifier’s underlying model defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassification/identifier
-func (s_ SNClassification) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SNClassification) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (s_ SNClassification) SetConfidence(value unsafe.Pointer) {
 // A sorted array of the request’s top classification candidates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
-func (s_ SNClassification) Classifications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("classifications"))
+func (s_ SNClassification) Classifications() SNClassification {
+	rv := objc.Send[SNClassification](s_.ID, objc.Sel("classifications"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (s_ SNClassification) Classifications() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/classifications
-func (s_ SNClassification) SetClassifications(value unsafe.Pointer) {
+func (s_ SNClassification) SetClassifications(value ISNClassification) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassifications:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +85,8 @@ func NewMKUserLocation() MKUserLocation {
 // The heading of the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/heading
-func (m_ MKUserLocation) Heading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("heading"))
+func (m_ MKUserLocation) Heading() corelocation.Heading {
+	rv := objc.Send[corelocation.Heading](m_.ID, objc.Sel("heading"))
 	return rv
 }
 
@@ -99,16 +101,16 @@ func (m_ MKUserLocation) Updating() bool {
 // The location of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/location
-func (m_ MKUserLocation) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("location"))
+func (m_ MKUserLocation) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
 	return rv
 }
 
 // The subtitle to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
-func (m_ MKUserLocation) Subtitle() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
+func (m_ MKUserLocation) Subtitle() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -118,15 +120,15 @@ func (m_ MKUserLocation) Subtitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/subtitle
-func (m_ MKUserLocation) SetSubtitle(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (m_ MKUserLocation) SetSubtitle(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 // The title to display for the user’s location annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
-func (m_ MKUserLocation) Title() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ MKUserLocation) Title() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -136,15 +138,15 @@ func (m_ MKUserLocation) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserLocation/title
-func (m_ MKUserLocation) SetTitle(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (m_ MKUserLocation) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
 }
 
 // The annotation object that represents the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
-func (m_ MKUserLocation) UserLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userLocation"))
+func (m_ MKUserLocation) UserLocation() MKUserLocation {
+	rv := objc.Send[MKUserLocation](m_.ID, objc.Sel("userLocation"))
 	return rv
 }
 
@@ -154,7 +156,7 @@ func (m_ MKUserLocation) UserLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/userlocation
-func (m_ MKUserLocation) SetUserLocation(value unsafe.Pointer) {
+func (m_ MKUserLocation) SetUserLocation(value IMKUserLocation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserLocation:"), value)
 }
 

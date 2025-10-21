@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewVZGenericMachineIdentifier() VZGenericMachineIdentifier {
 // Creates a new unique identifier for a VM with the provided data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier/init(dataRepresentation:)
-func NewVZGenericMachineIdentifierWithDataRepresentation(dataRepresentation unsafe.Pointer) VZGenericMachineIdentifier {
+func NewVZGenericMachineIdentifierWithDataRepresentation(dataRepresentation foundation.IData) VZGenericMachineIdentifier {
 	instance := getVZGenericMachineIdentifierClass().Alloc()
 	rv := objc.Send[VZGenericMachineIdentifier](instance.ID, objc.Sel("initWithDataRepresentation:"), dataRepresentation)
 	rv.Autorelease()
@@ -96,8 +97,8 @@ func NewVZGenericMachineIdentifierWithDataRepresentation(dataRepresentation unsa
 // An opaque data representation of the VM’s identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericMachineIdentifier/dataRepresentation
-func (v_ VZGenericMachineIdentifier) DataRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("dataRepresentation"))
+func (v_ VZGenericMachineIdentifier) DataRepresentation() foundation.NSData {
+	rv := objc.Send[foundation.NSData](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (v_ VZGenericMachineIdentifier) SetIsNestedVirtualizationEnabled(value bool
 // A value that represents a unique identifier for the virtual machine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/machineidentifier
-func (v_ VZGenericMachineIdentifier) MachineIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("machineIdentifier"))
+func (v_ VZGenericMachineIdentifier) MachineIdentifier() VZGenericMachineIdentifier {
+	rv := objc.Send[VZGenericMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
 	return rv
 }
 
@@ -133,7 +134,7 @@ func (v_ VZGenericMachineIdentifier) MachineIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration/machineidentifier
-func (v_ VZGenericMachineIdentifier) SetMachineIdentifier(value unsafe.Pointer) {
+func (v_ VZGenericMachineIdentifier) SetMachineIdentifier(value IVZGenericMachineIdentifier) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
 

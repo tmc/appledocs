@@ -109,7 +109,7 @@ func NewRandomDistributionWithLowestValueHighestValue(lowestInclusive int, highe
 // Initializes a uniform random distribution with the specified lower and upper bounds, using the specified source randomizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomDistribution/init(randomSource:lowestValue:highestValue:)
-func NewRandomDistributionWithRandomSourceLowestValueHighestValue(source objc.ID, lowestInclusive int, highestInclusive int) RandomDistribution {
+func NewRandomDistributionWithRandomSourceLowestValueHighestValue(source objectivec.IObject, lowestInclusive int, highestInclusive int) RandomDistribution {
 	instance := getRandomDistributionClass().Alloc()
 	rv := objc.Send[RandomDistribution](instance.ID, objc.Sel("initWithRandomSource:lowestValue:highestValue:"), source, lowestInclusive, highestInclusive)
 	rv.Autorelease()

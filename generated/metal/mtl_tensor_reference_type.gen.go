@@ -81,16 +81,16 @@ func NewTensorReferenceType() TensorReferenceType {
 // The underlying data format of the tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/tensorDataType
-func (t_ TensorReferenceType) TensorDataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tensorDataType"))
+func (t_ TensorReferenceType) TensorDataType() TensorDataType {
+	rv := objc.Send[TensorDataType](t_.ID, objc.Sel("tensorDataType"))
 	return rv
 }
 
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorReferenceType) MTLTensorDomain() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorReferenceType) MTLTensorDomain() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
 }
 
@@ -115,8 +115,8 @@ func (t_ TensorReferenceType) SetAccess(value unsafe.Pointer) {
 // The array of sizes, in elements, one for each dimension of this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
-func (t_ TensorReferenceType) Dimensions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dimensions"))
+func (t_ TensorReferenceType) Dimensions() MTLTensorExtents {
+	rv := objc.Send[MTLTensorExtents](t_.ID, objc.Sel("dimensions"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (t_ TensorReferenceType) Dimensions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
-func (t_ TensorReferenceType) SetDimensions(value unsafe.Pointer) {
+func (t_ TensorReferenceType) SetDimensions(value IMTLTensorExtents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
 }
 

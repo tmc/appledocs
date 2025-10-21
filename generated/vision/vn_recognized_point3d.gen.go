@@ -82,8 +82,8 @@ func NewRecognizedPoint3D() RecognizedPoint3D {
 // The identifier that provides context about what kind of point the request recognizes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint3D/identifier
-func (r_ RecognizedPoint3D) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("identifier"))
+func (r_ RecognizedPoint3D) Identifier() RecognizedPointKey {
+	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 

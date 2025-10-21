@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewWaterSubmersionMeasurement() WaterSubmersionMeasurement {
 // The time and date when the system recorded the measurements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/date
-func (w_ WaterSubmersionMeasurement) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("date"))
+func (w_ WaterSubmersionMeasurement) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (w_ WaterSubmersionMeasurement) Pressure() unsafe.Pointer {
 // The depth state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionMeasurement/submersionState
-func (w_ WaterSubmersionMeasurement) SubmersionState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("submersionState"))
+func (w_ WaterSubmersionMeasurement) SubmersionState() WaterSubmersionDepthState {
+	rv := objc.Send[WaterSubmersionDepthState](w_.ID, objc.Sel("submersionState"))
 	return rv
 }
 

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = quartzcore.NewMetalDisplayLink
 
+// ExampleNewMetalDisplayLinkWithMetalLayer demonstrates how to create a MetalDisplayLink instance using NewMetalDisplayLinkWithMetalLayer.
+// Creates a display link for Metal from a Core Animation layer.
+func ExampleNewMetalDisplayLinkWithMetalLayer() {
+	_ = quartzcore.NewMetalDisplayLinkWithMetalLayer(
+		quartzcore.CAMetalLayer{}, // layer CAMetalLayer
+	)
+	// Output:
+}

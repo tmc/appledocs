@@ -84,8 +84,8 @@ func NewHKCategorySample() HKCategorySample {
 // The category type for this sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategorySample/categoryType
-func (h_ HKCategorySample) CategoryType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("categoryType"))
+func (h_ HKCategorySample) CategoryType() HKCategoryType {
+	rv := objc.Send[HKCategoryType](h_.ID, objc.Sel("categoryType"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (h_ HKCategorySample) SetValue(value int) {
 // The key path for accessing the category sample’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcategoryvalue
-func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
+func (h_ HKCategorySample) HKPredicateKeyPathCategoryValue() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathCategoryValue"))
 	return rv
 }
 

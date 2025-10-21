@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,9 +34,9 @@ type IStream interface {
 	Close()
 	Open()
 	PropertyForKey(key unsafe.Pointer) objc.ID
-	RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
-	ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
-	SetPropertyForKey(property objc.ID, key unsafe.Pointer) bool
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	SetPropertyForKey(property objectivec.IObject, key unsafe.Pointer) bool
 }
 
 // An abstract class representing a stream.
@@ -89,14 +90,14 @@ func NewStream() Stream {
 // Creates and returns by reference a bound pair of input and output streams.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getBoundStreams(withBufferSize:inputStream:outputStream:)
-func (sc _StreamClass) GetBoundStreamsWithBufferSizeInputStreamOutputStream(bufferSize uint, inputStream unsafe.Pointer, outputStream unsafe.Pointer) {
+func (sc _StreamClass) GetBoundStreamsWithBufferSizeInputStreamOutputStream(bufferSize uint, inputStream IInputStream, outputStream IOutputStream) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getBoundStreamsWithBufferSize:inputStream:outputStream:"), bufferSize, inputStream, outputStream)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getStreamsToHost(withName:port:inputStream:outputStream:)
-func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname string, port int, inputStream unsafe.Pointer, outputStream unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHostWithName:port:inputStream:outputStream:"), objc.String(hostname), port, inputStream, outputStream)
+func (sc _StreamClass) GetStreamsToHostWithNamePortInputStreamOutputStream(hostname appkit.string, port int, inputStream IInputStream, outputStream IOutputStream) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStreamsToHostWithName:port:inputStream:outputStream:"), hostname, port, inputStream, outputStream)
 }
 
 // Closes the receiver.
@@ -124,21 +125,21 @@ func (s_ Stream) PropertyForKey(key unsafe.Pointer) objc.ID {
 // Removes the receiver from a given run loop running in a given mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/remove(from:forMode:)
-func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (s_ Stream) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
 // Schedules the receiver on a given run loop in a given mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/schedule(in:forMode:)
-func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (s_ Stream) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
 // Attempts to set the value of a given property of the receiver and returns a Boolean value that indicates whether the value is accepted by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/setProperty(_:forKey:)
-func (s_ Stream) SetPropertyForKey(property objc.ID, key unsafe.Pointer) bool {
+func (s_ Stream) SetPropertyForKey(property objectivec.IObject, key unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("setProperty:forKey:"), property, key)
 	return rv
 }
@@ -164,32 +165,32 @@ func (s_ Stream) SetDelegate(value objc.ID) {
 // Returns an object representing the stream error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamError
-func (s_ Stream) StreamError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamError"))
+func (s_ Stream) StreamError() NSError {
+	rv := objc.Send[NSError](s_.ID, objc.Sel("streamError"))
 	return rv
 }
 
 // Returns the receiver’s status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamStatus
-func (s_ Stream) StreamStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
+func (s_ Stream) StreamStatus() StreamStatus {
+	rv := objc.Send[StreamStatus](s_.ID, objc.Sel("streamStatus"))
 	return rv
 }
 
 // The error domain used by
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsockserrordomain
-func (s_ Stream) NSStreamSOCKSErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
+func (s_ Stream) NSStreamSOCKSErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("NSStreamSOCKSErrorDomain"))
 	return rv
 }
 
 // The error domain used by
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstreamsocketsslerrordomain
-func (s_ Stream) NSStreamSocketSSLErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
+func (s_ Stream) NSStreamSocketSSLErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("NSStreamSocketSSLErrorDomain"))
 	return rv
 }
 

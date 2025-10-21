@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHProjectJournalEntryElement] class.
@@ -82,24 +83,24 @@ func NewPHProjectJournalEntryElement() PHProjectJournalEntryElement {
 // An optional asset to represent the date in the journal entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectJournalEntryElement/assetElement
-func (p_ PHProjectJournalEntryElement) AssetElement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetElement"))
+func (p_ PHProjectJournalEntryElement) AssetElement() PHProjectAssetElement {
+	rv := objc.Send[PHProjectAssetElement](p_.ID, objc.Sel("assetElement"))
 	return rv
 }
 
 // The date of the journal entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectJournalEntryElement/date
-func (p_ PHProjectJournalEntryElement) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("date"))
+func (p_ PHProjectJournalEntryElement) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("date"))
 	return rv
 }
 
 // Descriptive text for the date of the entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectJournalEntryElement/textElement
-func (p_ PHProjectJournalEntryElement) TextElement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("textElement"))
+func (p_ PHProjectJournalEntryElement) TextElement() PHProjectTextElement {
+	rv := objc.Send[PHProjectTextElement](p_.ID, objc.Sel("textElement"))
 	return rv
 }
 

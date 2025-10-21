@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -90,16 +91,16 @@ func (g_ GameActivityDefinition) DefaultProperties() unsafe.Pointer {
 // The group identifier for the activity, if one exists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameActivityDefinition/groupIdentifier
-func (g_ GameActivityDefinition) GroupIdentifier() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("groupIdentifier"))
+func (g_ GameActivityDefinition) GroupIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
 // A more detailed description of the game activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/details
-func (g_ GameActivityDefinition) Details() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("details"))
+func (g_ GameActivityDefinition) Details() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("details"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (g_ GameActivityDefinition) Details() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/details
-func (g_ GameActivityDefinition) SetDetails(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDetails:"), objc.String(value))
+func (g_ GameActivityDefinition) SetDetails(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDetails:"), value)
 }
 
 // A fallback URL that can be used to construct a game-specific URL for players to share or join, if the joining device does not support the default URL.
@@ -127,15 +128,15 @@ func (g_ GameActivityDefinition) FallbackURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/fallbackurl
-func (g_ GameActivityDefinition) SetFallbackURL(value foundation.URL) {
+func (g_ GameActivityDefinition) SetFallbackURL(value foundation.IURL) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFallbackURL:"), value)
 }
 
 // The developer defined identifier for a given game activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/identifier
-func (g_ GameActivityDefinition) Identifier() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("identifier"))
+func (g_ GameActivityDefinition) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (g_ GameActivityDefinition) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/identifier
-func (g_ GameActivityDefinition) SetIdentifier(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (g_ GameActivityDefinition) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The play style of the game activity.
@@ -242,8 +243,8 @@ func (g_ GameActivityDefinition) SetSupportsUnlimitedPlayers(value bool) {
 // A short title for the game activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/title
-func (g_ GameActivityDefinition) Title() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("title"))
+func (g_ GameActivityDefinition) Title() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -253,8 +254,8 @@ func (g_ GameActivityDefinition) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkgameactivitydefinition/title
-func (g_ GameActivityDefinition) SetTitle(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (g_ GameActivityDefinition) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setTitle:"), value)
 }
 
 

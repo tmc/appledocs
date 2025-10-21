@@ -30,8 +30,8 @@ type _OrderedSetClass struct {
 // An interface definition for the [OrderedSet] class.
 type IOrderedSet interface {
 	objectivec.IObject
-	DescriptionWithLocaleIndent(locale objc.ID, level uint) string
-	EnumerateObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
+	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
 	ObjectAtIndex(idx uint) unsafe.Pointer
 }
@@ -87,15 +87,15 @@ func NewOrderedSet() OrderedSet {
 // Returns a string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
-func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objc.ID, level uint) string {
-	rv := objc.Send[string](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
+func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String {
+	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
 
 // Executes a given block using each object in the set, using the specified enumeration options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/enumerateObjects(options:using:)
-func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer) {
+func (o_ OrderedSet) EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("enumerateObjectsWithOptions:usingBlock:"), opts, block)
 }
 
@@ -162,8 +162,8 @@ func (o_ OrderedSet) SetCount(value int) {
 // A string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/description
-func (o_ OrderedSet) Description() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("description"))
+func (o_ OrderedSet) Description() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -173,8 +173,8 @@ func (o_ OrderedSet) Description() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/description
-func (o_ OrderedSet) SetDescription(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDescription:"), objc.String(value))
+func (o_ OrderedSet) SetDescription(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDescription:"), value)
 }
 
 // The first object in the ordered set.
@@ -198,8 +198,8 @@ func (o_ OrderedSet) SetFirstObject(value unsafe.Pointer) {
 // An ordered set in the reverse order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/reversed
-func (o_ OrderedSet) Reversed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("reversed"))
+func (o_ OrderedSet) Reversed() NSOrderedSet {
+	rv := objc.Send[NSOrderedSet](o_.ID, objc.Sel("reversed"))
 	return rv
 }
 
@@ -209,7 +209,7 @@ func (o_ OrderedSet) Reversed() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsorderedset/reversed
-func (o_ OrderedSet) SetReversed(value unsafe.Pointer) {
+func (o_ OrderedSet) SetReversed(value IOrderedSet) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setReversed:"), value)
 }
 

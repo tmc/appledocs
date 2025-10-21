@@ -87,7 +87,7 @@ func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeClusterModeTagStruct/mfgCode
-func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
+func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenModeClusterModeTagStruct/value
-func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) SetValue(value foundation.Number) {
+func (m_ MTRMicrowaveOvenModeClusterModeTagStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

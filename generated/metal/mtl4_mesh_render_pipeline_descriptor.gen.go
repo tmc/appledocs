@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MTL4MeshRenderPipelineDescriptor] class.
@@ -110,8 +111,8 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SetAlphaToCoverageState(value unsafe.
 // Indicates whether the pipeline forces alpha channel values of color attachments to the largest representable value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/alphaToOneState
-func (m_ MTL4MeshRenderPipelineDescriptor) AlphaToOneState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alphaToOneState"))
+func (m_ MTL4MeshRenderPipelineDescriptor) AlphaToOneState() MTL4AlphaToOneState {
+	rv := objc.Send[MTL4AlphaToOneState](m_.ID, objc.Sel("alphaToOneState"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) AlphaToOneState() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/alphaToOneState
-func (m_ MTL4MeshRenderPipelineDescriptor) SetAlphaToOneState(value unsafe.Pointer) {
+func (m_ MTL4MeshRenderPipelineDescriptor) SetAlphaToOneState(value MTL4AlphaToOneState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaToOneState:"), value)
 }
 
@@ -146,8 +147,8 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SetColorAttachmentMappingState(value 
 // Accesses an array containing descriptions of the color attachments this pipeline writes to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/colorAttachments
-func (m_ MTL4MeshRenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("colorAttachments"))
+func (m_ MTL4MeshRenderPipelineDescriptor) ColorAttachments() MTL4RenderPipelineColorAttachmentDescriptorArray {
+	rv := objc.Send[MTL4RenderPipelineColorAttachmentDescriptorArray](m_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
@@ -424,8 +425,8 @@ func (m_ MTL4MeshRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 // Controls the required number of mesh threads-per-threadgroup when drawing with a mesh shader pipeline you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/requiredThreadsPerMeshThreadgroup
-func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerMeshThreadgroup"))
+func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](m_.ID, objc.Sel("requiredThreadsPerMeshThreadgroup"))
 	return rv
 }
 
@@ -435,15 +436,15 @@ func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerMeshThreadgroup() u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/requiredThreadsPerMeshThreadgroup
-func (m_ MTL4MeshRenderPipelineDescriptor) SetRequiredThreadsPerMeshThreadgroup(value unsafe.Pointer) {
+func (m_ MTL4MeshRenderPipelineDescriptor) SetRequiredThreadsPerMeshThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerMeshThreadgroup:"), value)
 }
 
 // Controls the required number of object threads-per-threadgroup when drawing with a mesh shader pipeline you create from this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/requiredThreadsPerObjectThreadgroup
-func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerObjectThreadgroup"))
+func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](m_.ID, objc.Sel("requiredThreadsPerObjectThreadgroup"))
 	return rv
 }
 
@@ -453,7 +454,7 @@ func (m_ MTL4MeshRenderPipelineDescriptor) RequiredThreadsPerObjectThreadgroup()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4MeshRenderPipelineDescriptor/requiredThreadsPerObjectThreadgroup
-func (m_ MTL4MeshRenderPipelineDescriptor) SetRequiredThreadsPerObjectThreadgroup(value unsafe.Pointer) {
+func (m_ MTL4MeshRenderPipelineDescriptor) SetRequiredThreadsPerObjectThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerObjectThreadgroup:"), value)
 }
 

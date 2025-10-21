@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
 // The class instance for the [PHASEChannelMixerDefinition] class.
@@ -86,7 +88,7 @@ func NewPHASEChannelMixerDefinition() PHASEChannelMixerDefinition {
 // Creates a channel mixer with the given channel layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEChannelMixerDefinition/init(channelLayout:)
-func NewPHASEChannelMixerDefinitionWithChannelLayout(layout unsafe.Pointer) PHASEChannelMixerDefinition {
+func NewPHASEChannelMixerDefinitionWithChannelLayout(layout avfaudio.IAudioChannelLayout) PHASEChannelMixerDefinition {
 	instance := getPHASEChannelMixerDefinitionClass().Alloc()
 	rv := objc.Send[PHASEChannelMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:"), layout)
 	rv.Autorelease()
@@ -98,9 +100,9 @@ func NewPHASEChannelMixerDefinitionWithChannelLayout(layout unsafe.Pointer) PHAS
 // Creates a named channel mixer with the given channel layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEChannelMixerDefinition/init(channelLayout:identifier:)
-func NewPHASEChannelMixerDefinitionWithChannelLayoutIdentifier(layout unsafe.Pointer, identifier string) PHASEChannelMixerDefinition {
+func NewPHASEChannelMixerDefinitionWithChannelLayoutIdentifier(layout avfaudio.IAudioChannelLayout, identifier appkit.string) PHASEChannelMixerDefinition {
 	instance := getPHASEChannelMixerDefinitionClass().Alloc()
-	rv := objc.Send[PHASEChannelMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:identifier:"), layout, objc.String(identifier))
+	rv := objc.Send[PHASEChannelMixerDefinition](instance.ID, objc.Sel("initWithChannelLayout:identifier:"), layout, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +111,8 @@ func NewPHASEChannelMixerDefinitionWithChannelLayoutIdentifier(layout unsafe.Poi
 // The channel layout of the mixer’s input audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEChannelMixerDefinition/inputChannelLayout
-func (p_ PHASEChannelMixerDefinition) InputChannelLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputChannelLayout"))
+func (p_ PHASEChannelMixerDefinition) InputChannelLayout() avfaudio.AudioChannelLayout {
+	rv := objc.Send[avfaudio.AudioChannelLayout](p_.ID, objc.Sel("inputChannelLayout"))
 	return rv
 }
 

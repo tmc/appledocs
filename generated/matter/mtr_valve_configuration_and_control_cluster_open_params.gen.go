@@ -87,7 +87,7 @@ func (m_ MTRValveConfigurationAndControlClusterOpenParams) OpenDuration() founda
 // SetOpenDuration sets the value of the openDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/openduration
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetOpenDuration(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetOpenDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOpenDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRValveConfigurationAndControlClusterOpenParams) ServerSideProcessingT
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/serversideprocessingtimeout
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRValveConfigurationAndControlClusterOpenParams) TargetLevel() foundat
 // SetTargetLevel sets the value of the targetLevel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/targetlevel
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTargetLevel(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTargetLevel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetLevel:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRValveConfigurationAndControlClusterOpenParams) TimedInvokeTimeoutMs(
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclusteropenparams/timedinvoketimeoutms
-func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterOpenParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

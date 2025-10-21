@@ -84,8 +84,8 @@ func NewINStartAudioCallIntent() INStartAudioCallIntent {
 // The users to call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintent/contacts
-func (i_ INStartAudioCallIntent) Contacts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contacts"))
+func (i_ INStartAudioCallIntent) Contacts() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("contacts"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (i_ INStartAudioCallIntent) Contacts() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintent/contacts
-func (i_ INStartAudioCallIntent) SetContacts(value unsafe.Pointer) {
+func (i_ INStartAudioCallIntent) SetContacts(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
 }
 
 // The type of call to place.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintent/destinationtype
-func (i_ INStartAudioCallIntent) DestinationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("destinationType"))
+func (i_ INStartAudioCallIntent) DestinationType() INCallDestinationType {
+	rv := objc.Send[INCallDestinationType](i_.ID, objc.Sel("destinationType"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (i_ INStartAudioCallIntent) DestinationType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartaudiocallintent/destinationtype
-func (i_ INStartAudioCallIntent) SetDestinationType(value unsafe.Pointer) {
+func (i_ INStartAudioCallIntent) SetDestinationType(value INCallDestinationType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDestinationType:"), value)
 }
 

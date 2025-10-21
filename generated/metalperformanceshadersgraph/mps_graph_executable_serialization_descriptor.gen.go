@@ -100,8 +100,8 @@ func (g_ GraphExecutableSerializationDescriptor) SetAppend(value bool) {
 // The deployment platform used to serialize the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
-func (g_ GraphExecutableSerializationDescriptor) DeploymentPlatform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("deploymentPlatform"))
+func (g_ GraphExecutableSerializationDescriptor) DeploymentPlatform() GraphDeploymentPlatform {
+	rv := objc.Send[GraphDeploymentPlatform](g_.ID, objc.Sel("deploymentPlatform"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (g_ GraphExecutableSerializationDescriptor) DeploymentPlatform() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/deploymentplatform
-func (g_ GraphExecutableSerializationDescriptor) SetDeploymentPlatform(value unsafe.Pointer) {
+func (g_ GraphExecutableSerializationDescriptor) SetDeploymentPlatform(value IGraphDeploymentPlatform) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDeploymentPlatform:"), value)
 }
 
 // The minimum deployment target to serialize the executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
-func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("minimumDeploymentTarget"))
+func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("minimumDeploymentTarget"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (g_ GraphExecutableSerializationDescriptor) MinimumDeploymentTarget() strin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutableserializationdescriptor/minimumdeploymenttarget
-func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), objc.String(value))
+func (g_ GraphExecutableSerializationDescriptor) SetMinimumDeploymentTarget(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setMinimumDeploymentTarget:"), value)
 }
 
 

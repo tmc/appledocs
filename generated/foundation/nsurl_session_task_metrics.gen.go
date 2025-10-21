@@ -92,8 +92,8 @@ func (u_ URLSessionTaskMetrics) RedirectCount() uint {
 // The time interval between when a task is instantiated and when the task is completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/taskInterval
-func (u_ URLSessionTaskMetrics) TaskInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("taskInterval"))
+func (u_ URLSessionTaskMetrics) TaskInterval() NSDateInterval {
+	rv := objc.Send[NSDateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }
 

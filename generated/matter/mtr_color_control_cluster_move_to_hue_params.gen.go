@@ -87,7 +87,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) Direction() foundation.Number {
 // SetDirection sets the value of the direction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/direction
-func (m_ MTRColorControlClusterMoveToHueParams) SetDirection(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetDirection(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) Hue() foundation.Number {
 // SetHue sets the value of the hue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/hue
-func (m_ MTRColorControlClusterMoveToHueParams) SetHue(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetHue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHue:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) OptionsMask() foundation.Number 
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/optionsmask
-func (m_ MTRColorControlClusterMoveToHueParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) OptionsOverride() foundation.Num
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToHueParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) ServerSideProcessingTimeout() fo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveToHueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) TimedInvokeTimeoutMs() foundatio
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveToHueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRColorControlClusterMoveToHueParams) TransitionTime() foundation.Numb
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/transitiontime
-func (m_ MTRColorControlClusterMoveToHueParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

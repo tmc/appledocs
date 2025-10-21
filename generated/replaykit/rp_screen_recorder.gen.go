@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +33,7 @@ type _RPScreenRecorderClass struct {
 type IRPScreenRecorder interface {
 	objectivec.IObject
 	DiscardRecordingWithHandler(handler unsafe.Pointer)
-	ExportClipToURLDurationCompletionHandler(url foundation.URL, duration foundation.TimeInterval, completionHandler func(error objc.ID))
+	ExportClipToURLDurationCompletionHandler(url foundation.IURL, duration foundation.ITimeInterval, completionHandler func(error objc.ID))
 	StartCaptureWithHandlerCompletionHandler(captureHandler unsafe.Pointer, completionHandler func(error objc.ID))
 	StartClipBufferingWithCompletionHandler(completionHandler unsafe.Pointer)
 	StartRecordingWithHandler(handler func(error objc.ID))
@@ -40,7 +41,7 @@ type IRPScreenRecorder interface {
 	StopCaptureWithHandler(handler func(error objc.ID))
 	StopClipBufferingWithCompletionHandler(completionHandler func(error objc.ID))
 	StopRecordingWithHandler(handler unsafe.Pointer)
-	StopRecordingWithOutputURLCompletionHandler(url foundation.URL, completionHandler func(error objc.ID))
+	StopRecordingWithOutputURLCompletionHandler(url foundation.IURL, completionHandler func(error objc.ID))
 }
 
 // The shared recorder object that provides the ability to record audio and video of your app.
@@ -95,8 +96,8 @@ func NewRPScreenRecorder() RPScreenRecorder {
 // Returns an app’s instance of the shared screen recorder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/shared()
-func (rc _RPScreenRecorderClass) SharedRecorder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("sharedRecorder"))
+func (rc _RPScreenRecorderClass) SharedRecorder() RPScreenRecorder {
+	rv := objc.Send[RPScreenRecorder](objc.ID(rc.class), objc.Sel("sharedRecorder"))
 	return rv
 }
 
@@ -110,7 +111,7 @@ func (r_ RPScreenRecorder) DiscardRecordingWithHandler(handler unsafe.Pointer) {
 // Exports a clip recording to a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/exportClip(to:duration:completionHandler:)
-func (r_ RPScreenRecorder) ExportClipToURLDurationCompletionHandler(url foundation.URL, duration foundation.TimeInterval, completionHandler func(error objc.ID)) {
+func (r_ RPScreenRecorder) ExportClipToURLDurationCompletionHandler(url foundation.IURL, duration foundation.ITimeInterval, completionHandler func(error objc.ID)) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("exportClipToURL:duration:completionHandler:"), url, duration, completionHandler)
 }
 
@@ -166,15 +167,15 @@ func (r_ RPScreenRecorder) StopRecordingWithHandler(handler unsafe.Pointer) {
 // Stops the current recording and writes the movie to the specified output URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/stopRecording(withOutput:completionHandler:)
-func (r_ RPScreenRecorder) StopRecordingWithOutputURLCompletionHandler(url foundation.URL, completionHandler func(error objc.ID)) {
+func (r_ RPScreenRecorder) StopRecordingWithOutputURLCompletionHandler(url foundation.IURL, completionHandler func(error objc.ID)) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("stopRecordingWithOutputURL:completionHandler:"), url, completionHandler)
 }
 
 // The camera position to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/cameraPosition
-func (r_ RPScreenRecorder) CameraPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("cameraPosition"))
+func (r_ RPScreenRecorder) CameraPosition() RPCameraPosition {
+	rv := objc.Send[RPCameraPosition](r_.ID, objc.Sel("cameraPosition"))
 	return rv
 }
 
@@ -184,15 +185,15 @@ func (r_ RPScreenRecorder) CameraPosition() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/cameraPosition
-func (r_ RPScreenRecorder) SetCameraPosition(value unsafe.Pointer) {
+func (r_ RPScreenRecorder) SetCameraPosition(value RPCameraPosition) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCameraPosition:"), value)
 }
 
 // A view containing the contents of the front-facing camera.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPScreenRecorder/cameraPreviewView
-func (r_ RPScreenRecorder) CameraPreviewView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("cameraPreviewView"))
+func (r_ RPScreenRecorder) CameraPreviewView() appkit.View {
+	rv := objc.Send[appkit.View](r_.ID, objc.Sel("cameraPreviewView"))
 	return rv
 }
 

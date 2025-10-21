@@ -102,8 +102,8 @@ func (c_ CapturePhotoSettings) SetPortraitEffectsMatteDeliveryEnabled(value bool
 // An array of video codec types compatible with the photo settings for embedding thumbnail images in photo file output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/availableembeddedthumbnailphotocodectypes
-func (c_ CapturePhotoSettings) AvailableEmbeddedThumbnailPhotoCodecTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableEmbeddedThumbnailPhotoCodecTypes"))
+func (c_ CapturePhotoSettings) AvailableEmbeddedThumbnailPhotoCodecTypes() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableEmbeddedThumbnailPhotoCodecTypes"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (c_ CapturePhotoSettings) AvailableEmbeddedThumbnailPhotoCodecTypes() unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/availableembeddedthumbnailphotocodectypes
-func (c_ CapturePhotoSettings) SetAvailableEmbeddedThumbnailPhotoCodecTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetAvailableEmbeddedThumbnailPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableEmbeddedThumbnailPhotoCodecTypes:"), value)
 }
 
@@ -138,8 +138,8 @@ func (c_ CapturePhotoSettings) SetAvailablePreviewPhotoPixelFormatTypes(value un
 // An array of video codec types compatible with the photo settings for embedding raw thumbnail images in photo file output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/availablerawembeddedthumbnailphotocodectypes
-func (c_ CapturePhotoSettings) AvailableRawEmbeddedThumbnailPhotoCodecTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableRawEmbeddedThumbnailPhotoCodecTypes"))
+func (c_ CapturePhotoSettings) AvailableRawEmbeddedThumbnailPhotoCodecTypes() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableRawEmbeddedThumbnailPhotoCodecTypes"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (c_ CapturePhotoSettings) AvailableRawEmbeddedThumbnailPhotoCodecTypes() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/availablerawembeddedthumbnailphotocodectypes
-func (c_ CapturePhotoSettings) SetAvailableRawEmbeddedThumbnailPhotoCodecTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetAvailableRawEmbeddedThumbnailPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawEmbeddedThumbnailPhotoCodecTypes:"), value)
 }
 
 // A dictionary describing the format for delivery of thumbnail images embedded in photo file output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/embeddedthumbnailphotoformat
-func (c_ CapturePhotoSettings) EmbeddedThumbnailPhotoFormat() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("embeddedThumbnailPhotoFormat"))
+func (c_ CapturePhotoSettings) EmbeddedThumbnailPhotoFormat() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("embeddedThumbnailPhotoFormat"))
 	return rv
 }
 
@@ -167,8 +167,8 @@ func (c_ CapturePhotoSettings) EmbeddedThumbnailPhotoFormat() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/embeddedthumbnailphotoformat
-func (c_ CapturePhotoSettings) SetEmbeddedThumbnailPhotoFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEmbeddedThumbnailPhotoFormat:"), objc.String(value))
+func (c_ CapturePhotoSettings) SetEmbeddedThumbnailPhotoFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEmbeddedThumbnailPhotoFormat:"), value)
 }
 
 // A Boolean value that determines whether any depth data captured with the photo is included when generating output file data.
@@ -264,8 +264,8 @@ func (c_ CapturePhotoSettings) SetFlashMode(value unsafe.Pointer) {
 // A dictionary describing the processed format (for example, JPEG) to deliver captured photos in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/format
-func (c_ CapturePhotoSettings) Format() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("format"))
+func (c_ CapturePhotoSettings) Format() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("format"))
 	return rv
 }
 
@@ -275,8 +275,8 @@ func (c_ CapturePhotoSettings) Format() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/format
-func (c_ CapturePhotoSettings) SetFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFormat:"), objc.String(value))
+func (c_ CapturePhotoSettings) SetFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFormat:"), value)
 }
 
 // A Boolean value that specifies whether the photo output, at its discretion, uses content-aware distortion correction on this photo request.
@@ -545,15 +545,15 @@ func (c_ CapturePhotoSettings) LivePhotoMovieFileURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotomoviefileurl
-func (c_ CapturePhotoSettings) SetLivePhotoMovieFileURL(value foundation.URL) {
+func (c_ CapturePhotoSettings) SetLivePhotoMovieFileURL(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLivePhotoMovieFileURL:"), value)
 }
 
 // A dictionary of metadata to include in the Live Photo movie file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotomoviemetadata
-func (c_ CapturePhotoSettings) LivePhotoMovieMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("livePhotoMovieMetadata"))
+func (c_ CapturePhotoSettings) LivePhotoMovieMetadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("livePhotoMovieMetadata"))
 	return rv
 }
 
@@ -563,15 +563,15 @@ func (c_ CapturePhotoSettings) LivePhotoMovieMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotomoviemetadata
-func (c_ CapturePhotoSettings) SetLivePhotoMovieMetadata(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetLivePhotoMovieMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLivePhotoMovieMetadata:"), value)
 }
 
 // The video codec to use for encoding the movie portion of Live Photo output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotovideocodectype
-func (c_ CapturePhotoSettings) LivePhotoVideoCodecType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("livePhotoVideoCodecType"))
+func (c_ CapturePhotoSettings) LivePhotoVideoCodecType() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("livePhotoVideoCodecType"))
 	return rv
 }
 
@@ -581,7 +581,7 @@ func (c_ CapturePhotoSettings) LivePhotoVideoCodecType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/livephotovideocodectype
-func (c_ CapturePhotoSettings) SetLivePhotoVideoCodecType(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetLivePhotoVideoCodecType(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLivePhotoVideoCodecType:"), value)
 }
 
@@ -606,8 +606,8 @@ func (c_ CapturePhotoSettings) SetMaxPhotoDimensions(value unsafe.Pointer) {
 // A dictionary of metadata keys and values to embed in photo file output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/metadata
-func (c_ CapturePhotoSettings) Metadata() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("metadata"))
+func (c_ CapturePhotoSettings) Metadata() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -617,8 +617,8 @@ func (c_ CapturePhotoSettings) Metadata() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/metadata
-func (c_ CapturePhotoSettings) SetMetadata(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (c_ CapturePhotoSettings) SetMetadata(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // A setting that indicates how to prioritize photo quality against speed of photo delivery.
@@ -642,8 +642,8 @@ func (c_ CapturePhotoSettings) SetPhotoQualityPrioritization(value unsafe.Pointe
 // A dictionary describing the format for delivery of preview-sized images alongside the main photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CapturePhotoSettings) PreviewPhotoFormat() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("previewPhotoFormat"))
+func (c_ CapturePhotoSettings) PreviewPhotoFormat() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("previewPhotoFormat"))
 	return rv
 }
 
@@ -653,15 +653,15 @@ func (c_ CapturePhotoSettings) PreviewPhotoFormat() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/previewphotoformat
-func (c_ CapturePhotoSettings) SetPreviewPhotoFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), objc.String(value))
+func (c_ CapturePhotoSettings) SetPreviewPhotoFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewPhotoFormat:"), value)
 }
 
 // The container file format for eventual output of the processed image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/processedfiletype
-func (c_ CapturePhotoSettings) ProcessedFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("processedFileType"))
+func (c_ CapturePhotoSettings) ProcessedFileType() FileType {
+	rv := objc.Send[FileType](c_.ID, objc.Sel("processedFileType"))
 	return rv
 }
 
@@ -671,15 +671,15 @@ func (c_ CapturePhotoSettings) ProcessedFileType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/processedfiletype
-func (c_ CapturePhotoSettings) SetProcessedFileType(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetProcessedFileType(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProcessedFileType:"), value)
 }
 
 // A dictionary describing the format for delivery of raw thumbnail images embedded in photo file output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawembeddedthumbnailphotoformat
-func (c_ CapturePhotoSettings) RawEmbeddedThumbnailPhotoFormat() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("rawEmbeddedThumbnailPhotoFormat"))
+func (c_ CapturePhotoSettings) RawEmbeddedThumbnailPhotoFormat() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("rawEmbeddedThumbnailPhotoFormat"))
 	return rv
 }
 
@@ -689,14 +689,14 @@ func (c_ CapturePhotoSettings) RawEmbeddedThumbnailPhotoFormat() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawembeddedthumbnailphotoformat
-func (c_ CapturePhotoSettings) SetRawEmbeddedThumbnailPhotoFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRawEmbeddedThumbnailPhotoFormat:"), objc.String(value))
+func (c_ CapturePhotoSettings) SetRawEmbeddedThumbnailPhotoFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRawEmbeddedThumbnailPhotoFormat:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawfileformat
-func (c_ CapturePhotoSettings) RawFileFormat() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("rawFileFormat"))
+func (c_ CapturePhotoSettings) RawFileFormat() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("rawFileFormat"))
 	return rv
 }
 
@@ -704,15 +704,15 @@ func (c_ CapturePhotoSettings) RawFileFormat() string {
 // SetRawFileFormat sets the value of the rawFileFormat property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawfileformat
-func (c_ CapturePhotoSettings) SetRawFileFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRawFileFormat:"), objc.String(value))
+func (c_ CapturePhotoSettings) SetRawFileFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRawFileFormat:"), value)
 }
 
 // The container file format for eventual output of the RAW image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawfiletype
-func (c_ CapturePhotoSettings) RawFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rawFileType"))
+func (c_ CapturePhotoSettings) RawFileType() FileType {
+	rv := objc.Send[FileType](c_.ID, objc.Sel("rawFileType"))
 	return rv
 }
 
@@ -722,7 +722,7 @@ func (c_ CapturePhotoSettings) RawFileType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/rawfiletype
-func (c_ CapturePhotoSettings) SetRawFileType(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetRawFileType(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRawFileType:"), value)
 }
 
@@ -765,8 +765,8 @@ func (c_ CapturePhotoSettings) SetUniqueID(value unsafe.Pointer) {
 // The constituent devices for which the virtual device should deliver photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/virtualdeviceconstituentphotodeliveryenableddevices
-func (c_ CapturePhotoSettings) VirtualDeviceConstituentPhotoDeliveryEnabledDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("virtualDeviceConstituentPhotoDeliveryEnabledDevices"))
+func (c_ CapturePhotoSettings) VirtualDeviceConstituentPhotoDeliveryEnabledDevices() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("virtualDeviceConstituentPhotoDeliveryEnabledDevices"))
 	return rv
 }
 
@@ -776,7 +776,7 @@ func (c_ CapturePhotoSettings) VirtualDeviceConstituentPhotoDeliveryEnabledDevic
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/virtualdeviceconstituentphotodeliveryenableddevices
-func (c_ CapturePhotoSettings) SetVirtualDeviceConstituentPhotoDeliveryEnabledDevices(value unsafe.Pointer) {
+func (c_ CapturePhotoSettings) SetVirtualDeviceConstituentPhotoDeliveryEnabledDevices(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVirtualDeviceConstituentPhotoDeliveryEnabledDevices:"), value)
 }
 

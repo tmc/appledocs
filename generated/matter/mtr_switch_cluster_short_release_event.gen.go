@@ -87,7 +87,7 @@ func (m_ MTRSwitchClusterShortReleaseEvent) PreviousPosition() foundation.Number
 // SetPreviousPosition sets the value of the previousPosition property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclustershortreleaseevent/previousposition
-func (m_ MTRSwitchClusterShortReleaseEvent) SetPreviousPosition(value foundation.Number) {
+func (m_ MTRSwitchClusterShortReleaseEvent) SetPreviousPosition(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousPosition:"), value)
 }
 

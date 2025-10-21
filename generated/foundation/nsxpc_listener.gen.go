@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _XPCListenerClass struct {
 // An interface definition for the [XPCListener] class.
 type IXPCListener interface {
 	objectivec.IObject
-	SetConnectionCodeSigningRequirement(requirement string)
+	SetConnectionCodeSigningRequirement(requirement appkit.string)
 	Suspend()
 }
 
@@ -87,9 +88,9 @@ func NewXPCListener() XPCListener {
 // Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/init(machServiceName:)
-func NewXPCListenerWithMachServiceName(name string) XPCListener {
+func NewXPCListenerWithMachServiceName(name appkit.string) XPCListener {
 	instance := getXPCListenerClass().Alloc()
-	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), objc.String(name))
+	rv := objc.Send[XPCListener](instance.ID, objc.Sel("initWithMachServiceName:"), name)
 	rv.Autorelease()
 	return rv
 }
@@ -98,16 +99,16 @@ func NewXPCListenerWithMachServiceName(name string) XPCListener {
 // Returns a new anonymous listener connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/anonymous()
-func (xc _XPCListenerClass) AnonymousListener() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(xc.class), objc.Sel("anonymousListener"))
+func (xc _XPCListenerClass) AnonymousListener() XPCListener {
+	rv := objc.Send[XPCListener](objc.ID(xc.class), objc.Sel("anonymousListener"))
 	return rv
 }
 
 // Sets the code signing requirement for connections to this listener.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/setConnectionCodeSigningRequirement(_:)
-func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), objc.String(requirement))
+func (x_ XPCListener) SetConnectionCodeSigningRequirement(requirement appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setConnectionCodeSigningRequirement:"), requirement)
 }
 
 // Suspends the listener.
@@ -120,8 +121,8 @@ func (x_ XPCListener) Suspend() {
 // Returns an endpoint object that may be sent over an existing connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/endpoint
-func (x_ XPCListener) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("endpoint"))
+func (x_ XPCListener) Endpoint() NSXPCListenerEndpoint {
+	rv := objc.Send[NSXPCListenerEndpoint](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
 

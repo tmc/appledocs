@@ -78,15 +78,15 @@ func NewAXMathExpressionFraction() AXMathExpressionFraction {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/denimonatorExpression
-func (a_ AXMathExpressionFraction) DenimonatorExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("denimonatorExpression"))
+func (a_ AXMathExpressionFraction) DenimonatorExpression() AXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("denimonatorExpression"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionfraction/numeratorexpression
-func (a_ AXMathExpressionFraction) NumeratorExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("numeratorExpression"))
+func (a_ AXMathExpressionFraction) NumeratorExpression() AXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("numeratorExpression"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (a_ AXMathExpressionFraction) NumeratorExpression() unsafe.Pointer {
 // SetNumeratorExpression sets the value of the numeratorExpression property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionfraction/numeratorexpression
-func (a_ AXMathExpressionFraction) SetNumeratorExpression(value unsafe.Pointer) {
+func (a_ AXMathExpressionFraction) SetNumeratorExpression(value IAXMathExpression) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNumeratorExpression:"), value)
 }
 

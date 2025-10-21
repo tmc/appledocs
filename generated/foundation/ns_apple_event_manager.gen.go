@@ -83,16 +83,16 @@ func NewAppleEventManager() AppleEventManager {
 // Returns the single instance of , creating it first if it doesn’t exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/shared()
-func (ac _AppleEventManagerClass) SharedAppleEventManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedAppleEventManager"))
+func (ac _AppleEventManagerClass) SharedAppleEventManager() AppleEventManager {
+	rv := objc.Send[AppleEventManager](objc.ID(ac.class), objc.Sel("sharedAppleEventManager"))
 	return rv
 }
 
 // Returns the descriptor for
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
-func (a_ AppleEventManager) CurrentAppleEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentAppleEvent"))
+func (a_ AppleEventManager) CurrentAppleEvent() NSAppleEventDescriptor {
+	rv := objc.Send[NSAppleEventDescriptor](a_.ID, objc.Sel("currentAppleEvent"))
 	return rv
 }
 
@@ -102,15 +102,15 @@ func (a_ AppleEventManager) CurrentAppleEvent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
-func (a_ AppleEventManager) SetCurrentAppleEvent(value unsafe.Pointer) {
+func (a_ AppleEventManager) SetCurrentAppleEvent(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentAppleEvent:"), value)
 }
 
 // Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
-func (a_ AppleEventManager) CurrentReplyAppleEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentReplyAppleEvent"))
+func (a_ AppleEventManager) CurrentReplyAppleEvent() NSAppleEventDescriptor {
+	rv := objc.Send[NSAppleEventDescriptor](a_.ID, objc.Sel("currentReplyAppleEvent"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (a_ AppleEventManager) CurrentReplyAppleEvent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
-func (a_ AppleEventManager) SetCurrentReplyAppleEvent(value unsafe.Pointer) {
+func (a_ AppleEventManager) SetCurrentReplyAppleEvent(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentReplyAppleEvent:"), value)
 }
 

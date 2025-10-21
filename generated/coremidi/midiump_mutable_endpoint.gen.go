@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MIDIUMPMutableEndpoint] class.
@@ -29,9 +30,9 @@ type _MIDIUMPMutableEndpointClass struct {
 // An interface definition for the [MIDIUMPMutableEndpoint] class.
 type IMIDIUMPMutableEndpoint interface {
 	IMIDIUMPEndpoint
-	RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error_ unsafe.Pointer) bool
+	RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock, markAsStatic bool, error_ unsafe.Pointer) bool
 	SetEnabledError(isEnabled bool, error_ unsafe.Pointer) bool
-	SetNameError(name string, error_ unsafe.Pointer) bool
+	SetNameError(name appkit.string, error_ unsafe.Pointer) bool
 }
 
 //
@@ -81,9 +82,9 @@ func NewMIDIUMPMutableEndpoint() MIDIUMPMutableEndpoint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/init(name:deviceInfo:productInstanceID:midiProtocol:destinationCallback:)
-func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name string, deviceInfo unsafe.Pointer, productInstanceID string, MIDIProtocol unsafe.Pointer, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
+func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDestinationCallback(name appkit.string, deviceInfo IMIDI2DeviceInfo, productInstanceID appkit.string, MIDIProtocol IMIDIProtocolID, destinationCallback unsafe.Pointer) MIDIUMPMutableEndpoint {
 	instance := getMIDIUMPMutableEndpointClass().Alloc()
-	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), objc.String(name), deviceInfo, objc.String(productInstanceID), MIDIProtocol, destinationCallback)
+	rv := objc.Send[MIDIUMPMutableEndpoint](instance.ID, objc.Sel("initWithName:deviceInfo:productInstanceID:MIDIProtocol:destinationCallback:"), name, deviceInfo, productInstanceID, MIDIProtocol, destinationCallback)
 	rv.Autorelease()
 	return rv
 }
@@ -91,7 +92,7 @@ func NewMIDIUMPMutableEndpointWithNameDeviceInfoProductInstanceIDMIDIProtocolDes
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/registerFunctionBlocks(_:markAsStatic:)
-func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks unsafe.Pointer, markAsStatic bool, error_ unsafe.Pointer) bool {
+func (m_ MIDIUMPMutableEndpoint) RegisterFunctionBlocksMarkAsStaticError(functionBlocks []MIDIUMPMutableFunctionBlock, markAsStatic bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("registerFunctionBlocks:markAsStatic:error:"), functionBlocks, markAsStatic, error_)
 	return rv
 }
@@ -105,8 +106,8 @@ func (m_ MIDIUMPMutableEndpoint) SetEnabledError(isEnabled bool, error_ unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPMutableEndpoint/setName(_:)
-func (m_ MIDIUMPMutableEndpoint) SetNameError(name string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), objc.String(name), error_)
+func (m_ MIDIUMPMutableEndpoint) SetNameError(name appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("setName:error:"), name, error_)
 	return rv
 }
 

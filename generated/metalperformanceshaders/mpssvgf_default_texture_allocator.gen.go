@@ -30,7 +30,7 @@ type _SVGFDefaultTextureAllocatorClass struct {
 // An interface definition for the [SVGFDefaultTextureAllocator] class.
 type ISVGFDefaultTextureAllocator interface {
 	objectivec.IObject
-	ReturnTexture(texture objc.ID)
+	ReturnTexture(texture objectivec.IObject)
 }
 
 //
@@ -78,7 +78,7 @@ func NewSVGFDefaultTextureAllocator() SVGFDefaultTextureAllocator {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSSVGFDefaultTextureAllocator/return(_:)
-func (s_ SVGFDefaultTextureAllocator) ReturnTexture(texture objc.ID) {
+func (s_ SVGFDefaultTextureAllocator) ReturnTexture(texture objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("returnTexture:"), texture)
 }
 

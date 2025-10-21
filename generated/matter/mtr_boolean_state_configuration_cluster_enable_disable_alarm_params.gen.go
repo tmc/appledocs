@@ -87,7 +87,7 @@ func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) AlarmsToEn
 // SetAlarmsToEnableDisable sets the value of the alarmsToEnableDisable property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusterenabledisablealarmparams/alarmstoenabledisable
-func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) SetAlarmsToEnableDisable(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) SetAlarmsToEnableDisable(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsToEnableDisable:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) ServerSide
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusterenabledisablealarmparams/serversideprocessingtimeout
-func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) TimedInvok
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusterenabledisablealarmparams/timedinvoketimeoutms
-func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterEnableDisableAlarmParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

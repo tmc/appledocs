@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IHeadphoneMotionManager interface {
 	objectivec.IObject
 	StartConnectionStatusUpdates()
 	StartDeviceMotionUpdates()
-	StartDeviceMotionUpdatesToQueueWithHandler(queue unsafe.Pointer, handler unsafe.Pointer)
+	StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer)
 	StopConnectionStatusUpdates()
 	StopDeviceMotionUpdates()
 }
@@ -88,8 +89,8 @@ func NewHeadphoneMotionManager() HeadphoneMotionManager {
 // Returns the authorization status for monitoring headphone motion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/authorizationStatus()
-func (hc _HeadphoneMotionManagerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("authorizationStatus"))
+func (hc _HeadphoneMotionManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (h_ HeadphoneMotionManager) StartDeviceMotionUpdates() {
 // Starts device-motion updates with a handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/startDeviceMotionUpdates(to:withHandler:)
-func (h_ HeadphoneMotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue unsafe.Pointer, handler unsafe.Pointer) {
+func (h_ HeadphoneMotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startDeviceMotionUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -147,8 +148,8 @@ func (h_ HeadphoneMotionManager) SetDelegate(value objc.ID) {
 // The latest device-motion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneMotionManager/deviceMotion
-func (h_ HeadphoneMotionManager) DeviceMotion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("deviceMotion"))
+func (h_ HeadphoneMotionManager) DeviceMotion() CMDeviceMotion {
+	rv := objc.Send[CMDeviceMotion](h_.ID, objc.Sel("deviceMotion"))
 	return rv
 }
 

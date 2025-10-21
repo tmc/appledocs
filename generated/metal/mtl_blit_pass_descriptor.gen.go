@@ -83,8 +83,8 @@ func NewBlitPassDescriptor() BlitPassDescriptor {
 // An array of counter sample buffer attachments that you configure for a blit pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLBlitPassDescriptor/sampleBufferAttachments
-func (b_ BlitPassDescriptor) SampleBufferAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sampleBufferAttachments"))
+func (b_ BlitPassDescriptor) SampleBufferAttachments() MTLBlitPassSampleBufferAttachmentDescriptorArray {
+	rv := objc.Send[MTLBlitPassSampleBufferAttachmentDescriptorArray](b_.ID, objc.Sel("sampleBufferAttachments"))
 	return rv
 }
 

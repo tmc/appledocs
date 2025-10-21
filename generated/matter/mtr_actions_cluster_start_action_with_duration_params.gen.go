@@ -87,7 +87,7 @@ func (m_ MTRActionsClusterStartActionWithDurationParams) ActionID() foundation.N
 // SetActionID sets the value of the actionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionwithdurationparams/actionid
-func (m_ MTRActionsClusterStartActionWithDurationParams) SetActionID(value foundation.Number) {
+func (m_ MTRActionsClusterStartActionWithDurationParams) SetActionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRActionsClusterStartActionWithDurationParams) Duration() foundation.N
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionwithdurationparams/duration
-func (m_ MTRActionsClusterStartActionWithDurationParams) SetDuration(value foundation.Number) {
+func (m_ MTRActionsClusterStartActionWithDurationParams) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRActionsClusterStartActionWithDurationParams) InvokeID() foundation.N
 // SetInvokeID sets the value of the invokeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionwithdurationparams/invokeid
-func (m_ MTRActionsClusterStartActionWithDurationParams) SetInvokeID(value foundation.Number) {
+func (m_ MTRActionsClusterStartActionWithDurationParams) SetInvokeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRActionsClusterStartActionWithDurationParams) ServerSideProcessingTim
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionwithdurationparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterStartActionWithDurationParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRActionsClusterStartActionWithDurationParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRActionsClusterStartActionWithDurationParams) TimedInvokeTimeoutMs() 
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstartactionwithdurationparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterStartActionWithDurationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRActionsClusterStartActionWithDurationParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

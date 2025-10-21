@@ -31,10 +31,10 @@ type _BluetoothHostControllerClass struct {
 // An interface definition for the [BluetoothHostController] class.
 type IBluetoothHostController interface {
 	objectivec.IObject
-	AddressAsString() string
-	ClassOfDevice() unsafe.Pointer
-	NameAsString() string
-	SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds foundation.TimeInterval) unsafe.Pointer
+	AddressAsString() foundation.String
+	ClassOfDevice() BluetoothClassOfDevice
+	NameAsString() foundation.String
+	SetClassOfDeviceForTimeInterval(classOfDevice IBluetoothClassOfDevice, seconds foundation.ITimeInterval) unsafe.Pointer
 }
 
 // This class is a representation of a Bluetooth Host Controller Interface that is present on the local computer (either plugged in externally or available internally).
@@ -96,31 +96,31 @@ func (bc _BluetoothHostControllerClass) DefaultController() unsafe.Pointer {
 // Convience routine to get the HCI controller’s Bluetooth address as an NSString object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/addressAsString()
-func (b_ BluetoothHostController) AddressAsString() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("addressAsString"))
+func (b_ BluetoothHostController) AddressAsString() foundation.String {
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("addressAsString"))
 	return rv
 }
 
 // Gets the current class of device value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/classOfDevice()
-func (b_ BluetoothHostController) ClassOfDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("classOfDevice"))
+func (b_ BluetoothHostController) ClassOfDevice() BluetoothClassOfDevice {
+	rv := objc.Send[BluetoothClassOfDevice](b_.ID, objc.Sel("classOfDevice"))
 	return rv
 }
 
 // Gets the “friendly” name of HCI controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/nameAsString()
-func (b_ BluetoothHostController) NameAsString() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("nameAsString"))
+func (b_ BluetoothHostController) NameAsString() foundation.String {
+	rv := objc.Send[foundation.String](b_.ID, objc.Sel("nameAsString"))
 	return rv
 }
 
 // Sets the current class of device value, for the specified amount of time. Note that the time interval be set and valid. The range of acceptable values is 30-120 seconds. Anything above or below will be rounded up, or down, as appropriate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHostController/setClassOfDevice(_:forTimeInterval:)
-func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice unsafe.Pointer, seconds foundation.TimeInterval) unsafe.Pointer {
+func (b_ BluetoothHostController) SetClassOfDeviceForTimeInterval(classOfDevice IBluetoothClassOfDevice, seconds foundation.ITimeInterval) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("setClassOfDevice:forTimeInterval:"), classOfDevice, seconds)
 	return rv
 }

@@ -32,7 +32,7 @@ type _AXBrailleMapClass struct {
 type IAXBrailleMap interface {
 	objectivec.IObject
 	HeightAtPoint(point coregraphics.CGPoint) unsafe.Pointer
-	PresentImage(image CGImageRef)
+	PresentImage(image coregraphics.CGImageRef)
 	SetHeightAtPoint(status unsafe.Pointer, point coregraphics.CGPoint)
 }
 
@@ -95,7 +95,7 @@ func (a_ AXBrailleMap) HeightAtPoint(point coregraphics.CGPoint) unsafe.Pointer 
 // Converts the data from the image you specify into the braille map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleMap/present(_:)
-func (a_ AXBrailleMap) PresentImage(image CGImageRef) {
+func (a_ AXBrailleMap) PresentImage(image coregraphics.CGImageRef) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("presentImage:"), image)
 }
 

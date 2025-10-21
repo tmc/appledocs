@@ -83,8 +83,8 @@ func NewWaterSubmersionManager() WaterSubmersionManager {
 // A value indicating whether the app has user authorization to receive submersion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (wc _WaterSubmersionManagerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("authorizationStatus"))
+func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 // A Boolean value indicating whether the current device supports the submersion manager.
@@ -97,8 +97,8 @@ func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 // A value indicating whether the app has user authorization to receive submersion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/authorizationStatus
-func (w_ WaterSubmersionManager) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("authorizationStatus"))
+func (w_ WaterSubmersionManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](w_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

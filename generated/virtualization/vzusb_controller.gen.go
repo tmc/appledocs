@@ -101,8 +101,8 @@ func (v_ VZUSBController) SetUsbDevices(value unsafe.Pointer) {
 // The list of runtime USB controller objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/usbcontrollers
-func (v_ VZUSBController) UsbControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbControllers"))
+func (v_ VZUSBController) UsbControllers() VZUSBController {
+	rv := objc.Send[VZUSBController](v_.ID, objc.Sel("usbControllers"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (v_ VZUSBController) UsbControllers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/usbcontrollers
-func (v_ VZUSBController) SetUsbControllers(value unsafe.Pointer) {
+func (v_ VZUSBController) SetUsbControllers(value IVZUSBController) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)
 }
 

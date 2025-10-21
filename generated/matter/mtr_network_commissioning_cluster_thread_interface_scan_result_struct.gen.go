@@ -87,14 +87,14 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Channel(
 // SetChannel sets the value of the channel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/channel
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetChannel(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetChannel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedaddress
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) ExtendedAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedAddress"))
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) ExtendedAddress() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("extendedAddress"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Extended
 // SetExtendedAddress sets the value of the extendedAddress property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedaddress
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExtendedAddress(value unsafe.Pointer) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExtendedAddress(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedAddress:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Extended
 // SetExtendedPanId sets the value of the extendedPanId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/extendedpanid
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExtendedPanId(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetExtendedPanId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanId:"), value)
 }
 
@@ -132,14 +132,14 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Lqi() fo
 // SetLqi sets the value of the lqi property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/lqi
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetLqi(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetLqi(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLqi:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/networkname
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) NetworkName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) NetworkName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) NetworkN
 // SetNetworkName sets the value of the networkName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/networkname
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetNetworkName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetNetworkName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
 }
 
 //
@@ -162,7 +162,7 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) PanId() 
 // SetPanId sets the value of the panId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/panid
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetPanId(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetPanId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPanId:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Rssi() f
 // SetRssi sets the value of the rssi property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/rssi
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetRssi(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetRssi(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) Version(
 // SetVersion sets the value of the version property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresultstruct/version
-func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetVersion(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct) SetVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersion:"), value)
 }
 

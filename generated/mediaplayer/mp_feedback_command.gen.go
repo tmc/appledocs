@@ -102,8 +102,8 @@ func (f_ FeedbackCommand) SetIsActive(value bool) {
 // A shortened version of the string used to describe the context of a command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedshorttitle
-func (f_ FeedbackCommand) LocalizedShortTitle() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedShortTitle"))
+func (f_ FeedbackCommand) LocalizedShortTitle() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("localizedShortTitle"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (f_ FeedbackCommand) LocalizedShortTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedshorttitle
-func (f_ FeedbackCommand) SetLocalizedShortTitle(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedShortTitle:"), objc.String(value))
+func (f_ FeedbackCommand) SetLocalizedShortTitle(value appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedShortTitle:"), value)
 }
 
 // A localized string used to describe the context of a command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedtitle
-func (f_ FeedbackCommand) LocalizedTitle() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("localizedTitle"))
+func (f_ FeedbackCommand) LocalizedTitle() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (f_ FeedbackCommand) LocalizedTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommand/localizedtitle
-func (f_ FeedbackCommand) SetLocalizedTitle(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+func (f_ FeedbackCommand) SetLocalizedTitle(value appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setLocalizedTitle:"), value)
 }
 
 

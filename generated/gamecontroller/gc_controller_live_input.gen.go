@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [GCControllerLiveInput] class.
@@ -29,8 +28,8 @@ type _GCControllerLiveInputClass struct {
 
 // An interface definition for the [GCControllerLiveInput] class.
 type IGCControllerLiveInput interface {
-	objectivec.IObject
-	Capture() unsafe.Pointer
+	IGCControllerInputState
+	Capture() GCControllerInputState
 	NextInputState() unsafe.Pointer
 }
 
@@ -40,14 +39,16 @@ type IGCControllerLiveInput interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput
 type GCControllerLiveInput struct {
-	objectivec.Object
+	GCControllerInputState
 }
 
 // GCControllerLiveInputFrom constructs a [GCControllerLiveInput] from an unsafe.Pointer.
 //
 // The input profile for a controller.
 func GCControllerLiveInputFrom(ptr unsafe.Pointer) GCControllerLiveInput {
-	return GCControllerLiveInput{objectivec.Object{objc.ID(ptr)}}
+	return GCControllerLiveInput{
+		GCControllerInputState: GCControllerInputStateFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -85,8 +86,8 @@ func NewGCControllerLiveInput() GCControllerLiveInput {
 // Returns a snapshot of the physical device inputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/capture()
-func (g_ GCControllerLiveInput) Capture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("capture"))
+func (g_ GCControllerLiveInput) Capture() GCControllerInputState {
+	rv := objc.Send[GCControllerInputState](g_.ID, objc.Sel("capture"))
 	return rv
 }
 
@@ -101,16 +102,16 @@ func (g_ GCControllerLiveInput) NextInputState() unsafe.Pointer {
 // The live input of a controller without any system-level remapping of the controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput/unmapped
-func (g_ GCControllerLiveInput) UnmappedInput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("unmappedInput"))
+func (g_ GCControllerLiveInput) UnmappedInput() GCControllerLiveInput {
+	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("unmappedInput"))
 	return rv
 }
 
 // The input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCControllerLiveInput) Input() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
+func (g_ GCControllerLiveInput) Input() GCControllerLiveInput {
+	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("input"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (g_ GCControllerLiveInput) Input() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCControllerLiveInput) SetInput(value unsafe.Pointer) {
+func (g_ GCControllerLiveInput) SetInput(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
 // The live input of a controller without any system-level remapping of the controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
-func (g_ GCControllerLiveInput) Unmapped() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("unmapped"))
+func (g_ GCControllerLiveInput) Unmapped() GCControllerLiveInput {
+	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("unmapped"))
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (g_ GCControllerLiveInput) Unmapped() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerliveinput/unmapped
-func (g_ GCControllerLiveInput) SetUnmapped(value unsafe.Pointer) {
+func (g_ GCControllerLiveInput) SetUnmapped(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUnmapped:"), value)
 }
 

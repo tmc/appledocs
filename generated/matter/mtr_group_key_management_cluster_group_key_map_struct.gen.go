@@ -87,7 +87,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() foundation
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() foundation.Num
 // SetGroupId sets the value of the groupId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupKeySetID() foundati
 // SetGroupKeySetID sets the value of the groupKeySetID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupKeySetID(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupKeySetID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
 

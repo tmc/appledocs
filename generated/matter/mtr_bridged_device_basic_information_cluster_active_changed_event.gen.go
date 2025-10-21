@@ -87,7 +87,7 @@ func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) PromisedActi
 // SetPromisedActiveDuration sets the value of the promisedActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterActiveChangedEvent/promisedActiveDuration
-func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedActiveDuration(value foundation.Number) {
+func (m_ MTRBridgedDeviceBasicInformationClusterActiveChangedEvent) SetPromisedActiveDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
 

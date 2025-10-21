@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [CoreMLRequest] class.
@@ -86,7 +87,7 @@ func NewCoreMLRequest() CoreMLRequest {
 // Creates a model container to use with an image analysis request based on the model you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/init(model:)
-func NewCoreMLRequestWithModel(model unsafe.Pointer) CoreMLRequest {
+func NewCoreMLRequestWithModel(model IVNCoreMLModel) CoreMLRequest {
 	instance := getCoreMLRequestClass().Alloc()
 	rv := objc.Send[CoreMLRequest](instance.ID, objc.Sel("initWithModel:"), model)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCoreMLRequestWithModel(model unsafe.Pointer) CoreMLRequest {
 // Creates a model container to use with an image analysis request based on the model you provide, with an optional completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/init(model:completionHandler:)
-func NewCoreMLRequestWithModelCompletionHandler(model unsafe.Pointer, completionHandler unsafe.Pointer) CoreMLRequest {
+func NewCoreMLRequestWithModelCompletionHandler(model IVNCoreMLModel, completionHandler unsafe.Pointer) CoreMLRequest {
 	instance := getCoreMLRequestClass().Alloc()
 	rv := objc.Send[CoreMLRequest](instance.ID, objc.Sel("initWithModel:completionHandler:"), model, completionHandler)
 	rv.Autorelease()
@@ -109,8 +110,8 @@ func NewCoreMLRequestWithModelCompletionHandler(model unsafe.Pointer, completion
 // An optional setting that tells the Vision algorithm how to scale an input image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
-func (c_ CoreMLRequest) ImageCropAndScaleOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageCropAndScaleOption"))
+func (c_ CoreMLRequest) ImageCropAndScaleOption() ImageCropAndScaleOption {
+	rv := objc.Send[ImageCropAndScaleOption](c_.ID, objc.Sel("imageCropAndScaleOption"))
 	return rv
 }
 
@@ -120,23 +121,23 @@ func (c_ CoreMLRequest) ImageCropAndScaleOption() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/imageCropAndScaleOption
-func (c_ CoreMLRequest) SetImageCropAndScaleOption(value unsafe.Pointer) {
+func (c_ CoreMLRequest) SetImageCropAndScaleOption(value IImageCropAndScaleOption) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setImageCropAndScaleOption:"), value)
 }
 
 // The model to base the image analysis request on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLRequest/model
-func (c_ CoreMLRequest) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("model"))
+func (c_ CoreMLRequest) Model() VNCoreMLModel {
+	rv := objc.Send[VNCoreMLModel](c_.ID, objc.Sel("model"))
 	return rv
 }
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLRequest) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelDescription"))
+func (c_ CoreMLRequest) ModelDescription() coreml.ModelDescription {
+	rv := objc.Send[coreml.ModelDescription](c_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -146,15 +147,15 @@ func (c_ CoreMLRequest) ModelDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (c_ CoreMLRequest) SetModelDescription(value unsafe.Pointer) {
+func (c_ CoreMLRequest) SetModelDescription(value coreml.IModelDescription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModelDescription:"), value)
 }
 
 // The name of the primary prediction feature output description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) PredictedFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("predictedFeatureName"))
+func (c_ CoreMLRequest) PredictedFeatureName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("predictedFeatureName"))
 	return rv
 }
 
@@ -164,8 +165,8 @@ func (c_ CoreMLRequest) PredictedFeatureName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/predictedFeatureName
-func (c_ CoreMLRequest) SetPredictedFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), objc.String(value))
+func (c_ CoreMLRequest) SetPredictedFeatureName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPredictedFeatureName:"), value)
 }
 
 // A constant for specifying revision 1 of a Core ML request.
@@ -179,8 +180,8 @@ func (c_ CoreMLRequest) VNCoreMLRequestRevision1() int {
 // The level of confidence in the observation’s accuracy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
-func (c_ CoreMLRequest) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("confidence"))
+func (c_ CoreMLRequest) Confidence() Confidence {
+	rv := objc.Send[Confidence](c_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -190,7 +191,7 @@ func (c_ CoreMLRequest) Confidence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnobservation/confidence
-func (c_ CoreMLRequest) SetConfidence(value unsafe.Pointer) {
+func (c_ CoreMLRequest) SetConfidence(value IConfidence) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfidence:"), value)
 }
 

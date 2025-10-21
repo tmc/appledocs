@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterCredentialStruct) CredentialIndex() foundation.Number
 // SetCredentialIndex sets the value of the credentialIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialindex
-func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialIndex:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterCredentialStruct) CredentialType() foundation.Number 
 // SetCredentialType sets the value of the credentialType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustercredentialstruct/credentialtype
-func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value foundation.Number) {
+func (m_ MTRDoorLockClusterCredentialStruct) SetCredentialType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialType:"), value)
 }
 

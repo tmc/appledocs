@@ -87,14 +87,14 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) Cause() fo
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetCause(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/powerAdjustCapability
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjustCapability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("powerAdjustCapability"))
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjustCapability() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("powerAdjustCapability"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) PowerAdjus
 // SetPowerAdjustCapability sets the value of the powerAdjustCapability property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct/powerAdjustCapability
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetPowerAdjustCapability(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct) SetPowerAdjustCapability(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPowerAdjustCapability:"), value)
 }
 

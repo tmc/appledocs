@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = quartzcore.NewSpringAnimation
 
+// ExampleNewSpringAnimationWithPerceptualDurationBounce demonstrates how to create a SpringAnimation instance using NewSpringAnimationWithPerceptualDurationBounce.
+func ExampleNewSpringAnimationWithPerceptualDurationBounce() {
+	_ = quartzcore.NewSpringAnimationWithPerceptualDurationBounce(
+		quartzcore.TimeInterval(0.0), // perceptualDuration TimeInterval
+		0.0, // bounce float64
+	)
+	// Output:
+}

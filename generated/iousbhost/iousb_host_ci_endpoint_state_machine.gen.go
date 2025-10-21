@@ -31,7 +31,7 @@ type _USBHostCIEndpointStateMachineClass struct {
 type IUSBHostCIEndpointStateMachine interface {
 	objectivec.IObject
 	InspectCommandError(command unsafe.Pointer, error_ unsafe.Pointer) bool
-	ProcessDoorbellError(doorbell unsafe.Pointer, error_ unsafe.Pointer) bool
+	ProcessDoorbellError(doorbell IUSBHostCIDoorbell, error_ unsafe.Pointer) bool
 }
 
 //
@@ -86,15 +86,15 @@ func (u_ USBHostCIEndpointStateMachine) InspectCommandError(command unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/processDoorbell(_:)
-func (u_ USBHostCIEndpointStateMachine) ProcessDoorbellError(doorbell unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (u_ USBHostCIEndpointStateMachine) ProcessDoorbellError(doorbell IUSBHostCIDoorbell, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("processDoorbell:error:"), doorbell, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIEndpointStateMachine/controllerInterface
-func (u_ USBHostCIEndpointStateMachine) ControllerInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
+func (u_ USBHostCIEndpointStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 

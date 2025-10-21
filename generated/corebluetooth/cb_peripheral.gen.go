@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,18 +31,18 @@ type _CBPeripheralClass struct {
 // An interface definition for the [CBPeripheral] class.
 type ICBPeripheral interface {
 	ICBPeer
-	DiscoverCharacteristicsForService(characteristicUUIDs unsafe.Pointer, service unsafe.Pointer)
-	DiscoverDescriptorsForCharacteristic(characteristic unsafe.Pointer)
-	DiscoverIncludedServicesForService(includedServiceUUIDs unsafe.Pointer, service unsafe.Pointer)
-	DiscoverServices(serviceUUIDs unsafe.Pointer)
-	MaximumWriteValueLengthForType(type_ unsafe.Pointer) uint
-	OpenL2CAPChannel(PSM unsafe.Pointer)
+	DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID, service ICBService)
+	DiscoverDescriptorsForCharacteristic(characteristic ICBCharacteristic)
+	DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID, service ICBService)
+	DiscoverServices(serviceUUIDs []CBUUID)
+	MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint
+	OpenL2CAPChannel(PSM ICBL2CAPPSM)
 	ReadRSSI()
-	ReadValueForCharacteristic(characteristic unsafe.Pointer)
-	ReadValueForDescriptor(descriptor unsafe.Pointer)
-	SetNotifyValueForCharacteristic(enabled bool, characteristic unsafe.Pointer)
-	WriteValueForDescriptor(data unsafe.Pointer, descriptor unsafe.Pointer)
-	WriteValueForCharacteristicType(data unsafe.Pointer, characteristic unsafe.Pointer, type_ unsafe.Pointer)
+	ReadValueForCharacteristic(characteristic ICBCharacteristic)
+	ReadValueForDescriptor(descriptor ICBDescriptor)
+	SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic)
+	WriteValueForDescriptor(data foundation.IData, descriptor ICBDescriptor)
+	WriteValueForCharacteristicType(data foundation.IData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType)
 }
 
 // A remote peripheral device.
@@ -97,35 +98,35 @@ func NewCBPeripheral() CBPeripheral {
 // Discovers the specified characteristics of a service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverCharacteristics(_:for:)
-func (c_ CBPeripheral) DiscoverCharacteristicsForService(characteristicUUIDs unsafe.Pointer, service unsafe.Pointer) {
+func (c_ CBPeripheral) DiscoverCharacteristicsForService(characteristicUUIDs []CBUUID, service ICBService) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverCharacteristics:forService:"), characteristicUUIDs, service)
 }
 
 // Discovers the descriptors of a characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverDescriptors(for:)
-func (c_ CBPeripheral) DiscoverDescriptorsForCharacteristic(characteristic unsafe.Pointer) {
+func (c_ CBPeripheral) DiscoverDescriptorsForCharacteristic(characteristic ICBCharacteristic) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverDescriptorsForCharacteristic:"), characteristic)
 }
 
 // Discovers the specified included services of a previously-discovered service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverIncludedServices(_:for:)
-func (c_ CBPeripheral) DiscoverIncludedServicesForService(includedServiceUUIDs unsafe.Pointer, service unsafe.Pointer) {
+func (c_ CBPeripheral) DiscoverIncludedServicesForService(includedServiceUUIDs []CBUUID, service ICBService) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverIncludedServices:forService:"), includedServiceUUIDs, service)
 }
 
 // Discovers the specified services of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/discoverServices(_:)
-func (c_ CBPeripheral) DiscoverServices(serviceUUIDs unsafe.Pointer) {
+func (c_ CBPeripheral) DiscoverServices(serviceUUIDs []CBUUID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverServices:"), serviceUUIDs)
 }
 
 // The maximum amount of data, in bytes, you can send to a characteristic in a single write type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/maximumWriteValueLength(for:)
-func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ unsafe.Pointer) uint {
+func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ CBCharacteristicWriteType) uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maximumWriteValueLengthForType:"), type_)
 	return rv
 }
@@ -133,7 +134,7 @@ func (c_ CBPeripheral) MaximumWriteValueLengthForType(type_ unsafe.Pointer) uint
 // Attempts to open an L2CAP channel to the peripheral using the supplied Protocol/Service Multiplexer (PSM).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/openL2CAPChannel(_:)
-func (c_ CBPeripheral) OpenL2CAPChannel(PSM unsafe.Pointer) {
+func (c_ CBPeripheral) OpenL2CAPChannel(PSM ICBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("openL2CAPChannel:"), PSM)
 }
 
@@ -147,35 +148,35 @@ func (c_ CBPeripheral) ReadRSSI() {
 // Retrieves the value of a specified characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/readValue(for:)-6u2kr
-func (c_ CBPeripheral) ReadValueForCharacteristic(characteristic unsafe.Pointer) {
+func (c_ CBPeripheral) ReadValueForCharacteristic(characteristic ICBCharacteristic) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("readValueForCharacteristic:"), characteristic)
 }
 
 // Retrieves the value of a specified characteristic descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/readValue(for:)-91hhp
-func (c_ CBPeripheral) ReadValueForDescriptor(descriptor unsafe.Pointer) {
+func (c_ CBPeripheral) ReadValueForDescriptor(descriptor ICBDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("readValueForDescriptor:"), descriptor)
 }
 
 // Sets notifications or indications for the value of a specified characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/setNotifyValue(_:for:)
-func (c_ CBPeripheral) SetNotifyValueForCharacteristic(enabled bool, characteristic unsafe.Pointer) {
+func (c_ CBPeripheral) SetNotifyValueForCharacteristic(enabled bool, characteristic ICBCharacteristic) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotifyValue:forCharacteristic:"), enabled, characteristic)
 }
 
 // Writes the value of a characteristic descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/writeValue(_:for:)
-func (c_ CBPeripheral) WriteValueForDescriptor(data unsafe.Pointer, descriptor unsafe.Pointer) {
+func (c_ CBPeripheral) WriteValueForDescriptor(data foundation.IData, descriptor ICBDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("writeValue:forDescriptor:"), data, descriptor)
 }
 
 // Writes the value of a characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/writeValue(_:for:type:)
-func (c_ CBPeripheral) WriteValueForCharacteristicType(data unsafe.Pointer, characteristic unsafe.Pointer, type_ unsafe.Pointer) {
+func (c_ CBPeripheral) WriteValueForCharacteristicType(data foundation.IData, characteristic ICBCharacteristic, type_ CBCharacteristicWriteType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("writeValue:forCharacteristic:type:"), data, characteristic, type_)
 }
 
@@ -216,8 +217,8 @@ func (c_ CBPeripheral) SetDelegate(value objc.ID) {
 // The name of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/name
-func (c_ CBPeripheral) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ CBPeripheral) Name() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -240,8 +241,8 @@ func (c_ CBPeripheral) Services() []CBService {
 // The connection state of the peripheral.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeripheral/state
-func (c_ CBPeripheral) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("state"))
+func (c_ CBPeripheral) State() CBPeripheralState {
+	rv := objc.Send[CBPeripheralState](c_.ID, objc.Sel("state"))
 	return rv
 }
 

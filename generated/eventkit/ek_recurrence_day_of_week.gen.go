@@ -85,7 +85,7 @@ func NewEKRecurrenceDayOfWeek() EKRecurrenceDayOfWeek {
 // Creates and returns a day of the week with a given day.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/init(_:)
-func NewEKRecurrenceDayOfWeek(dayOfTheWeek unsafe.Pointer) EKRecurrenceDayOfWeek {
+func NewEKRecurrenceDayOfWeek(dayOfTheWeek IEKWeekday) EKRecurrenceDayOfWeek {
 	rv := objc.Send[EKRecurrenceDayOfWeek](objc.ID(getEKRecurrenceDayOfWeekClass().class), objc.Sel("dayOfWeek:"), dayOfTheWeek)
 	return rv
 }
@@ -95,7 +95,7 @@ func NewEKRecurrenceDayOfWeek(dayOfTheWeek unsafe.Pointer) EKRecurrenceDayOfWeek
 // Creates and returns an autoreleased day of the week with a given day and week number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/init(_:weekNumber:)
-func NewEKRecurrenceDayOfWeekWeekNumber(dayOfTheWeek unsafe.Pointer, weekNumber int) EKRecurrenceDayOfWeek {
+func NewEKRecurrenceDayOfWeekWeekNumber(dayOfTheWeek IEKWeekday, weekNumber int) EKRecurrenceDayOfWeek {
 	rv := objc.Send[EKRecurrenceDayOfWeek](objc.ID(getEKRecurrenceDayOfWeekClass().class), objc.Sel("dayOfWeek:weekNumber:"), dayOfTheWeek, weekNumber)
 	return rv
 }
@@ -105,7 +105,7 @@ func NewEKRecurrenceDayOfWeekWeekNumber(dayOfTheWeek unsafe.Pointer, weekNumber 
 // Initializes and returns a day of the week with a given day and week number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/init(dayOfTheWeek:weekNumber:)
-func NewEKRecurrenceDayOfWeekWithDayOfTheWeekWeekNumber(dayOfTheWeek unsafe.Pointer, weekNumber int) EKRecurrenceDayOfWeek {
+func NewEKRecurrenceDayOfWeekWithDayOfTheWeekWeekNumber(dayOfTheWeek IEKWeekday, weekNumber int) EKRecurrenceDayOfWeek {
 	instance := getEKRecurrenceDayOfWeekClass().Alloc()
 	rv := objc.Send[EKRecurrenceDayOfWeek](instance.ID, objc.Sel("initWithDayOfTheWeek:weekNumber:"), dayOfTheWeek, weekNumber)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewEKRecurrenceDayOfWeekWithDayOfTheWeekWeekNumber(dayOfTheWeek unsafe.Poin
 // Creates and returns a day of the week with a given day.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/init(_:)
-func (ec _EKRecurrenceDayOfWeekClass) DayOfWeek(dayOfTheWeek unsafe.Pointer) unsafe.Pointer {
+func (ec _EKRecurrenceDayOfWeekClass) DayOfWeek(dayOfTheWeek IEKWeekday) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("dayOfWeek:"), dayOfTheWeek)
 	return rv
 }
@@ -124,7 +124,7 @@ func (ec _EKRecurrenceDayOfWeekClass) DayOfWeek(dayOfTheWeek unsafe.Pointer) uns
 // Creates and returns an autoreleased day of the week with a given day and week number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/init(_:weekNumber:)
-func (ec _EKRecurrenceDayOfWeekClass) DayOfWeekWeekNumber(dayOfTheWeek unsafe.Pointer, weekNumber int) unsafe.Pointer {
+func (ec _EKRecurrenceDayOfWeekClass) DayOfWeekWeekNumber(dayOfTheWeek IEKWeekday, weekNumber int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("dayOfWeek:weekNumber:"), dayOfTheWeek, weekNumber)
 	return rv
 }
@@ -132,8 +132,8 @@ func (ec _EKRecurrenceDayOfWeekClass) DayOfWeekWeekNumber(dayOfTheWeek unsafe.Po
 // The day of the week.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceDayOfWeek/dayOfTheWeek
-func (e_ EKRecurrenceDayOfWeek) DayOfTheWeek() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("dayOfTheWeek"))
+func (e_ EKRecurrenceDayOfWeek) DayOfTheWeek() EKWeekday {
+	rv := objc.Send[EKWeekday](e_.ID, objc.Sel("dayOfTheWeek"))
 	return rv
 }
 

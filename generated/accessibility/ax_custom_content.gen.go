@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewAXCustomContent() AXCustomContent {
 // A localized attributed string that identifies the label for this content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
-func (a_ AXCustomContent) AttributedLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributedLabel"))
+func (a_ AXCustomContent) AttributedLabel() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedLabel"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (a_ AXCustomContent) AttributedLabel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedlabel
-func (a_ AXCustomContent) SetAttributedLabel(value unsafe.Pointer) {
+func (a_ AXCustomContent) SetAttributedLabel(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedLabel:"), value)
 }
 
 // A localized attributed string that provides a value for the label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
-func (a_ AXCustomContent) AttributedValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("attributedValue"))
+func (a_ AXCustomContent) AttributedValue() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedValue"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (a_ AXCustomContent) AttributedValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/attributedvalue
-func (a_ AXCustomContent) SetAttributedValue(value unsafe.Pointer) {
+func (a_ AXCustomContent) SetAttributedValue(value foundation.IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedValue:"), value)
 }
 
@@ -137,8 +138,8 @@ func (a_ AXCustomContent) SetImportance(value unsafe.Pointer) {
 // A localized string that identifies the label for this content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-func (a_ AXCustomContent) Label() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("label"))
+func (a_ AXCustomContent) Label() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -148,15 +149,15 @@ func (a_ AXCustomContent) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/label
-func (a_ AXCustomContent) SetLabel(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (a_ AXCustomContent) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLabel:"), value)
 }
 
 // A localized string that provides a value for the label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-func (a_ AXCustomContent) Value() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("value"))
+func (a_ AXCustomContent) Value() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -166,8 +167,8 @@ func (a_ AXCustomContent) Value() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axcustomcontent/value
-func (a_ AXCustomContent) SetValue(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), objc.String(value))
+func (a_ AXCustomContent) SetValue(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:"), value)
 }
 
 

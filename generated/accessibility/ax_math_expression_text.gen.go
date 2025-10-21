@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AXMathExpressionText] class.
@@ -78,9 +79,9 @@ func NewAXMathExpressionText() AXMathExpressionText {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionText/init(content:)
-func NewAXMathExpressionTextWithContent(content string) AXMathExpressionText {
+func NewAXMathExpressionTextWithContent(content appkit.string) AXMathExpressionText {
 	instance := getAXMathExpressionTextClass().Alloc()
-	rv := objc.Send[AXMathExpressionText](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
+	rv := objc.Send[AXMathExpressionText](instance.ID, objc.Sel("initWithContent:"), content)
 	rv.Autorelease()
 	return rv
 }
@@ -88,8 +89,8 @@ func NewAXMathExpressionTextWithContent(content string) AXMathExpressionText {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionText/content
-func (a_ AXMathExpressionText) Content() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionText) Content() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("content"))
 	return rv
 }
 

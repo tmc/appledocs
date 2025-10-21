@@ -83,7 +83,7 @@ func NewScriptWhoseTest() ScriptWhoseTest {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptWhoseTest/init(coder:)
-func NewScriptWhoseTestWithCoder(inCoder unsafe.Pointer) ScriptWhoseTest {
+func NewScriptWhoseTestWithCoder(inCoder ICoder) ScriptWhoseTest {
 	instance := getScriptWhoseTestClass().Alloc()
 	rv := objc.Send[ScriptWhoseTest](instance.ID, objc.Sel("initWithCoder:"), inCoder)
 	rv.Autorelease()

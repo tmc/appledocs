@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestSpecificParams) ServerSideProcessingTimeout() 
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestspecificparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestSpecificParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestSpecificParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestSpecificParams) TimedInvokeTimeoutMs() foundat
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestspecificparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestSpecificParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestSpecificParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

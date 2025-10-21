@@ -78,8 +78,8 @@ func NewMTRWaterHeaterManagementClusterBoostParams() MTRWaterHeaterManagementClu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/boostInfo
-func (m_ MTRWaterHeaterManagementClusterBoostParams) BoostInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boostInfo"))
+func (m_ MTRWaterHeaterManagementClusterBoostParams) BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct {
+	rv := objc.Send[MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct](m_.ID, objc.Sel("boostInfo"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRWaterHeaterManagementClusterBoostParams) BoostInfo() unsafe.Pointer 
 // SetBoostInfo sets the value of the boostInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/boostInfo
-func (m_ MTRWaterHeaterManagementClusterBoostParams) SetBoostInfo(value unsafe.Pointer) {
+func (m_ MTRWaterHeaterManagementClusterBoostParams) SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoostInfo:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRWaterHeaterManagementClusterBoostParams) ServerSideProcessingTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterManagementClusterBoostParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterBoostParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRWaterHeaterManagementClusterBoostParams) TimedInvokeTimeoutMs() foun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterManagementClusterBoostParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterBoostParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

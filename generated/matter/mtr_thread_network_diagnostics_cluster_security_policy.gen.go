@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) Flags() foundation.Nu
 // SetFlags sets the value of the flags property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/flags
-func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetFlags(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetFlags(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFlags:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) RotationTime() founda
 // SetRotationTime sets the value of the rotationTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclustersecuritypolicy/rotationtime
-func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetRotationTime(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterSecurityPolicy) SetRotationTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRotationTime:"), value)
 }
 

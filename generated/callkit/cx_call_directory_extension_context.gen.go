@@ -29,13 +29,13 @@ type _CXCallDirectoryExtensionContextClass struct {
 // An interface definition for the [CXCallDirectoryExtensionContext] class.
 type ICXCallDirectoryExtensionContext interface {
 	IExtensionContext
-	AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber unsafe.Pointer)
-	AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber unsafe.Pointer, label string)
+	AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
+	AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber ICXCallDirectoryPhoneNumber, label string)
 	CompleteRequestWithCompletionHandler(completion unsafe.Pointer)
 	RemoveAllBlockingEntries()
 	RemoveAllIdentificationEntries()
-	RemoveBlockingEntryWithPhoneNumber(phoneNumber unsafe.Pointer)
-	RemoveIdentificationEntryWithPhoneNumber(phoneNumber unsafe.Pointer)
+	RemoveBlockingEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
+	RemoveIdentificationEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber)
 }
 
 // A programmatic interface for adding identification and blocking entries to a Call Directory app extension.
@@ -91,14 +91,14 @@ func NewCXCallDirectoryExtensionContext() CXCallDirectoryExtensionContext {
 // Adds a blocking entry with the specified phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addBlockingEntry(withNextSequentialPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber unsafe.Pointer) {
+func (c_ CXCallDirectoryExtensionContext) AddBlockingEntryWithNextSequentialPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addBlockingEntryWithNextSequentialPhoneNumber:"), phoneNumber)
 }
 
 // Adds an identification entry with the specified phone number and label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/addIdentificationEntry(withNextSequentialPhoneNumber:label:)
-func (c_ CXCallDirectoryExtensionContext) AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber unsafe.Pointer, label string) {
+func (c_ CXCallDirectoryExtensionContext) AddIdentificationEntryWithNextSequentialPhoneNumberLabel(phoneNumber ICXCallDirectoryPhoneNumber, label string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addIdentificationEntryWithNextSequentialPhoneNumber:label:"), phoneNumber, objc.String(label))
 }
 
@@ -126,14 +126,14 @@ func (c_ CXCallDirectoryExtensionContext) RemoveAllIdentificationEntries() {
 // Removes a blocking entry that contains the specified phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeBlockingEntry(withPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(phoneNumber unsafe.Pointer) {
+func (c_ CXCallDirectoryExtensionContext) RemoveBlockingEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeBlockingEntryWithPhoneNumber:"), phoneNumber)
 }
 
 // Removes an identification entry that contains the specified phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/removeIdentificationEntry(withPhoneNumber:)
-func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumber(phoneNumber unsafe.Pointer) {
+func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumber(phoneNumber ICXCallDirectoryPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeIdentificationEntryWithPhoneNumber:"), phoneNumber)
 }
 
@@ -184,8 +184,8 @@ func (c_ CXCallDirectoryExtensionContext) SetIsIncremental(value bool) {
 // The maximum allowable value for a phone number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcalldirectoryphonenumbermax
-func (c_ CXCallDirectoryExtensionContext) CXCallDirectoryPhoneNumberMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("CXCallDirectoryPhoneNumberMax"))
+func (c_ CXCallDirectoryExtensionContext) CXCallDirectoryPhoneNumberMax() CXCallDirectoryPhoneNumber {
+	rv := objc.Send[CXCallDirectoryPhoneNumber](c_.ID, objc.Sel("CXCallDirectoryPhoneNumberMax"))
 	return rv
 }
 

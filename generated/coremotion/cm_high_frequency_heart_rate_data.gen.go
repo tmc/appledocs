@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HighFrequencyHeartRateData] class.
@@ -84,16 +85,16 @@ func NewHighFrequencyHeartRateData() HighFrequencyHeartRateData {
 // The confidence level of the heart rate value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/confidence
-func (h_ HighFrequencyHeartRateData) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("confidence"))
+func (h_ HighFrequencyHeartRateData) Confidence() HighFrequencyHeartRateDataConfidence {
+	rv := objc.Send[HighFrequencyHeartRateDataConfidence](h_.ID, objc.Sel("confidence"))
 	return rv
 }
 
 // The time the heart rate value occurs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHighFrequencyHeartRateData/date
-func (h_ HighFrequencyHeartRateData) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("date"))
+func (h_ HighFrequencyHeartRateData) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("date"))
 	return rv
 }
 

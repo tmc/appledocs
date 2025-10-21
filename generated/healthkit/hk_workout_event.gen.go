@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (h_ HKWorkoutEvent) Type() unsafe.Pointer {
 // The time when the transition occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-func (h_ HKWorkoutEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("date"))
+func (h_ HKWorkoutEvent) Date() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("date"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (h_ HKWorkoutEvent) Date() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/date
-func (h_ HKWorkoutEvent) SetDate(value unsafe.Pointer) {
+func (h_ HKWorkoutEvent) SetDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDate:"), value)
 }
 
 // The time and duration of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
-func (h_ HKWorkoutEvent) DateInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dateInterval"))
+func (h_ HKWorkoutEvent) DateInterval() foundation.DateInterval {
+	rv := objc.Send[foundation.DateInterval](h_.ID, objc.Sel("dateInterval"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (h_ HKWorkoutEvent) DateInterval() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval
-func (h_ HKWorkoutEvent) SetDateInterval(value unsafe.Pointer) {
+func (h_ HKWorkoutEvent) SetDateInterval(value foundation.IDateInterval) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateInterval:"), value)
 }
 
 // The metadata associated with the workout event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
-func (h_ HKWorkoutEvent) Metadata() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+func (h_ HKWorkoutEvent) Metadata() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -138,15 +139,15 @@ func (h_ HKWorkoutEvent) Metadata() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutevent/metadata
-func (h_ HKWorkoutEvent) SetMetadata(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (h_ HKWorkoutEvent) SetMetadata(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // The workout type identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier
-func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
+func (h_ HKWorkoutEvent) HKWorkoutTypeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutTypeIdentifier"))
 	return rv
 }
 

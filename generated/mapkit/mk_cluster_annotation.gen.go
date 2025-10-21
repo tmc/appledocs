@@ -101,8 +101,8 @@ func (m_ MKClusterAnnotation) SetMemberAnnotations(value unsafe.Pointer) {
 // The subtitle string to display for the group of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/subtitle
-func (m_ MKClusterAnnotation) Subtitle() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
+func (m_ MKClusterAnnotation) Subtitle() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (m_ MKClusterAnnotation) Subtitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/subtitle
-func (m_ MKClusterAnnotation) SetSubtitle(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (m_ MKClusterAnnotation) SetSubtitle(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 // The title string to display for the group of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/title
-func (m_ MKClusterAnnotation) Title() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ MKClusterAnnotation) Title() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (m_ MKClusterAnnotation) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkclusterannotation/title
-func (m_ MKClusterAnnotation) SetTitle(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (m_ MKClusterAnnotation) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
 }
 
 

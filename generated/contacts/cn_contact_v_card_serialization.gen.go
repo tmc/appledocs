@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,7 +82,7 @@ func NewCNContactVCardSerialization() CNContactVCardSerialization {
 // Returns the contacts from the vCard data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/contacts(with:)
-func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) []CNContact {
+func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data foundation.IData, error_ unsafe.Pointer) []CNContact {
 	rv := objc.Send[[]CNContact](objc.ID(cc.class), objc.Sel("contactsWithData:error:"), data, error_)
 	return rv
 }
@@ -89,8 +90,8 @@ func (cc _CNContactVCardSerializationClass) ContactsWithDataError(data unsafe.Po
 // Returns the vCard representation of the specified contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactVCardSerialization/data(with:)
-func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
+func (cc _CNContactVCardSerializationClass) DataWithContactsError(contacts []CNContact, error_ unsafe.Pointer) foundation.Data {
+	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("dataWithContacts:error:"), contacts, error_)
 	return rv
 }
 

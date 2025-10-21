@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (a_ AdTestPostbackResponse) SetDidSucceed(value bool) {
 // An error the test session reports if sending a test postbacks fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/error
-func (a_ AdTestPostbackResponse) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("error"))
+func (a_ AdTestPostbackResponse) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (a_ AdTestPostbackResponse) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/error
-func (a_ AdTestPostbackResponse) SetError(value unsafe.Pointer) {
+func (a_ AdTestPostbackResponse) SetError(value foundation.IError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
 // The HTTP response from the server receiving the test postback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/httpResponse
-func (a_ AdTestPostbackResponse) HttpResponse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("httpResponse"))
+func (a_ AdTestPostbackResponse) HttpResponse() foundation.HTTPURLResponse {
+	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("httpResponse"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (a_ AdTestPostbackResponse) HttpResponse() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/httpResponse
-func (a_ AdTestPostbackResponse) SetHttpResponse(value unsafe.Pointer) {
+func (a_ AdTestPostbackResponse) SetHttpResponse(value foundation.IHTTPURLResponse) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHttpResponse:"), value)
 }
 

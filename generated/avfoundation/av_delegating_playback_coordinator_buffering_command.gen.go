@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DelegatingPlaybackCoordinatorBufferingCommand] class.
@@ -102,8 +103,8 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetAnticipatedPlaybackRa
 // The deadline by which the coordinator expects the delegate to complete execution of a command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
-func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("completionDueDate"))
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("completionDueDate"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (d_ DelegatingPlaybackCoordinatorBufferingCommand) CompletionDueDate() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand/completionduedate
-func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetCompletionDueDate(value unsafe.Pointer) {
+func (d_ DelegatingPlaybackCoordinatorBufferingCommand) SetCompletionDueDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
 }
 

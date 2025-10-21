@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _EAAccessoryManagerClass struct {
 // An interface definition for the [EAAccessoryManager] class.
 type IEAAccessoryManager interface {
 	objectivec.IObject
-	ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate unsafe.Pointer, completion unsafe.Pointer)
+	ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate foundation.IPredicate, completion unsafe.Pointer)
 }
 
 // The object you use to identify connected accessories, and begin delivery of connection and disconnection notifications.
@@ -84,23 +85,23 @@ func NewEAAccessoryManager() EAAccessoryManager {
 // Displays an alert that allows the user to pair the device with a Bluetooth accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAAccessoryManager/showBluetoothAccessoryPicker(withNameFilter:completion:)
-func (e_ EAAccessoryManager) ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate unsafe.Pointer, completion unsafe.Pointer) {
+func (e_ EAAccessoryManager) ShowBluetoothAccessoryPickerWithNameFilterCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("showBluetoothAccessoryPickerWithNameFilter:completion:"), predicate, completion)
 }
 
 // A key that indicates the accessory object whose status changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorykey
-func (e_ EAAccessoryManager) EAAccessoryKey() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessoryKey"))
+func (e_ EAAccessoryManager) EAAccessoryKey() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("EAAccessoryKey"))
 	return rv
 }
 
 // The accessory objects corresponding to the list of currently connected accessories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager/connectedaccessories
-func (e_ EAAccessoryManager) ConnectedAccessories() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("connectedAccessories"))
+func (e_ EAAccessoryManager) ConnectedAccessories() EAAccessory {
+	rv := objc.Send[EAAccessory](e_.ID, objc.Sel("connectedAccessories"))
 	return rv
 }
 
@@ -110,23 +111,23 @@ func (e_ EAAccessoryManager) ConnectedAccessories() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessorymanager/connectedaccessories
-func (e_ EAAccessoryManager) SetConnectedAccessories(value unsafe.Pointer) {
+func (e_ EAAccessoryManager) SetConnectedAccessories(value IEAAccessory) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConnectedAccessories:"), value)
 }
 
 // A key that indicates the accessory object that the user selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eaaccessoryselectedkey
-func (e_ EAAccessoryManager) EAAccessorySelectedKey() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
+func (e_ EAAccessoryManager) EAAccessorySelectedKey() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("EAAccessorySelectedKey"))
 	return rv
 }
 
 // The domain for errors passed to a Bluetooth picker completion block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eabluetoothaccessorypickererrordomain
-func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
+func (e_ EAAccessoryManager) EABluetoothAccessoryPickerErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("EABluetoothAccessoryPickerErrorDomain"))
 	return rv
 }
 

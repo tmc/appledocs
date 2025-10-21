@@ -30,8 +30,8 @@ type _FXTemporalDenoisedScalerDescriptorClass struct {
 // An interface definition for the [FXTemporalDenoisedScalerDescriptor] class.
 type IFXTemporalDenoisedScalerDescriptor interface {
 	objectivec.IObject
-	NewTemporalDenoisedScalerWithDevice(device objc.ID) objc.ID
-	NewTemporalDenoisedScalerWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID
+	NewTemporalDenoisedScalerWithDevice(device objectivec.IObject) objc.ID
+	NewTemporalDenoisedScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
 //
@@ -80,7 +80,7 @@ func NewFXTemporalDenoisedScalerDescriptor() FXTemporalDenoisedScalerDescriptor 
 // Returns the largest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportedInputContentMaxScale(device:)
-func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objc.ID) unsafe.Pointer {
+func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
 	return rv
 }
@@ -88,7 +88,7 @@ func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMaxScale
 // Returns the smallest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportedInputContentMinScale(device:)
-func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objc.ID) unsafe.Pointer {
+func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
 	return rv
 }
@@ -96,7 +96,7 @@ func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportedInputContentMinScale
 // Queries whether a Metal device supports denoising scaling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportsDevice(_:)
-func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsDevice(device objc.ID) bool {
+func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
@@ -104,7 +104,7 @@ func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsDevice(device objc.ID
 // Queries whether a Metal device supports denosing scaling compatible on Metal 4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/supportsMetal4FX(_:)
-func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsMetal4FX(device objc.ID) bool {
+func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
@@ -112,7 +112,7 @@ func (fc _FXTemporalDenoisedScalerDescriptorClass) SupportsMetal4FX(device objc.
 // Creates a denoiser scaler instance for a Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/makeTemporalDenoisedScaler(device:)
-func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDevice(device objc.ID) objc.ID {
+func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalDenoisedScalerWithDevice:"), device)
 	return rv
 }
@@ -120,7 +120,7 @@ func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDevice
 // Creates a denoiser scaler instance for a Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalDenoisedScalerDescriptor/makeTemporalDenoisedScaler(device:compiler:)
-func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID {
+func (f_ FXTemporalDenoisedScalerDescriptor) NewTemporalDenoisedScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalDenoisedScalerWithDevice:compiler:"), device, compiler)
 	return rv
 }

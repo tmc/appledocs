@@ -118,8 +118,8 @@ func (a_ AccelerationStructureTriangleGeometryDescriptor) SetIndexBufferOffset(v
 // The data type of indices in the index buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuretrianglegeometrydescriptor/indextype
-func (a_ AccelerationStructureTriangleGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexType"))
+func (a_ AccelerationStructureTriangleGeometryDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](a_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (a_ AccelerationStructureTriangleGeometryDescriptor) IndexType() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuretrianglegeometrydescriptor/indextype
-func (a_ AccelerationStructureTriangleGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+func (a_ AccelerationStructureTriangleGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
 }
 

@@ -84,8 +84,8 @@ func NewVZVirtioSoundDeviceInputStreamConfiguration() VZVirtioSoundDeviceInputSt
 // An audio stream source that defines how the host supplies audio data for the guest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration/source
-func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("source"))
+func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() VZAudioInputStreamSource {
+	rv := objc.Send[VZAudioInputStreamSource](v_.ID, objc.Sel("source"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (v_ VZVirtioSoundDeviceInputStreamConfiguration) Source() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration/source
-func (v_ VZVirtioSoundDeviceInputStreamConfiguration) SetSource(value unsafe.Pointer) {
+func (v_ VZVirtioSoundDeviceInputStreamConfiguration) SetSource(value IVZAudioInputStreamSource) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSource:"), value)
 }
 

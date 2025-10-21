@@ -87,7 +87,7 @@ func (m_ MTRBasicInformationClusterStartUpEvent) SoftwareVersion() foundation.Nu
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterstartupevent/softwareversion
-func (m_ MTRBasicInformationClusterStartUpEvent) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTRBasicInformationClusterStartUpEvent) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

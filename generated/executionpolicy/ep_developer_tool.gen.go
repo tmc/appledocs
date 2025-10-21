@@ -85,8 +85,8 @@ func (e_ EPDeveloperTool) RequestDeveloperToolAccessWithCompletionHandler(handle
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExecutionPolicy/EPDeveloperTool/authorizationStatus
-func (e_ EPDeveloperTool) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("authorizationStatus"))
+func (e_ EPDeveloperTool) AuthorizationStatus() EPDeveloperToolStatus {
+	rv := objc.Send[EPDeveloperToolStatus](e_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

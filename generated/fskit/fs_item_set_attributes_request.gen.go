@@ -29,7 +29,7 @@ type _FSItemSetAttributesRequestClass struct {
 // An interface definition for the [FSItemSetAttributesRequest] class.
 type IFSItemSetAttributesRequest interface {
 	IFSItemAttributes
-	WasAttributeConsumed(attribute unsafe.Pointer) bool
+	WasAttributeConsumed(attribute FSItemAttribute) bool
 }
 
 // A request to set attributes on an item.
@@ -85,7 +85,7 @@ func NewFSItemSetAttributesRequest() FSItemSetAttributesRequest {
 // A method that indicates whether the file system used the given attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/wasAttributeConsumed(_:)
-func (f_ FSItemSetAttributesRequest) WasAttributeConsumed(attribute unsafe.Pointer) bool {
+func (f_ FSItemSetAttributesRequest) WasAttributeConsumed(attribute FSItemAttribute) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("wasAttributeConsumed:"), attribute)
 	return rv
 }
@@ -93,8 +93,8 @@ func (f_ FSItemSetAttributesRequest) WasAttributeConsumed(attribute unsafe.Point
 // The attributes successfully used by the file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/consumedAttributes
-func (f_ FSItemSetAttributesRequest) ConsumedAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("consumedAttributes"))
+func (f_ FSItemSetAttributesRequest) ConsumedAttributes() FSItemAttribute {
+	rv := objc.Send[FSItemAttribute](f_.ID, objc.Sel("consumedAttributes"))
 	return rv
 }
 
@@ -104,7 +104,7 @@ func (f_ FSItemSetAttributesRequest) ConsumedAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/SetAttributesRequest/consumedAttributes
-func (f_ FSItemSetAttributesRequest) SetConsumedAttributes(value unsafe.Pointer) {
+func (f_ FSItemSetAttributesRequest) SetConsumedAttributes(value FSItemAttribute) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setConsumedAttributes:"), value)
 }
 

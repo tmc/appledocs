@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXStartCallAction] class.
@@ -29,7 +30,7 @@ type _CXStartCallActionClass struct {
 // An interface definition for the [CXStartCallAction] class.
 type ICXStartCallAction interface {
 	ICXCallAction
-	FulfillWithDateStarted(dateStarted unsafe.Pointer)
+	FulfillWithDateStarted(dateStarted foundation.IDate)
 }
 
 // An encapsulation of the act of initiating an outgoing call.
@@ -87,7 +88,7 @@ func NewCXStartCallAction() CXStartCallAction {
 // Initializes a new action to start a call with the specified UUID to a recipient with the specified handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
-func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsafe.Pointer) CXStartCallAction {
+func NewCXStartCallActionWithCallUUIDHandle(callUUID foundation.IUUID, handle ICXHandle) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsa
 // Creates a new action to start a call with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
-func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
+func NewCXStartCallActionWithCoder(aDecoder foundation.ICoder) CXStartCallAction {
 	instance := getCXStartCallActionClass().Alloc()
 	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -110,7 +111,7 @@ func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
 // Reports the successful execution of the action at the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/fulfill(withDateStarted:)
-func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted unsafe.Pointer) {
+func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateStarted:"), dateStarted)
 }
 
@@ -135,8 +136,8 @@ func (c_ CXStartCallAction) SetContactIdentifier(value string) {
 // The handle of the call recipient.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
-func (c_ CXStartCallAction) Handle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("handle"))
+func (c_ CXStartCallAction) Handle() CXHandle {
+	rv := objc.Send[CXHandle](c_.ID, objc.Sel("handle"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (c_ CXStartCallAction) Handle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
-func (c_ CXStartCallAction) SetHandle(value unsafe.Pointer) {
+func (c_ CXStartCallAction) SetHandle(value ICXHandle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setHandle:"), value)
 }
 

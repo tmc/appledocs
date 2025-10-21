@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureDeviceRotationCoordinator] class.
@@ -85,7 +86,7 @@ func NewCaptureDeviceRotationCoordinator() CaptureDeviceRotationCoordinator {
 // Creates a coordinator that provides separate compensation angles for content your app takes with a capture device, and for your app’s camera preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/init(device:previewLayer:)
-func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device unsafe.Pointer, previewLayer unsafe.Pointer) CaptureDeviceRotationCoordinator {
+func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device IAVCaptureDevice, previewLayer quartzcore.ILayer) CaptureDeviceRotationCoordinator {
 	instance := getCaptureDeviceRotationCoordinatorClass().Alloc()
 	rv := objc.Send[CaptureDeviceRotationCoordinator](instance.ID, objc.Sel("initWithDevice:previewLayer:"), device, previewLayer)
 	rv.Autorelease()
@@ -96,8 +97,8 @@ func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device unsafe.Poi
 // The capture device the coordinator monitors to track its physical rotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
-func (c_ CaptureDeviceRotationCoordinator) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+func (c_ CaptureDeviceRotationCoordinator) Device() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -107,15 +108,15 @@ func (c_ CaptureDeviceRotationCoordinator) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
-func (c_ CaptureDeviceRotationCoordinator) SetDevice(value unsafe.Pointer) {
+func (c_ CaptureDeviceRotationCoordinator) SetDevice(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
 }
 
 // The layer that displays a camera preview the coordinator calculates a video rotation angle for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previewLayer"))
+func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() quartzcore.Layer {
+	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
 
@@ -125,7 +126,7 @@ func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value unsafe.Pointer) {
+func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value quartzcore.ILayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 

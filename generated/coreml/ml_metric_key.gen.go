@@ -82,53 +82,53 @@ func NewMetricKey() MetricKey {
 // The key you use to access the epoch index (an value).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/epochIndex
-func (mc _MetricKeyClass) EpochIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("epochIndex"))
+func (mc _MetricKeyClass) EpochIndex() MetricKey {
+	rv := objc.Send[MLMetricKey](objc.ID(mc.class), objc.Sel("epochIndex"))
 	return rv
 }
 // The key you use to access the current loss (a value).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/lossValue
-func (mc _MetricKeyClass) LossValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("lossValue"))
+func (mc _MetricKeyClass) LossValue() MetricKey {
+	rv := objc.Send[MLMetricKey](objc.ID(mc.class), objc.Sel("lossValue"))
 	return rv
 }
 // The key you use to access the mini-batch index (an value) within an epoch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/miniBatchIndex
-func (mc _MetricKeyClass) MiniBatchIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("miniBatchIndex"))
+func (mc _MetricKeyClass) MiniBatchIndex() MetricKey {
+	rv := objc.Send[MLMetricKey](objc.ID(mc.class), objc.Sel("miniBatchIndex"))
 	return rv
 }
 // The key you use to access the epoch index (an value).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/epochIndex
-func (m_ MetricKey) EpochIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("epochIndex"))
+func (m_ MetricKey) EpochIndex() MLMetricKey {
+	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("epochIndex"))
 	return rv
 }
 
 // The key you use to access the current loss (a value).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/lossValue
-func (m_ MetricKey) LossValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lossValue"))
+func (m_ MetricKey) LossValue() MLMetricKey {
+	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("lossValue"))
 	return rv
 }
 
 // The key you use to access the mini-batch index (an value) within an epoch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMetricKey/miniBatchIndex
-func (m_ MetricKey) MiniBatchIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("miniBatchIndex"))
+func (m_ MetricKey) MiniBatchIndex() MLMetricKey {
+	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("miniBatchIndex"))
 	return rv
 }
 
 // The training metrics of the model for the update task, contained in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
-func (m_ MetricKey) Metrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metrics"))
+func (m_ MetricKey) Metrics() MLMetricKey {
+	rv := objc.Send[MLMetricKey](m_.ID, objc.Sel("metrics"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (m_ MetricKey) Metrics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlupdatecontext/metrics
-func (m_ MetricKey) SetMetrics(value unsafe.Pointer) {
+func (m_ MetricKey) SetMetrics(value IMLMetricKey) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetrics:"), value)
 }
 

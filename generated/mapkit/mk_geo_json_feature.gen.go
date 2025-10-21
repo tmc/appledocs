@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +85,8 @@ func NewMKGeoJSONFeature() MKGeoJSONFeature {
 // An optional identifier the class returns as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONFeature/identifier
-func (m_ MKGeoJSONFeature) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
+func (m_ MKGeoJSONFeature) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -109,8 +111,8 @@ func (m_ MKGeoJSONFeature) SetGeometry(value unsafe.Pointer) {
 // Optional serialized JSON data that corresponds to the properties key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
-func (m_ MKGeoJSONFeature) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("properties"))
+func (m_ MKGeoJSONFeature) Properties() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -120,7 +122,7 @@ func (m_ MKGeoJSONFeature) Properties() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeojsonfeature/properties
-func (m_ MKGeoJSONFeature) SetProperties(value unsafe.Pointer) {
+func (m_ MKGeoJSONFeature) SetProperties(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
 }
 

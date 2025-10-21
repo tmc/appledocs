@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/mlcompute"
 )
 
 // The class instance for the [IKDeviceBrowserView] class.
@@ -193,8 +194,8 @@ func (i_ IKDeviceBrowserView) SetMode(value unsafe.Pointer) {
 // Returns the selected device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/selecteddevice
-func (i_ IKDeviceBrowserView) SelectedDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("selectedDevice"))
+func (i_ IKDeviceBrowserView) SelectedDevice() mlcompute.ICDevice {
+	rv := objc.Send[mlcompute.ICDevice](i_.ID, objc.Sel("selectedDevice"))
 	return rv
 }
 
@@ -204,7 +205,7 @@ func (i_ IKDeviceBrowserView) SelectedDevice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikdevicebrowserview/selecteddevice
-func (i_ IKDeviceBrowserView) SetSelectedDevice(value unsafe.Pointer) {
+func (i_ IKDeviceBrowserView) SetSelectedDevice(value mlcompute.ICDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSelectedDevice:"), value)
 }
 

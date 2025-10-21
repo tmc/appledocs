@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetHeldCallAction] class.
@@ -86,7 +87,7 @@ func NewCXSetHeldCallAction() CXSetHeldCallAction {
 // Initializes a new action for a call identified by a given UUID, as well as whether the call is on hold.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(call:onHold:)
-func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID unsafe.Pointer, onHold bool) CXSetHeldCallAction {
+func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID foundation.IUUID, onHold bool) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCallUUID:onHold:"), callUUID, onHold)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCXSetHeldCallActionWithCallUUIDOnHold(callUUID unsafe.Pointer, onHold bo
 // Creates a new action to place a call on hold with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetHeldCallAction/init(coder:)
-func NewCXSetHeldCallActionWithCoder(aDecoder unsafe.Pointer) CXSetHeldCallAction {
+func NewCXSetHeldCallActionWithCoder(aDecoder foundation.ICoder) CXSetHeldCallAction {
 	instance := getCXSetHeldCallActionClass().Alloc()
 	rv := objc.Send[CXSetHeldCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()

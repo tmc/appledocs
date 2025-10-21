@@ -83,8 +83,8 @@ func NewHKLensSpecification() HKLensSpecification {
 // The correction for nearsightedness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
-func (h_ HKLensSpecification) AddPower() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("addPower"))
+func (h_ HKLensSpecification) AddPower() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("addPower"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (h_ HKLensSpecification) AddPower() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/addpower
-func (h_ HKLensSpecification) SetAddPower(value unsafe.Pointer) {
+func (h_ HKLensSpecification) SetAddPower(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAddPower:"), value)
 }
 
 // Part of the correction for astigmatism that measures the orientation fo the correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
-func (h_ HKLensSpecification) Axis() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("axis"))
+func (h_ HKLensSpecification) Axis() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("axis"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (h_ HKLensSpecification) Axis() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/axis
-func (h_ HKLensSpecification) SetAxis(value unsafe.Pointer) {
+func (h_ HKLensSpecification) SetAxis(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAxis:"), value)
 }
 
 // Part of the correction for astigmatism that measures the strength of the correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-func (h_ HKLensSpecification) Cylinder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cylinder"))
+func (h_ HKLensSpecification) Cylinder() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("cylinder"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (h_ HKLensSpecification) Cylinder() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/cylinder
-func (h_ HKLensSpecification) SetCylinder(value unsafe.Pointer) {
+func (h_ HKLensSpecification) SetCylinder(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCylinder:"), value)
 }
 
 // The correction for farsightedness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
-func (h_ HKLensSpecification) Sphere() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sphere"))
+func (h_ HKLensSpecification) Sphere() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("sphere"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (h_ HKLensSpecification) Sphere() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hklensspecification/sphere
-func (h_ HKLensSpecification) SetSphere(value unsafe.Pointer) {
+func (h_ HKLensSpecification) SetSphere(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSphere:"), value)
 }
 

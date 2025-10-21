@@ -30,7 +30,7 @@ type _PositionalSpecifierClass struct {
 // An interface definition for the [PositionalSpecifier] class.
 type IPositionalSpecifier interface {
 	objectivec.IObject
-	SetInsertionClassDescription(classDescription unsafe.Pointer)
+	SetInsertionClassDescription(classDescription IScriptClassDescription)
 }
 
 // A specifier for an insertion point in a container relative to another object in the container.
@@ -84,15 +84,15 @@ func NewPositionalSpecifier() PositionalSpecifier {
 // Sets the class description for the object or objects to be inserted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/setInsertionClassDescription(_:)
-func (p_ PositionalSpecifier) SetInsertionClassDescription(classDescription unsafe.Pointer) {
+func (p_ PositionalSpecifier) SetInsertionClassDescription(classDescription IScriptClassDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionClassDescription:"), classDescription)
 }
 
 // Returns the object specifier specified at initialization time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/objectSpecifier
-func (p_ PositionalSpecifier) ObjectSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectSpecifier"))
+func (p_ PositionalSpecifier) ObjectSpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](p_.ID, objc.Sel("objectSpecifier"))
 	return rv
 }
 
@@ -143,8 +143,8 @@ func (p_ PositionalSpecifier) SetInsertionIndex(value int) {
 // Returns the key that identifies the relationship into which the new or copied object or objects should be inserted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionkey
-func (p_ PositionalSpecifier) InsertionKey() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("insertionKey"))
+func (p_ PositionalSpecifier) InsertionKey() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("insertionKey"))
 	return rv
 }
 
@@ -154,8 +154,8 @@ func (p_ PositionalSpecifier) InsertionKey() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertionkey
-func (p_ PositionalSpecifier) SetInsertionKey(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionKey:"), objc.String(value))
+func (p_ PositionalSpecifier) SetInsertionKey(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionKey:"), value)
 }
 
 // Returns a Boolean value that indicates whether evaluation has been successful and the object to be inserted should actually replace the keyed, indexed object in the insertion container.

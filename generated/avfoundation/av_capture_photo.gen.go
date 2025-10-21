@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type _CapturePhotoClass struct {
 type ICapturePhoto interface {
 	objectivec.IObject
 	CGImageRepresentation() coregraphics.CGImageRef
-	FileDataRepresentation() unsafe.Pointer
+	FileDataRepresentation() foundation.Data
 }
 
 // A container for image data from a photo capture output.
@@ -94,8 +95,8 @@ func (c_ CapturePhoto) CGImageRepresentation() coregraphics.CGImageRef {
 // Generates and returns a flat data representation of the photo and its attachments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhoto/fileDataRepresentation()
-func (c_ CapturePhoto) FileDataRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fileDataRepresentation"))
+func (c_ CapturePhoto) FileDataRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("fileDataRepresentation"))
 	return rv
 }
 
@@ -136,8 +137,8 @@ func (c_ CapturePhoto) SetBracketSettings(value unsafe.Pointer) {
 // Calibration information for the camera device that captured the photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/cameracalibrationdata
-func (c_ CapturePhoto) CameraCalibrationData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cameraCalibrationData"))
+func (c_ CapturePhoto) CameraCalibrationData() AVCameraCalibrationData {
+	rv := objc.Send[AVCameraCalibrationData](c_.ID, objc.Sel("cameraCalibrationData"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (c_ CapturePhoto) CameraCalibrationData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/cameracalibrationdata
-func (c_ CapturePhoto) SetCameraCalibrationData(value unsafe.Pointer) {
+func (c_ CapturePhoto) SetCameraCalibrationData(value IAVCameraCalibrationData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCameraCalibrationData:"), value)
 }
 
@@ -190,8 +191,8 @@ func (c_ CapturePhoto) SetConstantColorConfidenceMap(value unsafe.Pointer) {
 // Depth or disparity map data captured with the photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/depthdata
-func (c_ CapturePhoto) DepthData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("depthData"))
+func (c_ CapturePhoto) DepthData() AVDepthData {
+	rv := objc.Send[AVDepthData](c_.ID, objc.Sel("depthData"))
 	return rv
 }
 
@@ -201,15 +202,15 @@ func (c_ CapturePhoto) DepthData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/depthdata
-func (c_ CapturePhoto) SetDepthData(value unsafe.Pointer) {
+func (c_ CapturePhoto) SetDepthData(value IAVDepthData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDepthData:"), value)
 }
 
 // A dictionary describing the data format for a preview-sized image accompanying the captured photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/embeddedthumbnailphotoformat
-func (c_ CapturePhoto) EmbeddedThumbnailPhotoFormat() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("embeddedThumbnailPhotoFormat"))
+func (c_ CapturePhoto) EmbeddedThumbnailPhotoFormat() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("embeddedThumbnailPhotoFormat"))
 	return rv
 }
 
@@ -219,8 +220,8 @@ func (c_ CapturePhoto) EmbeddedThumbnailPhotoFormat() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/embeddedthumbnailphotoformat
-func (c_ CapturePhoto) SetEmbeddedThumbnailPhotoFormat(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEmbeddedThumbnailPhotoFormat:"), objc.String(value))
+func (c_ CapturePhoto) SetEmbeddedThumbnailPhotoFormat(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEmbeddedThumbnailPhotoFormat:"), value)
 }
 
 // A Boolean value that Indicates whether this photo is a fallback photo for a constant color capture.
@@ -280,8 +281,8 @@ func (c_ CapturePhoto) SetLensStabilizationStatus(value unsafe.Pointer) {
 // A dictionary of metadata describing the captured image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/metadata
-func (c_ CapturePhoto) Metadata() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("metadata"))
+func (c_ CapturePhoto) Metadata() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -291,8 +292,8 @@ func (c_ CapturePhoto) Metadata() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/metadata
-func (c_ CapturePhoto) SetMetadata(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (c_ CapturePhoto) SetMetadata(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // The 1-based index of this photo capture relative to other results from the same capture request.
@@ -316,8 +317,8 @@ func (c_ CapturePhoto) SetPhotoCount(value int) {
 // The portrait effects matte captured with the photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-func (c_ CapturePhoto) PortraitEffectsMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("portraitEffectsMatte"))
+func (c_ CapturePhoto) PortraitEffectsMatte() AVPortraitEffectsMatte {
+	rv := objc.Send[AVPortraitEffectsMatte](c_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
 }
 
@@ -327,7 +328,7 @@ func (c_ CapturePhoto) PortraitEffectsMatte() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-func (c_ CapturePhoto) SetPortraitEffectsMatte(value unsafe.Pointer) {
+func (c_ CapturePhoto) SetPortraitEffectsMatte(value IAVPortraitEffectsMatte) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPortraitEffectsMatte:"), value)
 }
 
@@ -352,8 +353,8 @@ func (c_ CapturePhoto) SetPreviewPixelBuffer(value unsafe.Pointer) {
 // The settings object that was used to request this photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/resolvedsettings
-func (c_ CapturePhoto) ResolvedSettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("resolvedSettings"))
+func (c_ CapturePhoto) ResolvedSettings() AVCaptureResolvedPhotoSettings {
+	rv := objc.Send[AVCaptureResolvedPhotoSettings](c_.ID, objc.Sel("resolvedSettings"))
 	return rv
 }
 
@@ -363,7 +364,7 @@ func (c_ CapturePhoto) ResolvedSettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/resolvedsettings
-func (c_ CapturePhoto) SetResolvedSettings(value unsafe.Pointer) {
+func (c_ CapturePhoto) SetResolvedSettings(value IAVCaptureResolvedPhotoSettings) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResolvedSettings:"), value)
 }
 

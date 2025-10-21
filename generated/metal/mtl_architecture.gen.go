@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewArchitecture() Architecture {
 // The name of a GPU device’s architecture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArchitecture/name
-func (a_ Architecture) Name() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+func (a_ Architecture) Name() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The architectural details of the GPU device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/architecture
-func (a_ Architecture) Architecture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("architecture"))
+func (a_ Architecture) Architecture() MTLArchitecture {
+	rv := objc.Send[MTLArchitecture](a_.ID, objc.Sel("architecture"))
 	return rv
 }
 
@@ -100,7 +101,7 @@ func (a_ Architecture) Architecture() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/architecture
-func (a_ Architecture) SetArchitecture(value unsafe.Pointer) {
+func (a_ Architecture) SetArchitecture(value IMTLArchitecture) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArchitecture:"), value)
 }
 
@@ -161,8 +162,8 @@ func (a_ Architecture) SetIsRemovable(value bool) {
 // The physical location of the GPU relative to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/location
-func (a_ Architecture) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("location"))
+func (a_ Architecture) Location() DeviceLocation {
+	rv := objc.Send[DeviceLocation](a_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -172,7 +173,7 @@ func (a_ Architecture) Location() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtldevice/location
-func (a_ Architecture) SetLocation(value unsafe.Pointer) {
+func (a_ Architecture) SetLocation(value IDeviceLocation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 

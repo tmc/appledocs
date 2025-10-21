@@ -24,6 +24,8 @@ type MKFeatureDisplayPriority unsafe.Pointer
 
 type MKFeatureVisibility unsafe.Pointer
 
+type MKGeoJSONObject unsafe.Pointer
+
 type MKIconStyle unsafe.Pointer
 
 type MKLocalSearchCompleterDelegate unsafe.Pointer
@@ -47,6 +49,8 @@ type MKMapSnapshotCompletionHandler unsafe.Pointer
 type MKPinAnnotationColor unsafe.Pointer
 
 type MKSearchCompletionFilterType unsafe.Pointer
+
+type MKStandardMapEmphasisStyle unsafe.Pointer
 
 
 

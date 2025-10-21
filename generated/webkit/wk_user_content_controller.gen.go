@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _UserContentControllerClass struct {
 // An interface definition for the [UserContentController] class.
 type IUserContentController interface {
 	objectivec.IObject
-	RemoveScriptMessageHandlerForNameContentWorld(name string, contentWorld unsafe.Pointer)
+	RemoveScriptMessageHandlerForNameContentWorld(name appkit.string, contentWorld IWKContentWorld)
 }
 
 // An object for managing interactions between JavaScript code and your web view, and for filtering content in your web view.
@@ -84,15 +85,15 @@ func NewUserContentController() UserContentController {
 // Uninstalls a custom message handler from the specified content world in your JavaScript code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKUserContentController/removeScriptMessageHandler(forName:contentWorld:)
-func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(name string, contentWorld unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), objc.String(name), contentWorld)
+func (u_ UserContentController) RemoveScriptMessageHandlerForNameContentWorld(name appkit.string, contentWorld IWKContentWorld) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("removeScriptMessageHandlerForName:contentWorld:"), name, contentWorld)
 }
 
 // The user scripts associated with the user content controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkusercontentcontroller/userscripts
-func (u_ UserContentController) UserScripts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userScripts"))
+func (u_ UserContentController) UserScripts() WKUserScript {
+	rv := objc.Send[WKUserScript](u_.ID, objc.Sel("userScripts"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (u_ UserContentController) UserScripts() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkusercontentcontroller/userscripts
-func (u_ UserContentController) SetUserScripts(value unsafe.Pointer) {
+func (u_ UserContentController) SetUserScripts(value IWKUserScript) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserScripts:"), value)
 }
 
 // The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (u_ UserContentController) UserContentController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userContentController"))
+func (u_ UserContentController) UserContentController() WKUserContentController {
+	rv := objc.Send[WKUserContentController](u_.ID, objc.Sel("userContentController"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (u_ UserContentController) UserContentController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (u_ UserContentController) SetUserContentController(value unsafe.Pointer) {
+func (u_ UserContentController) SetUserContentController(value IWKUserContentController) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserContentController:"), value)
 }
 

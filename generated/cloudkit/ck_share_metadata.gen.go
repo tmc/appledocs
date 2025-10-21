@@ -92,64 +92,64 @@ func (c_ CKShareMetadata) ContainerIdentifier() string {
 // The record ID of the shared hierarchy’s root record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/hierarchicalRootRecordID
-func (c_ CKShareMetadata) HierarchicalRootRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("hierarchicalRootRecordID"))
+func (c_ CKShareMetadata) HierarchicalRootRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("hierarchicalRootRecordID"))
 	return rv
 }
 
 // The identity of the share’s owner.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/ownerIdentity
-func (c_ CKShareMetadata) OwnerIdentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ownerIdentity"))
+func (c_ CKShareMetadata) OwnerIdentity() CKUserIdentity {
+	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("ownerIdentity"))
 	return rv
 }
 
 // The share’s permissions for the user who retrieves the metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantPermission
-func (c_ CKShareMetadata) ParticipantPermission() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("participantPermission"))
+func (c_ CKShareMetadata) ParticipantPermission() CKShareParticipantPermission {
+	rv := objc.Send[CKShareParticipantPermission](c_.ID, objc.Sel("participantPermission"))
 	return rv
 }
 
 // The share’s participant role for the user who retrieves the metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantRole
-func (c_ CKShareMetadata) ParticipantRole() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("participantRole"))
+func (c_ CKShareMetadata) ParticipantRole() CKShareParticipantRole {
+	rv := objc.Send[CKShareParticipantRole](c_.ID, objc.Sel("participantRole"))
 	return rv
 }
 
 // The share’s participation status for the user who retrieves the metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantStatus
-func (c_ CKShareMetadata) ParticipantStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("participantStatus"))
+func (c_ CKShareMetadata) ParticipantStatus() CKShareParticipantAcceptanceStatus {
+	rv := objc.Send[CKShareParticipantAcceptanceStatus](c_.ID, objc.Sel("participantStatus"))
 	return rv
 }
 
 // The share’s participation type for the user who retrieves the metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/participantType
-func (c_ CKShareMetadata) ParticipantType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("participantType"))
+func (c_ CKShareMetadata) ParticipantType() CKShareParticipantType {
+	rv := objc.Send[CKShareParticipantType](c_.ID, objc.Sel("participantType"))
 	return rv
 }
 
 // The share’s root record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/rootRecord
-func (c_ CKShareMetadata) RootRecord() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootRecord"))
+func (c_ CKShareMetadata) RootRecord() CKRecord {
+	rv := objc.Send[CKRecord](c_.ID, objc.Sel("rootRecord"))
 	return rv
 }
 
 // The record ID of the share’s root record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/Metadata/rootRecordID
-func (c_ CKShareMetadata) RootRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootRecordID"))
+func (c_ CKShareMetadata) RootRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("rootRecordID"))
 	return rv
 }
 
@@ -211,7 +211,7 @@ func (c_ CKShareMetadata) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKShareMetadata) SetUrl(value foundation.URL) {
+func (c_ CKShareMetadata) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 

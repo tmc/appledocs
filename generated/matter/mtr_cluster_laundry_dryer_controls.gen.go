@@ -30,15 +30,15 @@ type _MTRClusterLaundryDryerControlsClass struct {
 // An interface definition for the [MTRClusterLaundryDryerControls] class.
 type IMTRClusterLaundryDryerControls interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSelectedDrynessLevelWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedDrynessLevelsWithParams(params unsafe.Pointer) unsafe.Pointer
-	WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number)
-	WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSelectedDrynessLevelWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedDrynessLevelsWithParams(params IMTRReadParams) unsafe.Pointer
+	WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber)
+	WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber, params IMTRWriteParams)
 }
 
 // Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
@@ -94,7 +94,7 @@ func NewMTRClusterLaundryDryerControls() MTRClusterLaundryDryerControls {
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/init(device:endpointID:queue:)
-func NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterLaundryDryerControls {
+func NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterLaundryDryerControls {
 	instance := getMTRClusterLaundryDryerControlsClass().Alloc()
 	rv := objc.Send[MTRClusterLaundryDryerControls](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -104,62 +104,62 @@ func NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue(device unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeAttributeList(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeClusterRevision(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeFeatureMap(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeSelectedDrynessLevel(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeSelectedDrynessLevelWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeSelectedDrynessLevelWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSelectedDrynessLevelWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeSupportedDrynessLevels(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeSupportedDrynessLevelsWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterLaundryDryerControls) ReadAttributeSupportedDrynessLevelsWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedDrynessLevelsWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/writeAttributeSelectedDrynessLevel(withValue:expectedValueInterval:)
-func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number) {
+func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSelectedDrynessLevelWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/writeAttributeSelectedDrynessLevel(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.Number, params unsafe.Pointer) {
+func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary unsafe.Pointer, expectedValueIntervalMs foundation.INumber, params IMTRWriteParams) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSelectedDrynessLevelWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
 }
 

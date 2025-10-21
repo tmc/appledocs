@@ -85,7 +85,7 @@ func NewPHASEGroupPresetSetting() PHASEGroupPresetSetting {
 // Creates a group preset setting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/init(gain:rate:gainCurveType:rateCurveType:)
-func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain unsafe.Pointer, rate unsafe.Pointer, gainCurveType unsafe.Pointer, rateCurveType unsafe.Pointer) PHASEGroupPresetSetting {
+func NewPHASEGroupPresetSettingWithGainRateGainCurveTypeRateCurveType(gain unsafe.Pointer, rate unsafe.Pointer, gainCurveType PHASECurveType, rateCurveType PHASECurveType) PHASEGroupPresetSetting {
 	instance := getPHASEGroupPresetSettingClass().Alloc()
 	rv := objc.Send[PHASEGroupPresetSetting](instance.ID, objc.Sel("initWithGain:rate:gainCurveType:rateCurveType:"), gain, rate, gainCurveType, rateCurveType)
 	rv.Autorelease()
@@ -104,8 +104,8 @@ func (p_ PHASEGroupPresetSetting) Gain() unsafe.Pointer {
 // A rate of change for the setting’s volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/gainCurveType
-func (p_ PHASEGroupPresetSetting) GainCurveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gainCurveType"))
+func (p_ PHASEGroupPresetSetting) GainCurveType() PHASECurveType {
+	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("gainCurveType"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (p_ PHASEGroupPresetSetting) Rate() unsafe.Pointer {
 // A rate of change for the setting’s playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPresetSetting/rateCurveType
-func (p_ PHASEGroupPresetSetting) RateCurveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rateCurveType"))
+func (p_ PHASEGroupPresetSetting) RateCurveType() PHASECurveType {
+	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("rateCurveType"))
 	return rv
 }
 

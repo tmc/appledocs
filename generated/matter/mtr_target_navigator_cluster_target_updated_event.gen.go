@@ -87,14 +87,14 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) CurrentTarget() foundation
 // SetCurrentTarget sets the value of the currentTarget property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/currentTarget
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetCurrentTarget(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentTarget:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/data
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) Data() unsafe.Pointer {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/data
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetData(value unsafe.Pointer) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/targetList
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("targetList"))
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("targetList"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) TargetList() unsafe.Pointe
 // SetTargetList sets the value of the targetList property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetUpdatedEvent/targetList
-func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetTargetList(value unsafe.Pointer) {
+func (m_ MTRTargetNavigatorClusterTargetUpdatedEvent) SetTargetList(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetList:"), value)
 }
 

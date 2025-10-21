@@ -427,8 +427,8 @@ func (c_ Control) SetControlSize(value IControlSize) {
 // The value of the receiver’s cell as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/doubleValue
-func (c_ Control) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("doubleValue"))
+func (c_ Control) DoubleValue() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -438,15 +438,15 @@ func (c_ Control) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/doubleValue
-func (c_ Control) SetDoubleValue(value unsafe.Pointer) {
+func (c_ Control) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
 // The value of the receiver’s cell as a single-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/floatValue
-func (c_ Control) FloatValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("floatValue"))
+func (c_ Control) FloatValue() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("floatValue"))
 	return rv
 }
 
@@ -456,7 +456,7 @@ func (c_ Control) FloatValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/floatValue
-func (c_ Control) SetFloatValue(value unsafe.Pointer) {
+func (c_ Control) SetFloatValue(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatValue:"), value)
 }
 
@@ -517,8 +517,8 @@ func (c_ Control) SetIgnoresMultiClick(value bool) {
 // The value of the receiver’s cell as an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/intValue
-func (c_ Control) IntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("intValue"))
+func (c_ Control) IntValue() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("intValue"))
 	return rv
 }
 
@@ -528,7 +528,7 @@ func (c_ Control) IntValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/intValue
-func (c_ Control) SetIntValue(value unsafe.Pointer) {
+func (c_ Control) SetIntValue(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntValue:"), value)
 }
 

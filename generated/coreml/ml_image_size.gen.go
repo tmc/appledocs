@@ -117,8 +117,8 @@ func (i_ ImageSize) SetPixelsWide(value int) {
 // An array of image sizes a model’s image feature accepts as input or produces as output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes
-func (i_ ImageSize) EnumeratedImageSizes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("enumeratedImageSizes"))
+func (i_ ImageSize) EnumeratedImageSizes() MLImageSize {
+	rv := objc.Send[MLImageSize](i_.ID, objc.Sel("enumeratedImageSizes"))
 	return rv
 }
 
@@ -128,7 +128,7 @@ func (i_ ImageSize) EnumeratedImageSizes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimagesizeconstraint/enumeratedimagesizes
-func (i_ ImageSize) SetEnumeratedImageSizes(value unsafe.Pointer) {
+func (i_ ImageSize) SetEnumeratedImageSizes(value IMLImageSize) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnumeratedImageSizes:"), value)
 }
 

@@ -156,8 +156,8 @@ func (i_ INSetTaskAttributeIntent) SetTargetTask(value unsafe.Pointer) {
 // The title for the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/tasktitle
-func (i_ INSetTaskAttributeIntent) TaskTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitle"))
+func (i_ INSetTaskAttributeIntent) TaskTitle() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("taskTitle"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (i_ INSetTaskAttributeIntent) TaskTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insettaskattributeintent/tasktitle
-func (i_ INSetTaskAttributeIntent) SetTaskTitle(value unsafe.Pointer) {
+func (i_ INSetTaskAttributeIntent) SetTaskTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitle:"), value)
 }
 

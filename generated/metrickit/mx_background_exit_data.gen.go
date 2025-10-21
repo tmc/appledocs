@@ -161,8 +161,8 @@ func (m_ MXBackgroundExitData) CumulativeSuspendedWithLockedFileExitCount() uint
 // The metrics for the background app exits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
-func (m_ MXBackgroundExitData) BackgroundExitData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("backgroundExitData"))
+func (m_ MXBackgroundExitData) BackgroundExitData() MXBackgroundExitData {
+	rv := objc.Send[MXBackgroundExitData](m_.ID, objc.Sel("backgroundExitData"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (m_ MXBackgroundExitData) BackgroundExitData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
-func (m_ MXBackgroundExitData) SetBackgroundExitData(value unsafe.Pointer) {
+func (m_ MXBackgroundExitData) SetBackgroundExitData(value IMXBackgroundExitData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundExitData:"), value)
 }
 

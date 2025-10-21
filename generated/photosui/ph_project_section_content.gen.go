@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/photos"
 )
 
 // The class instance for the [PHProjectSectionContent] class.
@@ -91,16 +93,16 @@ func (p_ PHProjectSectionContent) AspectRatio() unsafe.Pointer {
 // The background color of the section content when created from an Apple Print Product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSectionContent/backgroundColor
-func (p_ PHProjectSectionContent) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("backgroundColor"))
+func (p_ PHProjectSectionContent) BackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
 // An array containing all cloud asset identifiers referenced in the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSectionContent/cloudAssetIdentifiers
-func (p_ PHProjectSectionContent) CloudAssetIdentifiers() []PHCloudIdentifier {
-	rv := objc.Send[[]PHCloudIdentifier](p_.ID, objc.Sel("cloudAssetIdentifiers"))
+func (p_ PHProjectSectionContent) CloudAssetIdentifiers() []photos.PHCloudIdentifier {
+	rv := objc.Send[[]photos.PHCloudIdentifier](p_.ID, objc.Sel("cloudAssetIdentifiers"))
 	return rv
 }
 
@@ -123,8 +125,8 @@ func (p_ PHProjectSectionContent) NumberOfColumns() int {
 // An array containing PHProjectionSessionContent objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
-func (p_ PHProjectSectionContent) SectionContents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sectionContents"))
+func (p_ PHProjectSectionContent) SectionContents() PHProjectSectionContent {
+	rv := objc.Send[PHProjectSectionContent](p_.ID, objc.Sel("sectionContents"))
 	return rv
 }
 
@@ -134,15 +136,15 @@ func (p_ PHProjectSectionContent) SectionContents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/sectioncontents
-func (p_ PHProjectSectionContent) SetSectionContents(value unsafe.Pointer) {
+func (p_ PHProjectSectionContent) SetSectionContents(value IPHProjectSectionContent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionContents:"), value)
 }
 
 // The optional section title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
-func (p_ PHProjectSectionContent) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+func (p_ PHProjectSectionContent) Title() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -152,8 +154,8 @@ func (p_ PHProjectSectionContent) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsection/title
-func (p_ PHProjectSectionContent) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (p_ PHProjectSectionContent) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 

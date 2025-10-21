@@ -23,3 +23,10 @@ func ExampleNewMutableSetWithCapacity() {
 	)
 	// Output:
 }
+// ExampleNewMutableSetWithCoder demonstrates how to create a MutableSet instance using NewMutableSetWithCoder.
+func ExampleNewMutableSetWithCoder() {
+	_ = foundation.NewMutableSetWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
+	)
+	// Output:
+}

@@ -83,8 +83,8 @@ func NewAssetWriterInputMetadataAdaptor() AssetWriterInputMetadataAdaptor {
 // The input for the metadata adaptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
-func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("assetWriterInput"))
+func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() AVAssetWriterInput {
+	rv := objc.Send[AVAssetWriterInput](a_.ID, objc.Sel("assetWriterInput"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (a_ AssetWriterInputMetadataAdaptor) AssetWriterInput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinputmetadataadaptor/assetwriterinput
-func (a_ AssetWriterInputMetadataAdaptor) SetAssetWriterInput(value unsafe.Pointer) {
+func (a_ AssetWriterInputMetadataAdaptor) SetAssetWriterInput(value IAVAssetWriterInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAssetWriterInput:"), value)
 }
 

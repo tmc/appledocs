@@ -29,16 +29,16 @@ type _ObstacleGraphClass struct {
 // An interface definition for the [ObstacleGraph] class.
 type IObstacleGraph interface {
 	IGraph
-	AddObstacles(obstacles unsafe.Pointer)
+	AddObstacles(obstacles []PolygonObstacle)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	ConnectNodeUsingObstacles(node unsafe.Pointer)
-	ConnectNodeUsingObstaclesIgnoringObstacles(node unsafe.Pointer, obstaclesToIgnore unsafe.Pointer)
-	ConnectNodeUsingObstaclesIgnoringBufferRadiusOfObstacles(node unsafe.Pointer, obstaclesBufferRadiusToIgnore unsafe.Pointer)
+	ConnectNodeUsingObstaclesIgnoringObstacles(node unsafe.Pointer, obstaclesToIgnore []PolygonObstacle)
+	ConnectNodeUsingObstaclesIgnoringBufferRadiusOfObstacles(node unsafe.Pointer, obstaclesBufferRadiusToIgnore []PolygonObstacle)
 	IsConnectionLockedFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer) bool
 	LockConnectionFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer)
-	NodesForObstacle(obstacle unsafe.Pointer) []GraphNode2D
+	NodesForObstacle(obstacle IGKPolygonObstacle) []GraphNode2D
 	RemoveAllObstacles()
-	RemoveObstacles(obstacles unsafe.Pointer)
+	RemoveObstacles(obstacles []PolygonObstacle)
 	UnlockConnectionFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer)
 }
 
@@ -97,7 +97,7 @@ func NewObstacleGraph() ObstacleGraph {
 // Initializes a graph with the specified list of obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/init(obstacles:bufferRadius:)
-func NewObstacleGraphWithObstaclesBufferRadius(obstacles unsafe.Pointer, bufferRadius unsafe.Pointer) ObstacleGraph {
+func NewObstacleGraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer) ObstacleGraph {
 	instance := getObstacleGraphClass().Alloc()
 	rv := objc.Send[ObstacleGraph](instance.ID, objc.Sel("initWithObstacles:bufferRadius:"), obstacles, bufferRadius)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewObstacleGraphWithObstaclesBufferRadius(obstacles unsafe.Pointer, bufferR
 // Initializes a graph with the specified list of obstacles, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/init(obstacles:bufferRadius:nodeClass:)
-func NewObstacleGraphWithObstaclesBufferRadiusNodeClass(obstacles unsafe.Pointer, bufferRadius unsafe.Pointer, nodeClass objc.Class) ObstacleGraph {
+func NewObstacleGraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer, nodeClass objc.Class) ObstacleGraph {
 	instance := getObstacleGraphClass().Alloc()
 	rv := objc.Send[ObstacleGraph](instance.ID, objc.Sel("initWithObstacles:bufferRadius:nodeClass:"), obstacles, bufferRadius, nodeClass)
 	rv.Autorelease()
@@ -120,7 +120,7 @@ func NewObstacleGraphWithObstaclesBufferRadiusNodeClass(obstacles unsafe.Pointer
 // Creates a graph with the specified list of obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/graphWithObstacles:bufferRadius:
-func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadius(obstacles unsafe.Pointer, bufferRadius unsafe.Pointer) unsafe.Pointer {
+func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadius(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("graphWithObstacles:bufferRadius:"), obstacles, bufferRadius)
 	return rv
 }
@@ -128,7 +128,7 @@ func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadius(obstacles unsafe.Po
 // Creates a graph with the specified list of obstacles, using the specified node class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/graphWithObstacles:bufferRadius:nodeClass:
-func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadiusNodeClass(obstacles unsafe.Pointer, bufferRadius unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
+func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadiusNodeClass(obstacles []PolygonObstacle, bufferRadius unsafe.Pointer, nodeClass objc.Class) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("graphWithObstacles:bufferRadius:nodeClass:"), obstacles, bufferRadius, nodeClass)
 	return rv
 }
@@ -136,7 +136,7 @@ func (oc _ObstacleGraphClass) GraphWithObstaclesBufferRadiusNodeClass(obstacles 
 // Adds new obstacles to the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/addObstacles(_:)
-func (o_ ObstacleGraph) AddObstacles(obstacles unsafe.Pointer) {
+func (o_ ObstacleGraph) AddObstacles(obstacles []PolygonObstacle) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addObstacles:"), obstacles)
 }
 
@@ -157,14 +157,14 @@ func (o_ ObstacleGraph) ConnectNodeUsingObstacles(node unsafe.Pointer) {
 // Adds the specified node to the graph, connecting it to its nearest neighbors while ignoring the area occupied by the specified obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/connectUsingObstacles(node:ignoring:)
-func (o_ ObstacleGraph) ConnectNodeUsingObstaclesIgnoringObstacles(node unsafe.Pointer, obstaclesToIgnore unsafe.Pointer) {
+func (o_ ObstacleGraph) ConnectNodeUsingObstaclesIgnoringObstacles(node unsafe.Pointer, obstaclesToIgnore []PolygonObstacle) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("connectNodeUsingObstacles:ignoringObstacles:"), node, obstaclesToIgnore)
 }
 
 // Adds the specified node to the graph, connecting it to its nearest neighbors while ignoring the buffer regions around the specified obstacles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/connectUsingObstacles(node:ignoringBufferRadiusOf:)
-func (o_ ObstacleGraph) ConnectNodeUsingObstaclesIgnoringBufferRadiusOfObstacles(node unsafe.Pointer, obstaclesBufferRadiusToIgnore unsafe.Pointer) {
+func (o_ ObstacleGraph) ConnectNodeUsingObstaclesIgnoringBufferRadiusOfObstacles(node unsafe.Pointer, obstaclesBufferRadiusToIgnore []PolygonObstacle) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("connectNodeUsingObstacles:ignoringBufferRadiusOfObstacles:"), node, obstaclesBufferRadiusToIgnore)
 }
 
@@ -186,7 +186,7 @@ func (o_ ObstacleGraph) LockConnectionFromNodeToNode(startNode unsafe.Pointer, e
 // Returns the group of nodes corresponding to an obstacle in the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/nodes(for:)
-func (o_ ObstacleGraph) NodesForObstacle(obstacle unsafe.Pointer) []GraphNode2D {
+func (o_ ObstacleGraph) NodesForObstacle(obstacle IGKPolygonObstacle) []GraphNode2D {
 	rv := objc.Send[[]GraphNode2D](o_.ID, objc.Sel("nodesForObstacle:"), obstacle)
 	return rv
 }
@@ -201,7 +201,7 @@ func (o_ ObstacleGraph) RemoveAllObstacles() {
 // Removes the specified obstacle from the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKObstacleGraph/removeObstacles(_:)
-func (o_ ObstacleGraph) RemoveObstacles(obstacles unsafe.Pointer) {
+func (o_ ObstacleGraph) RemoveObstacles(obstacles []PolygonObstacle) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("removeObstacles:"), obstacles)
 }
 

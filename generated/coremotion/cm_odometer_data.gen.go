@@ -108,16 +108,16 @@ func (o_ OdometerData) DeltaDistanceAccuracy() unsafe.Pointer {
 // The time that the device stops recording the odometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/endDate
-func (o_ OdometerData) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("endDate"))
+func (o_ OdometerData) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 // The time of the GPS measurement associated with the location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/gpsDate
-func (o_ OdometerData) GpsDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("gpsDate"))
+func (o_ OdometerData) GpsDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("gpsDate"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (o_ OdometerData) MaxAbsSlope() foundation.Number {
 // The device that measures the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/originDevice
-func (o_ OdometerData) OriginDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("originDevice"))
+func (o_ OdometerData) OriginDevice() OdometerOriginDevice {
+	rv := objc.Send[OdometerOriginDevice](o_.ID, objc.Sel("originDevice"))
 	return rv
 }
 
@@ -164,8 +164,8 @@ func (o_ OdometerData) SpeedAccuracy() unsafe.Pointer {
 // The time that the device starts recording the odometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMOdometerData/startDate
-func (o_ OdometerData) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("startDate"))
+func (o_ OdometerData) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("startDate"))
 	return rv
 }
 

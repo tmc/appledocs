@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewMKETAResponse() MKETAResponse {
 // The end point of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/destination
-func (m_ MKETAResponse) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destination"))
+func (m_ MKETAResponse) Destination() MKMapItem {
+	rv := objc.Send[MKMapItem](m_.ID, objc.Sel("destination"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (m_ MKETAResponse) Destination() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/destination
-func (m_ MKETAResponse) SetDestination(value unsafe.Pointer) {
+func (m_ MKETAResponse) SetDestination(value IMKMapItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestination:"), value)
 }
 
@@ -119,8 +120,8 @@ func (m_ MKETAResponse) SetDistance(value unsafe.Pointer) {
 // The expected arrival time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedarrivaldate
-func (m_ MKETAResponse) ExpectedArrivalDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expectedArrivalDate"))
+func (m_ MKETAResponse) ExpectedArrivalDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("expectedArrivalDate"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (m_ MKETAResponse) ExpectedArrivalDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expectedarrivaldate
-func (m_ MKETAResponse) SetExpectedArrivalDate(value unsafe.Pointer) {
+func (m_ MKETAResponse) SetExpectedArrivalDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedArrivalDate:"), value)
 }
 
 // The expected departure time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expecteddeparturedate
-func (m_ MKETAResponse) ExpectedDepartureDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("expectedDepartureDate"))
+func (m_ MKETAResponse) ExpectedDepartureDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("expectedDepartureDate"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (m_ MKETAResponse) ExpectedDepartureDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/expecteddeparturedate
-func (m_ MKETAResponse) SetExpectedDepartureDate(value unsafe.Pointer) {
+func (m_ MKETAResponse) SetExpectedDepartureDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpectedDepartureDate:"), value)
 }
 
@@ -173,8 +174,8 @@ func (m_ MKETAResponse) SetExpectedTravelTime(value unsafe.Pointer) {
 // The start point of the route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/source
-func (m_ MKETAResponse) Source() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("source"))
+func (m_ MKETAResponse) Source() MKMapItem {
+	rv := objc.Send[MKMapItem](m_.ID, objc.Sel("source"))
 	return rv
 }
 
@@ -184,7 +185,7 @@ func (m_ MKETAResponse) Source() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse/source
-func (m_ MKETAResponse) SetSource(value unsafe.Pointer) {
+func (m_ MKETAResponse) SetSource(value IMKMapItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSource:"), value)
 }
 

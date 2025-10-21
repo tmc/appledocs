@@ -86,7 +86,7 @@ func NewCBMutableService() CBMutableService {
 // Creates a newly initialized mutable service specified by UUID and service type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableService/init(type:primary:)
-func NewCBMutableServiceWithTypePrimary(UUID unsafe.Pointer, isPrimary bool) CBMutableService {
+func NewCBMutableServiceWithTypePrimary(UUID ICBUUID, isPrimary bool) CBMutableService {
 	instance := getCBMutableServiceClass().Alloc()
 	rv := objc.Send[CBMutableService](instance.ID, objc.Sel("initWithType:primary:"), UUID, isPrimary)
 	rv.Autorelease()

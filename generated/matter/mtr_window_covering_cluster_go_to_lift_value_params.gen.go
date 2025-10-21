@@ -87,7 +87,7 @@ func (m_ MTRWindowCoveringClusterGoToLiftValueParams) LiftValue() foundation.Num
 // SetLiftValue sets the value of the liftValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/liftvalue
-func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetLiftValue(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetLiftValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLiftValue:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWindowCoveringClusterGoToLiftValueParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRWindowCoveringClusterGoToLiftValueParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclustergotoliftvalueparams/timedinvoketimeoutms
-func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterGoToLiftValueParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

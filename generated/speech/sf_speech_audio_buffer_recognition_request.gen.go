@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
 // The class instance for the [SFSpeechAudioBufferRecognitionRequest] class.
@@ -84,8 +85,8 @@ func NewSFSpeechAudioBufferRecognitionRequest() SFSpeechAudioBufferRecognitionRe
 // The preferred audio format for optimal speech recognition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/nativeaudioformat
-func (s_ SFSpeechAudioBufferRecognitionRequest) NativeAudioFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("nativeAudioFormat"))
+func (s_ SFSpeechAudioBufferRecognitionRequest) NativeAudioFormat() avfaudio.AudioFormat {
+	rv := objc.Send[avfaudio.AudioFormat](s_.ID, objc.Sel("nativeAudioFormat"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (s_ SFSpeechAudioBufferRecognitionRequest) NativeAudioFormat() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest/nativeaudioformat
-func (s_ SFSpeechAudioBufferRecognitionRequest) SetNativeAudioFormat(value unsafe.Pointer) {
+func (s_ SFSpeechAudioBufferRecognitionRequest) SetNativeAudioFormat(value avfaudio.AudioFormat) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNativeAudioFormat:"), value)
 }
 

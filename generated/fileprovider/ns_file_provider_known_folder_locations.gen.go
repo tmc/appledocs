@@ -81,8 +81,8 @@ func NewFileProviderKnownFolderLocations() FileProviderKnownFolderLocations {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/desktopLocation
-func (f_ FileProviderKnownFolderLocations) DesktopLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("desktopLocation"))
+func (f_ FileProviderKnownFolderLocations) DesktopLocation() NSFileProviderKnownFolderLocation {
+	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
 	return rv
 }
 
@@ -90,14 +90,14 @@ func (f_ FileProviderKnownFolderLocations) DesktopLocation() unsafe.Pointer {
 // SetDesktopLocation sets the value of the desktopLocation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/desktopLocation
-func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value unsafe.Pointer) {
+func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
-func (f_ FileProviderKnownFolderLocations) DocumentsLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("documentsLocation"))
+func (f_ FileProviderKnownFolderLocations) DocumentsLocation() NSFileProviderKnownFolderLocation {
+	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (f_ FileProviderKnownFolderLocations) DocumentsLocation() unsafe.Pointer {
 // SetDocumentsLocation sets the value of the documentsLocation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
-func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value unsafe.Pointer) {
+func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }
 

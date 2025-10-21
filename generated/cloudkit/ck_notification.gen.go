@@ -86,7 +86,7 @@ func NewCKNotification() CKNotification {
 // Creates a new notification using the specified payload data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/init(fromRemoteNotificationDictionary:)
-func NewCKNotificationFromRemoteNotificationDictionary(notificationDictionary objc.ID) CKNotification {
+func NewCKNotificationFromRemoteNotificationDictionary(notificationDictionary objectivec.IObject) CKNotification {
 	rv := objc.Send[CKNotification](objc.ID(getCKNotificationClass().class), objc.Sel("notificationFromRemoteNotificationDictionary:"), notificationDictionary)
 	return rv
 }
@@ -95,7 +95,7 @@ func NewCKNotificationFromRemoteNotificationDictionary(notificationDictionary ob
 // Creates a new notification using the specified payload data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/init(fromRemoteNotificationDictionary:)
-func (cc _CKNotificationClass) NotificationFromRemoteNotificationDictionary(notificationDictionary objc.ID) unsafe.Pointer {
+func (cc _CKNotificationClass) NotificationFromRemoteNotificationDictionary(notificationDictionary objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("notificationFromRemoteNotificationDictionary:"), notificationDictionary)
 	return rv
 }
@@ -119,16 +119,16 @@ func (c_ CKNotification) NotificationID() unsafe.Pointer {
 // The type of event that generates the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/notificationType-swift.property
-func (c_ CKNotification) NotificationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+func (c_ CKNotification) NotificationType() CKNotificationType {
+	rv := objc.Send[CKNotificationType](c_.ID, objc.Sel("notificationType"))
 	return rv
 }
 
 // The ID of the user record that creates the subscription that generates the push notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/subscriptionOwnerUserRecordID
-func (c_ CKNotification) SubscriptionOwnerUserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionOwnerUserRecordID"))
+func (c_ CKNotification) SubscriptionOwnerUserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("subscriptionOwnerUserRecordID"))
 	return rv
 }
 
@@ -236,7 +236,7 @@ func (c_ CKNotification) Badge() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/badge
-func (c_ CKNotification) SetBadge(value foundation.Number) {
+func (c_ CKNotification) SetBadge(value foundation.INumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBadge:"), value)
 }
 

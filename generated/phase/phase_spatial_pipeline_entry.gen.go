@@ -83,8 +83,8 @@ func NewPHASESpatialPipelineEntry() PHASESpatialPipelineEntry {
 // A parameter that gradually updates the amount of audio signal that passes through to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
-func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendLevelMetaParameterDefinition"))
+func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("sendLevelMetaParameterDefinition"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (p_ PHASESpatialPipelineEntry) SendLevelMetaParameterDefinition() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESpatialPipelineEntry/sendLevelMetaParameterDefinition
-func (p_ PHASESpatialPipelineEntry) SetSendLevelMetaParameterDefinition(value unsafe.Pointer) {
+func (p_ PHASESpatialPipelineEntry) SetSendLevelMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSendLevelMetaParameterDefinition:"), value)
 }
 
 // An object that adds sound layers for environmental effects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
-func (p_ PHASESpatialPipelineEntry) SpatialPipeline() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("spatialPipeline"))
+func (p_ PHASESpatialPipelineEntry) SpatialPipeline() PHASESpatialPipeline {
+	rv := objc.Send[PHASESpatialPipeline](p_.ID, objc.Sel("spatialPipeline"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (p_ PHASESpatialPipelineEntry) SpatialPipeline() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/spatialpipeline
-func (p_ PHASESpatialPipelineEntry) SetSpatialPipeline(value unsafe.Pointer) {
+func (p_ PHASESpatialPipelineEntry) SetSpatialPipeline(value IPHASESpatialPipeline) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpatialPipeline:"), value)
 }
 
 // Audio layers for environmental effects to add to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/entries
-func (p_ PHASESpatialPipelineEntry) Entries() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("entries"))
+func (p_ PHASESpatialPipelineEntry) Entries() PHASESpatialPipelineEntry {
+	rv := objc.Send[PHASESpatialPipelineEntry](p_.ID, objc.Sel("entries"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (p_ PHASESpatialPipelineEntry) Entries() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialpipeline/entries
-func (p_ PHASESpatialPipelineEntry) SetEntries(value unsafe.Pointer) {
+func (p_ PHASESpatialPipelineEntry) SetEntries(value IPHASESpatialPipelineEntry) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEntries:"), value)
 }
 

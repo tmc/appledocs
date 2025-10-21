@@ -101,8 +101,8 @@ func (l_ LogStateDescriptor) SetBufferSize(value int) {
 // The minimum level of messages that the shader can log.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLogStateDescriptor/level
-func (l_ LogStateDescriptor) Level() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("level"))
+func (l_ LogStateDescriptor) Level() LogLevel {
+	rv := objc.Send[LogLevel](l_.ID, objc.Sel("level"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (l_ LogStateDescriptor) Level() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLogStateDescriptor/level
-func (l_ LogStateDescriptor) SetLevel(value unsafe.Pointer) {
+func (l_ LogStateDescriptor) SetLevel(value LogLevel) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLevel:"), value)
 }
 

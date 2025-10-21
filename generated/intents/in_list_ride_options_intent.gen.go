@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INListRideOptionsIntent] class.
@@ -84,8 +85,8 @@ func NewINListRideOptionsIntent() INListRideOptionsIntent {
 // The user’s destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
-func (i_ INListRideOptionsIntent) DropOffLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dropOffLocation"))
+func (i_ INListRideOptionsIntent) DropOffLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (i_ INListRideOptionsIntent) DropOffLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/dropofflocation
-func (i_ INListRideOptionsIntent) SetDropOffLocation(value unsafe.Pointer) {
+func (i_ INListRideOptionsIntent) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
 // The user’s starting location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
-func (i_ INListRideOptionsIntent) PickupLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+func (i_ INListRideOptionsIntent) PickupLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (i_ INListRideOptionsIntent) PickupLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlistrideoptionsintent/pickuplocation
-func (i_ INListRideOptionsIntent) SetPickupLocation(value unsafe.Pointer) {
+func (i_ INListRideOptionsIntent) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
 

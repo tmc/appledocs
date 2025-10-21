@@ -32,9 +32,9 @@ type ICKSyncEngine interface {
 	objectivec.IObject
 	CancelOperationsWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchChangesWithCompletionHandler(completionHandler unsafe.Pointer)
-	FetchChangesWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
+	FetchChangesWithOptionsCompletionHandler(options CKSyncEngineFetchChangesOptions, completionHandler unsafe.Pointer)
 	SendChangesWithCompletionHandler(completionHandler unsafe.Pointer)
-	SendChangesWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
+	SendChangesWithOptionsCompletionHandler(options CKSyncEngineSendChangesOptions, completionHandler unsafe.Pointer)
 }
 
 // An object that manages the synchronization of local and remote record data.
@@ -90,7 +90,7 @@ func NewCKSyncEngine() CKSyncEngine {
 // Creates a sync engine with the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngine-4b4w9/initWithConfiguration:
-func NewCKSyncEngineWithConfiguration(configuration unsafe.Pointer) CKSyncEngine {
+func NewCKSyncEngineWithConfiguration(configuration ICKSyncEngineConfiguration) CKSyncEngine {
 	instance := getCKSyncEngineClass().Alloc()
 	rv := objc.Send[CKSyncEngine](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func (c_ CKSyncEngine) FetchChangesWithCompletionHandler(completionHandler unsaf
 // Fetches pending remote changes from the server using the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngine-4b4w9/fetchChangesWithOptions:completionHandler:
-func (c_ CKSyncEngine) FetchChangesWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKSyncEngine) FetchChangesWithOptionsCompletionHandler(options CKSyncEngineFetchChangesOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchChangesWithOptions:completionHandler:"), options, completionHandler)
 }
 
@@ -129,23 +129,23 @@ func (c_ CKSyncEngine) SendChangesWithCompletionHandler(completionHandler unsafe
 // Sends pending local changes to the server using the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngine-4b4w9/sendChangesWithOptions:completionHandler:
-func (c_ CKSyncEngine) SendChangesWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKSyncEngine) SendChangesWithOptionsCompletionHandler(options CKSyncEngineSendChangesOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("sendChangesWithOptions:completionHandler:"), options, completionHandler)
 }
 
 // The associated database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngine-4b4w9/database
-func (c_ CKSyncEngine) Database() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("database"))
+func (c_ CKSyncEngine) Database() CKDatabase {
+	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("database"))
 	return rv
 }
 
 // The sync engine’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngine-4b4w9/state
-func (c_ CKSyncEngine) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("state"))
+func (c_ CKSyncEngine) State() CKSyncEngineState {
+	rv := objc.Send[CKSyncEngineState](c_.ID, objc.Sel("state"))
 	return rv
 }
 

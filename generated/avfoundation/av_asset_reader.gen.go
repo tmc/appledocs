@@ -30,7 +30,7 @@ type _AssetReaderClass struct {
 // An interface definition for the [AssetReader] class.
 type IAssetReader interface {
 	objectivec.IObject
-	CanAddOutput(output unsafe.Pointer) bool
+	CanAddOutput(output IAVAssetReaderOutput) bool
 	StartReading() bool
 }
 
@@ -85,7 +85,7 @@ func NewAssetReader() AssetReader {
 // Determines whether you can add the output to the asset reader.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetReader/canAdd(_:)
-func (a_ AssetReader) CanAddOutput(output unsafe.Pointer) bool {
+func (a_ AssetReader) CanAddOutput(output IAVAssetReaderOutput) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canAddOutput:"), output)
 	return rv
 }
@@ -101,8 +101,8 @@ func (a_ AssetReader) StartReading() bool {
 // The asset from which to read media data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
-func (a_ AssetReader) Asset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("asset"))
+func (a_ AssetReader) Asset() AVAsset {
+	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (a_ AssetReader) Asset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/asset
-func (a_ AssetReader) SetAsset(value unsafe.Pointer) {
+func (a_ AssetReader) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
 }
 
 // An error that describes the reason for a failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("error"))
+func (a_ AssetReader) Error() Error {
+	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (a_ AssetReader) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/error
-func (a_ AssetReader) SetError(value unsafe.Pointer) {
+func (a_ AssetReader) SetError(value IError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
 // The outputs from which you read media data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) Outputs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputs"))
+func (a_ AssetReader) Outputs() AVAssetReaderOutput {
+	rv := objc.Send[AVAssetReaderOutput](a_.ID, objc.Sel("outputs"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (a_ AssetReader) Outputs() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreader/outputs
-func (a_ AssetReader) SetOutputs(value unsafe.Pointer) {
+func (a_ AssetReader) SetOutputs(value IAVAssetReaderOutput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 

@@ -83,104 +83,104 @@ func NewCKSyncEngineEvent() CKSyncEngineEvent {
 // The event downcast to the subclass that represents a change to the device’s iCloud account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/accountChangeEvent
-func (c_ CKSyncEngineEvent) AccountChangeEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("accountChangeEvent"))
+func (c_ CKSyncEngineEvent) AccountChangeEvent() CKSyncEngineAccountChangeEvent {
+	rv := objc.Send[CKSyncEngineAccountChangeEvent](c_.ID, objc.Sel("accountChangeEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a completed database fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/didFetchChangesEvent
-func (c_ CKSyncEngineEvent) DidFetchChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didFetchChangesEvent"))
+func (c_ CKSyncEngineEvent) DidFetchChangesEvent() CKSyncEngineDidFetchChangesEvent {
+	rv := objc.Send[CKSyncEngineDidFetchChangesEvent](c_.ID, objc.Sel("didFetchChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a completed record zone fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/didFetchRecordZoneChangesEvent
-func (c_ CKSyncEngineEvent) DidFetchRecordZoneChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didFetchRecordZoneChangesEvent"))
+func (c_ CKSyncEngineEvent) DidFetchRecordZoneChangesEvent() CKSyncEngineDidFetchRecordZoneChangesEvent {
+	rv := objc.Send[CKSyncEngineDidFetchRecordZoneChangesEvent](c_.ID, objc.Sel("didFetchRecordZoneChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a completed send operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/didSendChangesEvent
-func (c_ CKSyncEngineEvent) DidSendChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("didSendChangesEvent"))
+func (c_ CKSyncEngineEvent) DidSendChangesEvent() CKSyncEngineDidSendChangesEvent {
+	rv := objc.Send[CKSyncEngineDidSendChangesEvent](c_.ID, objc.Sel("didSendChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a set of fetched database changes to process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/fetchedDatabaseChangesEvent
-func (c_ CKSyncEngineEvent) FetchedDatabaseChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchedDatabaseChangesEvent"))
+func (c_ CKSyncEngineEvent) FetchedDatabaseChangesEvent() CKSyncEngineFetchedDatabaseChangesEvent {
+	rv := objc.Send[CKSyncEngineFetchedDatabaseChangesEvent](c_.ID, objc.Sel("fetchedDatabaseChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a set of fetched record zone changes to process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/fetchedRecordZoneChangesEvent
-func (c_ CKSyncEngineEvent) FetchedRecordZoneChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchedRecordZoneChangesEvent"))
+func (c_ CKSyncEngineEvent) FetchedRecordZoneChangesEvent() CKSyncEngineFetchedRecordZoneChangesEvent {
+	rv := objc.Send[CKSyncEngineFetchedRecordZoneChangesEvent](c_.ID, objc.Sel("fetchedRecordZoneChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a sent batch of database changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/sentDatabaseChangesEvent
-func (c_ CKSyncEngineEvent) SentDatabaseChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sentDatabaseChangesEvent"))
+func (c_ CKSyncEngineEvent) SentDatabaseChangesEvent() CKSyncEngineSentDatabaseChangesEvent {
+	rv := objc.Send[CKSyncEngineSentDatabaseChangesEvent](c_.ID, objc.Sel("sentDatabaseChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents a sent batch of record zone changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/sentRecordZoneChangesEvent
-func (c_ CKSyncEngineEvent) SentRecordZoneChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sentRecordZoneChangesEvent"))
+func (c_ CKSyncEngineEvent) SentRecordZoneChangesEvent() CKSyncEngineSentRecordZoneChangesEvent {
+	rv := objc.Send[CKSyncEngineSentRecordZoneChangesEvent](c_.ID, objc.Sel("sentRecordZoneChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents an update to the sync engine’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/stateUpdateEvent
-func (c_ CKSyncEngineEvent) StateUpdateEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stateUpdateEvent"))
+func (c_ CKSyncEngineEvent) StateUpdateEvent() CKSyncEngineStateUpdateEvent {
+	rv := objc.Send[CKSyncEngineStateUpdateEvent](c_.ID, objc.Sel("stateUpdateEvent"))
 	return rv
 }
 
 // The type of event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/type
-func (c_ CKSyncEngineEvent) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ CKSyncEngineEvent) Type() CKSyncEngineEventType {
+	rv := objc.Send[CKSyncEngineEventType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
 // The event downcast to the subclass that represents an imminent database fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/willFetchChangesEvent
-func (c_ CKSyncEngineEvent) WillFetchChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willFetchChangesEvent"))
+func (c_ CKSyncEngineEvent) WillFetchChangesEvent() CKSyncEngineWillFetchChangesEvent {
+	rv := objc.Send[CKSyncEngineWillFetchChangesEvent](c_.ID, objc.Sel("willFetchChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents an imminent fetch of record zone changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/willFetchRecordZoneChangesEvent
-func (c_ CKSyncEngineEvent) WillFetchRecordZoneChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willFetchRecordZoneChangesEvent"))
+func (c_ CKSyncEngineEvent) WillFetchRecordZoneChangesEvent() CKSyncEngineWillFetchRecordZoneChangesEvent {
+	rv := objc.Send[CKSyncEngineWillFetchRecordZoneChangesEvent](c_.ID, objc.Sel("willFetchRecordZoneChangesEvent"))
 	return rv
 }
 
 // The event downcast to the subclass that represents an imminent send operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEvent/willSendChangesEvent
-func (c_ CKSyncEngineEvent) WillSendChangesEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("willSendChangesEvent"))
+func (c_ CKSyncEngineEvent) WillSendChangesEvent() CKSyncEngineWillSendChangesEvent {
+	rv := objc.Send[CKSyncEngineWillSendChangesEvent](c_.ID, objc.Sel("willSendChangesEvent"))
 	return rv
 }
 

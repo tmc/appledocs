@@ -120,8 +120,8 @@ func (i_ INPayBillIntent) SetBillType(value unsafe.Pointer) {
 // The due date of the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/duedate
-func (i_ INPayBillIntent) DueDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dueDate"))
+func (i_ INPayBillIntent) DueDate() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dueDate"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INPayBillIntent) DueDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/duedate
-func (i_ INPayBillIntent) SetDueDate(value unsafe.Pointer) {
+func (i_ INPayBillIntent) SetDueDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDueDate:"), value)
 }
 
@@ -174,8 +174,8 @@ func (i_ INPayBillIntent) SetTransactionAmount(value unsafe.Pointer) {
 // A note to associate with the payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
-func (i_ INPayBillIntent) TransactionNote() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
+func (i_ INPayBillIntent) TransactionNote() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("transactionNote"))
 	return rv
 }
 
@@ -185,15 +185,15 @@ func (i_ INPayBillIntent) TransactionNote() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionnote
-func (i_ INPayBillIntent) SetTransactionNote(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
+func (i_ INPayBillIntent) SetTransactionNote(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), value)
 }
 
 // The scheduled date for the payment, as requested by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionscheduleddate
-func (i_ INPayBillIntent) TransactionScheduledDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transactionScheduledDate"))
+func (i_ INPayBillIntent) TransactionScheduledDate() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("transactionScheduledDate"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (i_ INPayBillIntent) TransactionScheduledDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpaybillintent/transactionscheduleddate
-func (i_ INPayBillIntent) SetTransactionScheduledDate(value unsafe.Pointer) {
+func (i_ INPayBillIntent) SetTransactionScheduledDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionScheduledDate:"), value)
 }
 

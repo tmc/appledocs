@@ -87,7 +87,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) Announce
 // SetAnnouncementReason sets the value of the announcementReason property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/announcementreason
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetAnnouncementReason(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetAnnouncementReason(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnnouncementReason:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) Endpoint
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/endpoint
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetEndpoint(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/metadatafornode
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) MetadataForNode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadataForNode"))
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) MetadataForNode() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("metadataForNode"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) Metadata
 // SetMetadataForNode sets the value of the metadataForNode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/metadatafornode
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetMetadataForNode(value unsafe.Pointer) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetMetadataForNode(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForNode:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) Provider
 // SetProviderNodeID sets the value of the providerNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/providernodeid-7l401
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetProviderNodeID(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetProviderNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderNodeID:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) Provider
 // SetProviderNodeId sets the value of the providerNodeId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/providernodeid-7l40x
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetProviderNodeId(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetProviderNodeId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderNodeId:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) ServerSi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/serversideprocessingtimeout
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -180,7 +180,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) TimedInv
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -195,7 +195,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) VendorID
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/vendorid-4g13v
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetVendorID(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
@@ -210,7 +210,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) VendorId
 // SetVendorId sets the value of the vendorId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-8dobu/vendorid-4g14r
-func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetVendorId(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams) SetVendorId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorId:"), value)
 }
 

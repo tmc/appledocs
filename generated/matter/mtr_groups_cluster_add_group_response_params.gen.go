@@ -87,7 +87,7 @@ func (m_ MTRGroupsClusterAddGroupResponseParams) GroupID() foundation.Number {
 // SetGroupID sets the value of the groupID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupresponseparams/groupid-9qo3m
-func (m_ MTRGroupsClusterAddGroupResponseParams) SetGroupID(value foundation.Number) {
+func (m_ MTRGroupsClusterAddGroupResponseParams) SetGroupID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGroupsClusterAddGroupResponseParams) GroupId() foundation.Number {
 // SetGroupId sets the value of the groupId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupresponseparams/groupid-9qo4i
-func (m_ MTRGroupsClusterAddGroupResponseParams) SetGroupId(value foundation.Number) {
+func (m_ MTRGroupsClusterAddGroupResponseParams) SetGroupId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupsClusterAddGroupResponseParams) Status() foundation.Number {
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupresponseparams/status
-func (m_ MTRGroupsClusterAddGroupResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRGroupsClusterAddGroupResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRGroupsClusterAddGroupResponseParams) TimedInvokeTimeoutMs() foundati
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusteraddgroupresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterAddGroupResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupsClusterAddGroupResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

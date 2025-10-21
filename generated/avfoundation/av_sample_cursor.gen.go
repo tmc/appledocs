@@ -131,7 +131,7 @@ func (s_ SampleCursor) CurrentChunkStorageURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstorageurl
-func (s_ SampleCursor) SetCurrentChunkStorageURL(value foundation.URL) {
+func (s_ SampleCursor) SetCurrentChunkStorageURL(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkStorageURL:"), value)
 }
 

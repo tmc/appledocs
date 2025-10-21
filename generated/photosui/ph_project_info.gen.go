@@ -137,8 +137,8 @@ func (p_ PHProjectInfo) SetPageNumbersEnabled(value bool) {
 // The product identifier of the originating Apple Print Product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/productidentifier
-func (p_ PHProjectInfo) ProductIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("productIdentifier"))
+func (p_ PHProjectInfo) ProductIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
@@ -148,8 +148,8 @@ func (p_ PHProjectInfo) ProductIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/productidentifier
-func (p_ PHProjectInfo) SetProductIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
+func (p_ PHProjectInfo) SetProductIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProductIdentifier:"), value)
 }
 
 // The project type that the user selected from the project extension options.
@@ -173,8 +173,8 @@ func (p_ PHProjectInfo) SetProjectType(value unsafe.Pointer) {
 // An array of project sections, each containing one or more section content objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/sections
-func (p_ PHProjectInfo) Sections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sections"))
+func (p_ PHProjectInfo) Sections() PHProjectSection {
+	rv := objc.Send[PHProjectSection](p_.ID, objc.Sel("sections"))
 	return rv
 }
 
@@ -184,15 +184,15 @@ func (p_ PHProjectInfo) Sections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/sections
-func (p_ PHProjectInfo) SetSections(value unsafe.Pointer) {
+func (p_ PHProjectInfo) SetSections(value IPHProjectSection) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSections:"), value)
 }
 
 // The product theme identifier of the originating Apple Print Product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/themeidentifier
-func (p_ PHProjectInfo) ThemeIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("themeIdentifier"))
+func (p_ PHProjectInfo) ThemeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("themeIdentifier"))
 	return rv
 }
 
@@ -202,8 +202,8 @@ func (p_ PHProjectInfo) ThemeIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectinfo/themeidentifier
-func (p_ PHProjectInfo) SetThemeIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setThemeIdentifier:"), objc.String(value))
+func (p_ PHProjectInfo) SetThemeIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setThemeIdentifier:"), value)
 }
 
 

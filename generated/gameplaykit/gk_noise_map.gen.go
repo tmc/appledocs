@@ -88,7 +88,7 @@ func NewNoiseMap() NoiseMap {
 // Initializes a noise map by sampling from the specified noise object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/init(_:)
-func NewNoiseMapWithNoise(noise unsafe.Pointer) NoiseMap {
+func NewNoiseMapWithNoise(noise IGKNoise) NoiseMap {
 	instance := getNoiseMapClass().Alloc()
 	rv := objc.Send[NoiseMap](instance.ID, objc.Sel("initWithNoise:"), noise)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewNoiseMapWithNoise(noise unsafe.Pointer) NoiseMap {
 // Creates a noise map by sampling from the specified noise object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/init(_:size:origin:sampleCount:seamless:)
-func NewNoiseMapWithNoiseSizeOriginSampleCountSeamless(noise unsafe.Pointer, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool) NoiseMap {
+func NewNoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IGKNoise, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool) NoiseMap {
 	instance := getNoiseMapClass().Alloc()
 	rv := objc.Send[NoiseMap](instance.ID, objc.Sel("initWithNoise:size:origin:sampleCount:seamless:"), noise, size, origin, sampleCount, seamless)
 	rv.Autorelease()
@@ -111,7 +111,7 @@ func NewNoiseMapWithNoiseSizeOriginSampleCountSeamless(noise unsafe.Pointer, siz
 // Creates a noise map by sampling from the specified noise object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/noiseMapWithNoise:
-func (nc _NoiseMapClass) NoiseMapWithNoise(noise unsafe.Pointer) unsafe.Pointer {
+func (nc _NoiseMapClass) NoiseMapWithNoise(noise IGKNoise) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseMapWithNoise:"), noise)
 	return rv
 }
@@ -119,7 +119,7 @@ func (nc _NoiseMapClass) NoiseMapWithNoise(noise unsafe.Pointer) unsafe.Pointer 
 // Creates a noise map by sampling from the specified noise object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNoiseMap/noiseMapWithNoise:size:origin:sampleCount:seamless:
-func (nc _NoiseMapClass) NoiseMapWithNoiseSizeOriginSampleCountSeamless(noise unsafe.Pointer, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool) unsafe.Pointer {
+func (nc _NoiseMapClass) NoiseMapWithNoiseSizeOriginSampleCountSeamless(noise IGKNoise, size unsafe.Pointer, origin unsafe.Pointer, sampleCount unsafe.Pointer, seamless bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("noiseMapWithNoise:size:origin:sampleCount:seamless:"), noise, size, origin, sampleCount, seamless)
 	return rv
 }

@@ -84,8 +84,8 @@ func NewVZXHCIController() VZXHCIController {
 // The list of configured USB controllers for the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/usbcontrollers
-func (v_ VZXHCIController) UsbControllers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("usbControllers"))
+func (v_ VZXHCIController) UsbControllers() VZUSBControllerConfiguration {
+	rv := objc.Send[VZUSBControllerConfiguration](v_.ID, objc.Sel("usbControllers"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (v_ VZXHCIController) UsbControllers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/usbcontrollers
-func (v_ VZXHCIController) SetUsbControllers(value unsafe.Pointer) {
+func (v_ VZXHCIController) SetUsbControllers(value IVZUSBControllerConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)
 }
 

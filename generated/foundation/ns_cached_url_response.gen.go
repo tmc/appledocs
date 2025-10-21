@@ -83,8 +83,8 @@ func NewCachedURLResponse() CachedURLResponse {
 // The cached response’s data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
-func (c_ CachedURLResponse) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("data"))
+func (c_ CachedURLResponse) Data() Data {
+	rv := objc.Send[Data](c_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (c_ CachedURLResponse) Data() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/data
-func (c_ CachedURLResponse) SetData(value unsafe.Pointer) {
+func (c_ CachedURLResponse) SetData(value IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setData:"), value)
 }
 
 // The URL response object associated with the instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
-func (c_ CachedURLResponse) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("response"))
+func (c_ CachedURLResponse) Response() NSURLResponse {
+	rv := objc.Send[NSURLResponse](c_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (c_ CachedURLResponse) Response() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/cachedurlresponse/response
-func (c_ CachedURLResponse) SetResponse(value unsafe.Pointer) {
+func (c_ CachedURLResponse) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResponse:"), value)
 }
 

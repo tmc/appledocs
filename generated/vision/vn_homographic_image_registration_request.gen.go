@@ -84,8 +84,8 @@ func NewHomographicImageRegistrationRequest() HomographicImageRegistrationReques
 // The results of the image registration request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest/results
-func (h_ HomographicImageRegistrationRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("results"))
+func (h_ HomographicImageRegistrationRequest) Results() VNImageHomographicAlignmentObservation {
+	rv := objc.Send[VNImageHomographicAlignmentObservation](h_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (h_ HomographicImageRegistrationRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnhomographicimageregistrationrequest/results
-func (h_ HomographicImageRegistrationRequest) SetResults(value unsafe.Pointer) {
+func (h_ HomographicImageRegistrationRequest) SetResults(value IVNImageHomographicAlignmentObservation) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setResults:"), value)
 }
 

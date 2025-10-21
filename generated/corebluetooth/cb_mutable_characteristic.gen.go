@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CBMutableCharacteristic] class.
@@ -86,7 +87,7 @@ func NewCBMutableCharacteristic() CBMutableCharacteristic {
 // Creates a mutable characteristic with specified permissions, properties, and value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/init(type:properties:value:permissions:)
-func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID unsafe.Pointer, properties unsafe.Pointer, value unsafe.Pointer, permissions unsafe.Pointer) CBMutableCharacteristic {
+func NewCBMutableCharacteristicWithTypePropertiesValuePermissions(UUID ICBUUID, properties ICBCharacteristicProperties, value foundation.IData, permissions ICBAttributePermissions) CBMutableCharacteristic {
 	instance := getCBMutableCharacteristicClass().Alloc()
 	rv := objc.Send[CBMutableCharacteristic](instance.ID, objc.Sel("initWithType:properties:value:permissions:"), UUID, properties, value, permissions)
 	rv.Autorelease()
@@ -125,8 +126,8 @@ func (c_ CBMutableCharacteristic) SetDescriptors(value []CBDescriptor) {
 // The permissions of the characteristic value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/permissions
-func (c_ CBMutableCharacteristic) Permissions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("permissions"))
+func (c_ CBMutableCharacteristic) Permissions() CBAttributePermissions {
+	rv := objc.Send[CBAttributePermissions](c_.ID, objc.Sel("permissions"))
 	return rv
 }
 
@@ -136,15 +137,15 @@ func (c_ CBMutableCharacteristic) Permissions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/permissions
-func (c_ CBMutableCharacteristic) SetPermissions(value unsafe.Pointer) {
+func (c_ CBMutableCharacteristic) SetPermissions(value ICBAttributePermissions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPermissions:"), value)
 }
 
 // The properties of the characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/properties
-func (c_ CBMutableCharacteristic) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("properties"))
+func (c_ CBMutableCharacteristic) Properties() CBCharacteristicProperties {
+	rv := objc.Send[CBCharacteristicProperties](c_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -154,7 +155,7 @@ func (c_ CBMutableCharacteristic) Properties() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/properties
-func (c_ CBMutableCharacteristic) SetProperties(value unsafe.Pointer) {
+func (c_ CBMutableCharacteristic) SetProperties(value ICBCharacteristicProperties) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setProperties:"), value)
 }
 
@@ -169,8 +170,8 @@ func (c_ CBMutableCharacteristic) SubscribedCentrals() []CBCentral {
 // The value of the characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-func (c_ CBMutableCharacteristic) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
+func (c_ CBMutableCharacteristic) Value() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -180,7 +181,7 @@ func (c_ CBMutableCharacteristic) Value() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBMutableCharacteristic/value
-func (c_ CBMutableCharacteristic) SetValue(value unsafe.Pointer) {
+func (c_ CBMutableCharacteristic) SetValue(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setValue:"), value)
 }
 

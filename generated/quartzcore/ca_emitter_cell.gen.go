@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _EmitterCellClass struct {
 // An interface definition for the [EmitterCell] class.
 type IEmitterCell interface {
 	objectivec.IObject
-	ShouldArchiveValueForKey(key string) bool
+	ShouldArchiveValueForKey(key appkit.string) bool
 }
 
 // The definition of a particle emitted by a particle layer.
@@ -85,8 +86,8 @@ func NewEmitterCell() EmitterCell {
 // Returns the default value of the property with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/defaultValue(forKey:)
-func (ec _EmitterCellClass) DefaultValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("defaultValueForKey:"), objc.String(key))
+func (ec _EmitterCellClass) DefaultValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("defaultValueForKey:"), key)
 	return rv
 }
 
@@ -101,8 +102,8 @@ func (ec _EmitterCellClass) EmitterCell() unsafe.Pointer {
 // Returns a Boolean value indicating whether the value for a given key should be archived.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/shouldArchiveValue(forKey:)
-func (e_ EmitterCell) ShouldArchiveValueForKey(key string) bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("shouldArchiveValueForKey:"), objc.String(key))
+func (e_ EmitterCell) ShouldArchiveValueForKey(key appkit.string) bool {
+	rv := objc.Send[bool](e_.ID, objc.Sel("shouldArchiveValueForKey:"), key)
 	return rv
 }
 
@@ -443,8 +444,8 @@ func (e_ EmitterCell) SetLifetimeRange(value unsafe.Pointer) {
 // The filter used when increasing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/magnificationFilter
-func (e_ EmitterCell) MagnificationFilter() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("magnificationFilter"))
+func (e_ EmitterCell) MagnificationFilter() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("magnificationFilter"))
 	return rv
 }
 
@@ -454,15 +455,15 @@ func (e_ EmitterCell) MagnificationFilter() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/magnificationFilter
-func (e_ EmitterCell) SetMagnificationFilter(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMagnificationFilter:"), objc.String(value))
+func (e_ EmitterCell) SetMagnificationFilter(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMagnificationFilter:"), value)
 }
 
 // The filter used when reducing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/minificationFilter
-func (e_ EmitterCell) MinificationFilter() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("minificationFilter"))
+func (e_ EmitterCell) MinificationFilter() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("minificationFilter"))
 	return rv
 }
 
@@ -472,8 +473,8 @@ func (e_ EmitterCell) MinificationFilter() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/minificationFilter
-func (e_ EmitterCell) SetMinificationFilter(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMinificationFilter:"), objc.String(value))
+func (e_ EmitterCell) SetMinificationFilter(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setMinificationFilter:"), value)
 }
 
 // The bias factor used by the minification filter to determine the levels of detail.
@@ -497,8 +498,8 @@ func (e_ EmitterCell) SetMinificationFilterBias(value unsafe.Pointer) {
 // The name of the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/name
-func (e_ EmitterCell) Name() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EmitterCell) Name() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -508,8 +509,8 @@ func (e_ EmitterCell) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/name
-func (e_ EmitterCell) SetName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+func (e_ EmitterCell) SetName(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 
 // The amount by which the red color component of the cell can vary. Animatable.
@@ -641,8 +642,8 @@ func (e_ EmitterCell) SetSpinRange(value float64) {
 // An optional dictionary containing additional style values that are not explicitly defined by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/style
-func (e_ EmitterCell) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("style"))
+func (e_ EmitterCell) Style() objc.ID {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -652,7 +653,7 @@ func (e_ EmitterCell) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEmitterCell/style
-func (e_ EmitterCell) SetStyle(value unsafe.Pointer) {
+func (e_ EmitterCell) SetStyle(value objc.ID) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStyle:"), value)
 }
 

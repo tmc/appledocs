@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (n_ NEFilterProviderConfiguration) SetFilterBrowsers(value bool) {
 // The bundle identifier of the filter data provider system extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterdataproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) FilterDataProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("filterDataProviderBundleIdentifier"))
+func (n_ NEFilterProviderConfiguration) FilterDataProviderBundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("filterDataProviderBundleIdentifier"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (n_ NEFilterProviderConfiguration) FilterDataProviderBundleIdentifier() str
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterdataproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) SetFilterDataProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterDataProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetFilterDataProviderBundleIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterDataProviderBundleIdentifier:"), value)
 }
 
 // The bundle identifier of the filter packet provider system extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterpacketproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) FilterPacketProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("filterPacketProviderBundleIdentifier"))
+func (n_ NEFilterProviderConfiguration) FilterPacketProviderBundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("filterPacketProviderBundleIdentifier"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (n_ NEFilterProviderConfiguration) FilterPacketProviderBundleIdentifier() s
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/filterpacketproviderbundleidentifier
-func (n_ NEFilterProviderConfiguration) SetFilterPacketProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterPacketProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetFilterPacketProviderBundleIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterPacketProviderBundleIdentifier:"), value)
 }
 
 // A Boolean value that indicates that the system applies the filter to packets of network data.
@@ -171,8 +172,8 @@ func (n_ NEFilterProviderConfiguration) SetFilterSockets(value bool) {
 // A persistent reference to a keychain item containing a certificate and private key associated with the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/identityreference
-func (n_ NEFilterProviderConfiguration) IdentityReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identityReference"))
+func (n_ NEFilterProviderConfiguration) IdentityReference() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("identityReference"))
 	return rv
 }
 
@@ -182,15 +183,15 @@ func (n_ NEFilterProviderConfiguration) IdentityReference() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/identityreference
-func (n_ NEFilterProviderConfiguration) SetIdentityReference(value unsafe.Pointer) {
+func (n_ NEFilterProviderConfiguration) SetIdentityReference(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentityReference:"), value)
 }
 
 // A string that identifies the organization that administers the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/organization
-func (n_ NEFilterProviderConfiguration) Organization() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("organization"))
+func (n_ NEFilterProviderConfiguration) Organization() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("organization"))
 	return rv
 }
 
@@ -200,15 +201,15 @@ func (n_ NEFilterProviderConfiguration) Organization() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/organization
-func (n_ NEFilterProviderConfiguration) SetOrganization(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOrganization:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetOrganization(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOrganization:"), value)
 }
 
 // A persistent reference to a keychain item containing a password associated with the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/passwordreference
-func (n_ NEFilterProviderConfiguration) PasswordReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("passwordReference"))
+func (n_ NEFilterProviderConfiguration) PasswordReference() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("passwordReference"))
 	return rv
 }
 
@@ -218,15 +219,15 @@ func (n_ NEFilterProviderConfiguration) PasswordReference() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/passwordreference
-func (n_ NEFilterProviderConfiguration) SetPasswordReference(value unsafe.Pointer) {
+func (n_ NEFilterProviderConfiguration) SetPasswordReference(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPasswordReference:"), value)
 }
 
 // The address of a server that the Filter Control Provider may contact for rules and other configuration information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/serveraddress
-func (n_ NEFilterProviderConfiguration) ServerAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("serverAddress"))
+func (n_ NEFilterProviderConfiguration) ServerAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("serverAddress"))
 	return rv
 }
 
@@ -236,15 +237,15 @@ func (n_ NEFilterProviderConfiguration) ServerAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/serveraddress
-func (n_ NEFilterProviderConfiguration) SetServerAddress(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetServerAddress(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerAddress:"), value)
 }
 
 // A string that identifies the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/username
-func (n_ NEFilterProviderConfiguration) Username() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("username"))
+func (n_ NEFilterProviderConfiguration) Username() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -254,15 +255,15 @@ func (n_ NEFilterProviderConfiguration) Username() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/username
-func (n_ NEFilterProviderConfiguration) SetUsername(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetUsername(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), value)
 }
 
 // A dictionary of provider-specific configuration settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/vendorconfiguration
-func (n_ NEFilterProviderConfiguration) VendorConfiguration() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("vendorConfiguration"))
+func (n_ NEFilterProviderConfiguration) VendorConfiguration() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("vendorConfiguration"))
 	return rv
 }
 
@@ -272,8 +273,8 @@ func (n_ NEFilterProviderConfiguration) VendorConfiguration() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterproviderconfiguration/vendorconfiguration
-func (n_ NEFilterProviderConfiguration) SetVendorConfiguration(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setVendorConfiguration:"), objc.String(value))
+func (n_ NEFilterProviderConfiguration) SetVendorConfiguration(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setVendorConfiguration:"), value)
 }
 
 

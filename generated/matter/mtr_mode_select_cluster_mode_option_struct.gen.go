@@ -78,8 +78,8 @@ func NewMTRModeSelectClusterModeOptionStruct() MTRModeSelectClusterModeOptionStr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
-func (m_ MTRModeSelectClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRModeSelectClusterModeOptionStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRModeSelectClusterModeOptionStruct) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
-func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRModeSelectClusterModeOptionStruct) Mode() foundation.Number {
 // SetMode sets the value of the mode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
-func (m_ MTRModeSelectClusterModeOptionStruct) SetMode(value foundation.Number) {
+func (m_ MTRModeSelectClusterModeOptionStruct) SetMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 

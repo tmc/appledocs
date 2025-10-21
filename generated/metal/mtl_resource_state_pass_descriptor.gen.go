@@ -81,16 +81,16 @@ func NewResourceStatePassDescriptor() ResourceStatePassDescriptor {
 // Creates a new resource state pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceStatePassDescriptor/resourceStatePassDescriptor
-func (rc _ResourceStatePassDescriptorClass) ResourceStatePassDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("resourceStatePassDescriptor"))
+func (rc _ResourceStatePassDescriptorClass) ResourceStatePassDescriptor() ResourceStatePassDescriptor {
+	rv := objc.Send[ResourceStatePassDescriptor](objc.ID(rc.class), objc.Sel("resourceStatePassDescriptor"))
 	return rv
 }
 
 // The array of sample buffers that the resource state pass can access.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor/samplebufferattachments
-func (r_ ResourceStatePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("sampleBufferAttachments"))
+func (r_ ResourceStatePassDescriptor) SampleBufferAttachments() MTLResourceStatePassSampleBufferAttachmentDescriptorArray {
+	rv := objc.Send[MTLResourceStatePassSampleBufferAttachmentDescriptorArray](r_.ID, objc.Sel("sampleBufferAttachments"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (r_ ResourceStatePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor/samplebufferattachments
-func (r_ ResourceStatePassDescriptor) SetSampleBufferAttachments(value unsafe.Pointer) {
+func (r_ ResourceStatePassDescriptor) SetSampleBufferAttachments(value IMTLResourceStatePassSampleBufferAttachmentDescriptorArray) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSampleBufferAttachments:"), value)
 }
 

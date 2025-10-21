@@ -87,7 +87,7 @@ func NewMovie() Movie {
 // Creates a movie object from a movie header stored in a QuickTime movie file of ISO base media file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/init(url:options:)
-func NewMovieWithURLOptions(URL foundation.URL, options unsafe.Pointer) Movie {
+func NewMovieWithURLOptions(URL foundation.IURL, options unsafe.Pointer) Movie {
 	instance := getMovieClass().Alloc()
 	rv := objc.Send[Movie](instance.ID, objc.Sel("initWithURL:options:"), URL, options)
 	rv.Autorelease()
@@ -106,8 +106,8 @@ func (m_ Movie) CanContainMovieFragments() bool {
 // A data object that contains the movie file’s data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovie/data
-func (m_ Movie) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ Movie) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (m_ Movie) SetContainsMovieFragments(value bool) {
 // The default storage container for media data added to a movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-func (m_ Movie) DefaultMediaDataStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("defaultMediaDataStorage"))
+func (m_ Movie) DefaultMediaDataStorage() AVMediaDataStorage {
+	rv := objc.Send[AVMediaDataStorage](m_.ID, objc.Sel("defaultMediaDataStorage"))
 	return rv
 }
 
@@ -143,15 +143,15 @@ func (m_ Movie) DefaultMediaDataStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/defaultmediadatastorage
-func (m_ Movie) SetDefaultMediaDataStorage(value unsafe.Pointer) {
+func (m_ Movie) SetDefaultMediaDataStorage(value IAVMediaDataStorage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultMediaDataStorage:"), value)
 }
 
 // The tracks that a movie contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-func (m_ Movie) Tracks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tracks"))
+func (m_ Movie) Tracks() AVMovieTrack {
+	rv := objc.Send[AVMovieTrack](m_.ID, objc.Sel("tracks"))
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (m_ Movie) Tracks() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/tracks
-func (m_ Movie) SetTracks(value unsafe.Pointer) {
+func (m_ Movie) SetTracks(value IAVMovieTrack) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTracks:"), value)
 }
 
@@ -179,7 +179,7 @@ func (m_ Movie) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovie/url
-func (m_ Movie) SetUrl(value foundation.URL) {
+func (m_ Movie) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUrl:"), value)
 }
 

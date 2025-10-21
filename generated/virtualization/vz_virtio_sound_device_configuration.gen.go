@@ -113,8 +113,8 @@ func (v_ VZVirtioSoundDeviceConfiguration) SetStreams(value []VZVirtioSoundDevic
 // The list of audio devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/audiodevices
-func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("audioDevices"))
+func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() VZAudioDeviceConfiguration {
+	rv := objc.Send[VZAudioDeviceConfiguration](v_.ID, objc.Sel("audioDevices"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (v_ VZVirtioSoundDeviceConfiguration) AudioDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/audiodevices
-func (v_ VZVirtioSoundDeviceConfiguration) SetAudioDevices(value unsafe.Pointer) {
+func (v_ VZVirtioSoundDeviceConfiguration) SetAudioDevices(value IVZAudioDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAudioDevices:"), value)
 }
 

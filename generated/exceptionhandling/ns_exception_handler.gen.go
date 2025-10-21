@@ -33,7 +33,7 @@ type IExceptionHandler interface {
 	Delegate() objc.ID
 	ExceptionHandlingMask() uint
 	ExceptionHangingMask() uint
-	SetDelegate(anObject objc.ID)
+	SetDelegate(anObject objectivec.IObject)
 	SetExceptionHandlingMask(aMask uint)
 	SetExceptionHangingMask(aMask uint)
 }
@@ -87,8 +87,8 @@ func NewExceptionHandler() ExceptionHandler {
 // Returns the singleton instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/default()
-func (ec _ExceptionHandlerClass) DefaultExceptionHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("defaultExceptionHandler"))
+func (ec _ExceptionHandlerClass) DefaultExceptionHandler() ExceptionHandler {
+	rv := objc.Send[ExceptionHandler](objc.ID(ec.class), objc.Sel("defaultExceptionHandler"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (e_ ExceptionHandler) ExceptionHangingMask() uint {
 // Sets the delegate of the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandler/setDelegate(_:)
-func (e_ ExceptionHandler) SetDelegate(anObject objc.ID) {
+func (e_ ExceptionHandler) SetDelegate(anObject objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDelegate:"), anObject)
 }
 

@@ -83,8 +83,8 @@ func NewResponderState() ResponderState {
 // The current tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/activeToolPicker
-func (r_ ResponderState) ActiveToolPicker() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("activeToolPicker"))
+func (r_ ResponderState) ActiveToolPicker() PKToolPicker {
+	rv := objc.Send[PKToolPicker](r_.ID, objc.Sel("activeToolPicker"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (r_ ResponderState) ActiveToolPicker() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/activeToolPicker
-func (r_ ResponderState) SetActiveToolPicker(value unsafe.Pointer) {
+func (r_ ResponderState) SetActiveToolPicker(value IPKToolPicker) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveToolPicker:"), value)
 }
 
 // The visibility state of the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/toolPickerVisibility-7hikj
-func (r_ ResponderState) ToolPickerVisibility() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("toolPickerVisibility"))
+func (r_ ResponderState) ToolPickerVisibility() ToolPickerVisibility {
+	rv := objc.Send[ToolPickerVisibility](r_.ID, objc.Sel("toolPickerVisibility"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (r_ ResponderState) ToolPickerVisibility() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState/toolPickerVisibility-7hikj
-func (r_ ResponderState) SetToolPickerVisibility(value unsafe.Pointer) {
+func (r_ ResponderState) SetToolPickerVisibility(value IToolPickerVisibility) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setToolPickerVisibility:"), value)
 }
 

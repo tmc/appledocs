@@ -82,16 +82,16 @@ func NewCNChangeHistoryRemoveMemberFromGroupEvent() CNChangeHistoryRemoveMemberF
 // The group where the user removed a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent/group
-func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Group() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
 // The contact that the user removed from the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveMemberFromGroupEvent/member
-func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Member() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("member"))
+func (c_ CNChangeHistoryRemoveMemberFromGroupEvent) Member() CNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("member"))
 	return rv
 }
 

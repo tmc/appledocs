@@ -85,7 +85,7 @@ func NewPHASEMedium() PHASEMedium {
 // Creates a medium.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMedium/init(engine:preset:)
-func NewPHASEMediumWithEnginePreset(engine unsafe.Pointer, preset unsafe.Pointer) PHASEMedium {
+func NewPHASEMediumWithEnginePreset(engine IPHASEEngine, preset IPHASEMediumPreset) PHASEMedium {
 	instance := getPHASEMediumClass().Alloc()
 	rv := objc.Send[PHASEMedium](instance.ID, objc.Sel("initWithEngine:preset:"), engine, preset)
 	rv.Autorelease()
@@ -96,8 +96,8 @@ func NewPHASEMediumWithEnginePreset(engine unsafe.Pointer, preset unsafe.Pointer
 // The physical matter through which sound travels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseengine/defaultmedium
-func (p_ PHASEMedium) DefaultMedium() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("defaultMedium"))
+func (p_ PHASEMedium) DefaultMedium() PHASEMedium {
+	rv := objc.Send[PHASEMedium](p_.ID, objc.Sel("defaultMedium"))
 	return rv
 }
 
@@ -107,7 +107,7 @@ func (p_ PHASEMedium) DefaultMedium() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseengine/defaultmedium
-func (p_ PHASEMedium) SetDefaultMedium(value unsafe.Pointer) {
+func (p_ PHASEMedium) SetDefaultMedium(value IPHASEMedium) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultMedium:"), value)
 }
 

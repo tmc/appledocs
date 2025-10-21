@@ -87,7 +87,7 @@ func NewAuthorizationAppleIDButton() AuthorizationAppleIDButton {
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(authorizationButtonType:authorizationButtonStyle:)
-func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ unsafe.Pointer, style unsafe.Pointer) AuthorizationAppleIDButton {
+func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	instance := getAuthorizationAppleIDButtonClass().Alloc()
 	rv := objc.Send[AuthorizationAppleIDButton](instance.ID, objc.Sel("initWithAuthorizationButtonType:authorizationButtonStyle:"), type_, style)
 	rv.Autorelease()
@@ -99,7 +99,7 @@ func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButton
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
-func NewAuthorizationAppleIDButtonWithTypeStyle(type_ unsafe.Pointer, style unsafe.Pointer) AuthorizationAppleIDButton {
+func NewAuthorizationAppleIDButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(getAuthorizationAppleIDButtonClass().class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }
@@ -108,7 +108,7 @@ func NewAuthorizationAppleIDButtonWithTypeStyle(type_ unsafe.Pointer, style unsa
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/init(type:style:)
-func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ unsafe.Pointer, style unsafe.Pointer) unsafe.Pointer {
+func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
 }

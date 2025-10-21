@@ -32,10 +32,10 @@ type IURLSessionStreamTask interface {
 	CaptureStreams()
 	CloseRead()
 	CloseWrite()
-	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout TimeInterval, completionHandler unsafe.Pointer)
+	ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout ITimeInterval, completionHandler unsafe.Pointer)
 	StartSecureConnection()
 	StopSecureConnection()
-	WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer)
+	WriteDataTimeoutCompletionHandler(data IData, timeout ITimeInterval, completionHandler unsafe.Pointer)
 }
 
 // A URL session task that is stream-based.
@@ -113,7 +113,7 @@ func (u_ URLSessionStreamTask) CloseWrite() {
 // Asynchronously reads a number of bytes from the stream, and calls a handler upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/readData(ofMinLength:maxLength:timeout:completionHandler:)
-func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout TimeInterval, completionHandler unsafe.Pointer) {
+func (u_ URLSessionStreamTask) ReadDataOfMinLengthMaxLengthTimeoutCompletionHandler(minBytes uint, maxBytes uint, timeout ITimeInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("readDataOfMinLength:maxLength:timeout:completionHandler:"), minBytes, maxBytes, timeout, completionHandler)
 }
 
@@ -134,7 +134,7 @@ func (u_ URLSessionStreamTask) StopSecureConnection() {
 // Asynchronously writes the specified data to the stream, and calls a handler upon completion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionStreamTask/write(_:timeout:completionHandler:)
-func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data unsafe.Pointer, timeout TimeInterval, completionHandler unsafe.Pointer) {
+func (u_ URLSessionStreamTask) WriteDataTimeoutCompletionHandler(data IData, timeout ITimeInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("writeData:timeout:completionHandler:"), data, timeout, completionHandler)
 }
 

@@ -78,8 +78,8 @@ func NewAccelerationStructureMotionCurveGeometryDescriptor() AccelerationStructu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointBuffers"))
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers() MTLMotionKeyframeData {
+	rv := objc.Send[MTLMotionKeyframeData](a_.ID, objc.Sel("controlPointBuffers"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers
 // SetControlPointBuffers sets the value of the controlPointBuffers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointBuffers(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointBuffers(value IMTLMotionKeyframeData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointBuffers:"), value)
 }
 
@@ -138,8 +138,8 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointStri
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvebasis
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveBasis"))
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() CurveBasis {
+	rv := objc.Send[CurveBasis](a_.ID, objc.Sel("curveBasis"))
 	return rv
 }
 
@@ -147,14 +147,14 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() unsafe
 // SetCurveBasis sets the value of the curveBasis property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvebasis
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveBasis(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveBasis(value ICurveBasis) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveBasis:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curveendcaps
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveEndCaps"))
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() CurveEndCaps {
+	rv := objc.Send[CurveEndCaps](a_.ID, objc.Sel("curveEndCaps"))
 	return rv
 }
 
@@ -162,14 +162,14 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() unsa
 // SetCurveEndCaps sets the value of the curveEndCaps property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curveendcaps
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(value ICurveEndCaps) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveEndCaps:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvetype
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveType"))
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveType() CurveType {
+	rv := objc.Send[CurveType](a_.ID, objc.Sel("curveType"))
 	return rv
 }
 
@@ -177,7 +177,7 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) CurveType() unsafe.
 // SetCurveType sets the value of the curveType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/curvetype
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveType(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetCurveType(value CurveType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveType:"), value)
 }
 
@@ -213,8 +213,8 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBufferOffse
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indextype
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexType"))
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](a_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -222,14 +222,14 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) IndexType() unsafe.
 // SetIndexType sets the value of the indexType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/indextype
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusbuffers
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("radiusBuffers"))
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusBuffers() MTLMotionKeyframeData {
+	rv := objc.Send[MTLMotionKeyframeData](a_.ID, objc.Sel("radiusBuffers"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (a_ AccelerationStructureMotionCurveGeometryDescriptor) RadiusBuffers() uns
 // SetRadiusBuffers sets the value of the radiusBuffers property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioncurvegeometrydescriptor/radiusbuffers
-func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusBuffers(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusBuffers(value IMTLMotionKeyframeData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusBuffers:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -29,12 +30,12 @@ type _AMWorkflowControllerClass struct {
 
 // An interface definition for the [AMWorkflowController] class.
 type IAMWorkflowController interface {
-	objectivec.IObject
-	Pause(sender objc.ID)
-	Reset(sender objc.ID)
-	Run(sender objc.ID)
-	Step(sender objc.ID)
-	Stop(sender objc.ID)
+	appkit.IController
+	Pause(sender objectivec.IObject)
+	Reset(sender objectivec.IObject)
+	Run(sender objectivec.IObject)
+	Step(sender objectivec.IObject)
+	Stop(sender objectivec.IObject)
 }
 
 // An object that lets you manage an Automator workflow in your app.
@@ -43,14 +44,16 @@ type IAMWorkflowController interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController
 type AMWorkflowController struct {
-	objectivec.Object
+	appkit.Controller
 }
 
 // AMWorkflowControllerFrom constructs a [AMWorkflowController] from an unsafe.Pointer.
 //
 // An object that lets you manage an Automator workflow in your app.
 func AMWorkflowControllerFrom(ptr unsafe.Pointer) AMWorkflowController {
-	return AMWorkflowController{objectivec.Object{objc.ID(ptr)}}
+	return AMWorkflowController{
+		Controller: appkit.ControllerFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -88,35 +91,35 @@ func NewAMWorkflowController() AMWorkflowController {
 // Pauses a workflow that’s running.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/pause(_:)
-func (a_ AMWorkflowController) Pause(sender objc.ID) {
+func (a_ AMWorkflowController) Pause(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("pause:"), sender)
 }
 
 // Stops a workflow, clears any action results, and resets the workflow back to an un-run state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/reset(_:)
-func (a_ AMWorkflowController) Reset(sender objc.ID) {
+func (a_ AMWorkflowController) Reset(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("reset:"), sender)
 }
 
 // Runs the associated workflow, after first clearing any results stored by its actions during any previous run.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/run(_:)
-func (a_ AMWorkflowController) Run(sender objc.ID) {
+func (a_ AMWorkflowController) Run(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("run:"), sender)
 }
 
 // In a paused workflow, runs the next action in the workflow and then pauses again.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/step(_:)
-func (a_ AMWorkflowController) Step(sender objc.ID) {
+func (a_ AMWorkflowController) Step(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("step:"), sender)
 }
 
 // Stops the associated workflow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/stop(_:)
-func (a_ AMWorkflowController) Stop(sender objc.ID) {
+func (a_ AMWorkflowController) Stop(sender objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stop:"), sender)
 }
 
@@ -165,8 +168,8 @@ func (a_ AMWorkflowController) Running() bool {
 // The controller’s workflow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflow
-func (a_ AMWorkflowController) Workflow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("workflow"))
+func (a_ AMWorkflowController) Workflow() AMWorkflow {
+	rv := objc.Send[AMWorkflow](a_.ID, objc.Sel("workflow"))
 	return rv
 }
 
@@ -176,15 +179,15 @@ func (a_ AMWorkflowController) Workflow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflow
-func (a_ AMWorkflowController) SetWorkflow(value unsafe.Pointer) {
+func (a_ AMWorkflowController) SetWorkflow(value IAMWorkflow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflow:"), value)
 }
 
 // The controller’s workflow view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
-func (a_ AMWorkflowController) WorkflowView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("workflowView"))
+func (a_ AMWorkflowController) WorkflowView() AMWorkflowView {
+	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("workflowView"))
 	return rv
 }
 
@@ -194,7 +197,7 @@ func (a_ AMWorkflowController) WorkflowView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowController/workflowView-swift.property
-func (a_ AMWorkflowController) SetWorkflowView(value unsafe.Pointer) {
+func (a_ AMWorkflowController) SetWorkflowView(value IAMWorkflowView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
 }
 

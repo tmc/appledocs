@@ -13,4 +13,16 @@ type USBHostIsochronousTransactionOptions uint
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIsochronousTransferOptions
 type USBHostIsochronousTransferOptions uint
 
+// IOUSBHostObjectInitOptions - Options for initializing the host object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObjectInitOptions
+type USBHostObjectInitOptions uint
+
+const (
+	// USBHostObjectInitOptionsNone - The default argument for initializing the host object.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObjectInitOptions/IOUSBHostObjectInitOptionsNone
+	USBHostObjectInitOptionsNone USBHostObjectInitOptions = 0
+)
+
 

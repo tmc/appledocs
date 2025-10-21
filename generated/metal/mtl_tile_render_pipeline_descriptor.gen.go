@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,16 +119,16 @@ func (t_ TileRenderPipelineDescriptor) SetBinaryArchives(value []objc.ID) {
 // An array of attachments that store color data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/colorAttachments
-func (t_ TileRenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("colorAttachments"))
+func (t_ TileRenderPipelineDescriptor) ColorAttachments() MTLTileRenderPipelineColorAttachmentDescriptorArray {
+	rv := objc.Send[MTLTileRenderPipelineColorAttachmentDescriptorArray](t_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
 // A string that identifies the tile pipeline descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) Label() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("label"))
+func (t_ TileRenderPipelineDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -136,15 +138,15 @@ func (t_ TileRenderPipelineDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/label
-func (t_ TileRenderPipelineDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (t_ TileRenderPipelineDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
 }
 
 // Functions that you can specify as function arguments for the tile shader when encoding commands that use the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/linkedFunctions
-func (t_ TileRenderPipelineDescriptor) LinkedFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("linkedFunctions"))
+func (t_ TileRenderPipelineDescriptor) LinkedFunctions() MTLLinkedFunctions {
+	rv := objc.Send[MTLLinkedFunctions](t_.ID, objc.Sel("linkedFunctions"))
 	return rv
 }
 
@@ -154,7 +156,7 @@ func (t_ TileRenderPipelineDescriptor) LinkedFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/linkedFunctions
-func (t_ TileRenderPipelineDescriptor) SetLinkedFunctions(value unsafe.Pointer) {
+func (t_ TileRenderPipelineDescriptor) SetLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLinkedFunctions:"), value)
 }
 
@@ -239,8 +241,8 @@ func (t_ TileRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
-func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](t_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
 }
 
@@ -248,15 +250,15 @@ func (t_ TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Po
 // SetRequiredThreadsPerThreadgroup sets the value of the requiredThreadsPerThreadgroup property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
-func (t_ TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+func (t_ TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
 
 // A value that enables or disables shader validation for the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/shaderValidation
-func (t_ TileRenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("shaderValidation"))
+func (t_ TileRenderPipelineDescriptor) ShaderValidation() ShaderValidation {
+	rv := objc.Send[ShaderValidation](t_.ID, objc.Sel("shaderValidation"))
 	return rv
 }
 
@@ -266,7 +268,7 @@ func (t_ TileRenderPipelineDescriptor) ShaderValidation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/shaderValidation
-func (t_ TileRenderPipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
+func (t_ TileRenderPipelineDescriptor) SetShaderValidation(value IShaderValidation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setShaderValidation:"), value)
 }
 
@@ -309,8 +311,8 @@ func (t_ TileRenderPipelineDescriptor) SetThreadgroupSizeMatchesTileSize(value b
 // An array that contains the buffer mutability options for a render pipeline’s tile function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineDescriptor/tileBuffers
-func (t_ TileRenderPipelineDescriptor) TileBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tileBuffers"))
+func (t_ TileRenderPipelineDescriptor) TileBuffers() MTLPipelineBufferDescriptorArray {
+	rv := objc.Send[MTLPipelineBufferDescriptorArray](t_.ID, objc.Sel("tileBuffers"))
 	return rv
 }
 

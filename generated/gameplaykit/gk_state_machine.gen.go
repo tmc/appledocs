@@ -33,8 +33,8 @@ type IStateMachine interface {
 	objectivec.IObject
 	CanEnterState(stateClass objc.Class) bool
 	EnterState(stateClass objc.Class) bool
-	StateForClass(stateClass objc.Class) unsafe.Pointer
-	UpdateWithDeltaTime(sec foundation.TimeInterval)
+	StateForClass(stateClass objc.Class) State
+	UpdateWithDeltaTime(sec foundation.ITimeInterval)
 }
 
 // A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
@@ -90,7 +90,7 @@ func NewStateMachine() StateMachine {
 // Initializes a state machine with the specified states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/init(states:)
-func NewStateMachineWithStates(states unsafe.Pointer) StateMachine {
+func NewStateMachineWithStates(states []State) StateMachine {
 	instance := getStateMachineClass().Alloc()
 	rv := objc.Send[StateMachine](instance.ID, objc.Sel("initWithStates:"), states)
 	rv.Autorelease()
@@ -101,7 +101,7 @@ func NewStateMachineWithStates(states unsafe.Pointer) StateMachine {
 // Creates a state machine with the specified states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateMachineWithStates:
-func (sc _StateMachineClass) StateMachineWithStates(states unsafe.Pointer) unsafe.Pointer {
+func (sc _StateMachineClass) StateMachineWithStates(states []State) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("stateMachineWithStates:"), states)
 	return rv
 }
@@ -125,23 +125,23 @@ func (s_ StateMachine) EnterState(stateClass objc.Class) bool {
 // Returns the state object in the state machine corresponding to the specified class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/stateForClass:
-func (s_ StateMachine) StateForClass(stateClass objc.Class) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stateForClass:"), stateClass)
+func (s_ StateMachine) StateForClass(stateClass objc.Class) State {
+	rv := objc.Send[State](s_.ID, objc.Sel("stateForClass:"), stateClass)
 	return rv
 }
 
 // Tells the current state object to perform per-frame updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/update(deltaTime:)
-func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.TimeInterval) {
+func (s_ StateMachine) UpdateWithDeltaTime(sec foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), sec)
 }
 
 // The state machine’s current state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKStateMachine/currentState
-func (s_ StateMachine) CurrentState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentState"))
+func (s_ StateMachine) CurrentState() GKState {
+	rv := objc.Send[GKState](s_.ID, objc.Sel("currentState"))
 	return rv
 }
 

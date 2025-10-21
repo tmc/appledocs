@@ -85,8 +85,8 @@ func NewVZMacPlatformConfiguration() VZMacPlatformConfiguration {
 // The Mac auxiliary storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage
-func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("auxiliaryStorage"))
+func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() VZMacAuxiliaryStorage {
+	rv := objc.Send[VZMacAuxiliaryStorage](v_.ID, objc.Sel("auxiliaryStorage"))
 	return rv
 }
 
@@ -96,15 +96,15 @@ func (v_ VZMacPlatformConfiguration) AuxiliaryStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/auxiliaryStorage
-func (v_ VZMacPlatformConfiguration) SetAuxiliaryStorage(value unsafe.Pointer) {
+func (v_ VZMacPlatformConfiguration) SetAuxiliaryStorage(value IVZMacAuxiliaryStorage) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
 }
 
 // The Mac hardware model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel
-func (v_ VZMacPlatformConfiguration) HardwareModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
+func (v_ VZMacPlatformConfiguration) HardwareModel() VZMacHardwareModel {
+	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
 }
 
@@ -114,15 +114,15 @@ func (v_ VZMacPlatformConfiguration) HardwareModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/hardwareModel
-func (v_ VZMacPlatformConfiguration) SetHardwareModel(value unsafe.Pointer) {
+func (v_ VZMacPlatformConfiguration) SetHardwareModel(value IVZMacHardwareModel) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
 }
 
 // The Mac machine identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier
-func (v_ VZMacPlatformConfiguration) MachineIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("machineIdentifier"))
+func (v_ VZMacPlatformConfiguration) MachineIdentifier() VZMacMachineIdentifier {
+	rv := objc.Send[VZMacMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
 	return rv
 }
 
@@ -132,15 +132,15 @@ func (v_ VZMacPlatformConfiguration) MachineIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacPlatformConfiguration/machineIdentifier
-func (v_ VZMacPlatformConfiguration) SetMachineIdentifier(value unsafe.Pointer) {
+func (v_ VZMacPlatformConfiguration) SetMachineIdentifier(value IVZMacMachineIdentifier) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
 
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacPlatformConfiguration) MostFeaturefulSupportedConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
+func (v_ VZMacPlatformConfiguration) MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements {
+	rv := objc.Send[VZMacOSConfigurationRequirements](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (v_ VZMacPlatformConfiguration) MostFeaturefulSupportedConfiguration() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacPlatformConfiguration) SetMostFeaturefulSupportedConfiguration(value unsafe.Pointer) {
+func (v_ VZMacPlatformConfiguration) SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
 }
 

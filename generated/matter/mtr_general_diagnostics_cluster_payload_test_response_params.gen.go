@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRGeneralDiagnosticsClusterPayloadTestResponseParamsWithResponseValueEr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams/payload
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) Payload() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("payload"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) Payload() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("payload"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) Payload() unsafe
 // SetPayload sets the value of the payload property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestResponseParams/payload
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) SetPayload(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestResponseParams) SetPayload(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayload:"), value)
 }
 

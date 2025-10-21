@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreimage"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BarcodeObservation] class.
@@ -29,7 +31,7 @@ type _BarcodeObservationClass struct {
 
 // An interface definition for the [BarcodeObservation] class.
 type IBarcodeObservation interface {
-	objectivec.IObject
+	IRectangleObservation
 }
 
 // An object that represents barcode information that an image analysis request detects.
@@ -38,14 +40,16 @@ type IBarcodeObservation interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation
 type BarcodeObservation struct {
-	objectivec.Object
+	RectangleObservation
 }
 
 // BarcodeObservationFrom constructs a [BarcodeObservation] from an unsafe.Pointer.
 //
 // An object that represents barcode information that an image analysis request detects.
 func BarcodeObservationFrom(ptr unsafe.Pointer) BarcodeObservation {
-	return BarcodeObservation{objectivec.Object{objc.ID(ptr)}}
+	return BarcodeObservation{
+		RectangleObservation: RectangleObservationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -83,8 +87,8 @@ func NewBarcodeObservation() BarcodeObservation {
 // An object that describes the low-level details about the barcode and its data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/barcodeDescriptor
-func (b_ BarcodeObservation) BarcodeDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("barcodeDescriptor"))
+func (b_ BarcodeObservation) BarcodeDescriptor() coreimage.BarcodeDescriptor {
+	rv := objc.Send[coreimage.BarcodeDescriptor](b_.ID, objc.Sel("barcodeDescriptor"))
 	return rv
 }
 
@@ -107,39 +111,39 @@ func (b_ BarcodeObservation) IsGS1DataCarrier() bool {
 // The raw data representation of the barcode’s payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/payloadData
-func (b_ BarcodeObservation) PayloadData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("payloadData"))
+func (b_ BarcodeObservation) PayloadData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("payloadData"))
 	return rv
 }
 
 // A string value that represents the barcode payload.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/payloadStringValue
-func (b_ BarcodeObservation) PayloadStringValue() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("payloadStringValue"))
+func (b_ BarcodeObservation) PayloadStringValue() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("payloadStringValue"))
 	return rv
 }
 
 // The supplemental composite type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalCompositeType
-func (b_ BarcodeObservation) SupplementalCompositeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("supplementalCompositeType"))
+func (b_ BarcodeObservation) SupplementalCompositeType() BarcodeCompositeType {
+	rv := objc.Send[BarcodeCompositeType](b_.ID, objc.Sel("supplementalCompositeType"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalPayloadData
-func (b_ BarcodeObservation) SupplementalPayloadData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("supplementalPayloadData"))
+func (b_ BarcodeObservation) SupplementalPayloadData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("supplementalPayloadData"))
 	return rv
 }
 
 // The supplemental code decoded as a string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNBarcodeObservation/supplementalPayloadString
-func (b_ BarcodeObservation) SupplementalPayloadString() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("supplementalPayloadString"))
+func (b_ BarcodeObservation) SupplementalPayloadString() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("supplementalPayloadString"))
 	return rv
 }
 
@@ -154,8 +158,8 @@ func (b_ BarcodeObservation) Symbology() unsafe.Pointer {
 // The results of a barcode detection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (b_ BarcodeObservation) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("results"))
+func (b_ BarcodeObservation) Results() VNBarcodeObservation {
+	rv := objc.Send[VNBarcodeObservation](b_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -165,7 +169,7 @@ func (b_ BarcodeObservation) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/results
-func (b_ BarcodeObservation) SetResults(value unsafe.Pointer) {
+func (b_ BarcodeObservation) SetResults(value IVNBarcodeObservation) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResults:"), value)
 }
 

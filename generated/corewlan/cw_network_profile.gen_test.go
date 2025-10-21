@@ -15,3 +15,11 @@ func ExampleNewCWNetworkProfile() {
 	_ = corewlan.NewCWNetworkProfile()
 	// Output:
 }
+// ExampleNewCWNetworkProfileWithNetworkProfile demonstrates how to create a CWNetworkProfile instance using NewCWNetworkProfileWithNetworkProfile.
+// Creates and returns a CWNetworkProfile object initialized with the given CWNetworkProfile object.
+func ExampleNewCWNetworkProfileWithNetworkProfile() {
+	_ = corewlan.NewCWNetworkProfileWithNetworkProfile(
+		corewlan.CWNetworkProfile{}, // networkProfile CWNetworkProfile
+	)
+	// Output:
+}

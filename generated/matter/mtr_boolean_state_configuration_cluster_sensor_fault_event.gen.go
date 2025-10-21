@@ -87,7 +87,7 @@ func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SensorFault() foun
 // SetSensorFault sets the value of the sensorFault property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
-func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SetSensorFault(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SetSensorFault(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSensorFault:"), value)
 }
 

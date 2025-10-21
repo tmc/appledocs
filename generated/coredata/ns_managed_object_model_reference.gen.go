@@ -81,8 +81,8 @@ func NewManagedObjectModelReference() ManagedObjectModelReference {
 // The resolved object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/resolvedmodel
-func (m_ ManagedObjectModelReference) ResolvedModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("resolvedModel"))
+func (m_ ManagedObjectModelReference) ResolvedModel() NSManagedObjectModel {
+	rv := objc.Send[NSManagedObjectModel](m_.ID, objc.Sel("resolvedModel"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (m_ ManagedObjectModelReference) ResolvedModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/resolvedmodel
-func (m_ ManagedObjectModelReference) SetResolvedModel(value unsafe.Pointer) {
+func (m_ ManagedObjectModelReference) SetResolvedModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResolvedModel:"), value)
 }
 
 // The version checksum of the resolved model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
-func (m_ ManagedObjectModelReference) VersionChecksum() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("versionChecksum"))
+func (m_ ManagedObjectModelReference) VersionChecksum() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("versionChecksum"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (m_ ManagedObjectModelReference) VersionChecksum() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsmanagedobjectmodelreference/versionchecksum
-func (m_ ManagedObjectModelReference) SetVersionChecksum(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), objc.String(value))
+func (m_ ManagedObjectModelReference) SetVersionChecksum(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), value)
 }
 
 

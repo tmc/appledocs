@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RelationshipDescription] class.
@@ -84,8 +85,8 @@ func NewRelationshipDescription() RelationshipDescription {
 // The rule to apply when you delete the relationship’s owning managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
-func (r_ RelationshipDescription) DeleteRule() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("deleteRule"))
+func (r_ RelationshipDescription) DeleteRule() DeleteRule {
+	rv := objc.Send[DeleteRule](r_.ID, objc.Sel("deleteRule"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (r_ RelationshipDescription) DeleteRule() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSRelationshipDescription/deleteRule
-func (r_ RelationshipDescription) SetDeleteRule(value unsafe.Pointer) {
+func (r_ RelationshipDescription) SetDeleteRule(value IDeleteRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDeleteRule:"), value)
 }
 
 // The type of object the relationship contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
-func (r_ RelationshipDescription) DestinationEntity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("destinationEntity"))
+func (r_ RelationshipDescription) DestinationEntity() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](r_.ID, objc.Sel("destinationEntity"))
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (r_ RelationshipDescription) DestinationEntity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/destinationentity
-func (r_ RelationshipDescription) SetDestinationEntity(value unsafe.Pointer) {
+func (r_ RelationshipDescription) SetDestinationEntity(value IEntityDescription) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDestinationEntity:"), value)
 }
 
 // The relationship that represents the inverse of the current relationship.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
-func (r_ RelationshipDescription) InverseRelationship() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("inverseRelationship"))
+func (r_ RelationshipDescription) InverseRelationship() NSRelationshipDescription {
+	rv := objc.Send[NSRelationshipDescription](r_.ID, objc.Sel("inverseRelationship"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (r_ RelationshipDescription) InverseRelationship() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/inverserelationship
-func (r_ RelationshipDescription) SetInverseRelationship(value unsafe.Pointer) {
+func (r_ RelationshipDescription) SetInverseRelationship(value IRelationshipDescription) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInverseRelationship:"), value)
 }
 
@@ -210,8 +211,8 @@ func (r_ RelationshipDescription) SetMinCount(value int) {
 // The relationship’s unique identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-func (r_ RelationshipDescription) VersionHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("versionHash"))
+func (r_ RelationshipDescription) VersionHash() foundation.Data {
+	rv := objc.Send[foundation.Data](r_.ID, objc.Sel("versionHash"))
 	return rv
 }
 
@@ -221,7 +222,7 @@ func (r_ RelationshipDescription) VersionHash() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsrelationshipdescription/versionhash
-func (r_ RelationshipDescription) SetVersionHash(value unsafe.Pointer) {
+func (r_ RelationshipDescription) SetVersionHash(value foundation.IData) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setVersionHash:"), value)
 }
 

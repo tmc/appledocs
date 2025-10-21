@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FeaturePrintObservation] class.
@@ -82,8 +83,8 @@ func NewFeaturePrintObservation() FeaturePrintObservation {
 // The feature print data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/data
-func (f_ FeaturePrintObservation) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("data"))
+func (f_ FeaturePrintObservation) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -93,7 +94,7 @@ func (f_ FeaturePrintObservation) Data() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/data
-func (f_ FeaturePrintObservation) SetData(value unsafe.Pointer) {
+func (f_ FeaturePrintObservation) SetData(value foundation.IData) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setData:"), value)
 }
 

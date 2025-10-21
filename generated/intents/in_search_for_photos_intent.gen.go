@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INSearchForPhotosIntent] class.
@@ -84,8 +85,8 @@ func NewINSearchForPhotosIntent() INSearchForPhotosIntent {
 // The name of the album that contains the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
-func (i_ INSearchForPhotosIntent) AlbumName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
+func (i_ INSearchForPhotosIntent) AlbumName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("albumName"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (i_ INSearchForPhotosIntent) AlbumName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/albumname
-func (i_ INSearchForPhotosIntent) SetAlbumName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
+func (i_ INSearchForPhotosIntent) SetAlbumName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), value)
 }
 
 // The range of dates during which someone took the pictures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/datecreated
-func (i_ INSearchForPhotosIntent) DateCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateCreated"))
+func (i_ INSearchForPhotosIntent) DateCreated() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateCreated"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (i_ INSearchForPhotosIntent) DateCreated() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/datecreated
-func (i_ INSearchForPhotosIntent) SetDateCreated(value unsafe.Pointer) {
+func (i_ INSearchForPhotosIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
@@ -156,8 +157,8 @@ func (i_ INSearchForPhotosIntent) SetIncludedAttributes(value unsafe.Pointer) {
 // The location where someone took the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/locationcreated
-func (i_ INSearchForPhotosIntent) LocationCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("locationCreated"))
+func (i_ INSearchForPhotosIntent) LocationCreated() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("locationCreated"))
 	return rv
 }
 
@@ -167,15 +168,15 @@ func (i_ INSearchForPhotosIntent) LocationCreated() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/locationcreated
-func (i_ INSearchForPhotosIntent) SetLocationCreated(value unsafe.Pointer) {
+func (i_ INSearchForPhotosIntent) SetLocationCreated(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationCreated:"), value)
 }
 
 // The people identified in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/peopleinphoto
-func (i_ INSearchForPhotosIntent) PeopleInPhoto() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("peopleInPhoto"))
+func (i_ INSearchForPhotosIntent) PeopleInPhoto() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("peopleInPhoto"))
 	return rv
 }
 
@@ -185,15 +186,15 @@ func (i_ INSearchForPhotosIntent) PeopleInPhoto() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/peopleinphoto
-func (i_ INSearchForPhotosIntent) SetPeopleInPhoto(value unsafe.Pointer) {
+func (i_ INSearchForPhotosIntent) SetPeopleInPhoto(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhoto:"), value)
 }
 
 // The operator that defines how to search for people in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/peopleinphotooperator
-func (i_ INSearchForPhotosIntent) PeopleInPhotoOperator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("peopleInPhotoOperator"))
+func (i_ INSearchForPhotosIntent) PeopleInPhotoOperator() INConditionalOperator {
+	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("peopleInPhotoOperator"))
 	return rv
 }
 
@@ -203,15 +204,15 @@ func (i_ INSearchForPhotosIntent) PeopleInPhotoOperator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/peopleinphotooperator
-func (i_ INSearchForPhotosIntent) SetPeopleInPhotoOperator(value unsafe.Pointer) {
+func (i_ INSearchForPhotosIntent) SetPeopleInPhotoOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhotoOperator:"), value)
 }
 
 // An array of terms to look for in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
-func (i_ INSearchForPhotosIntent) SearchTerms() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
+func (i_ INSearchForPhotosIntent) SearchTerms() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("searchTerms"))
 	return rv
 }
 
@@ -221,15 +222,15 @@ func (i_ INSearchForPhotosIntent) SearchTerms() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchterms
-func (i_ INSearchForPhotosIntent) SetSearchTerms(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
+func (i_ INSearchForPhotosIntent) SetSearchTerms(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), value)
 }
 
 // The operator that defines how to incorporate the search terms when performing the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchtermsoperator
-func (i_ INSearchForPhotosIntent) SearchTermsOperator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("searchTermsOperator"))
+func (i_ INSearchForPhotosIntent) SearchTermsOperator() INConditionalOperator {
+	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("searchTermsOperator"))
 	return rv
 }
 
@@ -239,7 +240,7 @@ func (i_ INSearchForPhotosIntent) SearchTermsOperator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforphotosintent/searchtermsoperator
-func (i_ INSearchForPhotosIntent) SetSearchTermsOperator(value unsafe.Pointer) {
+func (i_ INSearchForPhotosIntent) SetSearchTermsOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)
 }
 

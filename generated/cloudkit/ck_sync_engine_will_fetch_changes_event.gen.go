@@ -81,8 +81,8 @@ func NewCKSyncEngineWillFetchChangesEvent() CKSyncEngineWillFetchChangesEvent {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineWillFetchChangesEvent/context
-func (c_ CKSyncEngineWillFetchChangesEvent) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("context"))
+func (c_ CKSyncEngineWillFetchChangesEvent) Context() CKSyncEngineFetchChangesContext {
+	rv := objc.Send[CKSyncEngineFetchChangesContext](c_.ID, objc.Sel("context"))
 	return rv
 }
 

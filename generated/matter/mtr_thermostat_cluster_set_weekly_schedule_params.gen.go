@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) DayOfWeekForSequence() fou
 // SetDayOfWeekForSequence sets the value of the dayOfWeekForSequence property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/dayofweekforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetDayOfWeekForSequence(value foundation.Number) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetDayOfWeekForSequence(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeekForSequence:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ModeForSequence() foundati
 // SetModeForSequence sets the value of the modeForSequence property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/modeforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetModeForSequence(value foundation.Number) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetModeForSequence(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeForSequence:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) NumberOfTransitionsForSequ
 // SetNumberOfTransitionsForSequence sets the value of the numberOfTransitionsForSequence property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/numberoftransitionsforsequence
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetNumberOfTransitionsForSequence(value foundation.Number) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetNumberOfTransitionsForSequence(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfTransitionsForSequence:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRThermostatClusterSetWeeklyScheduleParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclustersetweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThermostatClusterSetWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

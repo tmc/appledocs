@@ -86,7 +86,7 @@ func NewToolPickerEraserItem() ToolPickerEraserItem {
 // Creates a new eraser item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:
-func NewToolPickerEraserItemWithEraserType(eraserType unsafe.Pointer) ToolPickerEraserItem {
+func NewToolPickerEraserItemWithEraserType(eraserType EraserType) ToolPickerEraserItem {
 	instance := getToolPickerEraserItemClass().Alloc()
 	rv := objc.Send[ToolPickerEraserItem](instance.ID, objc.Sel("initWithEraserType:"), eraserType)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewToolPickerEraserItemWithEraserType(eraserType unsafe.Pointer) ToolPicker
 // Creates a new eraser item with the specified width.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/initWithEraserType:width:
-func NewToolPickerEraserItemWithEraserTypeWidth(eraserType unsafe.Pointer, width float64) ToolPickerEraserItem {
+func NewToolPickerEraserItemWithEraserTypeWidth(eraserType EraserType, width float64) ToolPickerEraserItem {
 	instance := getToolPickerEraserItemClass().Alloc()
 	rv := objc.Send[ToolPickerEraserItem](instance.ID, objc.Sel("initWithEraserType:width:"), eraserType, width)
 	rv.Autorelease()
@@ -109,8 +109,8 @@ func NewToolPickerEraserItemWithEraserTypeWidth(eraserType unsafe.Pointer, width
 // An eraser tool for erasing parts of a drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerEraserItem/eraserTool-4q3hp
-func (t_ ToolPickerEraserItem) EraserTool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("eraserTool"))
+func (t_ ToolPickerEraserItem) EraserTool() PKEraserTool {
+	rv := objc.Send[PKEraserTool](t_.ID, objc.Sel("eraserTool"))
 	return rv
 }
 

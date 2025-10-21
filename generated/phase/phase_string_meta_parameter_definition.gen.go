@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASEStringMetaParameterDefinition] class.
@@ -86,9 +87,9 @@ func NewPHASEStringMetaParameterDefinition() PHASEStringMetaParameterDefinition 
 // Creates a specification for a textual metaparameter with the given value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition/init(value:)
-func NewPHASEStringMetaParameterDefinitionWithValue(value string) PHASEStringMetaParameterDefinition {
+func NewPHASEStringMetaParameterDefinitionWithValue(value appkit.string) PHASEStringMetaParameterDefinition {
 	instance := getPHASEStringMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:"), objc.String(value))
+	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:"), value)
 	rv.Autorelease()
 	return rv
 }
@@ -98,9 +99,9 @@ func NewPHASEStringMetaParameterDefinitionWithValue(value string) PHASEStringMet
 // Creates a specification for a named textual metaparameter with the given value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStringMetaParameterDefinition/init(value:identifier:)
-func NewPHASEStringMetaParameterDefinitionWithValueIdentifier(value string, identifier string) PHASEStringMetaParameterDefinition {
+func NewPHASEStringMetaParameterDefinitionWithValueIdentifier(value appkit.string, identifier appkit.string) PHASEStringMetaParameterDefinition {
 	instance := getPHASEStringMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:identifier:"), objc.String(value), objc.String(identifier))
+	rv := objc.Send[PHASEStringMetaParameterDefinition](instance.ID, objc.Sel("initWithValue:identifier:"), value, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +110,8 @@ func NewPHASEStringMetaParameterDefinitionWithValueIdentifier(value string, iden
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEStringMetaParameterDefinition) GlobalMetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+func (p_ PHASEStringMetaParameterDefinition) GlobalMetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (p_ PHASEStringMetaParameterDefinition) GlobalMetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEStringMetaParameterDefinition) SetGlobalMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+func (p_ PHASEStringMetaParameterDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
 // The object’s meta parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEStringMetaParameterDefinition) MetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+func (p_ PHASEStringMetaParameterDefinition) MetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
@@ -138,8 +139,8 @@ func (p_ PHASEStringMetaParameterDefinition) MetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEStringMetaParameterDefinition) SetMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+func (p_ PHASEStringMetaParameterDefinition) SetMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
 

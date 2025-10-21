@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _NowPlayingSessionClass struct {
 // An interface definition for the [NowPlayingSession] class.
 type INowPlayingSession interface {
 	objectivec.IObject
-	AddPlayer(player unsafe.Pointer)
+	AddPlayer(player avfoundation.IPlayer)
 	BecomeActiveIfPossibleWithCompletion(completion unsafe.Pointer)
-	RemovePlayer(player unsafe.Pointer)
+	RemovePlayer(player avfoundation.IPlayer)
 }
 
 // An object that manages Now Playing information and remote commands for multiple players.
@@ -88,7 +89,7 @@ func NewNowPlayingSession() NowPlayingSession {
 // Creates a Now Playing session object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/init(players:)
-func NewNowPlayingSessionWithPlayers(players unsafe.Pointer) NowPlayingSession {
+func NewNowPlayingSessionWithPlayers(players []avfoundation.IPlayer) NowPlayingSession {
 	instance := getNowPlayingSessionClass().Alloc()
 	rv := objc.Send[NowPlayingSession](instance.ID, objc.Sel("initWithPlayers:"), players)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewNowPlayingSessionWithPlayers(players unsafe.Pointer) NowPlayingSession {
 // Adds a player to the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/addPlayer(_:)
-func (n_ NowPlayingSession) AddPlayer(player unsafe.Pointer) {
+func (n_ NowPlayingSession) AddPlayer(player avfoundation.IPlayer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("addPlayer:"), player)
 }
 
@@ -113,7 +114,7 @@ func (n_ NowPlayingSession) BecomeActiveIfPossibleWithCompletion(completion unsa
 // Removes a player from the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/removePlayer(_:)
-func (n_ NowPlayingSession) RemovePlayer(player unsafe.Pointer) {
+func (n_ NowPlayingSession) RemovePlayer(player avfoundation.IPlayer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removePlayer:"), player)
 }
 
@@ -172,24 +173,24 @@ func (n_ NowPlayingSession) Active() bool {
 // The Now Playing information center associated with the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/nowPlayingInfoCenter
-func (n_ NowPlayingSession) NowPlayingInfoCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("nowPlayingInfoCenter"))
+func (n_ NowPlayingSession) NowPlayingInfoCenter() MPNowPlayingInfoCenter {
+	rv := objc.Send[MPNowPlayingInfoCenter](n_.ID, objc.Sel("nowPlayingInfoCenter"))
 	return rv
 }
 
 // The array of players associated with the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/players
-func (n_ NowPlayingSession) Players() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("players"))
+func (n_ NowPlayingSession) Players() []avfoundation.Player {
+	rv := objc.Send[[]avfoundation.Player](n_.ID, objc.Sel("players"))
 	return rv
 }
 
 // The remote command center associated with the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/remoteCommandCenter
-func (n_ NowPlayingSession) RemoteCommandCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("remoteCommandCenter"))
+func (n_ NowPlayingSession) RemoteCommandCenter() MPRemoteCommandCenter {
+	rv := objc.Send[MPRemoteCommandCenter](n_.ID, objc.Sel("remoteCommandCenter"))
 	return rv
 }
 

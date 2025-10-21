@@ -108,16 +108,16 @@ func (b_ Beacon) Minor() foundation.Number {
 // The relative distance to the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximity
-func (b_ Beacon) Proximity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("proximity"))
+func (b_ Beacon) Proximity() Proximity {
+	rv := objc.Send[Proximity](b_.ID, objc.Sel("proximity"))
 	return rv
 }
 
 // The proximity ID of the beacon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/proximityUUID
-func (b_ Beacon) ProximityUUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("proximityUUID"))
+func (b_ Beacon) ProximityUUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
 
@@ -132,16 +132,16 @@ func (b_ Beacon) Rssi() int {
 // A timestamp representing when the beacon was observed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/timestamp
-func (b_ Beacon) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("timestamp"))
+func (b_ Beacon) Timestamp() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](b_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBeacon/uuid
-func (b_ Beacon) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("UUID"))
+func (b_ Beacon) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
 

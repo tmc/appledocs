@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [ToolPickerInkingItem] class.
@@ -95,7 +96,7 @@ func NewToolPickerInkingItemWithInkType(inkType unsafe.Pointer) ToolPickerInking
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:
-func NewToolPickerInkingItemWithInkTypeColor(inkType unsafe.Pointer, color unsafe.Pointer) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColor(inkType unsafe.Pointer, color appkit.IColor) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:"), inkType, color)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewToolPickerInkingItemWithInkTypeColor(inkType unsafe.Pointer, color unsaf
 // Creates a new inking item with the specified ink type, color, and width.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:
-func NewToolPickerInkingItemWithInkTypeColorWidth(inkType unsafe.Pointer, color unsafe.Pointer, width float64) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidth(inkType unsafe.Pointer, color appkit.IColor, width float64) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
 	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:"), inkType, color, width)
 	rv.Autorelease()
@@ -116,9 +117,9 @@ func NewToolPickerInkingItemWithInkTypeColorWidth(inkType unsafe.Pointer, color 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:azimuth:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsafe.Pointer, color unsafe.Pointer, width float64, azimuth float64, identifier string) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, azimuth float64, identifier appkit.string) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, objc.String(identifier))
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:identifier:"), inkType, color, width, azimuth, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -128,9 +129,9 @@ func NewToolPickerInkingItemWithInkTypeColorWidthAzimuthIdentifier(inkType unsaf
 // Creates a new inking item with the specified ink type, color, width, and identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/initWithInkType:color:width:identifier:
-func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color unsafe.Pointer, width float64, identifier string) ToolPickerInkingItem {
+func NewToolPickerInkingItemWithInkTypeColorWidthIdentifier(inkType unsafe.Pointer, color appkit.IColor, width float64, identifier appkit.string) ToolPickerInkingItem {
 	instance := getToolPickerInkingItemClass().Alloc()
-	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, objc.String(identifier))
+	rv := objc.Send[ToolPickerInkingItem](instance.ID, objc.Sel("initWithInkType:color:width:identifier:"), inkType, color, width, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -169,8 +170,8 @@ func (t_ ToolPickerInkingItem) SetAllowsColorSelection(value bool) {
 // A tool for drawing on a canvas view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerInkingItem/inkingTool-625y9
-func (t_ ToolPickerInkingItem) InkingTool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inkingTool"))
+func (t_ ToolPickerInkingItem) InkingTool() PKInkingTool {
+	rv := objc.Send[PKInkingTool](t_.ID, objc.Sel("inkingTool"))
 	return rv
 }
 

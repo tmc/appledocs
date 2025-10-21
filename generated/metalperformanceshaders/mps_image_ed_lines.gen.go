@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [ImageEDLines] class.
@@ -78,8 +79,8 @@ func NewImageEDLines() ImageEDLines {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/clipRectSource
-func (i_ ImageEDLines) ClipRectSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("clipRectSource"))
+func (i_ ImageEDLines) ClipRectSource() corelocation.Region {
+	rv := objc.Send[corelocation.Region](i_.ID, objc.Sel("clipRectSource"))
 	return rv
 }
 
@@ -87,7 +88,7 @@ func (i_ ImageEDLines) ClipRectSource() unsafe.Pointer {
 // SetClipRectSource sets the value of the clipRectSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageEDLines/clipRectSource
-func (i_ ImageEDLines) SetClipRectSource(value unsafe.Pointer) {
+func (i_ ImageEDLines) SetClipRectSource(value corelocation.IRegion) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
 }
 

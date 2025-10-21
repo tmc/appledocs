@@ -84,8 +84,8 @@ func NewINRequestPaymentIntent() INRequestPaymentIntent {
 // The amount of the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/currencyamount
-func (i_ INRequestPaymentIntent) CurrencyAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("currencyAmount"))
+func (i_ INRequestPaymentIntent) CurrencyAmount() INCurrencyAmount {
+	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("currencyAmount"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (i_ INRequestPaymentIntent) CurrencyAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/currencyamount
-func (i_ INRequestPaymentIntent) SetCurrencyAmount(value unsafe.Pointer) {
+func (i_ INRequestPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
 }
 
 // A note associated with the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
-func (i_ INRequestPaymentIntent) Note() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("note"))
+func (i_ INRequestPaymentIntent) Note() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("note"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (i_ INRequestPaymentIntent) Note() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/note
-func (i_ INRequestPaymentIntent) SetNote(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
+func (i_ INRequestPaymentIntent) SetNote(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), value)
 }
 
 // The recipient of the payment request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/payer
-func (i_ INRequestPaymentIntent) Payer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("payer"))
+func (i_ INRequestPaymentIntent) Payer() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("payer"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INRequestPaymentIntent) Payer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrequestpaymentintent/payer
-func (i_ INRequestPaymentIntent) SetPayer(value unsafe.Pointer) {
+func (i_ INRequestPaymentIntent) SetPayer(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPayer:"), value)
 }
 

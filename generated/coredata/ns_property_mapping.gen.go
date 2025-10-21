@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewPropertyMapping() PropertyMapping {
 // The name of the property in the destination entity for the property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-func (p_ PropertyMapping) Name() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ PropertyMapping) Name() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (p_ PropertyMapping) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/name
-func (p_ PropertyMapping) SetName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+func (p_ PropertyMapping) SetName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
 
 // The user info for the property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
-func (p_ PropertyMapping) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userInfo"))
+func (p_ PropertyMapping) UserInfo() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (p_ PropertyMapping) UserInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/userInfo
-func (p_ PropertyMapping) SetUserInfo(value unsafe.Pointer) {
+func (p_ PropertyMapping) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 // The value expression for the property mapping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-func (p_ PropertyMapping) ValueExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("valueExpression"))
+func (p_ PropertyMapping) ValueExpression() Expression {
+	rv := objc.Send[Expression](p_.ID, objc.Sel("valueExpression"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (p_ PropertyMapping) ValueExpression() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyMapping/valueExpression
-func (p_ PropertyMapping) SetValueExpression(value unsafe.Pointer) {
+func (p_ PropertyMapping) SetValueExpression(value IExpression) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }
 

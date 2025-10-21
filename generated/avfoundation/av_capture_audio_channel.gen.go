@@ -155,8 +155,8 @@ func (c_ CaptureAudioChannel) SetVolume(value unsafe.Pointer) {
 // The connections between inputs and outputs that a capture session contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/connections
-func (c_ CaptureAudioChannel) Connections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("connections"))
+func (c_ CaptureAudioChannel) Connections() AVCaptureConnection {
+	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (c_ CaptureAudioChannel) Connections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesession/connections
-func (c_ CaptureAudioChannel) SetConnections(value unsafe.Pointer) {
+func (c_ CaptureAudioChannel) SetConnections(value IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConnections:"), value)
 }
 

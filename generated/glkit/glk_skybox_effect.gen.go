@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (g_ GLKSkyboxEffect) PrepareToDraw() {
 // The center of the skybox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-func (g_ GLKSkyboxEffect) Center() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("center"))
+func (g_ GLKSkyboxEffect) Center() GLKVector3 {
+	rv := objc.Send[GLKVector3](g_.ID, objc.Sel("center"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (g_ GLKSkyboxEffect) Center() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
-func (g_ GLKSkyboxEffect) SetCenter(value unsafe.Pointer) {
+func (g_ GLKSkyboxEffect) SetCenter(value IGLKVector3) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCenter:"), value)
 }
 
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) Label() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("label"))
+func (g_ GLKSkyboxEffect) Label() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -128,23 +129,23 @@ func (g_ GLKSkyboxEffect) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
-func (g_ GLKSkyboxEffect) SetLabel(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (g_ GLKSkyboxEffect) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The texture to apply to the skybox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/textureCubeMap
-func (g_ GLKSkyboxEffect) TextureCubeMap() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("textureCubeMap"))
+func (g_ GLKSkyboxEffect) TextureCubeMap() GLKEffectPropertyTexture {
+	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
 }
 
 // The transform applied before drawing the skybox.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/transform
-func (g_ GLKSkyboxEffect) Transform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("transform"))
+func (g_ GLKSkyboxEffect) Transform() GLKEffectPropertyTransform {
+	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
 }
 

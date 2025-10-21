@@ -77,15 +77,15 @@ func NewCKSyncEngineFetchChangesContext() CKSyncEngineFetchChangesContext {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/options
-func (c_ CKSyncEngineFetchChangesContext) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
+func (c_ CKSyncEngineFetchChangesContext) Options() CKSyncEngineFetchChangesOptions {
+	rv := objc.Send[CKSyncEngineFetchChangesOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchChangesContext/reason
-func (c_ CKSyncEngineFetchChangesContext) Reason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reason"))
+func (c_ CKSyncEngineFetchChangesContext) Reason() CKSyncEngineSyncReason {
+	rv := objc.Send[CKSyncEngineSyncReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
 

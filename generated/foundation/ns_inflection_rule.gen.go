@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewInflectionRule() InflectionRule {
 // Returns a Boolean value that indicates whether the rule can inflect a given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectLanguage:
-func (ic _InflectionRuleClass) CanInflectLanguage(language string) bool {
-	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectLanguage:"), objc.String(language))
+func (ic _InflectionRuleClass) CanInflectLanguage(language appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectLanguage:"), language)
 	return rv
 }
 

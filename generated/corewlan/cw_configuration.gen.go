@@ -30,7 +30,7 @@ type _CWConfigurationClass struct {
 // An interface definition for the [CWConfiguration] class.
 type ICWConfiguration interface {
 	objectivec.IObject
-	IsEqualToConfiguration(configuration unsafe.Pointer) bool
+	IsEqualToConfiguration(configuration ICWConfiguration) bool
 }
 
 // Encapsulates an immutable configuration for an AirPort WLAN interface.
@@ -84,7 +84,7 @@ func NewCWConfiguration() CWConfiguration {
 // Creates and returns a CWConfiguration object initialized with the given CWConfiguration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/init(configuration:)
-func NewCWConfigurationWithConfiguration(configuration unsafe.Pointer) CWConfiguration {
+func NewCWConfigurationWithConfiguration(configuration ICWConfiguration) CWConfiguration {
 	instance := getCWConfigurationClass().Alloc()
 	rv := objc.Send[CWConfiguration](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -103,7 +103,7 @@ func (cc _CWConfigurationClass) Configuration() unsafe.Pointer {
 // Convenience method for getting a CWConfiguration object initialized with the given CWConfiguration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/configurationWithConfiguration:
-func (cc _CWConfigurationClass) ConfigurationWithConfiguration(configuration unsafe.Pointer) unsafe.Pointer {
+func (cc _CWConfigurationClass) ConfigurationWithConfiguration(configuration ICWConfiguration) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("configurationWithConfiguration:"), configuration)
 	return rv
 }
@@ -111,7 +111,7 @@ func (cc _CWConfigurationClass) ConfigurationWithConfiguration(configuration uns
 // Determine CWConfiguration object equality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWConfiguration/isEqual(to:)
-func (c_ CWConfiguration) IsEqualToConfiguration(configuration unsafe.Pointer) bool {
+func (c_ CWConfiguration) IsEqualToConfiguration(configuration ICWConfiguration) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToConfiguration:"), configuration)
 	return rv
 }

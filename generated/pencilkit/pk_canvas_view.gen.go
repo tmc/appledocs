@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CanvasView] class.
@@ -29,7 +29,7 @@ type _CanvasViewClass struct {
 
 // An interface definition for the [CanvasView] class.
 type ICanvasView interface {
-	objectivec.IObject
+	appkit.IScrollView
 }
 
 // A view that captures Apple Pencil input and displays the rendered results in an iOS app.
@@ -38,14 +38,16 @@ type ICanvasView interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView
 type CanvasView struct {
-	objectivec.Object
+	appkit.ScrollView
 }
 
 // CanvasViewFrom constructs a [CanvasView] from an unsafe.Pointer.
 //
 // A view that captures Apple Pencil input and displays the rendered results in an iOS app.
 func CanvasViewFrom(ptr unsafe.Pointer) CanvasView {
-	return CanvasView{objectivec.Object{objc.ID(ptr)}}
+	return CanvasView{
+		ScrollView: appkit.ScrollViewFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -119,8 +121,8 @@ func (c_ CanvasView) SetDelegate(value objc.ID) {
 // The data object that the canvas uses to store drawn content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawing
-func (c_ CanvasView) Drawing() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("drawing"))
+func (c_ CanvasView) Drawing() PKDrawing {
+	rv := objc.Send[PKDrawing](c_.ID, objc.Sel("drawing"))
 	return rv
 }
 
@@ -130,23 +132,23 @@ func (c_ CanvasView) Drawing() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawing
-func (c_ CanvasView) SetDrawing(value unsafe.Pointer) {
+func (c_ CanvasView) SetDrawing(value IPKDrawing) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawing:"), value)
 }
 
 // The gesture recognizer that the canvas uses to track touch events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer
-func (c_ CanvasView) DrawingGestureRecognizer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("drawingGestureRecognizer"))
+func (c_ CanvasView) DrawingGestureRecognizer() appkit.GestureRecognizer {
+	rv := objc.Send[appkit.GestureRecognizer](c_.ID, objc.Sel("drawingGestureRecognizer"))
 	return rv
 }
 
 // The policy that controls the types of touches allowed when drawing on the canvas.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawingPolicy
-func (c_ CanvasView) DrawingPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("drawingPolicy"))
+func (c_ CanvasView) DrawingPolicy() CanvasViewDrawingPolicy {
+	rv := objc.Send[CanvasViewDrawingPolicy](c_.ID, objc.Sel("drawingPolicy"))
 	return rv
 }
 
@@ -156,7 +158,7 @@ func (c_ CanvasView) DrawingPolicy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawingPolicy
-func (c_ CanvasView) SetDrawingPolicy(value unsafe.Pointer) {
+func (c_ CanvasView) SetDrawingPolicy(value CanvasViewDrawingPolicy) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDrawingPolicy:"), value)
 }
 
@@ -196,8 +198,8 @@ func (c_ CanvasView) SetRulerActive(value bool) {
 // The maximum version of PencilKit to support.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion
-func (c_ CanvasView) MaximumSupportedContentVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maximumSupportedContentVersion"))
+func (c_ CanvasView) MaximumSupportedContentVersion() ContentVersion {
+	rv := objc.Send[ContentVersion](c_.ID, objc.Sel("maximumSupportedContentVersion"))
 	return rv
 }
 
@@ -207,15 +209,15 @@ func (c_ CanvasView) MaximumSupportedContentVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/maximumSupportedContentVersion
-func (c_ CanvasView) SetMaximumSupportedContentVersion(value unsafe.Pointer) {
+func (c_ CanvasView) SetMaximumSupportedContentVersion(value IContentVersion) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaximumSupportedContentVersion:"), value)
 }
 
 // The currently selected tool used for drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/tool-6str6
-func (c_ CanvasView) Tool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tool"))
+func (c_ CanvasView) Tool() PKTool {
+	rv := objc.Send[PKTool](c_.ID, objc.Sel("tool"))
 	return rv
 }
 
@@ -225,7 +227,7 @@ func (c_ CanvasView) Tool() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/tool-6str6
-func (c_ CanvasView) SetTool(value unsafe.Pointer) {
+func (c_ CanvasView) SetTool(value IPKTool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTool:"), value)
 }
 

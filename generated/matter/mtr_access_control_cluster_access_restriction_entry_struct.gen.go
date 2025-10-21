@@ -87,7 +87,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Cluster() foundati
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/cluster
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetCluster(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetCluster(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Endpoint() foundat
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/endpoint
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetEndpoint(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) FabricIndex() foun
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/fabricIndex
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetFabricIndex(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/restrictions
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Restrictions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("restrictions"))
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Restrictions() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("restrictions"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) Restrictions() uns
 // SetRestrictions sets the value of the restrictions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionEntryStruct/restrictions
-func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetRestrictions(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterAccessRestrictionEntryStruct) SetRestrictions(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRestrictions:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchRequestExpression] class.
@@ -84,16 +85,16 @@ func NewFetchRequestExpression() FetchRequestExpression {
 // Returns an expression which will evaluate to the result of executing a fetch request on a context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/expression(forFetch:context:countOnly:)
-func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch unsafe.Pointer, context unsafe.Pointer, countFlag bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
+func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch IExpression, context IExpression, countFlag bool) Expression {
+	rv := objc.Send[Expression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
 	return rv
 }
 
 // The expression for the receiver’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/contextExpression
-func (f_ FetchRequestExpression) ContextExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contextExpression"))
+func (f_ FetchRequestExpression) ContextExpression() Expression {
+	rv := objc.Send[Expression](f_.ID, objc.Sel("contextExpression"))
 	return rv
 }
 
@@ -108,16 +109,16 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 // The expression for the receiver’s fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequestExpression/requestExpression
-func (f_ FetchRequestExpression) RequestExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("requestExpression"))
+func (f_ FetchRequestExpression) RequestExpression() Expression {
+	rv := objc.Send[Expression](f_.ID, objc.Sel("requestExpression"))
 	return rv
 }
 
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchRequestExpression) AffectedStores() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
+func (f_ FetchRequestExpression) AffectedStores() NSPersistentStore {
+	rv := objc.Send[NSPersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
@@ -127,7 +128,7 @@ func (f_ FetchRequestExpression) AffectedStores() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchRequestExpression) SetAffectedStores(value unsafe.Pointer) {
+func (f_ FetchRequestExpression) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
 }
 
@@ -188,8 +189,8 @@ func (f_ FetchRequestExpression) SetFetchOffset(value int) {
 // The predicate of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("predicate"))
+func (f_ FetchRequestExpression) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -199,7 +200,7 @@ func (f_ FetchRequestExpression) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchRequestExpression) SetPredicate(value unsafe.Pointer) {
+func (f_ FetchRequestExpression) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 

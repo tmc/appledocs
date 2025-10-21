@@ -87,7 +87,7 @@ func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) Capacity() foundation
 // SetCapacity sets the value of the capacity property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/capacity
-func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetCapacity(value foundation.Number) {
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetCapacity(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCapacity:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) TimedInvokeTimeoutMs(
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupsClusterGetGroupMembershipResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

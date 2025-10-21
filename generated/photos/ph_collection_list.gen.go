@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHCollectionList] class.
@@ -84,7 +86,7 @@ func NewPHCollectionList() PHCollectionList {
 // Retrieves collection lists of the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchCollectionLists(with:subtype:options:)
-func (pc _PHCollectionListClass) FetchCollectionListsWithTypeSubtypeOptions(collectionListType unsafe.Pointer, subtype unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListClass) FetchCollectionListsWithTypeSubtypeOptions(collectionListType PHCollectionListType, subtype IPHCollectionListSubtype, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionListsWithType:subtype:options:"), collectionListType, subtype, options)
 	return rv
 }
@@ -92,7 +94,7 @@ func (pc _PHCollectionListClass) FetchCollectionListsWithTypeSubtypeOptions(coll
 // Retrieves collection lists with the specified local-device-specific unique identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchCollectionLists(withLocalIdentifiers:options:)
-func (pc _PHCollectionListClass) FetchCollectionListsWithLocalIdentifiersOptions(identifiers unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListClass) FetchCollectionListsWithLocalIdentifiersOptions(identifiers []string, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionListsWithLocalIdentifiers:options:"), identifiers, options)
 	return rv
 }
@@ -100,7 +102,7 @@ func (pc _PHCollectionListClass) FetchCollectionListsWithLocalIdentifiersOptions
 // Retrieves collection lists that contain the specified collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchCollectionListsContaining(_:options:)
-func (pc _PHCollectionListClass) FetchCollectionListsContainingCollectionOptions(collection unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListClass) FetchCollectionListsContainingCollectionOptions(collection IPHCollection, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionListsContainingCollection:options:"), collection, options)
 	return rv
 }
@@ -108,7 +110,7 @@ func (pc _PHCollectionListClass) FetchCollectionListsContainingCollectionOptions
 // Retrieves collection lists of the specified moment list type containing the specified moment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchMomentLists(with:containingMoment:options:)
-func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeContainingMomentOptions(momentListSubtype unsafe.Pointer, moment unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeContainingMomentOptions(momentListSubtype IPHCollectionListSubtype, moment IPHAssetCollection, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchMomentListsWithSubtype:containingMoment:options:"), momentListSubtype, moment, options)
 	return rv
 }
@@ -116,7 +118,7 @@ func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeContainingMomentOpti
 // Retrieves collection lists of the specified moment list type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/fetchMomentLists(with:options:)
-func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeOptions(momentListSubtype unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeOptions(momentListSubtype IPHCollectionListSubtype, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchMomentListsWithSubtype:options:"), momentListSubtype, options)
 	return rv
 }
@@ -124,40 +126,40 @@ func (pc _PHCollectionListClass) FetchMomentListsWithSubtypeOptions(momentListSu
 // Creates a temporary collection list that contains the specified asset collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/transientCollectionList(with:title:)
-func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsTitle(collections unsafe.Pointer, title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollections:title:"), collections, objc.String(title))
+func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsTitle(collections []PHCollection, title appkit.string) PHCollectionList {
+	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollections:title:"), collections, title)
 	return rv
 }
 
 // Creates a temporary collection list containing the asset collections in the specified fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/transientCollectionList(withCollectionsFetchResult:title:)
-func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsFetchResultTitle(fetchResult unsafe.Pointer, title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollectionsFetchResult:title:"), fetchResult, objc.String(title))
+func (pc _PHCollectionListClass) TransientCollectionListWithCollectionsFetchResultTitle(fetchResult unsafe.Pointer, title appkit.string) PHCollectionList {
+	rv := objc.Send[PHCollectionList](objc.ID(pc.class), objc.Sel("transientCollectionListWithCollectionsFetchResult:title:"), fetchResult, title)
 	return rv
 }
 
 // The type of asset collection grouping the collection list represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/collectionListSubtype
-func (p_ PHCollectionList) CollectionListSubtype() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collectionListSubtype"))
+func (p_ PHCollectionList) CollectionListSubtype() PHCollectionListSubtype {
+	rv := objc.Send[PHCollectionListSubtype](p_.ID, objc.Sel("collectionListSubtype"))
 	return rv
 }
 
 // The type of asset collection group that the collection list represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/collectionListType
-func (p_ PHCollectionList) CollectionListType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collectionListType"))
+func (p_ PHCollectionList) CollectionListType() PHCollectionListType {
+	rv := objc.Send[PHCollectionListType](p_.ID, objc.Sel("collectionListType"))
 	return rv
 }
 
 // The latest creation date among all assets in the collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/endDate
-func (p_ PHCollectionList) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+func (p_ PHCollectionList) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -172,8 +174,8 @@ func (p_ PHCollectionList) LocalizedLocationNames() []string {
 // The earliest creation date among all assets in the collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionList/startDate
-func (p_ PHCollectionList) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+func (p_ PHCollectionList) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv
 }
 

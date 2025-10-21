@@ -84,8 +84,8 @@ func NewNETransparentProxyProvider() NETransparentProxyProvider {
 // An array of rules that collectively specify what traffic to route through the transparent proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules
-func (n_ NETransparentProxyProvider) IncludedNetworkRules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("includedNetworkRules"))
+func (n_ NETransparentProxyProvider) IncludedNetworkRules() NENetworkRule {
+	rv := objc.Send[NENetworkRule](n_.ID, objc.Sel("includedNetworkRules"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (n_ NETransparentProxyProvider) IncludedNetworkRules() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netransparentproxynetworksettings/includednetworkrules
-func (n_ NETransparentProxyProvider) SetIncludedNetworkRules(value unsafe.Pointer) {
+func (n_ NETransparentProxyProvider) SetIncludedNetworkRules(value INENetworkRule) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludedNetworkRules:"), value)
 }
 

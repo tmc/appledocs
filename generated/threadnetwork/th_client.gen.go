@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,15 +31,15 @@ type _THClientClass struct {
 // An interface definition for the [THClient] class.
 type ITHClient interface {
 	objectivec.IObject
-	CheckPreferredNetworkForActiveOperationalDatasetCompletion(activeOperationalDataSet unsafe.Pointer, completion unsafe.Pointer)
-	DeleteCredentialsForBorderAgentCompletion(borderAgentID unsafe.Pointer, completion unsafe.Pointer)
+	CheckPreferredNetworkForActiveOperationalDatasetCompletion(activeOperationalDataSet foundation.IData, completion unsafe.Pointer)
+	DeleteCredentialsForBorderAgentCompletion(borderAgentID foundation.IData, completion unsafe.Pointer)
 	IsPreferredNetworkAvailableWithCompletion(completion unsafe.Pointer)
 	RetrieveAllActiveCredentials(completion unsafe.Pointer)
 	RetrieveAllCredentials(completion unsafe.Pointer)
-	RetrieveCredentialsForBorderAgentCompletion(borderAgentID unsafe.Pointer, completion unsafe.Pointer)
-	RetrieveCredentialsForExtendedPANIDCompletion(extendedPANID unsafe.Pointer, completion unsafe.Pointer)
+	RetrieveCredentialsForBorderAgentCompletion(borderAgentID foundation.IData, completion unsafe.Pointer)
+	RetrieveCredentialsForExtendedPANIDCompletion(extendedPANID foundation.IData, completion unsafe.Pointer)
 	RetrievePreferredCredentials(completion unsafe.Pointer)
-	StoreCredentialsForBorderAgentActiveOperationalDataSetCompletion(borderAgentID unsafe.Pointer, activeOperationalDataSet unsafe.Pointer, completion unsafe.Pointer)
+	StoreCredentialsForBorderAgentActiveOperationalDataSetCompletion(borderAgentID foundation.IData, activeOperationalDataSet foundation.IData, completion unsafe.Pointer)
 }
 
 // A class that supports safely sharing Thread credentials between multiple clients.
@@ -93,14 +94,14 @@ func NewTHClient() THClient {
 // Determines if the essential operating parameters match the preferred network’s parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THClient/checkPreferredNetwork(forActiveOperationalDataset:completion:)
-func (t_ THClient) CheckPreferredNetworkForActiveOperationalDatasetCompletion(activeOperationalDataSet unsafe.Pointer, completion unsafe.Pointer) {
+func (t_ THClient) CheckPreferredNetworkForActiveOperationalDatasetCompletion(activeOperationalDataSet foundation.IData, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("checkPreferredNetworkForActiveOperationalDataset:completion:"), activeOperationalDataSet, completion)
 }
 
 // Deletes Thread network credentials from the framework database for a Border Agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THClient/deleteCredentials(forBorderAgent:completion:)
-func (t_ THClient) DeleteCredentialsForBorderAgentCompletion(borderAgentID unsafe.Pointer, completion unsafe.Pointer) {
+func (t_ THClient) DeleteCredentialsForBorderAgentCompletion(borderAgentID foundation.IData, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("deleteCredentialsForBorderAgent:completion:"), borderAgentID, completion)
 }
 
@@ -128,14 +129,14 @@ func (t_ THClient) RetrieveAllCredentials(completion unsafe.Pointer) {
 // Requests Thread credentials for a Border Agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THClient/retrieveCredentials(forBorderAgent:completion:)
-func (t_ THClient) RetrieveCredentialsForBorderAgentCompletion(borderAgentID unsafe.Pointer, completion unsafe.Pointer) {
+func (t_ THClient) RetrieveCredentialsForBorderAgentCompletion(borderAgentID foundation.IData, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("retrieveCredentialsForBorderAgent:completion:"), borderAgentID, completion)
 }
 
 // Requests Thread credentials for an extended Personal Area Network (PAN) ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THClient/retrieveCredentials(forExtendedPANID:completion:)
-func (t_ THClient) RetrieveCredentialsForExtendedPANIDCompletion(extendedPANID unsafe.Pointer, completion unsafe.Pointer) {
+func (t_ THClient) RetrieveCredentialsForExtendedPANIDCompletion(extendedPANID foundation.IData, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("retrieveCredentialsForExtendedPANID:completion:"), extendedPANID, completion)
 }
 
@@ -149,7 +150,7 @@ func (t_ THClient) RetrievePreferredCredentials(completion unsafe.Pointer) {
 // Stores Thread network credentials into the framework database that a Border Agent provides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THClient/storeCredentials(forBorderAgent:activeOperationalDataSet:completion:)
-func (t_ THClient) StoreCredentialsForBorderAgentActiveOperationalDataSetCompletion(borderAgentID unsafe.Pointer, activeOperationalDataSet unsafe.Pointer, completion unsafe.Pointer) {
+func (t_ THClient) StoreCredentialsForBorderAgentActiveOperationalDataSetCompletion(borderAgentID foundation.IData, activeOperationalDataSet foundation.IData, completion unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("storeCredentialsForBorderAgent:activeOperationalDataSet:completion:"), borderAgentID, activeOperationalDataSet, completion)
 }
 

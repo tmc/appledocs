@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewHashTable
 
+// ExampleNewHashTableWithOptions demonstrates how to create a HashTable instance using NewHashTableWithOptions.
+// Returns a hash table with given pointer functions options.
+func ExampleNewHashTableWithOptions() {
+	_ = foundation.NewHashTableWithOptions(
+		foundation.PointerFunctionsOptions{}, // options PointerFunctionsOptions
+	)
+	// Output:
+}

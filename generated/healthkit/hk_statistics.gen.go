@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewHKStatistics() HKStatistics {
 // The end of the time period included in these statistics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
-func (h_ HKStatistics) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+func (h_ HKStatistics) EndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (h_ HKStatistics) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/enddate
-func (h_ HKStatistics) SetEndDate(value unsafe.Pointer) {
+func (h_ HKStatistics) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
 // The quantity type of the samples used to calculate these statistics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
-func (h_ HKStatistics) QuantityType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("quantityType"))
+func (h_ HKStatistics) QuantityType() HKQuantityType {
+	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
 }
 
@@ -112,15 +113,15 @@ func (h_ HKStatistics) QuantityType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/quantitytype
-func (h_ HKStatistics) SetQuantityType(value unsafe.Pointer) {
+func (h_ HKStatistics) SetQuantityType(value HKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
 
 // An array containing all the sources contributing to these statistics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
-func (h_ HKStatistics) Sources() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sources"))
+func (h_ HKStatistics) Sources() HKSource {
+	rv := objc.Send[HKSource](h_.ID, objc.Sel("sources"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (h_ HKStatistics) Sources() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/sources
-func (h_ HKStatistics) SetSources(value unsafe.Pointer) {
+func (h_ HKStatistics) SetSources(value IHKSource) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSources:"), value)
 }
 
 // The start of the time period included in these statistics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
-func (h_ HKStatistics) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+func (h_ HKStatistics) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (h_ HKStatistics) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatistics/startdate
-func (h_ HKStatistics) SetStartDate(value unsafe.Pointer) {
+func (h_ HKStatistics) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

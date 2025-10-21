@@ -131,8 +131,8 @@ func (u_ Update) IsStationary() bool {
 // A person’s location, if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLUpdate/location
-func (u_ Update) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("location"))
+func (u_ Update) Location() CLLocation {
+	rv := objc.Send[CLLocation](u_.ID, objc.Sel("location"))
 	return rv
 }
 

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = coreimage.NewSampler
 
+// ExampleNewSamplerWithImage demonstrates how to create a Sampler instance using NewSamplerWithImage.
+// Initializes a sampler with an image object.
+func ExampleNewSamplerWithImage() {
+	_ = coreimage.NewSamplerWithImage(
+		coreimage.CIImage{}, // im CIImage
+	)
+	// Output:
+}

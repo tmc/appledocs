@@ -110,8 +110,8 @@ func (a_ AccelerometerData) SetTimestamp(value unsafe.Pointer) {
 // The latest sample of accelerometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
-func (a_ AccelerometerData) AccelerometerData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accelerometerData"))
+func (a_ AccelerometerData) AccelerometerData() CMAccelerometerData {
+	rv := objc.Send[CMAccelerometerData](a_.ID, objc.Sel("accelerometerData"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (a_ AccelerometerData) AccelerometerData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/accelerometerdata
-func (a_ AccelerometerData) SetAccelerometerData(value unsafe.Pointer) {
+func (a_ AccelerometerData) SetAccelerometerData(value ICMAccelerometerData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccelerometerData:"), value)
 }
 

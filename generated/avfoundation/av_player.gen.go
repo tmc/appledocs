@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +33,7 @@ type _PlayerClass struct {
 // An interface definition for the [Player] class.
 type IPlayer interface {
 	objectivec.IObject
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.IValue, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
 	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
 	CancelPendingPrerolls()
 	CurrentTime() unsafe.Pointer
@@ -40,12 +42,12 @@ type IPlayer interface {
 	Play()
 	PlayImmediatelyAtRate(rate unsafe.Pointer)
 	PrerollAtRateCompletionHandler(rate unsafe.Pointer, completionHandler unsafe.Pointer)
-	RemoveTimeObserver(observer objc.ID)
-	ReplaceCurrentItemWithPlayerItem(item unsafe.Pointer)
+	RemoveTimeObserver(observer objectivec.IObject)
+	ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem)
 	SeekToTime(time unsafe.Pointer)
-	SeekToDate(date unsafe.Pointer)
+	SeekToDate(date foundation.IDate)
 	SeekToTimeCompletionHandler(time unsafe.Pointer, completionHandler unsafe.Pointer)
-	SeekToDateCompletionHandler(date unsafe.Pointer, completionHandler unsafe.Pointer)
+	SeekToDateCompletionHandler(date foundation.IDate, completionHandler unsafe.Pointer)
 	SeekToTimeToleranceBeforeToleranceAfter(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer)
 	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time unsafe.Pointer, toleranceBefore unsafe.Pointer, toleranceAfter unsafe.Pointer, completionHandler unsafe.Pointer)
 	SetMediaSelectionCriteriaForMediaCharacteristic(criteria unsafe.Pointer, mediaCharacteristic unsafe.Pointer)
@@ -105,7 +107,7 @@ func NewPlayer() Player {
 // Creates a new player to play the specified player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(playerItem:)
-func NewPlayerWithPlayerItem(item unsafe.Pointer) Player {
+func NewPlayerWithPlayerItem(item IAVPlayerItem) Player {
 	instance := getPlayerClass().Alloc()
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithPlayerItem:"), item)
 	rv.Autorelease()
@@ -117,7 +119,7 @@ func NewPlayerWithPlayerItem(item unsafe.Pointer) Player {
 // Creates a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/init(url:)
-func NewPlayerWithURL(URL foundation.URL) Player {
+func NewPlayerWithURL(URL foundation.IURL) Player {
 	instance := getPlayerClass().Alloc()
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -128,7 +130,7 @@ func NewPlayerWithURL(URL foundation.URL) Player {
 // Returns a new player initialized to play the specified player item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithPlayerItem:
-func (pc _PlayerClass) PlayerWithPlayerItem(item unsafe.Pointer) unsafe.Pointer {
+func (pc _PlayerClass) PlayerWithPlayerItem(item IAVPlayerItem) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerWithPlayerItem:"), item)
 	return rv
 }
@@ -136,7 +138,7 @@ func (pc _PlayerClass) PlayerWithPlayerItem(item unsafe.Pointer) unsafe.Pointer 
 // Returns a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithURL:
-func (pc _PlayerClass) PlayerWithURL(URL foundation.URL) unsafe.Pointer {
+func (pc _PlayerClass) PlayerWithURL(URL foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerWithURL:"), URL)
 	return rv
 }
@@ -144,8 +146,8 @@ func (pc _PlayerClass) PlayerWithURL(URL foundation.URL) unsafe.Pointer {
 // The HDR modes that are available for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/availableHDRModes
-func (pc _PlayerClass) AvailableHDRModes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("availableHDRModes"))
+func (pc _PlayerClass) AvailableHDRModes() PlayerHDRMode {
+	rv := objc.Send[PlayerHDRMode](objc.ID(pc.class), objc.Sel("availableHDRModes"))
 	return rv
 }
 // A Boolean value that indicates whether the current device can present content to an HDR display.
@@ -165,7 +167,7 @@ func (pc _PlayerClass) ObservationEnabled() bool {
 // Requests the invocation of a block when specified times are traversed during normal playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addBoundaryTimeObserver(forTimes:queue:using:)
-func (p_ Player) AddBoundaryTimeObserverForTimesQueueUsingBlock(times unsafe.Pointer, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (p_ Player) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.IValue, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
 }
@@ -232,14 +234,14 @@ func (p_ Player) PrerollAtRateCompletionHandler(rate unsafe.Pointer, completionH
 // Cancels a previously registered periodic or boundary time observer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/removeTimeObserver(_:)
-func (p_ Player) RemoveTimeObserver(observer objc.ID) {
+func (p_ Player) RemoveTimeObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeTimeObserver:"), observer)
 }
 
 // Replaces the current item with a new item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)
-func (p_ Player) ReplaceCurrentItemWithPlayerItem(item unsafe.Pointer) {
+func (p_ Player) ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("replaceCurrentItemWithPlayerItem:"), item)
 }
 
@@ -253,7 +255,7 @@ func (p_ Player) SeekToTime(time unsafe.Pointer) {
 // Requests that the player seek to a specified date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:)-9h9qr
-func (p_ Player) SeekToDate(date unsafe.Pointer) {
+func (p_ Player) SeekToDate(date foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToDate:"), date)
 }
 
@@ -267,7 +269,7 @@ func (p_ Player) SeekToTimeCompletionHandler(time unsafe.Pointer, completionHand
 // Requests that the player seek to a specified date, and to notify you when the seek is complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:completionHandler:)-wr1l
-func (p_ Player) SeekToDateCompletionHandler(date unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (p_ Player) SeekToDateCompletionHandler(date foundation.IDate, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToDate:completionHandler:"), date, completionHandler)
 }
 
@@ -302,8 +304,8 @@ func (p_ Player) SetRateTimeAtHostTime(rate unsafe.Pointer, itemTime unsafe.Poin
 // The action to perform when the current player item has finished playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/actionAtItemEnd-swift.property
-func (p_ Player) ActionAtItemEnd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("actionAtItemEnd"))
+func (p_ Player) ActionAtItemEnd() PlayerActionAtItemEnd {
+	rv := objc.Send[PlayerActionAtItemEnd](p_.ID, objc.Sel("actionAtItemEnd"))
 	return rv
 }
 
@@ -313,7 +315,7 @@ func (p_ Player) ActionAtItemEnd() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/actionAtItemEnd-swift.property
-func (p_ Player) SetActionAtItemEnd(value unsafe.Pointer) {
+func (p_ Player) SetActionAtItemEnd(value IPlayerActionAtItemEnd) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionAtItemEnd:"), value)
 }
 
@@ -374,8 +376,8 @@ func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool) {
 // Specifies the unique ID of the Core Audio output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) AudioOutputDeviceUniqueID() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (p_ Player) AudioOutputDeviceUniqueID() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -385,8 +387,8 @@ func (p_ Player) AudioOutputDeviceUniqueID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) SetAudioOutputDeviceUniqueID(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
+func (p_ Player) SetAudioOutputDeviceUniqueID(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
 }
 
 // Whether the player’s audio output is suppressed due to being on a non-mixable audio route.
@@ -400,8 +402,8 @@ func (p_ Player) AudioOutputSuppressedDueToNonMixableAudioRoute() bool {
 // A policy that determines how playback of audiovisual media continues when the app transitions to the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audiovisualBackgroundPlaybackPolicy
-func (p_ Player) AudiovisualBackgroundPlaybackPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audiovisualBackgroundPlaybackPolicy"))
+func (p_ Player) AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgroundPlaybackPolicy {
+	rv := objc.Send[PlayerAudiovisualBackgroundPlaybackPolicy](p_.ID, objc.Sel("audiovisualBackgroundPlaybackPolicy"))
 	return rv
 }
 
@@ -411,7 +413,7 @@ func (p_ Player) AudiovisualBackgroundPlaybackPolicy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audiovisualBackgroundPlaybackPolicy
-func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value unsafe.Pointer) {
+func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualBackgroundPlaybackPolicy) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudiovisualBackgroundPlaybackPolicy:"), value)
 }
 
@@ -436,16 +438,16 @@ func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool) {
 // The HDR modes that are available for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/availableHDRModes
-func (p_ Player) AvailableHDRModes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("availableHDRModes"))
+func (p_ Player) AvailableHDRModes() PlayerHDRMode {
+	rv := objc.Send[PlayerHDRMode](p_.ID, objc.Sel("availableHDRModes"))
 	return rv
 }
 
 // The item for which the player is currently controlling playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/currentItem
-func (p_ Player) CurrentItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentItem"))
+func (p_ Player) CurrentItem() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("currentItem"))
 	return rv
 }
 
@@ -478,16 +480,16 @@ func (p_ Player) EligibleForHDRPlayback() bool {
 // An error that caused a failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/error
-func (p_ Player) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
+func (p_ Player) Error() Error {
+	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
 // The video gravity of the player for external playback mode only.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/externalPlaybackVideoGravity
-func (p_ Player) ExternalPlaybackVideoGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("externalPlaybackVideoGravity"))
+func (p_ Player) ExternalPlaybackVideoGravity() LayerVideoGravity {
+	rv := objc.Send[LayerVideoGravity](p_.ID, objc.Sel("externalPlaybackVideoGravity"))
 	return rv
 }
 
@@ -497,15 +499,15 @@ func (p_ Player) ExternalPlaybackVideoGravity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/externalPlaybackVideoGravity
-func (p_ Player) SetExternalPlaybackVideoGravity(value unsafe.Pointer) {
+func (p_ Player) SetExternalPlaybackVideoGravity(value ILayerVideoGravity) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExternalPlaybackVideoGravity:"), value)
 }
 
 // The AVPlayer’s intended spatial audio experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/intendedSpatialAudioExperience-3uy8g
-func (p_ Player) IntendedSpatialAudioExperience() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("intendedSpatialAudioExperience"))
+func (p_ Player) IntendedSpatialAudioExperience() audiotoolbox.SpatialAudioExperience {
+	rv := objc.Send[audiotoolbox.SpatialAudioExperience](p_.ID, objc.Sel("intendedSpatialAudioExperience"))
 	return rv
 }
 
@@ -515,7 +517,7 @@ func (p_ Player) IntendedSpatialAudioExperience() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/intendedSpatialAudioExperience-3uy8g
-func (p_ Player) SetIntendedSpatialAudioExperience(value unsafe.Pointer) {
+func (p_ Player) SetIntendedSpatialAudioExperience(value audiotoolbox.ISpatialAudioExperience) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntendedSpatialAudioExperience:"), value)
 }
 
@@ -618,8 +620,8 @@ func (p_ Player) SetMasterClock(value unsafe.Pointer) {
 // Indicates the priority of this player for network bandwidth resource distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/networkResourcePriority-swift.property
-func (p_ Player) NetworkResourcePriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("networkResourcePriority"))
+func (p_ Player) NetworkResourcePriority() PlayerNetworkResourcePriority {
+	rv := objc.Send[PlayerNetworkResourcePriority](p_.ID, objc.Sel("networkResourcePriority"))
 	return rv
 }
 
@@ -629,15 +631,15 @@ func (p_ Player) NetworkResourcePriority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/networkResourcePriority-swift.property
-func (p_ Player) SetNetworkResourcePriority(value unsafe.Pointer) {
+func (p_ Player) SetNetworkResourcePriority(value PlayerNetworkResourcePriority) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkResourcePriority:"), value)
 }
 
 // The playback coordinator for the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playbackCoordinator
-func (p_ Player) PlaybackCoordinator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackCoordinator"))
+func (p_ Player) PlaybackCoordinator() AVPlayerPlaybackCoordinator {
+	rv := objc.Send[AVPlayerPlaybackCoordinator](p_.ID, objc.Sel("playbackCoordinator"))
 	return rv
 }
 
@@ -716,8 +718,8 @@ func (p_ Player) SetRate(value unsafe.Pointer) {
 // The reason the player is currently waiting for playback to begin or resume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/reasonForWaitingToPlay
-func (p_ Player) ReasonForWaitingToPlay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("reasonForWaitingToPlay"))
+func (p_ Player) ReasonForWaitingToPlay() PlayerWaitingReason {
+	rv := objc.Send[PlayerWaitingReason](p_.ID, objc.Sel("reasonForWaitingToPlay"))
 	return rv
 }
 
@@ -742,16 +744,16 @@ func (p_ Player) SetSourceClock(value unsafe.Pointer) {
 // A value that indicates the readiness of a player object for playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/status-swift.property
-func (p_ Player) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("status"))
+func (p_ Player) Status() PlayerStatus {
+	rv := objc.Send[PlayerStatus](p_.ID, objc.Sel("status"))
 	return rv
 }
 
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/timeControlStatus-swift.property
-func (p_ Player) TimeControlStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeControlStatus"))
+func (p_ Player) TimeControlStatus() PlayerTimeControlStatus {
+	rv := objc.Send[PlayerTimeControlStatus](p_.ID, objc.Sel("timeControlStatus"))
 	return rv
 }
 

@@ -31,6 +31,9 @@ type HKAppleSleepingBreathingDisturbancesClassification uint
 
 const (
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassification/elevated
+	HKAppleSleepingBreathingDisturbancesClassificationElevated HKAppleSleepingBreathingDisturbancesClassification = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassification/notElevated
 	HKAppleSleepingBreathingDisturbancesClassificationNotElevated HKAppleSleepingBreathingDisturbancesClassification = 0
 )
@@ -106,6 +109,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSex/female
 	HKBiologicalSexFemale HKBiologicalSex = 0
+	// HKBiologicalSexMale - A constant indicating that the user is male.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSex/male
+	HKBiologicalSexMale HKBiologicalSex = 0
 	// HKBiologicalSexOther - A constant indicating that the user is otherwise not categorized as either male or female.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSex/other
@@ -252,6 +259,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueOvulationTestResult/estrogenSurge
 	HKCategoryValueOvulationTestResultEstrogenSurge HKCategoryValueOvulationTestResult = 0
+	// HKCategoryValueOvulationTestResultLuteinizingHormoneSurge - The ovulation test detected a surge in the luteinizing hormone. This value often refers to a   or   result.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueOvulationTestResult/luteinizingHormoneSurge
+	HKCategoryValueOvulationTestResultLuteinizingHormoneSurge HKCategoryValueOvulationTestResult = 0
 )
 
 // HKCategoryValueSeverity - Categories that represent the severity of a symptom.
@@ -280,6 +291,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueSleepAnalysis/asleepUnspecified
 	HKCategoryValueSleepAnalysisAsleepUnspecified HKCategoryValueSleepAnalysis = 0
+	// HKCategoryValueSleepAnalysisInBed - The user is in bed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueSleepAnalysis/inBed
+	HKCategoryValueSleepAnalysisInBed HKCategoryValueSleepAnalysis = 0
 )
 
 // HKCategoryValueVaginalBleeding enum type
@@ -412,6 +427,13 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartRateMotionContext
 type HKHeartRateMotionContext uint
+
+const (
+	// HKHeartRateMotionContextSedentary - A value indicating that the user has been still for at least 5 minutes prior to the heart rate sample.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHeartRateMotionContext/sedentary
+	HKHeartRateMotionContextSedentary HKHeartRateMotionContext = 0
+)
 
 // HKMedicationDoseEventLogStatus - The statuses the system assigns to a logged medication dose event.
 //

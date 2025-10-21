@@ -78,8 +78,8 @@ func NewMTRThermostatClusterSetActiveScheduleRequestParams() MTRThermostatCluste
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActiveScheduleRequestParams/scheduleHandle
-func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) ScheduleHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("scheduleHandle"))
+func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) ScheduleHandle() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("scheduleHandle"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) ScheduleHandle() un
 // SetScheduleHandle sets the value of the scheduleHandle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActiveScheduleRequestParams/scheduleHandle
-func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) SetScheduleHandle(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) SetScheduleHandle(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleHandle:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) ServerSideProcessin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActiveScheduleRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) TimedInvokeTimeoutM
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActiveScheduleRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThermostatClusterSetActiveScheduleRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

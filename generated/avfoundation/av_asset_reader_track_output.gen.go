@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AssetReaderTrackOutput] class.
@@ -84,8 +85,8 @@ func NewAssetReaderTrackOutput() AssetReaderTrackOutput {
 // The processing algorithm to use for scaled audio edits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm
-func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
+	rv := objc.Send[AudioTimePitchAlgorithm](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (a_ AssetReaderTrackOutput) AudioTimePitchAlgorithm() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/audiotimepitchalgorithm
-func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
 // The output settings for this track output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) OutputSettings() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
+func (a_ AssetReaderTrackOutput) OutputSettings() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (a_ AssetReaderTrackOutput) OutputSettings() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings
-func (a_ AssetReaderTrackOutput) SetOutputSettings(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
+func (a_ AssetReaderTrackOutput) SetOutputSettings(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), value)
 }
 
 // The track from which the output reads sample buffers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/track
-func (a_ AssetReaderTrackOutput) Track() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("track"))
+func (a_ AssetReaderTrackOutput) Track() AVAssetTrack {
+	rv := objc.Send[AVAssetTrack](a_.ID, objc.Sel("track"))
 	return rv
 }
 
@@ -131,47 +132,47 @@ func (a_ AssetReaderTrackOutput) Track() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/track
-func (a_ AssetReaderTrackOutput) SetTrack(value unsafe.Pointer) {
+func (a_ AssetReaderTrackOutput) SetTrack(value IAVAssetTrack) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrack:"), value)
 }
 
 // A key that defines the region within the video dimension displayed during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideocleanaperturekey
-func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
+func (a_ AssetReaderTrackOutput) AVVideoCleanApertureKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVVideoCleanApertureKey"))
 	return rv
 }
 
 // A key to access the video’s pixel aspect ratio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiokey
-func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
+func (a_ AssetReaderTrackOutput) AVVideoPixelAspectRatioKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVVideoPixelAspectRatioKey"))
 	return rv
 }
 
 // A key to retrieve the video scaling mode from a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avvideoscalingmodekey
-func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVVideoScalingModeKey"))
+func (a_ AssetReaderTrackOutput) AVVideoScalingModeKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVVideoScalingModeKey"))
 	return rv
 }
 
 // An integer value that represents the format of the audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVFormatIDKey
-func (a_ AssetReaderTrackOutput) AVFormatIDKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVFormatIDKey"))
+func (a_ AssetReaderTrackOutput) AVFormatIDKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVFormatIDKey"))
 	return rv
 }
 
 // An integer value that represents the audio quality for conversion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSampleRateConverterAudioQualityKey
-func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
+func (a_ AssetReaderTrackOutput) AVSampleRateConverterAudioQualityKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVSampleRateConverterAudioQualityKey"))
 	return rv
 }
 
@@ -195,24 +196,24 @@ func (a_ AssetReaderTrackOutput) SetKAudioFormatLinearPCM(value unsafe.Pointer) 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMedia/kCMFormatDescriptionExtension_Depth
-func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
+func (a_ AssetReaderTrackOutput) KCMFormatDescriptionExtension_Depth() foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCMFormatDescriptionExtension_Depth"))
 	return rv
 }
 
 // A key to the height of the pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferHeightKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
+func (a_ AssetReaderTrackOutput) KCVPixelBufferHeightKey() foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCVPixelBufferHeightKey"))
 	return rv
 }
 
 // A key to the width of the pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/kCVPixelBufferWidthKey
-func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
+func (a_ AssetReaderTrackOutput) KCVPixelBufferWidthKey() foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("kCVPixelBufferWidthKey"))
 	return rv
 }
 

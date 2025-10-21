@@ -88,7 +88,7 @@ func (m_ MTRBasicClusterReachableChangedEvent) ReachableNewValue() foundation.Nu
 // SetReachableNewValue sets the value of the reachableNewValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBasicClusterReachableChangedEvent) SetReachableNewValue(value foundation.Number) {
+func (m_ MTRBasicClusterReachableChangedEvent) SetReachableNewValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
 

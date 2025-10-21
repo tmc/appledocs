@@ -15,3 +15,11 @@ func ExampleNewABRecord() {
 	_ = addressbook.NewABRecord()
 	// Output:
 }
+// ExampleNewABRecordWithAddressBook demonstrates how to create a ABRecord instance using NewABRecordWithAddressBook.
+// Initializes a record using the given address book.
+func ExampleNewABRecordWithAddressBook() {
+	_ = addressbook.NewABRecordWithAddressBook(
+		addressbook.ABAddressBook{}, // addressBook ABAddressBook
+	)
+	// Output:
+}

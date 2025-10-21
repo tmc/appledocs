@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [XPCCoder] class.
@@ -29,7 +30,7 @@ type _XPCCoderClass struct {
 // An interface definition for the [XPCCoder] class.
 type IXPCCoder interface {
 	ICoder
-	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string)
+	EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key appkit.string)
 }
 
 // A coder that encodes and decodes objects that your app sends over an XPC connection.
@@ -85,15 +86,15 @@ func NewXPCCoder() XPCCoder {
 // Encodes an object to send over an XPC connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/encodeXPCObject(_:forKey:)
-func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("encodeXPCObject:forKey:"), xpcObject, objc.String(key))
+func (x_ XPCCoder) EncodeXPCObjectForKey(xpcObject unsafe.Pointer, key appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("encodeXPCObject:forKey:"), xpcObject, key)
 }
 
 // The connection currently performing encoding or decoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCCoder/connection
-func (x_ XPCCoder) Connection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("connection"))
+func (x_ XPCCoder) Connection() NSXPCConnection {
+	rv := objc.Send[NSXPCConnection](x_.ID, objc.Sel("connection"))
 	return rv
 }
 

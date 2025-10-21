@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +32,11 @@ type _ParameterNodeClass struct {
 // An interface definition for the [ParameterNode] class.
 type IParameterNode interface {
 	objectivec.IObject
-	DisplayNameWithLength(maximumLength int) string
-	RemoveParameterObserver(token unsafe.Pointer)
-	TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) unsafe.Pointer
-	TokenByAddingParameterObserver(observer unsafe.Pointer) unsafe.Pointer
-	TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) unsafe.Pointer
+	DisplayNameWithLength(maximumLength int) foundation.String
+	RemoveParameterObserver(token IParameterObserverToken)
+	TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) ParameterObserverToken
+	TokenByAddingParameterObserver(observer unsafe.Pointer) ParameterObserverToken
+	TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) ParameterObserverToken
 }
 
 // An object that represents a node in an audio unit’s parameter tree.
@@ -88,54 +90,54 @@ func NewParameterNode() ParameterNode {
 // Another version of the display name, possibly truncated to a desired length.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName(withLength:)
-func (p_ ParameterNode) DisplayNameWithLength(maximumLength int) string {
-	rv := objc.Send[string](p_.ID, objc.Sel("displayNameWithLength:"), maximumLength)
+func (p_ ParameterNode) DisplayNameWithLength(maximumLength int) foundation.String {
+	rv := objc.Send[foundation.String](p_.ID, objc.Sel("displayNameWithLength:"), maximumLength)
 	return rv
 }
 
 // Remove a specific parameter observer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/removeParameterObserver(_:)
-func (p_ ParameterNode) RemoveParameterObserver(token unsafe.Pointer) {
+func (p_ ParameterNode) RemoveParameterObserver(token IParameterObserverToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeParameterObserver:"), token)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/token(byAddingParameterAutomationObserver:)
-func (p_ ParameterNode) TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tokenByAddingParameterAutomationObserver:"), observer)
+func (p_ ParameterNode) TokenByAddingParameterAutomationObserver(observer unsafe.Pointer) ParameterObserverToken {
+	rv := objc.Send[ParameterObserverToken](p_.ID, objc.Sel("tokenByAddingParameterAutomationObserver:"), observer)
 	return rv
 }
 
 // Adds an observer for a single parameter or all parameters in a group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/token(byAddingParameterObserver:)
-func (p_ ParameterNode) TokenByAddingParameterObserver(observer unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tokenByAddingParameterObserver:"), observer)
+func (p_ ParameterNode) TokenByAddingParameterObserver(observer unsafe.Pointer) ParameterObserverToken {
+	rv := objc.Send[ParameterObserverToken](p_.ID, objc.Sel("tokenByAddingParameterObserver:"), observer)
 	return rv
 }
 
 // Adds a recording observer for a single parameter or all parameters in a group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/token(byAddingParameterRecordingObserver:)
-func (p_ ParameterNode) TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tokenByAddingParameterRecordingObserver:"), observer)
+func (p_ ParameterNode) TokenByAddingParameterRecordingObserver(observer unsafe.Pointer) ParameterObserverToken {
+	rv := objc.Send[ParameterObserverToken](p_.ID, objc.Sel("tokenByAddingParameterRecordingObserver:"), observer)
 	return rv
 }
 
 // A localized display name for the parameter node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/displayName
-func (p_ ParameterNode) DisplayName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("displayName"))
+func (p_ ParameterNode) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // A non-localized, permanent name for the parameter node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/identifier
-func (p_ ParameterNode) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ ParameterNode) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -178,8 +180,8 @@ func (p_ ParameterNode) SetImplementorValueFromStringCallback(value unsafe.Point
 // A key path generated by concatenating the identifiers of the parameter and its parents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterNode/keyPath
-func (p_ ParameterNode) KeyPath() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("keyPath"))
+func (p_ ParameterNode) KeyPath() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("keyPath"))
 	return rv
 }
 

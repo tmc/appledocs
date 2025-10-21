@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +85,16 @@ func NewTHCredentials() THCredentials {
 // The essential operational parameters for the Thread network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/activeOperationalDataSet
-func (t_ THCredentials) ActiveOperationalDataSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("activeOperationalDataSet"))
+func (t_ THCredentials) ActiveOperationalDataSet() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("activeOperationalDataSet"))
 	return rv
 }
 
 // The identifier of an active Thread network Border Agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/borderAgentID
-func (t_ THCredentials) BorderAgentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("borderAgentID"))
+func (t_ THCredentials) BorderAgentID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("borderAgentID"))
 	return rv
 }
 
@@ -117,56 +119,56 @@ func (t_ THCredentials) SetChannel(value unsafe.Pointer) {
 // The date and time that the framework stored the credential in the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/creationDate
-func (t_ THCredentials) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("creationDate"))
+func (t_ THCredentials) CreationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
 // The Thread network extended PAN identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/extendedPANID
-func (t_ THCredentials) ExtendedPANID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("extendedPANID"))
+func (t_ THCredentials) ExtendedPANID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("extendedPANID"))
 	return rv
 }
 
 // The date and time that the framework updated the credential in the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/lastModificationDate
-func (t_ THCredentials) LastModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lastModificationDate"))
+func (t_ THCredentials) LastModificationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("lastModificationDate"))
 	return rv
 }
 
 // The Thread network key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/networkKey
-func (t_ THCredentials) NetworkKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("networkKey"))
+func (t_ THCredentials) NetworkKey() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("networkKey"))
 	return rv
 }
 
 // The Thread network name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/networkName
-func (t_ THCredentials) NetworkName() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("networkName"))
+func (t_ THCredentials) NetworkName() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("networkName"))
 	return rv
 }
 
 // The Thread network PAN identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/panID
-func (t_ THCredentials) PanID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("panID"))
+func (t_ THCredentials) PanID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("panID"))
 	return rv
 }
 
 // The Thread network pre-shared key (PSKC) for the Commissioner.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ThreadNetwork/THCredentials/pskc
-func (t_ THCredentials) PSKC() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("PSKC"))
+func (t_ THCredentials) PSKC() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("PSKC"))
 	return rv
 }
 

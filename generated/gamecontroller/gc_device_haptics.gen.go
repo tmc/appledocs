@@ -30,7 +30,7 @@ type _GCDeviceHapticsClass struct {
 // An interface definition for the [GCDeviceHaptics] class.
 type IGCDeviceHaptics interface {
 	objectivec.IObject
-	CreateEngineWithLocality(locality unsafe.Pointer) unsafe.Pointer
+	CreateEngineWithLocality(locality IGCHapticsLocality) unsafe.Pointer
 }
 
 // The locations of haptic actuators on a game controller.
@@ -84,7 +84,7 @@ func NewGCDeviceHaptics() GCDeviceHaptics {
 // Creates a haptics engine with the specified locality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceHaptics/createEngine(withLocality:)
-func (g_ GCDeviceHaptics) CreateEngineWithLocality(locality unsafe.Pointer) unsafe.Pointer {
+func (g_ GCDeviceHaptics) CreateEngineWithLocality(locality IGCHapticsLocality) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("createEngineWithLocality:"), locality)
 	return rv
 }

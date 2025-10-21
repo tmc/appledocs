@@ -87,7 +87,7 @@ func (m_ MTROnOffClusterOnWithRecallGlobalSceneParams) ServerSideProcessingTimeo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithrecallglobalsceneparams/serversideprocessingtimeout
-func (m_ MTROnOffClusterOnWithRecallGlobalSceneParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROnOffClusterOnWithRecallGlobalSceneParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROnOffClusterOnWithRecallGlobalSceneParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclusteronwithrecallglobalsceneparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterOnWithRecallGlobalSceneParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROnOffClusterOnWithRecallGlobalSceneParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

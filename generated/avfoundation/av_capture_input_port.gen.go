@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -119,8 +120,8 @@ func (c_ CaptureInputPort) SetFormatDescription(value unsafe.Pointer) {
 // The input object that owns the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/input
-func (c_ CaptureInputPort) Input() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("input"))
+func (c_ CaptureInputPort) Input() AVCaptureInput {
+	rv := objc.Send[AVCaptureInput](c_.ID, objc.Sel("input"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (c_ CaptureInputPort) Input() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/input
-func (c_ CaptureInputPort) SetInput(value unsafe.Pointer) {
+func (c_ CaptureInputPort) SetInput(value IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInput:"), value)
 }
 
@@ -155,8 +156,8 @@ func (c_ CaptureInputPort) SetIsEnabled(value bool) {
 // The media type of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
-func (c_ CaptureInputPort) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mediaType"))
+func (c_ CaptureInputPort) MediaType() MediaType {
+	rv := objc.Send[MediaType](c_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (c_ CaptureInputPort) MediaType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
-func (c_ CaptureInputPort) SetMediaType(value unsafe.Pointer) {
+func (c_ CaptureInputPort) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMediaType:"), value)
 }
 
@@ -209,8 +210,8 @@ func (c_ CaptureInputPort) SetSourceDeviceType(value unsafe.Pointer) {
 // The ports available on a capture input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
-func (c_ CaptureInputPort) Ports() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ports"))
+func (c_ CaptureInputPort) Ports() AVCaptureInputPort {
+	rv := objc.Send[AVCaptureInputPort](c_.ID, objc.Sel("ports"))
 	return rv
 }
 
@@ -220,7 +221,7 @@ func (c_ CaptureInputPort) Ports() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
-func (c_ CaptureInputPort) SetPorts(value unsafe.Pointer) {
+func (c_ CaptureInputPort) SetPorts(value IAVCaptureInputPort) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPorts:"), value)
 }
 

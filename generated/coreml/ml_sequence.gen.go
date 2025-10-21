@@ -95,15 +95,15 @@ func (s_ Sequence) Int64Values() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-func (s_ Sequence) SetInt64Values(value foundation.Number) {
+func (s_ Sequence) SetInt64Values(value foundation.INumber) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
 }
 
 // An array of strings in the sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) StringValues() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("stringValues"))
+func (s_ Sequence) StringValues() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("stringValues"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (s_ Sequence) StringValues() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) SetStringValues(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), objc.String(value))
+func (s_ Sequence) SetStringValues(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), value)
 }
 
 // The underlying type of the sequence’s elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("type"))
+func (s_ Sequence) Type() FeatureType {
+	rv := objc.Send[FeatureType](s_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (s_ Sequence) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) SetType(value unsafe.Pointer) {
+func (s_ Sequence) SetType(value FeatureType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
 }
 

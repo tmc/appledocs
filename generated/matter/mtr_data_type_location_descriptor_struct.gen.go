@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,7 +88,7 @@ func (m_ MTRDataTypeLocationDescriptorStruct) AreaType() foundation.Number {
 // SetAreaType sets the value of the areaType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/areaType
-func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value foundation.Number) {
+func (m_ MTRDataTypeLocationDescriptorStruct) SetAreaType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaType:"), value)
 }
 
@@ -102,14 +103,14 @@ func (m_ MTRDataTypeLocationDescriptorStruct) FloorNumber() foundation.Number {
 // SetFloorNumber sets the value of the floorNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/floorNumber
-func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value foundation.Number) {
+func (m_ MTRDataTypeLocationDescriptorStruct) SetFloorNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFloorNumber:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("locationName"))
+func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("locationName"))
 	return rv
 }
 
@@ -117,8 +118,8 @@ func (m_ MTRDataTypeLocationDescriptorStruct) LocationName() string {
 // SetLocationName sets the value of the locationName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeLocationDescriptorStruct/locationName
-func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), objc.String(value))
+func (m_ MTRDataTypeLocationDescriptorStruct) SetLocationName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationName:"), value)
 }
 
 

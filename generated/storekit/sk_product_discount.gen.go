@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +85,8 @@ func NewProductDiscount() ProductDiscount {
 // A string used to uniquely identify a discount offer for a product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/identifier
-func (p_ ProductDiscount) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ ProductDiscount) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -99,24 +101,24 @@ func (p_ ProductDiscount) NumberOfPeriods() uint {
 // The payment mode for this product discount.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/paymentMode-swift.property
-func (p_ ProductDiscount) PaymentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paymentMode"))
+func (p_ ProductDiscount) PaymentMode() ProductDiscountPaymentMode {
+	rv := objc.Send[ProductDiscountPaymentMode](p_.ID, objc.Sel("paymentMode"))
 	return rv
 }
 
 // The discount price of the product in the local currency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/price
-func (p_ ProductDiscount) Price() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("price"))
+func (p_ ProductDiscount) Price() foundation.DecimalNumber {
+	rv := objc.Send[foundation.DecimalNumber](p_.ID, objc.Sel("price"))
 	return rv
 }
 
 // The locale used to format the discount price of the product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/priceLocale
-func (p_ ProductDiscount) PriceLocale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("priceLocale"))
+func (p_ ProductDiscount) PriceLocale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](p_.ID, objc.Sel("priceLocale"))
 	return rv
 }
 
@@ -131,16 +133,16 @@ func (p_ ProductDiscount) SubscriptionPeriod() unsafe.Pointer {
 // The type of discount offer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKProductDiscount/type-swift.property
-func (p_ ProductDiscount) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ ProductDiscount) Type() ProductDiscountType {
+	rv := objc.Send[ProductDiscountType](p_.ID, objc.Sel("type"))
 	return rv
 }
 
 // An array of subscription offers available for the auto-renewable subscription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
-func (p_ ProductDiscount) Discounts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("discounts"))
+func (p_ ProductDiscount) Discounts() SKProductDiscount {
+	rv := objc.Send[SKProductDiscount](p_.ID, objc.Sel("discounts"))
 	return rv
 }
 
@@ -150,15 +152,15 @@ func (p_ ProductDiscount) Discounts() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/discounts
-func (p_ ProductDiscount) SetDiscounts(value unsafe.Pointer) {
+func (p_ ProductDiscount) SetDiscounts(value ISKProductDiscount) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDiscounts:"), value)
 }
 
 // The object containing introductory price information for the product.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
-func (p_ ProductDiscount) IntroductoryPrice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("introductoryPrice"))
+func (p_ ProductDiscount) IntroductoryPrice() SKProductDiscount {
+	rv := objc.Send[SKProductDiscount](p_.ID, objc.Sel("introductoryPrice"))
 	return rv
 }
 
@@ -168,7 +170,7 @@ func (p_ ProductDiscount) IntroductoryPrice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skproduct/introductoryprice
-func (p_ ProductDiscount) SetIntroductoryPrice(value unsafe.Pointer) {
+func (p_ ProductDiscount) SetIntroductoryPrice(value ISKProductDiscount) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntroductoryPrice:"), value)
 }
 

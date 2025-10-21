@@ -84,8 +84,8 @@ func NewDetectFaceRectanglesRequest() DetectFaceRectanglesRequest {
 // The results of the face detection request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
-func (d_ DetectFaceRectanglesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectFaceRectanglesRequest) Results() VNFaceObservation {
+	rv := objc.Send[VNFaceObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (d_ DetectFaceRectanglesRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest/results
-func (d_ DetectFaceRectanglesRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectFaceRectanglesRequest) SetResults(value IVNFaceObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

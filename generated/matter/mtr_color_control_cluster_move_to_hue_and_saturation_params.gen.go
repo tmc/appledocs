@@ -87,7 +87,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Hue() foundation.Nu
 // SetHue sets the value of the hue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/hue
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetHue(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetHue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHue:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsMask() found
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsmask
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) OptionsOverride() f
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/optionsoverride
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) Saturation() founda
 // SetSaturation sets the value of the saturation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/saturation
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetSaturation(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetSaturation(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSaturation:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) ServerSideProcessin
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) TransitionTime() fo
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueandsaturationparams/transitiontime
-func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRColorControlClusterMoveToHueAndSaturationParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

@@ -91,8 +91,8 @@ func (p_ ParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 // The paragraph’s threshold for hyphenation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/hyphenationFactor
-func (p_ ParagraphStyle) HyphenationFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("hyphenationFactor"))
+func (p_ ParagraphStyle) HyphenationFactor() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("hyphenationFactor"))
 	return rv
 }
 
@@ -115,8 +115,8 @@ func (p_ ParagraphStyle) LineBreakStrategy() LineBreakStrategy {
 // The threshold for using tightening as an alternative to truncation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/tighteningFactorForTruncation
-func (p_ ParagraphStyle) TighteningFactorForTruncation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("tighteningFactorForTruncation"))
+func (p_ ParagraphStyle) TighteningFactorForTruncation() float32 {
+	rv := objc.Send[float32](p_.ID, objc.Sel("tighteningFactorForTruncation"))
 	return rv
 }
 

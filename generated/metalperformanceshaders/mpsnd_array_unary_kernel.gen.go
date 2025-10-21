@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayUnaryKernel] class.
@@ -29,7 +30,7 @@ type _NDArrayUnaryKernelClass struct {
 // An interface definition for the [NDArrayUnaryKernel] class.
 type INDArrayUnaryKernel interface {
 	INDArrayMultiaryKernel
-	EncodeToCommandBufferSourceArray(cmdBuf objc.ID, sourceArray unsafe.Pointer) unsafe.Pointer
+	EncodeToCommandBufferSourceArray(cmdBuf objectivec.IObject, sourceArray IMPSNDArray) NDArray
 }
 
 //
@@ -79,8 +80,8 @@ func NewNDArrayUnaryKernel() NDArrayUnaryKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryKernel/encode(to:sourceArray:)
-func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArray(cmdBuf objc.ID, sourceArray unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:"), cmdBuf, sourceArray)
+func (n_ NDArrayUnaryKernel) EncodeToCommandBufferSourceArray(cmdBuf objectivec.IObject, sourceArray IMPSNDArray) NDArray {
+	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:"), cmdBuf, sourceArray)
 	return rv
 }
 

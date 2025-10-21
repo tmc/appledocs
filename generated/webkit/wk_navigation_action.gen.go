@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewNavigationAction() NavigationAction {
 // The frame in which to display the new content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigationAction/targetFrame
-func (n_ NavigationAction) TargetFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("targetFrame"))
+func (n_ NavigationAction) TargetFrame() WKFrameInfo {
+	rv := objc.Send[WKFrameInfo](n_.ID, objc.Sel("targetFrame"))
 	return rv
 }
 
@@ -160,8 +161,8 @@ func (n_ NavigationAction) SetNavigationType(value unsafe.Pointer) {
 // The URL request object associated with the navigation action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/request
-func (n_ NavigationAction) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("request"))
+func (n_ NavigationAction) Request() foundation.URLRequest {
+	rv := objc.Send[foundation.URLRequest](n_.ID, objc.Sel("request"))
 	return rv
 }
 
@@ -171,7 +172,7 @@ func (n_ NavigationAction) Request() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/request
-func (n_ NavigationAction) SetRequest(value unsafe.Pointer) {
+func (n_ NavigationAction) SetRequest(value foundation.IURLRequest) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
 }
 
@@ -196,8 +197,8 @@ func (n_ NavigationAction) SetShouldPerformDownload(value bool) {
 // The frame that requested the navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/sourceframe
-func (n_ NavigationAction) SourceFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceFrame"))
+func (n_ NavigationAction) SourceFrame() WKFrameInfo {
+	rv := objc.Send[WKFrameInfo](n_.ID, objc.Sel("sourceFrame"))
 	return rv
 }
 
@@ -207,7 +208,7 @@ func (n_ NavigationAction) SourceFrame() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wknavigationaction/sourceframe
-func (n_ NavigationAction) SetSourceFrame(value unsafe.Pointer) {
+func (n_ NavigationAction) SetSourceFrame(value IWKFrameInfo) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceFrame:"), value)
 }
 

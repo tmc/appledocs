@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _FSTaskClass struct {
 // An interface definition for the [FSTask] class.
 type IFSTask interface {
 	objectivec.IObject
-	DidCompleteWithError(error_ unsafe.Pointer)
-	LogMessage(str string)
+	DidCompleteWithError(error_ foundation.IError)
+	LogMessage(str appkit.string)
 }
 
 // A class that enables a file system module to pass log messages and completion notifications to clients.
@@ -85,15 +87,15 @@ func NewFSTask() FSTask {
 // Informs the client that the task completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/didComplete(error:)
-func (f_ FSTask) DidCompleteWithError(error_ unsafe.Pointer) {
+func (f_ FSTask) DidCompleteWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("didCompleteWithError:"), error_)
 }
 
 // Logs the given string to the initiating client.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSTask/logMessage(_:)
-func (f_ FSTask) LogMessage(str string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), objc.String(str))
+func (f_ FSTask) LogMessage(str appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("logMessage:"), str)
 }
 
 //

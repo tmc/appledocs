@@ -78,8 +78,8 @@ func NewMTRServiceAreaClusterSelectAreasParams() MTRServiceAreaClusterSelectArea
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/newAreas
-func (m_ MTRServiceAreaClusterSelectAreasParams) NewAreas() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("newAreas"))
+func (m_ MTRServiceAreaClusterSelectAreasParams) NewAreas() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("newAreas"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRServiceAreaClusterSelectAreasParams) NewAreas() unsafe.Pointer {
 // SetNewAreas sets the value of the newAreas property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/newAreas
-func (m_ MTRServiceAreaClusterSelectAreasParams) SetNewAreas(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterSelectAreasParams) SetNewAreas(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewAreas:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRServiceAreaClusterSelectAreasParams) ServerSideProcessingTimeout() f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/serverSideProcessingTimeout
-func (m_ MTRServiceAreaClusterSelectAreasParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRServiceAreaClusterSelectAreasParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRServiceAreaClusterSelectAreasParams) TimedInvokeTimeoutMs() foundati
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterSelectAreasParams/timedInvokeTimeoutMs
-func (m_ MTRServiceAreaClusterSelectAreasParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRServiceAreaClusterSelectAreasParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

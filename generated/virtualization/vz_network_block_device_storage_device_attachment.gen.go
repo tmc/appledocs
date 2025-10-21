@@ -87,7 +87,7 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachment() VZNetworkBlockDeviceStorag
 // Creates a new network block device (NBD) storage attachment from an NDB Uniform Resource Indicator (URI) represented as a URL that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:)
-func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL foundation.URL, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
+func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL foundation.IURL, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
 	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:error:"), URL, error_)
 	rv.Autorelease()
@@ -99,7 +99,7 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLError(URL foundation.U
 // Creates a new network block device storage attachment from an NBD Uniform Resource Indicator (URI) represented as a URL, timeout value, and read-only and synchronization modes that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/init(url:timeout:isForcedReadOnly:synchronizationMode:)
-func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlySynchronizationModeError(URL foundation.URL, timeout foundation.TimeInterval, forcedReadOnly bool, synchronizationMode unsafe.Pointer, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
+func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlySynchronizationModeError(URL foundation.IURL, timeout foundation.ITimeInterval, forcedReadOnly bool, synchronizationMode VZDiskSynchronizationMode, error_ unsafe.Pointer) VZNetworkBlockDeviceStorageDeviceAttachment {
 	instance := getVZNetworkBlockDeviceStorageDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZNetworkBlockDeviceStorageDeviceAttachment](instance.ID, objc.Sel("initWithURL:timeout:forcedReadOnly:synchronizationMode:error:"), URL, timeout, forcedReadOnly, synchronizationMode, error_)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewVZNetworkBlockDeviceStorageDeviceAttachmentWithURLTimeoutForcedReadOnlyS
 // Checks if the URL is a valid network block device URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkBlockDeviceStorageDeviceAttachment/validate(_:)
-func (vc _VZNetworkBlockDeviceStorageDeviceAttachmentClass) ValidateURLError(URL foundation.URL, error_ unsafe.Pointer) bool {
+func (vc _VZNetworkBlockDeviceStorageDeviceAttachmentClass) ValidateURLError(URL foundation.IURL, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("validateURL:error:"), URL, error_)
 	return rv
 }
@@ -162,8 +162,8 @@ func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetIsForcedReadOnly(value 
 // The mode in which the NBD client synchronizes data with the NBD server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/synchronizationmode
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SynchronizationMode() VZDiskSynchronizationMode {
+	rv := objc.Send[VZDiskSynchronizationMode](v_.ID, objc.Sel("synchronizationMode"))
 	return rv
 }
 
@@ -173,7 +173,7 @@ func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SynchronizationMode() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/synchronizationmode
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetSynchronizationMode(value VZDiskSynchronizationMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 
@@ -209,7 +209,7 @@ func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkblockdevicestoragedeviceattachment/url
-func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetUrl(value foundation.URL) {
+func (v_ VZNetworkBlockDeviceStorageDeviceAttachment) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
 

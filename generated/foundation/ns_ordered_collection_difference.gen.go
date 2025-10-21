@@ -86,7 +86,7 @@ func NewOrderedCollectionDifference() OrderedCollectionDifference {
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:)
-func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjects(inserts unsafe.Pointer, insertedObjects unsafe.Pointer, removes unsafe.Pointer, removedObjects unsafe.Pointer) OrderedCollectionDifference {
+func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjects(inserts IIndexSet, insertedObjects []objc.ID, removes IIndexSet, removedObjects []objc.ID) OrderedCollectionDifference {
 	instance := getOrderedCollectionDifferenceClass().Alloc()
 	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:"), inserts, insertedObjects, removes, removedObjects)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices, in addition to an array of ordered collection changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:additionalChanges:)
-func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjectsAdditionalChanges(inserts unsafe.Pointer, insertedObjects unsafe.Pointer, removes unsafe.Pointer, removedObjects unsafe.Pointer, changes unsafe.Pointer) OrderedCollectionDifference {
+func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexesRemovedObjectsAdditionalChanges(inserts IIndexSet, insertedObjects []objc.ID, removes IIndexSet, removedObjects []objc.ID, changes []unsafe.IPointer) OrderedCollectionDifference {
 	instance := getOrderedCollectionDifferenceClass().Alloc()
 	rv := objc.Send[OrderedCollectionDifference](instance.ID, objc.Sel("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:additionalChanges:"), inserts, insertedObjects, removes, removedObjects, changes)
 	rv.Autorelease()

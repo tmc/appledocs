@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 )
@@ -33,8 +34,8 @@ type _PlayerViewClass struct {
 type IPlayerView interface {
 	appkit.IView
 	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
-	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string)
-	SelectSpeed(speed unsafe.Pointer)
+	FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle appkit.string)
+	SelectSpeed(speed IAVPlaybackSpeed)
 	SetMagnificationCenteredAtPoint(magnification float64, point coregraphics.CGPoint)
 }
 
@@ -98,14 +99,14 @@ func (p_ PlayerView) BeginTrimmingWithCompletionHandler(handler unsafe.Pointer) 
 // Displays the chapter number and title in the player view for a brief moment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/flashChapterNumber(_:chapterTitle:)
-func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, objc.String(chapterTitle))
+func (p_ PlayerView) FlashChapterNumberChapterTitle(chapterNumber uint, chapterTitle appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("flashChapterNumber:chapterTitle:"), chapterNumber, chapterTitle)
 }
 
 // Selects a specified playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/selectSpeed(_:)
-func (p_ PlayerView) SelectSpeed(speed unsafe.Pointer) {
+func (p_ PlayerView) SelectSpeed(speed IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectSpeed:"), speed)
 }
 
@@ -119,8 +120,8 @@ func (p_ PlayerView) SetMagnificationCenteredAtPoint(magnification float64, poin
 // An action pop-up button menu that the player view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
-func (p_ PlayerView) ActionPopUpButtonMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("actionPopUpButtonMenu"))
+func (p_ PlayerView) ActionPopUpButtonMenu() appkit.Menu {
+	rv := objc.Send[appkit.Menu](p_.ID, objc.Sel("actionPopUpButtonMenu"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (p_ PlayerView) ActionPopUpButtonMenu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/actionPopUpButtonMenu
-func (p_ PlayerView) SetActionPopUpButtonMenu(value unsafe.Pointer) {
+func (p_ PlayerView) SetActionPopUpButtonMenu(value appkit.IMenu) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionPopUpButtonMenu:"), value)
 }
 
@@ -199,16 +200,16 @@ func (p_ PlayerView) CanBeginTrimming() bool {
 // A view that adds additional custom views between the video content and the controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/contentOverlayView
-func (p_ PlayerView) ContentOverlayView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentOverlayView"))
+func (p_ PlayerView) ContentOverlayView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 
 // The player view’s controls style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/controlsStyle
-func (p_ PlayerView) ControlsStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("controlsStyle"))
+func (p_ PlayerView) ControlsStyle() PlayerViewControlsStyle {
+	rv := objc.Send[PlayerViewControlsStyle](p_.ID, objc.Sel("controlsStyle"))
 	return rv
 }
 
@@ -218,7 +219,7 @@ func (p_ PlayerView) ControlsStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/controlsStyle
-func (p_ PlayerView) SetControlsStyle(value unsafe.Pointer) {
+func (p_ PlayerView) SetControlsStyle(value PlayerViewControlsStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setControlsStyle:"), value)
 }
 
@@ -287,8 +288,8 @@ func (p_ PlayerView) SetPictureInPictureDelegate(value objc.ID) {
 // The player instance that provides the media content for the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
-func (p_ PlayerView) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("player"))
+func (p_ PlayerView) Player() avfoundation.Player {
+	rv := objc.Send[avfoundation.Player](p_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -298,15 +299,15 @@ func (p_ PlayerView) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/player
-func (p_ PlayerView) SetPlayer(value unsafe.Pointer) {
+func (p_ PlayerView) SetPlayer(value avfoundation.IPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
 
 // Describes how High Dynamic Range (HDR) video content renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
-func (p_ PlayerView) PreferredDisplayDynamicRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
+func (p_ PlayerView) PreferredDisplayDynamicRange() DisplayDynamicRange {
+	rv := objc.Send[DisplayDynamicRange](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
 	return rv
 }
 
@@ -316,15 +317,15 @@ func (p_ PlayerView) PreferredDisplayDynamicRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/preferredDisplayDynamicRange
-func (p_ PlayerView) SetPreferredDisplayDynamicRange(value unsafe.Pointer) {
+func (p_ PlayerView) SetPreferredDisplayDynamicRange(value IDisplayDynamicRange) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredDisplayDynamicRange:"), value)
 }
 
 // The currently selected playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/selectedSpeed
-func (p_ PlayerView) SelectedSpeed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedSpeed"))
+func (p_ PlayerView) SelectedSpeed() AVPlaybackSpeed {
+	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
 	return rv
 }
 
@@ -456,8 +457,8 @@ func (p_ PlayerView) VideoBounds() foundation.Rect {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoFrameAnalysisTypes
-func (p_ PlayerView) VideoFrameAnalysisTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
+func (p_ PlayerView) VideoFrameAnalysisTypes() VideoFrameAnalysisType {
+	rv := objc.Send[VideoFrameAnalysisType](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
 	return rv
 }
 
@@ -465,7 +466,7 @@ func (p_ PlayerView) VideoFrameAnalysisTypes() unsafe.Pointer {
 // SetVideoFrameAnalysisTypes sets the value of the videoFrameAnalysisTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerView/videoFrameAnalysisTypes
-func (p_ PlayerView) SetVideoFrameAnalysisTypes(value unsafe.Pointer) {
+func (p_ PlayerView) SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFrameAnalysisTypes:"), value)
 }
 

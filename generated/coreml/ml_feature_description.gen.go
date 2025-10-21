@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewFeatureDescription() FeatureDescription {
 // The constraint for a dictionary feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/dictionaryConstraint
-func (f_ FeatureDescription) DictionaryConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("dictionaryConstraint"))
+func (f_ FeatureDescription) DictionaryConstraint() MLDictionaryConstraint {
+	rv := objc.Send[MLDictionaryConstraint](f_.ID, objc.Sel("dictionaryConstraint"))
 	return rv
 }
 
 // The size and format constraints for an image feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/imageConstraint
-func (f_ FeatureDescription) ImageConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("imageConstraint"))
+func (f_ FeatureDescription) ImageConstraint() MLImageConstraint {
+	rv := objc.Send[MLImageConstraint](f_.ID, objc.Sel("imageConstraint"))
 	return rv
 }
 
@@ -107,40 +108,40 @@ func (f_ FeatureDescription) Optional() bool {
 // The constraints on a multidimensional array feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/multiArrayConstraint
-func (f_ FeatureDescription) MultiArrayConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("multiArrayConstraint"))
+func (f_ FeatureDescription) MultiArrayConstraint() MLMultiArrayConstraint {
+	rv := objc.Send[MLMultiArrayConstraint](f_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
 }
 
 // The name of this feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/name
-func (f_ FeatureDescription) Name() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("name"))
+func (f_ FeatureDescription) Name() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The constraints for a sequence feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/sequenceConstraint
-func (f_ FeatureDescription) SequenceConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("sequenceConstraint"))
+func (f_ FeatureDescription) SequenceConstraint() MLSequenceConstraint {
+	rv := objc.Send[MLSequenceConstraint](f_.ID, objc.Sel("sequenceConstraint"))
 	return rv
 }
 
 // The state feature value constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/stateConstraint
-func (f_ FeatureDescription) StateConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stateConstraint"))
+func (f_ FeatureDescription) StateConstraint() MLStateConstraint {
+	rv := objc.Send[MLStateConstraint](f_.ID, objc.Sel("stateConstraint"))
 	return rv
 }
 
 // The type of this feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureDescription/type
-func (f_ FeatureDescription) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
+func (f_ FeatureDescription) Type() FeatureType {
+	rv := objc.Send[FeatureType](f_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -165,8 +166,8 @@ func (f_ FeatureDescription) SetIsOptional(value bool) {
 // A dictionary of input feature descriptions, which the model keys by the input’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (f_ FeatureDescription) InputDescriptionsByName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("inputDescriptionsByName"))
+func (f_ FeatureDescription) InputDescriptionsByName() MLFeatureDescription {
+	rv := objc.Send[MLFeatureDescription](f_.ID, objc.Sel("inputDescriptionsByName"))
 	return rv
 }
 
@@ -176,15 +177,15 @@ func (f_ FeatureDescription) InputDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (f_ FeatureDescription) SetInputDescriptionsByName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setInputDescriptionsByName:"), objc.String(value))
+func (f_ FeatureDescription) SetInputDescriptionsByName(value IMLFeatureDescription) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setInputDescriptionsByName:"), value)
 }
 
 // A dictionary of output feature descriptions, which the model keys by the output’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (f_ FeatureDescription) OutputDescriptionsByName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("outputDescriptionsByName"))
+func (f_ FeatureDescription) OutputDescriptionsByName() MLFeatureDescription {
+	rv := objc.Send[MLFeatureDescription](f_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
 }
 
@@ -194,15 +195,15 @@ func (f_ FeatureDescription) OutputDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (f_ FeatureDescription) SetOutputDescriptionsByName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+func (f_ FeatureDescription) SetOutputDescriptionsByName(value IMLFeatureDescription) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
 }
 
 // Description of the state features.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
-func (f_ FeatureDescription) StateDescriptionsByName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("stateDescriptionsByName"))
+func (f_ FeatureDescription) StateDescriptionsByName() MLFeatureDescription {
+	rv := objc.Send[MLFeatureDescription](f_.ID, objc.Sel("stateDescriptionsByName"))
 	return rv
 }
 
@@ -212,8 +213,8 @@ func (f_ FeatureDescription) StateDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/statedescriptionsbyname
-func (f_ FeatureDescription) SetStateDescriptionsByName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setStateDescriptionsByName:"), objc.String(value))
+func (f_ FeatureDescription) SetStateDescriptionsByName(value IMLFeatureDescription) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setStateDescriptionsByName:"), value)
 }
 
 

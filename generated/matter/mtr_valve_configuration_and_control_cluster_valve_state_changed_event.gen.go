@@ -87,7 +87,7 @@ func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLeve
 // SetValveLevel sets the value of the valveLevel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveLevel(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveLevel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveLevel:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveStat
 // SetValveState sets the value of the valveState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
-func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value foundation.Number) {
+func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveState:"), value)
 }
 

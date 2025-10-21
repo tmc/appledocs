@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/contacts"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,16 +79,16 @@ func NewCKShareBlockedIdentity() CKShareBlockedIdentity {
 // A displayable representing the blocked user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/contact
-func (c_ CKShareBlockedIdentity) Contact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contact"))
+func (c_ CKShareBlockedIdentity) Contact() contacts.CNContact {
+	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 
 // The identity of the user who has been blocked from requesting access to the share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/BlockedIdentity/userIdentity
-func (c_ CKShareBlockedIdentity) UserIdentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentity"))
+func (c_ CKShareBlockedIdentity) UserIdentity() CKUserIdentity {
+	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
 }
 

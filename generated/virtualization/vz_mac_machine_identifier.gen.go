@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewVZMacMachineIdentifier() VZMacMachineIdentifier {
 // Create a machine identifier described by the specified data representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacMachineIdentifier/init(dataRepresentation:)
-func NewVZMacMachineIdentifierWithDataRepresentation(dataRepresentation unsafe.Pointer) VZMacMachineIdentifier {
+func NewVZMacMachineIdentifierWithDataRepresentation(dataRepresentation foundation.IData) VZMacMachineIdentifier {
 	instance := getVZMacMachineIdentifierClass().Alloc()
 	rv := objc.Send[VZMacMachineIdentifier](instance.ID, objc.Sel("initWithDataRepresentation:"), dataRepresentation)
 	rv.Autorelease()
@@ -96,8 +97,8 @@ func NewVZMacMachineIdentifierWithDataRepresentation(dataRepresentation unsafe.P
 // Returns the opaque data representation of the machine identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacMachineIdentifier/dataRepresentation
-func (v_ VZMacMachineIdentifier) DataRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("dataRepresentation"))
+func (v_ VZMacMachineIdentifier) DataRepresentation() foundation.NSData {
+	rv := objc.Send[foundation.NSData](v_.ID, objc.Sel("dataRepresentation"))
 	return rv
 }
 

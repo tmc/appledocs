@@ -104,8 +104,8 @@ func (p_ PHASEDistanceModelFadeOutParameters) CullDistance() unsafe.Pointer {
 // A distance over which the framework fades out the mixer’s sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters
-func (p_ PHASEDistanceModelFadeOutParameters) FadeOutParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fadeOutParameters"))
+func (p_ PHASEDistanceModelFadeOutParameters) FadeOutParameters() PHASEDistanceModelFadeOutParameters {
+	rv := objc.Send[PHASEDistanceModelFadeOutParameters](p_.ID, objc.Sel("fadeOutParameters"))
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (p_ PHASEDistanceModelFadeOutParameters) FadeOutParameters() unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedistancemodelparameters/fadeoutparameters
-func (p_ PHASEDistanceModelFadeOutParameters) SetFadeOutParameters(value unsafe.Pointer) {
+func (p_ PHASEDistanceModelFadeOutParameters) SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFadeOutParameters:"), value)
 }
 

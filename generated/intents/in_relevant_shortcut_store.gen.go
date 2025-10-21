@@ -81,15 +81,15 @@ func NewINRelevantShortcutStore() INRelevantShortcutStore {
 // The default relevant shortcut store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRelevantShortcutStore/default
-func (ic _INRelevantShortcutStoreClass) DefaultStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("defaultStore"))
+func (ic _INRelevantShortcutStoreClass) DefaultStore() INRelevantShortcutStore {
+	rv := objc.Send[INRelevantShortcutStore](objc.ID(ic.class), objc.Sel("defaultStore"))
 	return rv
 }
 // The default relevant shortcut store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRelevantShortcutStore/default
-func (i_ INRelevantShortcutStore) DefaultStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("defaultStore"))
+func (i_ INRelevantShortcutStore) DefaultStore() INRelevantShortcutStore {
+	rv := objc.Send[INRelevantShortcutStore](i_.ID, objc.Sel("defaultStore"))
 	return rv
 }
 

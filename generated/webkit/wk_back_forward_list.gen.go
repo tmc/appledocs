@@ -91,8 +91,8 @@ func (b_ BackForwardList) ForwardList() []BackForwardListItem {
 // The item immediately preceding the current item, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backitem
-func (b_ BackForwardList) BackItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backItem"))
+func (b_ BackForwardList) BackItem() WKBackForwardListItem {
+	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("backItem"))
 	return rv
 }
 
@@ -102,15 +102,15 @@ func (b_ BackForwardList) BackItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backitem
-func (b_ BackForwardList) SetBackItem(value unsafe.Pointer) {
+func (b_ BackForwardList) SetBackItem(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackItem:"), value)
 }
 
 // The array of items that precede the current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
-func (b_ BackForwardList) BackList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backList"))
+func (b_ BackForwardList) BackList() WKBackForwardListItem {
+	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("backList"))
 	return rv
 }
 
@@ -120,15 +120,15 @@ func (b_ BackForwardList) BackList() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/backlist
-func (b_ BackForwardList) SetBackList(value unsafe.Pointer) {
+func (b_ BackForwardList) SetBackList(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackList:"), value)
 }
 
 // The current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
-func (b_ BackForwardList) CurrentItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("currentItem"))
+func (b_ BackForwardList) CurrentItem() WKBackForwardListItem {
+	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("currentItem"))
 	return rv
 }
 
@@ -138,15 +138,15 @@ func (b_ BackForwardList) CurrentItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/currentitem
-func (b_ BackForwardList) SetCurrentItem(value unsafe.Pointer) {
+func (b_ BackForwardList) SetCurrentItem(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCurrentItem:"), value)
 }
 
 // The item immediately following the current item, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/forwarditem
-func (b_ BackForwardList) ForwardItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("forwardItem"))
+func (b_ BackForwardList) ForwardItem() WKBackForwardListItem {
+	rv := objc.Send[WKBackForwardListItem](b_.ID, objc.Sel("forwardItem"))
 	return rv
 }
 
@@ -156,15 +156,15 @@ func (b_ BackForwardList) ForwardItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkbackforwardlist/forwarditem
-func (b_ BackForwardList) SetForwardItem(value unsafe.Pointer) {
+func (b_ BackForwardList) SetForwardItem(value IWKBackForwardListItem) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setForwardItem:"), value)
 }
 
 // The web view’s back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
-func (b_ BackForwardList) BackForwardList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("backForwardList"))
+func (b_ BackForwardList) BackForwardList() WKBackForwardList {
+	rv := objc.Send[WKBackForwardList](b_.ID, objc.Sel("backForwardList"))
 	return rv
 }
 
@@ -174,7 +174,7 @@ func (b_ BackForwardList) BackForwardList() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebview/backforwardlist
-func (b_ BackForwardList) SetBackForwardList(value unsafe.Pointer) {
+func (b_ BackForwardList) SetBackForwardList(value IWKBackForwardList) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBackForwardList:"), value)
 }
 

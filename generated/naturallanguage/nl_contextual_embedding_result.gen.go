@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _ContextualEmbeddingResultClass struct {
 // An interface definition for the [ContextualEmbeddingResult] class.
 type IContextualEmbeddingResult interface {
 	objectivec.IObject
-	EnumerateTokenVectorsInRangeUsingBlock(range_ Range, block unsafe.Pointer)
+	EnumerateTokenVectorsInRangeUsingBlock(range_ foundation.IRange, block unsafe.Pointer)
 	TokenVectorAtIndexTokenRange(characterIndex uint, tokenRange unsafe.Pointer) []foundation.Number
 }
 
@@ -84,7 +85,7 @@ func NewContextualEmbeddingResult() ContextualEmbeddingResult {
 // Iterates over the embedding vectors for the range you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/enumerateTokenVectorsInRange:usingBlock:
-func (c_ ContextualEmbeddingResult) EnumerateTokenVectorsInRangeUsingBlock(range_ Range, block unsafe.Pointer) {
+func (c_ ContextualEmbeddingResult) EnumerateTokenVectorsInRangeUsingBlock(range_ foundation.IRange, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enumerateTokenVectorsInRange:usingBlock:"), range_, block)
 }
 
@@ -99,8 +100,8 @@ func (c_ ContextualEmbeddingResult) TokenVectorAtIndexTokenRange(characterIndex 
 // The resulting language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/language
-func (c_ ContextualEmbeddingResult) Language() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("language"))
+func (c_ ContextualEmbeddingResult) Language() Language {
+	rv := objc.Send[Language](c_.ID, objc.Sel("language"))
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (c_ ContextualEmbeddingResult) SequenceLength() uint {
 // The string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLContextualEmbeddingResult/string
-func (c_ ContextualEmbeddingResult) String() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("string"))
+func (c_ ContextualEmbeddingResult) String() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("string"))
 	return rv
 }
 

@@ -81,8 +81,8 @@ func NewNEHotspotHS20Settings() NEHotspotHS20Settings {
 // The domain name of a Hotspot 2.0 Wi-Fi Network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/domainname
-func (n_ NEHotspotHS20Settings) DomainName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("domainName"))
+func (n_ NEHotspotHS20Settings) DomainName() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("domainName"))
 	return rv
 }
 
@@ -92,8 +92,8 @@ func (n_ NEHotspotHS20Settings) DomainName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/domainname
-func (n_ NEHotspotHS20Settings) SetDomainName(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), objc.String(value))
+func (n_ NEHotspotHS20Settings) SetDomainName(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDomainName:"), value)
 }
 
 // A Boolean value indicating whether or not roaming is enabled on a Hotspot 2.0 Wi-Fi network.
@@ -117,8 +117,8 @@ func (n_ NEHotspotHS20Settings) SetIsRoamingEnabled(value bool) {
 // An array of Mobile Country Code (MCC) and Mobile Network Code (MNC) pairs used for Wi-Fi Hotspot 2.0 negotiation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/mccandmncs
-func (n_ NEHotspotHS20Settings) MccAndMNCs() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("mccAndMNCs"))
+func (n_ NEHotspotHS20Settings) MccAndMNCs() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("mccAndMNCs"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (n_ NEHotspotHS20Settings) MccAndMNCs() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/mccandmncs
-func (n_ NEHotspotHS20Settings) SetMccAndMNCs(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMccAndMNCs:"), objc.String(value))
+func (n_ NEHotspotHS20Settings) SetMccAndMNCs(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setMccAndMNCs:"), value)
 }
 
 // An array of Network Access Identifier (NAI) realm name strings used for Wi-Fi Hotspot 2.0 negotiation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/nairealmnames
-func (n_ NEHotspotHS20Settings) NaiRealmNames() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("naiRealmNames"))
+func (n_ NEHotspotHS20Settings) NaiRealmNames() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("naiRealmNames"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (n_ NEHotspotHS20Settings) NaiRealmNames() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/nairealmnames
-func (n_ NEHotspotHS20Settings) SetNaiRealmNames(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNaiRealmNames:"), objc.String(value))
+func (n_ NEHotspotHS20Settings) SetNaiRealmNames(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setNaiRealmNames:"), value)
 }
 
 // An array of Roaming Consortium Organization (RCO) identifiers used for Wi-Fi Hotspot 2.0 negotiation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/roamingconsortiumois
-func (n_ NEHotspotHS20Settings) RoamingConsortiumOIs() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("roamingConsortiumOIs"))
+func (n_ NEHotspotHS20Settings) RoamingConsortiumOIs() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("roamingConsortiumOIs"))
 	return rv
 }
 
@@ -164,8 +164,8 @@ func (n_ NEHotspotHS20Settings) RoamingConsortiumOIs() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoths20settings/roamingconsortiumois
-func (n_ NEHotspotHS20Settings) SetRoamingConsortiumOIs(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRoamingConsortiumOIs:"), objc.String(value))
+func (n_ NEHotspotHS20Settings) SetRoamingConsortiumOIs(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRoamingConsortiumOIs:"), value)
 }
 
 

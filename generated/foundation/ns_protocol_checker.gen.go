@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ProtocolChecker] class.
@@ -84,8 +85,8 @@ func NewProtocolChecker() ProtocolChecker {
 // Returns the protocol object the receiver uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/protocol
-func (p_ ProtocolChecker) Protocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("protocol"))
+func (p_ ProtocolChecker) Protocol() objectivec.Protocol {
+	rv := objc.Send[objectivec.Protocol](p_.ID, objc.Sel("protocol"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (p_ ProtocolChecker) Protocol() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/protocol
-func (p_ ProtocolChecker) SetProtocol(value unsafe.Pointer) {
+func (p_ ProtocolChecker) SetProtocol(value objectivec.Protocol) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProtocol:"), value)
 }
 
 // Returns the target of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/target
-func (p_ ProtocolChecker) Target() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("target"))
+func (p_ ProtocolChecker) Target() NSObject {
+	rv := objc.Send[NSObject](p_.ID, objc.Sel("target"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (p_ ProtocolChecker) Target() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsprotocolchecker/target
-func (p_ ProtocolChecker) SetTarget(value unsafe.Pointer) {
+func (p_ ProtocolChecker) SetTarget(value IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTarget:"), value)
 }
 

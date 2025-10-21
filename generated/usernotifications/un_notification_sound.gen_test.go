@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = usernotifications.NewUNNotificationSound
 
+// ExampleNewUNNotificationSoundNamed demonstrates how to create a UNNotificationSound instance using NewUNNotificationSoundNamed.
+// Creates a sound object that represents a custom sound file.
+func ExampleNewUNNotificationSoundNamed() {
+	_ = usernotifications.NewUNNotificationSoundNamed(
+		usernotifications.UNNotificationSoundName{}, // name UNNotificationSoundName
+	)
+	// Output:
+}

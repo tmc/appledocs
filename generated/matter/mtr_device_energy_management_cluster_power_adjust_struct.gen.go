@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxDuration() founda
 // SetMaxDuration sets the value of the maxDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MaxPower() foundatio
 // SetMaxPower sets the value of the maxPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/maxPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMaxPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPower:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinDuration() founda
 // SetMinDuration sets the value of the minDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minDuration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinDuration:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) MinPower() foundatio
 // SetMinPower sets the value of the minPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustStruct/minPower
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustStruct) SetMinPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinPower:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRGroupsClusterViewGroupParams) GroupID() foundation.Number {
 // SetGroupID sets the value of the groupID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupparams/groupid-4nbva
-func (m_ MTRGroupsClusterViewGroupParams) SetGroupID(value foundation.Number) {
+func (m_ MTRGroupsClusterViewGroupParams) SetGroupID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGroupsClusterViewGroupParams) GroupId() foundation.Number {
 // SetGroupId sets the value of the groupId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupparams/groupid-4nbw6
-func (m_ MTRGroupsClusterViewGroupParams) SetGroupId(value foundation.Number) {
+func (m_ MTRGroupsClusterViewGroupParams) SetGroupId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupsClusterViewGroupParams) ServerSideProcessingTimeout() foundati
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterViewGroupParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGroupsClusterViewGroupParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRGroupsClusterViewGroupParams) TimedInvokeTimeoutMs() foundation.Numb
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterViewGroupParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupsClusterViewGroupParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

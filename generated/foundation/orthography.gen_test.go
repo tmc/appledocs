@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewOrthography
 
+// ExampleNewOrthographyWithCoder demonstrates how to create a Orthography instance using NewOrthographyWithCoder.
+func ExampleNewOrthographyWithCoder() {
+	_ = foundation.NewOrthographyWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
+	)
+	// Output:
+}

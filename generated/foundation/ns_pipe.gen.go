@@ -83,24 +83,24 @@ func NewPipe() Pipe {
 // Returns an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPipe/pipe
-func (pc _PipeClass) Pipe() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pipe"))
+func (pc _PipeClass) Pipe() Pipe {
+	rv := objc.Send[Pipe](objc.ID(pc.class), objc.Sel("pipe"))
 	return rv
 }
 
 // The receiver’s read file handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForReading
-func (p_ Pipe) FileHandleForReading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fileHandleForReading"))
+func (p_ Pipe) FileHandleForReading() NSFileHandle {
+	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForReading"))
 	return rv
 }
 
 // The receiver’s write file handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Pipe/fileHandleForWriting
-func (p_ Pipe) FileHandleForWriting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fileHandleForWriting"))
+func (p_ Pipe) FileHandleForWriting() NSFileHandle {
+	rv := objc.Send[NSFileHandle](p_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }
 

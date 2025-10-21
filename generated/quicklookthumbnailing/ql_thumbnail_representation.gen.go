@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,8 +85,8 @@ func NewThumbnailRepresentation() ThumbnailRepresentation {
 // A thumbnail in the form of a Core Graphics image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailRepresentation/cgImage
-func (t_ ThumbnailRepresentation) CGImage() CGImageRef {
-	rv := objc.Send[CGImageRef](t_.ID, objc.Sel("CGImage"))
+func (t_ ThumbnailRepresentation) CGImage() coregraphics.CGImageRef {
+	rv := objc.Send[coregraphics.CGImageRef](t_.ID, objc.Sel("CGImage"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (t_ ThumbnailRepresentation) SetContentRect(value coregraphics.CGRect) {
 // A thumbnail in the form of an AppKit image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
-func (t_ ThumbnailRepresentation) NsImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("nsImage"))
+func (t_ ThumbnailRepresentation) NsImage() appkit.Image {
+	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("nsImage"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (t_ ThumbnailRepresentation) NsImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage
-func (t_ ThumbnailRepresentation) SetNsImage(value unsafe.Pointer) {
+func (t_ ThumbnailRepresentation) SetNsImage(value appkit.IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNsImage:"), value)
 }
 
@@ -146,8 +147,8 @@ func (t_ ThumbnailRepresentation) SetType(value unsafe.Pointer) {
 // A thumbnail in the form of a UIKit image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
-func (t_ ThumbnailRepresentation) UiImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("uiImage"))
+func (t_ ThumbnailRepresentation) UiImage() appkit.Image {
+	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("uiImage"))
 	return rv
 }
 
@@ -157,7 +158,7 @@ func (t_ ThumbnailRepresentation) UiImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage
-func (t_ ThumbnailRepresentation) SetUiImage(value unsafe.Pointer) {
+func (t_ ThumbnailRepresentation) SetUiImage(value appkit.IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUiImage:"), value)
 }
 

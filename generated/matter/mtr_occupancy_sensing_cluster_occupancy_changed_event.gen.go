@@ -87,7 +87,7 @@ func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() foundation
 // SetOccupancy sets the value of the occupancy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
-func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value foundation.Number) {
+func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOccupancy:"), value)
 }
 

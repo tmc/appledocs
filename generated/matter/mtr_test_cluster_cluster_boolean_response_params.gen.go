@@ -88,7 +88,7 @@ func (m_ MTRTestClusterClusterBooleanResponseParams) TimedInvokeTimeoutMs() foun
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterBooleanResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTestClusterClusterBooleanResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRTestClusterClusterBooleanResponseParams) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
-func (m_ MTRTestClusterClusterBooleanResponseParams) SetValue(value foundation.Number) {
+func (m_ MTRTestClusterClusterBooleanResponseParams) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

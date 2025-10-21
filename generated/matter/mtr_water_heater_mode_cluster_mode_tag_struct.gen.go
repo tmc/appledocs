@@ -87,7 +87,7 @@ func (m_ MTRWaterHeaterModeClusterModeTagStruct) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeTagStruct/mfgCode
-func (m_ MTRWaterHeaterModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
+func (m_ MTRWaterHeaterModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWaterHeaterModeClusterModeTagStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeTagStruct/value
-func (m_ MTRWaterHeaterModeClusterModeTagStruct) SetValue(value foundation.Number) {
+func (m_ MTRWaterHeaterModeClusterModeTagStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CSLocalizedString] class.
@@ -30,7 +31,7 @@ type _CSLocalizedStringClass struct {
 // An interface definition for the [CSLocalizedString] class.
 type ICSLocalizedString interface {
 	foundation.IString
-	LocalizedString() string
+	LocalizedString() foundation.String
 }
 
 // An object that displays localized text in search results related to your app.
@@ -88,7 +89,7 @@ func NewCSLocalizedString() CSLocalizedString {
 // Initializes a object with the specified dictionary of localized strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/init(localizedStrings:)
-func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objc.ID) CSLocalizedString {
+func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objectivec.IObject) CSLocalizedString {
 	instance := getCSLocalizedStringClass().Alloc()
 	rv := objc.Send[CSLocalizedString](instance.ID, objc.Sel("initWithLocalizedStrings:"), localizedStrings)
 	rv.Autorelease()
@@ -99,8 +100,8 @@ func NewCSLocalizedStringWithLocalizedStrings(localizedStrings objc.ID) CSLocali
 // Returns the localized string for the current language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSLocalizedString/localizedString()
-func (c_ CSLocalizedString) LocalizedString() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedString"))
+func (c_ CSLocalizedString) LocalizedString() foundation.String {
+	rv := objc.Send[foundation.String](c_.ID, objc.Sel("localizedString"))
 	return rv
 }
 

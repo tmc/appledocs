@@ -83,8 +83,8 @@ func NewNWUDPSession() NWUDPSession {
 // The current evaluated path for the session’s
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
-func (n_ NWUDPSession) CurrentPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("currentPath"))
+func (n_ NWUDPSession) CurrentPath() NWPath {
+	rv := objc.Send[NWPath](n_.ID, objc.Sel("currentPath"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (n_ NWUDPSession) CurrentPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
-func (n_ NWUDPSession) SetCurrentPath(value unsafe.Pointer) {
+func (n_ NWUDPSession) SetCurrentPath(value INWPath) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrentPath:"), value)
 }
 
 // The destination endpoint with which this session was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/endpoint
-func (n_ NWUDPSession) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("endpoint"))
+func (n_ NWUDPSession) Endpoint() NWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (n_ NWUDPSession) Endpoint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/endpoint
-func (n_ NWUDPSession) SetEndpoint(value unsafe.Pointer) {
+func (n_ NWUDPSession) SetEndpoint(value INWEndpoint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEndpoint:"), value)
 }
 
@@ -173,8 +173,8 @@ func (n_ NWUDPSession) SetMaximumDatagramLength(value int) {
 // The currently targeted remote endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
-func (n_ NWUDPSession) ResolvedEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("resolvedEndpoint"))
+func (n_ NWUDPSession) ResolvedEndpoint() NWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("resolvedEndpoint"))
 	return rv
 }
 
@@ -184,7 +184,7 @@ func (n_ NWUDPSession) ResolvedEndpoint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
-func (n_ NWUDPSession) SetResolvedEndpoint(value unsafe.Pointer) {
+func (n_ NWUDPSession) SetResolvedEndpoint(value INWEndpoint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setResolvedEndpoint:"), value)
 }
 

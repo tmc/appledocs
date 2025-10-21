@@ -94,15 +94,15 @@ func (n_ NEFilterBrowserFlow) ParentURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
-func (n_ NEFilterBrowserFlow) SetParentURL(value foundation.URL) {
+func (n_ NEFilterBrowserFlow) SetParentURL(value foundation.IURL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setParentURL:"), value)
 }
 
 // An HTTP request of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
-func (n_ NEFilterBrowserFlow) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("request"))
+func (n_ NEFilterBrowserFlow) Request() foundation.URLRequest {
+	rv := objc.Send[foundation.URLRequest](n_.ID, objc.Sel("request"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (n_ NEFilterBrowserFlow) Request() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
-func (n_ NEFilterBrowserFlow) SetRequest(value unsafe.Pointer) {
+func (n_ NEFilterBrowserFlow) SetRequest(value foundation.IURLRequest) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
 }
 
 // An HTTP response of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
-func (n_ NEFilterBrowserFlow) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("response"))
+func (n_ NEFilterBrowserFlow) Response() foundation.URLResponse {
+	rv := objc.Send[foundation.URLResponse](n_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (n_ NEFilterBrowserFlow) Response() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
-func (n_ NEFilterBrowserFlow) SetResponse(value unsafe.Pointer) {
+func (n_ NEFilterBrowserFlow) SetResponse(value foundation.IURLResponse) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
 }
 

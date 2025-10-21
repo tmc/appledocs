@@ -25,4 +25,12 @@ func ExampleNewCKUserIdentityLookupInfoWithPhoneNumber() {
 	)
 	// Output:
 }
+// ExampleNewCKUserIdentityLookupInfoWithUserRecordID demonstrates how to create a CKUserIdentityLookupInfo instance using NewCKUserIdentityLookupInfoWithUserRecordID.
+// Creates a lookup info for the specified user record ID.
+func ExampleNewCKUserIdentityLookupInfoWithUserRecordID() {
+	_ = cloudkit.NewCKUserIdentityLookupInfoWithUserRecordID(
+		cloudkit.CKRecordID{}, // userRecordID CKRecordID
+	)
+	// Output:
+}
 

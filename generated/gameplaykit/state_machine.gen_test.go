@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewStateMachine
 
+// ExampleNewStateMachineWithStates demonstrates how to create a StateMachine instance using NewStateMachineWithStates.
+// Initializes a state machine with the specified states.
+func ExampleNewStateMachineWithStates() {
+	_ = gameplaykit.NewStateMachineWithStates(
+		[]gameplaykit.State{}, // states []State
+	)
+	// Output:
+}

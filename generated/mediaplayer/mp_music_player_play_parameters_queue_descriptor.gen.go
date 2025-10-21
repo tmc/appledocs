@@ -30,8 +30,8 @@ type _MusicPlayerPlayParametersQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerPlayParametersQueueDescriptor] class.
 type IMusicPlayerPlayParametersQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItemWithPlayParameters(endTime foundation.TimeInterval, playParameters unsafe.Pointer)
-	SetStartTimeForItemWithPlayParameters(startTime foundation.TimeInterval, playParameters unsafe.Pointer)
+	SetEndTimeForItemWithPlayParameters(endTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters)
+	SetStartTimeForItemWithPlayParameters(startTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters)
 }
 
 // A set of properties and methods for modifying how to play items, based on play parameters the framework returns.
@@ -89,7 +89,7 @@ func NewMusicPlayerPlayParametersQueueDescriptor() MusicPlayerPlayParametersQueu
 // Creates a new queue descriptor using the designated queue of play parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/init(playParametersQueue:)
-func NewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue(playParametersQueue unsafe.Pointer) MusicPlayerPlayParametersQueueDescriptor {
+func NewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue(playParametersQueue []MusicPlayerPlayParameters) MusicPlayerPlayParametersQueueDescriptor {
 	instance := getMusicPlayerPlayParametersQueueDescriptorClass().Alloc()
 	rv := objc.Send[MusicPlayerPlayParametersQueueDescriptor](instance.ID, objc.Sel("initWithPlayParametersQueue:"), playParametersQueue)
 	rv.Autorelease()
@@ -100,14 +100,14 @@ func NewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue(playPara
 // Sets the time the item with the associated play parameters is to stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/setEndTime(_:forItemWith:)
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetEndTimeForItemWithPlayParameters(endTime foundation.TimeInterval, playParameters unsafe.Pointer) {
+func (m_ MusicPlayerPlayParametersQueueDescriptor) SetEndTimeForItemWithPlayParameters(endTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItemWithPlayParameters:"), endTime, playParameters)
 }
 
 // Sets the time the item with the associated play parameters is to start playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/setStartTime(_:forItemWith:)
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartTimeForItemWithPlayParameters(startTime foundation.TimeInterval, playParameters unsafe.Pointer) {
+func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartTimeForItemWithPlayParameters(startTime foundation.ITimeInterval, playParameters IMPMusicPlayerPlayParameters) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItemWithPlayParameters:"), startTime, playParameters)
 }
 
@@ -142,8 +142,8 @@ func (m_ MusicPlayerPlayParametersQueueDescriptor) SetPlayParametersQueue(value 
 // The item identified by the play parameters to play first.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/startItemPlayParameters
-func (m_ MusicPlayerPlayParametersQueueDescriptor) StartItemPlayParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startItemPlayParameters"))
+func (m_ MusicPlayerPlayParametersQueueDescriptor) StartItemPlayParameters() MPMusicPlayerPlayParameters {
+	rv := objc.Send[MPMusicPlayerPlayParameters](m_.ID, objc.Sel("startItemPlayParameters"))
 	return rv
 }
 
@@ -153,7 +153,7 @@ func (m_ MusicPlayerPlayParametersQueueDescriptor) StartItemPlayParameters() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/startItemPlayParameters
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartItemPlayParameters(value unsafe.Pointer) {
+func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartItemPlayParameters(value IMPMusicPlayerPlayParameters) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItemPlayParameters:"), value)
 }
 

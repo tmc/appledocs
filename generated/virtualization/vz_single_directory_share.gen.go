@@ -86,7 +86,7 @@ func NewVZSingleDirectoryShare() VZSingleDirectoryShare {
 // Creates a directory share with a directory that you specify on the host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/init(directory:)
-func NewVZSingleDirectoryShareWithDirectory(directory unsafe.Pointer) VZSingleDirectoryShare {
+func NewVZSingleDirectoryShareWithDirectory(directory IVZSharedDirectory) VZSingleDirectoryShare {
 	instance := getVZSingleDirectoryShareClass().Alloc()
 	rv := objc.Send[VZSingleDirectoryShare](instance.ID, objc.Sel("initWithDirectory:"), directory)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewVZSingleDirectoryShareWithDirectory(directory unsafe.Pointer) VZSingleDi
 // The directory on the host to share with the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSingleDirectoryShare/directory
-func (v_ VZSingleDirectoryShare) Directory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("directory"))
+func (v_ VZSingleDirectoryShare) Directory() VZSharedDirectory {
+	rv := objc.Send[VZSharedDirectory](v_.ID, objc.Sel("directory"))
 	return rv
 }
 

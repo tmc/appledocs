@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = mediaplayer.NewMediaItemCollection
 
+// ExampleNewMediaItemCollectionWithItems demonstrates how to create a MediaItemCollection instance using NewMediaItemCollectionWithItems.
+// Initializes a media item collection with an array of media items.
+func ExampleNewMediaItemCollectionWithItems() {
+	_ = mediaplayer.NewMediaItemCollectionWithItems(
+		[]mediaplayer.MediaItem{}, // items []MediaItem
+	)
+	// Output:
+}

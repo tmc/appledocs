@@ -83,7 +83,7 @@ func NewSpringAnimation() SpringAnimation {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/init(perceptualDuration:bounce:)
-func NewSpringAnimationWithPerceptualDurationBounce(perceptualDuration unsafe.Pointer, bounce float64) SpringAnimation {
+func NewSpringAnimationWithPerceptualDurationBounce(perceptualDuration ITimeInterval, bounce float64) SpringAnimation {
 	instance := getSpringAnimationClass().Alloc()
 	rv := objc.Send[SpringAnimation](instance.ID, objc.Sel("initWithPerceptualDuration:bounce:"), perceptualDuration, bounce)
 	rv.Autorelease()
@@ -169,16 +169,16 @@ func (s_ SpringAnimation) SetMass(value float64) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/perceptualDuration
-func (s_ SpringAnimation) PerceptualDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("perceptualDuration"))
+func (s_ SpringAnimation) PerceptualDuration() TimeInterval {
+	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("perceptualDuration"))
 	return rv
 }
 
 // The estimated duration required for the spring system to be considered at rest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CASpringAnimation/settlingDuration
-func (s_ SpringAnimation) SettlingDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("settlingDuration"))
+func (s_ SpringAnimation) SettlingDuration() TimeInterval {
+	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("settlingDuration"))
 	return rv
 }
 

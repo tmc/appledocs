@@ -87,7 +87,7 @@ func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) ServerSideProces
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/serversideprocessingtimeout
-func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) TimedInvokeTimeo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
-func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

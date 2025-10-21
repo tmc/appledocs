@@ -84,8 +84,8 @@ func NewINSetRadioStationIntent() INSetRadioStationIntent {
 // The channel number of the station.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
-func (i_ INSetRadioStationIntent) Channel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("channel"))
+func (i_ INSetRadioStationIntent) Channel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("channel"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (i_ INSetRadioStationIntent) Channel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/channel
-func (i_ INSetRadioStationIntent) SetChannel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), objc.String(value))
+func (i_ INSetRadioStationIntent) SetChannel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), value)
 }
 
 // The broadcast frequency of the radio station.
@@ -156,8 +156,8 @@ func (i_ INSetRadioStationIntent) SetRadioType(value unsafe.Pointer) {
 // The name associated with the radio station.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
-func (i_ INSetRadioStationIntent) StationName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("stationName"))
+func (i_ INSetRadioStationIntent) StationName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("stationName"))
 	return rv
 }
 
@@ -167,8 +167,8 @@ func (i_ INSetRadioStationIntent) StationName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetradiostationintent/stationname
-func (i_ INSetRadioStationIntent) SetStationName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), objc.String(value))
+func (i_ INSetRadioStationIntent) SetStationName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), value)
 }
 
 

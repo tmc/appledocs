@@ -32,7 +32,7 @@ type INISession interface {
 	objectivec.IObject
 	Invalidate()
 	Pause()
-	RunWithConfiguration(configuration unsafe.Pointer)
+	RunWithConfiguration(configuration INIConfiguration)
 	SetARSession(session unsafe.Pointer)
 }
 
@@ -115,7 +115,7 @@ func (n_ NISession) Pause() {
 // Starts a session with a nearby peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/run(_:)
-func (n_ NISession) RunWithConfiguration(configuration unsafe.Pointer) {
+func (n_ NISession) RunWithConfiguration(configuration INIConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("runWithConfiguration:"), configuration)
 }
 
@@ -129,8 +129,8 @@ func (n_ NISession) SetARSession(session unsafe.Pointer) {
 // The configuration run by the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/configuration
-func (n_ NISession) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("configuration"))
+func (n_ NISession) Configuration() NIConfiguration {
+	rv := objc.Send[NIConfiguration](n_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -181,8 +181,8 @@ func (n_ NISession) DeviceCapabilities() objc.ID {
 // A temporary, random identifier for a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/discoveryToken
-func (n_ NISession) DiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
+func (n_ NISession) DiscoveryToken() NIDiscoveryToken {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
 	return rv
 }
 

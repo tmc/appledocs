@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [UnaryReductionNode] class.
@@ -78,7 +79,7 @@ func NewUnaryReductionNode() UnaryReductionNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNUnaryReductionNode/init(source:)
-func NewUnaryReductionNodeWithSource(sourceNode unsafe.Pointer) UnaryReductionNode {
+func NewUnaryReductionNodeWithSource(sourceNode IMPSNNImageNode) UnaryReductionNode {
 	instance := getUnaryReductionNodeClass().Alloc()
 	rv := objc.Send[UnaryReductionNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
@@ -88,8 +89,8 @@ func NewUnaryReductionNodeWithSource(sourceNode unsafe.Pointer) UnaryReductionNo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode/cliprectsource
-func (u_ UnaryReductionNode) ClipRectSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("clipRectSource"))
+func (u_ UnaryReductionNode) ClipRectSource() corelocation.Region {
+	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("clipRectSource"))
 	return rv
 }
 
@@ -97,7 +98,7 @@ func (u_ UnaryReductionNode) ClipRectSource() unsafe.Pointer {
 // SetClipRectSource sets the value of the clipRectSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode/cliprectsource
-func (u_ UnaryReductionNode) SetClipRectSource(value unsafe.Pointer) {
+func (u_ UnaryReductionNode) SetClipRectSource(value corelocation.IRegion) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setClipRectSource:"), value)
 }
 

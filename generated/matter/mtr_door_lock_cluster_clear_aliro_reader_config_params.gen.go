@@ -90,7 +90,7 @@ func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterClearAliroReaderConfigParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterClearAliroReaderConfigParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterClearAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

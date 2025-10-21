@@ -91,8 +91,8 @@ func (n_ NIDiscoveryToken) DeviceCapabilities() objc.ID {
 // The configuration run by the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
-func (n_ NIDiscoveryToken) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("configuration"))
+func (n_ NIDiscoveryToken) Configuration() NIConfiguration {
+	rv := objc.Send[NIConfiguration](n_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (n_ NIDiscoveryToken) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
-func (n_ NIDiscoveryToken) SetConfiguration(value unsafe.Pointer) {
+func (n_ NIDiscoveryToken) SetConfiguration(value INIConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setConfiguration:"), value)
 }
 
@@ -127,8 +127,8 @@ func (n_ NIDiscoveryToken) SetDelegateQueue(value unsafe.Pointer) {
 // A temporary, random identifier for a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
-func (n_ NIDiscoveryToken) DiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
+func (n_ NIDiscoveryToken) DiscoveryToken() NIDiscoveryToken {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (n_ NIDiscoveryToken) DiscoveryToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/discoverytoken
-func (n_ NIDiscoveryToken) SetDiscoveryToken(value unsafe.Pointer) {
+func (n_ NIDiscoveryToken) SetDiscoveryToken(value INIDiscoveryToken) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDiscoveryToken:"), value)
 }
 

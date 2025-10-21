@@ -83,7 +83,7 @@ func NewCDevice() CDevice {
 // Creates a device using the GPUs you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(gpuDevices:)
-func NewCDeviceWithGPUDevices(gpus unsafe.Pointer) CDevice {
+func NewCDeviceWithGPUDevices(gpus []objc.ID) CDevice {
 	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithGPUDevices:"), gpus)
 	return rv
 }
@@ -93,7 +93,7 @@ func NewCDeviceWithGPUDevices(gpus unsafe.Pointer) CDevice {
 // Creates a device of the type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:)
-func NewCDeviceWithType(type_ unsafe.Pointer) CDevice {
+func NewCDeviceWithType(type_ CDeviceType) CDevice {
 	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:"), type_)
 	return rv
 }
@@ -103,7 +103,7 @@ func NewCDeviceWithType(type_ unsafe.Pointer) CDevice {
 // Creates a device that you can configure to use multiple compute devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:selectsMultipleComputeDevices:)
-func NewCDeviceWithTypeSelectsMultipleComputeDevices(type_ unsafe.Pointer, selectsMultipleComputeDevices bool) CDevice {
+func NewCDeviceWithTypeSelectsMultipleComputeDevices(type_ CDeviceType, selectsMultipleComputeDevices bool) CDevice {
 	rv := objc.Send[CDevice](objc.ID(getCDeviceClass().class), objc.Sel("deviceWithType:selectsMultipleComputeDevices:"), type_, selectsMultipleComputeDevices)
 	return rv
 }
@@ -136,7 +136,7 @@ func (cc _CDeviceClass) GpuDevice() unsafe.Pointer {
 // Creates a device using the GPUs you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(gpuDevices:)
-func (cc _CDeviceClass) DeviceWithGPUDevices(gpus unsafe.Pointer) unsafe.Pointer {
+func (cc _CDeviceClass) DeviceWithGPUDevices(gpus []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithGPUDevices:"), gpus)
 	return rv
 }
@@ -144,7 +144,7 @@ func (cc _CDeviceClass) DeviceWithGPUDevices(gpus unsafe.Pointer) unsafe.Pointer
 // Creates a device of the type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:)
-func (cc _CDeviceClass) DeviceWithType(type_ unsafe.Pointer) unsafe.Pointer {
+func (cc _CDeviceClass) DeviceWithType(type_ CDeviceType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithType:"), type_)
 	return rv
 }
@@ -152,7 +152,7 @@ func (cc _CDeviceClass) DeviceWithType(type_ unsafe.Pointer) unsafe.Pointer {
 // Creates a device that you can configure to use multiple compute devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/init(type:selectsMultipleComputeDevices:)
-func (cc _CDeviceClass) DeviceWithTypeSelectsMultipleComputeDevices(type_ unsafe.Pointer, selectsMultipleComputeDevices bool) unsafe.Pointer {
+func (cc _CDeviceClass) DeviceWithTypeSelectsMultipleComputeDevices(type_ CDeviceType, selectsMultipleComputeDevices bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("deviceWithType:selectsMultipleComputeDevices:"), type_, selectsMultipleComputeDevices)
 	return rv
 }
@@ -160,8 +160,8 @@ func (cc _CDeviceClass) DeviceWithTypeSelectsMultipleComputeDevices(type_ unsafe
 // The active device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/actualDeviceType
-func (c_ CDevice) ActualDeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("actualDeviceType"))
+func (c_ CDevice) ActualDeviceType() CDeviceType {
+	rv := objc.Send[CDeviceType](c_.ID, objc.Sel("actualDeviceType"))
 	return rv
 }
 
@@ -176,8 +176,8 @@ func (c_ CDevice) GpuDevices() []objc.ID {
 // The type you specify when creating the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCDevice/type
-func (c_ CDevice) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ CDevice) Type() CDeviceType {
+	rv := objc.Send[CDeviceType](c_.ID, objc.Sel("type"))
 	return rv
 }
 

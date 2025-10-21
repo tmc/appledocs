@@ -9,6 +9,8 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/securityfoundation"
 )
 
 // The class instance for the [SFAuthorizationView] class.
@@ -31,21 +33,21 @@ type _SFAuthorizationViewClass struct {
 // An interface definition for the [SFAuthorizationView] class.
 type ISFAuthorizationView interface {
 	appkit.IView
-	Authorization() unsafe.Pointer
+	Authorization() securityfoundation.SFAuthorization
 	AuthorizationRights() unsafe.Pointer
 	AuthorizationState() unsafe.Pointer
-	Authorize(inSender objc.ID) bool
-	Deauthorize(inSender objc.ID) bool
+	Authorize(inSender objectivec.IObject) bool
+	Deauthorize(inSender objectivec.IObject) bool
 	Delegate() objc.ID
 	IsEnabled() bool
 	SetAuthorizationRights(authorizationRights unsafe.Pointer)
 	SetAutoupdate(autoupdate bool)
-	SetAutoupdateInterval(autoupdate bool, interval foundation.TimeInterval)
-	SetDelegate(delegate objc.ID)
+	SetAutoupdateInterval(autoupdate bool, interval foundation.ITimeInterval)
+	SetDelegate(delegate objectivec.IObject)
 	SetEnabled(enabled bool)
 	SetFlags(flags unsafe.Pointer)
 	SetString(authorizationString unsafe.Pointer)
-	UpdateStatus(inSender objc.ID) bool
+	UpdateStatus(inSender objectivec.IObject) bool
 }
 
 // The class responsible for displaying a lock icon that can be used to indicate that a user interface has restricted access.
@@ -101,8 +103,8 @@ func NewSFAuthorizationView() SFAuthorizationView {
 // Returns the authorization object associated with this view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/authorization()
-func (s_ SFAuthorizationView) Authorization() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("authorization"))
+func (s_ SFAuthorizationView) Authorization() securityfoundation.SFAuthorization {
+	rv := objc.Send[securityfoundation.SFAuthorization](s_.ID, objc.Sel("authorization"))
 	return rv
 }
 
@@ -125,7 +127,7 @@ func (s_ SFAuthorizationView) AuthorizationState() unsafe.Pointer {
 // Attempts to unlock the lock icon in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/authorize(_:)
-func (s_ SFAuthorizationView) Authorize(inSender objc.ID) bool {
+func (s_ SFAuthorizationView) Authorize(inSender objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("authorize:"), inSender)
 	return rv
 }
@@ -133,7 +135,7 @@ func (s_ SFAuthorizationView) Authorize(inSender objc.ID) bool {
 // Sets the authorization state to unauthorized and locks the lock icon in the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/deauthorize(_:)
-func (s_ SFAuthorizationView) Deauthorize(inSender objc.ID) bool {
+func (s_ SFAuthorizationView) Deauthorize(inSender objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("deauthorize:"), inSender)
 	return rv
 }
@@ -171,14 +173,14 @@ func (s_ SFAuthorizationView) SetAutoupdate(autoupdate bool) {
 // Sets the authorization view to update itself at a specific interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/setAutoupdate(_:interval:)
-func (s_ SFAuthorizationView) SetAutoupdateInterval(autoupdate bool, interval foundation.TimeInterval) {
+func (s_ SFAuthorizationView) SetAutoupdateInterval(autoupdate bool, interval foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutoupdate:interval:"), autoupdate, interval)
 }
 
 // Sets the delegate for this authorization view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/setDelegate(_:)
-func (s_ SFAuthorizationView) SetDelegate(delegate objc.ID) {
+func (s_ SFAuthorizationView) SetDelegate(delegate objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), delegate)
 }
 
@@ -206,7 +208,7 @@ func (s_ SFAuthorizationView) SetString(authorizationString unsafe.Pointer) {
 // Manually updates the authorization view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationView/updateStatus(_:)
-func (s_ SFAuthorizationView) UpdateStatus(inSender objc.ID) bool {
+func (s_ SFAuthorizationView) UpdateStatus(inSender objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("updateStatus:"), inSender)
 	return rv
 }

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 // Initializes container options using the given CloudKit container identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/init(containerIdentifier:)
-func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier string) PersistentCloudKitContainerOptions {
+func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdentifier appkit.string) PersistentCloudKitContainerOptions {
 	instance := getPersistentCloudKitContainerOptionsClass().Alloc()
-	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), objc.String(containerIdentifier))
+	rv := objc.Send[PersistentCloudKitContainerOptions](instance.ID, objc.Sel("initWithContainerIdentifier:"), containerIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -96,8 +97,8 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 // The identifier of the CloudKit container associated with a given store description.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentCloudKitContainerOptions/containerIdentifier
-func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("containerIdentifier"))
+func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _TKSmartCardSlotClass struct {
 // An interface definition for the [TKSmartCardSlot] class.
 type ITKSmartCardSlot interface {
 	objectivec.IObject
-	MakeSmartCard() unsafe.Pointer
+	MakeSmartCard() TKSmartCard
 }
 
 // A single smart card reader slot in the system.
@@ -84,24 +85,24 @@ func NewTKSmartCardSlot() TKSmartCardSlot {
 // Creates a new object representing the currently inserted Smart Card.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/makeSmartCard()
-func (t_ TKSmartCardSlot) MakeSmartCard() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("makeSmartCard"))
+func (t_ TKSmartCardSlot) MakeSmartCard() TKSmartCard {
+	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("makeSmartCard"))
 	return rv
 }
 
 // The name of the Smart Card reader slot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/name
-func (t_ TKSmartCardSlot) Name() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
+func (t_ TKSmartCardSlot) Name() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The current state of the Smart Card reader slot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/state-swift.property
-func (t_ TKSmartCardSlot) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("state"))
+func (t_ TKSmartCardSlot) State() TKSmartCardSlotState {
+	rv := objc.Send[TKSmartCardSlotState](t_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -162,8 +163,8 @@ func (t_ TKSmartCardSlot) SetMaxOutputLength(value int) {
 // A list of identifiers for all the Smart Card reader slots available to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
-func (t_ TKSmartCardSlot) SlotNames() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("slotNames"))
+func (t_ TKSmartCardSlot) SlotNames() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("slotNames"))
 	return rv
 }
 
@@ -173,8 +174,8 @@ func (t_ TKSmartCardSlot) SlotNames() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
-func (t_ TKSmartCardSlot) SetSlotNames(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), objc.String(value))
+func (t_ TKSmartCardSlot) SetSlotNames(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), value)
 }
 
 

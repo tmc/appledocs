@@ -84,8 +84,8 @@ func NewDetectHumanBodyPose3DRequest() DetectHumanBodyPose3DRequest {
 // The 3D body pose the request observes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/results
-func (d_ DetectHumanBodyPose3DRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectHumanBodyPose3DRequest) Results() VNHumanBodyPose3DObservation {
+	rv := objc.Send[VNHumanBodyPose3DObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (d_ DetectHumanBodyPose3DRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest/results
-func (d_ DetectHumanBodyPose3DRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectHumanBodyPose3DRequest) SetResults(value IVNHumanBodyPose3DObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

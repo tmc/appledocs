@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,7 +90,7 @@ func NewPHASEEngine() PHASEEngine {
 // Creates an engine updated by the app or framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:)
-func NewPHASEEngineWithUpdateMode(updateMode unsafe.Pointer) PHASEEngine {
+func NewPHASEEngineWithUpdateMode(updateMode PHASEUpdateMode) PHASEEngine {
 	instance := getPHASEEngineClass().Alloc()
 	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:"), updateMode)
 	rv.Autorelease()
@@ -101,7 +102,7 @@ func NewPHASEEngineWithUpdateMode(updateMode unsafe.Pointer) PHASEEngine {
 // Creates a new engine that has both update and rendering modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/init(updateMode:renderingMode:)
-func NewPHASEEngineWithUpdateModeRenderingMode(updateMode unsafe.Pointer, renderingMode unsafe.Pointer) PHASEEngine {
+func NewPHASEEngineWithUpdateModeRenderingMode(updateMode PHASEUpdateMode, renderingMode PHASERenderingMode) PHASEEngine {
 	instance := getPHASEEngineClass().Alloc()
 	rv := objc.Send[PHASEEngine](instance.ID, objc.Sel("initWithUpdateMode:renderingMode:"), updateMode, renderingMode)
 	rv.Autorelease()
@@ -141,24 +142,24 @@ func (p_ PHASEEngine) Update() {
 // The settings that define playback for a group of sounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/activeGroupPreset
-func (p_ PHASEEngine) ActiveGroupPreset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("activeGroupPreset"))
+func (p_ PHASEEngine) ActiveGroupPreset() PHASEGroupPreset {
+	rv := objc.Send[PHASEGroupPreset](p_.ID, objc.Sel("activeGroupPreset"))
 	return rv
 }
 
 // An object that loads and unloads audio resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/assetRegistry
-func (p_ PHASEEngine) AssetRegistry() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetRegistry"))
+func (p_ PHASEEngine) AssetRegistry() PHASEAssetRegistry {
+	rv := objc.Send[PHASEAssetRegistry](p_.ID, objc.Sel("assetRegistry"))
 	return rv
 }
 
 // The physical matter through which sound travels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/defaultMedium
-func (p_ PHASEEngine) DefaultMedium() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("defaultMedium"))
+func (p_ PHASEEngine) DefaultMedium() PHASEMedium {
+	rv := objc.Send[PHASEMedium](p_.ID, objc.Sel("defaultMedium"))
 	return rv
 }
 
@@ -168,15 +169,15 @@ func (p_ PHASEEngine) DefaultMedium() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/defaultMedium
-func (p_ PHASEEngine) SetDefaultMedium(value unsafe.Pointer) {
+func (p_ PHASEEngine) SetDefaultMedium(value IPHASEMedium) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultMedium:"), value)
 }
 
 // The environmental surroundings that determine how sound resonates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/defaultReverbPreset
-func (p_ PHASEEngine) DefaultReverbPreset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("defaultReverbPreset"))
+func (p_ PHASEEngine) DefaultReverbPreset() PHASEReverbPreset {
+	rv := objc.Send[PHASEReverbPreset](p_.ID, objc.Sel("defaultReverbPreset"))
 	return rv
 }
 
@@ -186,7 +187,7 @@ func (p_ PHASEEngine) DefaultReverbPreset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/defaultReverbPreset
-func (p_ PHASEEngine) SetDefaultReverbPreset(value unsafe.Pointer) {
+func (p_ PHASEEngine) SetDefaultReverbPreset(value IPHASEReverbPreset) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultReverbPreset:"), value)
 }
 
@@ -208,16 +209,16 @@ func (p_ PHASEEngine) Groups() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/lastRenderTime
-func (p_ PHASEEngine) LastRenderTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lastRenderTime"))
+func (p_ PHASEEngine) LastRenderTime() avfaudio.AudioTime {
+	rv := objc.Send[avfaudio.AudioTime](p_.ID, objc.Sel("lastRenderTime"))
 	return rv
 }
 
 // The mode the engine implements to create a 3D sound experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/outputSpatializationMode
-func (p_ PHASEEngine) OutputSpatializationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("outputSpatializationMode"))
+func (p_ PHASEEngine) OutputSpatializationMode() PHASESpatializationMode {
+	rv := objc.Send[PHASESpatializationMode](p_.ID, objc.Sel("outputSpatializationMode"))
 	return rv
 }
 
@@ -227,23 +228,23 @@ func (p_ PHASEEngine) OutputSpatializationMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/outputSpatializationMode
-func (p_ PHASEEngine) SetOutputSpatializationMode(value unsafe.Pointer) {
+func (p_ PHASEEngine) SetOutputSpatializationMode(value PHASESpatializationMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputSpatializationMode:"), value)
 }
 
 // The status of the engine’s audio playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/renderingState
-func (p_ PHASEEngine) RenderingState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("renderingState"))
+func (p_ PHASEEngine) RenderingState() PHASERenderingState {
+	rv := objc.Send[PHASERenderingState](p_.ID, objc.Sel("renderingState"))
 	return rv
 }
 
 // The main object to which the app adds child objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEngine/rootObject
-func (p_ PHASEEngine) RootObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rootObject"))
+func (p_ PHASEEngine) RootObject() PHASEObject {
+	rv := objc.Send[PHASEObject](p_.ID, objc.Sel("rootObject"))
 	return rv
 }
 

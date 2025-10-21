@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _MKGeoJSONDecoderClass struct {
 // An interface definition for the [MKGeoJSONDecoder] class.
 type IMKGeoJSONDecoder interface {
 	objectivec.IObject
-	GeoJSONObjectsWithDataError(data unsafe.Pointer, errorPtr unsafe.Pointer) []objc.ID
+	GeoJSONObjectsWithDataError(data foundation.IData, errorPtr unsafe.Pointer) []objc.ID
 }
 
 // An object that decodes GeoJSON objects into MapKit types.
@@ -84,7 +85,7 @@ func NewMKGeoJSONDecoder() MKGeoJSONDecoder {
 // Decodes the provided data into native MapKit types that a map can display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKGeoJSONDecoder/decode(_:)
-func (m_ MKGeoJSONDecoder) GeoJSONObjectsWithDataError(data unsafe.Pointer, errorPtr unsafe.Pointer) []objc.ID {
+func (m_ MKGeoJSONDecoder) GeoJSONObjectsWithDataError(data foundation.IData, errorPtr unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("geoJSONObjectsWithData:error:"), data, errorPtr)
 	return rv
 }

@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = iobluetooth.NewBluetoothSDPServiceAttribute
 
+// ExampleNewBluetoothSDPServiceAttributeWithIDAttributeElement demonstrates how to create a BluetoothSDPServiceAttribute instance using NewBluetoothSDPServiceAttributeWithIDAttributeElement.
+// Initializes a new service attribute with the given ID and data element.
+func ExampleNewBluetoothSDPServiceAttributeWithIDAttributeElement() {
+	_ = iobluetooth.NewBluetoothSDPServiceAttributeWithIDAttributeElement(
+		iobluetooth.BluetoothSDPServiceAttributeID{}, // newAttributeID BluetoothSDPServiceAttributeID
+		iobluetooth.IOBluetoothSDPDataElement{}, // attributeElement IOBluetoothSDPDataElement
+	)
+	// Output:
+}

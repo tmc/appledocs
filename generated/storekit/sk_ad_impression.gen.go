@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -86,9 +87,9 @@ func NewAdImpression() AdImpression {
 // Creates an ad impression object using the supplied values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/init(sourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:)
-func NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion(sourceAppStoreItemIdentifier foundation.Number, advertisedAppStoreItemIdentifier foundation.Number, adNetworkIdentifier string, adCampaignIdentifier foundation.Number, adImpressionIdentifier string, timestamp foundation.Number, signature string, version string) AdImpression {
+func NewAdImpressionWithSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion(sourceAppStoreItemIdentifier foundation.INumber, advertisedAppStoreItemIdentifier foundation.INumber, adNetworkIdentifier appkit.string, adCampaignIdentifier foundation.INumber, adImpressionIdentifier appkit.string, timestamp foundation.INumber, signature appkit.string, version appkit.string) AdImpression {
 	instance := getAdImpressionClass().Alloc()
-	rv := objc.Send[AdImpression](instance.ID, objc.Sel("initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:"), sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, objc.String(adNetworkIdentifier), adCampaignIdentifier, objc.String(adImpressionIdentifier), timestamp, objc.String(signature), objc.String(version))
+	rv := objc.Send[AdImpression](instance.ID, objc.Sel("initWithSourceAppStoreItemIdentifier:advertisedAppStoreItemIdentifier:adNetworkIdentifier:adCampaignIdentifier:adImpressionIdentifier:timestamp:signature:version:"), sourceAppStoreItemIdentifier, advertisedAppStoreItemIdentifier, adNetworkIdentifier, adCampaignIdentifier, adImpressionIdentifier, timestamp, signature, version)
 	rv.Autorelease()
 	return rv
 }
@@ -108,15 +109,15 @@ func (a_ AdImpression) AdCampaignIdentifier() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adCampaignIdentifier
-func (a_ AdImpression) SetAdCampaignIdentifier(value foundation.Number) {
+func (a_ AdImpression) SetAdCampaignIdentifier(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAdCampaignIdentifier:"), value)
 }
 
 // A human-readable description of the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adDescription
-func (a_ AdImpression) AdDescription() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("adDescription"))
+func (a_ AdImpression) AdDescription() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("adDescription"))
 	return rv
 }
 
@@ -126,15 +127,15 @@ func (a_ AdImpression) AdDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adDescription
-func (a_ AdImpression) SetAdDescription(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdDescription:"), objc.String(value))
+func (a_ AdImpression) SetAdDescription(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdDescription:"), value)
 }
 
 // A random value to use for added security.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adImpressionIdentifier
-func (a_ AdImpression) AdImpressionIdentifier() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("adImpressionIdentifier"))
+func (a_ AdImpression) AdImpressionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("adImpressionIdentifier"))
 	return rv
 }
 
@@ -144,15 +145,15 @@ func (a_ AdImpression) AdImpressionIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adImpressionIdentifier
-func (a_ AdImpression) SetAdImpressionIdentifier(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdImpressionIdentifier:"), objc.String(value))
+func (a_ AdImpression) SetAdImpressionIdentifier(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdImpressionIdentifier:"), value)
 }
 
 // A string that represents the advertising network’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adNetworkIdentifier
-func (a_ AdImpression) AdNetworkIdentifier() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("adNetworkIdentifier"))
+func (a_ AdImpression) AdNetworkIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("adNetworkIdentifier"))
 	return rv
 }
 
@@ -162,15 +163,15 @@ func (a_ AdImpression) AdNetworkIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adNetworkIdentifier
-func (a_ AdImpression) SetAdNetworkIdentifier(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdNetworkIdentifier:"), objc.String(value))
+func (a_ AdImpression) SetAdNetworkIdentifier(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdNetworkIdentifier:"), value)
 }
 
 // The name of the entity that purchased the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adPurchaserName
-func (a_ AdImpression) AdPurchaserName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("adPurchaserName"))
+func (a_ AdImpression) AdPurchaserName() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("adPurchaserName"))
 	return rv
 }
 
@@ -180,15 +181,15 @@ func (a_ AdImpression) AdPurchaserName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adPurchaserName
-func (a_ AdImpression) SetAdPurchaserName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdPurchaserName:"), objc.String(value))
+func (a_ AdImpression) SetAdPurchaserName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdPurchaserName:"), value)
 }
 
 // The type of the ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adType
-func (a_ AdImpression) AdType() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("adType"))
+func (a_ AdImpression) AdType() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("adType"))
 	return rv
 }
 
@@ -198,8 +199,8 @@ func (a_ AdImpression) AdType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/adType
-func (a_ AdImpression) SetAdType(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAdType:"), objc.String(value))
+func (a_ AdImpression) SetAdType(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAdType:"), value)
 }
 
 // The App Store ID of the app that the ad impression advertises.
@@ -216,15 +217,15 @@ func (a_ AdImpression) AdvertisedAppStoreItemIdentifier() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/advertisedAppStoreItemIdentifier
-func (a_ AdImpression) SetAdvertisedAppStoreItemIdentifier(value foundation.Number) {
+func (a_ AdImpression) SetAdvertisedAppStoreItemIdentifier(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAdvertisedAppStoreItemIdentifier:"), value)
 }
 
 // The advertising network’s cryptographic signature for the ad impression.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/signature
-func (a_ AdImpression) Signature() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("signature"))
+func (a_ AdImpression) Signature() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("signature"))
 	return rv
 }
 
@@ -234,8 +235,8 @@ func (a_ AdImpression) Signature() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/signature
-func (a_ AdImpression) SetSignature(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSignature:"), objc.String(value))
+func (a_ AdImpression) SetSignature(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSignature:"), value)
 }
 
 // The App Store ID of the app that displays the ad.
@@ -252,7 +253,7 @@ func (a_ AdImpression) SourceAppStoreItemIdentifier() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/sourceAppStoreItemIdentifier
-func (a_ AdImpression) SetSourceAppStoreItemIdentifier(value foundation.Number) {
+func (a_ AdImpression) SetSourceAppStoreItemIdentifier(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSourceAppStoreItemIdentifier:"), value)
 }
 
@@ -270,7 +271,7 @@ func (a_ AdImpression) SourceIdentifier() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/sourceIdentifier
-func (a_ AdImpression) SetSourceIdentifier(value foundation.Number) {
+func (a_ AdImpression) SetSourceIdentifier(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSourceIdentifier:"), value)
 }
 
@@ -288,15 +289,15 @@ func (a_ AdImpression) Timestamp() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/timestamp
-func (a_ AdImpression) SetTimestamp(value foundation.Number) {
+func (a_ AdImpression) SetTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimestamp:"), value)
 }
 
 // The version of the SKAdNetwork API.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/version
-func (a_ AdImpression) Version() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("version"))
+func (a_ AdImpression) Version() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -306,8 +307,8 @@ func (a_ AdImpression) Version() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdImpression/version
-func (a_ AdImpression) SetVersion(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), objc.String(value))
+func (a_ AdImpression) SetVersion(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setVersion:"), value)
 }
 
 

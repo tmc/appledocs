@@ -84,7 +84,7 @@ func NewMetadataItem() MetadataItem {
 // Returns metadata items whose locales match one of the specified language identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)
-func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredAndSortedAccordingToPreferredLanguages(metadataItems unsafe.Pointer, preferredLanguages unsafe.Pointer) []MetadataItem {
+func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredAndSortedAccordingToPreferredLanguages(metadataItems []MetadataItem, preferredLanguages []string) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:"), metadataItems, preferredLanguages)
 	return rv
 }
@@ -92,7 +92,7 @@ func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredAndSortedAccordingToP
 // Returns metadata items for the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredByIdentifier:)
-func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredByIdentifier(metadataItems unsafe.Pointer, identifier unsafe.Pointer) []MetadataItem {
+func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredByIdentifier(metadataItems []MetadataItem, identifier IMetadataIdentifier) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:filteredByIdentifier:"), metadataItems, identifier)
 	return rv
 }
@@ -100,8 +100,8 @@ func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredByIdentifier(metadata
 // The metadata items an asset contains for common metadata identifiers that provide a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
-func (m_ MetadataItem) CommonMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commonMetadata"))
+func (m_ MetadataItem) CommonMetadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (m_ MetadataItem) CommonMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
-func (m_ MetadataItem) SetCommonMetadata(value unsafe.Pointer) {
+func (m_ MetadataItem) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonMetadata:"), value)
 }
 
 // An array of metadata items for all metadata identifiers for which a value is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/metadata
-func (m_ MetadataItem) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadata"))
+func (m_ MetadataItem) Metadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (m_ MetadataItem) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/metadata
-func (m_ MetadataItem) SetMetadata(value unsafe.Pointer) {
+func (m_ MetadataItem) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // The common key of the metadata item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/commonkey
-func (m_ MetadataItem) CommonKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commonKey"))
+func (m_ MetadataItem) CommonKey() MetadataKey {
+	rv := objc.Send[MetadataKey](m_.ID, objc.Sel("commonKey"))
 	return rv
 }
 
@@ -147,15 +147,15 @@ func (m_ MetadataItem) CommonKey() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/commonkey
-func (m_ MetadataItem) SetCommonKey(value unsafe.Pointer) {
+func (m_ MetadataItem) SetCommonKey(value IMetadataKey) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonKey:"), value)
 }
 
 // The data type of the metadata item’s value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datatype
-func (m_ MetadataItem) DataType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("dataType"))
+func (m_ MetadataItem) DataType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -165,15 +165,15 @@ func (m_ MetadataItem) DataType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datatype
-func (m_ MetadataItem) SetDataType(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), objc.String(value))
+func (m_ MetadataItem) SetDataType(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
 }
 
 // The value of the metadata item as a data value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datavalue
-func (m_ MetadataItem) DataValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataValue"))
+func (m_ MetadataItem) DataValue() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("dataValue"))
 	return rv
 }
 
@@ -183,15 +183,15 @@ func (m_ MetadataItem) DataValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datavalue
-func (m_ MetadataItem) SetDataValue(value unsafe.Pointer) {
+func (m_ MetadataItem) SetDataValue(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataValue:"), value)
 }
 
 // The value of the metadata item as a date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datevalue
-func (m_ MetadataItem) DateValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dateValue"))
+func (m_ MetadataItem) DateValue() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("dateValue"))
 	return rv
 }
 
@@ -201,7 +201,7 @@ func (m_ MetadataItem) DateValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datevalue
-func (m_ MetadataItem) SetDateValue(value unsafe.Pointer) {
+func (m_ MetadataItem) SetDateValue(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDateValue:"), value)
 }
 
@@ -226,8 +226,8 @@ func (m_ MetadataItem) SetDuration(value unsafe.Pointer) {
 // The IETF BCP 47 (RFC 4646) language identifier of the metadata item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extendedlanguagetag
-func (m_ MetadataItem) ExtendedLanguageTag() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
+func (m_ MetadataItem) ExtendedLanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -237,8 +237,8 @@ func (m_ MetadataItem) ExtendedLanguageTag() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extendedlanguagetag
-func (m_ MetadataItem) SetExtendedLanguageTag(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+func (m_ MetadataItem) SetExtendedLanguageTag(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
 }
 
 // A dictionary of additional attributes for a metadata item.
@@ -262,8 +262,8 @@ func (m_ MetadataItem) SetExtraAttributes(value unsafe.Pointer) {
 // An identifier for a metadata item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/identifier
-func (m_ MetadataItem) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("identifier"))
+func (m_ MetadataItem) Identifier() MetadataIdentifier {
+	rv := objc.Send[MetadataIdentifier](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -273,7 +273,7 @@ func (m_ MetadataItem) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/identifier
-func (m_ MetadataItem) SetIdentifier(value unsafe.Pointer) {
+func (m_ MetadataItem) SetIdentifier(value IMetadataIdentifier) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -316,8 +316,8 @@ func (m_ MetadataItem) SetKeySpace(value unsafe.Pointer) {
 // The locale of the metadata item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locale"))
+func (m_ MetadataItem) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -327,7 +327,7 @@ func (m_ MetadataItem) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) SetLocale(value unsafe.Pointer) {
+func (m_ MetadataItem) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -345,15 +345,15 @@ func (m_ MetadataItem) NumberValue() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/numbervalue
-func (m_ MetadataItem) SetNumberValue(value foundation.Number) {
+func (m_ MetadataItem) SetNumberValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberValue:"), value)
 }
 
 // The start date of the timed metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/startdate
-func (m_ MetadataItem) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startDate"))
+func (m_ MetadataItem) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -363,15 +363,15 @@ func (m_ MetadataItem) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/startdate
-func (m_ MetadataItem) SetStartDate(value unsafe.Pointer) {
+func (m_ MetadataItem) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartDate:"), value)
 }
 
 // The value of the metadata item as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/stringvalue
-func (m_ MetadataItem) StringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+func (m_ MetadataItem) StringValue() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -381,8 +381,8 @@ func (m_ MetadataItem) StringValue() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/stringvalue
-func (m_ MetadataItem) SetStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (m_ MetadataItem) SetStringValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
 }
 
 // The timestamp of the metadata item.

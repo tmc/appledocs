@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,24 +101,24 @@ func (t_ Task) Resume() {
 // The underlying error if the task is in a failed state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/error
-func (t_ Task) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("error"))
+func (t_ Task) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](t_.ID, objc.Sel("error"))
 	return rv
 }
 
 // The current state of the machine learning task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/state
-func (t_ Task) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("state"))
+func (t_ Task) State() TaskState {
+	rv := objc.Send[TaskState](t_.ID, objc.Sel("state"))
 	return rv
 }
 
 // A unique name of the task to distinguish it from all other tasks at runtime.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLTask/taskIdentifier
-func (t_ Task) TaskIdentifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("taskIdentifier"))
+func (t_ Task) TaskIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("taskIdentifier"))
 	return rv
 }
 

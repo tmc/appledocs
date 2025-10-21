@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [DDMatchShipmentTrackingNumber] class.
@@ -84,16 +85,16 @@ func NewDDMatchShipmentTrackingNumber() DDMatchShipmentTrackingNumber {
 // The name of a parcel carrier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/carrier
-func (d_ DDMatchShipmentTrackingNumber) Carrier() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("carrier"))
+func (d_ DDMatchShipmentTrackingNumber) Carrier() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("carrier"))
 	return rv
 }
 
 // A string that represents a carrier’s tracking identifier for a parcel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchShipmentTrackingNumber/trackingNumber
-func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("trackingNumber"))
+func (d_ DDMatchShipmentTrackingNumber) TrackingNumber() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("trackingNumber"))
 	return rv
 }
 

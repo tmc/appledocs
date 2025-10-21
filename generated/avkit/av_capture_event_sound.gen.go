@@ -84,7 +84,7 @@ func NewCaptureEventSound() CaptureEventSound {
 // Creates a sound object for a capture event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/init(url:)
-func NewCaptureEventSoundWithURLError(url foundation.URL, error_ unsafe.Pointer) CaptureEventSound {
+func NewCaptureEventSoundWithURLError(url foundation.IURL, error_ unsafe.Pointer) CaptureEventSound {
 	instance := getCaptureEventSoundClass().Alloc()
 	rv := objc.Send[CaptureEventSound](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -95,45 +95,45 @@ func NewCaptureEventSoundWithURLError(url foundation.URL, error_ unsafe.Pointer)
 // The default sound for starting a video recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
-func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("beginVideoRecordingSound"))
+func (cc _CaptureEventSoundClass) BeginVideoRecordingSound() CaptureEventSound {
+	rv := objc.Send[AVCaptureEventSound](objc.ID(cc.class), objc.Sel("beginVideoRecordingSound"))
 	return rv
 }
 // The default sound for photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
-func (cc _CaptureEventSoundClass) CameraShutterSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("cameraShutterSound"))
+func (cc _CaptureEventSoundClass) CameraShutterSound() CaptureEventSound {
+	rv := objc.Send[AVCaptureEventSound](objc.ID(cc.class), objc.Sel("cameraShutterSound"))
 	return rv
 }
 // The default sound for ending a video recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
-func (cc _CaptureEventSoundClass) EndVideoRecordingSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("endVideoRecordingSound"))
+func (cc _CaptureEventSoundClass) EndVideoRecordingSound() CaptureEventSound {
+	rv := objc.Send[AVCaptureEventSound](objc.ID(cc.class), objc.Sel("endVideoRecordingSound"))
 	return rv
 }
 // The default sound for starting a video recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/beginVideoRecording
-func (c_ CaptureEventSound) BeginVideoRecordingSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beginVideoRecordingSound"))
+func (c_ CaptureEventSound) BeginVideoRecordingSound() AVCaptureEventSound {
+	rv := objc.Send[AVCaptureEventSound](c_.ID, objc.Sel("beginVideoRecordingSound"))
 	return rv
 }
 
 // The default sound for photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/cameraShutter
-func (c_ CaptureEventSound) CameraShutterSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cameraShutterSound"))
+func (c_ CaptureEventSound) CameraShutterSound() AVCaptureEventSound {
+	rv := objc.Send[AVCaptureEventSound](c_.ID, objc.Sel("cameraShutterSound"))
 	return rv
 }
 
 // The default sound for ending a video recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureEventSound/endVideoRecording
-func (c_ CaptureEventSound) EndVideoRecordingSound() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("endVideoRecordingSound"))
+func (c_ CaptureEventSound) EndVideoRecordingSound() AVCaptureEventSound {
+	rv := objc.Send[AVCaptureEventSound](c_.ID, objc.Sel("endVideoRecordingSound"))
 	return rv
 }
 

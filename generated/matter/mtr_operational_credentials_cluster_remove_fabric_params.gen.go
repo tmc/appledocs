@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterRemoveFabricParams) FabricIndex() found
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/fabricindex
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetFabricIndex(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterRemoveFabricParams) ServerSideProcessin
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterRemoveFabricParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterremovefabricparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterRemoveFabricParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

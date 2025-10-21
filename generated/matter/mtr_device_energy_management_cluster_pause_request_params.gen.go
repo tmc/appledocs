@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) Cause() foundation.
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetCause(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetCause(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) Duration() foundati
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/duration
-func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) ServerSideProcessin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) TimedInvokeTimeoutM
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPauseRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPauseRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

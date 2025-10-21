@@ -87,7 +87,7 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() foundation.Nu
 // SetEffectIdentifier sets the value of the effectIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectIdentifier(value foundation.Number) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectIdentifier(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectIdentifier:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) EffectVariant() foundation.Numbe
 // SetEffectVariant sets the value of the effectVariant property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value foundation.Number) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) ServerSideProcessingTimeout() fo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/serversideprocessingtimeout
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) TimedInvokeTimeoutMs() foundatio
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

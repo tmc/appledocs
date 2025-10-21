@@ -110,8 +110,8 @@ func (m_ MTL4RenderPipelineDescriptor) SetAlphaToCoverageState(value unsafe.Poin
 // Indicates whether the pipeline forces alpha channel values of color attachments to the largest representable value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/alphaToOneState
-func (m_ MTL4RenderPipelineDescriptor) AlphaToOneState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("alphaToOneState"))
+func (m_ MTL4RenderPipelineDescriptor) AlphaToOneState() MTL4AlphaToOneState {
+	rv := objc.Send[MTL4AlphaToOneState](m_.ID, objc.Sel("alphaToOneState"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (m_ MTL4RenderPipelineDescriptor) AlphaToOneState() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/alphaToOneState
-func (m_ MTL4RenderPipelineDescriptor) SetAlphaToOneState(value unsafe.Pointer) {
+func (m_ MTL4RenderPipelineDescriptor) SetAlphaToOneState(value MTL4AlphaToOneState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaToOneState:"), value)
 }
 
@@ -146,8 +146,8 @@ func (m_ MTL4RenderPipelineDescriptor) SetColorAttachmentMappingState(value unsa
 // Accesses an array containing descriptions of the color attachments this pipeline writes to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/colorAttachments
-func (m_ MTL4RenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("colorAttachments"))
+func (m_ MTL4RenderPipelineDescriptor) ColorAttachments() MTL4RenderPipelineColorAttachmentDescriptorArray {
+	rv := objc.Send[MTL4RenderPipelineColorAttachmentDescriptorArray](m_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
@@ -190,8 +190,8 @@ func (m_ MTL4RenderPipelineDescriptor) SetFragmentStaticLinkingDescriptor(value 
 // Assigns type of primitive topology this pipeline renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/inputPrimitiveTopology
-func (m_ MTL4RenderPipelineDescriptor) InputPrimitiveTopology() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("inputPrimitiveTopology"))
+func (m_ MTL4RenderPipelineDescriptor) InputPrimitiveTopology() PrimitiveTopologyClass {
+	rv := objc.Send[PrimitiveTopologyClass](m_.ID, objc.Sel("inputPrimitiveTopology"))
 	return rv
 }
 
@@ -201,7 +201,7 @@ func (m_ MTL4RenderPipelineDescriptor) InputPrimitiveTopology() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/inputPrimitiveTopology
-func (m_ MTL4RenderPipelineDescriptor) SetInputPrimitiveTopology(value unsafe.Pointer) {
+func (m_ MTL4RenderPipelineDescriptor) SetInputPrimitiveTopology(value IPrimitiveTopologyClass) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInputPrimitiveTopology:"), value)
 }
 
@@ -316,8 +316,8 @@ func (m_ MTL4RenderPipelineDescriptor) SetSupportVertexBinaryLinking(value bool)
 // Configures an optional vertex descriptor for the vertex input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/vertexDescriptor
-func (m_ MTL4RenderPipelineDescriptor) VertexDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("vertexDescriptor"))
+func (m_ MTL4RenderPipelineDescriptor) VertexDescriptor() MTLVertexDescriptor {
+	rv := objc.Send[MTLVertexDescriptor](m_.ID, objc.Sel("vertexDescriptor"))
 	return rv
 }
 
@@ -327,7 +327,7 @@ func (m_ MTL4RenderPipelineDescriptor) VertexDescriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineDescriptor/vertexDescriptor
-func (m_ MTL4RenderPipelineDescriptor) SetVertexDescriptor(value unsafe.Pointer) {
+func (m_ MTL4RenderPipelineDescriptor) SetVertexDescriptor(value IMTLVertexDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVertexDescriptor:"), value)
 }
 

@@ -105,8 +105,8 @@ func (m_ MXAverage) StandardDeviation() unsafe.Pointer {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXAverage) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXAverage) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

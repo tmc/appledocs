@@ -30,9 +30,9 @@ type _StreamClass struct {
 // An interface definition for the [Stream] class.
 type IStream interface {
 	objectivec.IObject
-	AddStreamOutputTypeSampleHandlerQueueError(output objc.ID, type_ unsafe.Pointer, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool
+	AddStreamOutputTypeSampleHandlerQueueError(output objectivec.IObject, type_ StreamOutputType, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool
 	StartCaptureWithCompletionHandler(completionHandler unsafe.Pointer)
-	UpdateContentFilterCompletionHandler(contentFilter unsafe.Pointer, completionHandler unsafe.Pointer)
+	UpdateContentFilterCompletionHandler(contentFilter ISCContentFilter, completionHandler unsafe.Pointer)
 }
 
 // An instance that represents a stream of shareable content.
@@ -86,7 +86,7 @@ func NewStream() Stream {
 // Adds a destination that receives the stream output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/addStreamOutput(_:type:sampleHandlerQueue:)
-func (s_ Stream) AddStreamOutputTypeSampleHandlerQueueError(output objc.ID, type_ unsafe.Pointer, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (s_ Stream) AddStreamOutputTypeSampleHandlerQueueError(output objectivec.IObject, type_ StreamOutputType, sampleHandlerQueue unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("addStreamOutput:type:sampleHandlerQueue:error:"), output, type_, sampleHandlerQueue, error_)
 	return rv
 }
@@ -101,7 +101,7 @@ func (s_ Stream) StartCaptureWithCompletionHandler(completionHandler unsafe.Poin
 // Updates the stream by applying a new content filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCStream/updateContentFilter(_:completionHandler:)
-func (s_ Stream) UpdateContentFilterCompletionHandler(contentFilter unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (s_ Stream) UpdateContentFilterCompletionHandler(contentFilter ISCContentFilter, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateContentFilter:completionHandler:"), contentFilter, completionHandler)
 }
 

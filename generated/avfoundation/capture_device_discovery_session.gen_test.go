@@ -9,3 +9,13 @@ import (
 // Suppress unused import errors
 var _ = avfoundation.NewCaptureDeviceDiscoverySession
 
+// ExampleNewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition demonstrates how to create a CaptureDeviceDiscoverySession instance using NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition.
+// Creates a discovery session that finds devices that match the specified criteria.
+func ExampleNewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition() {
+	_ = avfoundation.NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(
+		[]avfoundation.string{}, // deviceTypes []string
+		avfoundation.MediaType{}, // mediaType MediaType
+		avfoundation.CaptureDevicePosition{}, // position CaptureDevicePosition
+	)
+	// Output:
+}

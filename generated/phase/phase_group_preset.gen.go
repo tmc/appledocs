@@ -89,7 +89,7 @@ func NewPHASEGroupPreset() PHASEGroupPreset {
 // Creates a group preset with the designated engine, settings, and fade parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGroupPreset/init(engine:settings:timeToTarget:timeToReset:)
-func NewPHASEGroupPresetWithEngineSettingsTimeToTargetTimeToReset(engine unsafe.Pointer, settings unsafe.Pointer, timeToTarget unsafe.Pointer, timeToReset unsafe.Pointer) PHASEGroupPreset {
+func NewPHASEGroupPresetWithEngineSettingsTimeToTargetTimeToReset(engine IPHASEEngine, settings unsafe.Pointer, timeToTarget unsafe.Pointer, timeToReset unsafe.Pointer) PHASEGroupPreset {
 	instance := getPHASEGroupPresetClass().Alloc()
 	rv := objc.Send[PHASEGroupPreset](instance.ID, objc.Sel("initWithEngine:settings:timeToTarget:timeToReset:"), engine, settings, timeToTarget, timeToReset)
 	rv.Autorelease()

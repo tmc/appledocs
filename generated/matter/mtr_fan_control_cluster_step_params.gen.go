@@ -87,7 +87,7 @@ func (m_ MTRFanControlClusterStepParams) Direction() foundation.Number {
 // SetDirection sets the value of the direction property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
-func (m_ MTRFanControlClusterStepParams) SetDirection(value foundation.Number) {
+func (m_ MTRFanControlClusterStepParams) SetDirection(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRFanControlClusterStepParams) LowestOff() foundation.Number {
 // SetLowestOff sets the value of the lowestOff property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
-func (m_ MTRFanControlClusterStepParams) SetLowestOff(value foundation.Number) {
+func (m_ MTRFanControlClusterStepParams) SetLowestOff(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLowestOff:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRFanControlClusterStepParams) ServerSideProcessingTimeout() foundatio
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
-func (m_ MTRFanControlClusterStepParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRFanControlClusterStepParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRFanControlClusterStepParams) TimedInvokeTimeoutMs() foundation.Numbe
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
-func (m_ MTRFanControlClusterStepParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRFanControlClusterStepParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRFanControlClusterStepParams) Wrap() foundation.Number {
 // SetWrap sets the value of the wrap property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
-func (m_ MTRFanControlClusterStepParams) SetWrap(value foundation.Number) {
+func (m_ MTRFanControlClusterStepParams) SetWrap(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWrap:"), value)
 }
 

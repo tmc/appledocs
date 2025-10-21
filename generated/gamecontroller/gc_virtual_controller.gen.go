@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _GCVirtualControllerClass struct {
 type IGCVirtualController interface {
 	objectivec.IObject
 	ConnectWithReplyHandler(reply unsafe.Pointer)
-	SetValueForButtonElement(value float64, element string)
+	SetValueForButtonElement(value float64, element appkit.string)
 }
 
 // A software emulation of a real controller that you configure specifically for your game.
@@ -87,7 +88,7 @@ func NewGCVirtualController() GCVirtualController {
 // Creates a new virtual controller using the configuration you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/init(configuration:)
-func NewGCVirtualControllerWithConfiguration(configuration unsafe.Pointer) GCVirtualController {
+func NewGCVirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
 	instance := getGCVirtualControllerClass().Alloc()
 	rv := objc.Send[GCVirtualController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -98,8 +99,8 @@ func NewGCVirtualControllerWithConfiguration(configuration unsafe.Pointer) GCVir
 // Creates a new virtual controller using the configuration you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/virtualControllerWithConfiguration:
-func (gc _GCVirtualControllerClass) VirtualControllerWithConfiguration(configuration unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("virtualControllerWithConfiguration:"), configuration)
+func (gc _GCVirtualControllerClass) VirtualControllerWithConfiguration(configuration IGCVirtualControllerConfiguration) GCVirtualController {
+	rv := objc.Send[GCVirtualController](objc.ID(gc.class), objc.Sel("virtualControllerWithConfiguration:"), configuration)
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (g_ GCVirtualController) ConnectWithReplyHandler(reply unsafe.Pointer) {
 // Changes the value of a button element in the virtual controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/setValue(_:forButtonElement:)
-func (g_ GCVirtualController) SetValueForButtonElement(value float64, element string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, objc.String(element))
+func (g_ GCVirtualController) SetValueForButtonElement(value float64, element appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setValue:forButtonElement:"), value, element)
 }
 
 // The underlying controller object that you use to access input elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/controller
-func (g_ GCVirtualController) Controller() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controller"))
+func (g_ GCVirtualController) Controller() GCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv
 }
 

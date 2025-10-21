@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _AuthorizationAppleIDProviderClass struct {
 // An interface definition for the [AuthorizationAppleIDProvider] class.
 type IAuthorizationAppleIDProvider interface {
 	objectivec.IObject
-	GetCredentialStateForUserIDCompletion(userID string, completion unsafe.Pointer)
+	GetCredentialStateForUserIDCompletion(userID appkit.string, completion unsafe.Pointer)
 }
 
 // A mechanism for generating requests to authenticate users based on their Apple ID.
@@ -84,15 +85,15 @@ func NewAuthorizationAppleIDProvider() AuthorizationAppleIDProvider {
 // Returns the credential state for the given user in a completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDProvider/getCredentialState(forUserID:completion:)
-func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(userID string, completion unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("getCredentialStateForUserID:completion:"), objc.String(userID), completion)
+func (a_ AuthorizationAppleIDProvider) GetCredentialStateForUserIDCompletion(userID appkit.string, completion unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("getCredentialStateForUserID:completion:"), userID, completion)
 }
 
 // An identifier for the authenticated user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDProvider) User() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDProvider) User() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (a_ AuthorizationAppleIDProvider) User() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDProvider) SetUser(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
+func (a_ AuthorizationAppleIDProvider) SetUser(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), value)
 }
 
 

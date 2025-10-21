@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,14 +35,14 @@ type IAMAction interface {
 	Activated()
 	Closed()
 	DidFinishRunningWithError(errorInfo unsafe.Pointer)
-	FinishRunningWithError(error_ unsafe.Pointer)
-	LogMessageWithLevelFormat(level unsafe.Pointer, format string)
+	FinishRunningWithError(error_ foundation.IError)
+	LogMessageWithLevelFormat(level AMLogLevel, format appkit.string)
 	Opened()
 	ParametersUpdated()
 	Reset()
-	RunWithInputError(input objc.ID, error_ unsafe.Pointer) objc.ID
-	RunAsynchronouslyWithInput(input objc.ID)
-	RunWithInputFromActionError(input objc.ID, anAction unsafe.Pointer, errorInfo unsafe.Pointer) objc.ID
+	RunWithInputError(input objectivec.IObject, error_ unsafe.Pointer) objc.ID
+	RunAsynchronouslyWithInput(input objectivec.IObject)
+	RunWithInputFromActionError(input objectivec.IObject, anAction IAMAction, errorInfo unsafe.Pointer) objc.ID
 	Stop()
 	UpdateParameters()
 	WillFinishRunning()
@@ -101,7 +102,7 @@ func NewAMAction() AMAction {
 // Loads an Automator action from a file URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/init(contentsOf:)
-func NewAMActionWithContentsOfURLError(fileURL foundation.URL, outError unsafe.Pointer) AMAction {
+func NewAMActionWithContentsOfURLError(fileURL foundation.IURL, outError unsafe.Pointer) AMAction {
 	instance := getAMActionClass().Alloc()
 	rv := objc.Send[AMAction](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, outError)
 	rv.Autorelease()
@@ -145,15 +146,15 @@ func (a_ AMAction) DidFinishRunningWithError(errorInfo unsafe.Pointer) {
 // Causes the action to stop running and return an error, which, in turn, causes the workflow to stop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/finishRunningWithError(_:)
-func (a_ AMAction) FinishRunningWithError(error_ unsafe.Pointer) {
+func (a_ AMAction) FinishRunningWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("finishRunningWithError:"), error_)
 }
 
 // Displays a message in Automator’s log area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/logMessageWithLevel:format:
-func (a_ AMAction) LogMessageWithLevelFormat(level unsafe.Pointer, format string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("logMessageWithLevel:format:"), level, objc.String(format))
+func (a_ AMAction) LogMessageWithLevelFormat(level AMLogLevel, format appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("logMessageWithLevel:format:"), level, format)
 }
 
 // Allows the action to initialize its user interface.
@@ -180,7 +181,7 @@ func (a_ AMAction) Reset() {
 // Requests the action to perform its task using the specified input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/run(withInput:)
-func (a_ AMAction) RunWithInputError(input objc.ID, error_ unsafe.Pointer) objc.ID {
+func (a_ AMAction) RunWithInputError(input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWithInput:error:"), input, error_)
 	return rv
 }
@@ -188,14 +189,14 @@ func (a_ AMAction) RunWithInputError(input objc.ID, error_ unsafe.Pointer) objc.
 // Causes Automator to wait for notification that the action has completed execution, which allows the action to perform an asynchronous operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/runAsynchronously(withInput:)
-func (a_ AMAction) RunAsynchronouslyWithInput(input objc.ID) {
+func (a_ AMAction) RunAsynchronouslyWithInput(input objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("runAsynchronouslyWithInput:"), input)
 }
 
 // Requests the action to perform its task using the specified input from the specified action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/runWithInput:fromAction:error:
-func (a_ AMAction) RunWithInputFromActionError(input objc.ID, anAction unsafe.Pointer, errorInfo unsafe.Pointer) objc.ID {
+func (a_ AMAction) RunWithInputFromActionError(input objectivec.IObject, anAction IAMAction, errorInfo unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWithInput:fromAction:error:"), input, anAction, errorInfo)
 	return rv
 }
@@ -247,8 +248,8 @@ func (a_ AMAction) Stopped() bool {
 // The name of the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/name
-func (a_ AMAction) Name() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+func (a_ AMAction) Name() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -291,8 +292,8 @@ func (a_ AMAction) SetProgressValue(value float64) {
 // The type of input, in UTI format, of the input received by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
-func (a_ AMAction) SelectedInputType() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("selectedInputType"))
+func (a_ AMAction) SelectedInputType() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("selectedInputType"))
 	return rv
 }
 
@@ -302,15 +303,15 @@ func (a_ AMAction) SelectedInputType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedInputType
-func (a_ AMAction) SetSelectedInputType(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), objc.String(value))
+func (a_ AMAction) SetSelectedInputType(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedInputType:"), value)
 }
 
 // The type of output, in UTI format, of the output to be produced by the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
-func (a_ AMAction) SelectedOutputType() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("selectedOutputType"))
+func (a_ AMAction) SelectedOutputType() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("selectedOutputType"))
 	return rv
 }
 
@@ -320,8 +321,8 @@ func (a_ AMAction) SelectedOutputType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMAction/selectedOutputType
-func (a_ AMAction) SetSelectedOutputType(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), objc.String(value))
+func (a_ AMAction) SetSelectedOutputType(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectedOutputType:"), value)
 }
 
 // A Boolean value that indicates whether the user clicked the stop button on the parent workflow.

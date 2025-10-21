@@ -98,8 +98,8 @@ func (f_ FallDetectionManager) RequestAuthorizationWithHandler(handler unsafe.Po
 // The authorization status for receiving fall detection event notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/authorizationStatus
-func (f_ FallDetectionManager) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("authorizationStatus"))
+func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](f_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

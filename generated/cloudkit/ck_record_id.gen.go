@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -97,7 +98,7 @@ func NewCKRecordIDWithRecordName(recordName string) CKRecordID {
 // Creates a new record ID with the specified name and zone information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordID/initWithRecordName:zoneID:
-func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID unsafe.Pointer) CKRecordID {
+func NewCKRecordIDWithRecordNameZoneID(recordName string, zoneID ICKRecordZoneID) CKRecordID {
 	instance := getCKRecordIDClass().Alloc()
 	rv := objc.Send[CKRecordID](instance.ID, objc.Sel("initWithRecordName:zoneID:"), objc.String(recordName), zoneID)
 	rv.Autorelease()
@@ -116,16 +117,16 @@ func (c_ CKRecordID) RecordName() string {
 // The ID of the zone that contains the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ID/zoneID
-func (c_ CKRecordID) ZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+func (c_ CKRecordID) ZoneID() CKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
 }
 
 // The time when CloudKit first saves the record to the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-func (c_ CKRecordID) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("creationDate"))
+func (c_ CKRecordID) CreationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -135,15 +136,15 @@ func (c_ CKRecordID) CreationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creationdate
-func (c_ CKRecordID) SetCreationDate(value unsafe.Pointer) {
+func (c_ CKRecordID) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
 }
 
 // The ID of the user who creates the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-func (c_ CKRecordID) CreatorUserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("creatorUserRecordID"))
+func (c_ CKRecordID) CreatorUserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("creatorUserRecordID"))
 	return rv
 }
 
@@ -153,15 +154,15 @@ func (c_ CKRecordID) CreatorUserRecordID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/creatoruserrecordid
-func (c_ CKRecordID) SetCreatorUserRecordID(value unsafe.Pointer) {
+func (c_ CKRecordID) SetCreatorUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreatorUserRecordID:"), value)
 }
 
 // The ID of the user who most recently modified the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
-func (c_ CKRecordID) LastModifiedUserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("lastModifiedUserRecordID"))
+func (c_ CKRecordID) LastModifiedUserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("lastModifiedUserRecordID"))
 	return rv
 }
 
@@ -171,15 +172,15 @@ func (c_ CKRecordID) LastModifiedUserRecordID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/lastmodifieduserrecordid
-func (c_ CKRecordID) SetLastModifiedUserRecordID(value unsafe.Pointer) {
+func (c_ CKRecordID) SetLastModifiedUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLastModifiedUserRecordID:"), value)
 }
 
 // The most recent time that CloudKit saved the record to the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecordID) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modificationDate"))
+func (c_ CKRecordID) ModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](c_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -189,7 +190,7 @@ func (c_ CKRecordID) ModificationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/modificationdate
-func (c_ CKRecordID) SetModificationDate(value unsafe.Pointer) {
+func (c_ CKRecordID) SetModificationDate(value foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModificationDate:"), value)
 }
 
@@ -214,8 +215,8 @@ func (c_ CKRecordID) SetRecordChangeTag(value string) {
 // The unique ID of the record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-func (c_ CKRecordID) RecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
+func (c_ CKRecordID) RecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 
@@ -225,7 +226,7 @@ func (c_ CKRecordID) RecordID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/recordid
-func (c_ CKRecordID) SetRecordID(value unsafe.Pointer) {
+func (c_ CKRecordID) SetRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordID:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -29,12 +31,12 @@ type _SFKeychainSavePanelClass struct {
 
 // An interface definition for the [SFKeychainSavePanel] class.
 type ISFKeychainSavePanel interface {
-	objectivec.IObject
-	BeginSheetForDirectoryFileModalForWindowModalDelegateDidEndSelectorContextInfo(path string, name string, docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
-	Error() unsafe.Pointer
+	appkit.ISavePanel
+	BeginSheetForDirectoryFileModalForWindowModalDelegateDidEndSelectorContextInfo(path appkit.string, name appkit.string, docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
+	Error() foundation.Error
 	Keychain() unsafe.Pointer
-	RunModalForDirectoryFile(path string, name string) int
-	SetPassword(password string)
+	RunModalForDirectoryFile(path appkit.string, name appkit.string) int
+	SetPassword(password appkit.string)
 }
 
 // A panel or sheet that allows the user to create a keychain.
@@ -43,14 +45,16 @@ type ISFKeychainSavePanel interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSavePanel
 type SFKeychainSavePanel struct {
-	objectivec.Object
+	appkit.SavePanel
 }
 
 // SFKeychainSavePanelFrom constructs a [SFKeychainSavePanel] from an unsafe.Pointer.
 //
 // A panel or sheet that allows the user to create a keychain.
 func SFKeychainSavePanelFrom(ptr unsafe.Pointer) SFKeychainSavePanel {
-	return SFKeychainSavePanel{objectivec.Object{objc.ID(ptr)}}
+	return SFKeychainSavePanel{
+		SavePanel: appkit.SavePanelFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -88,23 +92,23 @@ func NewSFKeychainSavePanel() SFKeychainSavePanel {
 // Returns a shared keychain save panel object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSavePanel/shared()
-func (sc _SFKeychainSavePanelClass) SharedKeychainSavePanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sharedKeychainSavePanel"))
+func (sc _SFKeychainSavePanelClass) SharedKeychainSavePanel() SFKeychainSavePanel {
+	rv := objc.Send[SFKeychainSavePanel](objc.ID(sc.class), objc.Sel("sharedKeychainSavePanel"))
 	return rv
 }
 
 // Displays a sheet that allows a user to create a new keychain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSavePanel/beginSheet(forDirectory:file:modalFor:modalDelegate:didEnd:contextInfo:)
-func (s_ SFKeychainSavePanel) BeginSheetForDirectoryFileModalForWindowModalDelegateDidEndSelectorContextInfo(path string, name string, docWindow unsafe.Pointer, delegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:"), objc.String(path), objc.String(name), docWindow, delegate, didEndSelector, contextInfo)
+func (s_ SFKeychainSavePanel) BeginSheetForDirectoryFileModalForWindowModalDelegateDidEndSelectorContextInfo(path appkit.string, name appkit.string, docWindow appkit.IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("beginSheetForDirectory:file:modalForWindow:modalDelegate:didEndSelector:contextInfo:"), path, name, docWindow, delegate, didEndSelector, contextInfo)
 }
 
 // Returns the last error encountered by the keychain save panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSavePanel/error()
-func (s_ SFKeychainSavePanel) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("error"))
+func (s_ SFKeychainSavePanel) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -119,16 +123,16 @@ func (s_ SFKeychainSavePanel) Keychain() unsafe.Pointer {
 // Displays a panel that allows a user to create a new keychain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSavePanel/runModal(forDirectory:file:)
-func (s_ SFKeychainSavePanel) RunModalForDirectoryFile(path string, name string) int {
-	rv := objc.Send[int](s_.ID, objc.Sel("runModalForDirectory:file:"), objc.String(path), objc.String(name))
+func (s_ SFKeychainSavePanel) RunModalForDirectoryFile(path appkit.string, name appkit.string) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("runModalForDirectory:file:"), path, name)
 	return rv
 }
 
 // Specifies the password for the keychain that will be created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFKeychainSavePanel/setPassword(_:)
-func (s_ SFKeychainSavePanel) SetPassword(password string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPassword:"), objc.String(password))
+func (s_ SFKeychainSavePanel) SetPassword(password appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPassword:"), password)
 }
 
 

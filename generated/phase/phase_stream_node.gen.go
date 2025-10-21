@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,29 +78,29 @@ func NewPHASEStreamNode() PHASEStreamNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/format
-func (p_ PHASEStreamNode) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("format"))
+func (p_ PHASEStreamNode) Format() avfaudio.AudioFormat {
+	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/gainMetaParameter
-func (p_ PHASEStreamNode) GainMetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gainMetaParameter"))
+func (p_ PHASEStreamNode) GainMetaParameter() PHASENumberMetaParameter {
+	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("gainMetaParameter"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/mixer
-func (p_ PHASEStreamNode) Mixer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mixer"))
+func (p_ PHASEStreamNode) Mixer() PHASEMixer {
+	rv := objc.Send[PHASEMixer](p_.ID, objc.Sel("mixer"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEStreamNode/rateMetaParameter
-func (p_ PHASEStreamNode) RateMetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rateMetaParameter"))
+func (p_ PHASEStreamNode) RateMetaParameter() PHASENumberMetaParameter {
+	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("rateMetaParameter"))
 	return rv
 }
 

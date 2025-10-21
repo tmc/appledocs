@@ -84,8 +84,8 @@ func NewINSendPaymentIntent() INSendPaymentIntent {
 // The amount of the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/currencyamount
-func (i_ INSendPaymentIntent) CurrencyAmount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("currencyAmount"))
+func (i_ INSendPaymentIntent) CurrencyAmount() INCurrencyAmount {
+	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("currencyAmount"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (i_ INSendPaymentIntent) CurrencyAmount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/currencyamount
-func (i_ INSendPaymentIntent) SetCurrencyAmount(value unsafe.Pointer) {
+func (i_ INSendPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
 }
 
 // A note associated with the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
-func (i_ INSendPaymentIntent) Note() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("note"))
+func (i_ INSendPaymentIntent) Note() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("note"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (i_ INSendPaymentIntent) Note() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/note
-func (i_ INSendPaymentIntent) SetNote(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
+func (i_ INSendPaymentIntent) SetNote(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), value)
 }
 
 // The recipient of the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/payee
-func (i_ INSendPaymentIntent) Payee() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("payee"))
+func (i_ INSendPaymentIntent) Payee() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("payee"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INSendPaymentIntent) Payee() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintent/payee
-func (i_ INSendPaymentIntent) SetPayee(value unsafe.Pointer) {
+func (i_ INSendPaymentIntent) SetPayee(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPayee:"), value)
 }
 

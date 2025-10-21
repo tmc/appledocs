@@ -87,7 +87,7 @@ func (m_ MTRColorControlClusterStopMoveStepParams) OptionsMask() foundation.Numb
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstopmovestepparams/optionsmask
-func (m_ MTRColorControlClusterStopMoveStepParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRColorControlClusterStopMoveStepParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRColorControlClusterStopMoveStepParams) OptionsOverride() foundation.
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstopmovestepparams/optionsoverride
-func (m_ MTRColorControlClusterStopMoveStepParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRColorControlClusterStopMoveStepParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRColorControlClusterStopMoveStepParams) ServerSideProcessingTimeout()
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstopmovestepparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterStopMoveStepParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRColorControlClusterStopMoveStepParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRColorControlClusterStopMoveStepParams) TimedInvokeTimeoutMs() founda
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstopmovestepparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterStopMoveStepParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRColorControlClusterStopMoveStepParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

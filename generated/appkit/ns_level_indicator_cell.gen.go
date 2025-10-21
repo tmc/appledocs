@@ -82,8 +82,8 @@ func NewLevelIndicatorCell() LevelIndicatorCell {
 // The critical value of the level indicator control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/criticalvalue
-func (l_ LevelIndicatorCell) CriticalValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("criticalValue"))
+func (l_ LevelIndicatorCell) CriticalValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("criticalValue"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (l_ LevelIndicatorCell) CriticalValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/criticalvalue
-func (l_ LevelIndicatorCell) SetCriticalValue(value unsafe.Pointer) {
+func (l_ LevelIndicatorCell) SetCriticalValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCriticalValue:"), value)
 }
 
@@ -118,8 +118,8 @@ func (l_ LevelIndicatorCell) SetLevelIndicatorStyle(value unsafe.Pointer) {
 // The maximum value of the control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/maxvalue
-func (l_ LevelIndicatorCell) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("maxValue"))
+func (l_ LevelIndicatorCell) MaxValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (l_ LevelIndicatorCell) MaxValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/maxvalue
-func (l_ LevelIndicatorCell) SetMaxValue(value unsafe.Pointer) {
+func (l_ LevelIndicatorCell) SetMaxValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 // The minimum value of the control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/minvalue
-func (l_ LevelIndicatorCell) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("minValue"))
+func (l_ LevelIndicatorCell) MinValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("minValue"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (l_ LevelIndicatorCell) MinValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/minvalue
-func (l_ LevelIndicatorCell) SetMinValue(value unsafe.Pointer) {
+func (l_ LevelIndicatorCell) SetMinValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinValue:"), value)
 }
 
@@ -208,8 +208,8 @@ func (l_ LevelIndicatorCell) SetTickMarkPosition(value unsafe.Pointer) {
 // The warning value of the level indicator control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/warningvalue
-func (l_ LevelIndicatorCell) WarningValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("warningValue"))
+func (l_ LevelIndicatorCell) WarningValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("warningValue"))
 	return rv
 }
 
@@ -219,7 +219,7 @@ func (l_ LevelIndicatorCell) WarningValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslevelindicatorcell/warningvalue
-func (l_ LevelIndicatorCell) SetWarningValue(value unsafe.Pointer) {
+func (l_ LevelIndicatorCell) SetWarningValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWarningValue:"), value)
 }
 

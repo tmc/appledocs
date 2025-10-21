@@ -88,7 +88,7 @@ func (m_ MTRBridgedDeviceBasicClusterStartUpEvent) SoftwareVersion() foundation.
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterstartupevent/softwareversion
-func (m_ MTRBridgedDeviceBasicClusterStartUpEvent) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTRBridgedDeviceBasicClusterStartUpEvent) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

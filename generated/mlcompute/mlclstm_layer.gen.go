@@ -102,8 +102,8 @@ func (s_ CLSTMLayer) SetLayerCount(value int) {
 // The array of tensors that describe the bias terms you use for the input, hidden, cell, and output gates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biases
-func (s_ CLSTMLayer) Biases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("biases"))
+func (s_ CLSTMLayer) Biases() MLCTensor {
+	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("biases"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (s_ CLSTMLayer) Biases() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biases
-func (s_ CLSTMLayer) SetBiases(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetBiases(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBiases:"), value)
 }
 
 // The biases tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biasesparameters
-func (s_ CLSTMLayer) BiasesParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("biasesParameters"))
+func (s_ CLSTMLayer) BiasesParameters() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("biasesParameters"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (s_ CLSTMLayer) BiasesParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/biasesparameters
-func (s_ CLSTMLayer) SetBiasesParameters(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetBiasesParameters(value IMLCTensorParameter) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBiasesParameters:"), value)
 }
 
@@ -174,8 +174,8 @@ func (s_ CLSTMLayer) SetGateActivations(value unsafe.Pointer) {
 // The array of tensors that describe the hidden weights you use for the input, hidden, cell, and output gates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweights
-func (s_ CLSTMLayer) HiddenWeights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("hiddenWeights"))
+func (s_ CLSTMLayer) HiddenWeights() MLCTensor {
+	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("hiddenWeights"))
 	return rv
 }
 
@@ -185,15 +185,15 @@ func (s_ CLSTMLayer) HiddenWeights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweights
-func (s_ CLSTMLayer) SetHiddenWeights(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetHiddenWeights(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHiddenWeights:"), value)
 }
 
 // The hidden weights tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweightsparameters
-func (s_ CLSTMLayer) HiddenWeightsParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("hiddenWeightsParameters"))
+func (s_ CLSTMLayer) HiddenWeightsParameters() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("hiddenWeightsParameters"))
 	return rv
 }
 
@@ -203,15 +203,15 @@ func (s_ CLSTMLayer) HiddenWeightsParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/hiddenweightsparameters
-func (s_ CLSTMLayer) SetHiddenWeightsParameters(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetHiddenWeightsParameters(value IMLCTensorParameter) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setHiddenWeightsParameters:"), value)
 }
 
 // The array of tensors that describe the input weights you use for the input, hidden, cell, and output gates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweights
-func (s_ CLSTMLayer) InputWeights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("inputWeights"))
+func (s_ CLSTMLayer) InputWeights() MLCTensor {
+	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("inputWeights"))
 	return rv
 }
 
@@ -221,15 +221,15 @@ func (s_ CLSTMLayer) InputWeights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweights
-func (s_ CLSTMLayer) SetInputWeights(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetInputWeights(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInputWeights:"), value)
 }
 
 // The input weights tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweightsparameters
-func (s_ CLSTMLayer) InputWeightsParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("inputWeightsParameters"))
+func (s_ CLSTMLayer) InputWeightsParameters() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("inputWeightsParameters"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (s_ CLSTMLayer) InputWeightsParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/inputweightsparameters
-func (s_ CLSTMLayer) SetInputWeightsParameters(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetInputWeightsParameters(value IMLCTensorParameter) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInputWeightsParameters:"), value)
 }
 
@@ -264,8 +264,8 @@ func (s_ CLSTMLayer) SetOutputResultActivation(value unsafe.Pointer) {
 // The array of tensors that describe the peephole weights you use for the input, hidden, cell, and output gates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweights
-func (s_ CLSTMLayer) PeepholeWeights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("peepholeWeights"))
+func (s_ CLSTMLayer) PeepholeWeights() MLCTensor {
+	rv := objc.Send[MLCTensor](s_.ID, objc.Sel("peepholeWeights"))
 	return rv
 }
 
@@ -275,15 +275,15 @@ func (s_ CLSTMLayer) PeepholeWeights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweights
-func (s_ CLSTMLayer) SetPeepholeWeights(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetPeepholeWeights(value IMLCTensor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPeepholeWeights:"), value)
 }
 
 // The peephole weights tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweightsparameters
-func (s_ CLSTMLayer) PeepholeWeightsParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("peepholeWeightsParameters"))
+func (s_ CLSTMLayer) PeepholeWeightsParameters() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](s_.ID, objc.Sel("peepholeWeightsParameters"))
 	return rv
 }
 
@@ -293,7 +293,7 @@ func (s_ CLSTMLayer) PeepholeWeightsParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclstmlayer/peepholeweightsparameters
-func (s_ CLSTMLayer) SetPeepholeWeightsParameters(value unsafe.Pointer) {
+func (s_ CLSTMLayer) SetPeepholeWeightsParameters(value IMLCTensorParameter) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPeepholeWeightsParameters:"), value)
 }
 

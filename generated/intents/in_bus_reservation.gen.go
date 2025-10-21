@@ -100,8 +100,8 @@ func (i_ INBusReservation) SetBusTrip(value unsafe.Pointer) {
 // Seat information for the bus reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/reservedseat
-func (i_ INBusReservation) ReservedSeat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservedSeat"))
+func (i_ INBusReservation) ReservedSeat() INSeat {
+	rv := objc.Send[INSeat](i_.ID, objc.Sel("reservedSeat"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (i_ INBusReservation) ReservedSeat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbusreservation/reservedseat
-func (i_ INBusReservation) SetReservedSeat(value unsafe.Pointer) {
+func (i_ INBusReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
 }
 

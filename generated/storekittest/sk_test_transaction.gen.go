@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,16 +93,16 @@ func (t_ TestTransaction) AutoRenewingEnabled() bool {
 // The date when the system refunded the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/cancelDate
-func (t_ TestTransaction) CancelDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("cancelDate"))
+func (t_ TestTransaction) CancelDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("cancelDate"))
 	return rv
 }
 
 // The date a subscription expires.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/expirationDate
-func (t_ TestTransaction) ExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("expirationDate"))
+func (t_ TestTransaction) ExpirationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
@@ -147,16 +149,16 @@ func (t_ TestTransaction) PendingAskToBuyConfirmation() bool {
 // An identifier that uniquely represents a product, which you provide in the StoreKit configuration file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/productIdentifier
-func (t_ TestTransaction) ProductIdentifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("productIdentifier"))
+func (t_ TestTransaction) ProductIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
 // The date of purchase for the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestTransaction/purchaseDate
-func (t_ TestTransaction) PurchaseDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("purchaseDate"))
+func (t_ TestTransaction) PurchaseDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("purchaseDate"))
 	return rv
 }
 

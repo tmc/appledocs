@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,7 +78,7 @@ func NewReshapeGradient() ReshapeGradient {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradient/init(coder:device:)
-func NewReshapeGradientWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ReshapeGradient {
+func NewReshapeGradientWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ReshapeGradient {
 	instance := getReshapeGradientClass().Alloc()
 	rv := objc.Send[ReshapeGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -86,7 +87,7 @@ func NewReshapeGradientWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradient/init(device:)
-func NewReshapeGradientWithDevice(device objc.ID) ReshapeGradient {
+func NewReshapeGradientWithDevice(device objectivec.IObject) ReshapeGradient {
 	instance := getReshapeGradientClass().Alloc()
 	rv := objc.Send[ReshapeGradient](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

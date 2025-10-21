@@ -82,6 +82,21 @@ func NewGraph() Graph {
 
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/destinationImageAllocator
+func (g_ Graph) DestinationImageAllocator() objc.ID {
+	rv := objc.Send[objc.ID](g_.ID, objc.Sel("destinationImageAllocator"))
+	return rv
+}
+
+
+// SetDestinationImageAllocator sets the value of the destinationImageAllocator property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/destinationImageAllocator
+func (g_ Graph) SetDestinationImageAllocator(value objc.ID) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDestinationImageAllocator:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGraph/resultStateHandles
 func (g_ Graph) ResultStateHandles() []objc.ID {
 	rv := objc.Send[[]objc.ID](g_.ID, objc.Sel("resultStateHandles"))
@@ -122,21 +137,6 @@ func (g_ Graph) Offset() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset
 func (g_ Graph) SetOffset(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOffset:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/destinationimageallocator
-func (g_ Graph) DestinationImageAllocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("destinationImageAllocator"))
-	return rv
-}
-
-
-// SetDestinationImageAllocator sets the value of the destinationImageAllocator property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph/destinationimageallocator
-func (g_ Graph) SetDestinationImageAllocator(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDestinationImageAllocator:"), value)
 }
 
 //

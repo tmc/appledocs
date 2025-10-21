@@ -87,7 +87,7 @@ func NewTurnBasedMatchmakerViewController() TurnBasedMatchmakerViewController {
 // Creates a matchmaker view controller for the local player to start inviting other players to a turn-based game.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedMatchmakerViewController/init(matchRequest:)
-func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request unsafe.Pointer) TurnBasedMatchmakerViewController {
+func NewTurnBasedMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) TurnBasedMatchmakerViewController {
 	instance := getTurnBasedMatchmakerViewControllerClass().Alloc()
 	rv := objc.Send[TurnBasedMatchmakerViewController](instance.ID, objc.Sel("initWithMatchRequest:"), request)
 	rv.Autorelease()

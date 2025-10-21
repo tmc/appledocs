@@ -30,8 +30,8 @@ type _FXTemporalScalerDescriptorClass struct {
 // An interface definition for the [FXTemporalScalerDescriptor] class.
 type IFXTemporalScalerDescriptor interface {
 	objectivec.IObject
-	NewTemporalScalerWithDevice(device objc.ID) objc.ID
-	NewTemporalScalerWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID
+	NewTemporalScalerWithDevice(device objectivec.IObject) objc.ID
+	NewTemporalScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
 // A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.
@@ -83,7 +83,7 @@ func NewFXTemporalScalerDescriptor() FXTemporalScalerDescriptor {
 // Returns the largest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportedInputContentMaxScale(device:)
-func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objc.ID) unsafe.Pointer {
+func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMaxScaleForDevice(device objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMaxScaleForDevice:"), device)
 	return rv
 }
@@ -91,7 +91,7 @@ func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMaxScaleForDevic
 // Returns the smallest temporal scaling factor the device supports as a floating-point value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportedInputContentMinScale(device:)
-func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objc.ID) unsafe.Pointer {
+func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMinScaleForDevice(device objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("supportedInputContentMinScaleForDevice:"), device)
 	return rv
 }
@@ -99,7 +99,7 @@ func (fc _FXTemporalScalerDescriptorClass) SupportedInputContentMinScaleForDevic
 // Returns a Boolean value that indicates whether the temporal scaler works with a GPU.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportsDevice(_:)
-func (fc _FXTemporalScalerDescriptorClass) SupportsDevice(device objc.ID) bool {
+func (fc _FXTemporalScalerDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
@@ -107,7 +107,7 @@ func (fc _FXTemporalScalerDescriptorClass) SupportsDevice(device objc.ID) bool {
 // Queries whether a Metal device supports temporal scaling compatible with Metal 4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/supportsMetal4FX(_:)
-func (fc _FXTemporalScalerDescriptorClass) SupportsMetal4FX(device objc.ID) bool {
+func (fc _FXTemporalScalerDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
@@ -115,7 +115,7 @@ func (fc _FXTemporalScalerDescriptorClass) SupportsMetal4FX(device objc.ID) bool
 // Creates a temporal scaler instance from this descriptor’s current property values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/makeTemporalScaler(device:)
-func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDevice(device objc.ID) objc.ID {
+func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalScalerWithDevice:"), device)
 	return rv
 }
@@ -123,7 +123,7 @@ func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDevice(device objc.ID)
 // Creates a temporal scaler instance for a Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXTemporalScalerDescriptor/makeTemporalScaler(device:compiler:)
-func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID {
+func (f_ FXTemporalScalerDescriptor) NewTemporalScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newTemporalScalerWithDevice:compiler:"), device, compiler)
 	return rv
 }

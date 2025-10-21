@@ -29,7 +29,7 @@ type _ForwardLossNodeClass struct {
 // An interface definition for the [ForwardLossNode] class.
 type IForwardLossNode interface {
 	IFilterNode
-	GradientFiltersWithSources(sourceGradient unsafe.Pointer) []LossGradientNode
+	GradientFiltersWithSources(sourceGradient []ImageNode) []LossGradientNode
 }
 
 //
@@ -79,7 +79,7 @@ func NewForwardLossNode() ForwardLossNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLossNode/gradientFilters(withSources:)
-func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient unsafe.Pointer) []LossGradientNode {
+func (f_ ForwardLossNode) GradientFiltersWithSources(sourceGradient []ImageNode) []LossGradientNode {
 	rv := objc.Send[[]LossGradientNode](f_.ID, objc.Sel("gradientFiltersWithSources:"), sourceGradient)
 	return rv
 }

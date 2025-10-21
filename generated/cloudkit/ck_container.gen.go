@@ -31,23 +31,23 @@ type _CKContainerClass struct {
 // An interface definition for the [CKContainer] class.
 type ICKContainer interface {
 	objectivec.IObject
-	AcceptShareMetadataCompletionHandler(metadata unsafe.Pointer, completionHandler unsafe.Pointer)
+	AcceptShareMetadataCompletionHandler(metadata ICKShareMetadata, completionHandler unsafe.Pointer)
 	AccountStatusWithCompletionHandler(completionHandler unsafe.Pointer)
-	AddOperation(operation unsafe.Pointer)
-	DatabaseWithDatabaseScope(databaseScope unsafe.Pointer) unsafe.Pointer
+	AddOperation(operation ICKOperation)
+	DatabaseWithDatabaseScope(databaseScope ICKDatabaseScope) CKDatabase
 	DiscoverAllIdentitiesWithCompletionHandler(completionHandler unsafe.Pointer)
 	DiscoverUserIdentityWithEmailAddressCompletionHandler(email string, completionHandler unsafe.Pointer)
 	DiscoverUserIdentityWithPhoneNumberCompletionHandler(phoneNumber string, completionHandler unsafe.Pointer)
-	DiscoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID unsafe.Pointer, completionHandler unsafe.Pointer)
+	DiscoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID ICKRecordID, completionHandler unsafe.Pointer)
 	FetchAllLongLivedOperationIDsWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchLongLivedOperationWithIDCompletionHandler(operationID unsafe.Pointer, completionHandler unsafe.Pointer)
-	FetchShareMetadataWithURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer)
+	FetchShareMetadataWithURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer)
 	FetchShareParticipantWithEmailAddressCompletionHandler(emailAddress string, completionHandler unsafe.Pointer)
 	FetchShareParticipantWithPhoneNumberCompletionHandler(phoneNumber string, completionHandler unsafe.Pointer)
-	FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID unsafe.Pointer, completionHandler unsafe.Pointer)
+	FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID ICKRecordID, completionHandler unsafe.Pointer)
 	FetchUserRecordIDWithCompletionHandler(completionHandler unsafe.Pointer)
-	RequestApplicationPermissionCompletionHandler(applicationPermission unsafe.Pointer, completionHandler unsafe.Pointer)
-	StatusForApplicationPermissionCompletionHandler(applicationPermission unsafe.Pointer, completionHandler unsafe.Pointer)
+	RequestApplicationPermissionCompletionHandler(applicationPermission ICKApplicationPermissions, completionHandler unsafe.Pointer)
+	StatusForApplicationPermissionCompletionHandler(applicationPermission ICKApplicationPermissions, completionHandler unsafe.Pointer)
 }
 
 // A conduit to your app’s databases.
@@ -112,23 +112,23 @@ func NewCKContainerWithIdentifier(containerIdentifier string) CKContainer {
 // Returns the app’s default container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/default()
-func (cc _CKContainerClass) DefaultContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("defaultContainer"))
+func (cc _CKContainerClass) DefaultContainer() CKContainer {
+	rv := objc.Send[CKContainer](objc.ID(cc.class), objc.Sel("defaultContainer"))
 	return rv
 }
 
 // Creates a container for the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/init(identifier:)
-func (cc _CKContainerClass) ContainerWithIdentifier(containerIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("containerWithIdentifier:"), objc.String(containerIdentifier))
+func (cc _CKContainerClass) ContainerWithIdentifier(containerIdentifier string) CKContainer {
+	rv := objc.Send[CKContainer](objc.ID(cc.class), objc.Sel("containerWithIdentifier:"), objc.String(containerIdentifier))
 	return rv
 }
 
 // Accepts the specified share metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/accept(_:completionHandler:)-949ea
-func (c_ CKContainer) AcceptShareMetadataCompletionHandler(metadata unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) AcceptShareMetadataCompletionHandler(metadata ICKShareMetadata, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("acceptShareMetadata:completionHandler:"), metadata, completionHandler)
 }
 
@@ -142,15 +142,15 @@ func (c_ CKContainer) AccountStatusWithCompletionHandler(completionHandler unsaf
 // Adds an operation to the container’s queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/add(_:)
-func (c_ CKContainer) AddOperation(operation unsafe.Pointer) {
+func (c_ CKContainer) AddOperation(operation ICKOperation) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addOperation:"), operation)
 }
 
 // Returns the database with the specified scope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/database(with:)
-func (c_ CKContainer) DatabaseWithDatabaseScope(databaseScope unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseWithDatabaseScope:"), databaseScope)
+func (c_ CKContainer) DatabaseWithDatabaseScope(databaseScope ICKDatabaseScope) CKDatabase {
+	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("databaseWithDatabaseScope:"), databaseScope)
 	return rv
 }
 
@@ -178,7 +178,7 @@ func (c_ CKContainer) DiscoverUserIdentityWithPhoneNumberCompletionHandler(phone
 // Fetches the user identity for the specified user record ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/discoverUserIdentity(withUserRecordID:completionHandler:)
-func (c_ CKContainer) DiscoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) DiscoverUserIdentityWithUserRecordIDCompletionHandler(userRecordID ICKRecordID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("discoverUserIdentityWithUserRecordID:completionHandler:"), userRecordID, completionHandler)
 }
 
@@ -199,7 +199,7 @@ func (c_ CKContainer) FetchLongLivedOperationWithIDCompletionHandler(operationID
 // Fetches the share metadata for the specified share URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/fetchShareMetadata(with:completionHandler:)
-func (c_ CKContainer) FetchShareMetadataWithURLCompletionHandler(url foundation.URL, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) FetchShareMetadataWithURLCompletionHandler(url foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchShareMetadataWithURL:completionHandler:"), url, completionHandler)
 }
 
@@ -220,7 +220,7 @@ func (c_ CKContainer) FetchShareParticipantWithPhoneNumberCompletionHandler(phon
 // Fetches the share participant with the specified user record ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/fetchShareParticipant(withUserRecordID:completionHandler:)
-func (c_ CKContainer) FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) FetchShareParticipantWithUserRecordIDCompletionHandler(userRecordID ICKRecordID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fetchShareParticipantWithUserRecordID:completionHandler:"), userRecordID, completionHandler)
 }
 
@@ -234,14 +234,14 @@ func (c_ CKContainer) FetchUserRecordIDWithCompletionHandler(completionHandler u
 // Prompts the user to authorize the specified permission.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/requestApplicationPermission(_:completionHandler:)
-func (c_ CKContainer) RequestApplicationPermissionCompletionHandler(applicationPermission unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) RequestApplicationPermissionCompletionHandler(applicationPermission ICKApplicationPermissions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestApplicationPermission:completionHandler:"), applicationPermission, completionHandler)
 }
 
 // Determines the authorization status of the specified permission.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/status(forApplicationPermission:completionHandler:)
-func (c_ CKContainer) StatusForApplicationPermissionCompletionHandler(applicationPermission unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ CKContainer) StatusForApplicationPermissionCompletionHandler(applicationPermission ICKApplicationPermissions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("statusForApplicationPermission:completionHandler:"), applicationPermission, completionHandler)
 }
 
@@ -256,24 +256,24 @@ func (c_ CKContainer) ContainerIdentifier() string {
 // The user’s private database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/privateCloudDatabase
-func (c_ CKContainer) PrivateCloudDatabase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("privateCloudDatabase"))
+func (c_ CKContainer) PrivateCloudDatabase() CKDatabase {
+	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("privateCloudDatabase"))
 	return rv
 }
 
 // The app’s public database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/publicCloudDatabase
-func (c_ CKContainer) PublicCloudDatabase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("publicCloudDatabase"))
+func (c_ CKContainer) PublicCloudDatabase() CKDatabase {
+	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("publicCloudDatabase"))
 	return rv
 }
 
 // The database that contains shared data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/sharedCloudDatabase
-func (c_ CKContainer) SharedCloudDatabase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedCloudDatabase"))
+func (c_ CKContainer) SharedCloudDatabase() CKDatabase {
+	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("sharedCloudDatabase"))
 	return rv
 }
 
@@ -296,8 +296,8 @@ func (c_ CKContainer) CKOwnerDefaultName() string {
 // The user record ID for the corresponding user record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKContainer) UserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
+func (c_ CKContainer) UserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
 }
 
@@ -307,7 +307,7 @@ func (c_ CKContainer) UserRecordID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKContainer) SetUserRecordID(value unsafe.Pointer) {
+func (c_ CKContainer) SetUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }
 

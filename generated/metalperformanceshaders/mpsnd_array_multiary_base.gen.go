@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayMultiaryBase] class.
@@ -29,7 +30,7 @@ type _NDArrayMultiaryBaseClass struct {
 // An interface definition for the [NDArrayMultiaryBase] class.
 type INDArrayMultiaryBase interface {
 	IKernel
-	CopyWithZoneDevice(zone unsafe.Pointer, device objc.ID) unsafe.Pointer
+	CopyWithZoneDevice(zone unsafe.Pointer, device objectivec.IObject) unsafe.Pointer
 }
 
 //
@@ -79,7 +80,7 @@ func NewNDArrayMultiaryBase() NDArrayMultiaryBase {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryBase/copy(with:device:)
-func (n_ NDArrayMultiaryBase) CopyWithZoneDevice(zone unsafe.Pointer, device objc.ID) unsafe.Pointer {
+func (n_ NDArrayMultiaryBase) CopyWithZoneDevice(zone unsafe.Pointer, device objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("copyWithZone:device:"), zone, device)
 	return rv
 }

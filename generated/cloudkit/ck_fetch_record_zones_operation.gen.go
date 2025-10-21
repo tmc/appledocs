@@ -86,7 +86,7 @@ func NewCKFetchRecordZonesOperation() CKFetchRecordZonesOperation {
 // Creates an operation for fetching the specified record zones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/init(recordZoneIDs:)
-func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs unsafe.Pointer) CKFetchRecordZonesOperation {
+func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs []CKRecordZoneID) CKFetchRecordZonesOperation {
 	instance := getCKFetchRecordZonesOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordZonesOperation](instance.ID, objc.Sel("initWithRecordZoneIDs:"), zoneIDs)
 	rv.Autorelease()
@@ -100,6 +100,24 @@ func NewCKFetchRecordZonesOperationWithRecordZoneIDs(zoneIDs unsafe.Pointer) CKF
 func (cc _CKFetchRecordZonesOperationClass) FetchAllRecordZonesOperation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("fetchAllRecordZonesOperation"))
 	return rv
+}
+
+// The closure to execute after CloudKit retrieves all of the record zones.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock
+func (c_ CKFetchRecordZonesOperation) FetchRecordZonesCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordZonesCompletionBlock"))
+	return rv
+}
+
+
+// SetFetchRecordZonesCompletionBlock sets the value of the fetchRecordZonesCompletionBlock property.
+// The closure to execute after CloudKit retrieves all of the record zones.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordZonesOperation/fetchRecordZonesCompletionBlock
+func (c_ CKFetchRecordZonesOperation) SetFetchRecordZonesCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordZonesCompletionBlock:"), value)
 }
 
 //

@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) CoolSetpoint() foun
 // SetCoolSetpoint sets the value of the coolSetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetCoolSetpoint(value foundation.Number) {
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetCoolSetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) HeatSetpoint() foun
 // SetHeatSetpoint sets the value of the heatSetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetHeatSetpoint(value foundation.Number) {
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetHeatSetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatSetpoint:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) TransitionTime() fo
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetTransitionTime(value foundation.Number) {
+func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

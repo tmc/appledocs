@@ -107,8 +107,8 @@ func (s_ StageInputOutputDescriptor) SetIndexBufferIndex(value int) {
 // The data type of the indices stored in the index buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indextype
-func (s_ StageInputOutputDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("indexType"))
+func (s_ StageInputOutputDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](s_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (s_ StageInputOutputDescriptor) IndexType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlstageinputoutputdescriptor/indextype
-func (s_ StageInputOutputDescriptor) SetIndexType(value unsafe.Pointer) {
+func (s_ StageInputOutputDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexType:"), value)
 }
 

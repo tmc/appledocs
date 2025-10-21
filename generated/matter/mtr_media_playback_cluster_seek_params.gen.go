@@ -87,7 +87,7 @@ func (m_ MTRMediaPlaybackClusterSeekParams) Position() foundation.Number {
 // SetPosition sets the value of the position property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/position
-func (m_ MTRMediaPlaybackClusterSeekParams) SetPosition(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterSeekParams) SetPosition(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRMediaPlaybackClusterSeekParams) ServerSideProcessingTimeout() founda
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterSeekParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterSeekParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRMediaPlaybackClusterSeekParams) TimedInvokeTimeoutMs() foundation.Nu
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterseekparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterSeekParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterSeekParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

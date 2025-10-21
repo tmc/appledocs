@@ -133,8 +133,8 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) SetWidthInPixels(value int) {
 // The array of output devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration/scanouts
-func (v_ VZVirtioGraphicsScanoutConfiguration) Scanouts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("scanouts"))
+func (v_ VZVirtioGraphicsScanoutConfiguration) Scanouts() VZVirtioGraphicsScanoutConfiguration {
+	rv := objc.Send[VZVirtioGraphicsScanoutConfiguration](v_.ID, objc.Sel("scanouts"))
 	return rv
 }
 
@@ -144,7 +144,7 @@ func (v_ VZVirtioGraphicsScanoutConfiguration) Scanouts() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration/scanouts
-func (v_ VZVirtioGraphicsScanoutConfiguration) SetScanouts(value unsafe.Pointer) {
+func (v_ VZVirtioGraphicsScanoutConfiguration) SetScanouts(value IVZVirtioGraphicsScanoutConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setScanouts:"), value)
 }
 

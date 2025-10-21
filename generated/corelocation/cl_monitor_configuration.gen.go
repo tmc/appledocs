@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,11 +79,19 @@ func NewMonitorConfiguration() MonitorConfiguration {
 }
 
 
+// The block the framework calls as the event handler for the location monitor instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/eventHandler
+func (m_ MonitorConfiguration) EventHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("eventHandler"))
+	return rv
+}
+
 // The name of the monitor instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitorConfiguration/name
-func (m_ MonitorConfiguration) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MonitorConfiguration) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

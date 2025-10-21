@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewModelStructureProgramBinding() ModelStructureProgramBinding {
 // The name of the variable in the Program.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/name
-func (m_ ModelStructureProgramBinding) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramBinding) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The compile time constant value in the Program.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramBinding/value
-func (m_ ModelStructureProgramBinding) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+func (m_ ModelStructureProgramBinding) Value() MLModelStructureProgramValue {
+	rv := objc.Send[MLModelStructureProgramValue](m_.ID, objc.Sel("value"))
 	return rv
 }
 

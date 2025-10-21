@@ -83,8 +83,8 @@ func NewMKHybridMapConfiguration() MKHybridMapConfiguration {
 // The filter the framework uses to determine the points of interest to show on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
-func (m_ MKHybridMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+func (m_ MKHybridMapConfiguration) PointOfInterestFilter() MKPointOfInterestFilter {
+	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (m_ MKHybridMapConfiguration) PointOfInterestFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKHybridMapConfiguration/pointOfInterestFilter
-func (m_ MKHybridMapConfiguration) SetPointOfInterestFilter(value unsafe.Pointer) {
+func (m_ MKHybridMapConfiguration) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
@@ -137,8 +137,8 @@ func (m_ MKHybridMapConfiguration) SetPitchButtonVisibility(value unsafe.Pointer
 // The characteristics of the map view, including the map type and features the map displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKHybridMapConfiguration) PreferredConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+func (m_ MKHybridMapConfiguration) PreferredConfiguration() MKMapConfiguration {
+	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (m_ MKHybridMapConfiguration) PreferredConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapview/preferredconfiguration
-func (m_ MKHybridMapConfiguration) SetPreferredConfiguration(value unsafe.Pointer) {
+func (m_ MKHybridMapConfiguration) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 

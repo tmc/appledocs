@@ -90,8 +90,8 @@ func (sc _SpeechSynthesisProviderVoiceClass) UpdateSpeechVoices() {
 // A list of voices the audio unit provides to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-func (s_ SpeechSynthesisProviderVoice) SpeechVoices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("speechVoices"))
+func (s_ SpeechSynthesisProviderVoice) SpeechVoices() AVSpeechSynthesisProviderVoice {
+	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
 }
 
@@ -101,7 +101,7 @@ func (s_ SpeechSynthesisProviderVoice) SpeechVoices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
-func (s_ SpeechSynthesisProviderVoice) SetSpeechVoices(value unsafe.Pointer) {
+func (s_ SpeechSynthesisProviderVoice) SetSpeechVoices(value IAVSpeechSynthesisProviderVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
 }
 
@@ -144,8 +144,8 @@ func (s_ SpeechSynthesisProviderVoice) SetGender(value unsafe.Pointer) {
 // The unique identifier for the voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/identifier
-func (s_ SpeechSynthesisProviderVoice) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SpeechSynthesisProviderVoice) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -155,15 +155,15 @@ func (s_ SpeechSynthesisProviderVoice) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/identifier
-func (s_ SpeechSynthesisProviderVoice) SetIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (s_ SpeechSynthesisProviderVoice) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The localized name of the voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/name
-func (s_ SpeechSynthesisProviderVoice) Name() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("name"))
+func (s_ SpeechSynthesisProviderVoice) Name() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -173,15 +173,15 @@ func (s_ SpeechSynthesisProviderVoice) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/name
-func (s_ SpeechSynthesisProviderVoice) SetName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
+func (s_ SpeechSynthesisProviderVoice) SetName(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
 }
 
 // A list of BCP 47 codes that identify the languages the synthesizer uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/primarylanguages
-func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("primaryLanguages"))
+func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("primaryLanguages"))
 	return rv
 }
 
@@ -191,15 +191,15 @@ func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/primarylanguages
-func (s_ SpeechSynthesisProviderVoice) SetPrimaryLanguages(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryLanguages:"), objc.String(value))
+func (s_ SpeechSynthesisProviderVoice) SetPrimaryLanguages(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryLanguages:"), value)
 }
 
 // A list of BCP 47 codes that identify the languages a voice supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/supportedlanguages
-func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("supportedLanguages"))
+func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("supportedLanguages"))
 	return rv
 }
 
@@ -209,15 +209,15 @@ func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/supportedlanguages
-func (s_ SpeechSynthesisProviderVoice) SetSupportedLanguages(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportedLanguages:"), objc.String(value))
+func (s_ SpeechSynthesisProviderVoice) SetSupportedLanguages(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportedLanguages:"), value)
 }
 
 // The version of the voice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/version
-func (s_ SpeechSynthesisProviderVoice) Version() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("version"))
+func (s_ SpeechSynthesisProviderVoice) Version() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -227,8 +227,8 @@ func (s_ SpeechSynthesisProviderVoice) Version() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/version
-func (s_ SpeechSynthesisProviderVoice) SetVersion(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVersion:"), objc.String(value))
+func (s_ SpeechSynthesisProviderVoice) SetVersion(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVersion:"), value)
 }
 
 // The size of the voice package on disk, in bytes.

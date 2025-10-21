@@ -87,7 +87,7 @@ func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus
 // SetConnectionStatus sets the value of the connectionStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
-func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.Number) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionStatus:"), value)
 }
 

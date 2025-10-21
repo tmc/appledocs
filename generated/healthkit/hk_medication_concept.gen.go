@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,24 +84,24 @@ func NewHKMedicationConcept() HKMedicationConcept {
 // The display name for this medication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/displayText
-func (h_ HKMedicationConcept) DisplayText() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("displayText"))
+func (h_ HKMedicationConcept) DisplayText() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("displayText"))
 	return rv
 }
 
 // The general form the medication is manufactured in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/generalForm
-func (h_ HKMedicationConcept) GeneralForm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("generalForm"))
+func (h_ HKMedicationConcept) GeneralForm() HKMedicationGeneralForm {
+	rv := objc.Send[HKMedicationGeneralForm](h_.ID, objc.Sel("generalForm"))
 	return rv
 }
 
 // The unique identifier for the specific medication concept.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationConcept/identifier
-func (h_ HKMedicationConcept) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("identifier"))
+func (h_ HKMedicationConcept) Identifier() HKHealthConceptIdentifier {
+	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 

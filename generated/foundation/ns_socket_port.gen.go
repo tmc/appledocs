@@ -86,7 +86,7 @@ func NewSocketPort() SocketPort {
 // Initializes the receiver as a local socket with the provided arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:address:)
-func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Pointer, type_ unsafe.Pointer, protocol_ unsafe.Pointer, address unsafe.Pointer) SocketPort {
+func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Pointer, type_ unsafe.Pointer, protocol_ unsafe.Pointer, address IData) SocketPort {
 	instance := getSocketPortClass().Alloc()
 	rv := objc.Send[SocketPort](instance.ID, objc.Sel("initWithProtocolFamily:socketType:protocol:address:"), family, type_, protocol_, address)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Poin
 // The receiver’s socket address structure stored inside an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/address
-func (s_ SocketPort) Address() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("address"))
+func (s_ SocketPort) Address() NSData {
+	rv := objc.Send[NSData](s_.ID, objc.Sel("address"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (s_ SocketPort) Protocol() unsafe.Pointer {
 // The receiver’s native socket identifier on the platform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/socket
-func (s_ SocketPort) Socket() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("socket"))
+func (s_ SocketPort) Socket() SocketNativeHandle {
+	rv := objc.Send[SocketNativeHandle](s_.ID, objc.Sel("socket"))
 	return rv
 }
 

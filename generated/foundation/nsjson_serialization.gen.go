@@ -83,7 +83,7 @@ func NewJSONSerialization() JSONSerialization {
 // Returns a Boolean value that indicates whether the serializer can convert a given object to JSON data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/JSONSerialization/isValidJSONObject(_:)
-func (jc _JSONSerializationClass) IsValidJSONObject(obj objc.ID) bool {
+func (jc _JSONSerializationClass) IsValidJSONObject(obj objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(jc.class), objc.Sel("isValidJSONObject:"), obj)
 	return rv
 }

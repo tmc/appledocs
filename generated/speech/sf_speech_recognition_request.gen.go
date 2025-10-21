@@ -82,8 +82,8 @@ func NewSFSpeechRecognitionRequest() SFSpeechRecognitionRequest {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/customizedLanguageModel
-func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customizedLanguageModel"))
+func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() SFSpeechLanguageModelConfiguration {
+	rv := objc.Send[SFSpeechLanguageModelConfiguration](s_.ID, objc.Sel("customizedLanguageModel"))
 	return rv
 }
 
@@ -91,7 +91,7 @@ func (s_ SFSpeechRecognitionRequest) CustomizedLanguageModel() unsafe.Pointer {
 // SetCustomizedLanguageModel sets the value of the customizedLanguageModel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionRequest/customizedLanguageModel
-func (s_ SFSpeechRecognitionRequest) SetCustomizedLanguageModel(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionRequest) SetCustomizedLanguageModel(value ISFSpeechLanguageModelConfiguration) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizedLanguageModel:"), value)
 }
 
@@ -152,8 +152,8 @@ func (s_ SFSpeechRecognitionRequest) SetAddsPunctuation(value bool) {
 // An array of phrases that should be recognized, even if they are not in the system vocabulary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) ContextualStrings() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("contextualStrings"))
+func (s_ SFSpeechRecognitionRequest) ContextualStrings() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("contextualStrings"))
 	return rv
 }
 
@@ -163,15 +163,15 @@ func (s_ SFSpeechRecognitionRequest) ContextualStrings() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/contextualstrings
-func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), objc.String(value))
+func (s_ SFSpeechRecognitionRequest) SetContextualStrings(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setContextualStrings:"), value)
 }
 
 // An identifier string that you use to describe the type of interaction associated with the speech recognition request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("interactionIdentifier"))
+func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("interactionIdentifier"))
 	return rv
 }
 
@@ -181,15 +181,15 @@ func (s_ SFSpeechRecognitionRequest) InteractionIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/interactionidentifier
-func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), objc.String(value))
+func (s_ SFSpeechRecognitionRequest) SetInteractionIdentifier(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setInteractionIdentifier:"), value)
 }
 
 // A value that indicates the type of speech recognition being performed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
-func (s_ SFSpeechRecognitionRequest) TaskHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("taskHint"))
+func (s_ SFSpeechRecognitionRequest) TaskHint() SFSpeechRecognitionTaskHint {
+	rv := objc.Send[SFSpeechRecognitionTaskHint](s_.ID, objc.Sel("taskHint"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (s_ SFSpeechRecognitionRequest) TaskHint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionrequest/taskhint
-func (s_ SFSpeechRecognitionRequest) SetTaskHint(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionRequest) SetTaskHint(value ISFSpeechRecognitionTaskHint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTaskHint:"), value)
 }
 

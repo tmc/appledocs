@@ -107,8 +107,8 @@ func (g_ GCMotion) SensorsRequireManualActivation() bool {
 // The motion input profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCMotion) Motion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+func (g_ GCMotion) Motion() GCMotion {
+	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (g_ GCMotion) Motion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCMotion) SetMotion(value unsafe.Pointer) {
+func (g_ GCMotion) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
 
@@ -161,8 +161,8 @@ func (g_ GCMotion) SetAttitude(value unsafe.Pointer) {
 // The controller for the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
-func (g_ GCMotion) Controller() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controller"))
+func (g_ GCMotion) Controller() GCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (g_ GCMotion) Controller() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcmotion/controller
-func (g_ GCMotion) SetController(value unsafe.Pointer) {
+func (g_ GCMotion) SetController(value IGCController) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
 }
 

@@ -31,7 +31,7 @@ type _FSItemAttributesClass struct {
 type IFSItemAttributes interface {
 	objectivec.IObject
 	InvalidateAllProperties()
-	IsValid(attribute unsafe.Pointer) bool
+	IsValid(attribute FSItemAttribute) bool
 }
 
 // Attributes of an item, such as size, creation and modification times, and user and group identifiers.
@@ -90,7 +90,7 @@ func (f_ FSItemAttributes) InvalidateAllProperties() {
 // Returns a Boolean value that indicates whether the attribute is valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/isValid(_:)
-func (f_ FSItemAttributes) IsValid(attribute unsafe.Pointer) bool {
+func (f_ FSItemAttributes) IsValid(attribute FSItemAttribute) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isValid:"), attribute)
 	return rv
 }
@@ -116,8 +116,8 @@ func (f_ FSItemAttributes) SetAddedTime(value unsafe.Pointer) {
 // The item’s file identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
-func (f_ FSItemAttributes) FileID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileID"))
+func (f_ FSItemAttributes) FileID() FSItemID {
+	rv := objc.Send[FSItemID](f_.ID, objc.Sel("fileID"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (f_ FSItemAttributes) FileID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSItem/Attributes/fileID
-func (f_ FSItemAttributes) SetFileID(value unsafe.Pointer) {
+func (f_ FSItemAttributes) SetFileID(value IFSItemID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileID:"), value)
 }
 

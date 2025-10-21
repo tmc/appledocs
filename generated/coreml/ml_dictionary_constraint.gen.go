@@ -81,8 +81,8 @@ func NewDictionaryConstraint() DictionaryConstraint {
 // The key type for the dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mldictionaryconstraint/keytype
-func (d_ DictionaryConstraint) KeyType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keyType"))
+func (d_ DictionaryConstraint) KeyType() FeatureType {
+	rv := objc.Send[FeatureType](d_.ID, objc.Sel("keyType"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (d_ DictionaryConstraint) KeyType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mldictionaryconstraint/keytype
-func (d_ DictionaryConstraint) SetKeyType(value unsafe.Pointer) {
+func (d_ DictionaryConstraint) SetKeyType(value FeatureType) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKeyType:"), value)
 }
 
 // The constraint for a dictionary feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-func (d_ DictionaryConstraint) DictionaryConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dictionaryConstraint"))
+func (d_ DictionaryConstraint) DictionaryConstraint() MLDictionaryConstraint {
+	rv := objc.Send[MLDictionaryConstraint](d_.ID, objc.Sel("dictionaryConstraint"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (d_ DictionaryConstraint) DictionaryConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/dictionaryconstraint
-func (d_ DictionaryConstraint) SetDictionaryConstraint(value unsafe.Pointer) {
+func (d_ DictionaryConstraint) SetDictionaryConstraint(value IMLDictionaryConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDictionaryConstraint:"), value)
 }
 
 // The size and format constraints for an image feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-func (d_ DictionaryConstraint) ImageConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("imageConstraint"))
+func (d_ DictionaryConstraint) ImageConstraint() MLImageConstraint {
+	rv := objc.Send[MLImageConstraint](d_.ID, objc.Sel("imageConstraint"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (d_ DictionaryConstraint) ImageConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-func (d_ DictionaryConstraint) SetImageConstraint(value unsafe.Pointer) {
+func (d_ DictionaryConstraint) SetImageConstraint(value IMLImageConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setImageConstraint:"), value)
 }
 
 // The constraints on a multidimensional array feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (d_ DictionaryConstraint) MultiArrayConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("multiArrayConstraint"))
+func (d_ DictionaryConstraint) MultiArrayConstraint() MLMultiArrayConstraint {
+	rv := objc.Send[MLMultiArrayConstraint](d_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (d_ DictionaryConstraint) MultiArrayConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (d_ DictionaryConstraint) SetMultiArrayConstraint(value unsafe.Pointer) {
+func (d_ DictionaryConstraint) SetMultiArrayConstraint(value IMLMultiArrayConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMultiArrayConstraint:"), value)
 }
 
 // The constraints for a sequence feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-func (d_ DictionaryConstraint) SequenceConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("sequenceConstraint"))
+func (d_ DictionaryConstraint) SequenceConstraint() MLSequenceConstraint {
+	rv := objc.Send[MLSequenceConstraint](d_.ID, objc.Sel("sequenceConstraint"))
 	return rv
 }
 
@@ -164,15 +164,15 @@ func (d_ DictionaryConstraint) SequenceConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/sequenceconstraint
-func (d_ DictionaryConstraint) SetSequenceConstraint(value unsafe.Pointer) {
+func (d_ DictionaryConstraint) SetSequenceConstraint(value IMLSequenceConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSequenceConstraint:"), value)
 }
 
 // The state feature value constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
-func (d_ DictionaryConstraint) StateConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("stateConstraint"))
+func (d_ DictionaryConstraint) StateConstraint() MLStateConstraint {
+	rv := objc.Send[MLStateConstraint](d_.ID, objc.Sel("stateConstraint"))
 	return rv
 }
 
@@ -182,7 +182,7 @@ func (d_ DictionaryConstraint) StateConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/stateconstraint
-func (d_ DictionaryConstraint) SetStateConstraint(value unsafe.Pointer) {
+func (d_ DictionaryConstraint) SetStateConstraint(value IMLStateConstraint) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStateConstraint:"), value)
 }
 

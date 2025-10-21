@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _MXSignpostRecordClass struct {
 // An interface definition for the [MXSignpostRecord] class.
 type IMXSignpostRecord interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An object representing the record for a signpost interval or event.
@@ -82,29 +84,29 @@ func NewMXSignpostRecord() MXSignpostRecord {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/dictionaryRepresentation()
-func (m_ MXSignpostRecord) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dictionaryRepresentation"))
+func (m_ MXSignpostRecord) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/jsonRepresentation()
-func (m_ MXSignpostRecord) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXSignpostRecord) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/beginTimeStamp
-func (m_ MXSignpostRecord) BeginTimeStamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("beginTimeStamp"))
+func (m_ MXSignpostRecord) BeginTimeStamp() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("beginTimeStamp"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/category
-func (m_ MXSignpostRecord) Category() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("category"))
+func (m_ MXSignpostRecord) Category() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -117,8 +119,8 @@ func (m_ MXSignpostRecord) Duration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/endTimeStamp
-func (m_ MXSignpostRecord) EndTimeStamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endTimeStamp"))
+func (m_ MXSignpostRecord) EndTimeStamp() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("endTimeStamp"))
 	return rv
 }
 
@@ -131,23 +133,23 @@ func (m_ MXSignpostRecord) IsInterval() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/name
-func (m_ MXSignpostRecord) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MXSignpostRecord) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXSignpostRecord/subsystem
-func (m_ MXSignpostRecord) Subsystem() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subsystem"))
+func (m_ MXSignpostRecord) Subsystem() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subsystem"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXSignpostRecord) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXSignpostRecord) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

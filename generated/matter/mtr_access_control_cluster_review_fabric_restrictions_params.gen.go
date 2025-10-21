@@ -78,8 +78,8 @@ func NewMTRAccessControlClusterReviewFabricRestrictionsParams() MTRAccessControl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/arl
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) Arl() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("arl"))
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) Arl() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("arl"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) Arl() unsafe.Poi
 // SetArl sets the value of the arl property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/arl
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetArl(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetArl(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArl:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) ServerSideProces
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/serverSideProcessingTimeout
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) TimedInvokeTimeo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsParams/timedInvokeTimeoutMs
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

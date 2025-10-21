@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = iobluetooth.NewBluetoothDevice
 
-// ExampleNewBluetoothDeviceWithAddressString demonstrates how to create a BluetoothDevice instance using NewBluetoothDeviceWithAddressString.
-// Returns the IOBluetoothDevice object for the given BluetoothDeviceAddress
-func ExampleNewBluetoothDeviceWithAddressString() {
-	_ = iobluetooth.NewBluetoothDeviceWithAddressString(
-		"address", // address string
-	)
-	// Output:
-}

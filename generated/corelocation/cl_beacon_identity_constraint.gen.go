@@ -96,7 +96,7 @@ func (b_ BeaconIdentityConstraint) Major() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/major
-func (b_ BeaconIdentityConstraint) SetMajor(value foundation.Number) {
+func (b_ BeaconIdentityConstraint) SetMajor(value foundation.INumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
 
@@ -114,15 +114,15 @@ func (b_ BeaconIdentityConstraint) Minor() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/minor
-func (b_ BeaconIdentityConstraint) SetMinor(value foundation.Number) {
+func (b_ BeaconIdentityConstraint) SetMinor(value foundation.INumber) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
 
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) Uuid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("uuid"))
+func (b_ BeaconIdentityConstraint) Uuid() foundation.UUID {
+	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("uuid"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (b_ BeaconIdentityConstraint) Uuid() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corelocation/clbeacon/uuid
-func (b_ BeaconIdentityConstraint) SetUuid(value unsafe.Pointer) {
+func (b_ BeaconIdentityConstraint) SetUuid(value foundation.IUUID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
 

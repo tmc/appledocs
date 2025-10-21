@@ -83,8 +83,8 @@ func NewPHASEDistanceModelParameters() PHASEDistanceModelParameters {
 // A distance over which the framework fades out the mixer’s sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters
-func (p_ PHASEDistanceModelParameters) FadeOutParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fadeOutParameters"))
+func (p_ PHASEDistanceModelParameters) FadeOutParameters() PHASEDistanceModelFadeOutParameters {
+	rv := objc.Send[PHASEDistanceModelFadeOutParameters](p_.ID, objc.Sel("fadeOutParameters"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (p_ PHASEDistanceModelParameters) FadeOutParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDistanceModelParameters/fadeOutParameters
-func (p_ PHASEDistanceModelParameters) SetFadeOutParameters(value unsafe.Pointer) {
+func (p_ PHASEDistanceModelParameters) SetFadeOutParameters(value IPHASEDistanceModelFadeOutParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFadeOutParameters:"), value)
 }
 
 // An effect that changes sound as it carries over a distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
-func (p_ PHASEDistanceModelParameters) DistanceModelParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceModelParameters"))
+func (p_ PHASEDistanceModelParameters) DistanceModelParameters() PHASEDistanceModelParameters {
+	rv := objc.Send[PHASEDistanceModelParameters](p_.ID, objc.Sel("distanceModelParameters"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (p_ PHASEDistanceModelParameters) DistanceModelParameters() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters
-func (p_ PHASEDistanceModelParameters) SetDistanceModelParameters(value unsafe.Pointer) {
+func (p_ PHASEDistanceModelParameters) SetDistanceModelParameters(value IPHASEDistanceModelParameters) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDistanceModelParameters:"), value)
 }
 

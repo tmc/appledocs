@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,23 +82,23 @@ func NewCNAssetInfo() CNAssetInfo {
 // Determines if the asset is Cinematic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/checkIfCinematic:completionHandler:
-func (cc _CNAssetInfoClass) CheckIfCinematicCompletionHandler(asset unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (cc _CNAssetInfoClass) CheckIfCinematicCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("checkIfCinematic:completionHandler:"), asset, completionHandler)
 }
 
 // The track used for Cinematic frame timing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/frameTimingTrack
-func (c_ CNAssetInfo) FrameTimingTrack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("frameTimingTrack"))
+func (c_ CNAssetInfo) FrameTimingTrack() avfoundation.AssetTrack {
+	rv := objc.Send[avfoundation.AssetTrack](c_.ID, objc.Sel("frameTimingTrack"))
 	return rv
 }
 
 // Tracks required to construct the video composition output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/videoCompositionTracks
-func (c_ CNAssetInfo) VideoCompositionTracks() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("videoCompositionTracks"))
+func (c_ CNAssetInfo) VideoCompositionTracks() []avfoundation.AssetTrack {
+	rv := objc.Send[[]avfoundation.AssetTrack](c_.ID, objc.Sel("videoCompositionTracks"))
 	return rv
 }
 

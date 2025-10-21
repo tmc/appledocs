@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,16 +100,16 @@ func (m_ MXHistogram) TotalBucketCount() uint {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXHistogram) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXHistogram) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 
 // The value of the ending measurement for the bucket.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend
-func (m_ MXHistogram) BucketEnd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnd"))
+func (m_ MXHistogram) BucketEnd() foundation.Measurement {
+	rv := objc.Send[foundation.Measurement](m_.ID, objc.Sel("bucketEnd"))
 	return rv
 }
 
@@ -118,15 +119,15 @@ func (m_ MXHistogram) BucketEnd() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend
-func (m_ MXHistogram) SetBucketEnd(value unsafe.Pointer) {
+func (m_ MXHistogram) SetBucketEnd(value foundation.IMeasurement) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnd:"), value)
 }
 
 // The value of the starting measurement for the bucket.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
-func (m_ MXHistogram) BucketStart() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketStart"))
+func (m_ MXHistogram) BucketStart() foundation.Measurement {
+	rv := objc.Send[foundation.Measurement](m_.ID, objc.Sel("bucketStart"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (m_ MXHistogram) BucketStart() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart
-func (m_ MXHistogram) SetBucketStart(value unsafe.Pointer) {
+func (m_ MXHistogram) SetBucketStart(value foundation.IMeasurement) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketStart:"), value)
 }
 

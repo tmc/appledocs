@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [AuthenticationView] class.
@@ -87,7 +88,7 @@ func NewAuthenticationView() AuthenticationView {
 // Creates a new authentication icon that reflects the current authentication state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:)
-func NewAuthenticationViewWithContext(context unsafe.Pointer) AuthenticationView {
+func NewAuthenticationViewWithContext(context coreimage.IContext) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:"), context)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewAuthenticationViewWithContext(context unsafe.Pointer) AuthenticationView
 // Creates a new authentication icon that reflects the current authentication state, using a specified size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/init(context:controlSize:)
-func NewAuthenticationViewWithContextControlSize(context unsafe.Pointer, controlSize unsafe.Pointer) AuthenticationView {
+func NewAuthenticationViewWithContextControlSize(context coreimage.IContext, controlSize unsafe.Pointer) AuthenticationView {
 	instance := getAuthenticationViewClass().Alloc()
 	rv := objc.Send[AuthenticationView](instance.ID, objc.Sel("initWithContext:controlSize:"), context, controlSize)
 	rv.Autorelease()
@@ -110,8 +111,8 @@ func NewAuthenticationViewWithContextControlSize(context unsafe.Pointer, control
 // The local authentication context associated with the authentication view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthenticationEmbeddedUI/LAAuthenticationView/context
-func (a_ AuthenticationView) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("context"))
+func (a_ AuthenticationView) Context() coreimage.Context {
+	rv := objc.Send[coreimage.Context](a_.ID, objc.Sel("context"))
 	return rv
 }
 

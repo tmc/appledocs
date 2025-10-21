@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRDeviceControllerExternalCertificateParameters] class.
@@ -79,8 +80,8 @@ func NewMTRDeviceControllerExternalCertificateParameters() MTRDeviceControllerEx
 // The root certificate we were initialized with.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerexternalcertificateparameters/rootcertificate
-func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificate"))
+func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
@@ -90,7 +91,7 @@ func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerexternalcertificateparameters/rootcertificate
-func (m_ MTRDeviceControllerExternalCertificateParameters) SetRootCertificate(value unsafe.Pointer) {
+func (m_ MTRDeviceControllerExternalCertificateParameters) SetRootCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
 

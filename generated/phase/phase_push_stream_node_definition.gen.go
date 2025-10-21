@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
 // The class instance for the [PHASEPushStreamNodeDefinition] class.
@@ -86,7 +88,7 @@ func NewPHASEPushStreamNodeDefinition() PHASEPushStreamNodeDefinition {
 // Creates a node definition for audio streams.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/init(mixerDefinition:format:)
-func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition unsafe.Pointer, format unsafe.Pointer) PHASEPushStreamNodeDefinition {
+func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat) PHASEPushStreamNodeDefinition {
 	instance := getPHASEPushStreamNodeDefinitionClass().Alloc()
 	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:"), mixerDefinition, format)
 	rv.Autorelease()
@@ -98,9 +100,9 @@ func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition u
 // Creates a named node definition for audio streams.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/init(mixerDefinition:format:identifier:)
-func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition unsafe.Pointer, format unsafe.Pointer, identifier string) PHASEPushStreamNodeDefinition {
+func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat, identifier appkit.string) PHASEPushStreamNodeDefinition {
 	instance := getPHASEPushStreamNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, objc.String(identifier))
+	rv := objc.Send[PHASEPushStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -109,8 +111,8 @@ func NewPHASEPushStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDe
 // The format of the audio stream data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNodeDefinition/format
-func (p_ PHASEPushStreamNodeDefinition) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("format"))
+func (p_ PHASEPushStreamNodeDefinition) Format() avfaudio.AudioFormat {
+	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 

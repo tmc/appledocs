@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +85,16 @@ func NewContinuityDevice() ContinuityDevice {
 // An array of the continuity device’s audio session port descriptions that’s available to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/audioSessionInputs
-func (c_ ContinuityDevice) AudioSessionInputs() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("audioSessionInputs"))
+func (c_ ContinuityDevice) AudioSessionInputs() []avfaudio.AudioSessionPortDescription {
+	rv := objc.Send[[]avfaudio.AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
 	return rv
 }
 
 // A universally unique value that identifies a specific continuity device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice/connectionID
-func (c_ ContinuityDevice) ConnectionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("connectionID"))
+func (c_ ContinuityDevice) ConnectionID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("connectionID"))
 	return rv
 }
 

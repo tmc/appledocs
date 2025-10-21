@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SActivityItem] class.
@@ -84,16 +85,16 @@ func NewSActivityItem() SActivityItem {
 // An identifier for the activity item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/identifier
-func (s_ SActivityItem) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SActivityItem) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // A human readable name for the activity item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) Title() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+func (s_ SActivityItem) Title() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (s_ SActivityItem) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivityItem/title
-func (s_ SActivityItem) SetTitle(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (s_ SActivityItem) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
 }
 
 

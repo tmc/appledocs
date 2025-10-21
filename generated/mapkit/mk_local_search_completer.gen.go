@@ -163,8 +163,8 @@ func (m_ MKLocalSearchCompleter) SetIsSearching(value bool) {
 // A filter that lists point of interest categories to include or exclude in the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
-func (m_ MKLocalSearchCompleter) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+func (m_ MKLocalSearchCompleter) PointOfInterestFilter() MKPointOfInterestFilter {
+	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
@@ -174,15 +174,15 @@ func (m_ MKLocalSearchCompleter) PointOfInterestFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
-func (m_ MKLocalSearchCompleter) SetPointOfInterestFilter(value unsafe.Pointer) {
+func (m_ MKLocalSearchCompleter) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
 // The search string that you want completions for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
-func (m_ MKLocalSearchCompleter) QueryFragment() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("queryFragment"))
+func (m_ MKLocalSearchCompleter) QueryFragment() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("queryFragment"))
 	return rv
 }
 
@@ -192,8 +192,8 @@ func (m_ MKLocalSearchCompleter) QueryFragment() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/queryfragment
-func (m_ MKLocalSearchCompleter) SetQueryFragment(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), objc.String(value))
+func (m_ MKLocalSearchCompleter) SetQueryFragment(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryFragment:"), value)
 }
 
 // The region that defines the geographic scope of the search.

@@ -30,8 +30,8 @@ type _MediaQueryClass struct {
 // An interface definition for the [MediaQuery] class.
 type IMediaQuery interface {
 	objectivec.IObject
-	AddFilterPredicate(predicate unsafe.Pointer)
-	RemoveFilterPredicate(predicate unsafe.Pointer)
+	AddFilterPredicate(predicate IMPMediaPredicate)
+	RemoveFilterPredicate(predicate IMPMediaPredicate)
 }
 
 // A query that specifies a set of media items from the device’s media library using a filter and a grouping type.
@@ -98,86 +98,86 @@ func NewMediaQueryWithFilterPredicates(filterPredicates unsafe.Pointer) MediaQue
 // Creates a media query that matches music items and that groups and sorts collections by album name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/albums()
-func (mc _MediaQueryClass) AlbumsQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("albumsQuery"))
+func (mc _MediaQueryClass) AlbumsQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("albumsQuery"))
 	return rv
 }
 
 // Creates a media query that matches music items and that groups and sorts collections by artist name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/artists()
-func (mc _MediaQueryClass) ArtistsQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("artistsQuery"))
+func (mc _MediaQueryClass) ArtistsQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("artistsQuery"))
 	return rv
 }
 
 // Creates a media query that matches audio book items and that groups and sorts collections by audio book name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/audiobooks()
-func (mc _MediaQueryClass) AudiobooksQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("audiobooksQuery"))
+func (mc _MediaQueryClass) AudiobooksQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("audiobooksQuery"))
 	return rv
 }
 
 // Creates a media query that matches compilation items and that groups and sorts collections by album name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/compilations()
-func (mc _MediaQueryClass) CompilationsQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("compilationsQuery"))
+func (mc _MediaQueryClass) CompilationsQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("compilationsQuery"))
 	return rv
 }
 
 // Creates a media query that matches all media items and that groups and sorts collections by composer name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/composers()
-func (mc _MediaQueryClass) ComposersQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("composersQuery"))
+func (mc _MediaQueryClass) ComposersQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("composersQuery"))
 	return rv
 }
 
 // Creates a media query that matches all media items and that groups and sorts collections by genre name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/genres()
-func (mc _MediaQueryClass) GenresQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("genresQuery"))
+func (mc _MediaQueryClass) GenresQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("genresQuery"))
 	return rv
 }
 
 // Creates a media query that matches the entire library and that groups and sorts collections by playlist name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/playlists()
-func (mc _MediaQueryClass) PlaylistsQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("playlistsQuery"))
+func (mc _MediaQueryClass) PlaylistsQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("playlistsQuery"))
 	return rv
 }
 
 // Creates a media query that matches podcast items and that groups and sorts collections by podcast name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/podcasts()
-func (mc _MediaQueryClass) PodcastsQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("podcastsQuery"))
+func (mc _MediaQueryClass) PodcastsQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("podcastsQuery"))
 	return rv
 }
 
 // Creates a media query that matches music items and that groups and sorts collections by song name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/songs()
-func (mc _MediaQueryClass) SongsQuery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("songsQuery"))
+func (mc _MediaQueryClass) SongsQuery() MediaQuery {
+	rv := objc.Send[MediaQuery](objc.ID(mc.class), objc.Sel("songsQuery"))
 	return rv
 }
 
 // Adds a media property predicate to a query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/addFilterPredicate(_:)
-func (m_ MediaQuery) AddFilterPredicate(predicate unsafe.Pointer) {
+func (m_ MediaQuery) AddFilterPredicate(predicate IMPMediaPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addFilterPredicate:"), predicate)
 }
 
 // Removes a filter predicate from a query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/removeFilterPredicate(_:)
-func (m_ MediaQuery) RemoveFilterPredicate(predicate unsafe.Pointer) {
+func (m_ MediaQuery) RemoveFilterPredicate(predicate IMPMediaPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeFilterPredicate:"), predicate)
 }
 
@@ -218,8 +218,8 @@ func (m_ MediaQuery) SetFilterPredicates(value unsafe.Pointer) {
 // The grouping for collections retrieved with the media query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/groupingType
-func (m_ MediaQuery) GroupingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupingType"))
+func (m_ MediaQuery) GroupingType() MediaGrouping {
+	rv := objc.Send[MediaGrouping](m_.ID, objc.Sel("groupingType"))
 	return rv
 }
 
@@ -229,7 +229,7 @@ func (m_ MediaQuery) GroupingType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/groupingType
-func (m_ MediaQuery) SetGroupingType(value unsafe.Pointer) {
+func (m_ MediaQuery) SetGroupingType(value IMediaGrouping) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupingType:"), value)
 }
 
@@ -252,8 +252,8 @@ func (m_ MediaQuery) Items() []MediaItem {
 // A Boolean value that indicates whether the media item is part of a compilation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyiscompilation
-func (m_ MediaQuery) MPMediaItemPropertyIsCompilation() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyIsCompilation"))
+func (m_ MediaQuery) MPMediaItemPropertyIsCompilation() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MPMediaItemPropertyIsCompilation"))
 	return rv
 }
 

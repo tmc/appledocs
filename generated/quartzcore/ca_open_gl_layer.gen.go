@@ -30,10 +30,10 @@ type _OpenGLLayerClass struct {
 // An interface definition for the [OpenGLLayer] class.
 type IOpenGLLayer interface {
 	ILayer
-	CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer) bool
+	CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) bool
 	CopyCGLContextForPixelFormat(pf unsafe.Pointer) unsafe.Pointer
 	CopyCGLPixelFormatForDisplayMask(mask unsafe.Pointer) unsafe.Pointer
-	DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer)
+	DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer)
 	ReleaseCGLContext(ctx unsafe.Pointer)
 	ReleaseCGLPixelFormat(pf unsafe.Pointer)
 }
@@ -91,7 +91,7 @@ func NewOpenGLLayer() OpenGLLayer {
 // Returns whether the receiver should draw OpenGL content for the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/canDraw(inCGLContext:pixelFormat:forLayerTime:displayTime:)
-func (o_ OpenGLLayer) CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer) bool {
+func (o_ OpenGLLayer) CanDrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:"), ctx, pf, t, ts)
 	return rv
 }
@@ -115,7 +115,7 @@ func (o_ OpenGLLayer) CopyCGLPixelFormatForDisplayMask(mask unsafe.Pointer) unsa
 // Draws the OpenGL content for the specified time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAOpenGLLayer/draw(inCGLContext:pixelFormat:forLayerTime:displayTime:)
-func (o_ OpenGLLayer) DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t unsafe.Pointer, ts unsafe.Pointer) {
+func (o_ OpenGLLayer) DrawInCGLContextPixelFormatForLayerTimeDisplayTime(ctx unsafe.Pointer, pf unsafe.Pointer, t ITimeInterval, ts unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("drawInCGLContext:pixelFormat:forLayerTime:displayTime:"), ctx, pf, t, ts)
 }
 

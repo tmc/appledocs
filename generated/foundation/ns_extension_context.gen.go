@@ -8,7 +8,9 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/intents"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/replaykit"
 )
 
 // The class instance for the [ExtensionContext] class.
@@ -31,16 +33,16 @@ type _ExtensionContextClass struct {
 // An interface definition for the [ExtensionContext] class.
 type IExtensionContext interface {
 	objectivec.IObject
-	CancelRequestWithError(error_ unsafe.Pointer)
-	CompleteRequestReturningItemsCompletionHandler(items objc.ID, completionHandler unsafe.Pointer)
-	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL URL, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer)
-	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL URL, setupInfo unsafe.Pointer)
+	CancelRequestWithError(error_ IError)
+	CompleteRequestReturningItemsCompletionHandler(items objectivec.IObject, completionHandler unsafe.Pointer)
+	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL IURL, broadcastConfiguration replaykit.IRPBroadcastConfiguration, setupInfo unsafe.Pointer)
+	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo unsafe.Pointer)
 	DismissNotificationContentExtension()
-	InterfaceParametersDescription() string
+	InterfaceParametersDescription() String
 	LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer)
 	MediaPlayingPaused()
 	MediaPlayingStarted()
-	OpenURLCompletionHandler(URL URL, completionHandler unsafe.Pointer)
+	OpenURLCompletionHandler(URL IURL, completionHandler unsafe.Pointer)
 	PerformNotificationDefaultAction()
 	WidgetMaximumSizeForDisplayMode(displayMode unsafe.Pointer) coregraphics.CGSize
 }
@@ -96,27 +98,27 @@ func NewExtensionContext() ExtensionContext {
 // Tells the host app to cancel the app extension request, with a supplied error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/cancelRequest(withError:)
-func (e_ ExtensionContext) CancelRequestWithError(error_ unsafe.Pointer) {
+func (e_ ExtensionContext) CancelRequestWithError(error_ IError) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
 
 // Tells the host app to complete the app extension request with an array of result items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(returningItems:completionHandler:)
-func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items objc.ID, completionHandler unsafe.Pointer) {
+func (e_ ExtensionContext) CompleteRequestReturningItemsCompletionHandler(items objectivec.IObject, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestReturningItems:completionHandler:"), items, completionHandler)
 }
 
 // Tells the host app to complete the app extension request with the specified broadcast information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:broadcastConfiguration:setupInfo:)
-func (e_ ExtensionContext) CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL URL, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer) {
+func (e_ ExtensionContext) CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL IURL, broadcastConfiguration replaykit.IRPBroadcastConfiguration, setupInfo unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestWithBroadcastURL:broadcastConfiguration:setupInfo:"), broadcastURL, broadcastConfiguration, setupInfo)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/completeRequest(withBroadcast:setupInfo:)
-func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL URL, setupInfo unsafe.Pointer) {
+func (e_ ExtensionContext) CompleteRequestWithBroadcastURLSetupInfo(broadcastURL IURL, setupInfo unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("completeRequestWithBroadcastURL:setupInfo:"), broadcastURL, setupInfo)
 }
 
@@ -129,8 +131,8 @@ func (e_ ExtensionContext) DismissNotificationContentExtension() {
 // Returns a human-readable string describing the data that SiriKit displays to the user when you handle an intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/interfaceParametersDescription()
-func (e_ ExtensionContext) InterfaceParametersDescription() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("interfaceParametersDescription"))
+func (e_ ExtensionContext) InterfaceParametersDescription() String {
+	rv := objc.Send[String](e_.ID, objc.Sel("interfaceParametersDescription"))
 	return rv
 }
 
@@ -157,7 +159,7 @@ func (e_ ExtensionContext) MediaPlayingStarted() {
 // Asks the system to open a URL on behalf of the currently running app extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/open(_:completionHandler:)
-func (e_ ExtensionContext) OpenURLCompletionHandler(URL URL, completionHandler unsafe.Pointer) {
+func (e_ ExtensionContext) OpenURLCompletionHandler(URL IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("openURL:completionHandler:"), URL, completionHandler)
 }
 
@@ -194,16 +196,16 @@ func (e_ ExtensionContext) HostedViewMinimumAllowedSize() coregraphics.CGSize {
 // The list of input objects associated with the context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/inputItems
-func (e_ ExtensionContext) InputItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("inputItems"))
+func (e_ ExtensionContext) InputItems() objc.ID {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("inputItems"))
 	return rv
 }
 
 // Metadata for populating your share extensions interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/intent
-func (e_ ExtensionContext) Intent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("intent"))
+func (e_ ExtensionContext) Intent() intents.INIntent {
+	rv := objc.Send[intents.INIntent](e_.ID, objc.Sel("intent"))
 	return rv
 }
 
@@ -261,8 +263,8 @@ func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Poi
 // The extension items and errors key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitemsanderrorskey
-func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
+func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
 	return rv
 }
 

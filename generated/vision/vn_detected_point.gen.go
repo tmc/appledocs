@@ -82,8 +82,8 @@ func NewDetectedPoint() DetectedPoint {
 // A confidence score that indicates the detected point’s accuracy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectedPoint/confidence
-func (d_ DetectedPoint) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("confidence"))
+func (d_ DetectedPoint) Confidence() Confidence {
+	rv := objc.Send[Confidence](d_.ID, objc.Sel("confidence"))
 	return rv
 }
 

@@ -102,8 +102,8 @@ func (i_ INCreateNoteIntent) SetContent(value unsafe.Pointer) {
 // The group that contains the note.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/groupname
-func (i_ INCreateNoteIntent) GroupName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("groupName"))
+func (i_ INCreateNoteIntent) GroupName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (i_ INCreateNoteIntent) GroupName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/groupname
-func (i_ INCreateNoteIntent) SetGroupName(value unsafe.Pointer) {
+func (i_ INCreateNoteIntent) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
 
 // The title text for the note.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/title
-func (i_ INCreateNoteIntent) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("title"))
+func (i_ INCreateNoteIntent) Title() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INCreateNoteIntent) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatenoteintent/title
-func (i_ INCreateNoteIntent) SetTitle(value unsafe.Pointer) {
+func (i_ INCreateNoteIntent) SetTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
 }
 

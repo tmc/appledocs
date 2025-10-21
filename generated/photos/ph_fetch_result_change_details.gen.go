@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewPHFetchResultChangeDetails() PHFetchResultChangeDetails {
 // The indexes of objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
-func (p_ PHFetchResultChangeDetails) ChangedIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("changedIndexes"))
+func (p_ PHFetchResultChangeDetails) ChangedIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](p_.ID, objc.Sel("changedIndexes"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (p_ PHFetchResultChangeDetails) ChangedIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes
-func (p_ PHFetchResultChangeDetails) SetChangedIndexes(value unsafe.Pointer) {
+func (p_ PHFetchResultChangeDetails) SetChangedIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
 }
 
@@ -119,8 +120,8 @@ func (p_ PHFetchResultChangeDetails) SetChangedObjects(value unsafe.Pointer) {
 // The current fetch result, incorporating recent changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultafterchanges
-func (p_ PHFetchResultChangeDetails) FetchResultAfterChanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchResultAfterChanges"))
+func (p_ PHFetchResultChangeDetails) FetchResultAfterChanges() PHFetchResult {
+	rv := objc.Send[PHFetchResult](p_.ID, objc.Sel("fetchResultAfterChanges"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (p_ PHFetchResultChangeDetails) FetchResultAfterChanges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultafterchanges
-func (p_ PHFetchResultChangeDetails) SetFetchResultAfterChanges(value unsafe.Pointer) {
+func (p_ PHFetchResultChangeDetails) SetFetchResultAfterChanges(value IPHFetchResult) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchResultAfterChanges:"), value)
 }
 
 // The original fetch result, without recent changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultbeforechanges
-func (p_ PHFetchResultChangeDetails) FetchResultBeforeChanges() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchResultBeforeChanges"))
+func (p_ PHFetchResultChangeDetails) FetchResultBeforeChanges() PHFetchResult {
+	rv := objc.Send[PHFetchResult](p_.ID, objc.Sel("fetchResultBeforeChanges"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (p_ PHFetchResultChangeDetails) FetchResultBeforeChanges() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/fetchresultbeforechanges
-func (p_ PHFetchResultChangeDetails) SetFetchResultBeforeChanges(value unsafe.Pointer) {
+func (p_ PHFetchResultChangeDetails) SetFetchResultBeforeChanges(value IPHFetchResult) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchResultBeforeChanges:"), value)
 }
 
@@ -191,8 +192,8 @@ func (p_ PHFetchResultChangeDetails) SetHasMoves(value bool) {
 // The indexes where new objects have been inserted in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/insertedindexes
-func (p_ PHFetchResultChangeDetails) InsertedIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertedIndexes"))
+func (p_ PHFetchResultChangeDetails) InsertedIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](p_.ID, objc.Sel("insertedIndexes"))
 	return rv
 }
 
@@ -202,7 +203,7 @@ func (p_ PHFetchResultChangeDetails) InsertedIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/insertedindexes
-func (p_ PHFetchResultChangeDetails) SetInsertedIndexes(value unsafe.Pointer) {
+func (p_ PHFetchResultChangeDetails) SetInsertedIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertedIndexes:"), value)
 }
 
@@ -227,8 +228,8 @@ func (p_ PHFetchResultChangeDetails) SetInsertedObjects(value unsafe.Pointer) {
 // The indexes from which objects have been removed from the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/removedindexes
-func (p_ PHFetchResultChangeDetails) RemovedIndexes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("removedIndexes"))
+func (p_ PHFetchResultChangeDetails) RemovedIndexes() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](p_.ID, objc.Sel("removedIndexes"))
 	return rv
 }
 
@@ -238,7 +239,7 @@ func (p_ PHFetchResultChangeDetails) RemovedIndexes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phfetchresultchangedetails/removedindexes
-func (p_ PHFetchResultChangeDetails) SetRemovedIndexes(value unsafe.Pointer) {
+func (p_ PHFetchResultChangeDetails) SetRemovedIndexes(value foundation.IIndexSet) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRemovedIndexes:"), value)
 }
 

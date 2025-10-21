@@ -97,7 +97,7 @@ func NewArrayBatchProviderWithDictionaryError(dictionary unsafe.Pointer, error_ 
 // Creates the batch provider based on the array of feature providers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLArrayBatchProvider/init(array:)
-func NewArrayBatchProviderWithFeatureProviderArray(array unsafe.Pointer) ArrayBatchProvider {
+func NewArrayBatchProviderWithFeatureProviderArray(array []objc.ID) ArrayBatchProvider {
 	instance := getArrayBatchProviderClass().Alloc()
 	rv := objc.Send[ArrayBatchProvider](instance.ID, objc.Sel("initWithFeatureProviderArray:"), array)
 	rv.Autorelease()

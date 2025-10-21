@@ -102,7 +102,7 @@ func (f_ FileThumbnailRequest) FileURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest/fileurl
-func (f_ FileThumbnailRequest) SetFileURL(value foundation.URL) {
+func (f_ FileThumbnailRequest) SetFileURL(value foundation.IURL) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFileURL:"), value)
 }
 

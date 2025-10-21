@@ -29,7 +29,7 @@ type _LengthFormatterClass struct {
 // An interface definition for the [LengthFormatter] class.
 type ILengthFormatter interface {
 	IFormatter
-	UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) string
+	UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) String
 }
 
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements.
@@ -83,16 +83,16 @@ func NewLengthFormatter() LengthFormatter {
 // Returns the unit string based on the provided value and unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromValue:unit:)
-func (l_ LengthFormatter) UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) string {
-	rv := objc.Send[string](l_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
+func (l_ LengthFormatter) UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) String {
+	rv := objc.Send[String](l_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
 
 // The number formatter used to format the numbers in length strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
-func (l_ LengthFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("numberFormatter"))
+func (l_ LengthFormatter) NumberFormatter() NSNumberFormatter {
+	rv := objc.Send[NSNumberFormatter](l_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (l_ LengthFormatter) NumberFormatter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/numberFormatter
-func (l_ LengthFormatter) SetNumberFormatter(value unsafe.Pointer) {
+func (l_ LengthFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 

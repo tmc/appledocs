@@ -78,8 +78,8 @@ func NewMTRThreadNetworkDirectoryClusterAddNetworkParams() MTRThreadNetworkDirec
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) OperationalDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalDataset"))
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) OperationalDataset() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("operationalDataset"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) OperationalDataset() 
 // SetOperationalDataset sets the value of the operationalDataset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetOperationalDataset(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetOperationalDataset(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/serverSideProcessingTimeout
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterAddNetworkParams/timedInvokeTimeoutMs
-func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterAddNetworkParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

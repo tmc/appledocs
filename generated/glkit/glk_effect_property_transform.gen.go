@@ -84,8 +84,8 @@ func NewGLKEffectPropertyTransform() GLKEffectPropertyTransform {
 // The matrix used to transform position coordinates from world space to eye space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
-func (g_ GLKEffectPropertyTransform) ModelviewMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("modelviewMatrix"))
+func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 {
+	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("modelviewMatrix"))
 	return rv
 }
 
@@ -95,23 +95,23 @@ func (g_ GLKEffectPropertyTransform) ModelviewMatrix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
-func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value unsafe.Pointer) {
+func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value IGLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModelviewMatrix:"), value)
 }
 
 // The matrix used to transform normal coordinates from world space to eye space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/normalMatrix
-func (g_ GLKEffectPropertyTransform) NormalMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("normalMatrix"))
+func (g_ GLKEffectPropertyTransform) NormalMatrix() GLKMatrix3 {
+	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("normalMatrix"))
 	return rv
 }
 
 // The matrix used to transform position coordinates from eye space to projection space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
-func (g_ GLKEffectPropertyTransform) ProjectionMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("projectionMatrix"))
+func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 {
+	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("projectionMatrix"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (g_ GLKEffectPropertyTransform) ProjectionMatrix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
-func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value unsafe.Pointer) {
+func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value IGLKMatrix4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProjectionMatrix:"), value)
 }
 

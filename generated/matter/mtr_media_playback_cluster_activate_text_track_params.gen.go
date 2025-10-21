@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -90,7 +91,7 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/serverSideProcessingTimeout
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,14 +109,14 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/timedInvokeTimeoutMs
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("trackID"))
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("trackID"))
 	return rv
 }
 
@@ -123,8 +124,8 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() string {
 // SetTrackID sets the value of the trackID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
-func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTrackID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), objc.String(value))
+func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTrackID(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
 }
 
 

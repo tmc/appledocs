@@ -87,7 +87,7 @@ func (m_ MTRClusterPath) Cluster() foundation.Number {
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrclusterpath/cluster
-func (m_ MTRClusterPath) SetCluster(value foundation.Number) {
+func (m_ MTRClusterPath) SetCluster(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRClusterPath) Endpoint() foundation.Number {
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrclusterpath/endpoint
-func (m_ MTRClusterPath) SetEndpoint(value foundation.Number) {
+func (m_ MTRClusterPath) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

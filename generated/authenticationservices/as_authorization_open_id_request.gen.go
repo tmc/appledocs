@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AuthorizationOpenIDRequest] class.
@@ -82,8 +83,8 @@ func NewAuthorizationOpenIDRequest() AuthorizationOpenIDRequest {
 // A string value to pass to the identity provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/nonce
-func (a_ AuthorizationOpenIDRequest) Nonce() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("nonce"))
+func (a_ AuthorizationOpenIDRequest) Nonce() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("nonce"))
 	return rv
 }
 
@@ -93,15 +94,15 @@ func (a_ AuthorizationOpenIDRequest) Nonce() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/nonce
-func (a_ AuthorizationOpenIDRequest) SetNonce(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), objc.String(value))
+func (a_ AuthorizationOpenIDRequest) SetNonce(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), value)
 }
 
 // The OpenID authentication operation you want this request to perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
-func (a_ AuthorizationOpenIDRequest) RequestedOperation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("requestedOperation"))
+func (a_ AuthorizationOpenIDRequest) RequestedOperation() AuthorizationOpenIDOperation {
+	rv := objc.Send[AuthorizationOpenIDOperation](a_.ID, objc.Sel("requestedOperation"))
 	return rv
 }
 
@@ -111,7 +112,7 @@ func (a_ AuthorizationOpenIDRequest) RequestedOperation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/requestedOperation
-func (a_ AuthorizationOpenIDRequest) SetRequestedOperation(value unsafe.Pointer) {
+func (a_ AuthorizationOpenIDRequest) SetRequestedOperation(value IAuthorizationOpenIDOperation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRequestedOperation:"), value)
 }
 
@@ -146,8 +147,8 @@ func (a_ AuthorizationOpenIDRequest) SetRequestedScopes(value []string) {
 // Data that’s returned to you unmodified in the corresponding credential after a successful authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
-func (a_ AuthorizationOpenIDRequest) State() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationOpenIDRequest) State() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -157,8 +158,8 @@ func (a_ AuthorizationOpenIDRequest) State() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationOpenIDRequest/state
-func (a_ AuthorizationOpenIDRequest) SetState(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
+func (a_ AuthorizationOpenIDRequest) SetState(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), value)
 }
 
 

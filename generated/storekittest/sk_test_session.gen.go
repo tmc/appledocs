@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,7 +34,7 @@ type ITestSession interface {
 	objectivec.IObject
 	AllTransactions() []TestTransaction
 	ApproveAskToBuyTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
-	BuyProductWithIdentifierError(productIdentifier string, error_ unsafe.Pointer) bool
+	BuyProductWithIdentifierError(productIdentifier appkit.string, error_ unsafe.Pointer) bool
 	ClearTransactions()
 	ConsentToPriceIncreaseForTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
 	DeclineAskToBuyTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
@@ -41,8 +42,8 @@ type ITestSession interface {
 	DeleteTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
 	DisableAutoRenewForTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
 	EnableAutoRenewForTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
-	ExpireSubscriptionWithProductIdentifierError(productIdentifier string, error_ unsafe.Pointer) bool
-	ForceRenewalOfSubscriptionWithProductIdentifierError(productIdentifier string, error_ unsafe.Pointer) bool
+	ExpireSubscriptionWithProductIdentifierError(productIdentifier appkit.string, error_ unsafe.Pointer) bool
+	ForceRenewalOfSubscriptionWithProductIdentifierError(productIdentifier appkit.string, error_ unsafe.Pointer) bool
 	RefundTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
 	RequestPriceIncreaseConsentForTransactionWithIdentifierError(identifier uint, error_ unsafe.Pointer) bool
 	ResetToDefaultState()
@@ -102,9 +103,9 @@ func NewTestSession() TestSession {
 // Initializes the test session with the provided configuration file that you include in your application’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/init(configurationFileNamed:)
-func NewTestSessionWithConfigurationFileNamedError(filename string, error_ unsafe.Pointer) TestSession {
+func NewTestSessionWithConfigurationFileNamedError(filename appkit.string, error_ unsafe.Pointer) TestSession {
 	instance := getTestSessionClass().Alloc()
-	rv := objc.Send[TestSession](instance.ID, objc.Sel("initWithConfigurationFileNamed:error:"), objc.String(filename), error_)
+	rv := objc.Send[TestSession](instance.ID, objc.Sel("initWithConfigurationFileNamed:error:"), filename, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -114,7 +115,7 @@ func NewTestSessionWithConfigurationFileNamedError(filename string, error_ unsaf
 // Initializes the test session with a configuration file you provide through a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/init(contentsOf:)
-func NewTestSessionWithContentsOfURLError(fileURL foundation.URL, error_ unsafe.Pointer) TestSession {
+func NewTestSessionWithContentsOfURLError(fileURL foundation.IURL, error_ unsafe.Pointer) TestSession {
 	instance := getTestSessionClass().Alloc()
 	rv := objc.Send[TestSession](instance.ID, objc.Sel("initWithContentsOfURL:error:"), fileURL, error_)
 	rv.Autorelease()
@@ -141,8 +142,8 @@ func (t_ TestSession) ApproveAskToBuyTransactionWithIdentifierError(identifier u
 // Simulates buying an in-app purchase or subscription outside the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/buyProduct(productIdentifier:)
-func (t_ TestSession) BuyProductWithIdentifierError(productIdentifier string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("buyProductWithIdentifier:error:"), objc.String(productIdentifier), error_)
+func (t_ TestSession) BuyProductWithIdentifierError(productIdentifier appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("buyProductWithIdentifier:error:"), productIdentifier, error_)
 	return rv
 }
 
@@ -204,16 +205,16 @@ func (t_ TestSession) EnableAutoRenewForTransactionWithIdentifierError(identifie
 // Causes the identified auto-renewable subscription to expire immediately in the test environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/expireSubscription(productIdentifier:)
-func (t_ TestSession) ExpireSubscriptionWithProductIdentifierError(productIdentifier string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("expireSubscriptionWithProductIdentifier:error:"), objc.String(productIdentifier), error_)
+func (t_ TestSession) ExpireSubscriptionWithProductIdentifierError(productIdentifier appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("expireSubscriptionWithProductIdentifier:error:"), productIdentifier, error_)
 	return rv
 }
 
 // Ends the previous subscription period and begins the next period in the test environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/forceRenewalOfSubscription(productIdentifier:)
-func (t_ TestSession) ForceRenewalOfSubscriptionWithProductIdentifierError(productIdentifier string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("forceRenewalOfSubscriptionWithProductIdentifier:error:"), objc.String(productIdentifier), error_)
+func (t_ TestSession) ForceRenewalOfSubscriptionWithProductIdentifierError(productIdentifier appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("forceRenewalOfSubscriptionWithProductIdentifier:error:"), productIdentifier, error_)
 	return rv
 }
 
@@ -359,8 +360,8 @@ func (t_ TestSession) SetInterruptedPurchasesEnabled(value bool) {
 // The value that determines the localization metadata the test environment uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/locale
-func (t_ TestSession) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("locale"))
+func (t_ TestSession) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](t_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -370,7 +371,7 @@ func (t_ TestSession) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/locale
-func (t_ TestSession) SetLocale(value unsafe.Pointer) {
+func (t_ TestSession) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLocale:"), value)
 }
 
@@ -395,8 +396,8 @@ func (t_ TestSession) SetBillingRetryOnRenewalEnabled(value bool) {
 // The three-letter code that represents the region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/storefront
-func (t_ TestSession) Storefront() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("storefront"))
+func (t_ TestSession) Storefront() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("storefront"))
 	return rv
 }
 
@@ -406,15 +407,15 @@ func (t_ TestSession) Storefront() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/storefront
-func (t_ TestSession) SetStorefront(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStorefront:"), objc.String(value))
+func (t_ TestSession) SetStorefront(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setStorefront:"), value)
 }
 
 // The rate at which time passes for subscriptions in the test environment as compared to real time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/timeRate-swift.property
-func (t_ TestSession) TimeRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeRate"))
+func (t_ TestSession) TimeRate() TestTimeRate {
+	rv := objc.Send[TestTimeRate](t_.ID, objc.Sel("timeRate"))
 	return rv
 }
 
@@ -424,7 +425,7 @@ func (t_ TestSession) TimeRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/timeRate-swift.property
-func (t_ TestSession) SetTimeRate(value unsafe.Pointer) {
+func (t_ TestSession) SetTimeRate(value ITestTimeRate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTimeRate:"), value)
 }
 

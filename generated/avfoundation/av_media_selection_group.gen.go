@@ -107,8 +107,8 @@ func (m_ MediaSelectionGroup) SetCustomMediaSelectionScheme(value unsafe.Pointer
 // The default option in the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/defaultoption
-func (m_ MediaSelectionGroup) DefaultOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("defaultOption"))
+func (m_ MediaSelectionGroup) DefaultOption() AVMediaSelectionOption {
+	rv := objc.Send[AVMediaSelectionOption](m_.ID, objc.Sel("defaultOption"))
 	return rv
 }
 
@@ -118,15 +118,15 @@ func (m_ MediaSelectionGroup) DefaultOption() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/defaultoption
-func (m_ MediaSelectionGroup) SetDefaultOption(value unsafe.Pointer) {
+func (m_ MediaSelectionGroup) SetDefaultOption(value IAVMediaSelectionOption) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultOption:"), value)
 }
 
 // A collection of mutually exclusive media selection options
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/options
-func (m_ MediaSelectionGroup) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("options"))
+func (m_ MediaSelectionGroup) Options() AVMediaSelectionOption {
+	rv := objc.Send[AVMediaSelectionOption](m_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -136,7 +136,7 @@ func (m_ MediaSelectionGroup) Options() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselectiongroup/options
-func (m_ MediaSelectionGroup) SetOptions(value unsafe.Pointer) {
+func (m_ MediaSelectionGroup) SetOptions(value IAVMediaSelectionOption) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptions:"), value)
 }
 

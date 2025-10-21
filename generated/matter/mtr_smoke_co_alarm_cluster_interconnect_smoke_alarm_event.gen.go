@@ -87,7 +87,7 @@ func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) AlarmSeverityLevel()
 // SetAlarmSeverityLevel sets the value of the alarmSeverityLevel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterinterconnectsmokealarmevent/alarmseveritylevel
-func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) SetAlarmSeverityLevel(value foundation.Number) {
+func (m_ MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent) SetAlarmSeverityLevel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmSeverityLevel:"), value)
 }
 

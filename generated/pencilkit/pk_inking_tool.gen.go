@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [InkingTool] class.
@@ -86,7 +88,7 @@ func NewInkingTool() InkingTool {
 // Creates an ink tool object with the default line width and the specified color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(inkType:color:)
-func NewInkingToolWithInkTypeColor(type_ unsafe.Pointer, color unsafe.Pointer) InkingTool {
+func NewInkingToolWithInkTypeColor(type_ unsafe.Pointer, color appkit.IColor) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:"), type_, color)
 	rv.Autorelease()
@@ -98,7 +100,7 @@ func NewInkingToolWithInkTypeColor(type_ unsafe.Pointer, color unsafe.Pointer) I
 // Creates an ink tool object with the specified color and line width values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(inkType:color:width:)
-func NewInkingToolWithInkTypeColorWidth(type_ unsafe.Pointer, color unsafe.Pointer, width float64) InkingTool {
+func NewInkingToolWithInkTypeColorWidth(type_ unsafe.Pointer, color appkit.IColor, width float64) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:width:"), type_, color, width)
 	rv.Autorelease()
@@ -107,7 +109,7 @@ func NewInkingToolWithInkTypeColorWidth(type_ unsafe.Pointer, color unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(inkType:color:width:azimuth:)
-func NewInkingToolWithInkTypeColorWidthAzimuth(type_ unsafe.Pointer, color unsafe.Pointer, width float64, angle float64) InkingTool {
+func NewInkingToolWithInkTypeColorWidthAzimuth(type_ unsafe.Pointer, color appkit.IColor, width float64, angle float64) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:"), type_, color, width, angle)
 	rv.Autorelease()
@@ -119,7 +121,7 @@ func NewInkingToolWithInkTypeColorWidthAzimuth(type_ unsafe.Pointer, color unsaf
 // Create an inking tool with the specified ink and width.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(ink:width:)
-func NewInkingToolWithInkWidth(ink unsafe.Pointer, width float64) InkingTool {
+func NewInkingToolWithInkWidth(ink IPKInk, width float64) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInk:width:"), ink, width)
 	rv.Autorelease()
@@ -130,8 +132,8 @@ func NewInkingToolWithInkWidth(ink unsafe.Pointer, width float64) InkingTool {
 // Converts a color from one user interface style to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/convert(_:from:to:)
-func (ic _InkingToolClass) ConvertColorFromUserInterfaceStyleTo(color unsafe.Pointer, fromUserInterfaceStyle unsafe.Pointer, toUserInterfaceStyle unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("convertColor:fromUserInterfaceStyle:to:"), color, fromUserInterfaceStyle, toUserInterfaceStyle)
+func (ic _InkingToolClass) ConvertColorFromUserInterfaceStyleTo(color appkit.IColor, fromUserInterfaceStyle unsafe.Pointer, toUserInterfaceStyle unsafe.Pointer) appkit.Color {
+	rv := objc.Send[appkit.Color](objc.ID(ic.class), objc.Sel("convertColor:fromUserInterfaceStyle:to:"), color, fromUserInterfaceStyle, toUserInterfaceStyle)
 	return rv
 }
 
@@ -146,8 +148,8 @@ func (ic _InkingToolClass) DefaultWidthForInkType(inkType unsafe.Pointer) float6
 // Converts a color from light to dark appearance or vice versa.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/invertColor(_:)
-func (ic _InkingToolClass) InvertColor(color CGColorRef) CGColorRef {
-	rv := objc.Send[CGColorRef](objc.ID(ic.class), objc.Sel("invertColor:"), color)
+func (ic _InkingToolClass) InvertColor(color coregraphics.CGColorRef) coregraphics.CGColorRef {
+	rv := objc.Send[coregraphics.CGColorRef](objc.ID(ic.class), objc.Sel("invertColor:"), color)
 	return rv
 }
 
@@ -178,16 +180,16 @@ func (i_ InkingTool) Azimuth() float64 {
 // The color of the ink.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/color
-func (i_ InkingTool) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("color"))
+func (i_ InkingTool) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("color"))
 	return rv
 }
 
 // The ink that this tool creates strokes with.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/ink
-func (i_ InkingTool) Ink() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("ink"))
+func (i_ InkingTool) Ink() PKInk {
+	rv := objc.Send[PKInk](i_.ID, objc.Sel("ink"))
 	return rv
 }
 
@@ -202,8 +204,8 @@ func (i_ InkingTool) InkType() unsafe.Pointer {
 // The version of PencilKit necessary to use the inking tool.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/requiredContentVersion
-func (i_ InkingTool) RequiredContentVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("requiredContentVersion"))
+func (i_ InkingTool) RequiredContentVersion() ContentVersion {
+	rv := objc.Send[ContentVersion](i_.ID, objc.Sel("requiredContentVersion"))
 	return rv
 }
 

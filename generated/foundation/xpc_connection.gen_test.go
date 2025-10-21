@@ -9,11 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewXPCConnection
 
-// ExampleNewXPCConnectionWithServiceName demonstrates how to create a XPCConnection instance using NewXPCConnectionWithServiceName.
-// Initializes an   object to connect to an   object in an XPC service, identified by a service name.
-func ExampleNewXPCConnectionWithServiceName() {
-	_ = foundation.NewXPCConnectionWithServiceName(
-		"serviceName", // serviceName string
+// ExampleNewXPCConnectionWithListenerEndpoint demonstrates how to create a XPCConnection instance using NewXPCConnectionWithListenerEndpoint.
+// Initializes an   object to connect to an   object in another process, identified by an   object.
+func ExampleNewXPCConnectionWithListenerEndpoint() {
+	_ = foundation.NewXPCConnectionWithListenerEndpoint(
+		foundation.NSXPCListenerEndpoint{}, // endpoint NSXPCListenerEndpoint
 	)
 	// Output:
 }

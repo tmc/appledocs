@@ -30,8 +30,8 @@ type _PHASEObjectClass struct {
 // An interface definition for the [PHASEObject] class.
 type IPHASEObject interface {
 	objectivec.IObject
-	AddChildError(child unsafe.Pointer, error_ unsafe.Pointer) bool
-	RemoveChild(child unsafe.Pointer)
+	AddChildError(child IPHASEObject, error_ unsafe.Pointer) bool
+	RemoveChild(child IPHASEObject)
 	RemoveChildren()
 }
 
@@ -88,7 +88,7 @@ func NewPHASEObject() PHASEObject {
 // Creates an object in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/init(engine:)
-func NewPHASEObjectWithEngine(engine unsafe.Pointer) PHASEObject {
+func NewPHASEObjectWithEngine(engine IPHASEEngine) PHASEObject {
 	instance := getPHASEObjectClass().Alloc()
 	rv := objc.Send[PHASEObject](instance.ID, objc.Sel("initWithEngine:"), engine)
 	rv.Autorelease()
@@ -120,7 +120,7 @@ func (pc _PHASEObjectClass) Up() unsafe.Pointer {
 // Adds the given object as a child.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/addChild(_:)
-func (p_ PHASEObject) AddChildError(child unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (p_ PHASEObject) AddChildError(child IPHASEObject, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("addChild:error:"), child, error_)
 	return rv
 }
@@ -128,7 +128,7 @@ func (p_ PHASEObject) AddChildError(child unsafe.Pointer, error_ unsafe.Pointer)
 // Removes the given object as a child.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/removeChild(_:)
-func (p_ PHASEObject) RemoveChild(child unsafe.Pointer) {
+func (p_ PHASEObject) RemoveChild(child IPHASEObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeChild:"), child)
 }
 
@@ -158,8 +158,8 @@ func (p_ PHASEObject) Forward() unsafe.Pointer {
 // The object that this instance positions and orients relative to in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/parent
-func (p_ PHASEObject) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("parent"))
+func (p_ PHASEObject) Parent() PHASEObject {
+	rv := objc.Send[PHASEObject](p_.ID, objc.Sel("parent"))
 	return rv
 }
 

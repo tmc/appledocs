@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,22 +32,22 @@ type _IMKInputControllerClass struct {
 // An interface definition for the [IMKInputController] class.
 type IIMKInputController interface {
 	objectivec.IObject
-	AnnotationSelectedForCandidate(annotationString unsafe.Pointer, candidateString unsafe.Pointer)
+	AnnotationSelectedForCandidate(annotationString foundation.IAttributedString, candidateString foundation.IAttributedString)
 	CancelComposition()
-	CandidateSelected(candidateString unsafe.Pointer)
-	CandidateSelectionChanged(candidateString unsafe.Pointer)
+	CandidateSelected(candidateString foundation.IAttributedString)
+	CandidateSelectionChanged(candidateString foundation.IAttributedString)
 	Client() objc.ID
-	CompositionAttributesAtRange(range_ Range) unsafe.Pointer
+	CompositionAttributesAtRange(range_ foundation.IRange) foundation.MutableDictionary
 	Delegate() objc.ID
-	DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objc.ID)
+	DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objectivec.IObject)
 	HidePalettes()
 	InputControllerWillClose()
-	MarkForStyleAtRange(style int, range_ Range) unsafe.Pointer
-	Menu() unsafe.Pointer
-	ReplacementRange() Range
-	SelectionRange() Range
-	Server() unsafe.Pointer
-	SetDelegate(newDelegate objc.ID)
+	MarkForStyleAtRange(style int, range_ foundation.IRange) foundation.Dictionary
+	Menu() appkit.Menu
+	ReplacementRange() foundation.Range
+	SelectionRange() foundation.Range
+	Server() IMKServer
+	SetDelegate(newDelegate objectivec.IObject)
 	UpdateComposition()
 }
 
@@ -102,7 +104,7 @@ func NewIMKInputController() IMKInputController {
 // Initializes the input control by setting the delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/init(server:delegate:client:)
-func NewIMKInputControllerWithServerDelegateClient(server unsafe.Pointer, delegate objc.ID, inputClient objc.ID) IMKInputController {
+func NewIMKInputControllerWithServerDelegateClient(server IMKServer, delegate objectivec.IObject, inputClient objectivec.IObject) IMKInputController {
 	instance := getIMKInputControllerClass().Alloc()
 	rv := objc.Send[IMKInputController](instance.ID, objc.Sel("initWithServer:delegate:client:"), server, delegate, inputClient)
 	rv.Autorelease()
@@ -113,7 +115,7 @@ func NewIMKInputControllerWithServerDelegateClient(server unsafe.Pointer, delega
 // Sends the selected candidate string and annotation string to the input controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/annotationSelected(_:forCandidate:)
-func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString unsafe.Pointer, candidateString unsafe.Pointer) {
+func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString foundation.IAttributedString, candidateString foundation.IAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("annotationSelected:forCandidate:"), annotationString, candidateString)
 }
 
@@ -127,14 +129,14 @@ func (i_ IMKInputController) CancelComposition() {
 // Informs an input controller that a new candidate is selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelected(_:)
-func (i_ IMKInputController) CandidateSelected(candidateString unsafe.Pointer) {
+func (i_ IMKInputController) CandidateSelected(candidateString foundation.IAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelected:"), candidateString)
 }
 
 // Informs an input controller that the current candidate selection in the candidate window has changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelectionChanged(_:)
-func (i_ IMKInputController) CandidateSelectionChanged(candidateString unsafe.Pointer) {
+func (i_ IMKInputController) CandidateSelectionChanged(candidateString foundation.IAttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelectionChanged:"), candidateString)
 }
 
@@ -149,8 +151,8 @@ func (i_ IMKInputController) Client() objc.ID {
 // Returns a dictionary of text attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/compositionAttributes(at:)
-func (i_ IMKInputController) CompositionAttributesAtRange(range_ Range) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
+func (i_ IMKInputController) CompositionAttributesAtRange(range_ foundation.IRange) foundation.MutableDictionary {
+	rv := objc.Send[foundation.MutableDictionary](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
 	return rv
 }
 
@@ -165,7 +167,7 @@ func (i_ IMKInputController) Delegate() objc.ID {
 // Passes commands that are not generated as part of the text input process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/doCommand(by:command:)
-func (i_ IMKInputController) DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objc.ID) {
+func (i_ IMKInputController) DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("doCommandBySelector:commandDictionary:"), aSelector, infoDictionary)
 }
 
@@ -185,47 +187,47 @@ func (i_ IMKInputController) InputControllerWillClose() {
 // Returns a dictionary of text attributes that can mark a range of an attributed string to send to a client.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/mark(forStyle:at:)
-func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ Range) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
+func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ foundation.IRange) foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
 	return rv
 }
 
 // Returns a menu of commands that are specific to an input method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/menu()
-func (i_ IMKInputController) Menu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("menu"))
+func (i_ IMKInputController) Menu() appkit.Menu {
+	rv := objc.Send[appkit.Menu](i_.ID, objc.Sel("menu"))
 	return rv
 }
 
 // Returns the range in the client document that the text should replace.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/replacementRange()
-func (i_ IMKInputController) ReplacementRange() Range {
-	rv := objc.Send[Range](i_.ID, objc.Sel("replacementRange"))
+func (i_ IMKInputController) ReplacementRange() foundation.Range {
+	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("replacementRange"))
 	return rv
 }
 
 // Returns where the range of the selection that should be placed inside marked text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/selectionRange()
-func (i_ IMKInputController) SelectionRange() Range {
-	rv := objc.Send[Range](i_.ID, objc.Sel("selectionRange"))
+func (i_ IMKInputController) SelectionRange() foundation.Range {
+	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("selectionRange"))
 	return rv
 }
 
 // Returns the server object that manages the input controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/server()
-func (i_ IMKInputController) Server() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("server"))
+func (i_ IMKInputController) Server() IMKServer {
+	rv := objc.Send[IMKServer](i_.ID, objc.Sel("server"))
 	return rv
 }
 
 // Sets the delegate for input controller object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/setDelegate(_:)
-func (i_ IMKInputController) SetDelegate(newDelegate objc.ID) {
+func (i_ IMKInputController) SetDelegate(newDelegate objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), newDelegate)
 }
 

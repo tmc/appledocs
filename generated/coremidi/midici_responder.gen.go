@@ -81,8 +81,8 @@ func NewMIDICIResponder() MIDICIResponder {
 // The MIDI-CI device’s information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIResponder) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+func (m_ MIDICIResponder) DeviceInfo() MIDICIDeviceInfo {
+	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (m_ MIDICIResponder) DeviceInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIResponder) SetDeviceInfo(value unsafe.Pointer) {
+func (m_ MIDICIResponder) SetDeviceInfo(value IMIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 

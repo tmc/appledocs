@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) NewMode() found
 // SetNewMode sets the value of the newMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterChangeToModeParams/newMode
-func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) ServerSideProce
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) TimedInvokeTime
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

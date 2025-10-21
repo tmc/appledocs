@@ -87,7 +87,7 @@ func (m_ MTRLevelControlClusterStepParams) OptionsMask() foundation.Number {
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/optionsmask
-func (m_ MTRLevelControlClusterStepParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRLevelControlClusterStepParams) OptionsOverride() foundation.Number {
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/optionsoverride
-func (m_ MTRLevelControlClusterStepParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRLevelControlClusterStepParams) ServerSideProcessingTimeout() foundat
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterStepParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRLevelControlClusterStepParams) StepMode() foundation.Number {
 // SetStepMode sets the value of the stepMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/stepmode
-func (m_ MTRLevelControlClusterStepParams) SetStepMode(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetStepMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepMode:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRLevelControlClusterStepParams) StepSize() foundation.Number {
 // SetStepSize sets the value of the stepSize property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/stepsize
-func (m_ MTRLevelControlClusterStepParams) SetStepSize(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetStepSize(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepSize:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRLevelControlClusterStepParams) TimedInvokeTimeoutMs() foundation.Num
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterStepParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRLevelControlClusterStepParams) TransitionTime() foundation.Number {
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstepparams/transitiontime
-func (m_ MTRLevelControlClusterStepParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRLevelControlClusterStepParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

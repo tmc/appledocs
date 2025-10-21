@@ -95,7 +95,7 @@ func NewGraphShapedTypeWithShapeDataType(shape unsafe.Pointer, dataType unsafe.P
 // Checks if shapes and element data type are the same as the input shaped type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphShapedType/isEqual(to:)
-func (g_ GraphShapedType) IsEqualTo(object unsafe.Pointer) bool {
+func (g_ GraphShapedType) IsEqualTo(object MPSGraphShapedType) bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isEqualTo:"), object)
 	return rv
 }

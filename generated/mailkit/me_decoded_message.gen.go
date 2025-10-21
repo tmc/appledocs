@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,8 +83,8 @@ func NewMEDecodedMessage() MEDecodedMessage {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
-func (m_ MEDecodedMessage) Banner() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("banner"))
+func (m_ MEDecodedMessage) Banner() MEDecodedMessageBanner {
+	rv := objc.Send[MEDecodedMessageBanner](m_.ID, objc.Sel("banner"))
 	return rv
 }
 
@@ -91,14 +92,14 @@ func (m_ MEDecodedMessage) Banner() unsafe.Pointer {
 // SetBanner sets the value of the banner property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/banner
-func (m_ MEDecodedMessage) SetBanner(value unsafe.Pointer) {
+func (m_ MEDecodedMessage) SetBanner(value IMEDecodedMessageBanner) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBanner:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
-func (m_ MEDecodedMessage) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("context"))
+func (m_ MEDecodedMessage) Context() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -106,15 +107,15 @@ func (m_ MEDecodedMessage) Context() unsafe.Pointer {
 // SetContext sets the value of the context property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/context
-func (m_ MEDecodedMessage) SetContext(value unsafe.Pointer) {
+func (m_ MEDecodedMessage) SetContext(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContext:"), value)
 }
 
 // The decoded MIME data for a message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
-func (m_ MEDecodedMessage) RawData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rawData"))
+func (m_ MEDecodedMessage) RawData() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rawData"))
 	return rv
 }
 
@@ -124,7 +125,7 @@ func (m_ MEDecodedMessage) RawData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/medecodedmessage/rawdata
-func (m_ MEDecodedMessage) SetRawData(value unsafe.Pointer) {
+func (m_ MEDecodedMessage) SetRawData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 

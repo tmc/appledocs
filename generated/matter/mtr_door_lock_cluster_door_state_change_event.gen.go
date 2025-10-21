@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterDoorStateChangeEvent) DoorState() foundation.Number {
 // SetDoorState sets the value of the doorState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorstatechangeevent/doorstate
-func (m_ MTRDoorLockClusterDoorStateChangeEvent) SetDoorState(value foundation.Number) {
+func (m_ MTRDoorLockClusterDoorStateChangeEvent) SetDoorState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDoorState:"), value)
 }
 

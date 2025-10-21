@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,14 +88,14 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 // SetOperationalStateID sets the value of the operationalStateID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateID
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.Number) {
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) OperationalStateLabel() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("operationalStateLabel"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) Operational
 // SetOperationalStateLabel sets the value of the operationalStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalStateStruct/operationalStateLabel
-func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
+func (m_ MTROvenCavityOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), value)
 }
 
 

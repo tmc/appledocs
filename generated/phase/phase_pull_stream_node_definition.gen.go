@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
 // The class instance for the [PHASEPullStreamNodeDefinition] class.
@@ -78,7 +80,7 @@ func NewPHASEPullStreamNodeDefinition() PHASEPullStreamNodeDefinition {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/init(mixerDefinition:format:)
-func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition unsafe.Pointer, format unsafe.Pointer) PHASEPullStreamNodeDefinition {
+func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat) PHASEPullStreamNodeDefinition {
 	instance := getPHASEPullStreamNodeDefinitionClass().Alloc()
 	rv := objc.Send[PHASEPullStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:"), mixerDefinition, format)
 	rv.Autorelease()
@@ -87,9 +89,9 @@ func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormat(mixerDefinition u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/init(mixerDefinition:format:identifier:)
-func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition unsafe.Pointer, format unsafe.Pointer, identifier string) PHASEPullStreamNodeDefinition {
+func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDefinition IPHASEMixerDefinition, format avfaudio.AudioFormat, identifier appkit.string) PHASEPullStreamNodeDefinition {
 	instance := getPHASEPullStreamNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASEPullStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, objc.String(identifier))
+	rv := objc.Send[PHASEPullStreamNodeDefinition](instance.ID, objc.Sel("initWithMixerDefinition:format:identifier:"), mixerDefinition, format, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -97,8 +99,8 @@ func NewPHASEPullStreamNodeDefinitionWithMixerDefinitionFormatIdentifier(mixerDe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPullStreamNodeDefinition/format
-func (p_ PHASEPullStreamNodeDefinition) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("format"))
+func (p_ PHASEPullStreamNodeDefinition) Format() avfaudio.AudioFormat {
+	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
 }
 

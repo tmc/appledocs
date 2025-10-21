@@ -82,16 +82,16 @@ func NewCNChangeHistoryAddMemberToGroupEvent() CNChangeHistoryAddMemberToGroupEv
 // The group where the user added a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddMemberToGroupEvent/group
-func (c_ CNChangeHistoryAddMemberToGroupEvent) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CNChangeHistoryAddMemberToGroupEvent) Group() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
 // The contact the user added to the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddMemberToGroupEvent/member
-func (c_ CNChangeHistoryAddMemberToGroupEvent) Member() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("member"))
+func (c_ CNChangeHistoryAddMemberToGroupEvent) Member() CNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("member"))
 	return rv
 }
 

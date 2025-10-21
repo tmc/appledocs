@@ -87,7 +87,7 @@ func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) FailSafeExpiryLen
 // SetFailSafeExpiryLengthSeconds sets the value of the failSafeExpiryLengthSeconds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterbasiccommissioninginfo/failsafeexpirylengthseconds
-func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) SetFailSafeExpiryLengthSeconds(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) SetFailSafeExpiryLengthSeconds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeExpiryLengthSeconds:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) MaxCumulativeFail
 // SetMaxCumulativeFailsafeSeconds sets the value of the maxCumulativeFailsafeSeconds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterbasiccommissioninginfo/maxcumulativefailsafeseconds
-func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) SetMaxCumulativeFailsafeSeconds(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) SetMaxCumulativeFailsafeSeconds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxCumulativeFailsafeSeconds:"), value)
 }
 

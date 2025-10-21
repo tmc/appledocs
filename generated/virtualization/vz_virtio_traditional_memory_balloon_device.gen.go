@@ -102,8 +102,8 @@ func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetTargetVirtualMachineMemorySi
 // The array of devices that you use to adjust the amount of memory available to the guest system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
-func (v_ VZVirtioTraditionalMemoryBalloonDevice) MemoryBalloonDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("memoryBalloonDevices"))
+func (v_ VZVirtioTraditionalMemoryBalloonDevice) MemoryBalloonDevices() VZMemoryBalloonDevice {
+	rv := objc.Send[VZMemoryBalloonDevice](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (v_ VZVirtioTraditionalMemoryBalloonDevice) MemoryBalloonDevices() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
-func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetMemoryBalloonDevices(value unsafe.Pointer) {
+func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetMemoryBalloonDevices(value IVZMemoryBalloonDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)
 }
 

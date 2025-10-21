@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,8 +88,8 @@ func NewNEVPNManager() NEVPNManager {
 // Access the single instance of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/shared()
-func (nc _NEVPNManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("sharedManager"))
+func (nc _NEVPNManagerClass) SharedManager() NEVPNManager {
+	rv := objc.Send[NEVPNManager](objc.ID(nc.class), objc.Sel("sharedManager"))
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (n_ NEVPNManager) SetAuthorization(authorization unsafe.Pointer) {
 // An object that is used to control the VPN tunnel specified by the VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/connection
-func (n_ NEVPNManager) Connection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("connection"))
+func (n_ NEVPNManager) Connection() NEVPNConnection {
+	rv := objc.Send[NEVPNConnection](n_.ID, objc.Sel("connection"))
 	return rv
 }
 
@@ -166,8 +167,8 @@ func (n_ NEVPNManager) SetOnDemandEnabled(value bool) {
 // A string containing the display name of the VPN configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
-func (n_ NEVPNManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEVPNManager) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -177,8 +178,8 @@ func (n_ NEVPNManager) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/localizedDescription
-func (n_ NEVPNManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEVPNManager) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
 
 // An ordered list of Connect On Demand rules.
@@ -212,8 +213,8 @@ func (n_ NEVPNManager) SetOnDemandRules(value []NEOnDemandRule) {
 // An object containing the configuration settings of the VPN tunneling protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocol
-func (n_ NEVPNManager) Protocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("protocol"))
+func (n_ NEVPNManager) Protocol() NEVPNProtocol {
+	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocol"))
 	return rv
 }
 
@@ -223,15 +224,15 @@ func (n_ NEVPNManager) Protocol() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocol
-func (n_ NEVPNManager) SetProtocol(value unsafe.Pointer) {
+func (n_ NEVPNManager) SetProtocol(value INEVPNProtocol) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocol:"), value)
 }
 
 // An object containing the configuration settings of the VPN tunneling protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocolConfiguration
-func (n_ NEVPNManager) ProtocolConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("protocolConfiguration"))
+func (n_ NEVPNManager) ProtocolConfiguration() NEVPNProtocol {
+	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocolConfiguration"))
 	return rv
 }
 
@@ -241,14 +242,14 @@ func (n_ NEVPNManager) ProtocolConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNManager/protocolConfiguration
-func (n_ NEVPNManager) SetProtocolConfiguration(value unsafe.Pointer) {
+func (n_ NEVPNManager) SetProtocolConfiguration(value INEVPNProtocol) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnerrordomain
-func (n_ NEVPNManager) NEVPNErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEVPNErrorDomain"))
+func (n_ NEVPNManager) NEVPNErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEVPNErrorDomain"))
 	return rv
 }
 

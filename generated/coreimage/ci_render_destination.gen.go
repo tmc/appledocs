@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/iosurface"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,7 +88,7 @@ func NewRenderDestination() RenderDestination {
 // Creates a render destination based on a client-managed buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(bitmapData:width:height:bytesPerRow:format:)
-func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format unsafe.Pointer) RenderDestination {
+func NewRenderDestinationWithBitmapDataWidthHeightBytesPerRowFormat(data unsafe.Pointer, width uint, height uint, bytesPerRow uint, format Format) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithBitmapData:width:height:bytesPerRow:format:"), data, width, height, bytesPerRow, format)
 	rv.Autorelease()
@@ -111,7 +112,7 @@ func NewRenderDestinationWithGLTextureTargetWidthHeight(texture unsafe.Pointer, 
 // Creates a render destination based on an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(ioSurface:)
-func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination {
+func NewRenderDestinationWithIOSurface(surface iosurface.ISurface) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithIOSurface:"), surface)
 	rv.Autorelease()
@@ -123,7 +124,7 @@ func NewRenderDestinationWithIOSurface(surface unsafe.Pointer) RenderDestination
 // Creates a render destination based on a Metal texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(mtlTexture:commandBuffer:)
-func NewRenderDestinationWithMTLTextureCommandBuffer(texture objc.ID, commandBuffer objc.ID) RenderDestination {
+func NewRenderDestinationWithMTLTextureCommandBuffer(texture objectivec.IObject, commandBuffer objectivec.IObject) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithMTLTexture:commandBuffer:"), texture, commandBuffer)
 	rv.Autorelease()
@@ -147,7 +148,7 @@ func NewRenderDestinationWithPixelBuffer(pixelBuffer unsafe.Pointer) RenderDesti
 // Creates a render destination based on a Metal texture with specified pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/init(width:height:pixelFormat:commandBuffer:mtlTextureProvider:)
-func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer objc.ID, block objc.ID) RenderDestination {
+func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvider(width uint, height uint, pixelFormat unsafe.Pointer, commandBuffer objectivec.IObject, block objectivec.IObject) RenderDestination {
 	instance := getRenderDestinationClass().Alloc()
 	rv := objc.Send[RenderDestination](instance.ID, objc.Sel("initWithWidth:height:pixelFormat:commandBuffer:mtlTextureProvider:"), width, height, pixelFormat, commandBuffer, block)
 	rv.Autorelease()
@@ -158,8 +159,8 @@ func NewRenderDestinationWithWidthHeightPixelFormatCommandBufferMtlTextureProvid
 // The render destination’s representation of alpha (transparency) values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
-func (r_ RenderDestination) AlphaMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("alphaMode"))
+func (r_ RenderDestination) AlphaMode() RenderDestinationAlphaMode {
+	rv := objc.Send[RenderDestinationAlphaMode](r_.ID, objc.Sel("alphaMode"))
 	return rv
 }
 
@@ -169,15 +170,15 @@ func (r_ RenderDestination) AlphaMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/alphaMode
-func (r_ RenderDestination) SetAlphaMode(value unsafe.Pointer) {
+func (r_ RenderDestination) SetAlphaMode(value RenderDestinationAlphaMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAlphaMode:"), value)
 }
 
 // The destination’s blend kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/blendKernel
-func (r_ RenderDestination) BlendKernel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("blendKernel"))
+func (r_ RenderDestination) BlendKernel() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](r_.ID, objc.Sel("blendKernel"))
 	return rv
 }
 
@@ -187,7 +188,7 @@ func (r_ RenderDestination) BlendKernel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/blendKernel
-func (r_ RenderDestination) SetBlendKernel(value unsafe.Pointer) {
+func (r_ RenderDestination) SetBlendKernel(value ICIBlendKernel) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBlendKernel:"), value)
 }
 
@@ -223,7 +224,7 @@ func (r_ RenderDestination) CaptureTraceURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderDestination/captureTraceURL
-func (r_ RenderDestination) SetCaptureTraceURL(value foundation.URL) {
+func (r_ RenderDestination) SetCaptureTraceURL(value foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCaptureTraceURL:"), value)
 }
 

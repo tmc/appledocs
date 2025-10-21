@@ -31,7 +31,7 @@ type _OperationQueueClass struct {
 type IOperationQueue interface {
 	objectivec.IObject
 	AddBarrierBlock(barrier unsafe.Pointer)
-	AddOperation(op unsafe.Pointer)
+	AddOperation(op IOperation)
 	CancelAllOperations()
 }
 
@@ -93,7 +93,7 @@ func (o_ OperationQueue) AddBarrierBlock(barrier unsafe.Pointer) {
 // Adds the specified operation to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperation(_:)-64o8a
-func (o_ OperationQueue) AddOperation(op unsafe.Pointer) {
+func (o_ OperationQueue) AddOperation(op IOperation) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addOperation:"), op)
 }
 
@@ -195,8 +195,8 @@ func (o_ OperationQueue) SetMaxConcurrentOperationCount(value int) {
 // The name of the operation queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) Name() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("name"))
+func (o_ OperationQueue) Name() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -206,15 +206,15 @@ func (o_ OperationQueue) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/name
-func (o_ OperationQueue) SetName(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
+func (o_ OperationQueue) SetName(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
 }
 
 // An object that represents the total progress of the operations executing in the queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("progress"))
+func (o_ OperationQueue) Progress() NSProgress {
+	rv := objc.Send[NSProgress](o_.ID, objc.Sel("progress"))
 	return rv
 }
 
@@ -224,15 +224,15 @@ func (o_ OperationQueue) Progress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/progress
-func (o_ OperationQueue) SetProgress(value unsafe.Pointer) {
+func (o_ OperationQueue) SetProgress(value IProgress) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setProgress:"), value)
 }
 
 // The default service level to apply to operations that the queue invokes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
-func (o_ OperationQueue) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("qualityOfService"))
+func (o_ OperationQueue) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](o_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -242,7 +242,7 @@ func (o_ OperationQueue) QualityOfService() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/operationqueue/qualityofservice
-func (o_ OperationQueue) SetQualityOfService(value unsafe.Pointer) {
+func (o_ OperationQueue) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
 

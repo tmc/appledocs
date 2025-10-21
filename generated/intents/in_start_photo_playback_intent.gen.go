@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INStartPhotoPlaybackIntent] class.
@@ -84,8 +85,8 @@ func NewINStartPhotoPlaybackIntent() INStartPhotoPlaybackIntent {
 // The name of the album that contains the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/albumname
-func (i_ INStartPhotoPlaybackIntent) AlbumName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("albumName"))
+func (i_ INStartPhotoPlaybackIntent) AlbumName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("albumName"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (i_ INStartPhotoPlaybackIntent) AlbumName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/albumname
-func (i_ INStartPhotoPlaybackIntent) SetAlbumName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
+func (i_ INStartPhotoPlaybackIntent) SetAlbumName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), value)
 }
 
 // The range of dates during which someone took the pictures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/datecreated
-func (i_ INStartPhotoPlaybackIntent) DateCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateCreated"))
+func (i_ INStartPhotoPlaybackIntent) DateCreated() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateCreated"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (i_ INStartPhotoPlaybackIntent) DateCreated() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/datecreated
-func (i_ INStartPhotoPlaybackIntent) SetDateCreated(value unsafe.Pointer) {
+func (i_ INStartPhotoPlaybackIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
@@ -156,8 +157,8 @@ func (i_ INStartPhotoPlaybackIntent) SetIncludedAttributes(value unsafe.Pointer)
 // The location where someone took the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/locationcreated
-func (i_ INStartPhotoPlaybackIntent) LocationCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("locationCreated"))
+func (i_ INStartPhotoPlaybackIntent) LocationCreated() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("locationCreated"))
 	return rv
 }
 
@@ -167,15 +168,15 @@ func (i_ INStartPhotoPlaybackIntent) LocationCreated() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/locationcreated
-func (i_ INStartPhotoPlaybackIntent) SetLocationCreated(value unsafe.Pointer) {
+func (i_ INStartPhotoPlaybackIntent) SetLocationCreated(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationCreated:"), value)
 }
 
 // The people in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphoto
-func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("peopleInPhoto"))
+func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("peopleInPhoto"))
 	return rv
 }
 
@@ -185,15 +186,15 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphoto
-func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhoto(value unsafe.Pointer) {
+func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhoto(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhoto:"), value)
 }
 
 // The operator that defines how to search for people in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphotooperator
-func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("peopleInPhotoOperator"))
+func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() INConditionalOperator {
+	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("peopleInPhotoOperator"))
 	return rv
 }
 
@@ -203,15 +204,15 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/peopleinphotooperator
-func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhotoOperator(value unsafe.Pointer) {
+func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhotoOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhotoOperator:"), value)
 }
 
 // An array of terms to look for in the photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchterms
-func (i_ INStartPhotoPlaybackIntent) SearchTerms() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("searchTerms"))
+func (i_ INStartPhotoPlaybackIntent) SearchTerms() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("searchTerms"))
 	return rv
 }
 
@@ -221,15 +222,15 @@ func (i_ INStartPhotoPlaybackIntent) SearchTerms() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchterms
-func (i_ INStartPhotoPlaybackIntent) SetSearchTerms(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
+func (i_ INStartPhotoPlaybackIntent) SetSearchTerms(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), value)
 }
 
 // The operator that defines how to incorporate the search terms when performing the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchtermsoperator
-func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("searchTermsOperator"))
+func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() INConditionalOperator {
+	rv := objc.Send[INConditionalOperator](i_.ID, objc.Sel("searchTermsOperator"))
 	return rv
 }
 
@@ -239,7 +240,7 @@ func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/instartphotoplaybackintent/searchtermsoperator
-func (i_ INStartPhotoPlaybackIntent) SetSearchTermsOperator(value unsafe.Pointer) {
+func (i_ INStartPhotoPlaybackIntent) SetSearchTermsOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)
 }
 

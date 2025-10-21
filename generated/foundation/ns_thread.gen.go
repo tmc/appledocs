@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,7 +89,7 @@ func NewThread() Thread {
 // Returns an object initialized with the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/init(target:selector:object:)
-func NewThreadWithTargetSelectorObject(target objc.ID, selector objc.SEL, argument objc.ID) Thread {
+func NewThreadWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, argument objectivec.IObject) Thread {
 	instance := getThreadClass().Alloc()
 	rv := objc.Send[Thread](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, selector, argument)
 	rv.Autorelease()
@@ -105,7 +106,7 @@ func (tc _ThreadClass) DetachNewThreadWithBlock(block unsafe.Pointer) {
 // Detaches a new thread and uses the specified selector as the thread entry point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/detachNewThreadSelector(_:toTarget:with:)
-func (tc _ThreadClass) DetachNewThreadSelectorToTargetWithObject(selector objc.SEL, target objc.ID, argument objc.ID) {
+func (tc _ThreadClass) DetachNewThreadSelectorToTargetWithObject(selector objc.SEL, target objectivec.IObject, argument objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("detachNewThreadSelector:toTarget:withObject:"), selector, target, argument)
 }
 
@@ -135,14 +136,14 @@ func (tc _ThreadClass) SetThreadPriority(p unsafe.Pointer) bool {
 // Sleeps the thread for a given time interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/sleep(forTimeInterval:)
-func (tc _ThreadClass) SleepForTimeInterval(ti TimeInterval) {
+func (tc _ThreadClass) SleepForTimeInterval(ti ITimeInterval) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("sleepForTimeInterval:"), ti)
 }
 
 // Blocks the current thread until the time specified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/sleep(until:)
-func (tc _ThreadClass) SleepUntilDate(date unsafe.Pointer) {
+func (tc _ThreadClass) SleepUntilDate(date IDate) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("sleepUntilDate:"), date)
 }
 
@@ -171,15 +172,15 @@ func (tc _ThreadClass) CallStackSymbols() []string {
 // Returns the thread object representing the current thread of execution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
-func (tc _ThreadClass) CurrentThread() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("currentThread"))
+func (tc _ThreadClass) CurrentThread() Thread {
+	rv := objc.Send[NSThread](objc.ID(tc.class), objc.Sel("currentThread"))
 	return rv
 }
 // Returns the object representing the main thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
-func (tc _ThreadClass) MainThread() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("mainThread"))
+func (tc _ThreadClass) MainThread() Thread {
+	rv := objc.Send[NSThread](objc.ID(tc.class), objc.Sel("mainThread"))
 	return rv
 }
 // Changes the cancelled state of the receiver to indicate that it should exit.
@@ -222,8 +223,8 @@ func (t_ Thread) CallStackSymbols() []string {
 // Returns the thread object representing the current thread of execution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
-func (t_ Thread) CurrentThread() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentThread"))
+func (t_ Thread) CurrentThread() NSThread {
+	rv := objc.Send[NSThread](t_.ID, objc.Sel("currentThread"))
 	return rv
 }
 
@@ -262,16 +263,16 @@ func (t_ Thread) IsMainThread() bool {
 // Returns the object representing the main thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
-func (t_ Thread) MainThread() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("mainThread"))
+func (t_ Thread) MainThread() NSThread {
+	rv := objc.Send[NSThread](t_.ID, objc.Sel("mainThread"))
 	return rv
 }
 
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
-func (t_ Thread) Name() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
+func (t_ Thread) Name() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -281,14 +282,14 @@ func (t_ Thread) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
-func (t_ Thread) SetName(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
+func (t_ Thread) SetName(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
-func (t_ Thread) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("qualityOfService"))
+func (t_ Thread) QualityOfService() QualityOfService {
+	rv := objc.Send[QualityOfService](t_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
 
@@ -296,7 +297,7 @@ func (t_ Thread) QualityOfService() unsafe.Pointer {
 // SetQualityOfService sets the value of the qualityOfService property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService
-func (t_ Thread) SetQualityOfService(value unsafe.Pointer) {
+func (t_ Thread) SetQualityOfService(value IQualityOfService) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setQualityOfService:"), value)
 }
 
@@ -339,8 +340,8 @@ func (t_ Thread) SetThreadPriority(value unsafe.Pointer) {
 // A key with a corresponding value in the thread dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsassertionhandlerkey
-func (t_ Thread) NSAssertionHandlerKey() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
+func (t_ Thread) NSAssertionHandlerKey() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("NSAssertionHandlerKey"))
 	return rv
 }
 
@@ -401,8 +402,8 @@ func (t_ Thread) SetIsFinished(value bool) {
 // The thread object’s dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) ThreadDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("threadDictionary"))
+func (t_ Thread) ThreadDictionary() NSMutableDictionary {
+	rv := objc.Send[NSMutableDictionary](t_.ID, objc.Sel("threadDictionary"))
 	return rv
 }
 
@@ -412,7 +413,7 @@ func (t_ Thread) ThreadDictionary() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/thread/threaddictionary
-func (t_ Thread) SetThreadDictionary(value unsafe.Pointer) {
+func (t_ Thread) SetThreadDictionary(value IMutableDictionary) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setThreadDictionary:"), value)
 }
 

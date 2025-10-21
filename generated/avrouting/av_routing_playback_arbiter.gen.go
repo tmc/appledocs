@@ -83,8 +83,8 @@ func NewRoutingPlaybackArbiter() RoutingPlaybackArbiter {
 // Returns the singleton playback arbiter instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/shared()
-func (rc _RoutingPlaybackArbiterClass) SharedRoutingPlaybackArbiter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("sharedRoutingPlaybackArbiter"))
+func (rc _RoutingPlaybackArbiterClass) SharedRoutingPlaybackArbiter() RoutingPlaybackArbiter {
+	rv := objc.Send[RoutingPlaybackArbiter](objc.ID(rc.class), objc.Sel("sharedRoutingPlaybackArbiter"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,8 +85,8 @@ func NewLPLinkMetadata() LPLinkMetadata {
 // An object that retrieves data corresponding to a representative icon for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/iconProvider
-func (l_ LPLinkMetadata) IconProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("iconProvider"))
+func (l_ LPLinkMetadata) IconProvider() foundation.ItemProvider {
+	rv := objc.Send[foundation.ItemProvider](l_.ID, objc.Sel("iconProvider"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (l_ LPLinkMetadata) IconProvider() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/iconProvider
-func (l_ LPLinkMetadata) SetIconProvider(value unsafe.Pointer) {
+func (l_ LPLinkMetadata) SetIconProvider(value foundation.IItemProvider) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIconProvider:"), value)
 }
 
 // An object that retrieves data corresponding to a representative image for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/imageProvider
-func (l_ LPLinkMetadata) ImageProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("imageProvider"))
+func (l_ LPLinkMetadata) ImageProvider() foundation.ItemProvider {
+	rv := objc.Send[foundation.ItemProvider](l_.ID, objc.Sel("imageProvider"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (l_ LPLinkMetadata) ImageProvider() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/imageProvider
-func (l_ LPLinkMetadata) SetImageProvider(value unsafe.Pointer) {
+func (l_ LPLinkMetadata) SetImageProvider(value foundation.IItemProvider) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setImageProvider:"), value)
 }
 
@@ -131,7 +132,7 @@ func (l_ LPLinkMetadata) OriginalURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/originalURL
-func (l_ LPLinkMetadata) SetOriginalURL(value foundation.URL) {
+func (l_ LPLinkMetadata) SetOriginalURL(value foundation.IURL) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOriginalURL:"), value)
 }
 
@@ -149,15 +150,15 @@ func (l_ LPLinkMetadata) RemoteVideoURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/remoteVideoURL
-func (l_ LPLinkMetadata) SetRemoteVideoURL(value foundation.URL) {
+func (l_ LPLinkMetadata) SetRemoteVideoURL(value foundation.IURL) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setRemoteVideoURL:"), value)
 }
 
 // A representative title for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) Title() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("title"))
+func (l_ LPLinkMetadata) Title() appkit.string {
+	rv := objc.Send[appkit.string](l_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -167,8 +168,8 @@ func (l_ LPLinkMetadata) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/title
-func (l_ LPLinkMetadata) SetTitle(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (l_ LPLinkMetadata) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setTitle:"), value)
 }
 
 // The URL that returned the metadata, taking server-side redirects into account.
@@ -185,15 +186,15 @@ func (l_ LPLinkMetadata) URL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/url
-func (l_ LPLinkMetadata) SetURL(value foundation.URL) {
+func (l_ LPLinkMetadata) SetURL(value foundation.IURL) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setURL:"), value)
 }
 
 // An object that retrieves data corresponding to a representative video for the URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/videoProvider
-func (l_ LPLinkMetadata) VideoProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("videoProvider"))
+func (l_ LPLinkMetadata) VideoProvider() foundation.ItemProvider {
+	rv := objc.Send[foundation.ItemProvider](l_.ID, objc.Sel("videoProvider"))
 	return rv
 }
 
@@ -203,7 +204,7 @@ func (l_ LPLinkMetadata) VideoProvider() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkMetadata/videoProvider
-func (l_ LPLinkMetadata) SetVideoProvider(value unsafe.Pointer) {
+func (l_ LPLinkMetadata) SetVideoProvider(value foundation.IItemProvider) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setVideoProvider:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -100,14 +101,14 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) Status() foundation
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeResponseParams/status
-func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeResponseParams/statusText
-func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) StatusText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("statusText"))
+func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) StatusText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("statusText"))
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) StatusText() string
 // SetStatusText sets the value of the statusText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeResponseParams/statusText
-func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) SetStatusText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), objc.String(value))
+func (m_ MTREnergyEVSEModeClusterChangeToModeResponseParams) SetStatusText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewSNAudioStreamAnalyzer() SNAudioStreamAnalyzer {
 // Creates a new audio stream analyzer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNAudioStreamAnalyzer/init(format:)
-func NewSNAudioStreamAnalyzerWithFormat(format unsafe.Pointer) SNAudioStreamAnalyzer {
+func NewSNAudioStreamAnalyzerWithFormat(format avfaudio.AudioFormat) SNAudioStreamAnalyzer {
 	instance := getSNAudioStreamAnalyzerClass().Alloc()
 	rv := objc.Send[SNAudioStreamAnalyzer](instance.ID, objc.Sel("initWithFormat:"), format)
 	rv.Autorelease()

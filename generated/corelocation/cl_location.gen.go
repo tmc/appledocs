@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -207,8 +208,8 @@ func (l_ Location) SetHorizontalAccuracy(value unsafe.Pointer) {
 // Information about the source that provides the location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/sourceInformation
-func (l_ Location) SourceInformation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("sourceInformation"))
+func (l_ Location) SourceInformation() CLLocationSourceInformation {
+	rv := objc.Send[CLLocationSourceInformation](l_.ID, objc.Sel("sourceInformation"))
 	return rv
 }
 
@@ -218,7 +219,7 @@ func (l_ Location) SourceInformation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/sourceInformation
-func (l_ Location) SetSourceInformation(value unsafe.Pointer) {
+func (l_ Location) SetSourceInformation(value ICLLocationSourceInformation) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setSourceInformation:"), value)
 }
 
@@ -261,8 +262,8 @@ func (l_ Location) SetSpeedAccuracy(value unsafe.Pointer) {
 // The time at which this location was determined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-func (l_ Location) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("timestamp"))
+func (l_ Location) Timestamp() foundation.Date {
+	rv := objc.Send[foundation.Date](l_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -272,7 +273,7 @@ func (l_ Location) Timestamp() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocation/timestamp
-func (l_ Location) SetTimestamp(value unsafe.Pointer) {
+func (l_ Location) SetTimestamp(value foundation.IDate) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setTimestamp:"), value)
 }
 

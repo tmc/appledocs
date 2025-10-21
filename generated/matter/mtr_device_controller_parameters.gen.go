@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRDeviceControllerParameters] class.
@@ -78,8 +79,8 @@ func NewMTRDeviceControllerParameters() MTRDeviceControllerParameters {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclarationCertificates"))
+func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclarationCertificates"))
 	return rv
 }
 
@@ -87,7 +88,7 @@ func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() u
 // SetCertificationDeclarationCertificates sets the value of the certificationDeclarationCertificates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value unsafe.Pointer) {
+func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
 }
 
@@ -108,8 +109,8 @@ func (m_ MTRDeviceControllerParameters) SetConcurrentSubscriptionEstablishmentsA
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
-func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
+func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
 	return rv
 }
 
@@ -117,7 +118,7 @@ func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates(
 // SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
-func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value unsafe.Pointer) {
+func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationAuthorityCertificates:"), value)
 }
 
@@ -139,8 +140,8 @@ func (m_ MTRDeviceControllerParameters) SetShouldAdvertiseOperational(value bool
 // Sets the storage behavior configuration - see MTRDeviceStorageBehaviorConfiguration.h for details
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/storagebehaviorconfiguration
-func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storageBehaviorConfiguration"))
+func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() MTRDeviceStorageBehaviorConfiguration {
+	rv := objc.Send[MTRDeviceStorageBehaviorConfiguration](m_.ID, objc.Sel("storageBehaviorConfiguration"))
 	return rv
 }
 
@@ -150,7 +151,7 @@ func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/storagebehaviorconfiguration
-func (m_ MTRDeviceControllerParameters) SetStorageBehaviorConfiguration(value unsafe.Pointer) {
+func (m_ MTRDeviceControllerParameters) SetStorageBehaviorConfiguration(value IMTRDeviceStorageBehaviorConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageBehaviorConfiguration:"), value)
 }
 

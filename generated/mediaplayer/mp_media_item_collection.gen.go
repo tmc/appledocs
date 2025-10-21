@@ -86,7 +86,7 @@ func NewMediaItemCollection() MediaItemCollection {
 // Initializes a media item collection with an array of media items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/init(items:)
-func NewMediaItemCollectionWithItems(items unsafe.Pointer) MediaItemCollection {
+func NewMediaItemCollectionWithItems(items []MediaItem) MediaItemCollection {
 	instance := getMediaItemCollectionClass().Alloc()
 	rv := objc.Send[MediaItemCollection](instance.ID, objc.Sel("initWithItems:"), items)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewMediaItemCollectionWithItems(items unsafe.Pointer) MediaItemCollection {
 // Creates a media item collection by copying an array of media items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/collectionWithItems:
-func (mc _MediaItemCollectionClass) CollectionWithItems(items unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("collectionWithItems:"), items)
+func (mc _MediaItemCollectionClass) CollectionWithItems(items []MediaItem) MediaItemCollection {
+	rv := objc.Send[MediaItemCollection](objc.ID(mc.class), objc.Sel("collectionWithItems:"), items)
 	return rv
 }
 
@@ -121,24 +121,24 @@ func (m_ MediaItemCollection) Items() []MediaItem {
 // The types of the media items in a collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/mediaTypes
-func (m_ MediaItemCollection) MediaTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaTypes"))
+func (m_ MediaItemCollection) MediaTypes() MediaType {
+	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaTypes"))
 	return rv
 }
 
 // A media item whose properties are representative of the other media items in a collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/representativeItem
-func (m_ MediaItemCollection) RepresentativeItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("representativeItem"))
+func (m_ MediaItemCollection) RepresentativeItem() MPMediaItem {
+	rv := objc.Send[MPMediaItem](m_.ID, objc.Sel("representativeItem"))
 	return rv
 }
 
 // An array of media item collections whose contained items match the query’s media property predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
-func (m_ MediaItemCollection) Collections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collections"))
+func (m_ MediaItemCollection) Collections() MPMediaItemCollection {
+	rv := objc.Send[MPMediaItemCollection](m_.ID, objc.Sel("collections"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (m_ MediaItemCollection) Collections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections
-func (m_ MediaItemCollection) SetCollections(value unsafe.Pointer) {
+func (m_ MediaItemCollection) SetCollections(value IMPMediaItemCollection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCollections:"), value)
 }
 

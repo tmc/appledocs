@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,9 +84,9 @@ func NewToolPickerCustomItemConfiguration() ToolPickerCustomItemConfiguration {
 // Create a new configuration with an identifier and a name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/initWithIdentifier:name:
-func NewToolPickerCustomItemConfigurationWithIdentifierName(identifier string, name string) ToolPickerCustomItemConfiguration {
+func NewToolPickerCustomItemConfigurationWithIdentifierName(identifier appkit.string, name appkit.string) ToolPickerCustomItemConfiguration {
 	instance := getToolPickerCustomItemConfigurationClass().Alloc()
-	rv := objc.Send[ToolPickerCustomItemConfiguration](instance.ID, objc.Sel("initWithIdentifier:name:"), objc.String(identifier), objc.String(name))
+	rv := objc.Send[ToolPickerCustomItemConfiguration](instance.ID, objc.Sel("initWithIdentifier:name:"), identifier, name)
 	rv.Autorelease()
 	return rv
 }
@@ -130,8 +131,8 @@ func (t_ ToolPickerCustomItemConfiguration) SetDefaultWidth(value float64) {
 // A string that uniquely identifies the tool in the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/identifier
-func (t_ ToolPickerCustomItemConfiguration) Identifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("identifier"))
+func (t_ ToolPickerCustomItemConfiguration) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -141,8 +142,8 @@ func (t_ ToolPickerCustomItemConfiguration) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/identifier
-func (t_ ToolPickerCustomItemConfiguration) SetIdentifier(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (t_ ToolPickerCustomItemConfiguration) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // A closure that provides an image for the tool.
@@ -166,8 +167,8 @@ func (t_ ToolPickerCustomItemConfiguration) SetImageProvider(value unsafe.Pointe
 // A short string to show as the name of the tool in the UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/name
-func (t_ ToolPickerCustomItemConfiguration) Name() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("name"))
+func (t_ ToolPickerCustomItemConfiguration) Name() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -177,15 +178,15 @@ func (t_ ToolPickerCustomItemConfiguration) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/name
-func (t_ ToolPickerCustomItemConfiguration) SetName(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
+func (t_ ToolPickerCustomItemConfiguration) SetName(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
 }
 
 // Defines which attribute controls are available to be presented in UI such as the tool attributes popover, or inline in the picker presented from a pencil squeeze. Controls for properties which the tool item does not support will not be presented. Excluding a control here does not hide all UI for adjusting that value. For example, excluding the opacity control here will not remove it from the color picker, if the color picker is otherwise available. Defaults to all controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/toolAttributeControls
-func (t_ ToolPickerCustomItemConfiguration) ToolAttributeControls() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("toolAttributeControls"))
+func (t_ ToolPickerCustomItemConfiguration) ToolAttributeControls() ToolPickerCustomItemControlOptions {
+	rv := objc.Send[ToolPickerCustomItemControlOptions](t_.ID, objc.Sel("toolAttributeControls"))
 	return rv
 }
 
@@ -195,7 +196,7 @@ func (t_ ToolPickerCustomItemConfiguration) ToolAttributeControls() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItemConfiguration/toolAttributeControls
-func (t_ ToolPickerCustomItemConfiguration) SetToolAttributeControls(value unsafe.Pointer) {
+func (t_ ToolPickerCustomItemConfiguration) SetToolAttributeControls(value ToolPickerCustomItemControlOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setToolAttributeControls:"), value)
 }
 
@@ -238,8 +239,8 @@ func (t_ ToolPickerCustomItemConfiguration) SetWidthVariants(value unsafe.Pointe
 // The current color of the custom tool item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/color
-func (t_ ToolPickerCustomItemConfiguration) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("color"))
+func (t_ ToolPickerCustomItemConfiguration) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](t_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -249,7 +250,7 @@ func (t_ ToolPickerCustomItemConfiguration) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/color
-func (t_ ToolPickerCustomItemConfiguration) SetColor(value unsafe.Pointer) {
+func (t_ ToolPickerCustomItemConfiguration) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
 }
 

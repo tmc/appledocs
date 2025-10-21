@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -83,8 +84,8 @@ func NewMXCrashDiagnostic() MXCrashDiagnostic {
 // The call stack for the crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/callStackTree
-func (m_ MXCrashDiagnostic) CallStackTree() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("callStackTree"))
+func (m_ MXCrashDiagnostic) CallStackTree() MXCallStackTree {
+	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 
@@ -98,8 +99,8 @@ func (m_ MXCrashDiagnostic) ExceptionCode() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/exceptionReason
-func (m_ MXCrashDiagnostic) ExceptionReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("exceptionReason"))
+func (m_ MXCrashDiagnostic) ExceptionReason() MXCrashDiagnosticObjectiveCExceptionReason {
+	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](m_.ID, objc.Sel("exceptionReason"))
 	return rv
 }
 
@@ -122,16 +123,16 @@ func (m_ MXCrashDiagnostic) Signal() foundation.Number {
 // The reason the app was terminated as a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/terminationReason
-func (m_ MXCrashDiagnostic) TerminationReason() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("terminationReason"))
+func (m_ MXCrashDiagnostic) TerminationReason() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("terminationReason"))
 	return rv
 }
 
 // Information about the region of memory an app accessed incorrectly, resulting in a bad-access crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic/virtualMemoryRegionInfo
-func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
+func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
 	return rv
 }
 

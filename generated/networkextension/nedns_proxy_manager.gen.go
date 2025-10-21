@@ -83,8 +83,8 @@ func NewNEDNSProxyManager() NEDNSProxyManager {
 // The DNS proxy error domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyerrordomain
-func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
+func (n_ NEDNSProxyManager) NEDNSProxyErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEDNSProxyErrorDomain"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (n_ NEDNSProxyManager) SetIsEnabled(value bool) {
 // A description of the DNS proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
-func (n_ NEDNSProxyManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEDNSProxyManager) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -120,15 +120,15 @@ func (n_ NEDNSProxyManager) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/localizeddescription
-func (n_ NEDNSProxyManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEDNSProxyManager) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
 
 // The provider-specific portion of the DNS proxy configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/providerprotocol
-func (n_ NEDNSProxyManager) ProviderProtocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerProtocol"))
+func (n_ NEDNSProxyManager) ProviderProtocol() NEDNSProxyProviderProtocol {
+	rv := objc.Send[NEDNSProxyProviderProtocol](n_.ID, objc.Sel("providerProtocol"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (n_ NEDNSProxyManager) ProviderProtocol() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxymanager/providerprotocol
-func (n_ NEDNSProxyManager) SetProviderProtocol(value unsafe.Pointer) {
+func (n_ NEDNSProxyManager) SetProviderProtocol(value INEDNSProxyProviderProtocol) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderProtocol:"), value)
 }
 

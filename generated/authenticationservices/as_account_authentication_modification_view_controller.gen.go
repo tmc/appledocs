@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [AccountAuthenticationModificationViewController] class.
@@ -30,7 +31,7 @@ type _AccountAuthenticationModificationViewControllerClass struct {
 // An interface definition for the [AccountAuthenticationModificationViewController] class.
 type IAccountAuthenticationModificationViewController interface {
 	appkit.IViewController
-	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential unsafe.Pointer, userInfo objc.ID)
+	PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject)
 }
 
 // A view controller that can upgrade user passwords to strong passwords, or convert accounts to use Sign in with Apple.
@@ -86,15 +87,15 @@ func NewAccountAuthenticationModificationViewController() AccountAuthenticationM
 // Prepares the view controller’s interface that displays when converting an account that uses password authentication to use Sign in with Apple.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationViewController/prepareInterfaceToConvertAccountToSignInWithApple(for:existingCredential:userInfo:)
-func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential unsafe.Pointer, userInfo objc.ID) {
+func (a_ AccountAuthenticationModificationViewController) PrepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifierExistingCredentialUserInfo(serviceIdentifier unsafe.Pointer, existingCredential IASPasswordCredential, userInfo objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("prepareInterfaceToConvertAccountToSignInWithAppleForServiceIdentifier:existingCredential:userInfo:"), serviceIdentifier, existingCredential, userInfo)
 }
 
 // The context your account authentication modification extension uses to provide information to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
-func (a_ AccountAuthenticationModificationViewController) ExtensionContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("extensionContext"))
+func (a_ AccountAuthenticationModificationViewController) ExtensionContext() ASAccountAuthenticationModificationExtensionContext {
+	rv := objc.Send[ASAccountAuthenticationModificationExtensionContext](a_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 
@@ -104,7 +105,7 @@ func (a_ AccountAuthenticationModificationViewController) ExtensionContext() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationviewcontroller/extensioncontext
-func (a_ AccountAuthenticationModificationViewController) SetExtensionContext(value unsafe.Pointer) {
+func (a_ AccountAuthenticationModificationViewController) SetExtensionContext(value IASAccountAuthenticationModificationExtensionContext) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setExtensionContext:"), value)
 }
 

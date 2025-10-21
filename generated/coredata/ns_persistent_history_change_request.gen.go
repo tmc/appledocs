@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentHistoryChangeRequest] class.
@@ -82,7 +83,7 @@ func NewPersistentHistoryChangeRequest() PersistentHistoryChangeRequest {
 // Purges history older than that defined by a given token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/deleteHistory(before:)-5kghb
-func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token unsafe.Pointer) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token IPersistentHistoryToken) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("deleteHistoryBeforeToken:"), token)
 	return rv
 }
@@ -90,7 +91,7 @@ func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token un
 // Retrieves the request history after a given token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-3rmfm
-func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token unsafe.Pointer) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token IPersistentHistoryToken) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterToken:"), token)
 	return rv
 }
@@ -98,7 +99,7 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token unsa
 // Retrieves history since a given date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(after:)-qi5b
-func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date unsafe.Pointer) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
@@ -106,7 +107,7 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date unsafe
 // Retrieves history based on a fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchHistory(withFetch:)
-func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetchRequest unsafe.Pointer) unsafe.Pointer {
+func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetchRequest IFetchRequest) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryWithFetchRequest:"), fetchRequest)
 	return rv
 }
@@ -114,8 +115,8 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetc
 // The specified fetch request, when retrieving history.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
-func (p_ PersistentHistoryChangeRequest) FetchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fetchRequest"))
+func (p_ PersistentHistoryChangeRequest) FetchRequest() NSFetchRequest {
+	rv := objc.Send[NSFetchRequest](p_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -125,15 +126,15 @@ func (p_ PersistentHistoryChangeRequest) FetchRequest() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/fetchRequest
-func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value unsafe.Pointer) {
+func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value IFetchRequest) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchRequest:"), value)
 }
 
 // The type of result that this request returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
-func (p_ PersistentHistoryChangeRequest) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resultType"))
+func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultType {
+	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -143,15 +144,15 @@ func (p_ PersistentHistoryChangeRequest) ResultType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentHistoryChangeRequest/resultType
-func (p_ PersistentHistoryChangeRequest) SetResultType(value unsafe.Pointer) {
+func (p_ PersistentHistoryChangeRequest) SetResultType(value PersistentHistoryResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
 
 // The specified token, when retrieving history defined by a token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
-func (p_ PersistentHistoryChangeRequest) Token() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("token"))
+func (p_ PersistentHistoryChangeRequest) Token() NSPersistentHistoryToken {
+	rv := objc.Send[NSPersistentHistoryToken](p_.ID, objc.Sel("token"))
 	return rv
 }
 
@@ -161,7 +162,7 @@ func (p_ PersistentHistoryChangeRequest) Token() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nspersistenthistorychangerequest/token
-func (p_ PersistentHistoryChangeRequest) SetToken(value unsafe.Pointer) {
+func (p_ PersistentHistoryChangeRequest) SetToken(value IPersistentHistoryToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setToken:"), value)
 }
 

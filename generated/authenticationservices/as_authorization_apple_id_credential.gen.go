@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,48 +83,48 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 // The user’s email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/email
-func (a_ AuthorizationAppleIDCredential) Email() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("email"))
+func (a_ AuthorizationAppleIDCredential) Email() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("email"))
 	return rv
 }
 
 // The user’s full name from their Apple ID or a user-submitted value provided from the Sign in with Apple UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/fullName
-func (a_ AuthorizationAppleIDCredential) FullName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fullName"))
+func (a_ AuthorizationAppleIDCredential) FullName() foundation.PersonNameComponents {
+	rv := objc.Send[foundation.PersonNameComponents](a_.ID, objc.Sel("fullName"))
 	return rv
 }
 
 // A value that indicates whether the user appears to be a real person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/realUserStatus
-func (a_ AuthorizationAppleIDCredential) RealUserStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("realUserStatus"))
+func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus {
+	rv := objc.Send[UserDetectionStatus](a_.ID, objc.Sel("realUserStatus"))
 	return rv
 }
 
 // An arbitrary string that your app provides to the request that generates the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/state
-func (a_ AuthorizationAppleIDCredential) State() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationAppleIDCredential) State() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
 // An identifier for the authenticated user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user
-func (a_ AuthorizationAppleIDCredential) User() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDCredential) User() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("user"))
 	return rv
 }
 
 // A token that the app uses to interact with the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) AuthorizationCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationCode"))
+func (a_ AuthorizationAppleIDCredential) AuthorizationCode() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("authorizationCode"))
 	return rv
 }
 
@@ -132,7 +134,7 @@ func (a_ AuthorizationAppleIDCredential) AuthorizationCode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value unsafe.Pointer) {
+func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationCode:"), value)
 }
 
@@ -157,8 +159,8 @@ func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointe
 // A JSON Web Token (JWT) that securely communicates information about the user to the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) IdentityToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identityToken"))
+func (a_ AuthorizationAppleIDCredential) IdentityToken() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
 	return rv
 }
 
@@ -168,14 +170,14 @@ func (a_ AuthorizationAppleIDCredential) IdentityToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value unsafe.Pointer) {
+func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-func (a_ AuthorizationAppleIDCredential) UserAgeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("userAgeRange"))
+func (a_ AuthorizationAppleIDCredential) UserAgeRange() UserAgeRange {
+	rv := objc.Send[UserAgeRange](a_.ID, objc.Sel("userAgeRange"))
 	return rv
 }
 
@@ -183,7 +185,7 @@ func (a_ AuthorizationAppleIDCredential) UserAgeRange() unsafe.Pointer {
 // SetUserAgeRange sets the value of the userAgeRange property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-func (a_ AuthorizationAppleIDCredential) SetUserAgeRange(value unsafe.Pointer) {
+func (a_ AuthorizationAppleIDCredential) SetUserAgeRange(value IUserAgeRange) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUserAgeRange:"), value)
 }
 

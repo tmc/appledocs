@@ -15,3 +15,24 @@ func ExampleNewSet() {
 	_ = foundation.NewSet()
 	// Output:
 }
+// ExampleNewSetWithCoder demonstrates how to create a Set instance using NewSetWithCoder.
+func ExampleNewSetWithCoder() {
+	_ = foundation.NewSetWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
+	)
+	// Output:
+}
+// ExampleNewSetWithCollectionViewIndexPath demonstrates how to create a Set instance using NewSetWithCollectionViewIndexPath.
+func ExampleNewSetWithCollectionViewIndexPath() {
+	_ = foundation.NewSetWithCollectionViewIndexPath(
+		foundation.NSIndexPath{}, // indexPath NSIndexPath
+	)
+	// Output:
+}
+// ExampleNewSetWithCollectionViewIndexPaths demonstrates how to create a Set instance using NewSetWithCollectionViewIndexPaths.
+func ExampleNewSetWithCollectionViewIndexPaths() {
+	_ = foundation.NewSetWithCollectionViewIndexPaths(
+		[]foundation.IndexPath{}, // indexPaths []IndexPath
+	)
+	// Output:
+}

@@ -760,8 +760,8 @@ func (c_ Cell) DefaultMenu() NSMenu {
 // The cell’s value as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
-func (c_ Cell) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("doubleValue"))
+func (c_ Cell) DoubleValue() float64 {
+	rv := objc.Send[float64](c_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -771,15 +771,15 @@ func (c_ Cell) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/doubleValue
-func (c_ Cell) SetDoubleValue(value unsafe.Pointer) {
+func (c_ Cell) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDoubleValue:"), value)
 }
 
 // The cell’s value as a single-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/floatValue
-func (c_ Cell) FloatValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("floatValue"))
+func (c_ Cell) FloatValue() float32 {
+	rv := objc.Send[float32](c_.ID, objc.Sel("floatValue"))
 	return rv
 }
 
@@ -789,7 +789,7 @@ func (c_ Cell) FloatValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/floatValue
-func (c_ Cell) SetFloatValue(value unsafe.Pointer) {
+func (c_ Cell) SetFloatValue(value float32) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFloatValue:"), value)
 }
 
@@ -894,8 +894,8 @@ func (c_ Cell) SetImportsGraphics(value bool) {
 // The cell’s value as an integer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/intValue
-func (c_ Cell) IntValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("intValue"))
+func (c_ Cell) IntValue() int {
+	rv := objc.Send[int](c_.ID, objc.Sel("intValue"))
 	return rv
 }
 
@@ -905,7 +905,7 @@ func (c_ Cell) IntValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/intValue
-func (c_ Cell) SetIntValue(value unsafe.Pointer) {
+func (c_ Cell) SetIntValue(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIntValue:"), value)
 }
 

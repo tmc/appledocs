@@ -86,7 +86,7 @@ func NewPHASESource() PHASESource {
 // Creates a single point in the environment from which sound emanates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/init(engine:)
-func NewPHASESourceWithEngine(engine unsafe.Pointer) PHASESource {
+func NewPHASESourceWithEngine(engine IPHASEEngine) PHASESource {
 	instance := getPHASESourceClass().Alloc()
 	rv := objc.Send[PHASESource](instance.ID, objc.Sel("initWithEngine:"), engine)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewPHASESourceWithEngine(engine unsafe.Pointer) PHASESource {
 // Creates a voluminous area in the environment from which sound emanates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESource/init(engine:shapes:)
-func NewPHASESourceWithEngineShapes(engine unsafe.Pointer, shapes unsafe.Pointer) PHASESource {
+func NewPHASESourceWithEngineShapes(engine IPHASEEngine, shapes []PHASEShape) PHASESource {
 	instance := getPHASESourceClass().Alloc()
 	rv := objc.Send[PHASESource](instance.ID, objc.Sel("initWithEngine:shapes:"), engine, shapes)
 	rv.Autorelease()

@@ -29,7 +29,7 @@ type _HKWorkoutRouteBuilderClass struct {
 // An interface definition for the [HKWorkoutRouteBuilder] class.
 type IHKWorkoutRouteBuilder interface {
 	IHKSeriesBuilder
-	FinishRouteWithWorkoutMetadataCompletion(workout unsafe.Pointer, metadata unsafe.Pointer, completion unsafe.Pointer)
+	FinishRouteWithWorkoutMetadataCompletion(workout IHKWorkout, metadata unsafe.Pointer, completion unsafe.Pointer)
 }
 
 // A builder object that incrementally constructs a workout route.
@@ -85,15 +85,15 @@ func NewHKWorkoutRouteBuilder() HKWorkoutRouteBuilder {
 // Creates, saves, and associates the route with the provided workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutRouteBuilder/finishRoute(with:metadata:completion:)
-func (h_ HKWorkoutRouteBuilder) FinishRouteWithWorkoutMetadataCompletion(workout unsafe.Pointer, metadata unsafe.Pointer, completion unsafe.Pointer) {
+func (h_ HKWorkoutRouteBuilder) FinishRouteWithWorkoutMetadataCompletion(workout IHKWorkout, metadata unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("finishRouteWithWorkout:metadata:completion:"), workout, metadata, completion)
 }
 
 // A series sample containing location data that defines the route the user took during a workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKWorkoutRouteBuilder) HKWorkoutRouteTypeIdentifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+func (h_ HKWorkoutRouteBuilder) HKWorkoutRouteTypeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }
 

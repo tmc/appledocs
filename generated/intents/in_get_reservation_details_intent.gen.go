@@ -84,8 +84,8 @@ func NewINGetReservationDetailsIntent() INGetReservationDetailsIntent {
 // A unique identifier for the array containing the reservation objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INGetReservationDetailsIntent/reservationContainerReference
-func (i_ INGetReservationDetailsIntent) ReservationContainerReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationContainerReference"))
+func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("reservationContainerReference"))
 	return rv
 }
 

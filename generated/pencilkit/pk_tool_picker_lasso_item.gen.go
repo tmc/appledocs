@@ -85,8 +85,8 @@ func NewToolPickerLassoItem() ToolPickerLassoItem {
 // A lasso tool for selecting parts of a drawing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerLassoItem/lassoTool-1urgb
-func (t_ ToolPickerLassoItem) LassoTool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lassoTool"))
+func (t_ ToolPickerLassoItem) LassoTool() PKLassoTool {
+	rv := objc.Send[PKLassoTool](t_.ID, objc.Sel("lassoTool"))
 	return rv
 }
 

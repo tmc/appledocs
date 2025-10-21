@@ -148,7 +148,7 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg5() foun
 // SetArg5 sets the value of the arg5 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg5
-func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg5(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg5(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
 
@@ -163,7 +163,7 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg6() foun
 // SetArg6 sets the value of the arg6 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg6
-func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg6(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg6(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)
 }
 
@@ -178,7 +178,7 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) TimedInvoke
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

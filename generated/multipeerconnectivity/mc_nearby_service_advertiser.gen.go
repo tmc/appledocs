@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,9 +88,9 @@ func NewMCNearbyServiceAdvertiser() MCNearbyServiceAdvertiser {
 // Initializes an advertiser object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/init(peer:discoveryInfo:serviceType:)
-func NewMCNearbyServiceAdvertiserWithPeerDiscoveryInfoServiceType(myPeerID unsafe.Pointer, info unsafe.Pointer, serviceType string) MCNearbyServiceAdvertiser {
+func NewMCNearbyServiceAdvertiserWithPeerDiscoveryInfoServiceType(myPeerID IMCPeerID, info unsafe.Pointer, serviceType appkit.string) MCNearbyServiceAdvertiser {
 	instance := getMCNearbyServiceAdvertiserClass().Alloc()
-	rv := objc.Send[MCNearbyServiceAdvertiser](instance.ID, objc.Sel("initWithPeer:discoveryInfo:serviceType:"), myPeerID, info, objc.String(serviceType))
+	rv := objc.Send[MCNearbyServiceAdvertiser](instance.ID, objc.Sel("initWithPeer:discoveryInfo:serviceType:"), myPeerID, info, serviceType)
 	rv.Autorelease()
 	return rv
 }
@@ -138,16 +139,16 @@ func (m_ MCNearbyServiceAdvertiser) DiscoveryInfo() unsafe.Pointer {
 // The local peer ID for this instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/myPeerID
-func (m_ MCNearbyServiceAdvertiser) MyPeerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("myPeerID"))
+func (m_ MCNearbyServiceAdvertiser) MyPeerID() MCPeerID {
+	rv := objc.Send[MCPeerID](m_.ID, objc.Sel("myPeerID"))
 	return rv
 }
 
 // The service type that your app is advertising
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceAdvertiser/serviceType
-func (m_ MCNearbyServiceAdvertiser) ServiceType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceAdvertiser) ServiceType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

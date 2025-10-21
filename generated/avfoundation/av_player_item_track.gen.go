@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -107,8 +108,8 @@ func (p_ PlayerItemTrack) SetEnabled(value bool) {
 // A mode that specifies the handling of video frames that contain multiple fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-func (p_ PlayerItemTrack) VideoFieldMode() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
+func (p_ PlayerItemTrack) VideoFieldMode() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("videoFieldMode"))
 	return rv
 }
 
@@ -118,15 +119,15 @@ func (p_ PlayerItemTrack) VideoFieldMode() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
+func (p_ PlayerItemTrack) SetVideoFieldMode(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), value)
 }
 
 // An asset track that provides the media for the player item track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
-func (p_ PlayerItemTrack) AssetTrack() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetTrack"))
+func (p_ PlayerItemTrack) AssetTrack() AVAssetTrack {
+	rv := objc.Send[AVAssetTrack](p_.ID, objc.Sel("assetTrack"))
 	return rv
 }
 
@@ -136,7 +137,7 @@ func (p_ PlayerItemTrack) AssetTrack() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrack/assettrack
-func (p_ PlayerItemTrack) SetAssetTrack(value unsafe.Pointer) {
+func (p_ PlayerItemTrack) SetAssetTrack(value IAVAssetTrack) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetTrack:"), value)
 }
 
@@ -161,8 +162,8 @@ func (p_ PlayerItemTrack) SetIsEnabled(value bool) {
 // A video field mode that requests deinterlacing of video fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemtrackvideofieldmodedeinterlacefields
-func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
+func (p_ PlayerItemTrack) AVPlayerItemTrackVideoFieldModeDeinterlaceFields() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("AVPlayerItemTrackVideoFieldModeDeinterlaceFields"))
 	return rv
 }
 

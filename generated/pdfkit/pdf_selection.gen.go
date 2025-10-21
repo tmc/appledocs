@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,16 +33,16 @@ type _PDFSelectionClass struct {
 // An interface definition for the [PDFSelection] class.
 type IPDFSelection interface {
 	objectivec.IObject
-	AddSelections(selections unsafe.Pointer)
-	AddSelection(selection unsafe.Pointer)
-	BoundsForPage(page unsafe.Pointer) coregraphics.CGRect
-	DrawForPageActive(page unsafe.Pointer, active bool)
-	DrawForPageWithBoxActive(page unsafe.Pointer, box unsafe.Pointer, active bool)
+	AddSelections(selections []PDFSelection)
+	AddSelection(selection IPDFSelection)
+	BoundsForPage(page IPDFPage) coregraphics.CGRect
+	DrawForPageActive(page IPDFPage, active bool)
+	DrawForPageWithBoxActive(page IPDFPage, box IPDFDisplayBox, active bool)
 	ExtendSelectionAtEnd(succeed int)
 	ExtendSelectionAtStart(precede int)
 	ExtendSelectionForLineBoundaries()
-	NumberOfTextRangesOnPage(page unsafe.Pointer) uint
-	RangeAtIndexOnPage(index uint, page unsafe.Pointer) Range
+	NumberOfTextRangesOnPage(page IPDFPage) uint
+	RangeAtIndexOnPage(index uint, page IPDFPage) foundation.Range
 	SelectionsByLine() []PDFSelection
 }
 
@@ -95,7 +97,7 @@ func NewPDFSelection() PDFSelection {
 // Returns an empty object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/init(document:)
-func NewPDFSelectionWithDocument(document unsafe.Pointer) PDFSelection {
+func NewPDFSelectionWithDocument(document IPDFDocument) PDFSelection {
 	instance := getPDFSelectionClass().Alloc()
 	rv := objc.Send[PDFSelection](instance.ID, objc.Sel("initWithDocument:"), document)
 	rv.Autorelease()
@@ -106,21 +108,21 @@ func NewPDFSelectionWithDocument(document unsafe.Pointer) PDFSelection {
 // Adds the specified array of selections to the receiving selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/add(_:)-3fyld
-func (p_ PDFSelection) AddSelections(selections unsafe.Pointer) {
+func (p_ PDFSelection) AddSelections(selections []PDFSelection) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addSelections:"), selections)
 }
 
 // Adds the specified selection to the receiving selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/add(_:)-8c2r
-func (p_ PDFSelection) AddSelection(selection unsafe.Pointer) {
+func (p_ PDFSelection) AddSelection(selection IPDFSelection) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addSelection:"), selection)
 }
 
 // Returns the bounds of the selection on the specified page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/bounds(for:)
-func (p_ PDFSelection) BoundsForPage(page unsafe.Pointer) coregraphics.CGRect {
+func (p_ PDFSelection) BoundsForPage(page IPDFPage) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("boundsForPage:"), page)
 	return rv
 }
@@ -128,14 +130,14 @@ func (p_ PDFSelection) BoundsForPage(page unsafe.Pointer) coregraphics.CGRect {
 // Calls with a default value for box parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/draw(for:active:)
-func (p_ PDFSelection) DrawForPageActive(page unsafe.Pointer, active bool) {
+func (p_ PDFSelection) DrawForPageActive(page IPDFPage, active bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("drawForPage:active:"), page, active)
 }
 
 // Draws the selection relative to the origin of the specified box in page space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/draw(for:with:active:)
-func (p_ PDFSelection) DrawForPageWithBoxActive(page unsafe.Pointer, box unsafe.Pointer, active bool) {
+func (p_ PDFSelection) DrawForPageWithBoxActive(page IPDFPage, box IPDFDisplayBox, active bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("drawForPage:withBox:active:"), page, box, active)
 }
 
@@ -161,15 +163,15 @@ func (p_ PDFSelection) ExtendSelectionForLineBoundaries() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/numberOfTextRanges(on:)
-func (p_ PDFSelection) NumberOfTextRangesOnPage(page unsafe.Pointer) uint {
+func (p_ PDFSelection) NumberOfTextRangesOnPage(page IPDFPage) uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("numberOfTextRangesOnPage:"), page)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/range(at:on:)
-func (p_ PDFSelection) RangeAtIndexOnPage(index uint, page unsafe.Pointer) Range {
-	rv := objc.Send[Range](p_.ID, objc.Sel("rangeAtIndex:onPage:"), index, page)
+func (p_ PDFSelection) RangeAtIndexOnPage(index uint, page IPDFPage) foundation.Range {
+	rv := objc.Send[foundation.Range](p_.ID, objc.Sel("rangeAtIndex:onPage:"), index, page)
 	return rv
 }
 
@@ -184,16 +186,16 @@ func (p_ PDFSelection) SelectionsByLine() []PDFSelection {
 // Returns an object representing the text contained in the selection (may contain linefeed characters).
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/attributedString
-func (p_ PDFSelection) AttributedString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attributedString"))
+func (p_ PDFSelection) AttributedString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
 // Sets the color used for the drawing of a selection in both active and inactive states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/color
-func (p_ PDFSelection) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("color"))
+func (p_ PDFSelection) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -203,7 +205,7 @@ func (p_ PDFSelection) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/color
-func (p_ PDFSelection) SetColor(value unsafe.Pointer) {
+func (p_ PDFSelection) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
 
@@ -218,8 +220,8 @@ func (p_ PDFSelection) Pages() []PDFPage {
 // Returns an object representing the text contained in the selection (may contain linefeed characters).
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFSelection/string
-func (p_ PDFSelection) String() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("string"))
+func (p_ PDFSelection) String() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("string"))
 	return rv
 }
 

@@ -90,7 +90,7 @@ func NewCountedSet() CountedSet {
 // Returns a counted set object initialized with the contents of a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(array:)
-func NewCountedSetWithArray(array unsafe.Pointer) CountedSet {
+func NewCountedSetWithArray(array []objc.ID) CountedSet {
 	instance := getCountedSetClass().Alloc()
 	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithArray:"), array)
 	rv.Autorelease()

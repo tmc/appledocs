@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) DaysMask() foundati
 // SetDaysMask sets the value of the daysMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/daysmask
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetDaysMask(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetDaysMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDaysMask:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) EndHour() foundatio
 // SetEndHour sets the value of the endHour property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/endhour
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndHour(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndHour(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndHour:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) EndMinute() foundat
 // SetEndMinute sets the value of the endMinute property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/endminute
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndMinute(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetEndMinute(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndMinute:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) StartHour() foundat
 // SetStartHour sets the value of the startHour property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/starthour
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartHour(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartHour(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartHour:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) StartMinute() found
 // SetStartMinute sets the value of the startMinute property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/startminute
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartMinute(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStartMinute(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartMinute:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) Status() foundation
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/status
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) UserIndex() foundat
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/userindex
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) WeekDayIndex() foun
 // SetWeekDayIndex sets the value of the weekDayIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetweekdayscheduleresponseparams/weekdayindex
-func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetWeekDayIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetWeekDayScheduleResponseParams) SetWeekDayIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWeekDayIndex:"), value)
 }
 

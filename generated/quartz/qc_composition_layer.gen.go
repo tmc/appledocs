@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
@@ -30,7 +31,7 @@ type _QCCompositionLayerClass struct {
 // An interface definition for the [QCCompositionLayer] class.
 type IQCCompositionLayer interface {
 	quartzcore.IOpenGLLayer
-	Composition() unsafe.Pointer
+	Composition() QCComposition
 }
 
 // A layer that loads, plays, and controls Quartz Composer compositions in a Core Animation layer hierarchy.
@@ -88,7 +89,7 @@ func NewQCCompositionLayer() QCCompositionLayer {
 // Initializes and returns a composition layer using the provided Quartz Composer composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionLayer/init(composition:)
-func NewQCCompositionLayerWithComposition(composition unsafe.Pointer) QCCompositionLayer {
+func NewQCCompositionLayerWithComposition(composition IQCComposition) QCCompositionLayer {
 	instance := getQCCompositionLayerClass().Alloc()
 	rv := objc.Send[QCCompositionLayer](instance.ID, objc.Sel("initWithComposition:"), composition)
 	rv.Autorelease()
@@ -100,9 +101,9 @@ func NewQCCompositionLayerWithComposition(composition unsafe.Pointer) QCComposit
 // Initializes and returns a composition layer using the Quartz Composer composition in the specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionLayer/init(file:)
-func NewQCCompositionLayerWithFile(path string) QCCompositionLayer {
+func NewQCCompositionLayerWithFile(path appkit.string) QCCompositionLayer {
 	instance := getQCCompositionLayerClass().Alloc()
-	rv := objc.Send[QCCompositionLayer](instance.ID, objc.Sel("initWithFile:"), objc.String(path))
+	rv := objc.Send[QCCompositionLayer](instance.ID, objc.Sel("initWithFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -111,24 +112,24 @@ func NewQCCompositionLayerWithFile(path string) QCCompositionLayer {
 // Creates and returns an instance of a composition layer using the provided Quartz Composer composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionLayer/compositionLayerWithComposition:
-func (qc _QCCompositionLayerClass) CompositionLayerWithComposition(composition unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("compositionLayerWithComposition:"), composition)
+func (qc _QCCompositionLayerClass) CompositionLayerWithComposition(composition IQCComposition) QCCompositionLayer {
+	rv := objc.Send[QCCompositionLayer](objc.ID(qc.class), objc.Sel("compositionLayerWithComposition:"), composition)
 	return rv
 }
 
 // Creates and returns an instance of a composition layer using the Quartz Composer composition in the specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionLayer/compositionLayerWithFile:
-func (qc _QCCompositionLayerClass) CompositionLayerWithFile(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("compositionLayerWithFile:"), objc.String(path))
+func (qc _QCCompositionLayerClass) CompositionLayerWithFile(path appkit.string) QCCompositionLayer {
+	rv := objc.Send[QCCompositionLayer](objc.ID(qc.class), objc.Sel("compositionLayerWithFile:"), path)
 	return rv
 }
 
 // Returns the composition associated with the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionLayer/composition()
-func (q_ QCCompositionLayer) Composition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("composition"))
+func (q_ QCCompositionLayer) Composition() QCComposition {
+	rv := objc.Send[QCComposition](q_.ID, objc.Sel("composition"))
 	return rv
 }
 

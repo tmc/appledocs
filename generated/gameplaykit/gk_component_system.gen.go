@@ -32,12 +32,12 @@ type _ComponentSystemClass struct {
 type IComponentSystem interface {
 	objectivec.IObject
 	AddComponent(component unsafe.Pointer)
-	AddComponentWithEntity(entity unsafe.Pointer)
+	AddComponentWithEntity(entity IGKEntity)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	RemoveComponent(component unsafe.Pointer)
-	RemoveComponentWithEntity(entity unsafe.Pointer)
+	RemoveComponentWithEntity(entity IGKEntity)
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 }
 
 // Manages periodic update messages for all component objects of a specified class.
@@ -111,7 +111,7 @@ func (c_ ComponentSystem) AddComponent(component unsafe.Pointer) {
 // Adds any instances of the component system’s component class in the specified entity to the component system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/addComponent(foundIn:)
-func (c_ ComponentSystem) AddComponentWithEntity(entity unsafe.Pointer) {
+func (c_ ComponentSystem) AddComponentWithEntity(entity IGKEntity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addComponentWithEntity:"), entity)
 }
 
@@ -132,7 +132,7 @@ func (c_ ComponentSystem) RemoveComponent(component unsafe.Pointer) {
 // Removes any instances of the component system’s component class in the specified entity from the component system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/removeComponent(foundIn:)
-func (c_ ComponentSystem) RemoveComponentWithEntity(entity unsafe.Pointer) {
+func (c_ ComponentSystem) RemoveComponentWithEntity(entity IGKEntity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeComponentWithEntity:"), entity)
 }
 
@@ -147,7 +147,7 @@ func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 // Tells all component instances managed by the system to perform their custom periodic actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/update(deltaTime:)
-func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (c_ ComponentSystem) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

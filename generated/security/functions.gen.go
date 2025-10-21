@@ -9,7 +9,7 @@ import (
 )
 
 
-// Security Functions (525 total)
+// Security Functions (526 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -344,6 +344,7 @@ var (
 	_SecAccessCopyMatchingACLList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecAccessCopySelectedACLList func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecAccessCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SecAccessGetOwnerAndACL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecAccessGetTypeID func() unsafe.Pointer
 	_SecAddSharedWebCredential func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecAsn1AllocCopy func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -384,11 +385,11 @@ var (
 	_SecEncryptTransformCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecEncryptTransformGetTypeID func() unsafe.Pointer
 	_SecGroupTransformGetTypeID func() unsafe.Pointer
-	_SecHostCreateGuest func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SecHostCreateGuest func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecHostRemoveGuest func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecHostSelectGuest func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecHostSelectedGuest func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SecHostSetGuestStatus func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SecHostSetGuestStatus func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecHostSetHostingPort func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecIdentityCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecItemAdd func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -426,7 +427,7 @@ var (
 	_SecTaskCopyValuesForEntitlements func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecTaskCreateFromSelf func(unsafe.Pointer) unsafe.Pointer
 	_SecTaskCreateWithAuditToken func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SecTaskGetCodeSignStatus func(unsafe.Pointer) unsafe.Pointer
+	_SecTaskGetCodeSignStatus func(unsafe.Pointer) uint32
 	_SecTaskGetTypeID func() unsafe.Pointer
 	_SecTranformCustomGetAttribute func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_SecTransformConnectTransforms func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -876,6 +877,7 @@ func init() {
 	tryRegister(&_SecAccessCopyMatchingACLList, lib, "SecAccessCopyMatchingACLList")
 	tryRegister(&_SecAccessCopySelectedACLList, lib, "SecAccessCopySelectedACLList")
 	tryRegister(&_SecAccessCreate, lib, "SecAccessCreate")
+	tryRegister(&_SecAccessGetOwnerAndACL, lib, "SecAccessGetOwnerAndACL")
 	tryRegister(&_SecAccessGetTypeID, lib, "SecAccessGetTypeID")
 	tryRegister(&_SecAddSharedWebCredential, lib, "SecAddSharedWebCredential")
 	tryRegister(&_SecAsn1AllocCopy, lib, "SecAsn1AllocCopy")
@@ -4932,6 +4934,18 @@ func SecAccessCreate(descriptor unsafe.Pointer, trustedlist unsafe.Pointer, acce
 	}
 
 
+// Retrieves the owner and the access control list of a given access object. [Full Topic]
+//
+// Deprecated: This function was deprecated in macOS 10.7.
+//
+// Added in macOS 10.0.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessGetOwnerAndACL
+func SecAccessGetOwnerAndACL(accessRef unsafe.Pointer, owner unsafe.Pointer, aclCount unsafe.Pointer, acls unsafe.Pointer) unsafe.Pointer {
+	return _SecAccessGetOwnerAndACL(accessRef, owner, aclCount, acls)
+	}
+
+
 // Returns the unique identifier of the opaque type to which an access instance belongs. [Full Topic]
 //
 // Deprecated: This function was deprecated in macOS 10.10.
@@ -5379,7 +5393,7 @@ func SecGroupTransformGetTypeID() unsafe.Pointer {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecHostCreateGuest
-func SecHostCreateGuest(host unsafe.Pointer, status unsafe.Pointer, path unsafe.Pointer, attributes unsafe.Pointer, flags unsafe.Pointer, newGuest unsafe.Pointer) unsafe.Pointer {
+func SecHostCreateGuest(host unsafe.Pointer, status uint32, path unsafe.Pointer, attributes unsafe.Pointer, flags unsafe.Pointer, newGuest unsafe.Pointer) unsafe.Pointer {
 	return _SecHostCreateGuest(host, status, path, attributes, flags, newGuest)
 	}
 
@@ -5427,7 +5441,7 @@ func SecHostSelectedGuest(flags unsafe.Pointer, guestRef unsafe.Pointer) unsafe.
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecHostSetGuestStatus
-func SecHostSetGuestStatus(guestRef unsafe.Pointer, status unsafe.Pointer, attributes unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
+func SecHostSetGuestStatus(guestRef unsafe.Pointer, status uint32, attributes unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _SecHostSetGuestStatus(guestRef, status, attributes, flags)
 	}
 
@@ -5815,7 +5829,7 @@ func SecTaskCreateWithAuditToken(allocator unsafe.Pointer, token unsafe.Pointer)
 // SecTaskGetCodeSignStatus is a Security function. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTaskGetCodeSignStatus(_:)
-func SecTaskGetCodeSignStatus(task unsafe.Pointer) unsafe.Pointer {
+func SecTaskGetCodeSignStatus(task unsafe.Pointer) uint32 {
 	return _SecTaskGetCodeSignStatus(task)
 	}
 

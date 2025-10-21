@@ -78,7 +78,7 @@ func NewCNNNeuronGeLUNode() CNNNeuronGeLUNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode/init(source:)
-func NewCNNNeuronGeLUNodeWithSource(sourceNode unsafe.Pointer) CNNNeuronGeLUNode {
+func NewCNNNeuronGeLUNodeWithSource(sourceNode IMPSNNImageNode) CNNNeuronGeLUNode {
 	instance := getCNNNeuronGeLUNodeClass().Alloc()
 	rv := objc.Send[CNNNeuronGeLUNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
@@ -88,7 +88,7 @@ func NewCNNNeuronGeLUNodeWithSource(sourceNode unsafe.Pointer) CNNNeuronGeLUNode
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNNeuronGeLUNode/nodeWithSource:
-func (cc _CNNNeuronGeLUNodeClass) NodeWithSource(sourceNode unsafe.Pointer) unsafe.Pointer {
+func (cc _CNNNeuronGeLUNodeClass) NodeWithSource(sourceNode IMPSNNImageNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSource:"), sourceNode)
 	return rv
 }

@@ -116,8 +116,8 @@ func (p_ PedometerData) Distance() foundation.Number {
 // The end time for the pedometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/endDate
-func (p_ PedometerData) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+func (p_ PedometerData) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -148,8 +148,8 @@ func (p_ PedometerData) NumberOfSteps() foundation.Number {
 // The start time for the pedometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerData/startDate
-func (p_ PedometerData) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+func (p_ PedometerData) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv
 }
 

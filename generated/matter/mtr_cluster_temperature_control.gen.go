@@ -30,19 +30,19 @@ type _MTRClusterTemperatureControlClass struct {
 // An interface definition for the [MTRClusterTemperatureControl] class.
 type IMTRClusterTemperatureControl interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeMaxTemperatureWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeMinTemperatureWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSelectedTemperatureLevelWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeStepWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedTemperatureLevelsWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeTemperatureSetpointWithParams(params unsafe.Pointer) unsafe.Pointer
-	SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeMaxTemperatureWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeMinTemperatureWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSelectedTemperatureLevelWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeStepWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedTemperatureLevelsWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeTemperatureSetpointWithParams(params IMTRReadParams) unsafe.Pointer
+	SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRTemperatureControlClusterSetTemperatureParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
 }
 
 // Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
@@ -98,7 +98,7 @@ func NewMTRClusterTemperatureControl() MTRClusterTemperatureControl {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/init(device:endpointID:queue:)
-func NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterTemperatureControl {
+func NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterTemperatureControl {
 	instance := getMTRClusterTemperatureControlClass().Alloc()
 	rv := objc.Send[MTRClusterTemperatureControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -108,90 +108,90 @@ func NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue(device unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeAttributeList(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeClusterRevision(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeFeatureMap(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeMaxTemperature(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeMaxTemperatureWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeMaxTemperatureWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeMaxTemperatureWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeMinTemperature(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeMinTemperatureWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeMinTemperatureWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeMinTemperatureWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeSelectedTemperatureLevel(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeSelectedTemperatureLevelWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeSelectedTemperatureLevelWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSelectedTemperatureLevelWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeStep(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeStepWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeStepWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeStepWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeSupportedTemperatureLevels(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeSupportedTemperatureLevelsWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeSupportedTemperatureLevelsWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedTemperatureLevelsWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeTemperatureSetpoint(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeTemperatureSetpointWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterTemperatureControl) ReadAttributeTemperatureSetpointWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeTemperatureSetpointWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/setTemperatureWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterTemperatureControl) SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterTemperatureControl) SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRTemperatureControlClusterSetTemperatureParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemperatureWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/setTemperatureWithExpectedValues(_:expectedValueInterval:completion:)
-func (m_ MTRClusterTemperatureControl) SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterTemperatureControl) SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemperatureWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 

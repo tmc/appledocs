@@ -86,7 +86,7 @@ func NewGraphConvolution3DOpDescriptor() GraphConvolution3DOpDescriptor {
 // Creates a convolution descriptor with given values for parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/init(strideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:)
-func NewGraphConvolution3DOpDescriptorWithStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingFrontPaddingBackPaddingStyleDataLayoutWeightsLayout(strideInX uint, strideInY uint, strideInZ uint, dilationRateInX uint, dilationRateInY uint, dilationRateInZ uint, groups uint, paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint, paddingFront uint, paddingBack uint, paddingStyle unsafe.Pointer, dataLayout unsafe.Pointer, weightsLayout unsafe.Pointer) GraphConvolution3DOpDescriptor {
+func NewGraphConvolution3DOpDescriptorWithStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingFrontPaddingBackPaddingStyleDataLayoutWeightsLayout(strideInX uint, strideInY uint, strideInZ uint, dilationRateInX uint, dilationRateInY uint, dilationRateInZ uint, groups uint, paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint, paddingFront uint, paddingBack uint, paddingStyle GraphPaddingStyle, dataLayout IGraphTensorNamedDataLayout, weightsLayout IGraphTensorNamedDataLayout) GraphConvolution3DOpDescriptor {
 	rv := objc.Send[GraphConvolution3DOpDescriptor](objc.ID(getGraphConvolution3DOpDescriptorClass().class), objc.Sel("descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:"), strideInX, strideInY, strideInZ, dilationRateInX, dilationRateInY, dilationRateInZ, groups, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingFront, paddingBack, paddingStyle, dataLayout, weightsLayout)
 	return rv
 }
@@ -95,7 +95,7 @@ func NewGraphConvolution3DOpDescriptorWithStrideInXStrideInYStrideInZDilationRat
 // Creates a convolution descriptor with given values for parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/init(strideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:)
-func (gc _GraphConvolution3DOpDescriptorClass) DescriptorWithStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingFrontPaddingBackPaddingStyleDataLayoutWeightsLayout(strideInX uint, strideInY uint, strideInZ uint, dilationRateInX uint, dilationRateInY uint, dilationRateInZ uint, groups uint, paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint, paddingFront uint, paddingBack uint, paddingStyle unsafe.Pointer, dataLayout unsafe.Pointer, weightsLayout unsafe.Pointer) unsafe.Pointer {
+func (gc _GraphConvolution3DOpDescriptorClass) DescriptorWithStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingFrontPaddingBackPaddingStyleDataLayoutWeightsLayout(strideInX uint, strideInY uint, strideInZ uint, dilationRateInX uint, dilationRateInY uint, dilationRateInZ uint, groups uint, paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint, paddingFront uint, paddingBack uint, paddingStyle GraphPaddingStyle, dataLayout IGraphTensorNamedDataLayout, weightsLayout IGraphTensorNamedDataLayout) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithStrideInX:strideInY:strideInZ:dilationRateInX:dilationRateInY:dilationRateInZ:groups:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingFront:paddingBack:paddingStyle:dataLayout:weightsLayout:"), strideInX, strideInY, strideInZ, dilationRateInX, dilationRateInY, dilationRateInZ, groups, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingFront, paddingBack, paddingStyle, dataLayout, weightsLayout)
 	return rv
 }
@@ -103,8 +103,8 @@ func (gc _GraphConvolution3DOpDescriptorClass) DescriptorWithStrideInXStrideInYS
 // The named layout of data in the source tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/dataLayout
-func (g_ GraphConvolution3DOpDescriptor) DataLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataLayout"))
+func (g_ GraphConvolution3DOpDescriptor) DataLayout() GraphTensorNamedDataLayout {
+	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("dataLayout"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (g_ GraphConvolution3DOpDescriptor) DataLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphConvolution3DOpDescriptor/dataLayout
-func (g_ GraphConvolution3DOpDescriptor) SetDataLayout(value unsafe.Pointer) {
+func (g_ GraphConvolution3DOpDescriptor) SetDataLayout(value IGraphTensorNamedDataLayout) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
 }
 
@@ -283,8 +283,8 @@ func (g_ GraphConvolution3DOpDescriptor) SetPaddingRight(value int) {
 // The type of padding that is applied to the source tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor/paddingstyle
-func (g_ GraphConvolution3DOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
+func (g_ GraphConvolution3DOpDescriptor) PaddingStyle() GraphPaddingStyle {
+	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
@@ -294,7 +294,7 @@ func (g_ GraphConvolution3DOpDescriptor) PaddingStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor/paddingstyle
-func (g_ GraphConvolution3DOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+func (g_ GraphConvolution3DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
 
@@ -373,8 +373,8 @@ func (g_ GraphConvolution3DOpDescriptor) SetStrideInZ(value int) {
 // The named layout of data in the weights tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor/weightslayout
-func (g_ GraphConvolution3DOpDescriptor) WeightsLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("weightsLayout"))
+func (g_ GraphConvolution3DOpDescriptor) WeightsLayout() GraphTensorNamedDataLayout {
+	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("weightsLayout"))
 	return rv
 }
 
@@ -384,7 +384,7 @@ func (g_ GraphConvolution3DOpDescriptor) WeightsLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor/weightslayout
-func (g_ GraphConvolution3DOpDescriptor) SetWeightsLayout(value unsafe.Pointer) {
+func (g_ GraphConvolution3DOpDescriptor) SetWeightsLayout(value IGraphTensorNamedDataLayout) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWeightsLayout:"), value)
 }
 

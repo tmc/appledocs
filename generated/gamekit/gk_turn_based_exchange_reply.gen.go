@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewTurnBasedExchangeReply() TurnBasedExchangeReply {
 // The participant who replies to the exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedExchangeReply/recipient
-func (t_ TurnBasedExchangeReply) Recipient() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("recipient"))
+func (t_ TurnBasedExchangeReply) Recipient() GKTurnBasedParticipant {
+	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("recipient"))
 	return rv
 }
 
 // The replies from recipients of the exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-func (t_ TurnBasedExchangeReply) Replies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("replies"))
+func (t_ TurnBasedExchangeReply) Replies() GKTurnBasedExchangeReply {
+	rv := objc.Send[GKTurnBasedExchangeReply](t_.ID, objc.Sel("replies"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (t_ TurnBasedExchangeReply) Replies() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies
-func (t_ TurnBasedExchangeReply) SetReplies(value unsafe.Pointer) {
+func (t_ TurnBasedExchangeReply) SetReplies(value IGKTurnBasedExchangeReply) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplies:"), value)
 }
 
 // The game-specific data that the recipent provides in the exchange request reply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
-func (t_ TurnBasedExchangeReply) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("data"))
+func (t_ TurnBasedExchangeReply) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (t_ TurnBasedExchangeReply) Data() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/data
-func (t_ TurnBasedExchangeReply) SetData(value unsafe.Pointer) {
+func (t_ TurnBasedExchangeReply) SetData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setData:"), value)
 }
 
 // A message from the recipient to the sender of the exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/message
-func (t_ TurnBasedExchangeReply) Message() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("message"))
+func (t_ TurnBasedExchangeReply) Message() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -138,15 +139,15 @@ func (t_ TurnBasedExchangeReply) Message() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/message
-func (t_ TurnBasedExchangeReply) SetMessage(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), objc.String(value))
+func (t_ TurnBasedExchangeReply) SetMessage(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setMessage:"), value)
 }
 
 // The date the recipient replies to the exchange request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
-func (t_ TurnBasedExchangeReply) ReplyDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("replyDate"))
+func (t_ TurnBasedExchangeReply) ReplyDate() foundation.Date {
+	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("replyDate"))
 	return rv
 }
 
@@ -156,7 +157,7 @@ func (t_ TurnBasedExchangeReply) ReplyDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply/replydate
-func (t_ TurnBasedExchangeReply) SetReplyDate(value unsafe.Pointer) {
+func (t_ TurnBasedExchangeReply) SetReplyDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setReplyDate:"), value)
 }
 

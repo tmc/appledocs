@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,22 +78,22 @@ func NewTKTokenWatcherTokenInfo() TKTokenWatcherTokenInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/driverName
-func (t_ TKTokenWatcherTokenInfo) DriverName() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("driverName"))
+func (t_ TKTokenWatcherTokenInfo) DriverName() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("driverName"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/slotName
-func (t_ TKTokenWatcherTokenInfo) SlotName() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("slotName"))
+func (t_ TKTokenWatcherTokenInfo) SlotName() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("slotName"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenWatcher/TokenInfo/tokenID
-func (t_ TKTokenWatcherTokenInfo) TokenID() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("tokenID"))
+func (t_ TKTokenWatcherTokenInfo) TokenID() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("tokenID"))
 	return rv
 }
 

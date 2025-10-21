@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +32,9 @@ type _ODQueryClass struct {
 // An interface definition for the [ODQuery] class.
 type IODQuery interface {
 	objectivec.IObject
-	RemoveFromRunLoopForMode(inRunLoop unsafe.Pointer, inMode string)
-	ResultsAllowingPartialError(inAllowPartialResults bool, outError unsafe.Pointer) unsafe.Pointer
-	ScheduleInRunLoopForMode(inRunLoop unsafe.Pointer, inMode string)
+	RemoveFromRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string)
+	ResultsAllowingPartialError(inAllowPartialResults bool, outError unsafe.Pointer) foundation.Array
+	ScheduleInRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string)
 	Synchronize()
 }
 
@@ -87,7 +89,7 @@ func NewODQuery() ODQuery {
 // Creates a query object with provided parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/init(node:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:)
-func NewODQueryWithNodeForRecordTypesAttributeMatchTypeQueryValuesReturnAttributesMaximumResultsError(inNode unsafe.Pointer, inRecordTypeOrList objc.ID, inAttribute unsafe.Pointer, inMatchType unsafe.Pointer, inQueryValueOrList objc.ID, inReturnAttributeOrList objc.ID, inMaximumResults int, outError unsafe.Pointer) ODQuery {
+func NewODQueryWithNodeForRecordTypesAttributeMatchTypeQueryValuesReturnAttributesMaximumResultsError(inNode IODNode, inRecordTypeOrList objectivec.IObject, inAttribute ODAttributeType, inMatchType ODMatchType, inQueryValueOrList objectivec.IObject, inReturnAttributeOrList objectivec.IObject, inMaximumResults int, outError unsafe.Pointer) ODQuery {
 	instance := getODQueryClass().Alloc()
 	rv := objc.Send[ODQuery](instance.ID, objc.Sel("initWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:"), inNode, inRecordTypeOrList, inAttribute, inMatchType, inQueryValueOrList, inReturnAttributeOrList, inMaximumResults, outError)
 	rv.Autorelease()
@@ -98,31 +100,31 @@ func NewODQueryWithNodeForRecordTypesAttributeMatchTypeQueryValuesReturnAttribut
 // Returns an autoreleased query object created with provided parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:
-func (oc _ODQueryClass) QueryWithNodeForRecordTypesAttributeMatchTypeQueryValuesReturnAttributesMaximumResultsError(inNode unsafe.Pointer, inRecordTypeOrList objc.ID, inAttribute unsafe.Pointer, inMatchType unsafe.Pointer, inQueryValueOrList objc.ID, inReturnAttributeOrList objc.ID, inMaximumResults int, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:"), inNode, inRecordTypeOrList, inAttribute, inMatchType, inQueryValueOrList, inReturnAttributeOrList, inMaximumResults, outError)
+func (oc _ODQueryClass) QueryWithNodeForRecordTypesAttributeMatchTypeQueryValuesReturnAttributesMaximumResultsError(inNode IODNode, inRecordTypeOrList objectivec.IObject, inAttribute ODAttributeType, inMatchType ODMatchType, inQueryValueOrList objectivec.IObject, inReturnAttributeOrList objectivec.IObject, inMaximumResults int, outError unsafe.Pointer) ODQuery {
+	rv := objc.Send[ODQuery](objc.ID(oc.class), objc.Sel("queryWithNode:forRecordTypes:attribute:matchType:queryValues:returnAttributes:maximumResults:error:"), inNode, inRecordTypeOrList, inAttribute, inMatchType, inQueryValueOrList, inReturnAttributeOrList, inMaximumResults, outError)
 	return rv
 }
 
 // Removes the query from a specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/remove(from:forMode:)
-func (o_ ODQuery) RemoveFromRunLoopForMode(inRunLoop unsafe.Pointer, inMode string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("removeFromRunLoop:forMode:"), inRunLoop, objc.String(inMode))
+func (o_ ODQuery) RemoveFromRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeFromRunLoop:forMode:"), inRunLoop, inMode)
 }
 
 // Returns results from a query synchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/resultsAllowingPartial(_:)
-func (o_ ODQuery) ResultsAllowingPartialError(inAllowPartialResults bool, outError unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("resultsAllowingPartial:error:"), inAllowPartialResults, outError)
+func (o_ ODQuery) ResultsAllowingPartialError(inAllowPartialResults bool, outError unsafe.Pointer) foundation.Array {
+	rv := objc.Send[foundation.Array](o_.ID, objc.Sel("resultsAllowingPartial:error:"), inAllowPartialResults, outError)
 	return rv
 }
 
 // Retrieves results from a query asynchronously by scheduling the query in a run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/schedule(in:forMode:)
-func (o_ ODQuery) ScheduleInRunLoopForMode(inRunLoop unsafe.Pointer, inMode string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("scheduleInRunLoop:forMode:"), inRunLoop, objc.String(inMode))
+func (o_ ODQuery) ScheduleInRunLoopForMode(inRunLoop foundation.IRunLoop, inMode appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("scheduleInRunLoop:forMode:"), inRunLoop, inMode)
 }
 
 // Restarts a query, disposing of any results it has obtained.
@@ -153,8 +155,8 @@ func (o_ ODQuery) SetDelegate(value objc.ID) {
 // The queue on which asynchronous results are delivered to the delegate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/operationQueue
-func (o_ ODQuery) OperationQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("operationQueue"))
+func (o_ ODQuery) OperationQueue() foundation.OperationQueue {
+	rv := objc.Send[foundation.OperationQueue](o_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -164,7 +166,7 @@ func (o_ ODQuery) OperationQueue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQuery/operationQueue
-func (o_ ODQuery) SetOperationQueue(value unsafe.Pointer) {
+func (o_ ODQuery) SetOperationQueue(value foundation.IOperationQueue) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOperationQueue:"), value)
 }
 

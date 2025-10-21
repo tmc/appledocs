@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CaptureDeviceInput] class.
@@ -29,7 +30,7 @@ type _CaptureDeviceInputClass struct {
 // An interface definition for the [CaptureDeviceInput] class.
 type ICaptureDeviceInput interface {
 	ICaptureInput
-	FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice unsafe.Pointer, frameDuration unsafe.Pointer, delegate objc.ID)
+	FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice unsafe.Pointer, frameDuration unsafe.Pointer, delegate objectivec.IObject)
 }
 
 // An object that provides media input from a capture device to a capture session.
@@ -87,7 +88,7 @@ func NewCaptureDeviceInput() CaptureDeviceInput {
 // Creates an input for the specified capture device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/init(device:)
-func NewCaptureDeviceInputWithDeviceError(device unsafe.Pointer, outError unsafe.Pointer) CaptureDeviceInput {
+func NewCaptureDeviceInputWithDeviceError(device IAVCaptureDevice, outError unsafe.Pointer) CaptureDeviceInput {
 	instance := getCaptureDeviceInputClass().Alloc()
 	rv := objc.Send[CaptureDeviceInput](instance.ID, objc.Sel("initWithDevice:error:"), device, outError)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCaptureDeviceInputWithDeviceError(device unsafe.Pointer, outError unsafe
 // Configures the the device input to follow an external sync device at the given frame duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDeviceInput/follow(_:videoFrameDuration:delegate:)
-func (c_ CaptureDeviceInput) FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice unsafe.Pointer, frameDuration unsafe.Pointer, delegate objc.ID) {
+func (c_ CaptureDeviceInput) FollowExternalSyncDeviceVideoFrameDurationDelegate(externalSyncDevice unsafe.Pointer, frameDuration unsafe.Pointer, delegate objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("followExternalSyncDevice:videoFrameDuration:delegate:"), externalSyncDevice, frameDuration, delegate)
 }
 
@@ -219,8 +220,8 @@ func (c_ CaptureDeviceInput) SetActiveExternalSyncVideoFrameDuration(value unsaf
 // A capture device associated with this input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/device
-func (c_ CaptureDeviceInput) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+func (c_ CaptureDeviceInput) Device() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -230,7 +231,7 @@ func (c_ CaptureDeviceInput) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput/device
-func (c_ CaptureDeviceInput) SetDevice(value unsafe.Pointer) {
+func (c_ CaptureDeviceInput) SetDevice(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
 }
 

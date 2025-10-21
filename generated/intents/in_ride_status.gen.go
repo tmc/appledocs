@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -119,8 +122,8 @@ func (i_ INRideStatus) SetDriver(value unsafe.Pointer) {
 // The current status of the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/phase
-func (i_ INRideStatus) Phase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("phase"))
+func (i_ INRideStatus) Phase() INRidePhase {
+	rv := objc.Send[INRidePhase](i_.ID, objc.Sel("phase"))
 	return rv
 }
 
@@ -130,15 +133,15 @@ func (i_ INRideStatus) Phase() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/phase
-func (i_ INRideStatus) SetPhase(value unsafe.Pointer) {
+func (i_ INRideStatus) SetPhase(value INRidePhase) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPhase:"), value)
 }
 
 // The unique string that you use to identify the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
-func (i_ INRideStatus) RideIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INRideStatus) RideIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 
@@ -148,8 +151,8 @@ func (i_ INRideStatus) RideIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/rideIdentifier
-func (i_ INRideStatus) SetRideIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), objc.String(value))
+func (i_ INRideStatus) SetRideIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), value)
 }
 
 // Information about the type of ride that you are offering to the user.
@@ -173,8 +176,8 @@ func (i_ INRideStatus) SetRideOption(value unsafe.Pointer) {
 // A user activity object for canceling the ride request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/userActivityForCancelingInApplication
-func (i_ INRideStatus) UserActivityForCancelingInApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivityForCancelingInApplication"))
+func (i_ INRideStatus) UserActivityForCancelingInApplication() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivityForCancelingInApplication"))
 	return rv
 }
 
@@ -184,15 +187,15 @@ func (i_ INRideStatus) UserActivityForCancelingInApplication() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/userActivityForCancelingInApplication
-func (i_ INRideStatus) SetUserActivityForCancelingInApplication(value unsafe.Pointer) {
+func (i_ INRideStatus) SetUserActivityForCancelingInApplication(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivityForCancelingInApplication:"), value)
 }
 
 // The vehicle assigned to pick up the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/vehicle
-func (i_ INRideStatus) Vehicle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("vehicle"))
+func (i_ INRideStatus) Vehicle() INRideVehicle {
+	rv := objc.Send[INRideVehicle](i_.ID, objc.Sel("vehicle"))
 	return rv
 }
 
@@ -202,15 +205,15 @@ func (i_ INRideStatus) Vehicle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INRideStatus/vehicle
-func (i_ INRideStatus) SetVehicle(value unsafe.Pointer) {
+func (i_ INRideStatus) SetVehicle(value INRideVehicle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVehicle:"), value)
 }
 
 // Additional activities that the user may choose to perform while the ride request is active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/additionalactionactivities
-func (i_ INRideStatus) AdditionalActionActivities() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("additionalActionActivities"))
+func (i_ INRideStatus) AdditionalActionActivities() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("additionalActionActivities"))
 	return rv
 }
 
@@ -220,15 +223,15 @@ func (i_ INRideStatus) AdditionalActionActivities() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/additionalactionactivities
-func (i_ INRideStatus) SetAdditionalActionActivities(value unsafe.Pointer) {
+func (i_ INRideStatus) SetAdditionalActionActivities(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAdditionalActionActivities:"), value)
 }
 
 // The destination of the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/dropofflocation
-func (i_ INRideStatus) DropOffLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dropOffLocation"))
+func (i_ INRideStatus) DropOffLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
 	return rv
 }
 
@@ -238,15 +241,15 @@ func (i_ INRideStatus) DropOffLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/dropofflocation
-func (i_ INRideStatus) SetDropOffLocation(value unsafe.Pointer) {
+func (i_ INRideStatus) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
 // The estimated drop-off time for the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimateddropoffdate
-func (i_ INRideStatus) EstimatedDropOffDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("estimatedDropOffDate"))
+func (i_ INRideStatus) EstimatedDropOffDate() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("estimatedDropOffDate"))
 	return rv
 }
 
@@ -256,15 +259,15 @@ func (i_ INRideStatus) EstimatedDropOffDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimateddropoffdate
-func (i_ INRideStatus) SetEstimatedDropOffDate(value unsafe.Pointer) {
+func (i_ INRideStatus) SetEstimatedDropOffDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedDropOffDate:"), value)
 }
 
 // The estimated pickup time for the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupdate
-func (i_ INRideStatus) EstimatedPickupDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("estimatedPickupDate"))
+func (i_ INRideStatus) EstimatedPickupDate() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("estimatedPickupDate"))
 	return rv
 }
 
@@ -274,15 +277,15 @@ func (i_ INRideStatus) EstimatedPickupDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupdate
-func (i_ INRideStatus) SetEstimatedPickupDate(value unsafe.Pointer) {
+func (i_ INRideStatus) SetEstimatedPickupDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedPickupDate:"), value)
 }
 
 // The date after which the driver may stop waiting for the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupenddate
-func (i_ INRideStatus) EstimatedPickupEndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("estimatedPickupEndDate"))
+func (i_ INRideStatus) EstimatedPickupEndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("estimatedPickupEndDate"))
 	return rv
 }
 
@@ -292,15 +295,15 @@ func (i_ INRideStatus) EstimatedPickupEndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/estimatedpickupenddate
-func (i_ INRideStatus) SetEstimatedPickupEndDate(value unsafe.Pointer) {
+func (i_ INRideStatus) SetEstimatedPickupEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedPickupEndDate:"), value)
 }
 
 // The starting location for the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/pickuplocation
-func (i_ INRideStatus) PickupLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+func (i_ INRideStatus) PickupLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
 	return rv
 }
 
@@ -310,15 +313,15 @@ func (i_ INRideStatus) PickupLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/pickuplocation
-func (i_ INRideStatus) SetPickupLocation(value unsafe.Pointer) {
+func (i_ INRideStatus) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
 
 // The scheduled pickup time for the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/scheduledpickuptime
-func (i_ INRideStatus) ScheduledPickupTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scheduledPickupTime"))
+func (i_ INRideStatus) ScheduledPickupTime() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("scheduledPickupTime"))
 	return rv
 }
 
@@ -328,15 +331,15 @@ func (i_ INRideStatus) ScheduledPickupTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/scheduledpickuptime
-func (i_ INRideStatus) SetScheduledPickupTime(value unsafe.Pointer) {
+func (i_ INRideStatus) SetScheduledPickupTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
 }
 
 // The intermediate waypoints for the journey.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/waypoints
-func (i_ INRideStatus) Waypoints() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("waypoints"))
+func (i_ INRideStatus) Waypoints() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("waypoints"))
 	return rv
 }
 
@@ -346,7 +349,7 @@ func (i_ INRideStatus) Waypoints() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/waypoints
-func (i_ INRideStatus) SetWaypoints(value unsafe.Pointer) {
+func (i_ INRideStatus) SetWaypoints(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWaypoints:"), value)
 }
 

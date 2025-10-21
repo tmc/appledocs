@@ -84,8 +84,8 @@ func NewINCreateTaskListIntent() INCreateTaskListIntent {
 // The group that contains the task list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/groupname
-func (i_ INCreateTaskListIntent) GroupName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("groupName"))
+func (i_ INCreateTaskListIntent) GroupName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (i_ INCreateTaskListIntent) GroupName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/groupname
-func (i_ INCreateTaskListIntent) SetGroupName(value unsafe.Pointer) {
+func (i_ INCreateTaskListIntent) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
 
 // An array of strings containing the titles for individual tasks to add to the new task list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
-func (i_ INCreateTaskListIntent) TaskTitles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitles"))
+func (i_ INCreateTaskListIntent) TaskTitles() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("taskTitles"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (i_ INCreateTaskListIntent) TaskTitles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/tasktitles
-func (i_ INCreateTaskListIntent) SetTaskTitles(value unsafe.Pointer) {
+func (i_ INCreateTaskListIntent) SetTaskTitles(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
 
 // The title of the task list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/title
-func (i_ INCreateTaskListIntent) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("title"))
+func (i_ INCreateTaskListIntent) Title() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INCreateTaskListIntent) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/increatetasklistintent/title
-func (i_ INCreateTaskListIntent) SetTitle(value unsafe.Pointer) {
+func (i_ INCreateTaskListIntent) SetTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
 }
 

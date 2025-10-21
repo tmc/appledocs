@@ -103,8 +103,8 @@ func (d_ DetectedObjectObservation) SetBoundingBox(value coregraphics.CGRect) {
 // A resulting pixel buffer from a request to generate a segmentation mask for an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
-func (d_ DetectedObjectObservation) GlobalSegmentationMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("globalSegmentationMask"))
+func (d_ DetectedObjectObservation) GlobalSegmentationMask() VNPixelBufferObservation {
+	rv := objc.Send[VNPixelBufferObservation](d_.ID, objc.Sel("globalSegmentationMask"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (d_ DetectedObjectObservation) GlobalSegmentationMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectedobjectobservation/globalsegmentationmask
-func (d_ DetectedObjectObservation) SetGlobalSegmentationMask(value unsafe.Pointer) {
+func (d_ DetectedObjectObservation) SetGlobalSegmentationMask(value IVNPixelBufferObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setGlobalSegmentationMask:"), value)
 }
 

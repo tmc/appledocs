@@ -92,8 +92,8 @@ func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewContr
 // Loads a broadcast activity view controller with a preferred extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController/load(withPreferredExtension:handler:)
-func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewControllerWithPreferredExtensionHandler(preferredExtension string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("loadBroadcastActivityViewControllerWithPreferredExtension:handler:"), objc.String(preferredExtension), handler)
+func (rc _RPBroadcastActivityViewControllerClass) LoadBroadcastActivityViewControllerWithPreferredExtensionHandler(preferredExtension appkit.string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("loadBroadcastActivityViewControllerWithPreferredExtension:handler:"), preferredExtension, handler)
 }
 
 // The delegate for the broadcast activity view controller.

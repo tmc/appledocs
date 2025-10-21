@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _RightClass struct {
 // An interface definition for the [Right] class.
 type IRight interface {
 	objectivec.IObject
-	AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer)
-	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer)
+	AuthorizeWithLocalizedReasonCompletion(localizedReason appkit.string, handler unsafe.Pointer)
+	AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason appkit.string, presentationContext unsafe.Pointer, handler unsafe.Pointer)
 	CheckCanAuthorizeWithCompletion(handler unsafe.Pointer)
 	DeauthorizeWithCompletion(handler unsafe.Pointer)
 }
@@ -89,7 +90,7 @@ func NewRight() Right {
 // Creates a right with the authentication requirements you supply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/init(requirement:)
-func NewRightWithRequirement(requirement unsafe.Pointer) Right {
+func NewRightWithRequirement(requirement ILAAuthenticationRequirement) Right {
 	instance := getRightClass().Alloc()
 	rv := objc.Send[Right](instance.ID, objc.Sel("initWithRequirement:"), requirement)
 	rv.Autorelease()
@@ -100,15 +101,15 @@ func NewRightWithRequirement(requirement unsafe.Pointer) Right {
 // Performs an authorization on the right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:completion:)
-func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:completion:"), objc.String(localizedReason), handler)
+func (r_ Right) AuthorizeWithLocalizedReasonCompletion(localizedReason appkit.string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:completion:"), localizedReason, handler)
 }
 
 // Performs an authorization on the right with a window context you supply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/authorize(localizedReason:in:completion:)
-func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason string, presentationContext unsafe.Pointer, handler unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:inPresentationContext:completion:"), objc.String(localizedReason), presentationContext, handler)
+func (r_ Right) AuthorizeWithLocalizedReasonInPresentationContextCompletion(localizedReason appkit.string, presentationContext unsafe.Pointer, handler unsafe.Pointer) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("authorizeWithLocalizedReason:inPresentationContext:completion:"), localizedReason, presentationContext, handler)
 }
 
 // Checks whether the right has permission to perform authorization.
@@ -128,8 +129,8 @@ func (r_ Right) DeauthorizeWithCompletion(handler unsafe.Pointer) {
 // The current authorization state for a right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LARight/state-swift.property
-func (r_ Right) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("state"))
+func (r_ Right) State() RightState {
+	rv := objc.Send[RightState](r_.ID, objc.Sel("state"))
 	return rv
 }
 

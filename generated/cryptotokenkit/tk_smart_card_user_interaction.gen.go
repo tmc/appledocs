@@ -130,7 +130,7 @@ func (t_ TKSmartCardUserInteraction) InitialTimeout() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/initialTimeout
-func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.TimeInterval) {
+func (t_ TKSmartCardUserInteraction) SetInitialTimeout(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInitialTimeout:"), value)
 }
 
@@ -148,7 +148,7 @@ func (t_ TKSmartCardUserInteraction) InteractionTimeout() foundation.TimeInterva
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardUserInteraction/interactionTimeout
-func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.TimeInterval) {
+func (t_ TKSmartCardUserInteraction) SetInteractionTimeout(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInteractionTimeout:"), value)
 }
 

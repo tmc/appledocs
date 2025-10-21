@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEVPNProtocolIPSec] class.
@@ -84,8 +86,8 @@ func NewNEVPNProtocolIPSec() NEVPNProtocolIPSec {
 // The method used to authenticate the device with the IPSec server. For IKE version 2, when using extended authentication, this authentication method only affects how the client validates the authentication payload presented by the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/authenticationMethod
-func (n_ NEVPNProtocolIPSec) AuthenticationMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("authenticationMethod"))
+func (n_ NEVPNProtocolIPSec) AuthenticationMethod() NEVPNIKEAuthenticationMethod {
+	rv := objc.Send[NEVPNIKEAuthenticationMethod](n_.ID, objc.Sel("authenticationMethod"))
 	return rv
 }
 
@@ -95,15 +97,15 @@ func (n_ NEVPNProtocolIPSec) AuthenticationMethod() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/authenticationMethod
-func (n_ NEVPNProtocolIPSec) SetAuthenticationMethod(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIPSec) SetAuthenticationMethod(value INEVPNIKEAuthenticationMethod) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAuthenticationMethod:"), value)
 }
 
 // A string identifying the iOS or macOS device for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
-func (n_ NEVPNProtocolIPSec) LocalIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localIdentifier"))
+func (n_ NEVPNProtocolIPSec) LocalIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -113,15 +115,15 @@ func (n_ NEVPNProtocolIPSec) LocalIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/localIdentifier
-func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
+func (n_ NEVPNProtocolIPSec) SetLocalIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalIdentifier:"), value)
 }
 
 // A string identifying the IPSec server for authentication purposes
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
-func (n_ NEVPNProtocolIPSec) RemoteIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("remoteIdentifier"))
+func (n_ NEVPNProtocolIPSec) RemoteIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("remoteIdentifier"))
 	return rv
 }
 
@@ -131,15 +133,15 @@ func (n_ NEVPNProtocolIPSec) RemoteIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/remoteIdentifier
-func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), objc.String(value))
+func (n_ NEVPNProtocolIPSec) SetRemoteIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteIdentifier:"), value)
 }
 
 // A persistent keychain reference to a keychain item containing the IKE shared secret.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/sharedSecretReference
-func (n_ NEVPNProtocolIPSec) SharedSecretReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sharedSecretReference"))
+func (n_ NEVPNProtocolIPSec) SharedSecretReference() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("sharedSecretReference"))
 	return rv
 }
 
@@ -149,7 +151,7 @@ func (n_ NEVPNProtocolIPSec) SharedSecretReference() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIPSec/sharedSecretReference
-func (n_ NEVPNProtocolIPSec) SetSharedSecretReference(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIPSec) SetSharedSecretReference(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSharedSecretReference:"), value)
 }
 

@@ -82,8 +82,8 @@ func NewMTL4PrimitiveAccelerationStructureDescriptor() MTL4PrimitiveAcceleration
 // Associates the array of geometry descriptors that comprise this primitive acceleration structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor/geometrydescriptors
-func (m_ MTL4PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("geometryDescriptors"))
+func (m_ MTL4PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() MTL4AccelerationStructureGeometryDescriptor {
+	rv := objc.Send[MTL4AccelerationStructureGeometryDescriptor](m_.ID, objc.Sel("geometryDescriptors"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (m_ MTL4PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor/geometrydescriptors
-func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetGeometryDescriptors(value unsafe.Pointer) {
+func (m_ MTL4PrimitiveAccelerationStructureDescriptor) SetGeometryDescriptors(value IMTL4AccelerationStructureGeometryDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGeometryDescriptors:"), value)
 }
 

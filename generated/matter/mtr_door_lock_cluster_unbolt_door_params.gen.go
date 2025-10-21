@@ -78,8 +78,8 @@ func NewMTRDoorLockClusterUnboltDoorParams() MTRDoorLockClusterUnboltDoorParams 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/pinCode
-func (m_ MTRDoorLockClusterUnboltDoorParams) PinCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinCode"))
+func (m_ MTRDoorLockClusterUnboltDoorParams) PinCode() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("pinCode"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterUnboltDoorParams) PinCode() unsafe.Pointer {
 // SetPinCode sets the value of the pinCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/pinCode
-func (m_ MTRDoorLockClusterUnboltDoorParams) SetPinCode(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterUnboltDoorParams) SetPinCode(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRDoorLockClusterUnboltDoorParams) ServerSideProcessingTimeout() found
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterUnboltDoorParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnboltDoorParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRDoorLockClusterUnboltDoorParams) TimedInvokeTimeoutMs() foundation.N
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterUnboltDoorParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterUnboltDoorParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnboltDoorParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

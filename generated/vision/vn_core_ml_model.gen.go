@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +87,7 @@ func NewCoreMLModel() CoreMLModel {
 // Creates a model container to use with a Core ML request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
-func NewCoreMLModelForMLModelError(model unsafe.Pointer, error_ unsafe.Pointer) CoreMLModel {
+func NewCoreMLModelForMLModelError(model coreml.IModel, error_ unsafe.Pointer) CoreMLModel {
 	rv := objc.Send[CoreMLModel](objc.ID(getCoreMLModelClass().class), objc.Sel("modelForMLModel:error:"), model, error_)
 	return rv
 }
@@ -94,7 +96,7 @@ func NewCoreMLModelForMLModelError(model unsafe.Pointer, error_ unsafe.Pointer) 
 // Creates a model container to use with a Core ML request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
-func (cc _CoreMLModelClass) ModelForMLModelError(model unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (cc _CoreMLModelClass) ModelForMLModelError(model coreml.IModel, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("modelForMLModel:error:"), model, error_)
 	return rv
 }
@@ -120,8 +122,8 @@ func (c_ CoreMLModel) SetFeatureProvider(value objc.ID) {
 // The name of the feature value that Vision sets from the request handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) InputImageFeatureName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("inputImageFeatureName"))
+func (c_ CoreMLModel) InputImageFeatureName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("inputImageFeatureName"))
 	return rv
 }
 
@@ -131,15 +133,15 @@ func (c_ CoreMLModel) InputImageFeatureName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
-func (c_ CoreMLModel) SetInputImageFeatureName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), objc.String(value))
+func (c_ CoreMLModel) SetInputImageFeatureName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), value)
 }
 
 // The model to base the image analysis request on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
-func (c_ CoreMLModel) Model() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("model"))
+func (c_ CoreMLModel) Model() VNCoreMLModel {
+	rv := objc.Send[VNCoreMLModel](c_.ID, objc.Sel("model"))
 	return rv
 }
 
@@ -149,7 +151,7 @@ func (c_ CoreMLModel) Model() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
-func (c_ CoreMLModel) SetModel(value unsafe.Pointer) {
+func (c_ CoreMLModel) SetModel(value IVNCoreMLModel) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModel:"), value)
 }
 

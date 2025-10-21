@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _RTreeClass struct {
 // An interface definition for the [RTree] class.
 type IRTree interface {
 	objectivec.IObject
-	AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy unsafe.Pointer)
-	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []unsafe.Pointer
+	AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy RTreeSplitStrategy)
+	ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []foundation.Object
 	RemoveElementBoundingRectMinBoundingRectMax(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer)
 }
 
@@ -107,15 +108,15 @@ func (rc _RTreeClass) TreeWithMaxNumberOfChildren(maxNumberOfChildren uint) unsa
 // Adds the specified object to the tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/addElement(_:boundingRectMin:boundingRectMax:splitStrategy:)
-func (r_ RTree) AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy unsafe.Pointer) {
+func (r_ RTree) AddElementBoundingRectMinBoundingRectMaxSplitStrategy(element unsafe.Pointer, boundingRectMin unsafe.Pointer, boundingRectMax unsafe.Pointer, splitStrategy RTreeSplitStrategy) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addElement:boundingRectMin:boundingRectMax:splitStrategy:"), element, boundingRectMin, boundingRectMax, splitStrategy)
 }
 
 // Searches the tree and returns all elements found within the specified bounding region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRTree/elements(inBoundingRectMin:rectMax:)
-func (r_ RTree) ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](r_.ID, objc.Sel("elementsInBoundingRectMin:rectMax:"), rectMin, rectMax)
+func (r_ RTree) ElementsInBoundingRectMinRectMax(rectMin unsafe.Pointer, rectMax unsafe.Pointer) []foundation.Object {
+	rv := objc.Send[[]foundation.Object](r_.ID, objc.Sel("elementsInBoundingRectMin:rectMax:"), rectMin, rectMax)
 	return rv
 }
 

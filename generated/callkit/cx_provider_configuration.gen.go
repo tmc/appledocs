@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -96,8 +97,8 @@ func NewCXProviderConfigurationWithLocalizedName(localizedName string) CXProvide
 // The PNG data for the icon image to be displayed for the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/iconTemplateImageData
-func (c_ CXProviderConfiguration) IconTemplateImageData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("iconTemplateImageData"))
+func (c_ CXProviderConfiguration) IconTemplateImageData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("iconTemplateImageData"))
 	return rv
 }
 
@@ -107,7 +108,7 @@ func (c_ CXProviderConfiguration) IconTemplateImageData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProviderConfiguration/iconTemplateImageData
-func (c_ CXProviderConfiguration) SetIconTemplateImageData(value unsafe.Pointer) {
+func (c_ CXProviderConfiguration) SetIconTemplateImageData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIconTemplateImageData:"), value)
 }
 

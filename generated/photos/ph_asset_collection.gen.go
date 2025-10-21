@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHAssetCollection] class.
@@ -84,7 +87,7 @@ func NewPHAssetCollection() PHAssetCollection {
 // Retrieves asset collections of the specified type and subtype.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/fetchAssetCollections(with:subtype:options:)
-func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithTypeSubtypeOptions(type_ unsafe.Pointer, subtype unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithTypeSubtypeOptions(type_ PHAssetCollectionType, subtype IPHAssetCollectionSubtype, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetCollectionsWithType:subtype:options:"), type_, subtype, options)
 	return rv
 }
@@ -92,7 +95,7 @@ func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithTypeSubtypeOptions(ty
 // Retrieves asset collections using URLs provided by the Assets Library framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/fetchAssetCollections(withALAssetGroupURLs:options:)
-func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithALAssetGroupURLsOptions(assetGroupURLs unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithALAssetGroupURLsOptions(assetGroupURLs []foundation.IURL, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetCollectionsWithALAssetGroupURLs:options:"), assetGroupURLs, options)
 	return rv
 }
@@ -100,7 +103,7 @@ func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithALAssetGroupURLsOptio
 // Retrieves asset collections with the specified unique identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/fetchAssetCollections(withLocalIdentifiers:options:)
-func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithLocalIdentifiersOptions(identifiers unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithLocalIdentifiersOptions(identifiers []string, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetCollectionsWithLocalIdentifiers:options:"), identifiers, options)
 	return rv
 }
@@ -108,7 +111,7 @@ func (pc _PHAssetCollectionClass) FetchAssetCollectionsWithLocalIdentifiersOptio
 // Retrieves asset collections of the specified type containing the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/fetchAssetCollectionsContaining(_:with:options:)
-func (pc _PHAssetCollectionClass) FetchAssetCollectionsContainingAssetWithTypeOptions(asset unsafe.Pointer, type_ unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetCollectionClass) FetchAssetCollectionsContainingAssetWithTypeOptions(asset IPHAsset, type_ PHAssetCollectionType, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetCollectionsContainingAsset:withType:options:"), asset, type_, options)
 	return rv
 }
@@ -116,7 +119,7 @@ func (pc _PHAssetCollectionClass) FetchAssetCollectionsContainingAssetWithTypeOp
 // Retrieves asset collections in the specified moment list collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/fetchMoments(inMomentList:options:)
-func (pc _PHAssetCollectionClass) FetchMomentsInMomentListOptions(momentList unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetCollectionClass) FetchMomentsInMomentListOptions(momentList IPHCollectionList, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchMomentsInMomentList:options:"), momentList, options)
 	return rv
 }
@@ -124,7 +127,7 @@ func (pc _PHAssetCollectionClass) FetchMomentsInMomentListOptions(momentList uns
 // Retrieves asset collections corresponding to moments seen in the Photos app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/fetchMoments(with:)
-func (pc _PHAssetCollectionClass) FetchMomentsWithOptions(options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetCollectionClass) FetchMomentsWithOptions(options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchMomentsWithOptions:"), options)
 	return rv
 }
@@ -132,48 +135,48 @@ func (pc _PHAssetCollectionClass) FetchMomentsWithOptions(options unsafe.Pointer
 // Creates a temporary asset collection containing the specified assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/transientAssetCollection(with:title:)
-func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetsTitle(assets unsafe.Pointer, title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssets:title:"), assets, objc.String(title))
+func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetsTitle(assets []PHAsset, title appkit.string) PHAssetCollection {
+	rv := objc.Send[PHAssetCollection](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssets:title:"), assets, title)
 	return rv
 }
 
 // Creates a temporary asset collection containing the assets from the specified fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/transientAssetCollection(withAssetFetchResult:title:)
-func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetFetchResultTitle(fetchResult unsafe.Pointer, title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssetFetchResult:title:"), fetchResult, objc.String(title))
+func (pc _PHAssetCollectionClass) TransientAssetCollectionWithAssetFetchResultTitle(fetchResult unsafe.Pointer, title appkit.string) PHAssetCollection {
+	rv := objc.Send[PHAssetCollection](objc.ID(pc.class), objc.Sel("transientAssetCollectionWithAssetFetchResult:title:"), fetchResult, title)
 	return rv
 }
 
 // A location representing those of all assets in the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/approximateLocation
-func (p_ PHAssetCollection) ApproximateLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("approximateLocation"))
+func (p_ PHAssetCollection) ApproximateLocation() corelocation.Location {
+	rv := objc.Send[corelocation.Location](p_.ID, objc.Sel("approximateLocation"))
 	return rv
 }
 
 // The subtype of the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/assetCollectionSubtype
-func (p_ PHAssetCollection) AssetCollectionSubtype() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetCollectionSubtype"))
+func (p_ PHAssetCollection) AssetCollectionSubtype() PHAssetCollectionSubtype {
+	rv := objc.Send[PHAssetCollectionSubtype](p_.ID, objc.Sel("assetCollectionSubtype"))
 	return rv
 }
 
 // The type of the asset collection, such as an album or a moment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/assetCollectionType
-func (p_ PHAssetCollection) AssetCollectionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("assetCollectionType"))
+func (p_ PHAssetCollection) AssetCollectionType() PHAssetCollectionType {
+	rv := objc.Send[PHAssetCollectionType](p_.ID, objc.Sel("assetCollectionType"))
 	return rv
 }
 
 // The latest creation date among all assets in the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/endDate
-func (p_ PHAssetCollection) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+func (p_ PHAssetCollection) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -196,8 +199,8 @@ func (p_ PHAssetCollection) LocalizedLocationNames() []string {
 // The earliest creation date among all assets in the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollection/startDate
-func (p_ PHAssetCollection) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+func (p_ PHAssetCollection) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv
 }
 

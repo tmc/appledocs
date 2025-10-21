@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CXSetTranslatingCallAction] class.
@@ -29,7 +30,7 @@ type _CXSetTranslatingCallActionClass struct {
 // An interface definition for the [CXSetTranslatingCallAction] class.
 type ICXSetTranslatingCallAction interface {
 	ICXCallAction
-	FulfillUsingTranslationEngine(translationEngine unsafe.Pointer)
+	FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine)
 }
 
 // An encapsulation of the act of translating a call.
@@ -84,7 +85,7 @@ func NewCXSetTranslatingCallAction() CXSetTranslatingCallAction {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(call:isTranslating:localLanguage:remoteLanguage:)
-func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid unsafe.Pointer, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
+func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLanguage(uuid foundation.IUUID, isTranslating bool, localLanguage string, remoteLanguage string) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCallUUID:isTranslating:localLanguage:remoteLanguage:"), uuid, isTranslating, objc.String(localLanguage), objc.String(remoteLanguage))
 	rv.Autorelease()
@@ -96,7 +97,7 @@ func NewCXSetTranslatingCallActionWithCallUUIDIsTranslatingLocalLanguageRemoteLa
 // Creates a new action to start or stop translating a call with the provided data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/init(coder:)
-func NewCXSetTranslatingCallActionWithCoder(aDecoder unsafe.Pointer) CXSetTranslatingCallAction {
+func NewCXSetTranslatingCallActionWithCoder(aDecoder foundation.ICoder) CXSetTranslatingCallAction {
 	instance := getCXSetTranslatingCallActionClass().Alloc()
 	rv := objc.Send[CXSetTranslatingCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -106,7 +107,7 @@ func NewCXSetTranslatingCallActionWithCoder(aDecoder unsafe.Pointer) CXSetTransl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXSetTranslatingCallAction/fulfill(using:)
-func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEngine unsafe.Pointer) {
+func (c_ CXSetTranslatingCallAction) FulfillUsingTranslationEngine(translationEngine ICXTranslationEngine) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillUsingTranslationEngine:"), translationEngine)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreimage"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,7 +32,7 @@ type _IKImageViewClass struct {
 // An interface definition for the [IKImageView] class.
 type IIKImageView interface {
 	appkit.IView
-	ConvertImageRectToViewRect(imageRect foundation.Rect) foundation.Rect
+	ConvertImageRectToViewRect(imageRect foundation.IRect) foundation.Rect
 }
 
 // A view that allows displaying and minor editing of an image.
@@ -87,7 +88,7 @@ func NewIKImageView() IKImageView {
 // Converts an image rectangle to an image view rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageView/convertImageRect(toViewRect:)
-func (i_ IKImageView) ConvertImageRectToViewRect(imageRect foundation.Rect) foundation.Rect {
+func (i_ IKImageView) ConvertImageRectToViewRect(imageRect foundation.IRect) foundation.Rect {
 	rv := objc.Send[foundation.Rect](i_.ID, objc.Sel("convertImageRectToViewRect:"), imageRect)
 	return rv
 }
@@ -131,8 +132,8 @@ func (i_ IKImageView) SetAutoresizes(value bool) {
 // Specifies the background color for the image view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/backgroundcolor
-func (i_ IKImageView) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("backgroundColor"))
+func (i_ IKImageView) BackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -142,15 +143,15 @@ func (i_ IKImageView) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/backgroundcolor
-func (i_ IKImageView) SetBackgroundColor(value unsafe.Pointer) {
+func (i_ IKImageView) SetBackgroundColor(value appkit.IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 // Specifies the current tool mode for the image view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/currenttoolmode
-func (i_ IKImageView) CurrentToolMode() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("currentToolMode"))
+func (i_ IKImageView) CurrentToolMode() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("currentToolMode"))
 	return rv
 }
 
@@ -160,8 +161,8 @@ func (i_ IKImageView) CurrentToolMode() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/currenttoolmode
-func (i_ IKImageView) SetCurrentToolMode(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentToolMode:"), objc.String(value))
+func (i_ IKImageView) SetCurrentToolMode(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentToolMode:"), value)
 }
 
 // Specifies the delegate object of the receiver.
@@ -257,8 +258,8 @@ func (i_ IKImageView) SetHasVerticalScroller(value bool) {
 // Specifies a Core Image filter for image correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/imagecorrection
-func (i_ IKImageView) ImageCorrection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageCorrection"))
+func (i_ IKImageView) ImageCorrection() coreimage.Filter {
+	rv := objc.Send[coreimage.Filter](i_.ID, objc.Sel("imageCorrection"))
 	return rv
 }
 
@@ -268,7 +269,7 @@ func (i_ IKImageView) ImageCorrection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikimageview/imagecorrection
-func (i_ IKImageView) SetImageCorrection(value unsafe.Pointer) {
+func (i_ IKImageView) SetImageCorrection(value coreimage.IFilter) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageCorrection:"), value)
 }
 

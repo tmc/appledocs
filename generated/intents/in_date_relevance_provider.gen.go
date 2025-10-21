@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewINDateRelevanceProvider() INDateRelevanceProvider {
 // The relevant start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INDateRelevanceProvider/startDate
-func (i_ INDateRelevanceProvider) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("startDate"))
+func (i_ INDateRelevanceProvider) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 // The relevant end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/indaterelevanceprovider/enddate
-func (i_ INDateRelevanceProvider) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("endDate"))
+func (i_ INDateRelevanceProvider) EndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -100,7 +101,7 @@ func (i_ INDateRelevanceProvider) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/indaterelevanceprovider/enddate
-func (i_ INDateRelevanceProvider) SetEndDate(value unsafe.Pointer) {
+func (i_ INDateRelevanceProvider) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDate:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -30,8 +31,8 @@ type _BlendKernelClass struct {
 // An interface definition for the [BlendKernel] class.
 type IBlendKernel interface {
 	IColorKernel
-	ApplyWithForegroundBackground(foreground unsafe.Pointer, background unsafe.Pointer) unsafe.Pointer
-	ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer
+	ApplyWithForegroundBackground(foreground ICIImage, background ICIImage) Image
+	ApplyWithForegroundBackgroundColorSpace(foreground ICIImage, background ICIImage, colorSpace coregraphics.CGColorSpaceRef) Image
 }
 
 // A GPU-based image-processing routine that is optimized for blending two images.
@@ -89,8 +90,8 @@ func NewBlendKernel() BlendKernel {
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func NewBlendKernelWithString(string_ string) BlendKernel {
-	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
+func NewBlendKernelWithString(string_ appkit.string) BlendKernel {
+	rv := objc.Send[BlendKernel](objc.ID(getBlendKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
@@ -98,638 +99,638 @@ func NewBlendKernelWithString(string_ string) BlendKernel {
 // Creates a custom blend kernel from a program string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/init(source:)
-func (bc _BlendKernelClass) KernelWithString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), objc.String(string_))
+func (bc _BlendKernelClass) KernelWithString(string_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
 // A blend kernel that returns a clear color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/clear
-func (bc _BlendKernelClass) Clear() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("clear"))
+func (bc _BlendKernelClass) Clear() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("clear"))
 	return rv
 }
 // A blend kernel that uses the luminance values of the background with the hue and saturation values of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/color
-func (bc _BlendKernelClass) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("color"))
+func (bc _BlendKernelClass) Color() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("color"))
 	return rv
 }
 // A blend kernel that darkens the background image samples to reflect the foreground image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorBurn
-func (bc _BlendKernelClass) ColorBurn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("colorBurn"))
+func (bc _BlendKernelClass) ColorBurn() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("colorBurn"))
 	return rv
 }
 // A blend kernel that brightens the background image samples to reflect the foreground image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorDodge
-func (bc _BlendKernelClass) ColorDodge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("colorDodge"))
+func (bc _BlendKernelClass) ColorDodge() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("colorDodge"))
 	return rv
 }
 // A blend kernel that adds color components to achieve a brightening effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentAdd
-func (bc _BlendKernelClass) ComponentAdd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("componentAdd"))
+func (bc _BlendKernelClass) ComponentAdd() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentAdd"))
 	return rv
 }
 // A blend kernel that creates an image using the maximum values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMax
-func (bc _BlendKernelClass) ComponentMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("componentMax"))
+func (bc _BlendKernelClass) ComponentMax() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentMax"))
 	return rv
 }
 // A blend kernel that creates an image using the minimum values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMin
-func (bc _BlendKernelClass) ComponentMin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("componentMin"))
+func (bc _BlendKernelClass) ComponentMin() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentMin"))
 	return rv
 }
 // A blend kernel that multiplies the color components of its input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMultiply
-func (bc _BlendKernelClass) ComponentMultiply() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("componentMultiply"))
+func (bc _BlendKernelClass) ComponentMultiply() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("componentMultiply"))
 	return rv
 }
 // A blend kernel that creates an image using the darker values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darken
-func (bc _BlendKernelClass) Darken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("darken"))
+func (bc _BlendKernelClass) Darken() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("darken"))
 	return rv
 }
 // A blend kernel that creates an image using the darker color of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darkerColor
-func (bc _BlendKernelClass) DarkerColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("darkerColor"))
+func (bc _BlendKernelClass) DarkerColor() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("darkerColor"))
 	return rv
 }
 // A blend kernel that returns the background input image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destination
-func (bc _BlendKernelClass) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("destination"))
+func (bc _BlendKernelClass) Destination() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destination"))
 	return rv
 }
 // A blend kernel that places the background over the foreground and crops based on the visibility of the foreground.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationAtop
-func (bc _BlendKernelClass) DestinationAtop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("destinationAtop"))
+func (bc _BlendKernelClass) DestinationAtop() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationAtop"))
 	return rv
 }
 // A blend kernel that places the background over the foreground and crops based on the visibility of both.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationIn
-func (bc _BlendKernelClass) DestinationIn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("destinationIn"))
+func (bc _BlendKernelClass) DestinationIn() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationIn"))
 	return rv
 }
 // A blend kernel that uses the background image to define what to take out of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOut
-func (bc _BlendKernelClass) DestinationOut() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("destinationOut"))
+func (bc _BlendKernelClass) DestinationOut() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationOut"))
 	return rv
 }
 // A blend kernel that places the background image over the input foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOver
-func (bc _BlendKernelClass) DestinationOver() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("destinationOver"))
+func (bc _BlendKernelClass) DestinationOver() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("destinationOver"))
 	return rv
 }
 // A blend kernel that creates an image using the difference between the background and foreground images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/difference
-func (bc _BlendKernelClass) Difference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("difference"))
+func (bc _BlendKernelClass) Difference() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("difference"))
 	return rv
 }
 // A blend kernel that divides the background image sample color with the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/divide
-func (bc _BlendKernelClass) Divide() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("divide"))
+func (bc _BlendKernelClass) Divide() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("divide"))
 	return rv
 }
 // A blend kernel that produces an effect similar to difference blending but with lower contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusion
-func (bc _BlendKernelClass) Exclusion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("exclusion"))
+func (bc _BlendKernelClass) Exclusion() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("exclusion"))
 	return rv
 }
 // A blend kernel that returns either the foreground or background image if the other contains a clear color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusiveOr
-func (bc _BlendKernelClass) ExclusiveOr() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("exclusiveOr"))
+func (bc _BlendKernelClass) ExclusiveOr() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("exclusiveOr"))
 	return rv
 }
 // A blend kernel that either multiplies or screens colors, depending on the source image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardLight
-func (bc _BlendKernelClass) HardLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("hardLight"))
+func (bc _BlendKernelClass) HardLight() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("hardLight"))
 	return rv
 }
 // A blend kernel that adds two images together, setting each color channel value to either 0 or 1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardMix
-func (bc _BlendKernelClass) HardMix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("hardMix"))
+func (bc _BlendKernelClass) HardMix() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("hardMix"))
 	return rv
 }
 // A blend kernel that uses the luminance and saturation values of the background image with the hue of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hue
-func (bc _BlendKernelClass) Hue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("hue"))
+func (bc _BlendKernelClass) Hue() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("hue"))
 	return rv
 }
 // A blend kernel that creates an image using the lighter values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighten
-func (bc _BlendKernelClass) Lighten() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("lighten"))
+func (bc _BlendKernelClass) Lighten() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("lighten"))
 	return rv
 }
 // A blend kernel that creates an image using the lighter color of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighterColor
-func (bc _BlendKernelClass) LighterColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("lighterColor"))
+func (bc _BlendKernelClass) LighterColor() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("lighterColor"))
 	return rv
 }
 // A blend kernel that darkens the background image samples to reflect the foreground image samples while also increasing contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearBurn
-func (bc _BlendKernelClass) LinearBurn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("linearBurn"))
+func (bc _BlendKernelClass) LinearBurn() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("linearBurn"))
 	return rv
 }
 // A blend kernel that lightens the background image samples to reflect the foreground image samples while also increasing contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearDodge
-func (bc _BlendKernelClass) LinearDodge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("linearDodge"))
+func (bc _BlendKernelClass) LinearDodge() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("linearDodge"))
 	return rv
 }
 // A blend kernel that burns or dodges colors by changing brightness, depending on the blend color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearLight
-func (bc _BlendKernelClass) LinearLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("linearLight"))
+func (bc _BlendKernelClass) LinearLight() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("linearLight"))
 	return rv
 }
 // A blend kernel that uses the hue and saturation of the background image with the luminance of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/luminosity
-func (bc _BlendKernelClass) Luminosity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("luminosity"))
+func (bc _BlendKernelClass) Luminosity() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("luminosity"))
 	return rv
 }
 // A blend kernel that multiplies the background image sample color with the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/multiply
-func (bc _BlendKernelClass) Multiply() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("multiply"))
+func (bc _BlendKernelClass) Multiply() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("multiply"))
 	return rv
 }
 // A blend kernel that either multiplies or screens the foreground image samples with the background image samples, depending on the background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/overlay
-func (bc _BlendKernelClass) Overlay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("overlay"))
+func (bc _BlendKernelClass) Overlay() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("overlay"))
 	return rv
 }
 // A blend kernel that conditionally replaces background image samples with source image samples depending on the brightness of the source image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/pinLight
-func (bc _BlendKernelClass) PinLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("pinLight"))
+func (bc _BlendKernelClass) PinLight() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("pinLight"))
 	return rv
 }
 // A blend kernel that uses the luminance and hue values of the background image with the saturation of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/saturation
-func (bc _BlendKernelClass) Saturation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("saturation"))
+func (bc _BlendKernelClass) Saturation() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("saturation"))
 	return rv
 }
 // A blend kernel that multiplies the inverse of the foreground image samples with the inverse of the background image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/screen
-func (bc _BlendKernelClass) Screen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("screen"))
+func (bc _BlendKernelClass) Screen() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("screen"))
 	return rv
 }
 // A blend kernel that either darkens or lightens colors, depending on the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/softLight
-func (bc _BlendKernelClass) SoftLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("softLight"))
+func (bc _BlendKernelClass) SoftLight() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("softLight"))
 	return rv
 }
 // A blend kernel that returns the foreground input image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/source
-func (bc _BlendKernelClass) Source() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("source"))
+func (bc _BlendKernelClass) Source() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("source"))
 	return rv
 }
 // A blend kernel that places the foreground over the background and crops based on the visibility of the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceAtop
-func (bc _BlendKernelClass) SourceAtop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sourceAtop"))
+func (bc _BlendKernelClass) SourceAtop() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceAtop"))
 	return rv
 }
 // A blend kernel that places the foreground over the background and crops based on the visibility of both.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceIn
-func (bc _BlendKernelClass) SourceIn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sourceIn"))
+func (bc _BlendKernelClass) SourceIn() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceIn"))
 	return rv
 }
 // A blend kernel that uses the foreground image to define what to take out of the background image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOut
-func (bc _BlendKernelClass) SourceOut() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sourceOut"))
+func (bc _BlendKernelClass) SourceOut() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceOut"))
 	return rv
 }
 // A blend kernel that places the foreground image over the input background image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOver
-func (bc _BlendKernelClass) SourceOver() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sourceOver"))
+func (bc _BlendKernelClass) SourceOver() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("sourceOver"))
 	return rv
 }
 // A blend kernel that subtracts the background image sample color from the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/subtract
-func (bc _BlendKernelClass) Subtract() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("subtract"))
+func (bc _BlendKernelClass) Subtract() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("subtract"))
 	return rv
 }
 // A blend kernel that burns or dodges colors by changing contrast, depending on the blend color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/vividLight
-func (bc _BlendKernelClass) VividLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("vividLight"))
+func (bc _BlendKernelClass) VividLight() BlendKernel {
+	rv := objc.Send[CIBlendKernel](objc.ID(bc.class), objc.Sel("vividLight"))
 	return rv
 }
 // Creates a new image using the blend kernel and specified foreground and background images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:)
-func (b_ BlendKernel) ApplyWithForegroundBackground(foreground unsafe.Pointer, background unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("applyWithForeground:background:"), foreground, background)
+func (b_ BlendKernel) ApplyWithForegroundBackground(foreground ICIImage, background ICIImage) Image {
+	rv := objc.Send[Image](b_.ID, objc.Sel("applyWithForeground:background:"), foreground, background)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/apply(foreground:background:colorSpace:)
-func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground unsafe.Pointer, background unsafe.Pointer, colorSpace coregraphics.CGColorSpaceRef) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
+func (b_ BlendKernel) ApplyWithForegroundBackgroundColorSpace(foreground ICIImage, background ICIImage, colorSpace coregraphics.CGColorSpaceRef) Image {
+	rv := objc.Send[Image](b_.ID, objc.Sel("applyWithForeground:background:colorSpace:"), foreground, background, colorSpace)
 	return rv
 }
 
 // A blend kernel that returns a clear color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/clear
-func (b_ BlendKernel) Clear() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("clear"))
+func (b_ BlendKernel) Clear() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("clear"))
 	return rv
 }
 
 // A blend kernel that uses the luminance values of the background with the hue and saturation values of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/color
-func (b_ BlendKernel) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("color"))
+func (b_ BlendKernel) Color() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("color"))
 	return rv
 }
 
 // A blend kernel that darkens the background image samples to reflect the foreground image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorBurn
-func (b_ BlendKernel) ColorBurn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("colorBurn"))
+func (b_ BlendKernel) ColorBurn() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("colorBurn"))
 	return rv
 }
 
 // A blend kernel that brightens the background image samples to reflect the foreground image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/colorDodge
-func (b_ BlendKernel) ColorDodge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("colorDodge"))
+func (b_ BlendKernel) ColorDodge() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("colorDodge"))
 	return rv
 }
 
 // A blend kernel that adds color components to achieve a brightening effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentAdd
-func (b_ BlendKernel) ComponentAdd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("componentAdd"))
+func (b_ BlendKernel) ComponentAdd() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentAdd"))
 	return rv
 }
 
 // A blend kernel that creates an image using the maximum values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMax
-func (b_ BlendKernel) ComponentMax() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("componentMax"))
+func (b_ BlendKernel) ComponentMax() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentMax"))
 	return rv
 }
 
 // A blend kernel that creates an image using the minimum values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMin
-func (b_ BlendKernel) ComponentMin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("componentMin"))
+func (b_ BlendKernel) ComponentMin() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentMin"))
 	return rv
 }
 
 // A blend kernel that multiplies the color components of its input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/componentMultiply
-func (b_ BlendKernel) ComponentMultiply() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("componentMultiply"))
+func (b_ BlendKernel) ComponentMultiply() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("componentMultiply"))
 	return rv
 }
 
 // A blend kernel that creates an image using the darker values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darken
-func (b_ BlendKernel) Darken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("darken"))
+func (b_ BlendKernel) Darken() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("darken"))
 	return rv
 }
 
 // A blend kernel that creates an image using the darker color of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/darkerColor
-func (b_ BlendKernel) DarkerColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("darkerColor"))
+func (b_ BlendKernel) DarkerColor() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("darkerColor"))
 	return rv
 }
 
 // A blend kernel that returns the background input image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destination
-func (b_ BlendKernel) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("destination"))
+func (b_ BlendKernel) Destination() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destination"))
 	return rv
 }
 
 // A blend kernel that places the background over the foreground and crops based on the visibility of the foreground.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationAtop
-func (b_ BlendKernel) DestinationAtop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("destinationAtop"))
+func (b_ BlendKernel) DestinationAtop() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationAtop"))
 	return rv
 }
 
 // A blend kernel that places the background over the foreground and crops based on the visibility of both.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationIn
-func (b_ BlendKernel) DestinationIn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("destinationIn"))
+func (b_ BlendKernel) DestinationIn() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationIn"))
 	return rv
 }
 
 // A blend kernel that uses the background image to define what to take out of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOut
-func (b_ BlendKernel) DestinationOut() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("destinationOut"))
+func (b_ BlendKernel) DestinationOut() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationOut"))
 	return rv
 }
 
 // A blend kernel that places the background image over the input foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/destinationOver
-func (b_ BlendKernel) DestinationOver() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("destinationOver"))
+func (b_ BlendKernel) DestinationOver() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("destinationOver"))
 	return rv
 }
 
 // A blend kernel that creates an image using the difference between the background and foreground images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/difference
-func (b_ BlendKernel) Difference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("difference"))
+func (b_ BlendKernel) Difference() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("difference"))
 	return rv
 }
 
 // A blend kernel that divides the background image sample color with the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/divide
-func (b_ BlendKernel) Divide() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("divide"))
+func (b_ BlendKernel) Divide() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("divide"))
 	return rv
 }
 
 // A blend kernel that produces an effect similar to difference blending but with lower contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusion
-func (b_ BlendKernel) Exclusion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("exclusion"))
+func (b_ BlendKernel) Exclusion() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("exclusion"))
 	return rv
 }
 
 // A blend kernel that returns either the foreground or background image if the other contains a clear color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/exclusiveOr
-func (b_ BlendKernel) ExclusiveOr() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("exclusiveOr"))
+func (b_ BlendKernel) ExclusiveOr() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("exclusiveOr"))
 	return rv
 }
 
 // A blend kernel that either multiplies or screens colors, depending on the source image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardLight
-func (b_ BlendKernel) HardLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("hardLight"))
+func (b_ BlendKernel) HardLight() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("hardLight"))
 	return rv
 }
 
 // A blend kernel that adds two images together, setting each color channel value to either 0 or 1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hardMix
-func (b_ BlendKernel) HardMix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("hardMix"))
+func (b_ BlendKernel) HardMix() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("hardMix"))
 	return rv
 }
 
 // A blend kernel that uses the luminance and saturation values of the background image with the hue of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/hue
-func (b_ BlendKernel) Hue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("hue"))
+func (b_ BlendKernel) Hue() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("hue"))
 	return rv
 }
 
 // A blend kernel that creates an image using the lighter values of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighten
-func (b_ BlendKernel) Lighten() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("lighten"))
+func (b_ BlendKernel) Lighten() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("lighten"))
 	return rv
 }
 
 // A blend kernel that creates an image using the lighter color of two input images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/lighterColor
-func (b_ BlendKernel) LighterColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("lighterColor"))
+func (b_ BlendKernel) LighterColor() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("lighterColor"))
 	return rv
 }
 
 // A blend kernel that darkens the background image samples to reflect the foreground image samples while also increasing contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearBurn
-func (b_ BlendKernel) LinearBurn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("linearBurn"))
+func (b_ BlendKernel) LinearBurn() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("linearBurn"))
 	return rv
 }
 
 // A blend kernel that lightens the background image samples to reflect the foreground image samples while also increasing contrast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearDodge
-func (b_ BlendKernel) LinearDodge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("linearDodge"))
+func (b_ BlendKernel) LinearDodge() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("linearDodge"))
 	return rv
 }
 
 // A blend kernel that burns or dodges colors by changing brightness, depending on the blend color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/linearLight
-func (b_ BlendKernel) LinearLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("linearLight"))
+func (b_ BlendKernel) LinearLight() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("linearLight"))
 	return rv
 }
 
 // A blend kernel that uses the hue and saturation of the background image with the luminance of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/luminosity
-func (b_ BlendKernel) Luminosity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("luminosity"))
+func (b_ BlendKernel) Luminosity() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("luminosity"))
 	return rv
 }
 
 // A blend kernel that multiplies the background image sample color with the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/multiply
-func (b_ BlendKernel) Multiply() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("multiply"))
+func (b_ BlendKernel) Multiply() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("multiply"))
 	return rv
 }
 
 // A blend kernel that either multiplies or screens the foreground image samples with the background image samples, depending on the background color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/overlay
-func (b_ BlendKernel) Overlay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("overlay"))
+func (b_ BlendKernel) Overlay() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("overlay"))
 	return rv
 }
 
 // A blend kernel that conditionally replaces background image samples with source image samples depending on the brightness of the source image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/pinLight
-func (b_ BlendKernel) PinLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("pinLight"))
+func (b_ BlendKernel) PinLight() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("pinLight"))
 	return rv
 }
 
 // A blend kernel that uses the luminance and hue values of the background image with the saturation of the foreground image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/saturation
-func (b_ BlendKernel) Saturation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("saturation"))
+func (b_ BlendKernel) Saturation() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("saturation"))
 	return rv
 }
 
 // A blend kernel that multiplies the inverse of the foreground image samples with the inverse of the background image samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/screen
-func (b_ BlendKernel) Screen() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("screen"))
+func (b_ BlendKernel) Screen() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("screen"))
 	return rv
 }
 
 // A blend kernel that either darkens or lightens colors, depending on the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/softLight
-func (b_ BlendKernel) SoftLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("softLight"))
+func (b_ BlendKernel) SoftLight() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("softLight"))
 	return rv
 }
 
 // A blend kernel that returns the foreground input image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/source
-func (b_ BlendKernel) Source() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("source"))
+func (b_ BlendKernel) Source() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("source"))
 	return rv
 }
 
 // A blend kernel that places the foreground over the background and crops based on the visibility of the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceAtop
-func (b_ BlendKernel) SourceAtop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sourceAtop"))
+func (b_ BlendKernel) SourceAtop() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceAtop"))
 	return rv
 }
 
 // A blend kernel that places the foreground over the background and crops based on the visibility of both.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceIn
-func (b_ BlendKernel) SourceIn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sourceIn"))
+func (b_ BlendKernel) SourceIn() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceIn"))
 	return rv
 }
 
 // A blend kernel that uses the foreground image to define what to take out of the background image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOut
-func (b_ BlendKernel) SourceOut() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sourceOut"))
+func (b_ BlendKernel) SourceOut() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceOut"))
 	return rv
 }
 
 // A blend kernel that places the foreground image over the input background image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/sourceOver
-func (b_ BlendKernel) SourceOver() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sourceOver"))
+func (b_ BlendKernel) SourceOver() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("sourceOver"))
 	return rv
 }
 
 // A blend kernel that subtracts the background image sample color from the foreground image sample color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/subtract
-func (b_ BlendKernel) Subtract() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("subtract"))
+func (b_ BlendKernel) Subtract() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("subtract"))
 	return rv
 }
 
 // A blend kernel that burns or dodges colors by changing contrast, depending on the blend color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIBlendKernel/vividLight
-func (b_ BlendKernel) VividLight() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("vividLight"))
+func (b_ BlendKernel) VividLight() CIBlendKernel {
+	rv := objc.Send[CIBlendKernel](b_.ID, objc.Sel("vividLight"))
 	return rv
 }
 

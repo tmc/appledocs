@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -32,7 +33,7 @@ type _PlayerViewControllerClass struct {
 type IPlayerViewController interface {
 	appkit.IViewController
 	BeginTrimmingWithCompletionHandler(handler unsafe.Pointer)
-	SelectSpeed(speed unsafe.Pointer)
+	SelectSpeed(speed IAVPlaybackSpeed)
 }
 
 // A view controller that displays content from a player and presents a native user interface to control playback.
@@ -101,7 +102,7 @@ func (p_ PlayerViewController) BeginTrimmingWithCompletionHandler(handler unsafe
 // Selects a specified playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/selectSpeed(_:)
-func (p_ PlayerViewController) SelectSpeed(speed unsafe.Pointer) {
+func (p_ PlayerViewController) SelectSpeed(speed IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("selectSpeed:"), speed)
 }
 
@@ -216,16 +217,16 @@ func (p_ PlayerViewController) SetCanStartPictureInPictureAutomaticallyFromInlin
 // A view that displays between the video content and the playback controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentOverlayView
-func (p_ PlayerViewController) ContentOverlayView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentOverlayView"))
+func (p_ PlayerViewController) ContentOverlayView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
 
 // The view controller responsible for the presentation of content proposals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentProposalViewController
-func (p_ PlayerViewController) ContentProposalViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentProposalViewController"))
+func (p_ PlayerViewController) ContentProposalViewController() AVContentProposalViewController {
+	rv := objc.Send[AVContentProposalViewController](p_.ID, objc.Sel("contentProposalViewController"))
 	return rv
 }
 
@@ -235,7 +236,7 @@ func (p_ PlayerViewController) ContentProposalViewController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentProposalViewController
-func (p_ PlayerViewController) SetContentProposalViewController(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetContentProposalViewController(value IAVContentProposalViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentProposalViewController:"), value)
 }
 
@@ -253,7 +254,7 @@ func (p_ PlayerViewController) ContextualActions() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) SetContextualActions(value []unsafe.Pointer) {
+func (p_ PlayerViewController) SetContextualActions(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -270,16 +271,16 @@ func (p_ PlayerViewController) SetContextualActions(value []unsafe.Pointer) {
 // A view the system shows adjacent to the contextual actions that’s suitable for showing related information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsInfoView
-func (p_ PlayerViewController) ContextualActionsInfoView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contextualActionsInfoView"))
+func (p_ PlayerViewController) ContextualActionsInfoView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contextualActionsInfoView"))
 	return rv
 }
 
 // An image to show alongside the contextual actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsPreviewImage
-func (p_ PlayerViewController) ContextualActionsPreviewImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contextualActionsPreviewImage"))
+func (p_ PlayerViewController) ContextualActionsPreviewImage() appkit.Image {
+	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("contextualActionsPreviewImage"))
 	return rv
 }
 
@@ -289,15 +290,15 @@ func (p_ PlayerViewController) ContextualActionsPreviewImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsPreviewImage
-func (p_ PlayerViewController) SetContextualActionsPreviewImage(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetContextualActionsPreviewImage(value appkit.IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContextualActionsPreviewImage:"), value)
 }
 
 // A view controller that provides client-specific content and controls alongside system-provided information and settings panels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
-func (p_ PlayerViewController) CustomInfoViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("customInfoViewController"))
+func (p_ PlayerViewController) CustomInfoViewController() appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customInfoViewController"))
 	return rv
 }
 
@@ -307,15 +308,15 @@ func (p_ PlayerViewController) CustomInfoViewController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
-func (p_ PlayerViewController) SetCustomInfoViewController(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetCustomInfoViewController(value appkit.IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomInfoViewController:"), value)
 }
 
 // An array of view controllers to display as content tabs in the player user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) CustomInfoViewControllers() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("customInfoViewControllers"))
+func (p_ PlayerViewController) CustomInfoViewControllers() []appkit.ViewController {
+	rv := objc.Send[[]appkit.ViewController](p_.ID, objc.Sel("customInfoViewControllers"))
 	return rv
 }
 
@@ -325,7 +326,7 @@ func (p_ PlayerViewController) CustomInfoViewControllers() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) SetCustomInfoViewControllers(value []unsafe.Pointer) {
+func (p_ PlayerViewController) SetCustomInfoViewControllers(value []appkit.IViewController) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -342,8 +343,8 @@ func (p_ PlayerViewController) SetCustomInfoViewControllers(value []unsafe.Point
 // A view controller that presents custom content over the player view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
-func (p_ PlayerViewController) CustomOverlayViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("customOverlayViewController"))
+func (p_ PlayerViewController) CustomOverlayViewController() appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customOverlayViewController"))
 	return rv
 }
 
@@ -353,7 +354,7 @@ func (p_ PlayerViewController) CustomOverlayViewController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
-func (p_ PlayerViewController) SetCustomOverlayViewController(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetCustomOverlayViewController(value appkit.IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomOverlayViewController:"), value)
 }
 
@@ -433,7 +434,7 @@ func (p_ PlayerViewController) InfoViewActions() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) SetInfoViewActions(value []unsafe.Pointer) {
+func (p_ PlayerViewController) SetInfoViewActions(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -555,8 +556,8 @@ func (p_ PlayerViewController) SetPlaybackControlsIncludeTransportBar(value bool
 // The player object that provides the media content for the view controller to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/player
-func (p_ PlayerViewController) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("player"))
+func (p_ PlayerViewController) Player() avfoundation.Player {
+	rv := objc.Send[avfoundation.Player](p_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -566,15 +567,15 @@ func (p_ PlayerViewController) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/player
-func (p_ PlayerViewController) SetPlayer(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetPlayer(value avfoundation.IPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
 
 // Describes how High Dynamic Range (HDR) video content renders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/preferredDisplayDynamicRange
-func (p_ PlayerViewController) PreferredDisplayDynamicRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
+func (p_ PlayerViewController) PreferredDisplayDynamicRange() DisplayDynamicRange {
+	rv := objc.Send[DisplayDynamicRange](p_.ID, objc.Sel("preferredDisplayDynamicRange"))
 	return rv
 }
 
@@ -584,7 +585,7 @@ func (p_ PlayerViewController) PreferredDisplayDynamicRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/preferredDisplayDynamicRange
-func (p_ PlayerViewController) SetPreferredDisplayDynamicRange(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetPreferredDisplayDynamicRange(value IDisplayDynamicRange) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredDisplayDynamicRange:"), value)
 }
 
@@ -645,8 +646,8 @@ func (p_ PlayerViewController) SetRequiresMonoscopicViewingMode(value bool) {
 // The currently selected playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/selectedSpeed
-func (p_ PlayerViewController) SelectedSpeed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedSpeed"))
+func (p_ PlayerViewController) SelectedSpeed() AVPlaybackSpeed {
+	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
 	return rv
 }
 
@@ -689,8 +690,8 @@ func (p_ PlayerViewController) SetShowsTimecodes(value bool) {
 // The behavior that skipping gestures perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/skippingBehavior
-func (p_ PlayerViewController) SkippingBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("skippingBehavior"))
+func (p_ PlayerViewController) SkippingBehavior() PlayerViewControllerSkippingBehavior {
+	rv := objc.Send[PlayerViewControllerSkippingBehavior](p_.ID, objc.Sel("skippingBehavior"))
 	return rv
 }
 
@@ -700,7 +701,7 @@ func (p_ PlayerViewController) SkippingBehavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/skippingBehavior
-func (p_ PlayerViewController) SetSkippingBehavior(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetSkippingBehavior(value PlayerViewControllerSkippingBehavior) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSkippingBehavior:"), value)
 }
 
@@ -754,7 +755,7 @@ func (p_ PlayerViewController) TransportBarCustomMenuItems() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems
-func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []unsafe.Pointer) {
+func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -789,8 +790,8 @@ func (p_ PlayerViewController) SetTransportBarIncludesTitleView(value bool) {
 // A layout guide that represents an area that fixed-position playback controls don’t obscure when visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/unobscuredContentGuide
-func (p_ PlayerViewController) UnobscuredContentGuide() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("unobscuredContentGuide"))
+func (p_ PlayerViewController) UnobscuredContentGuide() appkit.LayoutGuide {
+	rv := objc.Send[appkit.LayoutGuide](p_.ID, objc.Sel("unobscuredContentGuide"))
 	return rv
 }
 
@@ -823,8 +824,8 @@ func (p_ PlayerViewController) VideoBounds() coregraphics.CGRect {
 // The types of analysis a player view controller performs on a paused video frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/videoFrameAnalysisTypes
-func (p_ PlayerViewController) VideoFrameAnalysisTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
+func (p_ PlayerViewController) VideoFrameAnalysisTypes() VideoFrameAnalysisType {
+	rv := objc.Send[VideoFrameAnalysisType](p_.ID, objc.Sel("videoFrameAnalysisTypes"))
 	return rv
 }
 
@@ -834,7 +835,7 @@ func (p_ PlayerViewController) VideoFrameAnalysisTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/videoFrameAnalysisTypes
-func (p_ PlayerViewController) SetVideoFrameAnalysisTypes(value unsafe.Pointer) {
+func (p_ PlayerViewController) SetVideoFrameAnalysisTypes(value VideoFrameAnalysisType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFrameAnalysisTypes:"), value)
 }
 

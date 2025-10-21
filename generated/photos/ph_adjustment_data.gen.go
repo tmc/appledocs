@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +87,9 @@ func NewPHAdjustmentData() PHAdjustmentData {
 // Initializes an adjustment object with the specified format and data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/init(formatIdentifier:formatVersion:data:)
-func NewPHAdjustmentDataWithFormatIdentifierFormatVersionData(formatIdentifier string, formatVersion string, data unsafe.Pointer) PHAdjustmentData {
+func NewPHAdjustmentDataWithFormatIdentifierFormatVersionData(formatIdentifier appkit.string, formatVersion appkit.string, data foundation.IData) PHAdjustmentData {
 	instance := getPHAdjustmentDataClass().Alloc()
-	rv := objc.Send[PHAdjustmentData](instance.ID, objc.Sel("initWithFormatIdentifier:formatVersion:data:"), objc.String(formatIdentifier), objc.String(formatVersion), data)
+	rv := objc.Send[PHAdjustmentData](instance.ID, objc.Sel("initWithFormatIdentifier:formatVersion:data:"), formatIdentifier, formatVersion, data)
 	rv.Autorelease()
 	return rv
 }
@@ -96,32 +98,32 @@ func NewPHAdjustmentDataWithFormatIdentifierFormatVersionData(formatIdentifier s
 // Data that contains the information necessary to reconstruct the adjustment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/data
-func (p_ PHAdjustmentData) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("data"))
+func (p_ PHAdjustmentData) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("data"))
 	return rv
 }
 
 // A string uniquely identifying the format of the adjustment data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/formatIdentifier
-func (p_ PHAdjustmentData) FormatIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("formatIdentifier"))
+func (p_ PHAdjustmentData) FormatIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("formatIdentifier"))
 	return rv
 }
 
 // A version number for the adjustment data format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAdjustmentData/formatVersion
-func (p_ PHAdjustmentData) FormatVersion() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("formatVersion"))
+func (p_ PHAdjustmentData) FormatVersion() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("formatVersion"))
 	return rv
 }
 
 // An object that describes the most recent edit to the asset’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata
-func (p_ PHAdjustmentData) AdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
+func (p_ PHAdjustmentData) AdjustmentData() PHAdjustmentData {
+	rv := objc.Send[PHAdjustmentData](p_.ID, objc.Sel("adjustmentData"))
 	return rv
 }
 
@@ -131,7 +133,7 @@ func (p_ PHAdjustmentData) AdjustmentData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/adjustmentdata
-func (p_ PHAdjustmentData) SetAdjustmentData(value unsafe.Pointer) {
+func (p_ PHAdjustmentData) SetAdjustmentData(value IPHAdjustmentData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
 }
 

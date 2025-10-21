@@ -87,7 +87,7 @@ func (m_ MTRWriteParams) DataVersion() foundation.Number {
 // SetDataVersion sets the value of the dataVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwriteparams/dataversion
-func (m_ MTRWriteParams) SetDataVersion(value foundation.Number) {
+func (m_ MTRWriteParams) SetDataVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataVersion:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWriteParams) TimedWriteTimeout() foundation.Number {
 // SetTimedWriteTimeout sets the value of the timedWriteTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwriteparams/timedwritetimeout
-func (m_ MTRWriteParams) SetTimedWriteTimeout(value foundation.Number) {
+func (m_ MTRWriteParams) SetTimedWriteTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedWriteTimeout:"), value)
 }
 

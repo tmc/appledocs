@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,7 +34,7 @@ type IPHLivePhotoEditingContext interface {
 	objectivec.IObject
 	Cancel()
 	PrepareLivePhotoForPlaybackWithTargetSizeOptionsCompletionHandler(targetSize coregraphics.CGSize, options unsafe.Pointer, handler unsafe.Pointer)
-	SaveLivePhotoToOutputOptionsCompletionHandler(output unsafe.Pointer, options unsafe.Pointer, handler unsafe.Pointer)
+	SaveLivePhotoToOutputOptionsCompletionHandler(output IPHContentEditingOutput, options unsafe.Pointer, handler unsafe.Pointer)
 }
 
 // An editing session for modifying the photo, video, and audio content of a Live Photo.
@@ -89,7 +90,7 @@ func NewPHLivePhotoEditingContext() PHLivePhotoEditingContext {
 // Creates a Live Photo editing context for the specified editing input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/init(livePhotoEditingInput:)
-func NewPHLivePhotoEditingContextWithLivePhotoEditingInput(livePhotoInput unsafe.Pointer) PHLivePhotoEditingContext {
+func NewPHLivePhotoEditingContextWithLivePhotoEditingInput(livePhotoInput IPHContentEditingInput) PHLivePhotoEditingContext {
 	instance := getPHLivePhotoEditingContextClass().Alloc()
 	rv := objc.Send[PHLivePhotoEditingContext](instance.ID, objc.Sel("initWithLivePhotoEditingInput:"), livePhotoInput)
 	rv.Autorelease()
@@ -114,7 +115,7 @@ func (p_ PHLivePhotoEditingContext) PrepareLivePhotoForPlaybackWithTargetSizeOpt
 // Processes and saves a full-quality Live Photo as the output of your editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/saveLivePhoto(to:options:completionHandler:)
-func (p_ PHLivePhotoEditingContext) SaveLivePhotoToOutputOptionsCompletionHandler(output unsafe.Pointer, options unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ PHLivePhotoEditingContext) SaveLivePhotoToOutputOptionsCompletionHandler(output IPHContentEditingOutput, options unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("saveLivePhotoToOutput:options:completionHandler:"), output, options, handler)
 }
 
@@ -165,8 +166,8 @@ func (p_ PHLivePhotoEditingContext) SetFrameProcessor(value unsafe.Pointer) {
 // The unedited still photo content of the Live Photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoEditingContext/fullSizeImage
-func (p_ PHLivePhotoEditingContext) FullSizeImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fullSizeImage"))
+func (p_ PHLivePhotoEditingContext) FullSizeImage() appkit.Image {
+	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("fullSizeImage"))
 	return rv
 }
 
@@ -189,8 +190,8 @@ func (p_ PHLivePhotoEditingContext) PhotoTime() unsafe.Pointer {
 // The output of an asset content editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHLivePhotoEditingContext) ContentEditingOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+func (p_ PHLivePhotoEditingContext) ContentEditingOutput() PHContentEditingOutput {
+	rv := objc.Send[PHContentEditingOutput](p_.ID, objc.Sel("contentEditingOutput"))
 	return rv
 }
 
@@ -200,15 +201,15 @@ func (p_ PHLivePhotoEditingContext) ContentEditingOutput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput
-func (p_ PHLivePhotoEditingContext) SetContentEditingOutput(value unsafe.Pointer) {
+func (p_ PHLivePhotoEditingContext) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 
 // The unedited Live Photo content of the editing input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto
-func (p_ PHLivePhotoEditingContext) LivePhoto() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("livePhoto"))
+func (p_ PHLivePhotoEditingContext) LivePhoto() PHLivePhoto {
+	rv := objc.Send[PHLivePhoto](p_.ID, objc.Sel("livePhoto"))
 	return rv
 }
 
@@ -218,15 +219,15 @@ func (p_ PHLivePhotoEditingContext) LivePhoto() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditinginput/livephoto
-func (p_ PHLivePhotoEditingContext) SetLivePhoto(value unsafe.Pointer) {
+func (p_ PHLivePhotoEditingContext) SetLivePhoto(value IPHLivePhoto) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
 }
 
 // An object describing the changes made to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
-func (p_ PHLivePhotoEditingContext) AdjustmentData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("adjustmentData"))
+func (p_ PHLivePhotoEditingContext) AdjustmentData() PHAdjustmentData {
+	rv := objc.Send[PHAdjustmentData](p_.ID, objc.Sel("adjustmentData"))
 	return rv
 }
 
@@ -236,15 +237,15 @@ func (p_ PHLivePhotoEditingContext) AdjustmentData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/adjustmentdata
-func (p_ PHLivePhotoEditingContext) SetAdjustmentData(value unsafe.Pointer) {
+func (p_ PHLivePhotoEditingContext) SetAdjustmentData(value IPHAdjustmentData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
 }
 
 // The domain value for error objects produced by a Live Photo editing context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlivephotoeditingerrordomain
-func (p_ PHLivePhotoEditingContext) PHLivePhotoEditingErrorDomain() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLivePhotoEditingErrorDomain"))
+func (p_ PHLivePhotoEditingContext) PHLivePhotoEditingErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLivePhotoEditingErrorDomain"))
 	return rv
 }
 

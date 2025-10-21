@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [QCPatchController] class.
@@ -29,18 +29,20 @@ type _QCPatchControllerClass struct {
 
 // An interface definition for the [QCPatchController] class.
 type IQCPatchController interface {
-	objectivec.IObject
+	appkit.IController
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPatchController
 type QCPatchController struct {
-	objectivec.Object
+	appkit.Controller
 }
 
 // QCPatchControllerFrom constructs a [QCPatchController] from an unsafe.Pointer.
 func QCPatchControllerFrom(ptr unsafe.Pointer) QCPatchController {
-	return QCPatchController{objectivec.Object{objc.ID(ptr)}}
+	return QCPatchController{
+		Controller: appkit.ControllerFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayMultiaryKernel] class.
@@ -29,8 +30,8 @@ type _NDArrayMultiaryKernelClass struct {
 // An interface definition for the [NDArrayMultiaryKernel] class.
 type INDArrayMultiaryKernel interface {
 	INDArrayMultiaryBase
-	EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objc.ID, sourceArrays unsafe.Pointer, destination unsafe.Pointer)
-	EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objc.ID, sourceArrays unsafe.Pointer, outGradientState unsafe.Pointer, outputStateIsTemporary bool) unsafe.Pointer
+	EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objectivec.IObject, sourceArrays []NDArray, destination IMPSNDArray)
+	EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objectivec.IObject, sourceArrays []NDArray, outGradientState MPSState, outputStateIsTemporary bool) NDArray
 }
 
 //
@@ -80,14 +81,14 @@ func NewNDArrayMultiaryKernel() NDArrayMultiaryKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryKernel/encode(to:sourceArrays:destinationArray:)
-func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objc.ID, sourceArrays unsafe.Pointer, destination unsafe.Pointer) {
+func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysDestinationArray(cmdBuf objectivec.IObject, sourceArrays []NDArray, destination IMPSNDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArrays:destinationArray:"), cmdBuf, sourceArrays, destination)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayMultiaryKernel/encode(to:sourceArrays:resultState:outputStateIsTemporary:)
-func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objc.ID, sourceArrays unsafe.Pointer, outGradientState unsafe.Pointer, outputStateIsTemporary bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:"), cmdBuf, sourceArrays, outGradientState, outputStateIsTemporary)
+func (n_ NDArrayMultiaryKernel) EncodeToCommandBufferSourceArraysResultStateOutputStateIsTemporary(cmdBuf objectivec.IObject, sourceArrays []NDArray, outGradientState MPSState, outputStateIsTemporary bool) NDArray {
+	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArrays:resultState:outputStateIsTemporary:"), cmdBuf, sourceArrays, outGradientState, outputStateIsTemporary)
 	return rv
 }
 

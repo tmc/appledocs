@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRMetrics() MTRMetrics {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
-func (m_ MTRMetrics) AllKeys() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("allKeys"))
+func (m_ MTRMetrics) AllKeys() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("allKeys"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRMetrics) AllKeys() string {
 // SetAllKeys sets the value of the allKeys property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
-func (m_ MTRMetrics) SetAllKeys(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), objc.String(value))
+func (m_ MTRMetrics) SetAllKeys(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
-func (m_ MTRMetrics) UniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("uniqueIdentifier"))
+func (m_ MTRMetrics) UniqueIdentifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (m_ MTRMetrics) UniqueIdentifier() unsafe.Pointer {
 // SetUniqueIdentifier sets the value of the uniqueIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
-func (m_ MTRMetrics) SetUniqueIdentifier(value unsafe.Pointer) {
+func (m_ MTRMetrics) SetUniqueIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
 

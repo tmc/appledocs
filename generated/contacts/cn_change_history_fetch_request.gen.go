@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNChangeHistoryFetchRequest] class.
@@ -194,8 +195,8 @@ func (c_ CNChangeHistoryFetchRequest) SetShouldUnifyResults(value bool) {
 // An opaque token that indicates a point in history in the user’s Contacts database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
-func (c_ CNChangeHistoryFetchRequest) StartingToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("startingToken"))
+func (c_ CNChangeHistoryFetchRequest) StartingToken() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("startingToken"))
 	return rv
 }
 
@@ -205,7 +206,7 @@ func (c_ CNChangeHistoryFetchRequest) StartingToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryFetchRequest/startingToken
-func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value unsafe.Pointer) {
+func (c_ CNChangeHistoryFetchRequest) SetStartingToken(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStartingToken:"), value)
 }
 

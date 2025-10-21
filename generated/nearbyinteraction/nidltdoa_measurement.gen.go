@@ -137,8 +137,8 @@ func (n_ NIDLTDOAMeasurement) SetCoordinates(value unsafe.Pointer) {
 // The type of coordinate system that the measurement conforms to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype
-func (n_ NIDLTDOAMeasurement) CoordinatesType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("coordinatesType"))
+func (n_ NIDLTDOAMeasurement) CoordinatesType() NIDLTDOACoordinatesType {
+	rv := objc.Send[NIDLTDOACoordinatesType](n_.ID, objc.Sel("coordinatesType"))
 	return rv
 }
 
@@ -148,15 +148,15 @@ func (n_ NIDLTDOAMeasurement) CoordinatesType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype
-func (n_ NIDLTDOAMeasurement) SetCoordinatesType(value unsafe.Pointer) {
+func (n_ NIDLTDOAMeasurement) SetCoordinatesType(value NIDLTDOACoordinatesType) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCoordinatesType:"), value)
 }
 
 // The type of anchor message that the measurement derives from.
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype
-func (n_ NIDLTDOAMeasurement) MeasurementType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("measurementType"))
+func (n_ NIDLTDOAMeasurement) MeasurementType() NIDLTDOAMeasurementType {
+	rv := objc.Send[NIDLTDOAMeasurementType](n_.ID, objc.Sel("measurementType"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (n_ NIDLTDOAMeasurement) MeasurementType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype
-func (n_ NIDLTDOAMeasurement) SetMeasurementType(value unsafe.Pointer) {
+func (n_ NIDLTDOAMeasurement) SetMeasurementType(value NIDLTDOAMeasurementType) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMeasurementType:"), value)
 }
 

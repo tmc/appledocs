@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,8 +119,8 @@ func (m_ MKReverseGeocodingRequest) SetIsLoading(value bool) {
 // The location provided to the initializer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/location
-func (m_ MKReverseGeocodingRequest) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("location"))
+func (m_ MKReverseGeocodingRequest) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](m_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -128,15 +130,15 @@ func (m_ MKReverseGeocodingRequest) Location() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/location
-func (m_ MKReverseGeocodingRequest) SetLocation(value unsafe.Pointer) {
+func (m_ MKReverseGeocodingRequest) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), value)
 }
 
 // A value that indicates the preferred locale for the addresses the request returns, or
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
-func (m_ MKReverseGeocodingRequest) PreferredLocale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredLocale"))
+func (m_ MKReverseGeocodingRequest) PreferredLocale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("preferredLocale"))
 	return rv
 }
 
@@ -146,7 +148,7 @@ func (m_ MKReverseGeocodingRequest) PreferredLocale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest/preferredlocale
-func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value unsafe.Pointer) {
+func (m_ MKReverseGeocodingRequest) SetPreferredLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 

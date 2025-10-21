@@ -96,7 +96,7 @@ func NewCNFixedDetectionTrackWithFocusDisparity(focusDisparity unsafe.Pointer) C
 // Creates a detection track with fixed focus at the disparity of an existing detection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/initWithOriginalDetection:
-func NewCNFixedDetectionTrackWithOriginalDetection(originalDetection unsafe.Pointer) CNFixedDetectionTrack {
+func NewCNFixedDetectionTrackWithOriginalDetection(originalDetection ICNDetection) CNFixedDetectionTrack {
 	instance := getCNFixedDetectionTrackClass().Alloc()
 	rv := objc.Send[CNFixedDetectionTrack](instance.ID, objc.Sel("initWithOriginalDetection:"), originalDetection)
 	rv.Autorelease()
@@ -115,8 +115,8 @@ func (c_ CNFixedDetectionTrack) FocusDisparity() unsafe.Pointer {
 // The original detection based on the fixed detection track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNFixedDetectionTrack-5aei2/originalDetection
-func (c_ CNFixedDetectionTrack) OriginalDetection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("originalDetection"))
+func (c_ CNFixedDetectionTrack) OriginalDetection() CNDetection {
+	rv := objc.Send[CNDetection](c_.ID, objc.Sel("originalDetection"))
 	return rv
 }
 

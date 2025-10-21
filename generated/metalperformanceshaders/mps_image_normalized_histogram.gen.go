@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageNormalizedHistogram] class.
@@ -81,7 +84,7 @@ func NewImageNormalizedHistogram() ImageNormalizedHistogram {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageNormalizedHistogram/init(coder:device:)
-func NewImageNormalizedHistogramWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ImageNormalizedHistogram {
+func NewImageNormalizedHistogramWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ImageNormalizedHistogram {
 	instance := getImageNormalizedHistogramClass().Alloc()
 	rv := objc.Send[ImageNormalizedHistogram](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -91,8 +94,8 @@ func NewImageNormalizedHistogramWithCoderDevice(aDecoder unsafe.Pointer, device 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/cliprectsource
-func (i_ ImageNormalizedHistogram) ClipRectSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("clipRectSource"))
+func (i_ ImageNormalizedHistogram) ClipRectSource() corelocation.Region {
+	rv := objc.Send[corelocation.Region](i_.ID, objc.Sel("clipRectSource"))
 	return rv
 }
 
@@ -100,7 +103,7 @@ func (i_ ImageNormalizedHistogram) ClipRectSource() unsafe.Pointer {
 // SetClipRectSource sets the value of the clipRectSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram/cliprectsource
-func (i_ ImageNormalizedHistogram) SetClipRectSource(value unsafe.Pointer) {
+func (i_ ImageNormalizedHistogram) SetClipRectSource(value corelocation.IRegion) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClipRectSource:"), value)
 }
 

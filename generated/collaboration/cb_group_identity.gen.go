@@ -84,7 +84,7 @@ func NewCBGroupIdentity() CBGroupIdentity {
 // Returns the group identity with the given POSIX GID in the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/init(posixGID:authority:)
-func NewCBGroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority unsafe.Pointer) CBGroupIdentity {
+func NewCBGroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority ICBIdentityAuthority) CBGroupIdentity {
 	rv := objc.Send[CBGroupIdentity](objc.ID(getCBGroupIdentityClass().class), objc.Sel("groupIdentityWithPosixGID:authority:"), gid, authority)
 	return rv
 }
@@ -93,8 +93,8 @@ func NewCBGroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority unsaf
 // Returns the group identity with the given POSIX GID in the specified identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/init(posixGID:authority:)
-func (cc _CBGroupIdentityClass) GroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("groupIdentityWithPosixGID:authority:"), gid, authority)
+func (cc _CBGroupIdentityClass) GroupIdentityWithPosixGIDAuthority(gid unsafe.Pointer, authority ICBIdentityAuthority) CBGroupIdentity {
+	rv := objc.Send[CBGroupIdentity](objc.ID(cc.class), objc.Sel("groupIdentityWithPosixGID:authority:"), gid, authority)
 	return rv
 }
 
@@ -108,8 +108,8 @@ func (c_ CBGroupIdentity) MemberIdentities() []CBIdentity {
 // Returns the members of the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBGroupIdentity/members
-func (c_ CBGroupIdentity) Members() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("members"))
+func (c_ CBGroupIdentity) Members() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("members"))
 	return rv
 }
 

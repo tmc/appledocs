@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Composition] class.
@@ -30,9 +31,9 @@ type _CompositionClass struct {
 // An interface definition for the [Composition] class.
 type IComposition interface {
 	IAsset
-	ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale unsafe.Pointer, commonKeys unsafe.Pointer) []TimedMetadataGroup
-	LoadTracksWithMediaTypeCompletionHandler(mediaType unsafe.Pointer, completionHandler unsafe.Pointer)
-	MetadataForFormat(format unsafe.Pointer) []MetadataItem
+	ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale foundation.ILocale, commonKeys []string) []TimedMetadataGroup
+	LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer)
+	MetadataForFormat(format MetadataFormat) []MetadataItem
 }
 
 // An object that combines and arranges media from multiple assets into a single composite asset that you can play or process.
@@ -88,7 +89,7 @@ func NewComposition() Composition {
 // Returns an array of chapters that contain the specified title locale and common keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/chapterMetadataGroups(withTitleLocale:containingItemsWithCommonKeys:)
-func (c_ Composition) ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale unsafe.Pointer, commonKeys unsafe.Pointer) []TimedMetadataGroup {
+func (c_ Composition) ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale foundation.ILocale, commonKeys []string) []TimedMetadataGroup {
 	rv := objc.Send[[]TimedMetadataGroup](c_.ID, objc.Sel("chapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:"), locale, commonKeys)
 	return rv
 }
@@ -96,14 +97,14 @@ func (c_ Composition) ChapterMetadataGroupsWithTitleLocaleContainingItemsWithCom
 // Loads tracks that contain media of a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/loadTracks(withMediaType:completionHandler:)
-func (c_ Composition) LoadTracksWithMediaTypeCompletionHandler(mediaType unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (c_ Composition) LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("loadTracksWithMediaType:completionHandler:"), mediaType, completionHandler)
 }
 
 // Returns an array of metadata items from the container with the specified format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/metadata(forFormat:)
-func (c_ Composition) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
+func (c_ Composition) MetadataForFormat(format MetadataFormat) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](c_.ID, objc.Sel("metadataForFormat:"), format)
 	return rv
 }
@@ -111,8 +112,8 @@ func (c_ Composition) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
 // The metadata items an asset contains for common metadata identifiers that provide a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/commonMetadata
-func (c_ Composition) CommonMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("commonMetadata"))
+func (c_ Composition) CommonMetadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -122,15 +123,15 @@ func (c_ Composition) CommonMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/commonMetadata
-func (c_ Composition) SetCommonMetadata(value unsafe.Pointer) {
+func (c_ Composition) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCommonMetadata:"), value)
 }
 
 // An array of metadata items for all metadata identifiers for which a value is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/metadata
-func (c_ Composition) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("metadata"))
+func (c_ Composition) Metadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -140,7 +141,7 @@ func (c_ Composition) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/metadata
-func (c_ Composition) SetMetadata(value unsafe.Pointer) {
+func (c_ Composition) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMetadata:"), value)
 }
 
@@ -165,8 +166,8 @@ func (c_ Composition) SetOverallDurationHint(value unsafe.Pointer) {
 // The asset’s display mode preference for optimal playback of its content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/preferredDisplayCriteria
-func (c_ Composition) PreferredDisplayCriteria() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preferredDisplayCriteria"))
+func (c_ Composition) PreferredDisplayCriteria() AVDisplayCriteria {
+	rv := objc.Send[AVDisplayCriteria](c_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
 
@@ -176,15 +177,15 @@ func (c_ Composition) PreferredDisplayCriteria() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/preferredDisplayCriteria
-func (c_ Composition) SetPreferredDisplayCriteria(value unsafe.Pointer) {
+func (c_ Composition) SetPreferredDisplayCriteria(value IAVDisplayCriteria) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredDisplayCriteria:"), value)
 }
 
 // The track groups an asset contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/trackGroups
-func (c_ Composition) TrackGroups() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("trackGroups"))
+func (c_ Composition) TrackGroups() AVAssetTrackGroup {
+	rv := objc.Send[AVAssetTrackGroup](c_.ID, objc.Sel("trackGroups"))
 	return rv
 }
 
@@ -194,7 +195,7 @@ func (c_ Composition) TrackGroups() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVComposition/trackGroups
-func (c_ Composition) SetTrackGroups(value unsafe.Pointer) {
+func (c_ Composition) SetTrackGroups(value IAVAssetTrackGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTrackGroups:"), value)
 }
 
@@ -209,8 +210,8 @@ func (c_ Composition) Tracks() []CompositionTrack {
 // The array of available media selections for this asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/allmediaselections
-func (c_ Composition) AllMediaSelections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allMediaSelections"))
+func (c_ Composition) AllMediaSelections() AVMediaSelection {
+	rv := objc.Send[AVMediaSelection](c_.ID, objc.Sel("allMediaSelections"))
 	return rv
 }
 
@@ -220,15 +221,15 @@ func (c_ Composition) AllMediaSelections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/allmediaselections
-func (c_ Composition) SetAllMediaSelections(value unsafe.Pointer) {
+func (c_ Composition) SetAllMediaSelections(value IAVMediaSelection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllMediaSelections:"), value)
 }
 
 // The locales of the asset’s chapter metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablechapterlocales
-func (c_ Composition) AvailableChapterLocales() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableChapterLocales"))
+func (c_ Composition) AvailableChapterLocales() foundation.Locale {
+	rv := objc.Send[foundation.Locale](c_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
 
@@ -238,7 +239,7 @@ func (c_ Composition) AvailableChapterLocales() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablechapterlocales
-func (c_ Composition) SetAvailableChapterLocales(value unsafe.Pointer) {
+func (c_ Composition) SetAvailableChapterLocales(value foundation.ILocale) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableChapterLocales:"), value)
 }
 
@@ -263,8 +264,8 @@ func (c_ Composition) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(
 // The metadata formats this asset contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablemetadataformats
-func (c_ Composition) AvailableMetadataFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableMetadataFormats"))
+func (c_ Composition) AvailableMetadataFormats() MetadataFormat {
+	rv := objc.Send[MetadataFormat](c_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
 
@@ -274,7 +275,7 @@ func (c_ Composition) AvailableMetadataFormats() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/availablemetadataformats
-func (c_ Composition) SetAvailableMetadataFormats(value unsafe.Pointer) {
+func (c_ Composition) SetAvailableMetadataFormats(value MetadataFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
@@ -317,8 +318,8 @@ func (c_ Composition) SetContainsFragments(value bool) {
 // A metadata item that indicates the asset’s creation date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/creationdate
-func (c_ Composition) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("creationDate"))
+func (c_ Composition) CreationDate() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](c_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -328,7 +329,7 @@ func (c_ Composition) CreationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/creationdate
-func (c_ Composition) SetCreationDate(value unsafe.Pointer) {
+func (c_ Composition) SetCreationDate(value IAVMetadataItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -479,8 +480,8 @@ func (c_ Composition) SetIsReadable(value bool) {
 // The lyrics of the asset in a language suitable for the current locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/lyrics
-func (c_ Composition) Lyrics() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("lyrics"))
+func (c_ Composition) Lyrics() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("lyrics"))
 	return rv
 }
 
@@ -490,8 +491,8 @@ func (c_ Composition) Lyrics() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/lyrics
-func (c_ Composition) SetLyrics(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLyrics:"), objc.String(value))
+func (c_ Composition) SetLyrics(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLyrics:"), value)
 }
 
 // A time value that indicates how closely playback follows the latest live stream content.
@@ -533,8 +534,8 @@ func (c_ Composition) SetNaturalSize(value coregraphics.CGSize) {
 // The default media selections for this asset’s media selection groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredmediaselection
-func (c_ Composition) PreferredMediaSelection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preferredMediaSelection"))
+func (c_ Composition) PreferredMediaSelection() AVMediaSelection {
+	rv := objc.Send[AVMediaSelection](c_.ID, objc.Sel("preferredMediaSelection"))
 	return rv
 }
 
@@ -544,7 +545,7 @@ func (c_ Composition) PreferredMediaSelection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/preferredmediaselection
-func (c_ Composition) SetPreferredMediaSelection(value unsafe.Pointer) {
+func (c_ Composition) SetPreferredMediaSelection(value IAVMediaSelection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreferredMediaSelection:"), value)
 }
 
@@ -623,8 +624,8 @@ func (c_ Composition) SetProvidesPreciseDurationAndTiming(value bool) {
 // The options you used to create a composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/urlassetinitializationoptions
-func (c_ Composition) UrlAssetInitializationOptions() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("urlAssetInitializationOptions"))
+func (c_ Composition) UrlAssetInitializationOptions() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("urlAssetInitializationOptions"))
 	return rv
 }
 
@@ -634,8 +635,8 @@ func (c_ Composition) UrlAssetInitializationOptions() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcomposition/urlassetinitializationoptions
-func (c_ Composition) SetUrlAssetInitializationOptions(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAssetInitializationOptions:"), objc.String(value))
+func (c_ Composition) SetUrlAssetInitializationOptions(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUrlAssetInitializationOptions:"), value)
 }
 
 

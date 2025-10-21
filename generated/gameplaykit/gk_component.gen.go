@@ -32,7 +32,7 @@ type _ComponentClass struct {
 type IComponent interface {
 	objectivec.IObject
 	DidAddToEntity()
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 	WillRemoveFromEntity()
 }
 
@@ -94,7 +94,7 @@ func (c_ Component) DidAddToEntity() {
 // Performs any custom periodic actions defined by the component subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/update(deltaTime:)
-func (c_ Component) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (c_ Component) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
@@ -108,8 +108,8 @@ func (c_ Component) WillRemoveFromEntity() {
 // The entity that owns this component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponent/entity
-func (c_ Component) Entity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("entity"))
+func (c_ Component) Entity() GKEntity {
+	rv := objc.Send[GKEntity](c_.ID, objc.Sel("entity"))
 	return rv
 }
 

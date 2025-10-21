@@ -84,8 +84,8 @@ func NewParameterKey() ParameterKey {
 // The configuration of the model set during initialization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-func (p_ ParameterKey) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuration"))
+func (p_ ParameterKey) Configuration() MLModelConfiguration {
+	rv := objc.Send[MLModelConfiguration](p_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (p_ ParameterKey) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/configuration
-func (p_ ParameterKey) SetConfiguration(value unsafe.Pointer) {
+func (p_ ParameterKey) SetConfiguration(value IMLModelConfiguration) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (p_ ParameterKey) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modelDescription"))
+func (p_ ParameterKey) ModelDescription() MLModelDescription {
+	rv := objc.Send[MLModelDescription](p_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (p_ ParameterKey) ModelDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (p_ ParameterKey) SetModelDescription(value unsafe.Pointer) {
+func (p_ ParameterKey) SetModelDescription(value IMLModelDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
 }
 
 // A dictionary of configuration settings your app can override when loading a model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
-func (p_ ParameterKey) Parameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("parameters"))
+func (p_ ParameterKey) Parameters() MLParameterKey {
+	rv := objc.Send[MLParameterKey](p_.ID, objc.Sel("parameters"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (p_ ParameterKey) Parameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters
-func (p_ ParameterKey) SetParameters(value unsafe.Pointer) {
+func (p_ ParameterKey) SetParameters(value IMLParameterKey) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setParameters:"), value)
 }
 

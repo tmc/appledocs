@@ -30,7 +30,7 @@ type _OSSystemExtensionManagerClass struct {
 // An interface definition for the [OSSystemExtensionManager] class.
 type IOSSystemExtensionManager interface {
 	objectivec.IObject
-	SubmitRequest(request unsafe.Pointer)
+	SubmitRequest(request IOSSystemExtensionRequest)
 }
 
 // A type that facilitates activation and deactivation of system extensions.
@@ -84,22 +84,22 @@ func NewOSSystemExtensionManager() OSSystemExtensionManager {
 // The shared instance of the extension manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
-func (oc _OSSystemExtensionManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("sharedManager"))
+func (oc _OSSystemExtensionManagerClass) SharedManager() OSSystemExtensionManager {
+	rv := objc.Send[OSSystemExtensionManager](objc.ID(oc.class), objc.Sel("sharedManager"))
 	return rv
 }
 // Submits a system extension request to the manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/submitRequest(_:)
-func (o_ OSSystemExtensionManager) SubmitRequest(request unsafe.Pointer) {
+func (o_ OSSystemExtensionManager) SubmitRequest(request IOSSystemExtensionRequest) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("submitRequest:"), request)
 }
 
 // The shared instance of the extension manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionManager/shared
-func (o_ OSSystemExtensionManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("sharedManager"))
+func (o_ OSSystemExtensionManager) SharedManager() OSSystemExtensionManager {
+	rv := objc.Send[OSSystemExtensionManager](o_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

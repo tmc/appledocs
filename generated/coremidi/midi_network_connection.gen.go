@@ -83,7 +83,7 @@ func NewMIDINetworkConnection() MIDINetworkConnection {
 // Creates a connection to the specified host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/init(host:)
-func NewMIDINetworkConnectionWithHost(host unsafe.Pointer) MIDINetworkConnection {
+func NewMIDINetworkConnectionWithHost(host IMIDINetworkHost) MIDINetworkConnection {
 	rv := objc.Send[MIDINetworkConnection](objc.ID(getMIDINetworkConnectionClass().class), objc.Sel("connectionWithHost:"), host)
 	return rv
 }
@@ -92,7 +92,7 @@ func NewMIDINetworkConnectionWithHost(host unsafe.Pointer) MIDINetworkConnection
 // Creates a connection to the specified host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/init(host:)
-func (mc _MIDINetworkConnectionClass) ConnectionWithHost(host unsafe.Pointer) unsafe.Pointer {
+func (mc _MIDINetworkConnectionClass) ConnectionWithHost(host IMIDINetworkHost) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("connectionWithHost:"), host)
 	return rv
 }
@@ -100,8 +100,8 @@ func (mc _MIDINetworkConnectionClass) ConnectionWithHost(host unsafe.Pointer) un
 // The host connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkConnection/host
-func (m_ MIDINetworkConnection) Host() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("host"))
+func (m_ MIDINetworkConnection) Host() MIDINetworkHost {
+	rv := objc.Send[MIDINetworkHost](m_.ID, objc.Sel("host"))
 	return rv
 }
 

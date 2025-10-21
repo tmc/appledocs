@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _WebViewConfigurationClass struct {
 // An interface definition for the [WebViewConfiguration] class.
 type IWebViewConfiguration interface {
 	objectivec.IObject
-	SetURLSchemeHandlerForURLScheme(urlSchemeHandler objc.ID, urlScheme string)
+	SetURLSchemeHandlerForURLScheme(urlSchemeHandler objectivec.IObject, urlScheme appkit.string)
 }
 
 // A collection of properties that you use to initialize a web view.
@@ -84,8 +85,8 @@ func NewWebViewConfiguration() WebViewConfiguration {
 // Registers an object to load resources associated with the specified URL scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/setURLSchemeHandler(_:forURLScheme:)
-func (w_ WebViewConfiguration) SetURLSchemeHandlerForURLScheme(urlSchemeHandler objc.ID, urlScheme string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setURLSchemeHandler:forURLScheme:"), urlSchemeHandler, objc.String(urlScheme))
+func (w_ WebViewConfiguration) SetURLSchemeHandlerForURLScheme(urlSchemeHandler objectivec.IObject, urlScheme appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setURLSchemeHandler:forURLScheme:"), urlSchemeHandler, urlScheme)
 }
 
 // A Boolean value that indicates whether the web view limits navigation to pages within the app’s domain.
@@ -109,8 +110,8 @@ func (w_ WebViewConfiguration) SetLimitsNavigationsToAppBoundDomains(value bool)
 // The object that manages the preference-related settings for the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/preferences
-func (w_ WebViewConfiguration) Preferences() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferences"))
+func (w_ WebViewConfiguration) Preferences() WKPreferences {
+	rv := objc.Send[WKPreferences](w_.ID, objc.Sel("preferences"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (w_ WebViewConfiguration) Preferences() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/preferences
-func (w_ WebViewConfiguration) SetPreferences(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetPreferences(value IWKPreferences) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferences:"), value)
 }
 
 // The object that coordinates the processes the web view uses to render its web content and execute scripts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/processPool
-func (w_ WebViewConfiguration) ProcessPool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("processPool"))
+func (w_ WebViewConfiguration) ProcessPool() WKProcessPool {
+	rv := objc.Send[WKProcessPool](w_.ID, objc.Sel("processPool"))
 	return rv
 }
 
@@ -138,15 +139,15 @@ func (w_ WebViewConfiguration) ProcessPool() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/processPool
-func (w_ WebViewConfiguration) SetProcessPool(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetProcessPool(value IWKProcessPool) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setProcessPool:"), value)
 }
 
 // The object you use to get and set the site’s cookies and to track the cached data objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/websiteDataStore
-func (w_ WebViewConfiguration) WebsiteDataStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("websiteDataStore"))
+func (w_ WebViewConfiguration) WebsiteDataStore() WKWebsiteDataStore {
+	rv := objc.Send[WKWebsiteDataStore](w_.ID, objc.Sel("websiteDataStore"))
 	return rv
 }
 
@@ -156,7 +157,7 @@ func (w_ WebViewConfiguration) WebsiteDataStore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebViewConfiguration/websiteDataStore
-func (w_ WebViewConfiguration) SetWebsiteDataStore(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetWebsiteDataStore(value IWKWebsiteDataStore) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebsiteDataStore:"), value)
 }
 
@@ -232,8 +233,8 @@ func (w_ WebViewConfiguration) SetAllowsPictureInPictureMediaPlayback(value bool
 // The app name that appears in the user agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
-func (w_ WebViewConfiguration) ApplicationNameForUserAgent() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("applicationNameForUserAgent"))
+func (w_ WebViewConfiguration) ApplicationNameForUserAgent() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("applicationNameForUserAgent"))
 	return rv
 }
 
@@ -243,8 +244,8 @@ func (w_ WebViewConfiguration) ApplicationNameForUserAgent() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/applicationnameforuseragent
-func (w_ WebViewConfiguration) SetApplicationNameForUserAgent(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), objc.String(value))
+func (w_ WebViewConfiguration) SetApplicationNameForUserAgent(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), value)
 }
 
 // The types of data detectors to apply to the web view’s content.
@@ -268,8 +269,8 @@ func (w_ WebViewConfiguration) SetDataDetectorTypes(value unsafe.Pointer) {
 // The default preferences to use when loading and rendering content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/defaultwebpagepreferences
-func (w_ WebViewConfiguration) DefaultWebpagePreferences() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("defaultWebpagePreferences"))
+func (w_ WebViewConfiguration) DefaultWebpagePreferences() WKWebpagePreferences {
+	rv := objc.Send[WKWebpagePreferences](w_.ID, objc.Sel("defaultWebpagePreferences"))
 	return rv
 }
 
@@ -279,7 +280,7 @@ func (w_ WebViewConfiguration) DefaultWebpagePreferences() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/defaultwebpagepreferences
-func (w_ WebViewConfiguration) SetDefaultWebpagePreferences(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetDefaultWebpagePreferences(value IWKWebpagePreferences) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultWebpagePreferences:"), value)
 }
 
@@ -460,8 +461,8 @@ func (w_ WebViewConfiguration) SetUpgradeKnownHostsToHTTPS(value bool) {
 // The object that coordinates interactions between your app’s native code and the webpage’s scripts and other content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (w_ WebViewConfiguration) UserContentController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userContentController"))
+func (w_ WebViewConfiguration) UserContentController() WKUserContentController {
+	rv := objc.Send[WKUserContentController](w_.ID, objc.Sel("userContentController"))
 	return rv
 }
 
@@ -471,15 +472,15 @@ func (w_ WebViewConfiguration) UserContentController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/usercontentcontroller
-func (w_ WebViewConfiguration) SetUserContentController(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetUserContentController(value IWKUserContentController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setUserContentController:"), value)
 }
 
 // The directionality of user interface elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy
-func (w_ WebViewConfiguration) UserInterfaceDirectionPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("userInterfaceDirectionPolicy"))
+func (w_ WebViewConfiguration) UserInterfaceDirectionPolicy() UserInterfaceDirectionPolicy {
+	rv := objc.Send[UserInterfaceDirectionPolicy](w_.ID, objc.Sel("userInterfaceDirectionPolicy"))
 	return rv
 }
 
@@ -489,14 +490,14 @@ func (w_ WebViewConfiguration) UserInterfaceDirectionPolicy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/userinterfacedirectionpolicy
-func (w_ WebViewConfiguration) SetUserInterfaceDirectionPolicy(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetUserInterfaceDirectionPolicy(value UserInterfaceDirectionPolicy) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setUserInterfaceDirectionPolicy:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebViewConfiguration) WebExtensionController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("webExtensionController"))
+func (w_ WebViewConfiguration) WebExtensionController() WKWebExtensionController {
+	rv := objc.Send[WKWebExtensionController](w_.ID, objc.Sel("webExtensionController"))
 	return rv
 }
 
@@ -504,7 +505,7 @@ func (w_ WebViewConfiguration) WebExtensionController() unsafe.Pointer {
 // SetWebExtensionController sets the value of the webExtensionController property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebViewConfiguration) SetWebExtensionController(value unsafe.Pointer) {
+func (w_ WebViewConfiguration) SetWebExtensionController(value IWKWebExtensionController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtensionController:"), value)
 }
 

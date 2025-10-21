@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) Certific
 // SetCertificateType sets the value of the certificateType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/certificatetype
-func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetCertificateType(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetCertificateType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificateType:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) ServerSi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) TimedInv
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainrequestparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCertificateChainRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

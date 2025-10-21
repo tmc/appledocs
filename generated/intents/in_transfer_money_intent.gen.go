@@ -128,8 +128,8 @@ func (i_ INTransferMoneyIntent) SetTransactionAmount(value unsafe.Pointer) {
 // An optional note associated with the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionnote
-func (i_ INTransferMoneyIntent) TransactionNote() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("transactionNote"))
+func (i_ INTransferMoneyIntent) TransactionNote() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("transactionNote"))
 	return rv
 }
 
@@ -139,15 +139,15 @@ func (i_ INTransferMoneyIntent) TransactionNote() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionnote
-func (i_ INTransferMoneyIntent) SetTransactionNote(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
+func (i_ INTransferMoneyIntent) SetTransactionNote(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), value)
 }
 
 // The date on which to transfer the funds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionscheduleddate
-func (i_ INTransferMoneyIntent) TransactionScheduledDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("transactionScheduledDate"))
+func (i_ INTransferMoneyIntent) TransactionScheduledDate() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("transactionScheduledDate"))
 	return rv
 }
 
@@ -157,7 +157,7 @@ func (i_ INTransferMoneyIntent) TransactionScheduledDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/intransfermoneyintent/transactionscheduleddate
-func (i_ INTransferMoneyIntent) SetTransactionScheduledDate(value unsafe.Pointer) {
+func (i_ INTransferMoneyIntent) SetTransactionScheduledDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionScheduledDate:"), value)
 }
 

@@ -85,16 +85,16 @@ func NewHKLiveWorkoutBuilder() HKLiveWorkoutBuilder {
 // The current workout activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/currentWorkoutActivity
-func (h_ HKLiveWorkoutBuilder) CurrentWorkoutActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("currentWorkoutActivity"))
+func (h_ HKLiveWorkoutBuilder) CurrentWorkoutActivity() HKWorkoutActivity {
+	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("currentWorkoutActivity"))
 	return rv
 }
 
 // A data source that provides live data from a workout session automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/dataSource
-func (h_ HKLiveWorkoutBuilder) DataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dataSource"))
+func (h_ HKLiveWorkoutBuilder) DataSource() HKLiveWorkoutDataSource {
+	rv := objc.Send[HKLiveWorkoutDataSource](h_.ID, objc.Sel("dataSource"))
 	return rv
 }
 
@@ -104,7 +104,7 @@ func (h_ HKLiveWorkoutBuilder) DataSource() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/dataSource
-func (h_ HKLiveWorkoutBuilder) SetDataSource(value unsafe.Pointer) {
+func (h_ HKLiveWorkoutBuilder) SetDataSource(value IHKLiveWorkoutDataSource) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDataSource:"), value)
 }
 
@@ -155,8 +155,8 @@ func (h_ HKLiveWorkoutBuilder) SetShouldCollectWorkoutEvents(value bool) {
 // The workout session created by the data source and associated with this builder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKLiveWorkoutBuilder/workoutSession
-func (h_ HKLiveWorkoutBuilder) WorkoutSession() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutSession"))
+func (h_ HKLiveWorkoutBuilder) WorkoutSession() HKWorkoutSession {
+	rv := objc.Send[HKWorkoutSession](h_.ID, objc.Sel("workoutSession"))
 	return rv
 }
 

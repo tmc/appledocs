@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PlayerInterstitialEventController] class.
@@ -84,8 +86,8 @@ func NewPlayerInterstitialEventController() PlayerInterstitialEventController {
 // The name of the table in the bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController/localizedStringsTableName
-func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedStringsTableName"))
+func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedStringsTableName"))
 	return rv
 }
 
@@ -95,15 +97,15 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsTableName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerInterstitialEventController/localizedStringsTableName
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), objc.String(value))
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsTableName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsTableName:"), value)
 }
 
 // The current schedule of interstitial events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/events
-func (p_ PlayerInterstitialEventController) Events() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("events"))
+func (p_ PlayerInterstitialEventController) Events() AVPlayerInterstitialEvent {
+	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("events"))
 	return rv
 }
 
@@ -113,15 +115,15 @@ func (p_ PlayerInterstitialEventController) Events() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/events
-func (p_ PlayerInterstitialEventController) SetEvents(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventController) SetEvents(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEvents:"), value)
 }
 
 // The bundle that contains the localized strings to be used by the AVPlayerInterstitialEventController.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("localizedStringsBundle"))
+func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() foundation.Bundle {
+	rv := objc.Send[foundation.Bundle](p_.ID, objc.Sel("localizedStringsBundle"))
 	return rv
 }
 
@@ -131,7 +133,7 @@ func (p_ PlayerInterstitialEventController) LocalizedStringsBundle() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcontroller/localizedstringsbundle
-func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventController) SetLocalizedStringsBundle(value foundation.IBundle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedStringsBundle:"), value)
 }
 

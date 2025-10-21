@@ -81,8 +81,8 @@ func NewHKBiologicalSexObject() HKBiologicalSexObject {
 // The biological sex.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKBiologicalSexObject/biologicalSex
-func (h_ HKBiologicalSexObject) BiologicalSex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("biologicalSex"))
+func (h_ HKBiologicalSexObject) BiologicalSex() HKBiologicalSex {
+	rv := objc.Send[HKBiologicalSex](h_.ID, objc.Sel("biologicalSex"))
 	return rv
 }
 

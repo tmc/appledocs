@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _SFSafariToolbarItemClass struct {
 // An interface definition for the [SFSafariToolbarItem] class.
 type ISFSafariToolbarItem interface {
 	objectivec.IObject
-	SetBadgeText(badgeText string)
+	SetBadgeText(badgeText appkit.string)
 	SetEnabled(enabled bool)
-	SetImage(image unsafe.Pointer)
+	SetImage(image appkit.IImage)
 	ShowPopover()
 }
 
@@ -87,8 +88,8 @@ func NewSFSafariToolbarItem() SFSafariToolbarItem {
 // Sets the badge text for the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/setBadgeText(_:)
-func (s_ SFSafariToolbarItem) SetBadgeText(badgeText string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBadgeText:"), objc.String(badgeText))
+func (s_ SFSafariToolbarItem) SetBadgeText(badgeText appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBadgeText:"), badgeText)
 }
 
 // Sets whether the toolbar item is enabled.
@@ -101,7 +102,7 @@ func (s_ SFSafariToolbarItem) SetEnabled(enabled bool) {
 // Sets the image displayed in the toolbar button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariToolbarItem/setImage(_:)
-func (s_ SFSafariToolbarItem) SetImage(image unsafe.Pointer) {
+func (s_ SFSafariToolbarItem) SetImage(image appkit.IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), image)
 }
 

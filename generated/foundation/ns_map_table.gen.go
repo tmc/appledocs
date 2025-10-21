@@ -109,8 +109,8 @@ func (m_ MapTable) SetCount(value int) {
 // The pointer functions the map table uses to manage keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
-func (m_ MapTable) KeyPointerFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("keyPointerFunctions"))
+func (m_ MapTable) KeyPointerFunctions() NSPointerFunctions {
+	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("keyPointerFunctions"))
 	return rv
 }
 
@@ -120,15 +120,15 @@ func (m_ MapTable) KeyPointerFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/keypointerfunctions
-func (m_ MapTable) SetKeyPointerFunctions(value unsafe.Pointer) {
+func (m_ MapTable) SetKeyPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyPointerFunctions:"), value)
 }
 
 // The pointer functions the map table uses to manage values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-func (m_ MapTable) ValuePointerFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valuePointerFunctions"))
+func (m_ MapTable) ValuePointerFunctions() NSPointerFunctions {
+	rv := objc.Send[NSPointerFunctions](m_.ID, objc.Sel("valuePointerFunctions"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (m_ MapTable) ValuePointerFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmaptable/valuepointerfunctions
-func (m_ MapTable) SetValuePointerFunctions(value unsafe.Pointer) {
+func (m_ MapTable) SetValuePointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValuePointerFunctions:"), value)
 }
 

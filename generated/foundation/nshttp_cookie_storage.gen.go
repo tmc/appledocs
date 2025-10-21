@@ -83,15 +83,15 @@ func NewHTTPCookieStorage() HTTPCookieStorage {
 // The shared cookie storage instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
-func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("sharedHTTPCookieStorage"))
+func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() HTTPCookieStorage {
+	rv := objc.Send[NSHTTPCookieStorage](objc.ID(hc.class), objc.Sel("sharedHTTPCookieStorage"))
 	return rv
 }
 // The shared cookie storage instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
-func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sharedHTTPCookieStorage"))
+func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() NSHTTPCookieStorage {
+	rv := objc.Send[NSHTTPCookieStorage](h_.ID, objc.Sel("sharedHTTPCookieStorage"))
 	return rv
 }
 
@@ -134,8 +134,8 @@ func (h_ HTTPCookieStorage) SetCookieAcceptPolicy(value unsafe.Pointer) {
 // The cookie storage’s cookies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies
-func (h_ HTTPCookieStorage) Cookies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cookies"))
+func (h_ HTTPCookieStorage) Cookies() NSHTTPCookie {
+	rv := objc.Send[NSHTTPCookie](h_.ID, objc.Sel("cookies"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (h_ HTTPCookieStorage) Cookies() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookiestorage/cookies
-func (h_ HTTPCookieStorage) SetCookies(value unsafe.Pointer) {
+func (h_ HTTPCookieStorage) SetCookies(value IHTTPCookie) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCookies:"), value)
 }
 

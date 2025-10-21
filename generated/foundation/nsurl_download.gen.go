@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _URLDownloadClass struct {
 type IURLDownload interface {
 	objectivec.IObject
 	Cancel()
-	SetDestinationAllowOverwrite(path string, allowOverwrite bool)
+	SetDestinationAllowOverwrite(path appkit.string, allowOverwrite bool)
 }
 
 // An object that downloads a resource asynchronously and saves the data to a file.
@@ -87,7 +88,7 @@ func NewURLDownload() URLDownload {
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
-func NewURLDownloadWithRequestDelegate(request unsafe.Pointer, delegate objc.ID) URLDownload {
+func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -99,9 +100,9 @@ func NewURLDownloadWithRequestDelegate(request unsafe.Pointer, delegate objc.ID)
 // Returns an initialized NSURLDownload object that will resume downloading the specified data to the specified file and begins the download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
-func NewURLDownloadWithResumeDataDelegatePath(resumeData unsafe.Pointer, delegate objc.ID, path string) URLDownload {
+func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path appkit.string) URLDownload {
 	instance := getURLDownloadClass().Alloc()
-	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, objc.String(path))
+	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, path)
 	rv.Autorelease()
 	return rv
 }
@@ -110,8 +111,8 @@ func NewURLDownloadWithResumeDataDelegatePath(resumeData unsafe.Pointer, delegat
 // Returns whether a URL download object can resume a download that was decoded with the specified MIME type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/canResumeDownloadDecoded(withEncodingMIMEType:)
-func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType string) bool {
-	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), objc.String(MIMEType))
+func (uc _URLDownloadClass) CanResumeDownloadDecodedWithEncodingMIMEType(MIMEType appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canResumeDownloadDecodedWithEncodingMIMEType:"), MIMEType)
 	return rv
 }
 
@@ -125,8 +126,8 @@ func (u_ URLDownload) Cancel() {
 // Sets the destination path of the downloaded file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/setDestination(_:allowOverwrite:)
-func (u_ URLDownload) SetDestinationAllowOverwrite(path string, allowOverwrite bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), objc.String(path), allowOverwrite)
+func (u_ URLDownload) SetDestinationAllowOverwrite(path appkit.string, allowOverwrite bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setDestination:allowOverwrite:"), path, allowOverwrite)
 }
 
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.
@@ -150,16 +151,16 @@ func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 // Returns the request that initiated the receiver’s download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
-func (u_ URLDownload) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("request"))
+func (u_ URLDownload) Request() NSURLRequest {
+	rv := objc.Send[NSURLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
 // Returns the resume data for a download that is not yet complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/resumeData
-func (u_ URLDownload) ResumeData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("resumeData"))
+func (u_ URLDownload) ResumeData() NSData {
+	rv := objc.Send[NSData](u_.ID, objc.Sel("resumeData"))
 	return rv
 }
 

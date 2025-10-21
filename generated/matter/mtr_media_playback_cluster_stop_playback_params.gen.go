@@ -88,7 +88,7 @@ func (m_ MTRMediaPlaybackClusterStopPlaybackParams) ServerSideProcessingTimeout(
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRMediaPlaybackClusterStopPlaybackParams) TimedInvokeTimeoutMs() found
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -31,7 +31,7 @@ type _MTRClusterStateCacheContainerClass struct {
 // An interface definition for the [MTRClusterStateCacheContainer] class.
 type IMTRClusterStateCacheContainer interface {
 	objectivec.IObject
-	ReadAttributesWithEndpointIDClusterIDAttributeIDQueueCompletion(endpointID foundation.Number, clusterID foundation.Number, attributeID foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer)
+	ReadAttributesWithEndpointIDClusterIDAttributeIDQueueCompletion(endpointID foundation.INumber, clusterID foundation.INumber, attributeID foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer)
 }
 
 //
@@ -79,7 +79,7 @@ func NewMTRClusterStateCacheContainer() MTRClusterStateCacheContainer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterStateCacheContainer/readAttributes(withEndpointID:clusterID:attributeID:queue:completion:)
-func (m_ MTRClusterStateCacheContainer) ReadAttributesWithEndpointIDClusterIDAttributeIDQueueCompletion(endpointID foundation.Number, clusterID foundation.Number, attributeID foundation.Number, queue unsafe.Pointer, completion unsafe.Pointer) {
+func (m_ MTRClusterStateCacheContainer) ReadAttributesWithEndpointIDClusterIDAttributeIDQueueCompletion(endpointID foundation.INumber, clusterID foundation.INumber, attributeID foundation.INumber, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributesWithEndpointID:clusterID:attributeID:queue:completion:"), endpointID, clusterID, attributeID, queue, completion)
 }
 

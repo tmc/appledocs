@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewConstraintConflict() ConstraintConflict {
 // Initializes a constraint conflict.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/init(constraint:database:databaseSnapshot:conflicting:conflictingSnapshots:)
-func NewConstraintConflictWithConstraintDatabaseObjectDatabaseSnapshotConflictingObjectsConflictingSnapshots(contraint unsafe.Pointer, databaseObject unsafe.Pointer, databaseSnapshot objc.ID, conflictingObjects unsafe.Pointer, conflictingSnapshots objc.ID) ConstraintConflict {
+func NewConstraintConflictWithConstraintDatabaseObjectDatabaseSnapshotConflictingObjectsConflictingSnapshots(contraint []string, databaseObject IManagedObject, databaseSnapshot objectivec.IObject, conflictingObjects []ManagedObject, conflictingSnapshots objectivec.IObject) ConstraintConflict {
 	instance := getConstraintConflictClass().Alloc()
 	rv := objc.Send[ConstraintConflict](instance.ID, objc.Sel("initWithConstraint:databaseObject:databaseSnapshot:conflictingObjects:conflictingSnapshots:"), contraint, databaseObject, databaseSnapshot, conflictingObjects, conflictingSnapshots)
 	rv.Autorelease()
@@ -104,8 +105,8 @@ func (c_ ConstraintConflict) ConflictingObjects() []ManagedObject {
 // The original property values of objects in violation of the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/conflictingSnapshots
-func (c_ ConstraintConflict) ConflictingSnapshots() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("conflictingSnapshots"))
+func (c_ ConstraintConflict) ConflictingSnapshots() []foundation.Dictionary {
+	rv := objc.Send[[]foundation.Dictionary](c_.ID, objc.Sel("conflictingSnapshots"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (c_ ConstraintConflict) ConstraintValues() unsafe.Pointer {
 // The object whose database row is using constraint values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSConstraintConflict/databaseObject
-func (c_ ConstraintConflict) DatabaseObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseObject"))
+func (c_ ConstraintConflict) DatabaseObject() NSManagedObject {
+	rv := objc.Send[NSManagedObject](c_.ID, objc.Sel("databaseObject"))
 	return rv
 }
 

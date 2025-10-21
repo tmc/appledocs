@@ -102,8 +102,8 @@ func (p_ PHObjectPlaceholder) SetHash(value int) {
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHObjectPlaceholder) LocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHObjectPlaceholder) LocalIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (p_ PHObjectPlaceholder) LocalIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHObjectPlaceholder) SetLocalIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
+func (p_ PHObjectPlaceholder) SetLocalIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
 }
 
 

@@ -102,8 +102,8 @@ func (m_ MTL4AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexBuff
 // Specifies the size of the indices the
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotiontrianglegeometrydescriptor/indextype
-func (m_ MTL4AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("indexType"))
+func (m_ MTL4AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](m_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (m_ MTL4AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotiontrianglegeometrydescriptor/indextype
-func (m_ MTL4AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+func (m_ MTL4AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndexType:"), value)
 }
 

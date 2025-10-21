@@ -84,7 +84,7 @@ func NewINShareFocusStatusIntent() INShareFocusStatusIntent {
 // Creates an intent with the specified focus status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/init(focusStatus:)
-func NewINShareFocusStatusIntentWithFocusStatus(focusStatus unsafe.Pointer) INShareFocusStatusIntent {
+func NewINShareFocusStatusIntentWithFocusStatus(focusStatus INFocusStatus) INShareFocusStatusIntent {
 	instance := getINShareFocusStatusIntentClass().Alloc()
 	rv := objc.Send[INShareFocusStatusIntent](instance.ID, objc.Sel("initWithFocusStatus:"), focusStatus)
 	rv.Autorelease()
@@ -95,8 +95,8 @@ func NewINShareFocusStatusIntentWithFocusStatus(focusStatus unsafe.Pointer) INSh
 // The user’s preference for receiving communication notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntent/focusStatus
-func (i_ INShareFocusStatusIntent) FocusStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("focusStatus"))
+func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
+	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
 	return rv
 }
 

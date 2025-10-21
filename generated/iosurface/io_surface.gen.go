@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _SurfaceClass struct {
 type ISurface interface {
 	objectivec.IObject
 	AllAttachments() unsafe.Pointer
-	AttachmentForKey(key string) objc.ID
+	AttachmentForKey(key appkit.string) objc.ID
 	BaseAddressOfPlaneAtIndex(planeIndex uint)
 	BytesPerElementOfPlaneAtIndex(planeIndex uint) int
 	BytesPerRowOfPlaneAtIndex(planeIndex uint) int
@@ -40,13 +41,13 @@ type ISurface interface {
 	ElementWidthOfPlaneAtIndex(planeIndex uint) int
 	HeightOfPlaneAtIndex(planeIndex uint) int
 	IncrementUseCount()
-	LockWithOptionsSeed(options unsafe.Pointer, seed unsafe.Pointer) unsafe.Pointer
+	LockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
 	RemoveAllAttachments()
-	RemoveAttachmentForKey(key string)
+	RemoveAttachmentForKey(key appkit.string)
 	SetAllAttachments(dict unsafe.Pointer)
-	SetAttachmentForKey(anObject objc.ID, key string)
-	SetPurgeableOldState(newState unsafe.Pointer, oldState unsafe.Pointer) unsafe.Pointer
-	UnlockWithOptionsSeed(options unsafe.Pointer, seed unsafe.Pointer) unsafe.Pointer
+	SetAttachmentForKey(anObject objectivec.IObject, key appkit.string)
+	SetPurgeableOldState(newState SurfacePurgeabilityState, oldState IOSurfacePurgeabilityState) unsafe.Pointer
+	UnlockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer
 	WidthOfPlaneAtIndex(planeIndex uint) int
 }
 
@@ -115,8 +116,8 @@ func (s_ Surface) AllAttachments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/attachment(forKey:)
-func (s_ Surface) AttachmentForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("attachmentForKey:"), objc.String(key))
+func (s_ Surface) AttachmentForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("attachmentForKey:"), key)
 	return rv
 }
 
@@ -175,7 +176,7 @@ func (s_ Surface) IncrementUseCount() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/lock(options:seed:)
-func (s_ Surface) LockWithOptionsSeed(options unsafe.Pointer, seed unsafe.Pointer) unsafe.Pointer {
+func (s_ Surface) LockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lockWithOptions:seed:"), options, seed)
 	return rv
 }
@@ -188,8 +189,8 @@ func (s_ Surface) RemoveAllAttachments() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/removeAttachment(forKey:)
-func (s_ Surface) RemoveAttachmentForKey(key string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("removeAttachmentForKey:"), objc.String(key))
+func (s_ Surface) RemoveAttachmentForKey(key appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("removeAttachmentForKey:"), key)
 }
 
 //
@@ -200,20 +201,20 @@ func (s_ Surface) SetAllAttachments(dict unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/setAttachment(_:forKey:)
-func (s_ Surface) SetAttachmentForKey(anObject objc.ID, key string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachment:forKey:"), anObject, objc.String(key))
+func (s_ Surface) SetAttachmentForKey(anObject objectivec.IObject, key appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAttachment:forKey:"), anObject, key)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/setPurgeable(_:oldState:)
-func (s_ Surface) SetPurgeableOldState(newState unsafe.Pointer, oldState unsafe.Pointer) unsafe.Pointer {
+func (s_ Surface) SetPurgeableOldState(newState SurfacePurgeabilityState, oldState IOSurfacePurgeabilityState) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("setPurgeable:oldState:"), newState, oldState)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/unlock(options:seed:)
-func (s_ Surface) UnlockWithOptionsSeed(options unsafe.Pointer, seed unsafe.Pointer) unsafe.Pointer {
+func (s_ Surface) UnlockWithOptionsSeed(options SurfaceLockOptions, seed unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("unlockWithOptions:seed:"), options, seed)
 	return rv
 }
@@ -236,6 +237,13 @@ func (s_ Surface) AllocationSize() int {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/allowsPixelSizeCasting
 func (s_ Surface) AllowsPixelSizeCasting() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("allowsPixelSizeCasting"))
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurface/baseAddress
+func (s_ Surface) BaseAddress() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("baseAddress"))
 	return rv
 }
 

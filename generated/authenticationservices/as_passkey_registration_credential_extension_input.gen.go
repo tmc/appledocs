@@ -81,8 +81,8 @@ func NewPasskeyRegistrationCredentialExtensionInput() PasskeyRegistrationCredent
 // Input for the extension in passkey registration requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyRegistrationCredentialExtensionInput-c.class/largeBlob
-func (p_ PasskeyRegistrationCredentialExtensionInput) LargeBlob() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("largeBlob"))
+func (p_ PasskeyRegistrationCredentialExtensionInput) LargeBlob() ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput {
+	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput](p_.ID, objc.Sel("largeBlob"))
 	return rv
 }
 

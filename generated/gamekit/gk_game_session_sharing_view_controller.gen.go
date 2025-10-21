@@ -87,7 +87,7 @@ func NewGameSessionSharingViewController() GameSessionSharingViewController {
 // Creates a new sharing view controller for a specified session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/init(session:)
-func NewGameSessionSharingViewControllerWithSession(session unsafe.Pointer) GameSessionSharingViewController {
+func NewGameSessionSharingViewControllerWithSession(session IGKGameSession) GameSessionSharingViewController {
 	instance := getGameSessionSharingViewControllerClass().Alloc()
 	rv := objc.Send[GameSessionSharingViewController](instance.ID, objc.Sel("initWithSession:"), session)
 	rv.Autorelease()
@@ -116,8 +116,8 @@ func (g_ GameSessionSharingViewController) SetDelegate(value objc.ID) {
 // The game session associated with the view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/session
-func (g_ GameSessionSharingViewController) Session() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("session"))
+func (g_ GameSessionSharingViewController) Session() GKGameSession {
+	rv := objc.Send[GKGameSession](g_.ID, objc.Sel("session"))
 	return rv
 }
 

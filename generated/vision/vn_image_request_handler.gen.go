@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +34,7 @@ type _ImageRequestHandlerClass struct {
 // An interface definition for the [ImageRequestHandler] class.
 type IImageRequestHandler interface {
 	objectivec.IObject
-	PerformRequestsError(requests unsafe.Pointer, error_ unsafe.Pointer) bool
+	PerformRequestsError(requests []Request, error_ unsafe.Pointer) bool
 }
 
 // An object that processes one or more image-analysis request pertaining to a single image.
@@ -87,7 +90,7 @@ func NewImageRequestHandler() ImageRequestHandler {
 // Creates a handler to be used for performing requests on Core Graphics images.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(cgImage:options:)
-func NewImageRequestHandlerWithCGImageOptions(image CGImageRef, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithCGImageOptions(image coregraphics.CGImageRef, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCGImage:options:"), image, options)
 	rv.Autorelease()
@@ -99,7 +102,7 @@ func NewImageRequestHandlerWithCGImageOptions(image CGImageRef, options unsafe.P
 // Creates a handler to be used for performing requests on a Core Graphics image with known orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(cgImage:orientation:options:)
-func NewImageRequestHandlerWithCGImageOrientationOptions(image CGImageRef, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithCGImageOrientationOptions(image coregraphics.CGImageRef, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCGImage:orientation:options:"), image, orientation, options)
 	rv.Autorelease()
@@ -111,7 +114,7 @@ func NewImageRequestHandlerWithCGImageOrientationOptions(image CGImageRef, orien
 // Creates a handler to use for performing requests on Core Image image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(ciImage:options:)
-func NewImageRequestHandlerWithCIImageOptions(image unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithCIImageOptions(image appkit.IImage, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCIImage:options:"), image, options)
 	rv.Autorelease()
@@ -123,7 +126,7 @@ func NewImageRequestHandlerWithCIImageOptions(image unsafe.Pointer, options unsa
 // Creates a handler to be used for performing requests on Core Image image data of a known orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(ciImage:orientation:options:)
-func NewImageRequestHandlerWithCIImageOrientationOptions(image unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithCIImageOrientationOptions(image appkit.IImage, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCIImage:orientation:options:"), image, orientation, options)
 	rv.Autorelease()
@@ -135,7 +138,7 @@ func NewImageRequestHandlerWithCIImageOrientationOptions(image unsafe.Pointer, o
 // Creates a request handler that performs requests on an image in a sample buffer that contains depth data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(cmSampleBuffer:depthData:orientation:options:)
-func NewImageRequestHandlerWithCMSampleBufferDepthDataOrientationOptions(sampleBuffer unsafe.Pointer, depthData unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithCMSampleBufferDepthDataOrientationOptions(sampleBuffer unsafe.Pointer, depthData avfoundation.IDepthData, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCMSampleBuffer:depthData:orientation:options:"), sampleBuffer, depthData, orientation, options)
 	rv.Autorelease()
@@ -168,7 +171,7 @@ func NewImageRequestHandlerWithCMSampleBufferOrientationOptions(sampleBuffer uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(cvPixelBuffer:depthData:orientation:options:)
-func NewImageRequestHandlerWithCVPixelBufferDepthDataOrientationOptions(pixelBuffer unsafe.Pointer, depthData unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithCVPixelBufferDepthDataOrientationOptions(pixelBuffer unsafe.Pointer, depthData avfoundation.IDepthData, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithCVPixelBuffer:depthData:orientation:options:"), pixelBuffer, depthData, orientation, options)
 	rv.Autorelease()
@@ -204,7 +207,7 @@ func NewImageRequestHandlerWithCVPixelBufferOrientationOptions(pixelBuffer unsaf
 // Creates a handler to use for performing requests on an image in a data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(data:options:)
-func NewImageRequestHandlerWithDataOptions(imageData unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithDataOptions(imageData foundation.IData, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithData:options:"), imageData, options)
 	rv.Autorelease()
@@ -216,7 +219,7 @@ func NewImageRequestHandlerWithDataOptions(imageData unsafe.Pointer, options uns
 // Creates a handler to use for performing requests on an image of known orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(data:orientation:options:)
-func NewImageRequestHandlerWithDataOrientationOptions(imageData unsafe.Pointer, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithDataOrientationOptions(imageData foundation.IData, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithData:orientation:options:"), imageData, orientation, options)
 	rv.Autorelease()
@@ -228,7 +231,7 @@ func NewImageRequestHandlerWithDataOrientationOptions(imageData unsafe.Pointer, 
 // Creates a handler to be used for performing requests on an image at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(url:options:)
-func NewImageRequestHandlerWithURLOptions(imageURL foundation.URL, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithURLOptions(imageURL foundation.IURL, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:options:"), imageURL, options)
 	rv.Autorelease()
@@ -240,7 +243,7 @@ func NewImageRequestHandlerWithURLOptions(imageURL foundation.URL, options unsaf
 // Creates a handler to be used for performing requests on an image with known orientation, at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/init(url:orientation:options:)
-func NewImageRequestHandlerWithURLOrientationOptions(imageURL foundation.URL, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
+func NewImageRequestHandlerWithURLOrientationOptions(imageURL foundation.IURL, orientation unsafe.Pointer, options unsafe.Pointer) ImageRequestHandler {
 	instance := getImageRequestHandlerClass().Alloc()
 	rv := objc.Send[ImageRequestHandler](instance.ID, objc.Sel("initWithURL:orientation:options:"), imageURL, orientation, options)
 	rv.Autorelease()
@@ -251,7 +254,7 @@ func NewImageRequestHandlerWithURLOrientationOptions(imageURL foundation.URL, or
 // Schedules Vision requests to perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageRequestHandler/perform(_:)
-func (i_ ImageRequestHandler) PerformRequestsError(requests unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (i_ ImageRequestHandler) PerformRequestsError(requests []Request, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("performRequests:error:"), requests, error_)
 	return rv
 }

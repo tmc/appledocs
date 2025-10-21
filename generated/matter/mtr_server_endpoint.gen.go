@@ -78,8 +78,8 @@ func NewMTRServerEndpoint() MTRServerEndpoint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/accessgrants
-func (m_ MTRServerEndpoint) AccessGrants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("accessGrants"))
+func (m_ MTRServerEndpoint) AccessGrants() MTRAccessGrant {
+	rv := objc.Send[MTRAccessGrant](m_.ID, objc.Sel("accessGrants"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRServerEndpoint) AccessGrants() unsafe.Pointer {
 // SetAccessGrants sets the value of the accessGrants property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/accessgrants
-func (m_ MTRServerEndpoint) SetAccessGrants(value unsafe.Pointer) {
+func (m_ MTRServerEndpoint) SetAccessGrants(value IMTRAccessGrant) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessGrants:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/devicetypes
-func (m_ MTRServerEndpoint) DeviceTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceTypes"))
+func (m_ MTRServerEndpoint) DeviceTypes() MTRDeviceTypeRevision {
+	rv := objc.Send[MTRDeviceTypeRevision](m_.ID, objc.Sel("deviceTypes"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRServerEndpoint) DeviceTypes() unsafe.Pointer {
 // SetDeviceTypes sets the value of the deviceTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/devicetypes
-func (m_ MTRServerEndpoint) SetDeviceTypes(value unsafe.Pointer) {
+func (m_ MTRServerEndpoint) SetDeviceTypes(value IMTRDeviceTypeRevision) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypes:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRServerEndpoint) EndpointID() foundation.Number {
 // SetEndpointID sets the value of the endpointID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/endpointid
-func (m_ MTRServerEndpoint) SetEndpointID(value foundation.Number) {
+func (m_ MTRServerEndpoint) SetEndpointID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/serverclusters
-func (m_ MTRServerEndpoint) ServerClusters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("serverClusters"))
+func (m_ MTRServerEndpoint) ServerClusters() MTRServerCluster {
+	rv := objc.Send[MTRServerCluster](m_.ID, objc.Sel("serverClusters"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRServerEndpoint) ServerClusters() unsafe.Pointer {
 // SetServerClusters sets the value of the serverClusters property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/serverclusters
-func (m_ MTRServerEndpoint) SetServerClusters(value unsafe.Pointer) {
+func (m_ MTRServerEndpoint) SetServerClusters(value IMTRServerCluster) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerClusters:"), value)
 }
 

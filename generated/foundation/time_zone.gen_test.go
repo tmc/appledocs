@@ -17,19 +17,3 @@ func ExampleNewTimeZoneForSecondsFromGMT() {
 	)
 	// Output:
 }
-// ExampleNewTimeZoneWithAbbreviation demonstrates how to create a TimeZone instance using NewTimeZoneWithAbbreviation.
-// Returns the time zone object identified by a given abbreviation.
-func ExampleNewTimeZoneWithAbbreviation() {
-	_ = foundation.NewTimeZoneWithAbbreviation(
-		"abbreviation", // abbreviation string
-	)
-	// Output:
-}
-// ExampleNewTimeZoneWithName demonstrates how to create a TimeZone instance using NewTimeZoneWithName.
-// Returns a time zone initialized with a given identifier.
-func ExampleNewTimeZoneWithName() {
-	_ = foundation.NewTimeZoneWithName(
-		"tzName", // tzName string
-	)
-	// Output:
-}

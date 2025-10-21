@@ -83,8 +83,8 @@ func NewArgumentDescriptor() ArgumentDescriptor {
 // Creates an empty argument descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLArgumentDescriptor/argumentDescriptor
-func (ac _ArgumentDescriptorClass) ArgumentDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("argumentDescriptor"))
+func (ac _ArgumentDescriptorClass) ArgumentDescriptor() ArgumentDescriptor {
+	rv := objc.Send[ArgumentDescriptor](objc.ID(ac.class), objc.Sel("argumentDescriptor"))
 	return rv
 }
 
@@ -181,8 +181,8 @@ func (a_ ArgumentDescriptor) SetIndex(value int) {
 // The texture type of a texture argument.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/texturetype
-func (a_ ArgumentDescriptor) TextureType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("textureType"))
+func (a_ ArgumentDescriptor) TextureType() TextureType {
+	rv := objc.Send[TextureType](a_.ID, objc.Sel("textureType"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (a_ ArgumentDescriptor) TextureType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlargumentdescriptor/texturetype
-func (a_ ArgumentDescriptor) SetTextureType(value unsafe.Pointer) {
+func (a_ ArgumentDescriptor) SetTextureType(value TextureType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTextureType:"), value)
 }
 

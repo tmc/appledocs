@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +31,18 @@ type _PaymentQueueClass struct {
 // An interface definition for the [PaymentQueue] class.
 type IPaymentQueue interface {
 	objectivec.IObject
-	AddPayment(payment unsafe.Pointer)
-	AddTransactionObserver(observer objc.ID)
-	CancelDownloads(downloads unsafe.Pointer)
-	FinishTransaction(transaction unsafe.Pointer)
-	PauseDownloads(downloads unsafe.Pointer)
+	AddPayment(payment ISKPayment)
+	AddTransactionObserver(observer objectivec.IObject)
+	CancelDownloads(downloads []Download)
+	FinishTransaction(transaction ISKPaymentTransaction)
+	PauseDownloads(downloads []Download)
 	PresentCodeRedemptionSheet()
-	RemoveTransactionObserver(observer objc.ID)
+	RemoveTransactionObserver(observer objectivec.IObject)
 	RestoreCompletedTransactions()
-	RestoreCompletedTransactionsWithApplicationUsername(username string)
-	ResumeDownloads(downloads unsafe.Pointer)
+	RestoreCompletedTransactionsWithApplicationUsername(username appkit.string)
+	ResumeDownloads(downloads []Download)
 	ShowPriceConsentIfNeeded()
-	StartDownloads(downloads unsafe.Pointer)
+	StartDownloads(downloads []Download)
 }
 
 // A queue of payment transactions for the App Store to process.
@@ -95,35 +96,35 @@ func NewPaymentQueue() PaymentQueue {
 // Adds a payment request to the queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/add(_:)-4vct1
-func (p_ PaymentQueue) AddPayment(payment unsafe.Pointer) {
+func (p_ PaymentQueue) AddPayment(payment ISKPayment) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addPayment:"), payment)
 }
 
 // Adds an observer to the payment queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/add(_:)-5ciz2
-func (p_ PaymentQueue) AddTransactionObserver(observer objc.ID) {
+func (p_ PaymentQueue) AddTransactionObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addTransactionObserver:"), observer)
 }
 
 // Removes a set of downloads from the download list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/cancel(_:)
-func (p_ PaymentQueue) CancelDownloads(downloads unsafe.Pointer) {
+func (p_ PaymentQueue) CancelDownloads(downloads []Download) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancelDownloads:"), downloads)
 }
 
 // Notifies the App Store that the app finished processing the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/finishTransaction(_:)
-func (p_ PaymentQueue) FinishTransaction(transaction unsafe.Pointer) {
+func (p_ PaymentQueue) FinishTransaction(transaction ISKPaymentTransaction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("finishTransaction:"), transaction)
 }
 
 // Pauses a set of downloads.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/pause(_:)
-func (p_ PaymentQueue) PauseDownloads(downloads unsafe.Pointer) {
+func (p_ PaymentQueue) PauseDownloads(downloads []Download) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("pauseDownloads:"), downloads)
 }
 
@@ -137,7 +138,7 @@ func (p_ PaymentQueue) PresentCodeRedemptionSheet() {
 // Removes an observer from the payment queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/remove(_:)
-func (p_ PaymentQueue) RemoveTransactionObserver(observer objc.ID) {
+func (p_ PaymentQueue) RemoveTransactionObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeTransactionObserver:"), observer)
 }
 
@@ -151,14 +152,14 @@ func (p_ PaymentQueue) RestoreCompletedTransactions() {
 // Asks the payment queue to restore previously completed purchases, providing an opaque identifier for the user’s account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/restoreCompletedTransactions(withApplicationUsername:)
-func (p_ PaymentQueue) RestoreCompletedTransactionsWithApplicationUsername(username string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("restoreCompletedTransactionsWithApplicationUsername:"), objc.String(username))
+func (p_ PaymentQueue) RestoreCompletedTransactionsWithApplicationUsername(username appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("restoreCompletedTransactionsWithApplicationUsername:"), username)
 }
 
 // Resumes a set of downloads.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/resume(_:)
-func (p_ PaymentQueue) ResumeDownloads(downloads unsafe.Pointer) {
+func (p_ PaymentQueue) ResumeDownloads(downloads []Download) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("resumeDownloads:"), downloads)
 }
 
@@ -172,7 +173,7 @@ func (p_ PaymentQueue) ShowPriceConsentIfNeeded() {
 // Adds a set of downloads to the download list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentQueue/start(_:)
-func (p_ PaymentQueue) StartDownloads(downloads unsafe.Pointer) {
+func (p_ PaymentQueue) StartDownloads(downloads []Download) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startDownloads:"), downloads)
 }
 
@@ -205,8 +206,8 @@ func (p_ PaymentQueue) Transactions() []PaymentTransaction {
 // The App Store storefront of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
-func (p_ PaymentQueue) Storefront() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("storefront"))
+func (p_ PaymentQueue) Storefront() SKStorefront {
+	rv := objc.Send[SKStorefront](p_.ID, objc.Sel("storefront"))
 	return rv
 }
 
@@ -216,7 +217,7 @@ func (p_ PaymentQueue) Storefront() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymentqueue/storefront
-func (p_ PaymentQueue) SetStorefront(value unsafe.Pointer) {
+func (p_ PaymentQueue) SetStorefront(value ISKStorefront) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStorefront:"), value)
 }
 

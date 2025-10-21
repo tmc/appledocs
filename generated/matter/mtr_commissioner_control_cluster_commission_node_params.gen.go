@@ -87,7 +87,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) RequestID() foundati
 // SetRequestID sets the value of the requestID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/requestID
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetRequestID(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetRequestID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) ResponseTimeoutSecon
 // SetResponseTimeoutSeconds sets the value of the responseTimeoutSeconds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/responseTimeoutSeconds
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetResponseTimeoutSeconds(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetResponseTimeoutSeconds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseTimeoutSeconds:"), value)
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) ServerSideProcessing
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRCommissionerControlClusterCommissionNodeParams) TimedInvokeTimeoutMs
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterCommissionNodeParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterCommissionNodeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -30,15 +30,15 @@ type _MTRClusterMessagesClass struct {
 // An interface definition for the [MTRClusterMessages] class.
 type IMTRClusterMessages interface {
 	IMTRGenericCluster
-	CancelMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	PresentMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeActiveMessageIDsWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeMessagesWithParams(params unsafe.Pointer) unsafe.Pointer
+	CancelMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterCancelMessagesRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	PresentMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterPresentMessagesRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeActiveMessageIDsWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeMessagesWithParams(params IMTRReadParams) unsafe.Pointer
 }
 
 // Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
@@ -94,7 +94,7 @@ func NewMTRClusterMessages() MTRClusterMessages {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/init(device:endpointID:queue:)
-func NewMTRClusterMessagesWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterMessages {
+func NewMTRClusterMessagesWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterMessages {
 	instance := getMTRClusterMessagesClass().Alloc()
 	rv := objc.Send[MTRClusterMessages](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -104,61 +104,61 @@ func NewMTRClusterMessagesWithDeviceEndpointIDQueue(device unsafe.Pointer, endpo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/cancelRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMessages) CancelMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterMessages) CancelMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterCancelMessagesRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelMessagesRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/presentRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMessages) PresentMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterMessages) PresentMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterPresentMessagesRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("presentMessagesRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterMessages) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeActiveMessageIDs(with:)
-func (m_ MTRClusterMessages) ReadAttributeActiveMessageIDsWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeActiveMessageIDsWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeActiveMessageIDsWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeAttributeList(with:)
-func (m_ MTRClusterMessages) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeClusterRevision(with:)
-func (m_ MTRClusterMessages) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeFeatureMap(with:)
-func (m_ MTRClusterMessages) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterMessages) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeMessages(with:)
-func (m_ MTRClusterMessages) ReadAttributeMessagesWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMessages) ReadAttributeMessagesWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeMessagesWithParams:"), params)
 	return rv
 }

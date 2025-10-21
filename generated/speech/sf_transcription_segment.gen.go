@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewSFTranscriptionSegment() SFTranscriptionSegment {
 // The entire transcription of utterances, formatted into a single, user-displayable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscriptionSegment) FormattedString() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
+func (s_ SFTranscriptionSegment) FormattedString() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("formattedString"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (s_ SFTranscriptionSegment) FormattedString() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscriptionSegment) SetFormattedString(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
+func (s_ SFTranscriptionSegment) SetFormattedString(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), value)
 }
 
 // An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscriptionSegment) Segments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segments"))
+func (s_ SFTranscriptionSegment) Segments() SFTranscriptionSegment {
+	rv := objc.Send[SFTranscriptionSegment](s_.ID, objc.Sel("segments"))
 	return rv
 }
 
@@ -112,15 +113,15 @@ func (s_ SFTranscriptionSegment) Segments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscriptionSegment) SetSegments(value unsafe.Pointer) {
+func (s_ SFTranscriptionSegment) SetSegments(value ISFTranscriptionSegment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegments:"), value)
 }
 
 // An array of alternate interpretations of the utterance in the transcription segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/alternativesubstrings
-func (s_ SFTranscriptionSegment) AlternativeSubstrings() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("alternativeSubstrings"))
+func (s_ SFTranscriptionSegment) AlternativeSubstrings() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("alternativeSubstrings"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (s_ SFTranscriptionSegment) AlternativeSubstrings() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/alternativesubstrings
-func (s_ SFTranscriptionSegment) SetAlternativeSubstrings(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternativeSubstrings:"), objc.String(value))
+func (s_ SFTranscriptionSegment) SetAlternativeSubstrings(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternativeSubstrings:"), value)
 }
 
 // The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.
@@ -173,8 +174,8 @@ func (s_ SFTranscriptionSegment) SetDuration(value unsafe.Pointer) {
 // The string representation of the utterance in the transcription segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substring
-func (s_ SFTranscriptionSegment) Substring() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("substring"))
+func (s_ SFTranscriptionSegment) Substring() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("substring"))
 	return rv
 }
 
@@ -184,15 +185,15 @@ func (s_ SFTranscriptionSegment) Substring() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substring
-func (s_ SFTranscriptionSegment) SetSubstring(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstring:"), objc.String(value))
+func (s_ SFTranscriptionSegment) SetSubstring(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstring:"), value)
 }
 
 // The range information for the transcription segment’s substring, relative to the overall transcription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substringrange
-func (s_ SFTranscriptionSegment) SubstringRange() Range {
-	rv := objc.Send[Range](s_.ID, objc.Sel("substringRange"))
+func (s_ SFTranscriptionSegment) SubstringRange() foundation.Range {
+	rv := objc.Send[foundation.Range](s_.ID, objc.Sel("substringRange"))
 	return rv
 }
 
@@ -202,7 +203,7 @@ func (s_ SFTranscriptionSegment) SubstringRange() Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/substringrange
-func (s_ SFTranscriptionSegment) SetSubstringRange(value Range) {
+func (s_ SFTranscriptionSegment) SetSubstringRange(value foundation.IRange) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSubstringRange:"), value)
 }
 
@@ -227,8 +228,8 @@ func (s_ SFTranscriptionSegment) SetTimestamp(value unsafe.Pointer) {
 // An analysis of the transcription segment’s vocal properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/voiceanalytics
-func (s_ SFTranscriptionSegment) VoiceAnalytics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceAnalytics"))
+func (s_ SFTranscriptionSegment) VoiceAnalytics() SFVoiceAnalytics {
+	rv := objc.Send[SFVoiceAnalytics](s_.ID, objc.Sel("voiceAnalytics"))
 	return rv
 }
 
@@ -238,7 +239,7 @@ func (s_ SFTranscriptionSegment) VoiceAnalytics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscriptionsegment/voiceanalytics
-func (s_ SFTranscriptionSegment) SetVoiceAnalytics(value unsafe.Pointer) {
+func (s_ SFTranscriptionSegment) SetVoiceAnalytics(value ISFVoiceAnalytics) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)
 }
 

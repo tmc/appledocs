@@ -106,8 +106,8 @@ func (c_ CommandBuffer) SetHeapProvider(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/predicate
-func (c_ CommandBuffer) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicate"))
+func (c_ CommandBuffer) Predicate() MPSPredicate {
+	rv := objc.Send[MPSPredicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -115,14 +115,14 @@ func (c_ CommandBuffer) Predicate() unsafe.Pointer {
 // SetPredicate sets the value of the predicate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCommandBuffer/predicate
-func (c_ CommandBuffer) SetPredicate(value unsafe.Pointer) {
+func (c_ CommandBuffer) SetPredicate(value IMPSPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
-func (c_ CommandBuffer) RootCommandBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rootCommandBuffer"))
+func (c_ CommandBuffer) RootCommandBuffer() CommandBuffer {
+	rv := objc.Send[CommandBuffer](c_.ID, objc.Sel("rootCommandBuffer"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (c_ CommandBuffer) RootCommandBuffer() unsafe.Pointer {
 // SetRootCommandBuffer sets the value of the rootCommandBuffer property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscommandbuffer/rootcommandbuffer
-func (c_ CommandBuffer) SetRootCommandBuffer(value unsafe.Pointer) {
+func (c_ CommandBuffer) SetRootCommandBuffer(value ICommandBuffer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRootCommandBuffer:"), value)
 }
 

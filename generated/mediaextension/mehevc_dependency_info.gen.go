@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewMEHEVCDependencyInfo() MEHEVCDependencyInfo {
 // The HEVC constraint indicator flags (6 bytes), if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/constraintIndicatorFlags
-func (m_ MEHEVCDependencyInfo) ConstraintIndicatorFlags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("constraintIndicatorFlags"))
+func (m_ MEHEVCDependencyInfo) ConstraintIndicatorFlags() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("constraintIndicatorFlags"))
 	return rv
 }
 
@@ -92,7 +93,7 @@ func (m_ MEHEVCDependencyInfo) ConstraintIndicatorFlags() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEHEVCDependencyInfo/constraintIndicatorFlags
-func (m_ MEHEVCDependencyInfo) SetConstraintIndicatorFlags(value unsafe.Pointer) {
+func (m_ MEHEVCDependencyInfo) SetConstraintIndicatorFlags(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConstraintIndicatorFlags:"), value)
 }
 
@@ -225,8 +226,8 @@ func (m_ MEHEVCDependencyInfo) SetHasTemporalSubLayerAccess(value bool) {
 // The HEVC profile compatibility flags (4 bytes), if available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profilecompatibilityflags
-func (m_ MEHEVCDependencyInfo) ProfileCompatibilityFlags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileCompatibilityFlags"))
+func (m_ MEHEVCDependencyInfo) ProfileCompatibilityFlags() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("profileCompatibilityFlags"))
 	return rv
 }
 
@@ -236,7 +237,7 @@ func (m_ MEHEVCDependencyInfo) ProfileCompatibilityFlags() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mehevcdependencyinfo/profilecompatibilityflags
-func (m_ MEHEVCDependencyInfo) SetProfileCompatibilityFlags(value unsafe.Pointer) {
+func (m_ MEHEVCDependencyInfo) SetProfileCompatibilityFlags(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileCompatibilityFlags:"), value)
 }
 

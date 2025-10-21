@@ -30,10 +30,10 @@ type _PHPickerViewControllerClass struct {
 // An interface definition for the [PHPickerViewController] class.
 type IPHPickerViewController interface {
 	appkit.IViewController
-	DeselectAssetsWithIdentifiers(identifiers unsafe.Pointer)
-	MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier string, afterIdentifier string)
+	DeselectAssetsWithIdentifiers(identifiers []string)
+	MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier appkit.string, afterIdentifier appkit.string)
 	ScrollToInitialPosition()
-	UpdatePickerUsingConfiguration(configuration unsafe.Pointer)
+	UpdatePickerUsingConfiguration(configuration IPHPickerUpdateConfiguration)
 	ZoomIn()
 	ZoomOut()
 }
@@ -93,7 +93,7 @@ func NewPHPickerViewController() PHPickerViewController {
 // Creates a new picker view controller with the configuration you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/initWithConfiguration:
-func NewPHPickerViewControllerWithConfiguration(configuration unsafe.Pointer) PHPickerViewController {
+func NewPHPickerViewControllerWithConfiguration(configuration IPHPickerConfiguration) PHPickerViewController {
 	instance := getPHPickerViewControllerClass().Alloc()
 	rv := objc.Send[PHPickerViewController](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -104,15 +104,15 @@ func NewPHPickerViewControllerWithConfiguration(configuration unsafe.Pointer) PH
 // Deselects assets that are in a selected state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/deselectAssets(withIdentifiers:)
-func (p_ PHPickerViewController) DeselectAssetsWithIdentifiers(identifiers unsafe.Pointer) {
+func (p_ PHPickerViewController) DeselectAssetsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deselectAssetsWithIdentifiers:"), identifiers)
 }
 
 // Reorders assets that are in a selected state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/moveAsset(withIdentifier:afterAssetWithIdentifier:)
-func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier string, afterIdentifier string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), objc.String(identifier), objc.String(afterIdentifier))
+func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier(identifier appkit.string, afterIdentifier appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), identifier, afterIdentifier)
 }
 
 // Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.
@@ -125,7 +125,7 @@ func (p_ PHPickerViewController) ScrollToInitialPosition() {
 // Customizes your app’s photo picker according to the given configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/updatePickerUsingConfiguration:
-func (p_ PHPickerViewController) UpdatePickerUsingConfiguration(configuration unsafe.Pointer) {
+func (p_ PHPickerViewController) UpdatePickerUsingConfiguration(configuration IPHPickerUpdateConfiguration) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("updatePickerUsingConfiguration:"), configuration)
 }
 
@@ -146,8 +146,8 @@ func (p_ PHPickerViewController) ZoomOut() {
 // The configuration you specify when creating the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerViewController/configuration-3vf53
-func (p_ PHPickerViewController) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("configuration"))
+func (p_ PHPickerViewController) Configuration() PHPickerConfiguration {
+	rv := objc.Send[PHPickerConfiguration](p_.ID, objc.Sel("configuration"))
 	return rv
 }
 

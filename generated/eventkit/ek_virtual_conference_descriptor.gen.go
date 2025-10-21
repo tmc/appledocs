@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewEKVirtualConferenceDescriptor() EKVirtualConferenceDescriptor {
 // Creates an object that describes a virtual conference, including a name and URL to join the conference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/init(title:urlDescriptors:conferenceDetails:)
-func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title string, URLDescriptors unsafe.Pointer, conferenceDetails string) EKVirtualConferenceDescriptor {
+func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title appkit.string, URLDescriptors []EKVirtualConferenceURLDescriptor, conferenceDetails appkit.string) EKVirtualConferenceDescriptor {
 	instance := getEKVirtualConferenceDescriptorClass().Alloc()
-	rv := objc.Send[EKVirtualConferenceDescriptor](instance.ID, objc.Sel("initWithTitle:URLDescriptors:conferenceDetails:"), objc.String(title), URLDescriptors, objc.String(conferenceDetails))
+	rv := objc.Send[EKVirtualConferenceDescriptor](instance.ID, objc.Sel("initWithTitle:URLDescriptors:conferenceDetails:"), title, URLDescriptors, conferenceDetails)
 	rv.Autorelease()
 	return rv
 }
@@ -96,16 +97,16 @@ func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(ti
 // Additional information about the conference that users may find helpful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/conferenceDetails
-func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("conferenceDetails"))
+func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
 }
 
 // The user-visible name of the virtual conference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/title
-func (e_ EKVirtualConferenceDescriptor) Title() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKVirtualConferenceDescriptor) Title() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
 	return rv
 }
 

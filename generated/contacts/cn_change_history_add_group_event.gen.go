@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CNChangeHistoryAddGroupEvent] class.
@@ -82,16 +83,16 @@ func NewCNChangeHistoryAddGroupEvent() CNChangeHistoryAddGroupEvent {
 // A string that uniquely identifies the container where the user added the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/containerIdentifier
-func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddGroupEvent) ContainerIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 
 // The group the user added.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddGroupEvent/group
-func (c_ CNChangeHistoryAddGroupEvent) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CNChangeHistoryAddGroupEvent) Group() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 

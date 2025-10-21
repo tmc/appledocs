@@ -90,7 +90,7 @@ func (m_ MTREnergyEVSEClusterDisableParams) ServerSideProcessingTimeout() founda
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterDisableParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterDisableParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterDisableParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTREnergyEVSEClusterDisableParams) TimedInvokeTimeoutMs() foundation.Nu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterDisableParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterDisableParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterDisableParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

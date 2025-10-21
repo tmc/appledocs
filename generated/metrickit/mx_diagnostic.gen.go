@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _MXDiagnosticClass struct {
 // An interface definition for the [MXDiagnostic] class.
 type IMXDiagnostic interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An abstract data class for a diagnostic.
@@ -83,32 +85,32 @@ func NewMXDiagnostic() MXDiagnostic {
 // Returns the contents of a diagnostic as a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/dictionaryRepresentation()
-func (m_ MXDiagnostic) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dictionaryRepresentation"))
+func (m_ MXDiagnostic) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
 // Returns the contents of the diagnostic in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/jsonRepresentation()
-func (m_ MXDiagnostic) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXDiagnostic) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
 // The value of the bundle version key, short form, in the app’s property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/applicationVersion
-func (m_ MXDiagnostic) ApplicationVersion() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationVersion"))
+func (m_ MXDiagnostic) ApplicationVersion() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationVersion"))
 	return rv
 }
 
 // A set of system-level information for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnostic/metaData
-func (m_ MXDiagnostic) MetaData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metaData"))
+func (m_ MXDiagnostic) MetaData() MXMetaData {
+	rv := objc.Send[MXMetaData](m_.ID, objc.Sel("metaData"))
 	return rv
 }
 
@@ -122,8 +124,8 @@ func (m_ MXDiagnostic) SignpostData() []MXSignpostRecord {
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXDiagnostic) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXDiagnostic) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

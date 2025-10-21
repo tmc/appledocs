@@ -87,7 +87,7 @@ func (m_ MTRAccessControlClusterAccessControlTargetStruct) Cluster() foundation.
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontroltargetstruct/cluster
-func (m_ MTRAccessControlClusterAccessControlTargetStruct) SetCluster(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlTargetStruct) SetCluster(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAccessControlClusterAccessControlTargetStruct) DeviceType() foundati
 // SetDeviceType sets the value of the deviceType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontroltargetstruct/devicetype
-func (m_ MTRAccessControlClusterAccessControlTargetStruct) SetDeviceType(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlTargetStruct) SetDeviceType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAccessControlClusterAccessControlTargetStruct) Endpoint() foundation
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontroltargetstruct/endpoint
-func (m_ MTRAccessControlClusterAccessControlTargetStruct) SetEndpoint(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlTargetStruct) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

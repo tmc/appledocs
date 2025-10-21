@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,15 +84,15 @@ func NewSFContentBlockerManager() SFContentBlockerManager {
 // Determines the state of your content blocker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerManager/getStateOfContentBlocker(withIdentifier:completionHandler:)
-func (sc _SFContentBlockerManagerClass) GetStateOfContentBlockerWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStateOfContentBlockerWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (sc _SFContentBlockerManagerClass) GetStateOfContentBlockerWithIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("getStateOfContentBlockerWithIdentifier:completionHandler:"), identifier, completionHandler)
 }
 
 // Tells Safari to reload the specified extension’s content-blocking rules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFContentBlockerManager/reloadContentBlocker(withIdentifier:completionHandler:)
-func (sc _SFContentBlockerManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (sc _SFContentBlockerManagerClass) ReloadContentBlockerWithIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("reloadContentBlockerWithIdentifier:completionHandler:"), identifier, completionHandler)
 }
 
 

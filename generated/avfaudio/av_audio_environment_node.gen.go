@@ -130,8 +130,8 @@ func (a_ AudioEnvironmentNode) SetListenerAngularOrientation(value unsafe.Pointe
 // The distance attenuation parameters for the environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/distanceattenuationparameters
-func (a_ AudioEnvironmentNode) DistanceAttenuationParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("distanceAttenuationParameters"))
+func (a_ AudioEnvironmentNode) DistanceAttenuationParameters() AVAudioEnvironmentDistanceAttenuationParameters {
+	rv := objc.Send[AVAudioEnvironmentDistanceAttenuationParameters](a_.ID, objc.Sel("distanceAttenuationParameters"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (a_ AudioEnvironmentNode) DistanceAttenuationParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/distanceattenuationparameters
-func (a_ AudioEnvironmentNode) SetDistanceAttenuationParameters(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetDistanceAttenuationParameters(value IAVAudioEnvironmentDistanceAttenuationParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDistanceAttenuationParameters:"), value)
 }
 
@@ -202,8 +202,8 @@ func (a_ AudioEnvironmentNode) SetListenerVectorOrientation(value unsafe.Pointer
 // An unused input bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
-func (a_ AudioEnvironmentNode) NextAvailableInputBus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nextAvailableInputBus"))
+func (a_ AudioEnvironmentNode) NextAvailableInputBus() AudioNodeBus {
+	rv := objc.Send[AudioNodeBus](a_.ID, objc.Sel("nextAvailableInputBus"))
 	return rv
 }
 
@@ -213,15 +213,15 @@ func (a_ AudioEnvironmentNode) NextAvailableInputBus() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/nextavailableinputbus
-func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetNextAvailableInputBus(value IAudioNodeBus) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNextAvailableInputBus:"), value)
 }
 
 // The type of output hardware.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
-func (a_ AudioEnvironmentNode) OutputType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputType"))
+func (a_ AudioEnvironmentNode) OutputType() AudioEnvironmentOutputType {
+	rv := objc.Send[AudioEnvironmentOutputType](a_.ID, objc.Sel("outputType"))
 	return rv
 }
 
@@ -231,7 +231,7 @@ func (a_ AudioEnvironmentNode) OutputType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/outputtype
-func (a_ AudioEnvironmentNode) SetOutputType(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetOutputType(value AudioEnvironmentOutputType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputType:"), value)
 }
 
@@ -256,8 +256,8 @@ func (a_ AudioEnvironmentNode) SetOutputVolume(value unsafe.Pointer) {
 // The reverb parameters for the environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/reverbparameters
-func (a_ AudioEnvironmentNode) ReverbParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("reverbParameters"))
+func (a_ AudioEnvironmentNode) ReverbParameters() AVAudioEnvironmentReverbParameters {
+	rv := objc.Send[AVAudioEnvironmentReverbParameters](a_.ID, objc.Sel("reverbParameters"))
 	return rv
 }
 
@@ -267,7 +267,7 @@ func (a_ AudioEnvironmentNode) ReverbParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode/reverbparameters
-func (a_ AudioEnvironmentNode) SetReverbParameters(value unsafe.Pointer) {
+func (a_ AudioEnvironmentNode) SetReverbParameters(value IAVAudioEnvironmentReverbParameters) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setReverbParameters:"), value)
 }
 

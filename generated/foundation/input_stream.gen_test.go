@@ -9,11 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewInputStream
 
-// ExampleNewInputStreamWithFileAtPath demonstrates how to create a InputStream instance using NewInputStreamWithFileAtPath.
-// Initializes and returns an   object that reads data from the file at a given path.
-func ExampleNewInputStreamWithFileAtPath() {
-	_ = foundation.NewInputStreamWithFileAtPath(
-		"/tmp/test", // path string
+// ExampleNewInputStreamWithData demonstrates how to create a InputStream instance using NewInputStreamWithData.
+// Initializes and returns an   object for reading from a given   object.
+func ExampleNewInputStreamWithData() {
+	_ = foundation.NewInputStreamWithData(
+		foundation.NSData{}, // data NSData
 	)
 	// Output:
 }

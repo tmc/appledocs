@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayBinaryKernel] class.
@@ -29,7 +30,7 @@ type _NDArrayBinaryKernelClass struct {
 // An interface definition for the [NDArrayBinaryKernel] class.
 type INDArrayBinaryKernel interface {
 	INDArrayMultiaryKernel
-	EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objc.ID, primarySourceArray unsafe.Pointer, secondarySourceArray unsafe.Pointer) unsafe.Pointer
+	EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) NDArray
 }
 
 //
@@ -79,7 +80,7 @@ func NewNDArrayBinaryKernel() NDArrayBinaryKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel/init(device:)
-func NewNDArrayBinaryKernelWithDevice(device objc.ID) NDArrayBinaryKernel {
+func NewNDArrayBinaryKernelWithDevice(device objectivec.IObject) NDArrayBinaryKernel {
 	instance := getNDArrayBinaryKernelClass().Alloc()
 	rv := objc.Send[NDArrayBinaryKernel](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
@@ -89,8 +90,8 @@ func NewNDArrayBinaryKernelWithDevice(device objc.ID) NDArrayBinaryKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinaryKernel/encode(to:primarySourceArray:secondarySourceArray:)
-func (n_ NDArrayBinaryKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objc.ID, primarySourceArray unsafe.Pointer, secondarySourceArray unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:"), cmdBuf, primarySourceArray, secondarySourceArray)
+func (n_ NDArrayBinaryKernel) EncodeToCommandBufferPrimarySourceArraySecondarySourceArray(cmdBuf objectivec.IObject, primarySourceArray IMPSNDArray, secondarySourceArray IMPSNDArray) NDArray {
+	rv := objc.Send[NDArray](n_.ID, objc.Sel("encodeToCommandBuffer:primarySourceArray:secondarySourceArray:"), cmdBuf, primarySourceArray, secondarySourceArray)
 	return rv
 }
 

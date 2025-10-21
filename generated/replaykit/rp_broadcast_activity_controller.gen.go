@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -82,8 +83,8 @@ func NewRPBroadcastActivityController() RPBroadcastActivityController {
 // Presents a list of available broadcast services for the user to select.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityController/showBroadcastPicker(at:from:preferredExtensionIdentifier:completionHandler:)
-func (rc _RPBroadcastActivityControllerClass) ShowBroadcastPickerAtPointFromWindowPreferredExtensionIdentifierCompletionHandler(point coregraphics.CGPoint, window unsafe.Pointer, preferredExtension string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:"), point, window, objc.String(preferredExtension), handler)
+func (rc _RPBroadcastActivityControllerClass) ShowBroadcastPickerAtPointFromWindowPreferredExtensionIdentifierCompletionHandler(point coregraphics.CGPoint, window appkit.IWindow, preferredExtension appkit.string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("showBroadcastPickerAtPoint:fromWindow:preferredExtensionIdentifier:completionHandler:"), point, window, preferredExtension, handler)
 }
 
 // The broadcast activity controller’s delegate object.

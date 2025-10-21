@@ -30,8 +30,8 @@ type _CNDetectionTrackClass struct {
 // An interface definition for the [CNDetectionTrack] class.
 type ICNDetectionTrack interface {
 	objectivec.IObject
-	DetectionAtOrBeforeTime(time unsafe.Pointer) unsafe.Pointer
-	DetectionNearestTime(time unsafe.Pointer) unsafe.Pointer
+	DetectionAtOrBeforeTime(time unsafe.Pointer) CNDetection
+	DetectionNearestTime(time unsafe.Pointer) CNDetection
 	DetectionsInTimeRange(timeRange unsafe.Pointer) []CNDetection
 }
 
@@ -84,16 +84,16 @@ func NewCNDetectionTrack() CNDetectionTrack {
 // Returns the array of detections in the detection track before a given time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionAtOrBeforeTime:
-func (c_ CNDetectionTrack) DetectionAtOrBeforeTime(time unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("detectionAtOrBeforeTime:"), time)
+func (c_ CNDetectionTrack) DetectionAtOrBeforeTime(time unsafe.Pointer) CNDetection {
+	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionAtOrBeforeTime:"), time)
 	return rv
 }
 
 // Returns the array of detections in the detection track nearest a given time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionNearestTime:
-func (c_ CNDetectionTrack) DetectionNearestTime(time unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("detectionNearestTime:"), time)
+func (c_ CNDetectionTrack) DetectionNearestTime(time unsafe.Pointer) CNDetection {
+	rv := objc.Send[CNDetection](c_.ID, objc.Sel("detectionNearestTime:"), time)
 	return rv
 }
 
@@ -108,16 +108,16 @@ func (c_ CNDetectionTrack) DetectionsInTimeRange(timeRange unsafe.Pointer) []CND
 // The detection group ID of the subject detected by the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionGroupID
-func (c_ CNDetectionTrack) DetectionGroupID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("detectionGroupID"))
+func (c_ CNDetectionTrack) DetectionGroupID() CNDetectionGroupID {
+	rv := objc.Send[CNDetectionGroupID](c_.ID, objc.Sel("detectionGroupID"))
 	return rv
 }
 
 // The type of object that’s detected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDetectionTrack-61x7g/detectionType
-func (c_ CNDetectionTrack) DetectionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("detectionType"))
+func (c_ CNDetectionTrack) DetectionType() CNDetectionType {
+	rv := objc.Send[CNDetectionType](c_.ID, objc.Sel("detectionType"))
 	return rv
 }
 

@@ -87,7 +87,7 @@ func NewMKUserTrackingButton() MKUserTrackingButton {
 // Initializes the button with the map view that it should control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/init(mapView:)
-func NewMKUserTrackingButtonWithMapView(mapView unsafe.Pointer) MKUserTrackingButton {
+func NewMKUserTrackingButtonWithMapView(mapView IMKMapView) MKUserTrackingButton {
 	rv := objc.Send[MKUserTrackingButton](objc.ID(getMKUserTrackingButtonClass().class), objc.Sel("userTrackingButtonWithMapView:"), mapView)
 	return rv
 }
@@ -96,7 +96,7 @@ func NewMKUserTrackingButtonWithMapView(mapView unsafe.Pointer) MKUserTrackingBu
 // Initializes the button with the map view that it should control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/init(mapView:)
-func (mc _MKUserTrackingButtonClass) UserTrackingButtonWithMapView(mapView unsafe.Pointer) unsafe.Pointer {
+func (mc _MKUserTrackingButtonClass) UserTrackingButtonWithMapView(mapView IMKMapView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("userTrackingButtonWithMapView:"), mapView)
 	return rv
 }
@@ -104,8 +104,8 @@ func (mc _MKUserTrackingButtonClass) UserTrackingButtonWithMapView(mapView unsaf
 // The map view associated with the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/mapView
-func (m_ MKUserTrackingButton) MapView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapView"))
+func (m_ MKUserTrackingButton) MapView() MKMapView {
+	rv := objc.Send[MKMapView](m_.ID, objc.Sel("mapView"))
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (m_ MKUserTrackingButton) MapView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKUserTrackingButton/mapView
-func (m_ MKUserTrackingButton) SetMapView(value unsafe.Pointer) {
+func (m_ MKUserTrackingButton) SetMapView(value IMKMapView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapView:"), value)
 }
 

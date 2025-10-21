@@ -31,8 +31,8 @@ type _SensorRecorderClass struct {
 // An interface definition for the [SensorRecorder] class.
 type ISensorRecorder interface {
 	objectivec.IObject
-	AccelerometerDataFromDateToDate(fromDate unsafe.Pointer, toDate unsafe.Pointer) unsafe.Pointer
-	RecordAccelerometerForDuration(duration foundation.TimeInterval)
+	AccelerometerDataFromDateToDate(fromDate foundation.IDate, toDate foundation.IDate) SensorDataList
+	RecordAccelerometerForDuration(duration foundation.ITimeInterval)
 }
 
 // An object that gathers and retrieves accelerometer data from a device.
@@ -86,8 +86,8 @@ func NewSensorRecorder() SensorRecorder {
 // Returns a value indicating whether the app is authorized to record sensor data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/authorizationStatus()
-func (sc _SensorRecorderClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("authorizationStatus"))
+func (sc _SensorRecorderClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(sc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (sc _SensorRecorderClass) IsAuthorizedForRecording() bool {
 // Retrieves the accelerometer data collected between the specified dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/accelerometerData(from:to:)
-func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate unsafe.Pointer, toDate unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("accelerometerDataFromDate:toDate:"), fromDate, toDate)
+func (s_ SensorRecorder) AccelerometerDataFromDateToDate(fromDate foundation.IDate, toDate foundation.IDate) SensorDataList {
+	rv := objc.Send[SensorDataList](s_.ID, objc.Sel("accelerometerDataFromDate:toDate:"), fromDate, toDate)
 	return rv
 }
 
 // Begins recording accelerometer data for the specified period of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMSensorRecorder/recordAccelerometer(forDuration:)
-func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.TimeInterval) {
+func (s_ SensorRecorder) RecordAccelerometerForDuration(duration foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("recordAccelerometerForDuration:"), duration)
 }
 

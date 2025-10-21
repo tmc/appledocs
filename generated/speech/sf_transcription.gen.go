@@ -101,8 +101,8 @@ func (s_ SFTranscription) SetAveragePauseDuration(value unsafe.Pointer) {
 // The entire transcription of utterances, formatted into a single, user-displayable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscription) FormattedString() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("formattedString"))
+func (s_ SFTranscription) FormattedString() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("formattedString"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (s_ SFTranscription) FormattedString() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/formattedstring
-func (s_ SFTranscription) SetFormattedString(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), objc.String(value))
+func (s_ SFTranscription) SetFormattedString(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setFormattedString:"), value)
 }
 
 // An array of transcription segments that represent the parts of the transcription, as identified by the speech recognizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscription) Segments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segments"))
+func (s_ SFTranscription) Segments() SFTranscriptionSegment {
+	rv := objc.Send[SFTranscriptionSegment](s_.ID, objc.Sel("segments"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (s_ SFTranscription) Segments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sftranscription/segments
-func (s_ SFTranscription) SetSegments(value unsafe.Pointer) {
+func (s_ SFTranscription) SetSegments(value ISFTranscriptionSegment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegments:"), value)
 }
 

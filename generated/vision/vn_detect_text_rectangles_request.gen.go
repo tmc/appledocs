@@ -102,8 +102,8 @@ func (d_ DetectTextRectanglesRequest) SetReportCharacterBoxes(value bool) {
 // The results of the request to detect text rectangles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
-func (d_ DetectTextRectanglesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectTextRectanglesRequest) Results() VNTextObservation {
+	rv := objc.Send[VNTextObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (d_ DetectTextRectanglesRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecttextrectanglesrequest/results
-func (d_ DetectTextRectanglesRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectTextRectanglesRequest) SetResults(value IVNTextObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

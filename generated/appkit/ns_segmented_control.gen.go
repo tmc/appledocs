@@ -141,8 +141,8 @@ func (s_ SegmentedControl) SetBorderShape(value unsafe.Pointer) {
 // When the tracking mode for the control is set to use a momentary accelerator, returns a value for the selected segment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-func (s_ SegmentedControl) DoubleValueForSelectedSegment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
+func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
 	return rv
 }
 
@@ -152,7 +152,7 @@ func (s_ SegmentedControl) DoubleValueForSelectedSegment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value unsafe.Pointer) {
+func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValueForSelectedSegment:"), value)
 }
 

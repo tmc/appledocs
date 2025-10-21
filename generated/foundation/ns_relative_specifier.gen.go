@@ -84,8 +84,8 @@ func NewRelativeSpecifier() RelativeSpecifier {
 // Sets the specifier for the base object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
-func (r_ RelativeSpecifier) BaseSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("baseSpecifier"))
+func (r_ RelativeSpecifier) BaseSpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("baseSpecifier"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (r_ RelativeSpecifier) BaseSpecifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrelativespecifier/basespecifier
-func (r_ RelativeSpecifier) SetBaseSpecifier(value unsafe.Pointer) {
+func (r_ RelativeSpecifier) SetBaseSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setBaseSpecifier:"), value)
 }
 

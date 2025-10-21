@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [AudioOutputNode] class.
@@ -84,8 +85,8 @@ func NewAudioOutputNode() AudioOutputNode {
 // The render format of the engine in manual rendering mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-func (a_ AudioOutputNode) ManualRenderingFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("manualRenderingFormat"))
+func (a_ AudioOutputNode) ManualRenderingFormat() AVAudioFormat {
+	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (a_ AudioOutputNode) ManualRenderingFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
-func (a_ AudioOutputNode) SetManualRenderingFormat(value unsafe.Pointer) {
+func (a_ AudioOutputNode) SetManualRenderingFormat(value AVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
 }
 
 // The AVAudioOutputNode’s intended
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-func (a_ AudioOutputNode) IntendedSpatialExperience() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("intendedSpatialExperience"))
+func (a_ AudioOutputNode) IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience {
+	rv := objc.Send[audiotoolbox.SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (a_ AudioOutputNode) IntendedSpatialExperience() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-func (a_ AudioOutputNode) SetIntendedSpatialExperience(value unsafe.Pointer) {
+func (a_ AudioOutputNode) SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }
 

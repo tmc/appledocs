@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,7 +88,7 @@ func NewCXAction() CXAction {
 // Creates a new telephony action with data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/init(coder:)
-func NewCXActionWithCoder(aDecoder unsafe.Pointer) CXAction {
+func NewCXActionWithCoder(aDecoder foundation.ICoder) CXAction {
 	instance := getCXActionClass().Alloc()
 	rv := objc.Send[CXAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -120,16 +121,16 @@ func (c_ CXAction) Complete() bool {
 // The time after which the action cannot be completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/timeoutDate
-func (c_ CXAction) TimeoutDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("timeoutDate"))
+func (c_ CXAction) TimeoutDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](c_.ID, objc.Sel("timeoutDate"))
 	return rv
 }
 
 // The unique identifier for the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/uuid
-func (c_ CXAction) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("UUID"))
+func (c_ CXAction) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 

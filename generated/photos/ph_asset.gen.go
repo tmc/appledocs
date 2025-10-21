@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,9 +32,9 @@ type _PHAssetClass struct {
 // An interface definition for the [PHAsset] class.
 type IPHAsset interface {
 	IPHObject
-	CanPerformEditOperation(editOperation unsafe.Pointer) bool
-	CancelContentEditingInputRequest(requestID unsafe.Pointer)
-	RequestContentEditingInputWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
+	CanPerformEditOperation(editOperation IPHAssetEditOperation) bool
+	CancelContentEditingInputRequest(requestID IPHContentEditingInputRequestID)
+	RequestContentEditingInputWithOptionsCompletionHandler(options PHContentEditingInputRequestOptions, completionHandler unsafe.Pointer) PHContentEditingInputRequestID
 }
 
 // A representation of an image, video, or Live Photo in the Photos library.
@@ -88,7 +90,7 @@ func NewPHAsset() PHAsset {
 // Retrieves assets from the specified asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(in:options:)
-func (pc _PHAssetClass) FetchAssetsInAssetCollectionOptions(assetCollection unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetClass) FetchAssetsInAssetCollectionOptions(assetCollection IPHAssetCollection, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsInAssetCollection:options:"), assetCollection, options)
 	return rv
 }
@@ -96,7 +98,7 @@ func (pc _PHAssetClass) FetchAssetsInAssetCollectionOptions(assetCollection unsa
 // Retrieves all assets matching the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(with:)
-func (pc _PHAssetClass) FetchAssetsWithOptions(options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetClass) FetchAssetsWithOptions(options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithOptions:"), options)
 	return rv
 }
@@ -104,7 +106,7 @@ func (pc _PHAssetClass) FetchAssetsWithOptions(options unsafe.Pointer) unsafe.Po
 // Retrieves assets with the specified media type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(with:options:)
-func (pc _PHAssetClass) FetchAssetsWithMediaTypeOptions(mediaType unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetClass) FetchAssetsWithMediaTypeOptions(mediaType PHAssetMediaType, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithMediaType:options:"), mediaType, options)
 	return rv
 }
@@ -112,7 +114,7 @@ func (pc _PHAssetClass) FetchAssetsWithMediaTypeOptions(mediaType unsafe.Pointer
 // Retrieves assets using URLs provided by the Assets Library framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(withALAssetURLs:options:)
-func (pc _PHAssetClass) FetchAssetsWithALAssetURLsOptions(assetURLs unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetClass) FetchAssetsWithALAssetURLsOptions(assetURLs []foundation.IURL, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithALAssetURLs:options:"), assetURLs, options)
 	return rv
 }
@@ -120,15 +122,15 @@ func (pc _PHAssetClass) FetchAssetsWithALAssetURLsOptions(assetURLs unsafe.Point
 // Retrieves assets with the specified burst photo sequence identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(withBurstIdentifier:options:)
-func (pc _PHAssetClass) FetchAssetsWithBurstIdentifierOptions(burstIdentifier string, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithBurstIdentifier:options:"), objc.String(burstIdentifier), options)
+func (pc _PHAssetClass) FetchAssetsWithBurstIdentifierOptions(burstIdentifier appkit.string, options PHFetchOptions) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithBurstIdentifier:options:"), burstIdentifier, options)
 	return rv
 }
 
 // Retrieves assets with the specified local-device-specific unique identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchAssets(withLocalIdentifiers:options:)
-func (pc _PHAssetClass) FetchAssetsWithLocalIdentifiersOptions(identifiers unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetClass) FetchAssetsWithLocalIdentifiersOptions(identifiers []string, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithLocalIdentifiers:options:"), identifiers, options)
 	return rv
 }
@@ -136,7 +138,7 @@ func (pc _PHAssetClass) FetchAssetsWithLocalIdentifiersOptions(identifiers unsaf
 // Retrieves assets marked as key assets in the specified asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/fetchKeyAssets(in:options:)
-func (pc _PHAssetClass) FetchKeyAssetsInAssetCollectionOptions(assetCollection unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetClass) FetchKeyAssetsInAssetCollectionOptions(assetCollection IPHAssetCollection, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchKeyAssetsInAssetCollection:options:"), assetCollection, options)
 	return rv
 }
@@ -144,7 +146,7 @@ func (pc _PHAssetClass) FetchKeyAssetsInAssetCollectionOptions(assetCollection u
 // Returns whether the asset supports the specified editing operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/canPerform(_:)
-func (p_ PHAsset) CanPerformEditOperation(editOperation unsafe.Pointer) bool {
+func (p_ PHAsset) CanPerformEditOperation(editOperation IPHAssetEditOperation) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPerformEditOperation:"), editOperation)
 	return rv
 }
@@ -152,63 +154,63 @@ func (p_ PHAsset) CanPerformEditOperation(editOperation unsafe.Pointer) bool {
 // Cancels a request for editing the asset’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/cancelContentEditingInputRequest(_:)
-func (p_ PHAsset) CancelContentEditingInputRequest(requestID unsafe.Pointer) {
+func (p_ PHAsset) CancelContentEditingInputRequest(requestID IPHContentEditingInputRequestID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancelContentEditingInputRequest:"), requestID)
 }
 
 // Requests asset information for beginning a content editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/requestContentEditingInput(with:completionHandler:)
-func (p_ PHAsset) RequestContentEditingInputWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestContentEditingInputWithOptions:completionHandler:"), options, completionHandler)
+func (p_ PHAsset) RequestContentEditingInputWithOptionsCompletionHandler(options PHContentEditingInputRequestOptions, completionHandler unsafe.Pointer) PHContentEditingInputRequestID {
+	rv := objc.Send[PHContentEditingInputRequestID](p_.ID, objc.Sel("requestContentEditingInputWithOptions:completionHandler:"), options, completionHandler)
 	return rv
 }
 
 // The date and time this asset was added to the photo library (from the device that was used to add this asset)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/addedDate
-func (p_ PHAsset) AddedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("addedDate"))
+func (p_ PHAsset) AddedDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("addedDate"))
 	return rv
 }
 
 // The identifier that describes the adjustment format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/adjustmentFormatIdentifier
-func (p_ PHAsset) AdjustmentFormatIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("adjustmentFormatIdentifier"))
+func (p_ PHAsset) AdjustmentFormatIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("adjustmentFormatIdentifier"))
 	return rv
 }
 
 // The unique identifier shared by photo assets from the same burst sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/burstIdentifier
-func (p_ PHAsset) BurstIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
+func (p_ PHAsset) BurstIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("burstIdentifier"))
 	return rv
 }
 
 // The selection type of the asset in a burst photo sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/burstSelectionTypes
-func (p_ PHAsset) BurstSelectionTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("burstSelectionTypes"))
+func (p_ PHAsset) BurstSelectionTypes() PHAssetBurstSelectionType {
+	rv := objc.Send[PHAssetBurstSelectionType](p_.ID, objc.Sel("burstSelectionTypes"))
 	return rv
 }
 
 // The type of image or video data that is presented for the asset
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/contentType
-func (p_ PHAsset) ContentType() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PHAsset) ContentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
 // The date and time of the asset’s creation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/creationDate
-func (p_ PHAsset) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
+func (p_ PHAsset) CreationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -255,32 +257,32 @@ func (p_ PHAsset) SyncFailureHidden() bool {
 // The location information for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/location
-func (p_ PHAsset) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("location"))
+func (p_ PHAsset) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](p_.ID, objc.Sel("location"))
 	return rv
 }
 
 // The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/mediaSubtypes
-func (p_ PHAsset) MediaSubtypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaSubtypes"))
+func (p_ PHAsset) MediaSubtypes() PHAssetMediaSubtype {
+	rv := objc.Send[PHAssetMediaSubtype](p_.ID, objc.Sel("mediaSubtypes"))
 	return rv
 }
 
 // The type of the asset, such as video or audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/mediaType
-func (p_ PHAsset) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaType"))
+func (p_ PHAsset) MediaType() PHAssetMediaType {
+	rv := objc.Send[PHAssetMediaType](p_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
 // The date and time of the asset’s last modification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/modificationDate
-func (p_ PHAsset) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
+func (p_ PHAsset) ModificationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -303,8 +305,8 @@ func (p_ PHAsset) PixelWidth() uint {
 // An enumerated value that describes how to present an asset to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/playbackStyle-swift.property
-func (p_ PHAsset) PlaybackStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackStyle"))
+func (p_ PHAsset) PlaybackStyle() PHAssetPlaybackStyle {
+	rv := objc.Send[PHAssetPlaybackStyle](p_.ID, objc.Sel("playbackStyle"))
 	return rv
 }
 
@@ -319,8 +321,8 @@ func (p_ PHAsset) RepresentsBurst() bool {
 // The means by which the asset enters the user’s Photos library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/sourceType
-func (p_ PHAsset) SourceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sourceType"))
+func (p_ PHAsset) SourceType() PHAssetSourceType {
+	rv := objc.Send[PHAssetSourceType](p_.ID, objc.Sel("sourceType"))
 	return rv
 }
 

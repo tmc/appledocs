@@ -109,8 +109,8 @@ func (t_ TextFeature) Bounds() coregraphics.CGRect {
 // An array containing additional features detected within the feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CITextFeature/subFeatures
-func (t_ TextFeature) SubFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("subFeatures"))
+func (t_ TextFeature) SubFeatures() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("subFeatures"))
 	return rv
 }
 
@@ -133,8 +133,8 @@ func (t_ TextFeature) TopRight() coregraphics.CGPoint {
 // A detector that searches for text in a still image or video, returning
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypetext
-func (t_ TextFeature) CIDetectorTypeText() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("CIDetectorTypeText"))
+func (t_ TextFeature) CIDetectorTypeText() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("CIDetectorTypeText"))
 	return rv
 }
 

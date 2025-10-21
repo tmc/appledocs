@@ -29,7 +29,7 @@ type _IncrementalStoreClass struct {
 // An interface definition for the [IncrementalStore] class.
 type IIncrementalStore interface {
 	IPersistentStore
-	ExecuteRequestWithContextError(request unsafe.Pointer, context unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	ExecuteRequestWithContextError(request IPersistentStoreRequest, context IManagedObjectContext, error_ unsafe.Pointer) objc.ID
 	LoadMetadata(error_ unsafe.Pointer) bool
 }
 
@@ -86,7 +86,7 @@ func NewIncrementalStore() IncrementalStore {
 // Returns a value as appropriate for the given request, or nil if the request cannot be completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStore/execute(_:with:)
-func (i_ IncrementalStore) ExecuteRequestWithContextError(request unsafe.Pointer, context unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+func (i_ IncrementalStore) ExecuteRequestWithContextError(request IPersistentStoreRequest, context IManagedObjectContext, error_ unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("executeRequest:withContext:error:"), request, context, error_)
 	return rv
 }

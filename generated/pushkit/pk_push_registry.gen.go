@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _PushRegistryClass struct {
 // An interface definition for the [PushRegistry] class.
 type IPushRegistry interface {
 	objectivec.IObject
-	PushTokenForType(type_ unsafe.Pointer) unsafe.Pointer
+	PushTokenForType(type_ PushType) foundation.Data
 }
 
 // An object that requests the delivery and handles the receipt of PushKit notifications.
@@ -97,8 +98,8 @@ func NewPushRegistryWithQueue(queue unsafe.Pointer) PushRegistry {
 // Retrieves the locally cached push token for the specified push type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushRegistry/pushToken(for:)
-func (p_ PushRegistry) PushTokenForType(type_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pushTokenForType:"), type_)
+func (p_ PushRegistry) PushTokenForType(type_ PushType) foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("pushTokenForType:"), type_)
 	return rv
 }
 

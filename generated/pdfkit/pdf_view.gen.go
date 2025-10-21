@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PDFView] class.
@@ -30,7 +31,7 @@ type _PDFViewClass struct {
 // An interface definition for the [PDFView] class.
 type IPDFView interface {
 	appkit.IView
-	TakePasswordFrom(sender objc.ID)
+	TakePasswordFrom(sender objectivec.IObject)
 }
 
 // An object that encapsulates the functionality of PDF Kit into a single widget that you can add to your application using Interface Builder.
@@ -86,23 +87,23 @@ func NewPDFView() PDFView {
 // Unlocks with the password from the specified sender.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/takePasswordFrom(_:)
-func (p_ PDFView) TakePasswordFrom(sender objc.ID) {
+func (p_ PDFView) TakePasswordFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("takePasswordFrom:"), sender)
 }
 
 // Returns a object representing the current page and the current point in the view specified in page space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/currentDestination
-func (p_ PDFView) CurrentDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentDestination"))
+func (p_ PDFView) CurrentDestination() PDFDestination {
+	rv := objc.Send[PDFDestination](p_.ID, objc.Sel("currentDestination"))
 	return rv
 }
 
 // Returns the current page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/currentPage
-func (p_ PDFView) CurrentPage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentPage"))
+func (p_ PDFView) CurrentPage() PDFPage {
+	rv := objc.Send[PDFPage](p_.ID, objc.Sel("currentPage"))
 	return rv
 }
 
@@ -127,8 +128,8 @@ func (p_ PDFView) SetDelegate(value objc.ID) {
 // Returns the document associated with a object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/document
-func (p_ PDFView) Document() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("document"))
+func (p_ PDFView) Document() PDFDocument {
+	rv := objc.Send[PDFDocument](p_.ID, objc.Sel("document"))
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (p_ PDFView) Document() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFView/document
-func (p_ PDFView) SetDocument(value unsafe.Pointer) {
+func (p_ PDFView) SetDocument(value IPDFDocument) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDocument:"), value)
 }
 

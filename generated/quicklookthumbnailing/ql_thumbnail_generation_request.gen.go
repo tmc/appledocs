@@ -10,6 +10,7 @@ import (
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [ThumbnailGenerationRequest] class.
@@ -85,7 +86,7 @@ func NewThumbnailGenerationRequest() ThumbnailGenerationRequest {
 // Creates a new request for a thumbnail with the specified parameters for a file at a provided URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/init(fileAt:size:scale:representationTypes:)
-func NewThumbnailGenerationRequestWithFileAtURLSizeScaleRepresentationTypes(url foundation.URL, size coregraphics.CGSize, scale float64, representationTypes unsafe.Pointer) ThumbnailGenerationRequest {
+func NewThumbnailGenerationRequestWithFileAtURLSizeScaleRepresentationTypes(url foundation.IURL, size coregraphics.CGSize, scale float64, representationTypes IThumbnailGenerationRequestRepresentationTypes) ThumbnailGenerationRequest {
 	instance := getThumbnailGenerationRequestClass().Alloc()
 	rv := objc.Send[ThumbnailGenerationRequest](instance.ID, objc.Sel("initWithFileAtURL:size:scale:representationTypes:"), url, size, scale, representationTypes)
 	rv.Autorelease()
@@ -114,8 +115,8 @@ func (t_ ThumbnailGenerationRequest) SetMinimumDimension(value float64) {
 // The thumbnail sizes that you provide for a thumbnail request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookThumbnailing/QLThumbnailGenerator/Request/representationTypes-swift.property
-func (t_ ThumbnailGenerationRequest) RepresentationTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("representationTypes"))
+func (t_ ThumbnailGenerationRequest) RepresentationTypes() ThumbnailGenerationRequestRepresentationTypes {
+	rv := objc.Send[ThumbnailGenerationRequestRepresentationTypes](t_.ID, objc.Sel("representationTypes"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (t_ ThumbnailGenerationRequest) Scale() float64 {
 // The content type of the source data for the thumbnail request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
-func (t_ ThumbnailGenerationRequest) ContentType() UTType {
-	rv := objc.Send[UTType](t_.ID, objc.Sel("contentType"))
+func (t_ ThumbnailGenerationRequest) ContentType() uniformtypeidentifiers.UTType {
+	rv := objc.Send[uniformtypeidentifiers.UTType](t_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -141,7 +142,7 @@ func (t_ ThumbnailGenerationRequest) ContentType() UTType {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/contenttype
-func (t_ ThumbnailGenerationRequest) SetContentType(value UTType) {
+func (t_ ThumbnailGenerationRequest) SetContentType(value uniformtypeidentifiers.UTType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContentType:"), value)
 }
 

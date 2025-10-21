@@ -84,8 +84,8 @@ func NewINGetCarPowerLevelStatusIntent() INGetCarPowerLevelStatusIntent {
 // A name that identifies the user’s car.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent/carname
-func (i_ INGetCarPowerLevelStatusIntent) CarName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+func (i_ INGetCarPowerLevelStatusIntent) CarName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (i_ INGetCarPowerLevelStatusIntent) CarName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent/carname
-func (i_ INGetCarPowerLevelStatusIntent) SetCarName(value unsafe.Pointer) {
+func (i_ INGetCarPowerLevelStatusIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 

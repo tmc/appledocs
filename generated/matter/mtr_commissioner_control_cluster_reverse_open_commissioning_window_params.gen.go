@@ -100,7 +100,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Comm
 // SetCommissioningTimeout sets the value of the commissioningTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/commissioningTimeout
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetCommissioningTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
 
@@ -115,7 +115,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Disc
 // SetDiscriminator sets the value of the discriminator property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/discriminator
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetDiscriminator(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
 
@@ -130,14 +130,14 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Iter
 // SetIterations sets the value of the iterations property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/iterations
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetIterations(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIterations:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/pakePasscodeVerifier
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) PakePasscodeVerifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pakePasscodeVerifier"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) PakePasscodeVerifier() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("pakePasscodeVerifier"))
 	return rv
 }
 
@@ -145,14 +145,14 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Pake
 // SetPakePasscodeVerifier sets the value of the pakePasscodeVerifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/pakePasscodeVerifier
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetPakePasscodeVerifier(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetPakePasscodeVerifier(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPakePasscodeVerifier:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/salt
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("salt"))
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("salt"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) Salt
 // SetSalt sets the value of the salt property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterReverseOpenCommissioningWindowParams/salt
-func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetSalt(value unsafe.Pointer) {
+func (m_ MTRCommissionerControlClusterReverseOpenCommissioningWindowParams) SetSalt(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSalt:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [GCExtendedGamepadSnapshot] class.
@@ -98,8 +99,8 @@ func (g_ GCExtendedGamepadSnapshot) GCCurrentMicroGamepadSnapshotDataVersion() u
 // Flattens a snapshot into an archivable memory representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
-func (g_ GCExtendedGamepadSnapshot) SnapshotData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("snapshotData"))
+func (g_ GCExtendedGamepadSnapshot) SnapshotData() foundation.Data {
+	rv := objc.Send[foundation.Data](g_.ID, objc.Sel("snapshotData"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (g_ GCExtendedGamepadSnapshot) SnapshotData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepadsnapshot/snapshotdata
-func (g_ GCExtendedGamepadSnapshot) SetSnapshotData(value unsafe.Pointer) {
+func (g_ GCExtendedGamepadSnapshot) SetSnapshotData(value foundation.IData) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSnapshotData:"), value)
 }
 

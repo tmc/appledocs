@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _QuartzFilterClass struct {
 // An interface definition for the [QuartzFilter] class.
 type IQuartzFilter interface {
 	objectivec.IObject
-	Properties() unsafe.Pointer
+	Properties() foundation.Dictionary
 }
 
 //
@@ -78,7 +79,7 @@ func NewQuartzFilter() QuartzFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter/init(properties:)
-func NewQuartzFilterWithProperties(properties objc.ID) QuartzFilter {
+func NewQuartzFilterWithProperties(properties objectivec.IObject) QuartzFilter {
 	rv := objc.Send[QuartzFilter](objc.ID(getQuartzFilterClass().class), objc.Sel("quartzFilterWithProperties:"), properties)
 	return rv
 }
@@ -86,15 +87,15 @@ func NewQuartzFilterWithProperties(properties objc.ID) QuartzFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter/init(properties:)
-func (qc _QuartzFilterClass) QuartzFilterWithProperties(properties objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("quartzFilterWithProperties:"), properties)
+func (qc _QuartzFilterClass) QuartzFilterWithProperties(properties objectivec.IObject) QuartzFilter {
+	rv := objc.Send[QuartzFilter](objc.ID(qc.class), objc.Sel("quartzFilterWithProperties:"), properties)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QuartzFilter/properties()
-func (q_ QuartzFilter) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("properties"))
+func (q_ QuartzFilter) Properties() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](q_.ID, objc.Sel("properties"))
 	return rv
 }
 

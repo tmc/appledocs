@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [WebView] class.
@@ -31,12 +32,12 @@ type _WebViewClass struct {
 // An interface definition for the [WebView] class.
 type IWebView interface {
 	appkit.IView
-	ChangeFont(sender objc.ID)
+	ChangeFont(sender objectivec.IObject)
 	Close()
-	ElementAtPoint(point foundation.Point) unsafe.Pointer
-	GoBack(sender objc.ID)
-	GoForward(sender objc.ID)
-	OverWrite(sender objc.ID)
+	ElementAtPoint(point foundation.IPoint) foundation.Dictionary
+	GoBack(sender objectivec.IObject)
+	GoForward(sender objectivec.IObject)
+	OverWrite(sender objectivec.IObject)
 }
 
 // is the core view class in the WebKit framework that manages interactions between the and classes. To embed web content in your application, you just create a object, attach it to a window, and send a message to its main frame.
@@ -92,22 +93,22 @@ func NewWebView() WebView {
 // Returns whether the receiver can display content of a given MIME type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/canShowMIMEType(_:)
-func (wc _WebViewClass) CanShowMIMEType(MIMEType string) bool {
-	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("canShowMIMEType:"), objc.String(MIMEType))
+func (wc _WebViewClass) CanShowMIMEType(MIMEType appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("canShowMIMEType:"), MIMEType)
 	return rv
 }
 
 // Specifies the view and representation objects to be used for specific MIME types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/registerClass(_:representationClass:forMIMEType:)
-func (wc _WebViewClass) RegisterViewClassRepresentationClassForMIMEType(viewClass objc.Class, representationClass objc.Class, MIMEType string) {
-	objc.Send[objc.ID](objc.ID(wc.class), objc.Sel("registerViewClass:representationClass:forMIMEType:"), viewClass, representationClass, objc.String(MIMEType))
+func (wc _WebViewClass) RegisterViewClassRepresentationClassForMIMEType(viewClass objc.Class, representationClass objc.Class, MIMEType appkit.string) {
+	objc.Send[objc.ID](objc.ID(wc.class), objc.Sel("registerViewClass:representationClass:forMIMEType:"), viewClass, representationClass, MIMEType)
 }
 
 // An action method that changes the font of the selection, or all content if there is no selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/changeFont(_:)
-func (w_ WebView) ChangeFont(sender objc.ID) {
+func (w_ WebView) ChangeFont(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("changeFont:"), sender)
 }
 
@@ -121,28 +122,28 @@ func (w_ WebView) Close() {
 // Returns a dictionary description of the element at a given point in the receiver’s coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/element(at:)
-func (w_ WebView) ElementAtPoint(point foundation.Point) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("elementAtPoint:"), point)
+func (w_ WebView) ElementAtPoint(point foundation.IPoint) foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](w_.ID, objc.Sel("elementAtPoint:"), point)
 	return rv
 }
 
 // An action method that loads the previous location in the back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/goBack(_:)
-func (w_ WebView) GoBack(sender objc.ID) {
+func (w_ WebView) GoBack(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("goBack:"), sender)
 }
 
 // An action method that loads the next location in the back-forward list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/goForward(_:)
-func (w_ WebView) GoForward(sender objc.ID) {
+func (w_ WebView) GoForward(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("goForward:"), sender)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/overWrite(_:)
-func (w_ WebView) OverWrite(sender objc.ID) {
+func (w_ WebView) OverWrite(sender objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("overWrite:"), sender)
 }
 
@@ -183,8 +184,8 @@ func (w_ WebView) SetEditable(value bool) {
 // The identifier of the receiver’s preferences.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/preferencesIdentifier
-func (w_ WebView) PreferencesIdentifier() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("preferencesIdentifier"))
+func (w_ WebView) PreferencesIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("preferencesIdentifier"))
 	return rv
 }
 
@@ -194,15 +195,15 @@ func (w_ WebView) PreferencesIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WebView-swift.class/preferencesIdentifier
-func (w_ WebView) SetPreferencesIdentifier(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferencesIdentifier:"), objc.String(value))
+func (w_ WebView) SetPreferencesIdentifier(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferencesIdentifier:"), value)
 }
 
 // The navigation type of the action. Can be any of the values defined in
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webactionnavigationtypekey
-func (w_ WebView) WebActionNavigationTypeKey() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("WebActionNavigationTypeKey"))
+func (w_ WebView) WebActionNavigationTypeKey() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("WebActionNavigationTypeKey"))
 	return rv
 }
 
@@ -227,8 +228,8 @@ func (w_ WebView) SetAutosaves(value bool) {
 // The receiver’s application name that is used in the user-agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/applicationnameforuseragent
-func (w_ WebView) ApplicationNameForUserAgent() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("applicationNameForUserAgent"))
+func (w_ WebView) ApplicationNameForUserAgent() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("applicationNameForUserAgent"))
 	return rv
 }
 
@@ -238,8 +239,8 @@ func (w_ WebView) ApplicationNameForUserAgent() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/applicationnameforuseragent
-func (w_ WebView) SetApplicationNameForUserAgent(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), objc.String(value))
+func (w_ WebView) SetApplicationNameForUserAgent(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationNameForUserAgent:"), value)
 }
 
 // A Boolean that indicates whether the previous location can be loaded.
@@ -335,8 +336,8 @@ func (w_ WebView) SetCanMakeTextStandardSize(value bool) {
 // The custom text encoding name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customtextencodingname
-func (w_ WebView) CustomTextEncodingName() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("customTextEncodingName"))
+func (w_ WebView) CustomTextEncodingName() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("customTextEncodingName"))
 	return rv
 }
 
@@ -346,15 +347,15 @@ func (w_ WebView) CustomTextEncodingName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customtextencodingname
-func (w_ WebView) SetCustomTextEncodingName(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomTextEncodingName:"), objc.String(value))
+func (w_ WebView) SetCustomTextEncodingName(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomTextEncodingName:"), value)
 }
 
 // The receiver’s custom user-agent string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customuseragent
-func (w_ WebView) CustomUserAgent() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("customUserAgent"))
+func (w_ WebView) CustomUserAgent() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("customUserAgent"))
 	return rv
 }
 
@@ -364,8 +365,8 @@ func (w_ WebView) CustomUserAgent() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/customuseragent
-func (w_ WebView) SetCustomUserAgent(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), objc.String(value))
+func (w_ WebView) SetCustomUserAgent(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setCustomUserAgent:"), value)
 }
 
 // The receiver’s download delegate.
@@ -443,8 +444,8 @@ func (w_ WebView) SetFrameLoadDelegate(value unsafe.Pointer) {
 // The receiver’s group name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/groupname
-func (w_ WebView) GroupName() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("groupName"))
+func (w_ WebView) GroupName() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -454,15 +455,15 @@ func (w_ WebView) GroupName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/groupname
-func (w_ WebView) SetGroupName(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setGroupName:"), objc.String(value))
+func (w_ WebView) SetGroupName(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setGroupName:"), value)
 }
 
 // The receiver’s host window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/hostwindow
-func (w_ WebView) HostWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("hostWindow"))
+func (w_ WebView) HostWindow() appkit.Window {
+	rv := objc.Send[appkit.Window](w_.ID, objc.Sel("hostWindow"))
 	return rv
 }
 
@@ -472,7 +473,7 @@ func (w_ WebView) HostWindow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/hostwindow
-func (w_ WebView) SetHostWindow(value unsafe.Pointer) {
+func (w_ WebView) SetHostWindow(value appkit.IWindow) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setHostWindow:"), value)
 }
 
@@ -533,8 +534,8 @@ func (w_ WebView) SetIsLoading(value bool) {
 // The main frame, the root of the web frame hierarchy for this page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframe
-func (w_ WebView) MainFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mainFrame"))
+func (w_ WebView) MainFrame() WebFrame {
+	rv := objc.Send[WebFrame](w_.ID, objc.Sel("mainFrame"))
 	return rv
 }
 
@@ -544,7 +545,7 @@ func (w_ WebView) MainFrame() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframe
-func (w_ WebView) SetMainFrame(value unsafe.Pointer) {
+func (w_ WebView) SetMainFrame(value IWebFrame) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrame:"), value)
 }
 
@@ -569,8 +570,8 @@ func (w_ WebView) SetMainFrameDocument(value unsafe.Pointer) {
 // The site’s favicon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeicon
-func (w_ WebView) MainFrameIcon() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("mainFrameIcon"))
+func (w_ WebView) MainFrameIcon() appkit.Image {
+	rv := objc.Send[appkit.Image](w_.ID, objc.Sel("mainFrameIcon"))
 	return rv
 }
 
@@ -580,15 +581,15 @@ func (w_ WebView) MainFrameIcon() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeicon
-func (w_ WebView) SetMainFrameIcon(value unsafe.Pointer) {
+func (w_ WebView) SetMainFrameIcon(value appkit.IImage) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameIcon:"), value)
 }
 
 // The HTML title of the loaded page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframetitle
-func (w_ WebView) MainFrameTitle() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("mainFrameTitle"))
+func (w_ WebView) MainFrameTitle() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("mainFrameTitle"))
 	return rv
 }
 
@@ -598,15 +599,15 @@ func (w_ WebView) MainFrameTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframetitle
-func (w_ WebView) SetMainFrameTitle(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameTitle:"), objc.String(value))
+func (w_ WebView) SetMainFrameTitle(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameTitle:"), value)
 }
 
 // The URL that the main frame loads.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeurl
-func (w_ WebView) MainFrameURL() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("mainFrameURL"))
+func (w_ WebView) MainFrameURL() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("mainFrameURL"))
 	return rv
 }
 
@@ -616,8 +617,8 @@ func (w_ WebView) MainFrameURL() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mainframeurl
-func (w_ WebView) SetMainFrameURL(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameURL:"), objc.String(value))
+func (w_ WebView) SetMainFrameURL(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMainFrameURL:"), value)
 }
 
 // A Boolean that indicates whether the selection is maintained when focus is lost.
@@ -641,8 +642,8 @@ func (w_ WebView) SetMaintainsInactiveSelection(value bool) {
 // The receiver’s CSS media property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mediastyle
-func (w_ WebView) MediaStyle() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("mediaStyle"))
+func (w_ WebView) MediaStyle() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("mediaStyle"))
 	return rv
 }
 
@@ -652,8 +653,8 @@ func (w_ WebView) MediaStyle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/mediastyle
-func (w_ WebView) SetMediaStyle(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaStyle:"), objc.String(value))
+func (w_ WebView) SetMediaStyle(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMediaStyle:"), value)
 }
 
 // An array of pasteboard types that can be used for the current selection of the receiver.
@@ -749,8 +750,8 @@ func (w_ WebView) SetSelectedDOMRange(value unsafe.Pointer) {
 // The frame with the active selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selectedframe
-func (w_ WebView) SelectedFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("selectedFrame"))
+func (w_ WebView) SelectedFrame() WebFrame {
+	rv := objc.Send[WebFrame](w_.ID, objc.Sel("selectedFrame"))
 	return rv
 }
 
@@ -760,7 +761,7 @@ func (w_ WebView) SelectedFrame() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/selectedframe
-func (w_ WebView) SetSelectedFrame(value unsafe.Pointer) {
+func (w_ WebView) SetSelectedFrame(value IWebFrame) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setSelectedFrame:"), value)
 }
 
@@ -929,8 +930,8 @@ func (w_ WebView) SetUiDelegate(value unsafe.Pointer) {
 // The receiver’s undo manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/undomanager
-func (w_ WebView) UndoManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("undoManager"))
+func (w_ WebView) UndoManager() foundation.UndoManager {
+	rv := objc.Send[foundation.UndoManager](w_.ID, objc.Sel("undoManager"))
 	return rv
 }
 
@@ -940,7 +941,7 @@ func (w_ WebView) UndoManager() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/webview-swift.class/undomanager
-func (w_ WebView) SetUndoManager(value unsafe.Pointer) {
+func (w_ WebView) SetUndoManager(value foundation.IUndoManager) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setUndoManager:"), value)
 }
 

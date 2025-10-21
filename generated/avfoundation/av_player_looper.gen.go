@@ -83,8 +83,8 @@ func NewPlayerLooper() PlayerLooper {
 // An error that describes the reason looping failed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
+func (p_ PlayerLooper) Error() Error {
+	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (p_ PlayerLooper) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/error
-func (p_ PlayerLooper) SetError(value unsafe.Pointer) {
+func (p_ PlayerLooper) SetError(value IError) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setError:"), value)
 }
 
@@ -119,8 +119,8 @@ func (p_ PlayerLooper) SetLoopCount(value int) {
 // An array containing replicas of the template player item used to accomplish the looping.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
-func (p_ PlayerLooper) LoopingPlayerItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("loopingPlayerItems"))
+func (p_ PlayerLooper) LoopingPlayerItems() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("loopingPlayerItems"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (p_ PlayerLooper) LoopingPlayerItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerlooper/loopingplayeritems
-func (p_ PlayerLooper) SetLoopingPlayerItems(value unsafe.Pointer) {
+func (p_ PlayerLooper) SetLoopingPlayerItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLoopingPlayerItems:"), value)
 }
 

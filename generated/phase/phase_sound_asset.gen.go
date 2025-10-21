@@ -85,16 +85,16 @@ func NewPHASESoundAsset() PHASESoundAsset {
 // A storage buffer for the sound asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset/data
-func (p_ PHASESoundAsset) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("data"))
+func (p_ PHASESoundAsset) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("data"))
 	return rv
 }
 
 // The type of sound asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESoundAsset/type
-func (p_ PHASESoundAsset) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PHASESoundAsset) Type() PHASEAssetType {
+	rv := objc.Send[PHASEAssetType](p_.ID, objc.Sel("type"))
 	return rv
 }
 

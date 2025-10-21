@@ -30,10 +30,10 @@ type _BluetoothDevicePairClass struct {
 // An interface definition for the [BluetoothDevicePair] class.
 type IBluetoothDevicePair interface {
 	objectivec.IObject
-	Device() unsafe.Pointer
+	Device() BluetoothDevice
 	ReplyPINCodePINCode(PINCodeSize unsafe.Pointer, PINCode unsafe.Pointer)
 	ReplyUserConfirmation(reply bool)
-	SetDevice(inDevice unsafe.Pointer)
+	SetDevice(inDevice IOBluetoothDevice)
 	Start() unsafe.Pointer
 	Stop()
 }
@@ -91,7 +91,7 @@ func NewBluetoothDevicePair() BluetoothDevicePair {
 // Creates an autorelease IOBluetoothDevicePair object with a device as the pairing target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/init(device:)
-func NewBluetoothDevicePairWithDevice(device unsafe.Pointer) BluetoothDevicePair {
+func NewBluetoothDevicePairWithDevice(device IOBluetoothDevice) BluetoothDevicePair {
 	rv := objc.Send[BluetoothDevicePair](objc.ID(getBluetoothDevicePairClass().class), objc.Sel("pairWithDevice:"), device)
 	return rv
 }
@@ -100,7 +100,7 @@ func NewBluetoothDevicePairWithDevice(device unsafe.Pointer) BluetoothDevicePair
 // Creates an autorelease IOBluetoothDevicePair object with a device as the pairing target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/init(device:)
-func (bc _BluetoothDevicePairClass) PairWithDevice(device unsafe.Pointer) unsafe.Pointer {
+func (bc _BluetoothDevicePairClass) PairWithDevice(device IOBluetoothDevice) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("pairWithDevice:"), device)
 	return rv
 }
@@ -108,8 +108,8 @@ func (bc _BluetoothDevicePairClass) PairWithDevice(device unsafe.Pointer) unsafe
 // Get the IOBluetoothDevice being used by the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/device()
-func (b_ BluetoothDevicePair) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("device"))
+func (b_ BluetoothDevicePair) Device() BluetoothDevice {
+	rv := objc.Send[BluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (b_ BluetoothDevicePair) ReplyUserConfirmation(reply bool) {
 // Set the device object to pair with. It is retained by the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevicePair/setDevice(_:)
-func (b_ BluetoothDevicePair) SetDevice(inDevice unsafe.Pointer) {
+func (b_ BluetoothDevicePair) SetDevice(inDevice IOBluetoothDevice) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDevice:"), inDevice)
 }
 

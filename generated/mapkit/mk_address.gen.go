@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,9 +84,9 @@ func NewMKAddress() MKAddress {
 // Initializes a new address with a location’s full address using a string and a short address that provides an abbreviated form of the address such as a street address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAddress/init(fullAddress:shortAddress:)
-func NewMKAddressWithFullAddressShortAddress(fullAddress string, shortAddress string) MKAddress {
+func NewMKAddressWithFullAddressShortAddress(fullAddress appkit.string, shortAddress appkit.string) MKAddress {
 	instance := getMKAddressClass().Alloc()
-	rv := objc.Send[MKAddress](instance.ID, objc.Sel("initWithFullAddress:shortAddress:"), objc.String(fullAddress), objc.String(shortAddress))
+	rv := objc.Send[MKAddress](instance.ID, objc.Sel("initWithFullAddress:shortAddress:"), fullAddress, shortAddress)
 	rv.Autorelease()
 	return rv
 }
@@ -94,8 +95,8 @@ func NewMKAddressWithFullAddressShortAddress(fullAddress string, shortAddress st
 // A string that represents a place’s full address
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
-func (m_ MKAddress) FullAddress() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("fullAddress"))
+func (m_ MKAddress) FullAddress() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("fullAddress"))
 	return rv
 }
 
@@ -105,15 +106,15 @@ func (m_ MKAddress) FullAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/fulladdress
-func (m_ MKAddress) SetFullAddress(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), objc.String(value))
+func (m_ MKAddress) SetFullAddress(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFullAddress:"), value)
 }
 
 // A string that represents the short address of a location, such as it’s street address and city.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
-func (m_ MKAddress) ShortAddress() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("shortAddress"))
+func (m_ MKAddress) ShortAddress() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("shortAddress"))
 	return rv
 }
 
@@ -123,8 +124,8 @@ func (m_ MKAddress) ShortAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkaddress/shortaddress
-func (m_ MKAddress) SetShortAddress(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), objc.String(value))
+func (m_ MKAddress) SetShortAddress(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setShortAddress:"), value)
 }
 
 

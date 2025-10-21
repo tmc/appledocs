@@ -30,10 +30,10 @@ type _DateComponentsClass struct {
 // An interface definition for the [DateComponents] class.
 type IDateComponents interface {
 	objectivec.IObject
-	IsValidDateInCalendar(calendar unsafe.Pointer) bool
-	SetValueForComponent(value int, unit unsafe.Pointer)
+	IsValidDateInCalendar(calendar ICalendar) bool
+	SetValueForComponent(value int, unit ICalendarUnit)
 	SetWeek(v int)
-	ValueForComponent(unit unsafe.Pointer) int
+	ValueForComponent(unit ICalendarUnit) int
 	Week() int
 }
 
@@ -88,7 +88,7 @@ func NewDateComponents() DateComponents {
 // Returns a Boolean value that indicates whether the current combination of properties represents a date which exists in the specified calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/isValidDate(in:)
-func (d_ DateComponents) IsValidDateInCalendar(calendar unsafe.Pointer) bool {
+func (d_ DateComponents) IsValidDateInCalendar(calendar ICalendar) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isValidDateInCalendar:"), calendar)
 	return rv
 }
@@ -96,7 +96,7 @@ func (d_ DateComponents) IsValidDateInCalendar(calendar unsafe.Pointer) bool {
 // Sets a value for a given calendar unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/setValue(_:forComponent:)
-func (d_ DateComponents) SetValueForComponent(value int, unit unsafe.Pointer) {
+func (d_ DateComponents) SetValueForComponent(value int, unit ICalendarUnit) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setValue:forComponent:"), value, unit)
 }
 
@@ -110,7 +110,7 @@ func (d_ DateComponents) SetWeek(v int) {
 // Returns the value for a given calendar unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/value(forComponent:)
-func (d_ DateComponents) ValueForComponent(unit unsafe.Pointer) int {
+func (d_ DateComponents) ValueForComponent(unit ICalendarUnit) int {
 	rv := objc.Send[int](d_.ID, objc.Sel("valueForComponent:"), unit)
 	return rv
 }
@@ -126,8 +126,8 @@ func (d_ DateComponents) Week() int {
 // The calendar used to interpret the date components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/calendar
-func (d_ DateComponents) Calendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("calendar"))
+func (d_ DateComponents) Calendar() NSCalendar {
+	rv := objc.Send[NSCalendar](d_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -137,15 +137,15 @@ func (d_ DateComponents) Calendar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/calendar
-func (d_ DateComponents) SetCalendar(value unsafe.Pointer) {
+func (d_ DateComponents) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
 }
 
 // The date calculated from the current components using the stored calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/date
-func (d_ DateComponents) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("date"))
+func (d_ DateComponents) Date() NSDate {
+	rv := objc.Send[NSDate](d_.ID, objc.Sel("date"))
 	return rv
 }
 
@@ -352,8 +352,8 @@ func (d_ DateComponents) SetSecond(value int) {
 // The time zone used to interpret the date components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/timeZone
-func (d_ DateComponents) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeZone"))
+func (d_ DateComponents) TimeZone() NSTimeZone {
+	rv := objc.Send[NSTimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
@@ -363,7 +363,7 @@ func (d_ DateComponents) TimeZone() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateComponents/timeZone
-func (d_ DateComponents) SetTimeZone(value unsafe.Pointer) {
+func (d_ DateComponents) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
 }
 

@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [SBElementArray] class.
@@ -31,11 +33,11 @@ type _SBElementArrayClass struct {
 type ISBElementArray interface {
 	foundation.IMutableArray
 	ArrayByApplyingSelector(selector objc.SEL) []objc.ID
-	ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objc.ID) []objc.ID
+	ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) []objc.ID
 	Get() []objc.ID
-	ObjectAtLocation(location objc.ID) unsafe.Pointer
-	ObjectWithID(identifier objc.ID) unsafe.Pointer
-	ObjectWithName(name string) unsafe.Pointer
+	ObjectAtLocation(location objectivec.IObject) unsafe.Pointer
+	ObjectWithID(identifier objectivec.IObject) unsafe.Pointer
+	ObjectWithName(name appkit.string) unsafe.Pointer
 }
 
 // is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
@@ -99,7 +101,7 @@ func (s_ SBElementArray) ArrayByApplyingSelector(selector objc.SEL) []objc.ID {
 // Returns an array containing the results of sending the specified message to each object in the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/array(byApplying:with:)
-func (s_ SBElementArray) ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objc.ID) []objc.ID {
+func (s_ SBElementArray) ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("arrayByApplyingSelector:withObject:"), aSelector, argument)
 	return rv
 }
@@ -115,7 +117,7 @@ func (s_ SBElementArray) Get() []objc.ID {
 // Returns the object at the given location in the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(atLocation:)
-func (s_ SBElementArray) ObjectAtLocation(location objc.ID) unsafe.Pointer {
+func (s_ SBElementArray) ObjectAtLocation(location objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectAtLocation:"), location)
 	return rv
 }
@@ -123,7 +125,7 @@ func (s_ SBElementArray) ObjectAtLocation(location objc.ID) unsafe.Pointer {
 // Returns the object in the array with the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(withID:)
-func (s_ SBElementArray) ObjectWithID(identifier objc.ID) unsafe.Pointer {
+func (s_ SBElementArray) ObjectWithID(identifier objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithID:"), identifier)
 	return rv
 }
@@ -131,8 +133,8 @@ func (s_ SBElementArray) ObjectWithID(identifier objc.ID) unsafe.Pointer {
 // Returns the object in the array with the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(withName:)
-func (s_ SBElementArray) ObjectWithName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), objc.String(name))
+func (s_ SBElementArray) ObjectWithName(name appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), name)
 	return rv
 }
 

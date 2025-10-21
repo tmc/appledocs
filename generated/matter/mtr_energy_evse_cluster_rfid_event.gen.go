@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTREnergyEVSEClusterRFIDEvent() MTREnergyEVSEClusterRFIDEvent {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterRFIDEvent/uid
-func (m_ MTREnergyEVSEClusterRFIDEvent) Uid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("uid"))
+func (m_ MTREnergyEVSEClusterRFIDEvent) Uid() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("uid"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTREnergyEVSEClusterRFIDEvent) Uid() unsafe.Pointer {
 // SetUid sets the value of the uid property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterRFIDEvent/uid
-func (m_ MTREnergyEVSEClusterRFIDEvent) SetUid(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterRFIDEvent) SetUid(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUid:"), value)
 }
 

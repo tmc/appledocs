@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -137,8 +138,8 @@ func (c_ CaptureConnection) SetActiveVideoStabilizationMode(value unsafe.Pointer
 // An array of audio channels that the connection provides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/audiochannels
-func (c_ CaptureConnection) AudioChannels() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("audioChannels"))
+func (c_ CaptureConnection) AudioChannels() AVCaptureAudioChannel {
+	rv := objc.Send[AVCaptureAudioChannel](c_.ID, objc.Sel("audioChannels"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (c_ CaptureConnection) AudioChannels() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/audiochannels
-func (c_ CaptureConnection) SetAudioChannels(value unsafe.Pointer) {
+func (c_ CaptureConnection) SetAudioChannels(value IAVCaptureAudioChannel) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioChannels:"), value)
 }
 
@@ -191,8 +192,8 @@ func (c_ CaptureConnection) SetEnablesVideoStabilizationWhenAvailable(value bool
 // An array of the connection’s input ports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/inputports
-func (c_ CaptureConnection) InputPorts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inputPorts"))
+func (c_ CaptureConnection) InputPorts() AVCaptureInputPort {
+	rv := objc.Send[AVCaptureInputPort](c_.ID, objc.Sel("inputPorts"))
 	return rv
 }
 
@@ -202,7 +203,7 @@ func (c_ CaptureConnection) InputPorts() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/inputports
-func (c_ CaptureConnection) SetInputPorts(value unsafe.Pointer) {
+func (c_ CaptureConnection) SetInputPorts(value IAVCaptureInputPort) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputPorts:"), value)
 }
 
@@ -425,8 +426,8 @@ func (c_ CaptureConnection) SetIsVideoStabilizationSupported(value bool) {
 // The connection’s output port, if applicable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/output
-func (c_ CaptureConnection) Output() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("output"))
+func (c_ CaptureConnection) Output() AVCaptureOutput {
+	rv := objc.Send[AVCaptureOutput](c_.ID, objc.Sel("output"))
 	return rv
 }
 
@@ -436,7 +437,7 @@ func (c_ CaptureConnection) Output() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/output
-func (c_ CaptureConnection) SetOutput(value unsafe.Pointer) {
+func (c_ CaptureConnection) SetOutput(value IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutput:"), value)
 }
 
@@ -515,8 +516,8 @@ func (c_ CaptureConnection) SetVideoMaxScaleAndCropFactor(value float64) {
 // The video preview layer associated with the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videopreviewlayer
-func (c_ CaptureConnection) VideoPreviewLayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("videoPreviewLayer"))
+func (c_ CaptureConnection) VideoPreviewLayer() AVCaptureVideoPreviewLayer {
+	rv := objc.Send[AVCaptureVideoPreviewLayer](c_.ID, objc.Sel("videoPreviewLayer"))
 	return rv
 }
 
@@ -526,7 +527,7 @@ func (c_ CaptureConnection) VideoPreviewLayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videopreviewlayer
-func (c_ CaptureConnection) SetVideoPreviewLayer(value unsafe.Pointer) {
+func (c_ CaptureConnection) SetVideoPreviewLayer(value IAVCaptureVideoPreviewLayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoPreviewLayer:"), value)
 }
 

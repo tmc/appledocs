@@ -53,9 +53,9 @@ var (
 	_CVGetCurrentHostTime func() unsafe.Pointer
 	_CVGetHostClockFrequency func() unsafe.Pointer
 	_CVGetHostClockMinimumTimeDelta func() unsafe.Pointer
-	_CVImageBufferCreateColorSpaceFromAttachments func(unsafe.Pointer) CGColorSpaceRef
+	_CVImageBufferCreateColorSpaceFromAttachments func(unsafe.Pointer) coregraphics.CGColorSpaceRef
 	_CVImageBufferGetCleanRect func(unsafe.Pointer) coregraphics.CGRect
-	_CVImageBufferGetColorSpace func(unsafe.Pointer) CGColorSpaceRef
+	_CVImageBufferGetColorSpace func(unsafe.Pointer) coregraphics.CGColorSpaceRef
 	_CVImageBufferGetDisplaySize func(unsafe.Pointer) coregraphics.CGSize
 	_CVImageBufferGetEncodedSize func(unsafe.Pointer) coregraphics.CGSize
 	_CVImageBufferIsFlipped func(unsafe.Pointer) unsafe.Pointer
@@ -726,7 +726,7 @@ func CVGetHostClockMinimumTimeDelta() unsafe.Pointer {
 // Added in macOS 10.8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferCreateColorSpaceFromAttachments(_:)
-func CVImageBufferCreateColorSpaceFromAttachments(attachments unsafe.Pointer) CGColorSpaceRef {
+func CVImageBufferCreateColorSpaceFromAttachments(attachments unsafe.Pointer) coregraphics.CGColorSpaceRef {
 	return _CVImageBufferCreateColorSpaceFromAttachments(attachments)
 	}
 
@@ -746,7 +746,7 @@ func CVImageBufferGetCleanRect(imageBuffer unsafe.Pointer) coregraphics.CGRect {
 // Added in macOS 10.4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBufferGetColorSpace(_:)
-func CVImageBufferGetColorSpace(imageBuffer unsafe.Pointer) CGColorSpaceRef {
+func CVImageBufferGetColorSpace(imageBuffer unsafe.Pointer) coregraphics.CGColorSpaceRef {
 	return _CVImageBufferGetColorSpace(imageBuffer)
 	}
 

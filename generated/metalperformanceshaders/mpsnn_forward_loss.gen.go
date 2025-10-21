@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _ForwardLossClass struct {
 // An interface definition for the [ForwardLoss] class.
 type IForwardLoss interface {
 	objectivec.IObject
-	EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objc.ID, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer)
+	EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer)
 }
 
 //
@@ -78,7 +79,7 @@ func NewForwardLoss() ForwardLoss {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(coder:device:)
-func NewForwardLossWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) ForwardLoss {
+func NewForwardLossWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) ForwardLoss {
 	instance := getForwardLossClass().Alloc()
 	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
@@ -87,7 +88,7 @@ func NewForwardLossWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) Forw
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/init(device:lossDescriptor:)
-func NewForwardLossWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsafe.Pointer) ForwardLoss {
+func NewForwardLossWithDeviceLossDescriptor(device objectivec.IObject, lossDescriptor unsafe.Pointer) ForwardLoss {
 	instance := getForwardLossClass().Alloc()
 	rv := objc.Send[ForwardLoss](instance.ID, objc.Sel("initWithDevice:lossDescriptor:"), device, lossDescriptor)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewForwardLossWithDeviceLossDescriptor(device objc.ID, lossDescriptor unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNForwardLoss/encodeBatch(commandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:)
-func (f_ ForwardLoss) EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objc.ID, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer) {
+func (f_ ForwardLoss) EncodeBatchToCommandBufferSourceImagesLabelsWeightsDestinationStatesDestinationImages(commandBuffer objectivec.IObject, sourceImages unsafe.Pointer, labels unsafe.Pointer, weights unsafe.Pointer, destinationStates unsafe.Pointer, destinationImages unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("encodeBatchToCommandBuffer:sourceImages:labels:weights:destinationStates:destinationImages:"), commandBuffer, sourceImages, labels, weights, destinationStates, destinationImages)
 }
 

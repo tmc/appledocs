@@ -81,8 +81,8 @@ func NewCKSyncEngineFetchedRecordDeletion() CKSyncEngineFetchedRecordDeletion {
 // The deleted record’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion/recordID
-func (c_ CKSyncEngineFetchedRecordDeletion) RecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
+func (c_ CKSyncEngineFetchedRecordDeletion) RecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 

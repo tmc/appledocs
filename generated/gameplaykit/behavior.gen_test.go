@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewBehavior
 
+// ExampleNewBehaviorWithGoals demonstrates how to create a Behavior instance using NewBehaviorWithGoals.
+// Creates a behavior with the specified goals.
+func ExampleNewBehaviorWithGoals() {
+	_ = gameplaykit.NewBehaviorWithGoals(
+		[]gameplaykit.Goal{}, // goals []Goal
+	)
+	// Output:
+}

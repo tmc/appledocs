@@ -30,10 +30,10 @@ type _GraphClass struct {
 // An interface definition for the [Graph] class.
 type IGraph interface {
 	objectivec.IObject
-	AddNodes(nodes unsafe.Pointer)
-	ConnectNodeToLowestCostNodeBidirectional(node unsafe.Pointer, bidirectional bool)
-	FindPathFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer) []GraphNode
-	RemoveNodes(nodes unsafe.Pointer)
+	AddNodes(nodes []GraphNode)
+	ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool)
+	FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode
+	RemoveNodes(nodes []GraphNode)
 }
 
 // A collection of nodes that describes the navigability of a game world and provides methods to search for routes through that space.
@@ -89,7 +89,7 @@ func NewGraph() Graph {
 // Initializes a graph with the specified list of nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/init(_:)
-func NewGraphWithNodes(nodes unsafe.Pointer) Graph {
+func NewGraphWithNodes(nodes []GraphNode) Graph {
 	instance := getGraphClass().Alloc()
 	rv := objc.Send[Graph](instance.ID, objc.Sel("initWithNodes:"), nodes)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewGraphWithNodes(nodes unsafe.Pointer) Graph {
 // Creates a graph with the specified list of nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/graphWithNodes:
-func (gc _GraphClass) GraphWithNodes(nodes unsafe.Pointer) unsafe.Pointer {
+func (gc _GraphClass) GraphWithNodes(nodes []GraphNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("graphWithNodes:"), nodes)
 	return rv
 }
@@ -108,21 +108,21 @@ func (gc _GraphClass) GraphWithNodes(nodes unsafe.Pointer) unsafe.Pointer {
 // Adds the specified nodes to the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/add(_:)
-func (g_ Graph) AddNodes(nodes unsafe.Pointer) {
+func (g_ Graph) AddNodes(nodes []GraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addNodes:"), nodes)
 }
 
 // Adds a node to the graph, connecting it to the node already in the graph for which the connection has the lowest cost.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/connectToLowestCostNode(node:bidirectional:)
-func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node unsafe.Pointer, bidirectional bool) {
+func (g_ Graph) ConnectNodeToLowestCostNodeBidirectional(node IGKGraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectNodeToLowestCostNode:bidirectional:"), node, bidirectional)
 }
 
 // Computes and returns a sequence of nodes that represents the shortest traversal of the graph between the specified nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/findPath(from:to:)
-func (g_ Graph) FindPathFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.Pointer) []GraphNode {
+func (g_ Graph) FindPathFromNodeToNode(startNode IGKGraphNode, endNode IGKGraphNode) []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:toNode:"), startNode, endNode)
 	return rv
 }
@@ -130,7 +130,7 @@ func (g_ Graph) FindPathFromNodeToNode(startNode unsafe.Pointer, endNode unsafe.
 // Removes the specified nodes from the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraph/remove(_:)
-func (g_ Graph) RemoveNodes(nodes unsafe.Pointer) {
+func (g_ Graph) RemoveNodes(nodes []GraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeNodes:"), nodes)
 }
 

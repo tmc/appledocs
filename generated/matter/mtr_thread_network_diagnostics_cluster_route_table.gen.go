@@ -88,7 +88,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) Age() foundation.Number {
 // SetAge sets the value of the age property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/age
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetAge(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetAge(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAge:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) Allocated() foundation.Nu
 // SetAllocated sets the value of the allocated property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/allocated
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetAllocated(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetAllocated(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllocated:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) ExtAddress() foundation.N
 // SetExtAddress sets the value of the extAddress property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/extaddress
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetExtAddress(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetExtAddress(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtAddress:"), value)
 }
 
@@ -133,7 +133,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) LinkEstablished() foundat
 // SetLinkEstablished sets the value of the linkEstablished property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/linkestablished
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetLinkEstablished(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetLinkEstablished(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLinkEstablished:"), value)
 }
 
@@ -148,7 +148,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) LqiIn() foundation.Number
 // SetLqiIn sets the value of the lqiIn property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/lqiin
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetLqiIn(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetLqiIn(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLqiIn:"), value)
 }
 
@@ -163,7 +163,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) LqiOut() foundation.Numbe
 // SetLqiOut sets the value of the lqiOut property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/lqiout
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetLqiOut(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetLqiOut(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLqiOut:"), value)
 }
 
@@ -178,7 +178,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) NextHop() foundation.Numb
 // SetNextHop sets the value of the nextHop property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/nexthop
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetNextHop(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetNextHop(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextHop:"), value)
 }
 
@@ -193,7 +193,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) PathCost() foundation.Num
 // SetPathCost sets the value of the pathCost property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/pathcost
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetPathCost(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetPathCost(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPathCost:"), value)
 }
 
@@ -208,7 +208,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) Rloc16() foundation.Numbe
 // SetRloc16 sets the value of the rloc16 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/rloc16
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetRloc16(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetRloc16(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRloc16:"), value)
 }
 
@@ -223,7 +223,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) RouterId() foundation.Num
 // SetRouterId sets the value of the routerId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetable/routerid
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetRouterId(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterRouteTable) SetRouterId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRouterId:"), value)
 }
 

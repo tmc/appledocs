@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _PedometerClass struct {
 // An interface definition for the [Pedometer] class.
 type IPedometer interface {
 	objectivec.IObject
-	QueryPedometerDataFromDateToDateWithHandler(start unsafe.Pointer, end unsafe.Pointer, handler unsafe.Pointer)
+	QueryPedometerDataFromDateToDateWithHandler(start foundation.IDate, end foundation.IDate, handler unsafe.Pointer)
 	StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer)
-	StartPedometerUpdatesFromDateWithHandler(start unsafe.Pointer, handler unsafe.Pointer)
+	StartPedometerUpdatesFromDateWithHandler(start foundation.IDate, handler unsafe.Pointer)
 	StopPedometerEventUpdates()
 	StopPedometerUpdates()
 }
@@ -88,8 +89,8 @@ func NewPedometer() Pedometer {
 // Returns a value indicating whether the app is authorized to gather pedometer data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/authorizationStatus()
-func (pc _PedometerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("authorizationStatus"))
+func (pc _PedometerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(pc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -144,7 +145,7 @@ func (pc _PedometerClass) IsStepCountingAvailable() bool {
 // Retrieves the data between the specified start and end dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/queryPedometerData(from:to:withHandler:)
-func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start unsafe.Pointer, end unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ Pedometer) QueryPedometerDataFromDateToDateWithHandler(start foundation.IDate, end foundation.IDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("queryPedometerDataFromDate:toDate:withHandler:"), start, end, handler)
 }
 
@@ -158,7 +159,7 @@ func (p_ Pedometer) StartPedometerEventUpdatesWithHandler(handler unsafe.Pointer
 // Starts the delivery of recent pedestrian-related data to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometer/startUpdates(from:withHandler:)
-func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start unsafe.Pointer, handler unsafe.Pointer) {
+func (p_ Pedometer) StartPedometerUpdatesFromDateWithHandler(start foundation.IDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startPedometerUpdatesFromDate:withHandler:"), start, handler)
 }
 

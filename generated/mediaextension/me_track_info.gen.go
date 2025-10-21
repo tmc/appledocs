@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,7 +85,7 @@ func NewMETrackInfo() METrackInfo {
 // Creates a new track info object with the media type, track ID, and format descriptions that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/initWithMediaType:trackID:formatDescriptions:
-func NewMETrackInfoWithMediaTypeTrackIDFormatDescriptions(mediaType unsafe.Pointer, trackID unsafe.Pointer, formatDescriptions objc.ID) METrackInfo {
+func NewMETrackInfoWithMediaTypeTrackIDFormatDescriptions(mediaType unsafe.Pointer, trackID unsafe.Pointer, formatDescriptions objectivec.IObject) METrackInfo {
 	instance := getMETrackInfoClass().Alloc()
 	rv := objc.Send[METrackInfo](instance.ID, objc.Sel("initWithMediaType:trackID:formatDescriptions:"), mediaType, trackID, formatDescriptions)
 	rv.Autorelease()
@@ -131,8 +132,8 @@ func (m_ METrackInfo) SetNominalFrameRate(value unsafe.Pointer) {
 // An array of edit segments for the given track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) TrackEdits() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("trackEdits"))
+func (m_ METrackInfo) TrackEdits() []foundation.Value {
+	rv := objc.Send[[]foundation.Value](m_.ID, objc.Sel("trackEdits"))
 	return rv
 }
 
@@ -142,7 +143,7 @@ func (m_ METrackInfo) TrackEdits() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) SetTrackEdits(value []unsafe.Pointer) {
+func (m_ METrackInfo) SetTrackEdits(value []foundation.IValue) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -159,8 +160,8 @@ func (m_ METrackInfo) SetTrackEdits(value []unsafe.Pointer) {
 // A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
-func (m_ METrackInfo) ExtendedLanguageTag() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("extendedLanguageTag"))
+func (m_ METrackInfo) ExtendedLanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -170,8 +171,8 @@ func (m_ METrackInfo) ExtendedLanguageTag() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
-func (m_ METrackInfo) SetExtendedLanguageTag(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+func (m_ METrackInfo) SetExtendedLanguageTag(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
 }
 
 // A Boolean value that indicates whether the track is enabled by default.

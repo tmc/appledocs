@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) NumberOfSchedules() foundation.
 // SetNumberOfSchedules sets the value of the numberOfSchedules property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/numberOfSchedules
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetNumberOfSchedules(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfSchedules:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) ScheduleTypeFeatures() foundati
 // SetScheduleTypeFeatures sets the value of the scheduleTypeFeatures property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/scheduleTypeFeatures
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetScheduleTypeFeatures(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleTypeFeatures:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThermostatClusterScheduleTypeStruct) SystemMode() foundation.Number 
 // SetSystemMode sets the value of the systemMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTypeStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTypeStruct) SetSystemMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 

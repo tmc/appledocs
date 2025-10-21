@@ -81,8 +81,8 @@ func NewHKWheelchairUseObject() HKWheelchairUseObject {
 // A value indicating the user’s wheelchair use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
-func (h_ HKWheelchairUseObject) WheelchairUse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("wheelchairUse"))
+func (h_ HKWheelchairUseObject) WheelchairUse() HKWheelchairUse {
+	rv := objc.Send[HKWheelchairUse](h_.ID, objc.Sel("wheelchairUse"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (h_ HKWheelchairUseObject) WheelchairUse() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkwheelchairuseobject/wheelchairuse
-func (h_ HKWheelchairUseObject) SetWheelchairUse(value unsafe.Pointer) {
+func (h_ HKWheelchairUseObject) SetWheelchairUse(value IHKWheelchairUse) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWheelchairUse:"), value)
 }
 

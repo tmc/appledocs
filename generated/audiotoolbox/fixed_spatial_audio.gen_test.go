@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = audiotoolbox.NewFixedSpatialAudio
 
+// ExampleNewFixedSpatialAudioWithSoundStageSize demonstrates how to create a FixedSpatialAudio instance using NewFixedSpatialAudioWithSoundStageSize.
+func ExampleNewFixedSpatialAudioWithSoundStageSize() {
+	_ = audiotoolbox.NewFixedSpatialAudioWithSoundStageSize(
+		audiotoolbox.SoundStageSize{}, // soundStageSize SoundStageSize
+	)
+	// Output:
+}

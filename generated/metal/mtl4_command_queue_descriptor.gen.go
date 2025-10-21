@@ -99,8 +99,8 @@ func (m_ MTL4CommandQueueDescriptor) SetFeedbackQueue(value unsafe.Pointer) {
 // Assigns an optional label to the command queue instance for debugging purposes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor/label
-func (m_ MTL4CommandQueueDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTL4CommandQueueDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -110,14 +110,14 @@ func (m_ MTL4CommandQueueDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor/label
-func (m_ MTL4CommandQueueDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTL4CommandQueueDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4commandqueueerrordomain
-func (m_ MTL4CommandQueueDescriptor) MTL4CommandQueueErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
+func (m_ MTL4CommandQueueDescriptor) MTL4CommandQueueErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MTL4CommandQueueErrorDomain"))
 	return rv
 }
 

@@ -94,7 +94,7 @@ func (p_ PDFActionURL) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionurl/url
-func (p_ PDFActionURL) SetUrl(value foundation.URL) {
+func (p_ PDFActionURL) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

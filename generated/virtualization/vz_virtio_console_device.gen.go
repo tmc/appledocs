@@ -100,8 +100,8 @@ func (v_ VZVirtioConsoleDevice) SetDelegate(value objc.ID) {
 // The array of console ports that a specific device uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsoleDevice/ports
-func (v_ VZVirtioConsoleDevice) Ports() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ports"))
+func (v_ VZVirtioConsoleDevice) Ports() VZVirtioConsolePortArray {
+	rv := objc.Send[VZVirtioConsolePortArray](v_.ID, objc.Sel("ports"))
 	return rv
 }
 

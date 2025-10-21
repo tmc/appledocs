@@ -83,8 +83,8 @@ func NewVZConsoleDevice() VZConsoleDevice {
 // The list of configured console devices on the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/consoledevices
-func (v_ VZConsoleDevice) ConsoleDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("consoleDevices"))
+func (v_ VZConsoleDevice) ConsoleDevices() VZConsoleDevice {
+	rv := objc.Send[VZConsoleDevice](v_.ID, objc.Sel("consoleDevices"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (v_ VZConsoleDevice) ConsoleDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/consoledevices
-func (v_ VZConsoleDevice) SetConsoleDevices(value unsafe.Pointer) {
+func (v_ VZConsoleDevice) SetConsoleDevices(value IVZConsoleDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
 }
 

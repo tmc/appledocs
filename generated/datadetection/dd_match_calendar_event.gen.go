@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DDMatchCalendarEvent] class.
@@ -84,16 +85,16 @@ func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 // A date that represents the end of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endDate
-func (d_ DDMatchCalendarEvent) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endDate"))
+func (d_ DDMatchCalendarEvent) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
 // The time zone for the event’s end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endTimeZone
-func (d_ DDMatchCalendarEvent) EndTimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endTimeZone"))
+func (d_ DDMatchCalendarEvent) EndTimeZone() foundation.TimeZone {
+	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("endTimeZone"))
 	return rv
 }
 
@@ -108,16 +109,16 @@ func (d_ DDMatchCalendarEvent) AllDay() bool {
 // A date that represents the start of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startDate
-func (d_ DDMatchCalendarEvent) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startDate"))
+func (d_ DDMatchCalendarEvent) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 // The time zone for the event’s start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startTimeZone
-func (d_ DDMatchCalendarEvent) StartTimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startTimeZone"))
+func (d_ DDMatchCalendarEvent) StartTimeZone() foundation.TimeZone {
+	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("startTimeZone"))
 	return rv
 }
 

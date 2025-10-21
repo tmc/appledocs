@@ -87,7 +87,7 @@ func (m_ MTRAttributeRequestPath) Attribute() foundation.Number {
 // SetAttribute sets the value of the attribute property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/attribute
-func (m_ MTRAttributeRequestPath) SetAttribute(value foundation.Number) {
+func (m_ MTRAttributeRequestPath) SetAttribute(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribute:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAttributeRequestPath) Cluster() foundation.Number {
 // SetCluster sets the value of the cluster property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/cluster
-func (m_ MTRAttributeRequestPath) SetCluster(value foundation.Number) {
+func (m_ MTRAttributeRequestPath) SetCluster(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAttributeRequestPath) Endpoint() foundation.Number {
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributerequestpath/endpoint
-func (m_ MTRAttributeRequestPath) SetEndpoint(value foundation.Number) {
+func (m_ MTRAttributeRequestPath) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 

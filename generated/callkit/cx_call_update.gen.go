@@ -119,8 +119,8 @@ func (c_ CXCallUpdate) SetLocalizedCallerName(value string) {
 // The handle for the remote party (for an incoming call, this is the caller; for an outgoing call, this is the callee).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/remoteHandle
-func (c_ CXCallUpdate) RemoteHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("remoteHandle"))
+func (c_ CXCallUpdate) RemoteHandle() CXHandle {
+	rv := objc.Send[CXHandle](c_.ID, objc.Sel("remoteHandle"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (c_ CXCallUpdate) RemoteHandle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallUpdate/remoteHandle
-func (c_ CXCallUpdate) SetRemoteHandle(value unsafe.Pointer) {
+func (c_ CXCallUpdate) SetRemoteHandle(value ICXHandle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRemoteHandle:"), value)
 }
 

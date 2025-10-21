@@ -87,7 +87,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) CheckInNodeID() fo
 // SetCheckInNodeID sets the value of the checkInNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/checkInNodeID
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetCheckInNodeID(value foundation.Number) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetCheckInNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) ClientType() found
 // SetClientType sets the value of the clientType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/clientType
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetClientType(value foundation.Number) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetClientType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientType:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) FabricIndex() foun
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/fabricIndex
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetFabricIndex(value foundation.Number) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) MonitoredSubject()
 // SetMonitoredSubject sets the value of the monitoredSubject property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterMonitoringRegistrationStruct/monitoredSubject
-func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetMonitoredSubject(value foundation.Number) {
+func (m_ MTRICDManagementClusterMonitoringRegistrationStruct) SetMonitoredSubject(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMonitoredSubject:"), value)
 }
 

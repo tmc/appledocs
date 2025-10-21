@@ -83,15 +83,15 @@ func NewGCStylus() GCStylus {
 // Gets the haptics profile for the stylus, if supported.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus/haptics
-func (g_ GCStylus) Haptics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("haptics"))
+func (g_ GCStylus) Haptics() GCDeviceHaptics {
+	rv := objc.Send[GCDeviceHaptics](g_.ID, objc.Sel("haptics"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton-18g2p
-func (g_ GCStylus) GCInputStylusPrimaryButton() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusPrimaryButton"))
+func (g_ GCStylus) GCInputStylusPrimaryButton() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("GCInputStylusPrimaryButton"))
 	return rv
 }
 
@@ -99,14 +99,14 @@ func (g_ GCStylus) GCInputStylusPrimaryButton() string {
 // SetGCInputStylusPrimaryButton sets the value of the GCInputStylusPrimaryButton property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton-18g2p
-func (g_ GCStylus) SetGCInputStylusPrimaryButton(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusPrimaryButton:"), objc.String(value))
+func (g_ GCStylus) SetGCInputStylusPrimaryButton(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusPrimaryButton:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton-6r3q
-func (g_ GCStylus) GCInputStylusSecondaryButton() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusSecondaryButton"))
+func (g_ GCStylus) GCInputStylusSecondaryButton() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("GCInputStylusSecondaryButton"))
 	return rv
 }
 
@@ -114,14 +114,14 @@ func (g_ GCStylus) GCInputStylusSecondaryButton() string {
 // SetGCInputStylusSecondaryButton sets the value of the GCInputStylusSecondaryButton property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton-6r3q
-func (g_ GCStylus) SetGCInputStylusSecondaryButton(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusSecondaryButton:"), objc.String(value))
+func (g_ GCStylus) SetGCInputStylusSecondaryButton(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusSecondaryButton:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
-func (g_ GCStylus) GCInputStylusTip() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("GCInputStylusTip"))
+func (g_ GCStylus) GCInputStylusTip() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("GCInputStylusTip"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (g_ GCStylus) GCInputStylusTip() string {
 // SetGCInputStylusTip sets the value of the GCInputStylusTip property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcinputstylustip-1rhuw
-func (g_ GCStylus) SetGCInputStylusTip(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusTip:"), objc.String(value))
+func (g_ GCStylus) SetGCInputStylusTip(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setGCInputStylusTip:"), value)
 }
 
 // Gets the input profile for the stylus.

@@ -128,7 +128,7 @@ func (d_ DetectContoursRequest) ContrastPivot() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectcontoursrequest/contrastpivot
-func (d_ DetectContoursRequest) SetContrastPivot(value foundation.Number) {
+func (d_ DetectContoursRequest) SetContrastPivot(value foundation.INumber) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContrastPivot:"), value)
 }
 

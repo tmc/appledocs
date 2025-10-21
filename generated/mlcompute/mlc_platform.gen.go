@@ -90,7 +90,7 @@ func (cc _CPlatformClass) GetRNGseed() foundation.Number {
 // Sets the global random number generator seed value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPlatform/setRNGSeedTo(_:)
-func (cc _CPlatformClass) SetRNGSeedTo(seed foundation.Number) {
+func (cc _CPlatformClass) SetRNGSeedTo(seed foundation.INumber) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("setRNGSeedTo:"), seed)
 }
 

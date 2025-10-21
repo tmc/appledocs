@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewFileProviderKnownFolderLocation() FileProviderKnownFolderLocation {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
-func (f_ FileProviderKnownFolderLocation) DesktopLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("desktopLocation"))
+func (f_ FileProviderKnownFolderLocation) DesktopLocation() NSFileProviderKnownFolderLocation {
+	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (f_ FileProviderKnownFolderLocation) DesktopLocation() unsafe.Pointer {
 // SetDesktopLocation sets the value of the desktopLocation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
-func (f_ FileProviderKnownFolderLocation) SetDesktopLocation(value unsafe.Pointer) {
+func (f_ FileProviderKnownFolderLocation) SetDesktopLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-func (f_ FileProviderKnownFolderLocation) DocumentsLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("documentsLocation"))
+func (f_ FileProviderKnownFolderLocation) DocumentsLocation() NSFileProviderKnownFolderLocation {
+	rv := objc.Send[NSFileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (f_ FileProviderKnownFolderLocation) DocumentsLocation() unsafe.Pointer {
 // SetDocumentsLocation sets the value of the documentsLocation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-func (f_ FileProviderKnownFolderLocation) SetDocumentsLocation(value unsafe.Pointer) {
+func (f_ FileProviderKnownFolderLocation) SetDocumentsLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
 }
 

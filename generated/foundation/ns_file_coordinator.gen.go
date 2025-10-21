@@ -30,7 +30,7 @@ type _FileCoordinatorClass struct {
 // An interface definition for the [FileCoordinator] class.
 type IFileCoordinator interface {
 	objectivec.IObject
-	CoordinateAccessWithIntentsQueueByAccessor(intents unsafe.Pointer, queue unsafe.Pointer, accessor unsafe.Pointer)
+	CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer)
 }
 
 // An object that coordinates the reading and writing of files and directories among file presenters.
@@ -86,7 +86,7 @@ func NewFileCoordinator() FileCoordinator {
 // Initializes and returns a file coordinator object using the specified file presenter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/init(filePresenter:)
-func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objc.ID) FileCoordinator {
+func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objectivec.IObject) FileCoordinator {
 	instance := getFileCoordinatorClass().Alloc()
 	rv := objc.Send[FileCoordinator](instance.ID, objc.Sel("initWithFilePresenter:"), filePresenterOrNil)
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objc.ID) FileCoordin
 // Unregisters the specified file presenter object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/removeFilePresenter(_:)
-func (fc _FileCoordinatorClass) RemoveFilePresenter(filePresenter objc.ID) {
+func (fc _FileCoordinatorClass) RemoveFilePresenter(filePresenter objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("removeFilePresenter:"), filePresenter)
 }
 
@@ -111,7 +111,7 @@ func (fc _FileCoordinatorClass) FilePresenters() []objc.ID {
 // Performs a number of coordinated-read or -write operations asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(with:queue:byAccessor:)
-func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents unsafe.Pointer, queue unsafe.Pointer, accessor unsafe.Pointer) {
+func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents []FileAccessIntent, queue IOperationQueue, accessor unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateAccessWithIntents:queue:byAccessor:"), intents, queue, accessor)
 }
 
@@ -126,8 +126,8 @@ func (f_ FileCoordinator) FilePresenters() []objc.ID {
 // A string that uniquely identifies the file access that was performed by this file coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
-func (f_ FileCoordinator) PurposeIdentifier() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("purposeIdentifier"))
+func (f_ FileCoordinator) PurposeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("purposeIdentifier"))
 	return rv
 }
 
@@ -137,8 +137,8 @@ func (f_ FileCoordinator) PurposeIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfilecoordinator/purposeidentifier
-func (f_ FileCoordinator) SetPurposeIdentifier(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPurposeIdentifier:"), objc.String(value))
+func (f_ FileCoordinator) SetPurposeIdentifier(value appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setPurposeIdentifier:"), value)
 }
 
 // The user canceled the operation (for example, by pressing Command-period).

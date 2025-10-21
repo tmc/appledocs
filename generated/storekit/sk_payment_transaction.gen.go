@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,64 +93,64 @@ func (p_ PaymentTransaction) Downloads() []Download {
 // An object describing the error that occurred while processing the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/error
-func (p_ PaymentTransaction) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("error"))
+func (p_ PaymentTransaction) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("error"))
 	return rv
 }
 
 // The transaction that was restored by the App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/original
-func (p_ PaymentTransaction) OriginalTransaction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("originalTransaction"))
+func (p_ PaymentTransaction) OriginalTransaction() SKPaymentTransaction {
+	rv := objc.Send[SKPaymentTransaction](p_.ID, objc.Sel("originalTransaction"))
 	return rv
 }
 
 // The payment for the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/payment
-func (p_ PaymentTransaction) Payment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("payment"))
+func (p_ PaymentTransaction) Payment() SKPayment {
+	rv := objc.Send[SKPayment](p_.ID, objc.Sel("payment"))
 	return rv
 }
 
 // The date the transaction was added to the App Store’s payment queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/transactionDate
-func (p_ PaymentTransaction) TransactionDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionDate"))
+func (p_ PaymentTransaction) TransactionDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("transactionDate"))
 	return rv
 }
 
 // A string that uniquely identifies a successful payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/transactionIdentifier
-func (p_ PaymentTransaction) TransactionIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("transactionIdentifier"))
+func (p_ PaymentTransaction) TransactionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("transactionIdentifier"))
 	return rv
 }
 
 // A signed receipt that records all information about a successful payment transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/transactionReceipt
-func (p_ PaymentTransaction) TransactionReceipt() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionReceipt"))
+func (p_ PaymentTransaction) TransactionReceipt() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("transactionReceipt"))
 	return rv
 }
 
 // The current state of the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKPaymentTransaction/transactionState
-func (p_ PaymentTransaction) TransactionState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transactionState"))
+func (p_ PaymentTransaction) TransactionState() PaymentTransactionState {
+	rv := objc.Send[PaymentTransactionState](p_.ID, objc.Sel("transactionState"))
 	return rv
 }
 
 // The transaction that was restored by the App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/original
-func (p_ PaymentTransaction) Original() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("original"))
+func (p_ PaymentTransaction) Original() SKPaymentTransaction {
+	rv := objc.Send[SKPaymentTransaction](p_.ID, objc.Sel("original"))
 	return rv
 }
 
@@ -158,7 +160,7 @@ func (p_ PaymentTransaction) Original() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skpaymenttransaction/original
-func (p_ PaymentTransaction) SetOriginal(value unsafe.Pointer) {
+func (p_ PaymentTransaction) SetOriginal(value ISKPaymentTransaction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginal:"), value)
 }
 

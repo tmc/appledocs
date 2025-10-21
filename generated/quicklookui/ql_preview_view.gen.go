@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PreviewView] class.
@@ -86,7 +87,7 @@ func NewPreviewView() PreviewView {
 // Creates a preview view with the provided frame.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:)
-func NewPreviewViewWithFrame(frame Rect) PreviewView {
+func NewPreviewViewWithFrame(frame foundation.IRect) PreviewView {
 	instance := getPreviewViewClass().Alloc()
 	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:"), frame)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewPreviewViewWithFrame(frame Rect) PreviewView {
 // Creates a preview view with the provided frame and style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewView/init(frame:style:)
-func NewPreviewViewWithFrameStyle(frame Rect, style unsafe.Pointer) PreviewView {
+func NewPreviewViewWithFrameStyle(frame foundation.IRect, style unsafe.Pointer) PreviewView {
 	instance := getPreviewViewClass().Alloc()
 	rv := objc.Send[PreviewView](instance.ID, objc.Sel("initWithFrame:style:"), frame, style)
 	rv.Autorelease()

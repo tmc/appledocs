@@ -89,8 +89,8 @@ func (s_ SampleBufferVideoRenderer) CopyDisplayedPixelBuffer() unsafe.Pointer {
 // An object the describes the error that caused the rendering failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("error"))
+func (s_ SampleBufferVideoRenderer) Error() Error {
+	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (s_ SampleBufferVideoRenderer) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) SetError(value unsafe.Pointer) {
+func (s_ SampleBufferVideoRenderer) SetError(value IError) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 

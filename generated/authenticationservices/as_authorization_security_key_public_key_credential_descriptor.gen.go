@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptor() AuthorizationSec
 // Creates the object with the credential ID and the array of transports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor/init(credentialID:transports:)
-func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptorWithCredentialIDTransports(credentialID unsafe.Pointer, allowedTransports unsafe.Pointer) AuthorizationSecurityKeyPublicKeyCredentialDescriptor {
+func NewAuthorizationSecurityKeyPublicKeyCredentialDescriptorWithCredentialIDTransports(credentialID foundation.IData, allowedTransports []string) AuthorizationSecurityKeyPublicKeyCredentialDescriptor {
 	instance := getAuthorizationSecurityKeyPublicKeyCredentialDescriptorClass().Alloc()
 	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialDescriptor](instance.ID, objc.Sel("initWithCredentialID:transports:"), credentialID, allowedTransports)
 	rv.Autorelease()

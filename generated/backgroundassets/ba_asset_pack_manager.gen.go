@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,15 +32,15 @@ type _BAAssetPackManagerClass struct {
 // An interface definition for the [BAAssetPackManager] class.
 type IBAAssetPackManager interface {
 	objectivec.IObject
-	URLForPathError(path string, error_ unsafe.Pointer) foundation.URL
+	URLForPathError(path appkit.string, error_ unsafe.Pointer) foundation.URL
 	CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer)
-	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack unsafe.Pointer, completionHandler unsafe.Pointer)
-	FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string, assetPackIdentifier string, error_ unsafe.Pointer) unsafe.Pointer
+	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path appkit.string, assetPackIdentifier appkit.string, options unsafe.Pointer, error_ unsafe.Pointer) foundation.Data
+	EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack IBAAssetPack, completionHandler unsafe.Pointer)
+	FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path appkit.string, assetPackIdentifier appkit.string, error_ unsafe.Pointer) unsafe.Pointer
 	GetAllAssetPacksWithCompletionHandler(completionHandler unsafe.Pointer)
-	GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
-	GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
-	RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer)
+	GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier appkit.string, completionHandler unsafe.Pointer)
+	GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier appkit.string, completionHandler unsafe.Pointer)
+	RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier appkit.string, completionHandler unsafe.Pointer)
 }
 
 // A class that manages asset packs.
@@ -93,15 +94,15 @@ func NewBAAssetPackManager() BAAssetPackManager {
 // The shared asset-pack manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-func (bc _BAAssetPackManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sharedManager"))
+func (bc _BAAssetPackManagerClass) SharedManager() BAAssetPackManager {
+	rv := objc.Send[BAAssetPackManager](objc.ID(bc.class), objc.Sel("sharedManager"))
 	return rv
 }
 // Returns a URL for the specified relative path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/URLForPath:error:
-func (b_ BAAssetPackManager) URLForPathError(path string, error_ unsafe.Pointer) foundation.URL {
-	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URLForPath:error:"), objc.String(path), error_)
+func (b_ BAAssetPackManager) URLForPathError(path appkit.string, error_ unsafe.Pointer) foundation.URL {
+	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URLForPath:error:"), path, error_)
 	return rv
 }
 
@@ -115,23 +116,23 @@ func (b_ BAAssetPackManager) CheckForUpdatesWithCompletionHandler(completionHand
 // Returns the contents of an asset file at the specified relative path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:
-func (b_ BAAssetPackManager) ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path string, assetPackIdentifier string, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("contentsAtPath:searchingInAssetPackWithIdentifier:options:error:"), objc.String(path), objc.String(assetPackIdentifier), options, error_)
+func (b_ BAAssetPackManager) ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path appkit.string, assetPackIdentifier appkit.string, options unsafe.Pointer, error_ unsafe.Pointer) foundation.Data {
+	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("contentsAtPath:searchingInAssetPackWithIdentifier:options:error:"), path, assetPackIdentifier, options, error_)
 	return rv
 }
 
 // Ensures that the specified asset pack be available locally.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/ensureLocalAvailabilityOfAssetPack:completionHandler:
-func (b_ BAAssetPackManager) EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (b_ BAAssetPackManager) EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack IBAAssetPack, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("ensureLocalAvailabilityOfAssetPack:completionHandler:"), assetPack, completionHandler)
 }
 
 // Opens and returns a file descriptor for the asset file at the specified relative path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:
-func (b_ BAAssetPackManager) FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path string, assetPackIdentifier string, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:"), objc.String(path), objc.String(assetPackIdentifier), error_)
+func (b_ BAAssetPackManager) FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path appkit.string, assetPackIdentifier appkit.string, error_ unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:"), path, assetPackIdentifier, error_)
 	return rv
 }
 
@@ -145,22 +146,22 @@ func (b_ BAAssetPackManager) GetAllAssetPacksWithCompletionHandler(completionHan
 // Gets the asset pack with the given identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("getAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
+func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("getAssetPackWithIdentifier:completionHandler:"), assetPackIdentifier, completionHandler)
 }
 
 // Gets the status of the asset pack with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getStatusOfAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("getStatusOfAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
+func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("getStatusOfAssetPackWithIdentifier:completionHandler:"), assetPackIdentifier, completionHandler)
 }
 
 // Removes the specified asset pack from the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/removeAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("removeAssetPackWithIdentifier:completionHandler:"), objc.String(assetPackIdentifier), completionHandler)
+func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("removeAssetPackWithIdentifier:completionHandler:"), assetPackIdentifier, completionHandler)
 }
 
 // An object that receives notifications about events that occur as an asset pack is downloaded.
@@ -184,8 +185,8 @@ func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
 // The shared asset-pack manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-func (b_ BAAssetPackManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedManager"))
+func (b_ BAAssetPackManager) SharedManager() BAAssetPackManager {
+	rv := objc.Send[BAAssetPackManager](b_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

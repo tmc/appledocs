@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewMXSignpostIntervalData() MXSignpostIntervalData {
 // The average memory used during the logged intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/averagememory
-func (m_ MXSignpostIntervalData) AverageMemory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("averageMemory"))
+func (m_ MXSignpostIntervalData) AverageMemory() foundation.UnitInformationStorage {
+	rv := objc.Send[foundation.UnitInformationStorage](m_.ID, objc.Sel("averageMemory"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (m_ MXSignpostIntervalData) AverageMemory() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/averagememory
-func (m_ MXSignpostIntervalData) SetAverageMemory(value unsafe.Pointer) {
+func (m_ MXSignpostIntervalData) SetAverageMemory(value foundation.IUnitInformationStorage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAverageMemory:"), value)
 }
 
 // The total amount of CPU time used during the logged intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
-func (m_ MXSignpostIntervalData) CumulativeCPUTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeCPUTime"))
+func (m_ MXSignpostIntervalData) CumulativeCPUTime() foundation.UnitDuration {
+	rv := objc.Send[foundation.UnitDuration](m_.ID, objc.Sel("cumulativeCPUTime"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (m_ MXSignpostIntervalData) CumulativeCPUTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativecputime
-func (m_ MXSignpostIntervalData) SetCumulativeCPUTime(value unsafe.Pointer) {
+func (m_ MXSignpostIntervalData) SetCumulativeCPUTime(value foundation.IUnitDuration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeCPUTime:"), value)
 }
 
 // The ratio of the total time spent hitching to the total time spent animating during the logged intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativehitchtimeratio
-func (m_ MXSignpostIntervalData) CumulativeHitchTimeRatio() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeHitchTimeRatio"))
+func (m_ MXSignpostIntervalData) CumulativeHitchTimeRatio() foundation.Unit {
+	rv := objc.Send[foundation.Unit](m_.ID, objc.Sel("cumulativeHitchTimeRatio"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (m_ MXSignpostIntervalData) CumulativeHitchTimeRatio() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativehitchtimeratio
-func (m_ MXSignpostIntervalData) SetCumulativeHitchTimeRatio(value unsafe.Pointer) {
+func (m_ MXSignpostIntervalData) SetCumulativeHitchTimeRatio(value foundation.IUnit) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeHitchTimeRatio:"), value)
 }
 
 // The total amount of data written to disk or other long term storage during the logged intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativelogicalwrites
-func (m_ MXSignpostIntervalData) CumulativeLogicalWrites() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cumulativeLogicalWrites"))
+func (m_ MXSignpostIntervalData) CumulativeLogicalWrites() foundation.UnitInformationStorage {
+	rv := objc.Send[foundation.UnitInformationStorage](m_.ID, objc.Sel("cumulativeLogicalWrites"))
 	return rv
 }
 
@@ -146,15 +147,15 @@ func (m_ MXSignpostIntervalData) CumulativeLogicalWrites() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/cumulativelogicalwrites
-func (m_ MXSignpostIntervalData) SetCumulativeLogicalWrites(value unsafe.Pointer) {
+func (m_ MXSignpostIntervalData) SetCumulativeLogicalWrites(value foundation.IUnitInformationStorage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeLogicalWrites:"), value)
 }
 
 // A histogram of the different time intervals of a custom metric event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/histogrammedsignpostduration
-func (m_ MXSignpostIntervalData) HistogrammedSignpostDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("histogrammedSignpostDuration"))
+func (m_ MXSignpostIntervalData) HistogrammedSignpostDuration() foundation.UnitDuration {
+	rv := objc.Send[foundation.UnitDuration](m_.ID, objc.Sel("histogrammedSignpostDuration"))
 	return rv
 }
 
@@ -164,15 +165,15 @@ func (m_ MXSignpostIntervalData) HistogrammedSignpostDuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostintervaldata/histogrammedsignpostduration
-func (m_ MXSignpostIntervalData) SetHistogrammedSignpostDuration(value unsafe.Pointer) {
+func (m_ MXSignpostIntervalData) SetHistogrammedSignpostDuration(value foundation.IUnitDuration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHistogrammedSignpostDuration:"), value)
 }
 
 // The data captured for a custom metric.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
-func (m_ MXSignpostIntervalData) SignpostIntervalData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signpostIntervalData"))
+func (m_ MXSignpostIntervalData) SignpostIntervalData() MXSignpostIntervalData {
+	rv := objc.Send[MXSignpostIntervalData](m_.ID, objc.Sel("signpostIntervalData"))
 	return rv
 }
 
@@ -182,7 +183,7 @@ func (m_ MXSignpostIntervalData) SignpostIntervalData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxsignpostmetric/signpostintervaldata
-func (m_ MXSignpostIntervalData) SetSignpostIntervalData(value unsafe.Pointer) {
+func (m_ MXSignpostIntervalData) SetSignpostIntervalData(value IMXSignpostIntervalData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSignpostIntervalData:"), value)
 }
 

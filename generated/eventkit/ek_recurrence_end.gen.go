@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewEKRecurrenceEnd() EKRecurrenceEnd {
 // Initializes and returns a date-based recurrence end with a given end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
-func NewEKRecurrenceEndWithEndDate(endDate unsafe.Pointer) EKRecurrenceEnd {
+func NewEKRecurrenceEndWithEndDate(endDate foundation.IDate) EKRecurrenceEnd {
 	rv := objc.Send[EKRecurrenceEnd](objc.ID(getEKRecurrenceEndClass().class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
@@ -104,7 +105,7 @@ func NewEKRecurrenceEndWithOccurrenceCount(occurrenceCount uint) EKRecurrenceEnd
 // Initializes and returns a date-based recurrence end with a given end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/init(end:)
-func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate unsafe.Pointer) unsafe.Pointer {
+func (ec _EKRecurrenceEndClass) RecurrenceEndWithEndDate(endDate foundation.IDate) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("recurrenceEndWithEndDate:"), endDate)
 	return rv
 }
@@ -120,8 +121,8 @@ func (ec _EKRecurrenceEndClass) RecurrenceEndWithOccurrenceCount(occurrenceCount
 // The end date of the recurrence end, or if the recurrence end is count-based.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceEnd/endDate
-func (e_ EKRecurrenceEnd) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("endDate"))
+func (e_ EKRecurrenceEnd) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("endDate"))
 	return rv
 }
 

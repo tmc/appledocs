@@ -81,7 +81,7 @@ func NewQuickLookPreviewItem() QuickLookPreviewItem {
 // Creates an object representing the 3D content that will be previewed in AR Quick Look.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/init(fileAt:)
-func NewQuickLookPreviewItemWithFileAtURL(url foundation.URL) QuickLookPreviewItem {
+func NewQuickLookPreviewItemWithFileAtURL(url foundation.IURL) QuickLookPreviewItem {
 	instance := getQuickLookPreviewItemClass().Alloc()
 	rv := objc.Send[QuickLookPreviewItem](instance.ID, objc.Sel("initWithFileAtURL:"), url)
 	rv.Autorelease()
@@ -121,7 +121,7 @@ func (q_ QuickLookPreviewItem) CanonicalWebPageURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem/canonicalWebPageURL
-func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value foundation.URL) {
+func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value foundation.IURL) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setCanonicalWebPageURL:"), value)
 }
 

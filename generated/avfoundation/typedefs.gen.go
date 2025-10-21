@@ -73,6 +73,11 @@ type AVMetadataObjectType uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/WaitingReason
 // AVPlayerWaitingReason has base type: NSString *
 type AVPlayerWaitingReason uintptr
+// AVSpatialCaptureDiscomfortReason - Constants that indicate the suitability of the current scene to create a comfortable viewing experience.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSpatialCaptureDiscomfortReason
+// AVSpatialCaptureDiscomfortReason has base type: NSString *
+type AVSpatialCaptureDiscomfortReason uintptr
 // AVVideoCodecType - A set of constants that describe the codecs the system supports for video capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVVideoCodecType

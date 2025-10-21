@@ -87,7 +87,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionStruct) Id() foundation.Number 
 // SetId sets the value of the id property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/id
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setId:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAccessControlClusterAccessRestrictionStruct) Type() foundation.Numbe
 // SetType sets the value of the type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessRestrictionStruct/type
-func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessRestrictionStruct) SetType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

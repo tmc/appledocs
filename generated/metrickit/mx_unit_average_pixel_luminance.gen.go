@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MXUnitAveragePixelLuminance] class.
@@ -29,7 +29,7 @@ type _MXUnitAveragePixelLuminanceClass struct {
 
 // An interface definition for the [MXUnitAveragePixelLuminance] class.
 type IMXUnitAveragePixelLuminance interface {
-	objectivec.IObject
+	foundation.IDimension
 }
 
 // A unit of measure of pixel luminosity on an OLED display.
@@ -38,14 +38,16 @@ type IMXUnitAveragePixelLuminance interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXUnitAveragePixelLuminance
 type MXUnitAveragePixelLuminance struct {
-	objectivec.Object
+	foundation.Dimension
 }
 
 // MXUnitAveragePixelLuminanceFrom constructs a [MXUnitAveragePixelLuminance] from an unsafe.Pointer.
 //
 // A unit of measure of pixel luminosity on an OLED display.
 func MXUnitAveragePixelLuminanceFrom(ptr unsafe.Pointer) MXUnitAveragePixelLuminance {
-	return MXUnitAveragePixelLuminance{objectivec.Object{objc.ID(ptr)}}
+	return MXUnitAveragePixelLuminance{
+		Dimension: foundation.DimensionFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -83,8 +85,8 @@ func NewMXUnitAveragePixelLuminance() MXUnitAveragePixelLuminance {
 // The average amount of luminosity of the pixels on an OLED display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxdisplaymetric/averagepixelluminance
-func (m_ MXUnitAveragePixelLuminance) AveragePixelLuminance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("averagePixelLuminance"))
+func (m_ MXUnitAveragePixelLuminance) AveragePixelLuminance() MXUnitAveragePixelLuminance {
+	rv := objc.Send[MXUnitAveragePixelLuminance](m_.ID, objc.Sel("averagePixelLuminance"))
 	return rv
 }
 
@@ -94,7 +96,7 @@ func (m_ MXUnitAveragePixelLuminance) AveragePixelLuminance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxdisplaymetric/averagepixelluminance
-func (m_ MXUnitAveragePixelLuminance) SetAveragePixelLuminance(value unsafe.Pointer) {
+func (m_ MXUnitAveragePixelLuminance) SetAveragePixelLuminance(value IMXUnitAveragePixelLuminance) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAveragePixelLuminance:"), value)
 }
 

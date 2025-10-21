@@ -78,8 +78,8 @@ func NewMTROperationalCredentialsClusterAttestationRequestParams() MTROperationa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationrequestparams/attestationnonce
-func (m_ MTROperationalCredentialsClusterAttestationRequestParams) AttestationNonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationNonce"))
+func (m_ MTROperationalCredentialsClusterAttestationRequestParams) AttestationNonce() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationNonce"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterAttestationRequestParams) AttestationNo
 // SetAttestationNonce sets the value of the attestationNonce property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationrequestparams/attestationnonce
-func (m_ MTROperationalCredentialsClusterAttestationRequestParams) SetAttestationNonce(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAttestationRequestParams) SetAttestationNonce(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationNonce:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterAttestationRequestParams) ServerSidePro
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationrequestparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterAttestationRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAttestationRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterAttestationRequestParams) TimedInvokeTi
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationrequestparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAttestationRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAttestationRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

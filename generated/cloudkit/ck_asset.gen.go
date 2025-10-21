@@ -86,7 +86,7 @@ func NewCKAsset() CKAsset {
 // Creates an asset that references a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/init(fileURL:)
-func NewCKAssetWithFileURL(fileURL foundation.URL) CKAsset {
+func NewCKAssetWithFileURL(fileURL foundation.IURL) CKAsset {
 	instance := getCKAssetClass().Alloc()
 	rv := objc.Send[CKAsset](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()

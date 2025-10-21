@@ -87,7 +87,7 @@ func (m_ MTRReadParams) FabricFiltered() foundation.Number {
 // SetFabricFiltered sets the value of the fabricFiltered property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/fabricFiltered
-func (m_ MTRReadParams) SetFabricFiltered(value foundation.Number) {
+func (m_ MTRReadParams) SetFabricFiltered(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricFiltered:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRReadParams) MinEventNumber() foundation.Number {
 // SetMinEventNumber sets the value of the minEventNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRReadParams/minEventNumber
-func (m_ MTRReadParams) SetMinEventNumber(value foundation.Number) {
+func (m_ MTRReadParams) SetMinEventNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinEventNumber:"), value)
 }
 

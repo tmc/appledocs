@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHAssetResourceUploadJobChangeRequest] class.
@@ -30,7 +31,7 @@ type _PHAssetResourceUploadJobChangeRequestClass struct {
 type IPHAssetResourceUploadJobChangeRequest interface {
 	IPHChangeRequest
 	Acknowledge()
-	RetryWithDestination(destination unsafe.Pointer)
+	RetryWithDestination(destination foundation.IURLRequest)
 }
 
 // Used within an application’s extension to create and manage records
@@ -88,7 +89,7 @@ func NewPHAssetResourceUploadJobChangeRequest() PHAssetResourceUploadJobChangeRe
 // Creates a request for modifying the specified upload job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJobChangeRequest/init(for:)
-func NewPHAssetResourceUploadJobChangeRequestForUploadJob(job unsafe.Pointer) PHAssetResourceUploadJobChangeRequest {
+func NewPHAssetResourceUploadJobChangeRequestForUploadJob(job IPHAssetResourceUploadJob) PHAssetResourceUploadJobChangeRequest {
 	rv := objc.Send[PHAssetResourceUploadJobChangeRequest](objc.ID(getPHAssetResourceUploadJobChangeRequestClass().class), objc.Sel("changeRequestForUploadJob:"), job)
 	return rv
 }
@@ -97,14 +98,14 @@ func NewPHAssetResourceUploadJobChangeRequestForUploadJob(job unsafe.Pointer) PH
 // Used to create an asset resource upload job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJobChangeRequest/createJob(destination:resource:)
-func (pc _PHAssetResourceUploadJobChangeRequestClass) CreateJobWithDestinationResource(destination unsafe.Pointer, resource unsafe.Pointer) {
+func (pc _PHAssetResourceUploadJobChangeRequestClass) CreateJobWithDestinationResource(destination foundation.IURLRequest, resource IPHAssetResource) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("createJobWithDestination:resource:"), destination, resource)
 }
 
 // Creates a request for modifying the specified upload job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJobChangeRequest/init(for:)
-func (pc _PHAssetResourceUploadJobChangeRequestClass) ChangeRequestForUploadJob(job unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetResourceUploadJobChangeRequestClass) ChangeRequestForUploadJob(job IPHAssetResourceUploadJob) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("changeRequestForUploadJob:"), job)
 	return rv
 }
@@ -119,7 +120,7 @@ func (p_ PHAssetResourceUploadJobChangeRequest) Acknowledge() {
 // Retries a job that is failed, unacknowledged, and has not been retried before. Successful retries also free up space for .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJobChangeRequest/retry(destination:)
-func (p_ PHAssetResourceUploadJobChangeRequest) RetryWithDestination(destination unsafe.Pointer) {
+func (p_ PHAssetResourceUploadJobChangeRequest) RetryWithDestination(destination foundation.IURLRequest) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("retryWithDestination:"), destination)
 }
 

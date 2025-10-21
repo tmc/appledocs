@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,8 +118,8 @@ func (g_ GCVirtualControllerElementConfiguration) SetIsHidden(value bool) {
 // The Bezier path for the shape of an element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-func (g_ GCVirtualControllerElementConfiguration) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("path"))
+func (g_ GCVirtualControllerElementConfiguration) Path() appkit.BezierPath {
+	rv := objc.Send[appkit.BezierPath](g_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (g_ GCVirtualControllerElementConfiguration) Path() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-func (g_ GCVirtualControllerElementConfiguration) SetPath(value unsafe.Pointer) {
+func (g_ GCVirtualControllerElementConfiguration) SetPath(value appkit.IBezierPath) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPath:"), value)
 }
 

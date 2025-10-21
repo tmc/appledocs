@@ -30,8 +30,8 @@ type _AEAssessmentConfigurationClass struct {
 // An interface definition for the [AEAssessmentConfiguration] class.
 type IAEAssessmentConfiguration interface {
 	objectivec.IObject
-	RemoveApplication(application unsafe.Pointer)
-	SetConfigurationForApplication(configuration unsafe.Pointer, application unsafe.Pointer)
+	RemoveApplication(application IAEAssessmentApplication)
+	SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication)
 }
 
 // Configuration information for an assessment session.
@@ -85,14 +85,14 @@ func NewAEAssessmentConfiguration() AEAssessmentConfiguration {
 // Removes the availability of a previously allowed app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/remove(_:)
-func (a_ AEAssessmentConfiguration) RemoveApplication(application unsafe.Pointer) {
+func (a_ AEAssessmentConfiguration) RemoveApplication(application IAEAssessmentApplication) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeApplication:"), application)
 }
 
 // Adds an app to the list of apps available during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/setConfiguration(_:for:)
-func (a_ AEAssessmentConfiguration) SetConfigurationForApplication(configuration unsafe.Pointer, application unsafe.Pointer) {
+func (a_ AEAssessmentConfiguration) SetConfigurationForApplication(configuration IAEAssessmentParticipantConfiguration, application IAEAssessmentApplication) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfiguration:forApplication:"), configuration, application)
 }
 
@@ -279,8 +279,8 @@ func (a_ AEAssessmentConfiguration) SetAllowsSpellCheck(value bool) {
 // A Boolean value that indicates whether to allow Autocorrect during an assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property
-func (a_ AEAssessmentConfiguration) AutocorrectMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("autocorrectMode"))
+func (a_ AEAssessmentConfiguration) AutocorrectMode() AEAutocorrectMode {
+	rv := objc.Send[AEAutocorrectMode](a_.ID, objc.Sel("autocorrectMode"))
 	return rv
 }
 
@@ -290,7 +290,7 @@ func (a_ AEAssessmentConfiguration) AutocorrectMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/autocorrectMode-swift.property
-func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value unsafe.Pointer) {
+func (a_ AEAssessmentConfiguration) SetAutocorrectMode(value AEAutocorrectMode) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutocorrectMode:"), value)
 }
 
@@ -305,8 +305,8 @@ func (a_ AEAssessmentConfiguration) ConfigurationsByApplication() unsafe.Pointer
 // The app-specific configuration for the app that invokes the assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentConfiguration/mainParticipantConfiguration
-func (a_ AEAssessmentConfiguration) MainParticipantConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mainParticipantConfiguration"))
+func (a_ AEAssessmentConfiguration) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
+	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
 }
 

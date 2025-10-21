@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewInitialGradientNode
 
+// ExampleNewInitialGradientNodeWithSource demonstrates how to create a InitialGradientNode instance using NewInitialGradientNodeWithSource.
+func ExampleNewInitialGradientNodeWithSource() {
+	_ = metalperformanceshaders.NewInitialGradientNodeWithSource(
+		metalperformanceshaders.MPSNNImageNode{}, // source MPSNNImageNode
+	)
+	// Output:
+}

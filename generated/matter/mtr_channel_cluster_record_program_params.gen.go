@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRChannelClusterRecordProgramParams() MTRChannelClusterRecordProgramPar
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/data
-func (m_ MTRChannelClusterRecordProgramParams) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRChannelClusterRecordProgramParams) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,14 +88,14 @@ func (m_ MTRChannelClusterRecordProgramParams) Data() unsafe.Pointer {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/data
-func (m_ MTRChannelClusterRecordProgramParams) SetData(value unsafe.Pointer) {
+func (m_ MTRChannelClusterRecordProgramParams) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("programIdentifier"))
+func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("programIdentifier"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (m_ MTRChannelClusterRecordProgramParams) ProgramIdentifier() string {
 // SetProgramIdentifier sets the value of the programIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
+func (m_ MTRChannelClusterRecordProgramParams) SetProgramIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
@@ -120,7 +121,7 @@ func (m_ MTRChannelClusterRecordProgramParams) ServerSideProcessingTimeout() fou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRChannelClusterRecordProgramParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -135,7 +136,7 @@ func (m_ MTRChannelClusterRecordProgramParams) ShouldRecordSeries() foundation.N
 // SetShouldRecordSeries sets the value of the shouldRecordSeries property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/shouldRecordSeries
-func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value foundation.Number) {
+func (m_ MTRChannelClusterRecordProgramParams) SetShouldRecordSeries(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRecordSeries:"), value)
 }
 
@@ -153,7 +154,7 @@ func (m_ MTRChannelClusterRecordProgramParams) TimedInvokeTimeoutMs() foundation
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterRecordProgramParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRChannelClusterRecordProgramParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

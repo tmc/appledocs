@@ -80,7 +80,7 @@ func NewPasskeyRegistrationCredentialExtensionOutput() PasskeyRegistrationCreden
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyRegistrationCredentialExtensionOutput-c.class/initWithLargeBlobOutput:
-func NewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput(largeBlob unsafe.Pointer) PasskeyRegistrationCredentialExtensionOutput {
+func NewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput(largeBlob IASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput) PasskeyRegistrationCredentialExtensionOutput {
 	instance := getPasskeyRegistrationCredentialExtensionOutputClass().Alloc()
 	rv := objc.Send[PasskeyRegistrationCredentialExtensionOutput](instance.ID, objc.Sel("initWithLargeBlobOutput:"), largeBlob)
 	rv.Autorelease()
@@ -91,8 +91,8 @@ func NewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput(largeBlo
 // Output for operation during passkey registration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyRegistrationCredentialExtensionOutput-c.class/largeBlobRegistrationOutput
-func (p_ PasskeyRegistrationCredentialExtensionOutput) LargeBlobRegistrationOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("largeBlobRegistrationOutput"))
+func (p_ PasskeyRegistrationCredentialExtensionOutput) LargeBlobRegistrationOutput() ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput {
+	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput](p_.ID, objc.Sel("largeBlobRegistrationOutput"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,7 +87,7 @@ func NewXMLParser() XMLParser {
 // Initializes a parser with the XML contents encapsulated in a given data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(data:)
-func NewXMLParserWithData(data unsafe.Pointer) XMLParser {
+func NewXMLParserWithData(data IData) XMLParser {
 	instance := getXMLParserClass().Alloc()
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewXMLParserWithData(data unsafe.Pointer) XMLParser {
 // Initializes a parser with the XML contents from the specified stream and parses it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(stream:)
-func NewXMLParserWithStream(stream unsafe.Pointer) XMLParser {
+func NewXMLParserWithStream(stream IInputStream) XMLParser {
 	instance := getXMLParserClass().Alloc()
 	rv := objc.Send[XMLParser](instance.ID, objc.Sel("initWithStream:"), stream)
 	rv.Autorelease()
@@ -140,16 +141,16 @@ func (x_ XMLParser) LineNumber() int {
 // An object from which you can obtain information about a parsing error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parserError
-func (x_ XMLParser) ParserError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("parserError"))
+func (x_ XMLParser) ParserError() NSError {
+	rv := objc.Send[NSError](x_.ID, objc.Sel("parserError"))
 	return rv
 }
 
 // The public identifier of the external entity referenced in the XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/publicID
-func (x_ XMLParser) PublicID() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
+func (x_ XMLParser) PublicID() appkit.string {
+	rv := objc.Send[appkit.string](x_.ID, objc.Sel("publicID"))
 	return rv
 }
 
@@ -261,8 +262,8 @@ func (x_ XMLParser) SetShouldResolveExternalEntities(value bool) {
 // The system identifier of the external entity referenced in the XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SystemID() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
+func (x_ XMLParser) SystemID() appkit.string {
+	rv := objc.Send[appkit.string](x_.ID, objc.Sel("systemID"))
 	return rv
 }
 
@@ -272,8 +273,8 @@ func (x_ XMLParser) SystemID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlparser/systemid
-func (x_ XMLParser) SetSystemID(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
+func (x_ XMLParser) SetSystemID(value appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), value)
 }
 
 

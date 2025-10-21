@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,13 @@ type _CWWiFiClientClass struct {
 // An interface definition for the [CWWiFiClient] class.
 type ICWWiFiClient interface {
 	objectivec.IObject
-	Interface() unsafe.Pointer
-	InterfaceWithName(interfaceName string) unsafe.Pointer
+	Interface() CWInterface
+	InterfaceWithName(interfaceName appkit.string) CWInterface
 	InterfaceNames() []string
 	Interfaces() []CWInterface
-	StartMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool
+	StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
 	StopMonitoringAllEventsAndReturnError(error_ unsafe.Pointer) bool
-	StopMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool
+	StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool
 }
 
 // A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.
@@ -99,24 +100,24 @@ func (cc _CWWiFiClientClass) InterfaceNames() []string {
 // The shared Wi-Fi client object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/shared()
-func (cc _CWWiFiClientClass) SharedWiFiClient() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedWiFiClient"))
+func (cc _CWWiFiClientClass) SharedWiFiClient() CWWiFiClient {
+	rv := objc.Send[CWWiFiClient](objc.ID(cc.class), objc.Sel("sharedWiFiClient"))
 	return rv
 }
 
 // Returns the default Wi-Fi interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interface()
-func (c_ CWWiFiClient) Interface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("interface"))
+func (c_ CWWiFiClient) Interface() CWInterface {
+	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interface"))
 	return rv
 }
 
 // Returns the Wi-Fi interface with the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/interface(withName:)
-func (c_ CWWiFiClient) InterfaceWithName(interfaceName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("interfaceWithName:"), objc.String(interfaceName))
+func (c_ CWWiFiClient) InterfaceWithName(interfaceName appkit.string) CWInterface {
+	rv := objc.Send[CWInterface](c_.ID, objc.Sel("interfaceWithName:"), interfaceName)
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (c_ CWWiFiClient) Interfaces() []CWInterface {
 // Register for specific Wi-Fi event notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/startMonitoringEvent(with:)
-func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (c_ CWWiFiClient) StartMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("startMonitoringEventWithType:error:"), type_, error_)
 	return rv
 }
@@ -154,7 +155,7 @@ func (c_ CWWiFiClient) StopMonitoringAllEventsAndReturnError(error_ unsafe.Point
 // Unregister for specific Wi-Fi event notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWWiFiClient/stopMonitoringEvent(with:)
-func (c_ CWWiFiClient) StopMonitoringEventWithTypeError(type_ unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (c_ CWWiFiClient) StopMonitoringEventWithTypeError(type_ CWEventType, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("stopMonitoringEventWithType:error:"), type_, error_)
 	return rv
 }

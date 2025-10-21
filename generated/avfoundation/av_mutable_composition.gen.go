@@ -30,7 +30,7 @@ type _MutableCompositionClass struct {
 // An interface definition for the [MutableComposition] class.
 type IMutableComposition interface {
 	IComposition
-	InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset unsafe.Pointer, startTime unsafe.Pointer, outError unsafe.Pointer) bool
+	InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset IAVAsset, startTime unsafe.Pointer, outError unsafe.Pointer) bool
 }
 
 // An object that you use to create a new composition from existing assets.
@@ -86,7 +86,7 @@ func NewMutableComposition() MutableComposition {
 // Inserts all the tracks within a given time range of a specified asset into the composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMutableComposition/insertTimeRange(_:of:at:)
-func (m_ MutableComposition) InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset unsafe.Pointer, startTime unsafe.Pointer, outError unsafe.Pointer) bool {
+func (m_ MutableComposition) InsertTimeRangeOfAssetAtTimeError(timeRange unsafe.Pointer, asset IAVAsset, startTime unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("insertTimeRange:ofAsset:atTime:error:"), timeRange, asset, startTime, outError)
 	return rv
 }

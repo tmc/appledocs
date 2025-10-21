@@ -94,8 +94,8 @@ func NewINSendMessageAttachmentWithAudioMessageFile(audioMessageFile unsafe.Poin
 // Creates a message attachment with an audio file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendMessageAttachment/init(audioMessageFile:)
-func (ic _INSendMessageAttachmentClass) AttachmentWithAudioMessageFile(audioMessageFile unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("attachmentWithAudioMessageFile:"), audioMessageFile)
+func (ic _INSendMessageAttachmentClass) AttachmentWithAudioMessageFile(audioMessageFile unsafe.Pointer) INSendMessageAttachment {
+	rv := objc.Send[INSendMessageAttachment](objc.ID(ic.class), objc.Sel("attachmentWithAudioMessageFile:"), audioMessageFile)
 	return rv
 }
 

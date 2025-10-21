@@ -87,7 +87,7 @@ func (m_ MTRLaundryWasherModeClusterModeTagStruct) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeTagStruct/mfgCode
-func (m_ MTRLaundryWasherModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
+func (m_ MTRLaundryWasherModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRLaundryWasherModeClusterModeTagStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeTagStruct/value
-func (m_ MTRLaundryWasherModeClusterModeTagStruct) SetValue(value foundation.Number) {
+func (m_ MTRLaundryWasherModeClusterModeTagStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

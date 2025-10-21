@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKDocumentQuery] class.
@@ -120,8 +121,8 @@ func (h_ HKDocumentQuery) SetLimit(value int) {
 // An array of sort descriptors that specify the order of the results returned by this query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sortDescriptors"))
+func (h_ HKDocumentQuery) SortDescriptors() foundation.SortDescriptor {
+	rv := objc.Send[foundation.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (h_ HKDocumentQuery) SortDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdocumentquery/sortdescriptors
-func (h_ HKDocumentQuery) SetSortDescriptors(value unsafe.Pointer) {
+func (h_ HKDocumentQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

@@ -15,11 +15,11 @@ func ExampleNewDictionary() {
 	_ = foundation.NewDictionary()
 	// Output:
 }
-// ExampleNewDictionaryWithContentsOfFile demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfFile.
-// Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
-func ExampleNewDictionaryWithContentsOfFile() {
-	_ = foundation.NewDictionaryWithContentsOfFile(
-		"/tmp/test", // path string
+// ExampleNewDictionaryWithCoder demonstrates how to create a Dictionary instance using NewDictionaryWithCoder.
+// Creates a dictionary initialized from data in the provided unarchiver.
+func ExampleNewDictionaryWithCoder() {
+	_ = foundation.NewDictionaryWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
 	)
 	// Output:
 }
@@ -28,6 +28,15 @@ func ExampleNewDictionaryWithContentsOfFile() {
 func ExampleNewDictionaryWithContentsOfURL() {
 	_ = foundation.NewDictionaryWithContentsOfURL(
 		foundation.URL{}, // url URL
+	)
+	// Output:
+}
+// ExampleNewDictionaryWithContentsOfURLError demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfURLError.
+// Initializes a newly allocated dictionary using the keys and values found at a given URL.
+func ExampleNewDictionaryWithContentsOfURLError() {
+	_ = foundation.NewDictionaryWithContentsOfURLError(
+		foundation.URL{}, // url URL
+		foundation.NSError{}, // error NSError
 	)
 	// Output:
 }

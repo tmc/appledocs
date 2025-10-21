@@ -83,16 +83,16 @@ func NewNINearbyObject() NINearbyObject {
 // A unique identifier for a peer device in the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/discoveryToken
-func (n_ NINearbyObject) DiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("discoveryToken"))
+func (n_ NINearbyObject) DiscoveryToken() NIDiscoveryToken {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
 	return rv
 }
 
 // The estimation of a nearby object’s vertical position as it relates to the user’s device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property
-func (n_ NINearbyObject) VerticalDirectionEstimate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("verticalDirectionEstimate"))
+func (n_ NINearbyObject) VerticalDirectionEstimate() NINearbyObjectVerticalDirectionEstimate {
+	rv := objc.Send[NINearbyObjectVerticalDirectionEstimate](n_.ID, objc.Sel("verticalDirectionEstimate"))
 	return rv
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRIdentifyClusterIdentifyParams) IdentifyTime() foundation.Number {
 // SetIdentifyTime sets the value of the identifyTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/identifytime
-func (m_ MTRIdentifyClusterIdentifyParams) SetIdentifyTime(value foundation.Number) {
+func (m_ MTRIdentifyClusterIdentifyParams) SetIdentifyTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifyTime:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRIdentifyClusterIdentifyParams) ServerSideProcessingTimeout() foundat
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/serversideprocessingtimeout
-func (m_ MTRIdentifyClusterIdentifyParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRIdentifyClusterIdentifyParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRIdentifyClusterIdentifyParams) TimedInvokeTimeoutMs() foundation.Num
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclusteridentifyparams/timedinvoketimeoutms
-func (m_ MTRIdentifyClusterIdentifyParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRIdentifyClusterIdentifyParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

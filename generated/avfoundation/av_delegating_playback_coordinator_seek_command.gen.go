@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [DelegatingPlaybackCoordinatorSeekCommand] class.
@@ -100,8 +101,8 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetAnticipatedPlaybackRate(va
 // The deadline by which the coordinator expects the delegate to handle the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/completionduedate
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("completionDueDate"))
+func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("completionDueDate"))
 	return rv
 }
 
@@ -111,7 +112,7 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/completionduedate
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetCompletionDueDate(value unsafe.Pointer) {
+func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetCompletionDueDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
 }
 

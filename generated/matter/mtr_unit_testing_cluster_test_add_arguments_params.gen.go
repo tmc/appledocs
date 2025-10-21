@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestAddArgumentsParams) Arg1() foundation.Number {
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestaddargumentsparams/arg1
-func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetArg1(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetArg1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestAddArgumentsParams) Arg2() foundation.Number {
 // SetArg2 sets the value of the arg2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestaddargumentsparams/arg2
-func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetArg2(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetArg2(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRUnitTestingClusterTestAddArgumentsParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestaddargumentsparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRUnitTestingClusterTestAddArgumentsParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestaddargumentsparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestAddArgumentsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

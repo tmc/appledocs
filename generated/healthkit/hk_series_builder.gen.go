@@ -91,8 +91,8 @@ func (h_ HKSeriesBuilder) Discard() {
 // A series sample containing location data that defines the route the user took during a workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier
-func (h_ HKSeriesBuilder) HKWorkoutRouteTypeIdentifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
+func (h_ HKSeriesBuilder) HKWorkoutRouteTypeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKWorkoutRouteTypeIdentifier"))
 	return rv
 }
 

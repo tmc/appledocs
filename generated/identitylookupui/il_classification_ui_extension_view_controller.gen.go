@@ -102,8 +102,8 @@ func (i_ ILClassificationUIExtensionViewController) PrepareForClassificationRequ
 // The context for the current request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookupUI/ILClassificationUIExtensionViewController/extensionContext
-func (i_ ILClassificationUIExtensionViewController) ExtensionContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("extensionContext"))
+func (i_ ILClassificationUIExtensionViewController) ExtensionContext() ILClassificationUIExtensionContext {
+	rv := objc.Send[ILClassificationUIExtensionContext](i_.ID, objc.Sel("extensionContext"))
 	return rv
 }
 

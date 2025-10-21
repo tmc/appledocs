@@ -77,8 +77,8 @@ func NewGLKMeshBuffer() GLKMeshBuffer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMeshBuffer/allocator
-func (g_ GLKMeshBuffer) Allocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("allocator"))
+func (g_ GLKMeshBuffer) Allocator() GLKMeshBufferAllocator {
+	rv := objc.Send[GLKMeshBufferAllocator](g_.ID, objc.Sel("allocator"))
 	return rv
 }
 

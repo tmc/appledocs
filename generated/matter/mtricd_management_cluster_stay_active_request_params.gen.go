@@ -90,7 +90,7 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/serverSideProcessingTimeout
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) StayActiveDuration() fo
 // SetStayActiveDuration sets the value of the stayActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/stayActiveDuration
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value foundation.Number) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetStayActiveDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStayActiveDuration:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRICDManagementClusterStayActiveRequestParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveRequestParams/timedInvokeTimeoutMs
-func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRICDManagementClusterStayActiveRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -101,8 +101,8 @@ func (s_ ScrollLayer) ScrollToRect(r coregraphics.CGRect) {
 // Defines the axes in which the layer may be scrolled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scrollMode
-func (s_ ScrollLayer) ScrollMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrollMode"))
+func (s_ ScrollLayer) ScrollMode() ScrollLayerScrollMode {
+	rv := objc.Send[ScrollLayerScrollMode](s_.ID, objc.Sel("scrollMode"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (s_ ScrollLayer) ScrollMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scrollMode
-func (s_ ScrollLayer) SetScrollMode(value unsafe.Pointer) {
+func (s_ ScrollLayer) SetScrollMode(value ScrollLayerScrollMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollMode:"), value)
 }
 

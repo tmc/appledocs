@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _ContentRuleListStoreClass struct {
 // An interface definition for the [ContentRuleListStore] class.
 type IContentRuleListStore interface {
 	objectivec.IObject
-	RemoveContentRuleListForIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer)
+	RemoveContentRuleListForIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer)
 }
 
 // An object that contains the rules for how to load and filter content in the web view.
@@ -87,7 +88,7 @@ func NewContentRuleListStore() ContentRuleListStore {
 // Creates a new content rule list store in the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)
-func NewContentRuleListStoreWithURL(url foundation.URL) ContentRuleListStore {
+func NewContentRuleListStoreWithURL(url foundation.IURL) ContentRuleListStore {
 	rv := objc.Send[ContentRuleListStore](objc.ID(getContentRuleListStoreClass().class), objc.Sel("storeWithURL:"), url)
 	return rv
 }
@@ -96,7 +97,7 @@ func NewContentRuleListStoreWithURL(url foundation.URL) ContentRuleListStore {
 // Creates a new content rule list store in the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/init(url:)
-func (cc _ContentRuleListStoreClass) StoreWithURL(url foundation.URL) unsafe.Pointer {
+func (cc _ContentRuleListStoreClass) StoreWithURL(url foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("storeWithURL:"), url)
 	return rv
 }
@@ -104,8 +105,8 @@ func (cc _ContentRuleListStoreClass) StoreWithURL(url foundation.URL) unsafe.Poi
 // Removes a rule list from the current data store asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentRuleListStore/removeContentRuleList(forIdentifier:completionHandler:)
-func (c_ ContentRuleListStore) RemoveContentRuleListForIdentifierCompletionHandler(identifier string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeContentRuleListForIdentifier:completionHandler:"), objc.String(identifier), completionHandler)
+func (c_ ContentRuleListStore) RemoveContentRuleListForIdentifierCompletionHandler(identifier appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("removeContentRuleListForIdentifier:completionHandler:"), identifier, completionHandler)
 }
 
 

@@ -30,7 +30,7 @@ type _INVoiceShortcutCenterClass struct {
 // An interface definition for the [INVoiceShortcutCenter] class.
 type IINVoiceShortcutCenter interface {
 	objectivec.IObject
-	SetShortcutSuggestions(suggestions unsafe.Pointer)
+	SetShortcutSuggestions(suggestions []INShortcut)
 }
 
 // Retrieve the user’s shortcuts and make shortcut suggestions.
@@ -84,22 +84,22 @@ func NewINVoiceShortcutCenter() INVoiceShortcutCenter {
 // The shared shortcut center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter/shared
-func (ic _INVoiceShortcutCenterClass) SharedCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("sharedCenter"))
+func (ic _INVoiceShortcutCenterClass) SharedCenter() INVoiceShortcutCenter {
+	rv := objc.Send[INVoiceShortcutCenter](objc.ID(ic.class), objc.Sel("sharedCenter"))
 	return rv
 }
 // Suggests shortcuts the user may want to add to Siri.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter/setShortcutSuggestions(_:)
-func (i_ INVoiceShortcutCenter) SetShortcutSuggestions(suggestions unsafe.Pointer) {
+func (i_ INVoiceShortcutCenter) SetShortcutSuggestions(suggestions []INShortcut) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcutSuggestions:"), suggestions)
 }
 
 // The shared shortcut center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVoiceShortcutCenter/shared
-func (i_ INVoiceShortcutCenter) SharedCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sharedCenter"))
+func (i_ INVoiceShortcutCenter) SharedCenter() INVoiceShortcutCenter {
+	rv := objc.Send[INVoiceShortcutCenter](i_.ID, objc.Sel("sharedCenter"))
 	return rv
 }
 

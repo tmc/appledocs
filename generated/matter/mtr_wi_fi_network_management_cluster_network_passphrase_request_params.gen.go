@@ -90,7 +90,7 @@ func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams) ServerSi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams/serverSideProcessingTimeout
-func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams) TimedInv
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams/timedInvokeTimeoutMs
-func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

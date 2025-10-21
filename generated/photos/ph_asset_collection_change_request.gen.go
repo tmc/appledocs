@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHAssetCollectionChangeRequest] class.
@@ -84,16 +85,16 @@ func NewPHAssetCollectionChangeRequest() PHAssetCollectionChangeRequest {
 // Creates a request for adding a new asset collection to the Photos library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCollectionChangeRequest/creationRequestForAssetCollection(withTitle:)
-func (pc _PHAssetCollectionChangeRequestClass) CreationRequestForAssetCollectionWithTitle(title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForAssetCollectionWithTitle:"), objc.String(title))
+func (pc _PHAssetCollectionChangeRequestClass) CreationRequestForAssetCollectionWithTitle(title appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("creationRequestForAssetCollectionWithTitle:"), title)
 	return rv
 }
 
 // A placeholder object for the asset collection that the change request creates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/placeholderforcreatedassetcollection
-func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderForCreatedAssetCollection"))
+func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() PHObjectPlaceholder {
+	rv := objc.Send[PHObjectPlaceholder](p_.ID, objc.Sel("placeholderForCreatedAssetCollection"))
 	return rv
 }
 
@@ -103,15 +104,15 @@ func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/placeholderforcreatedassetcollection
-func (p_ PHAssetCollectionChangeRequest) SetPlaceholderForCreatedAssetCollection(value unsafe.Pointer) {
+func (p_ PHAssetCollectionChangeRequest) SetPlaceholderForCreatedAssetCollection(value IPHObjectPlaceholder) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedAssetCollection:"), value)
 }
 
 // The displayed name of the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
-func (p_ PHAssetCollectionChangeRequest) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+func (p_ PHAssetCollectionChangeRequest) Title() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -121,8 +122,8 @@ func (p_ PHAssetCollectionChangeRequest) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/title
-func (p_ PHAssetCollectionChangeRequest) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (p_ PHAssetCollectionChangeRequest) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 

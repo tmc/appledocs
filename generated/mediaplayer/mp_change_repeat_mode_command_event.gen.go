@@ -100,8 +100,8 @@ func (c_ ChangeRepeatModeCommandEvent) SetPreservesRepeatMode(value bool) {
 // The repeat type used when fulfilling the event request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent/repeattype
-func (c_ ChangeRepeatModeCommandEvent) RepeatType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("repeatType"))
+func (c_ ChangeRepeatModeCommandEvent) RepeatType() RepeatType {
+	rv := objc.Send[RepeatType](c_.ID, objc.Sel("repeatType"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (c_ ChangeRepeatModeCommandEvent) RepeatType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangerepeatmodecommandevent/repeattype
-func (c_ ChangeRepeatModeCommandEvent) SetRepeatType(value unsafe.Pointer) {
+func (c_ ChangeRepeatModeCommandEvent) SetRepeatType(value RepeatType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRepeatType:"), value)
 }
 

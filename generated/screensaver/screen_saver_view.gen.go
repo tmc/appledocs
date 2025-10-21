@@ -159,15 +159,15 @@ func (s_ ScreenSaverView) AnimationTimeInterval() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/animationTimeInterval
-func (s_ ScreenSaverView) SetAnimationTimeInterval(value foundation.TimeInterval) {
+func (s_ ScreenSaverView) SetAnimationTimeInterval(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAnimationTimeInterval:"), value)
 }
 
 // The window that contains the controls to configure the screen saver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenSaver/ScreenSaverView/configureSheet
-func (s_ ScreenSaverView) ConfigureSheet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("configureSheet"))
+func (s_ ScreenSaverView) ConfigureSheet() appkit.Window {
+	rv := objc.Send[appkit.Window](s_.ID, objc.Sel("configureSheet"))
 	return rv
 }
 

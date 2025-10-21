@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRMessagesClusterMessageResponseOptionStruct() MTRMessagesClusterMessag
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/label
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRMessagesClusterMessageResponseOptionStruct) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/label
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,7 +103,7 @@ func (m_ MTRMessagesClusterMessageResponseOptionStruct) MessageResponseID() foun
 // SetMessageResponseID sets the value of the messageResponseID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageResponseOptionStruct/messageResponseID
-func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetMessageResponseID(value foundation.Number) {
+func (m_ MTRMessagesClusterMessageResponseOptionStruct) SetMessageResponseID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageResponseID:"), value)
 }
 

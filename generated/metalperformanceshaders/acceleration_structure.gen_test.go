@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewAccelerationStructure
 
+// ExampleNewAccelerationStructureWithGroup demonstrates how to create a AccelerationStructure instance using NewAccelerationStructureWithGroup.
+func ExampleNewAccelerationStructureWithGroup() {
+	_ = metalperformanceshaders.NewAccelerationStructureWithGroup(
+		metalperformanceshaders.MPSAccelerationStructureGroup{}, // group MPSAccelerationStructureGroup
+	)
+	// Output:
+}

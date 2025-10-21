@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,14 +88,14 @@ func (m_ MTRServiceAreaClusterMapStruct) MapID() foundation.Number {
 // SetMapID sets the value of the mapID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/mapID
-func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value foundation.Number) {
+func (m_ MTRServiceAreaClusterMapStruct) SetMapID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRServiceAreaClusterMapStruct) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (m_ MTRServiceAreaClusterMapStruct) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterMapStruct/name
-func (m_ MTRServiceAreaClusterMapStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRServiceAreaClusterMapStruct) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

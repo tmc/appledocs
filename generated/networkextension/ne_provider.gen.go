@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _NEProviderClass struct {
 // An interface definition for the [NEProvider] class.
 type INEProvider interface {
 	objectivec.IObject
-	CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint unsafe.Pointer, enableTLS bool, TLSParameters unsafe.Pointer, delegate objc.ID) unsafe.Pointer
-	CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint unsafe.Pointer, localEndpoint unsafe.Pointer) unsafe.Pointer
-	DisplayMessageCompletionHandler(message string, completionHandler unsafe.Pointer)
+	CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection
+	CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession
+	DisplayMessageCompletionHandler(message appkit.string, completionHandler unsafe.Pointer)
 	SleepWithCompletionHandler(completionHandler unsafe.Pointer)
 	Wake()
 }
@@ -95,24 +96,24 @@ func (nc _NEProviderClass) StartSystemExtensionMode() {
 // Create a TCP connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/createTCPConnection(to:enableTLS:tlsParameters:delegate:)
-func (n_ NEProvider) CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint unsafe.Pointer, enableTLS bool, TLSParameters unsafe.Pointer, delegate objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:"), remoteEndpoint, enableTLS, TLSParameters, delegate)
+func (n_ NEProvider) CreateTCPConnectionToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection {
+	rv := objc.Send[NWTCPConnection](n_.ID, objc.Sel("createTCPConnectionToEndpoint:enableTLS:TLSParameters:delegate:"), remoteEndpoint, enableTLS, TLSParameters, delegate)
 	return rv
 }
 
 // Creates a UDP session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/createUDPSession(to:from:)
-func (n_ NEProvider) CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint unsafe.Pointer, localEndpoint unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("createUDPSessionToEndpoint:fromEndpoint:"), remoteEndpoint, localEndpoint)
+func (n_ NEProvider) CreateUDPSessionToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession {
+	rv := objc.Send[NWUDPSession](n_.ID, objc.Sel("createUDPSessionToEndpoint:fromEndpoint:"), remoteEndpoint, localEndpoint)
 	return rv
 }
 
 // Call this method from your subclass if you want to display a message to the person using the app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/displayMessage(_:completionHandler:)
-func (n_ NEProvider) DisplayMessageCompletionHandler(message string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("displayMessage:completionHandler:"), objc.String(message), completionHandler)
+func (n_ NEProvider) DisplayMessageCompletionHandler(message appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("displayMessage:completionHandler:"), message, completionHandler)
 }
 
 // Handle a sleep event.
@@ -132,8 +133,8 @@ func (n_ NEProvider) Wake() {
 // The current default network path used for connections created by the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEProvider/defaultPath
-func (n_ NEProvider) DefaultPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("defaultPath"))
+func (n_ NEProvider) DefaultPath() NWPath {
+	rv := objc.Send[NWPath](n_.ID, objc.Sel("defaultPath"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewCBL2CAPChannel() CBL2CAPChannel {
 // The stream used for reading data from the remote peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) InputStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("inputStream"))
+func (c_ CBL2CAPChannel) InputStream() foundation.InputStream {
+	rv := objc.Send[foundation.InputStream](c_.ID, objc.Sel("inputStream"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (c_ CBL2CAPChannel) InputStream() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/inputstream
-func (c_ CBL2CAPChannel) SetInputStream(value unsafe.Pointer) {
+func (c_ CBL2CAPChannel) SetInputStream(value foundation.IInputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputStream:"), value)
 }
 
 // The stream used for writing data to the peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-func (c_ CBL2CAPChannel) OutputStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("outputStream"))
+func (c_ CBL2CAPChannel) OutputStream() foundation.OutputStream {
+	rv := objc.Send[foundation.OutputStream](c_.ID, objc.Sel("outputStream"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (c_ CBL2CAPChannel) OutputStream() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/outputstream
-func (c_ CBL2CAPChannel) SetOutputStream(value unsafe.Pointer) {
+func (c_ CBL2CAPChannel) SetOutputStream(value foundation.IOutputStream) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputStream:"), value)
 }
 
 // The peer connected to the channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
-func (c_ CBL2CAPChannel) Peer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("peer"))
+func (c_ CBL2CAPChannel) Peer() CBPeer {
+	rv := objc.Send[CBPeer](c_.ID, objc.Sel("peer"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (c_ CBL2CAPChannel) Peer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/peer
-func (c_ CBL2CAPChannel) SetPeer(value unsafe.Pointer) {
+func (c_ CBL2CAPChannel) SetPeer(value ICBPeer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPeer:"), value)
 }
 
 // The PSM of the channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) Psm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("psm"))
+func (c_ CBL2CAPChannel) Psm() CBL2CAPPSM {
+	rv := objc.Send[CBL2CAPPSM](c_.ID, objc.Sel("psm"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (c_ CBL2CAPChannel) Psm() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corebluetooth/cbl2capchannel/psm
-func (c_ CBL2CAPChannel) SetPsm(value unsafe.Pointer) {
+func (c_ CBL2CAPChannel) SetPsm(value ICBL2CAPPSM) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPsm:"), value)
 }
 

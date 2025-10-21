@@ -88,7 +88,7 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) Announce
 // SetAnnouncementReason sets the value of the announcementReason property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/announcementreason
-func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetAnnouncementReason(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetAnnouncementReason(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAnnouncementReason:"), value)
 }
 
@@ -103,14 +103,14 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) Endpoint
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/endpoint
-func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetEndpoint(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/metadatafornode
-func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) MetadataForNode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadataForNode"))
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) MetadataForNode() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("metadataForNode"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) Metadata
 // SetMetadataForNode sets the value of the metadataForNode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/metadatafornode
-func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetMetadataForNode(value unsafe.Pointer) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetMetadataForNode(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForNode:"), value)
 }
 
@@ -136,7 +136,7 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) ServerSi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/serversideprocessingtimeout
-func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -151,7 +151,7 @@ func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) TimedInv
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterannounceotaproviderparams-1ucwe/timedinvoketimeoutms
-func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

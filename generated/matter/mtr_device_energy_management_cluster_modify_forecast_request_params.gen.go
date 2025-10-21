@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) Cause() fo
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetCause(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ForecastID
 // SetForecastID sets the value of the forecastID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/forecastID
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetForecastID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForecastID:"), value)
 }
 
@@ -120,14 +120,14 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) ServerSide
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/slotAdjustments
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjustments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("slotAdjustments"))
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjustments() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("slotAdjustments"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SlotAdjust
 // SetSlotAdjustments sets the value of the slotAdjustments property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/slotAdjustments
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetSlotAdjustments(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetSlotAdjustments(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotAdjustments:"), value)
 }
 
@@ -153,7 +153,7 @@ func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) TimedInvok
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterModifyForecastRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterModifyForecastRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,40 +85,40 @@ func NewNEFlowMetaData() NEFlowMetaData {
 // The identifier of the content filter flow corresponding to this flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/filterFlowIdentifier
-func (n_ NEFlowMetaData) FilterFlowIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("filterFlowIdentifier"))
+func (n_ NEFlowMetaData) FilterFlowIdentifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](n_.ID, objc.Sel("filterFlowIdentifier"))
 	return rv
 }
 
 // The audit token of the source application of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppAuditToken
-func (n_ NEFlowMetaData) SourceAppAuditToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppAuditToken"))
+func (n_ NEFlowMetaData) SourceAppAuditToken() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("sourceAppAuditToken"))
 	return rv
 }
 
 // A string that contains the signing identifier of the source application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppSigningIdentifier
-func (n_ NEFlowMetaData) SourceAppSigningIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
+func (n_ NEFlowMetaData) SourceAppSigningIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sourceAppSigningIdentifier"))
 	return rv
 }
 
 // A data instance that contains a unique hash value for the source application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFlowMetaData/sourceAppUniqueIdentifier
-func (n_ NEFlowMetaData) SourceAppUniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
+func (n_ NEFlowMetaData) SourceAppUniqueIdentifier() foundation.NSData {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
 	return rv
 }
 
 // The method by which network traffic is routed to the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
-func (n_ NEFlowMetaData) RoutingMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("routingMethod"))
+func (n_ NEFlowMetaData) RoutingMethod() NETunnelProviderRoutingMethod {
+	rv := objc.Send[NETunnelProviderRoutingMethod](n_.ID, objc.Sel("routingMethod"))
 	return rv
 }
 
@@ -126,7 +128,7 @@ func (n_ NEFlowMetaData) RoutingMethod() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/netunnelprovider/routingmethod
-func (n_ NEFlowMetaData) SetRoutingMethod(value unsafe.Pointer) {
+func (n_ NEFlowMetaData) SetRoutingMethod(value INETunnelProviderRoutingMethod) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoutingMethod:"), value)
 }
 

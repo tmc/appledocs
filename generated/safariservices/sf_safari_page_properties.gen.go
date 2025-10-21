@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,8 +93,8 @@ func (s_ SFSafariPageProperties) Active() bool {
 // The title of the page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariPageProperties/title
-func (s_ SFSafariPageProperties) Title() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+func (s_ SFSafariPageProperties) Title() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (s_ SFSafariPageProperties) UsesPrivateBrowsing() bool {
 // A string the system uses as a key in a user info dictionary to identify a profile identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfextensionprofilekey
-func (s_ SFSafariPageProperties) SFExtensionProfileKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFExtensionProfileKey"))
+func (s_ SFSafariPageProperties) SFExtensionProfileKey() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("SFExtensionProfileKey"))
 	return rv
 }
 

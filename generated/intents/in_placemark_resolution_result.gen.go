@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INPlacemarkResolutionResult] class.
@@ -84,7 +85,7 @@ func NewINPlacemarkResolutionResult() INPlacemarkResolutionResult {
 // Creates an object whose resolution requires that the user must confirm the value before proceeding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/confirmationRequired(with:)
-func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm unsafe.Pointer) unsafe.Pointer {
+func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToConfirm(placemarkToConfirm corelocation.IPlacemark) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("confirmationRequiredWithPlacemarkToConfirm:"), placemarkToConfirm)
 	return rv
 }
@@ -92,7 +93,7 @@ func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToC
 // Creates an object whose resolution requires the user to select from among the specified objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlacemarkResolutionResult/disambiguation(with:)
-func (ic _INPlacemarkResolutionResultClass) DisambiguationWithPlacemarksToDisambiguate(placemarksToDisambiguate unsafe.Pointer) unsafe.Pointer {
+func (ic _INPlacemarkResolutionResultClass) DisambiguationWithPlacemarksToDisambiguate(placemarksToDisambiguate []corelocation.IPlacemark) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("disambiguationWithPlacemarksToDisambiguate:"), placemarksToDisambiguate)
 	return rv
 }

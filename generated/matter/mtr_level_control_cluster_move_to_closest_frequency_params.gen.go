@@ -87,7 +87,7 @@ func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) Frequency() foundat
 // SetFrequency sets the value of the frequency property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/frequency
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetFrequency(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetFrequency(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFrequency:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) ServerSideProcessin
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclustermovetoclosestfrequencyparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRLevelControlClusterMoveToClosestFrequencyParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +83,16 @@ func NewPHPickerResult() PHPickerResult {
 // The selected asset’s local identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class/assetIdentifier
-func (p_ PHPickerResult) AssetIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("assetIdentifier"))
+func (p_ PHPickerResult) AssetIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetIdentifier"))
 	return rv
 }
 
 // The supported representations of the selected asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerResult-c.class/itemProvider
-func (p_ PHPickerResult) ItemProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("itemProvider"))
+func (p_ PHPickerResult) ItemProvider() foundation.ItemProvider {
+	rv := objc.Send[foundation.ItemProvider](p_.ID, objc.Sel("itemProvider"))
 	return rv
 }
 

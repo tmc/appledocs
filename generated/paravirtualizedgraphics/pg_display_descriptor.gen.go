@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -151,8 +152,8 @@ func (p_ PGDisplayDescriptor) SetModeChangeHandler(value unsafe.Pointer) {
 // The display’s name as seen in the guest operating environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
-func (p_ PGDisplayDescriptor) Name() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ PGDisplayDescriptor) Name() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -162,8 +163,8 @@ func (p_ PGDisplayDescriptor) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/name
-func (p_ PGDisplayDescriptor) SetName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), objc.String(value))
+func (p_ PGDisplayDescriptor) SetName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
 
 // A handler that the framework calls when the guest environment has a new frame to display.
@@ -216,7 +217,7 @@ func (p_ PGDisplayDescriptor) SizeInMillimeters() foundation.Size {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayDescriptor/sizeInMillimeters
-func (p_ PGDisplayDescriptor) SetSizeInMillimeters(value foundation.Size) {
+func (p_ PGDisplayDescriptor) SetSizeInMillimeters(value foundation.ISize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSizeInMillimeters:"), value)
 }
 

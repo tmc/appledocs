@@ -88,14 +88,14 @@ func (m_ MTRChannelClusterLineupInfo) LineupInfoType() foundation.Number {
 // SetLineupInfoType sets the value of the lineupInfoType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/lineupinfotype
-func (m_ MTRChannelClusterLineupInfo) SetLineupInfoType(value foundation.Number) {
+func (m_ MTRChannelClusterLineupInfo) SetLineupInfoType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupInfoType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/lineupname
-func (m_ MTRChannelClusterLineupInfo) LineupName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("lineupName"))
+func (m_ MTRChannelClusterLineupInfo) LineupName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("lineupName"))
 	return rv
 }
 
@@ -103,14 +103,14 @@ func (m_ MTRChannelClusterLineupInfo) LineupName() string {
 // SetLineupName sets the value of the lineupName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/lineupname
-func (m_ MTRChannelClusterLineupInfo) SetLineupName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupName:"), objc.String(value))
+func (m_ MTRChannelClusterLineupInfo) SetLineupName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/operatorname
-func (m_ MTRChannelClusterLineupInfo) OperatorName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("operatorName"))
+func (m_ MTRChannelClusterLineupInfo) OperatorName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("operatorName"))
 	return rv
 }
 
@@ -118,14 +118,14 @@ func (m_ MTRChannelClusterLineupInfo) OperatorName() string {
 // SetOperatorName sets the value of the operatorName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/operatorname
-func (m_ MTRChannelClusterLineupInfo) SetOperatorName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), objc.String(value))
+func (m_ MTRChannelClusterLineupInfo) SetOperatorName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/postalcode
-func (m_ MTRChannelClusterLineupInfo) PostalCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("postalCode"))
+func (m_ MTRChannelClusterLineupInfo) PostalCode() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
@@ -133,8 +133,8 @@ func (m_ MTRChannelClusterLineupInfo) PostalCode() string {
 // SetPostalCode sets the value of the postalCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfo/postalcode
-func (m_ MTRChannelClusterLineupInfo) SetPostalCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPostalCode:"), objc.String(value))
+func (m_ MTRChannelClusterLineupInfo) SetPostalCode(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPostalCode:"), value)
 }
 
 

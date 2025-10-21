@@ -82,8 +82,8 @@ func NewInterAppAudioTransportView() InterAppAudioTransportView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/currentTimeLabelFont
-func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("currentTimeLabelFont"))
+func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() appkit.Font {
+	rv := objc.Send[appkit.Font](i_.ID, objc.Sel("currentTimeLabelFont"))
 	return rv
 }
 
@@ -91,7 +91,7 @@ func (i_ InterAppAudioTransportView) CurrentTimeLabelFont() unsafe.Pointer {
 // SetCurrentTimeLabelFont sets the value of the currentTimeLabelFont property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/currentTimeLabelFont
-func (i_ InterAppAudioTransportView) SetCurrentTimeLabelFont(value unsafe.Pointer) {
+func (i_ InterAppAudioTransportView) SetCurrentTimeLabelFont(value appkit.IFont) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrentTimeLabelFont:"), value)
 }
 
@@ -126,8 +126,8 @@ func (i_ InterAppAudioTransportView) Playing() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/labelColor
-func (i_ InterAppAudioTransportView) LabelColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("labelColor"))
+func (i_ InterAppAudioTransportView) LabelColor() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("labelColor"))
 	return rv
 }
 
@@ -135,14 +135,14 @@ func (i_ InterAppAudioTransportView) LabelColor() unsafe.Pointer {
 // SetLabelColor sets the value of the labelColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/labelColor
-func (i_ InterAppAudioTransportView) SetLabelColor(value unsafe.Pointer) {
+func (i_ InterAppAudioTransportView) SetLabelColor(value appkit.IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLabelColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/recordButtonColor
-func (i_ InterAppAudioTransportView) RecordButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recordButtonColor"))
+func (i_ InterAppAudioTransportView) RecordButtonColor() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("recordButtonColor"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (i_ InterAppAudioTransportView) RecordButtonColor() unsafe.Pointer {
 // SetRecordButtonColor sets the value of the recordButtonColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CAInterAppAudioTransportView/recordButtonColor
-func (i_ InterAppAudioTransportView) SetRecordButtonColor(value unsafe.Pointer) {
+func (i_ InterAppAudioTransportView) SetRecordButtonColor(value appkit.IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecordButtonColor:"), value)
 }
 
@@ -216,8 +216,8 @@ func (i_ InterAppAudioTransportView) SetIsRecording(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
-func (i_ InterAppAudioTransportView) PauseButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pauseButtonColor"))
+func (i_ InterAppAudioTransportView) PauseButtonColor() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("pauseButtonColor"))
 	return rv
 }
 
@@ -225,14 +225,14 @@ func (i_ InterAppAudioTransportView) PauseButtonColor() unsafe.Pointer {
 // SetPauseButtonColor sets the value of the pauseButtonColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/pausebuttoncolor
-func (i_ InterAppAudioTransportView) SetPauseButtonColor(value unsafe.Pointer) {
+func (i_ InterAppAudioTransportView) SetPauseButtonColor(value appkit.IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPauseButtonColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
-func (i_ InterAppAudioTransportView) PlayButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playButtonColor"))
+func (i_ InterAppAudioTransportView) PlayButtonColor() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("playButtonColor"))
 	return rv
 }
 
@@ -240,14 +240,14 @@ func (i_ InterAppAudioTransportView) PlayButtonColor() unsafe.Pointer {
 // SetPlayButtonColor sets the value of the playButtonColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/playbuttoncolor
-func (i_ InterAppAudioTransportView) SetPlayButtonColor(value unsafe.Pointer) {
+func (i_ InterAppAudioTransportView) SetPlayButtonColor(value appkit.IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayButtonColor:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
-func (i_ InterAppAudioTransportView) RewindButtonColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rewindButtonColor"))
+func (i_ InterAppAudioTransportView) RewindButtonColor() appkit.Color {
+	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("rewindButtonColor"))
 	return rv
 }
 
@@ -255,7 +255,7 @@ func (i_ InterAppAudioTransportView) RewindButtonColor() unsafe.Pointer {
 // SetRewindButtonColor sets the value of the rewindButtonColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreaudiokit/cainterappaudiotransportview/rewindbuttoncolor
-func (i_ InterAppAudioTransportView) SetRewindButtonColor(value unsafe.Pointer) {
+func (i_ InterAppAudioTransportView) SetRewindButtonColor(value appkit.IColor) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRewindButtonColor:"), value)
 }
 

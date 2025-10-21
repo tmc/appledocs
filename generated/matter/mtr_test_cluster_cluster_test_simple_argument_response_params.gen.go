@@ -88,7 +88,7 @@ func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) ReturnValue() fo
 // SetReturnValue sets the value of the returnValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/returnvalue
-func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetReturnValue(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetReturnValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReturnValue:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) TimedInvokeTimeo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleargumentresponseparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestSimpleArgumentResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

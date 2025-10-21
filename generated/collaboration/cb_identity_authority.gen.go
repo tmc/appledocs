@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,24 +82,24 @@ func NewCBIdentityAuthority() CBIdentityAuthority {
 // Returns an identity authority specified by a given Core Services Identity authority object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/identityAuthorityWithCSIdentityAuthority:
-func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSIdentityAuthority unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("identityAuthorityWithCSIdentityAuthority:"), CSIdentityAuthority)
+func (cc _CBIdentityAuthorityClass) IdentityAuthorityWithCSIdentityAuthority(CSIdentityAuthority unsafe.Pointer) CBIdentityAuthority {
+	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("identityAuthorityWithCSIdentityAuthority:"), CSIdentityAuthority)
 	return rv
 }
 
 // Returns the identity authority on the local system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/local()
-func (cc _CBIdentityAuthorityClass) LocalIdentityAuthority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("localIdentityAuthority"))
+func (cc _CBIdentityAuthorityClass) LocalIdentityAuthority() CBIdentityAuthority {
+	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("localIdentityAuthority"))
 	return rv
 }
 
 // Returns the identity authority that contains all the identities in bound network directory servers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/managed()
-func (cc _CBIdentityAuthorityClass) ManagedIdentityAuthority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("managedIdentityAuthority"))
+func (cc _CBIdentityAuthorityClass) ManagedIdentityAuthority() CBIdentityAuthority {
+	rv := objc.Send[CBIdentityAuthority](objc.ID(cc.class), objc.Sel("managedIdentityAuthority"))
 	return rv
 }
 
@@ -113,8 +114,8 @@ func (c_ CBIdentityAuthority) CSIdentityAuthority() unsafe.Pointer {
 // Returns the localized name of the identity authority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Collaboration/CBIdentityAuthority/localizedName
-func (c_ CBIdentityAuthority) LocalizedName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("localizedName"))
+func (c_ CBIdentityAuthority) LocalizedName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

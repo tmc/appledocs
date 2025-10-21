@@ -32,15 +32,15 @@ type _StrokePathClass struct {
 // An interface definition for the [StrokePath] class.
 type IStrokePath interface {
 	objectivec.IObject
-	EnumerateInterpolatedPointsInRangeStrideByDistanceUsingBlock(range_ unsafe.Pointer, distanceStep float64, block unsafe.Pointer)
-	EnumerateInterpolatedPointsInRangeStrideByParametricStepUsingBlock(range_ unsafe.Pointer, parametricStep float64, block unsafe.Pointer)
-	EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ unsafe.Pointer, timeStep foundation.TimeInterval, block unsafe.Pointer)
+	EnumerateInterpolatedPointsInRangeStrideByDistanceUsingBlock(range_ IPKFloatRange, distanceStep float64, block unsafe.Pointer)
+	EnumerateInterpolatedPointsInRangeStrideByParametricStepUsingBlock(range_ IPKFloatRange, parametricStep float64, block unsafe.Pointer)
+	EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ IPKFloatRange, timeStep foundation.ITimeInterval, block unsafe.Pointer)
 	InterpolatedLocationAt(parametricValue float64) coregraphics.CGPoint
-	InterpolatedPointAt(parametricValue float64) unsafe.Pointer
+	InterpolatedPointAt(parametricValue float64) StrokePoint
 	ParametricValueOffsetByDistance(parametricValue float64, distanceStep float64) float64
-	ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.TimeInterval) float64
-	PointAtIndex(i uint) unsafe.Pointer
-	ObjectAtIndexedSubscript(i uint) unsafe.Pointer
+	ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.ITimeInterval) float64
+	PointAtIndex(i uint) StrokePoint
+	ObjectAtIndexedSubscript(i uint) StrokePoint
 }
 
 // A class that captures the components of a stroke and provides methods to find and interpolate points along the stroke’s path.
@@ -94,7 +94,7 @@ func NewStrokePath() StrokePath {
 // Creates a stroke path with the cubic B-spline control points and a date that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/init(controlPoints:creationDate:)
-func NewStrokePathWithControlPointsCreationDate(controlPoints unsafe.Pointer, creationDate unsafe.Pointer) StrokePath {
+func NewStrokePathWithControlPointsCreationDate(controlPoints []StrokePoint, creationDate foundation.IDate) StrokePath {
 	instance := getStrokePathClass().Alloc()
 	rv := objc.Send[StrokePath](instance.ID, objc.Sel("initWithControlPoints:creationDate:"), controlPoints, creationDate)
 	rv.Autorelease()
@@ -105,21 +105,21 @@ func NewStrokePathWithControlPointsCreationDate(controlPoints unsafe.Pointer, cr
 // Executes a given block using each point in a range with a distance step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/enumerateInterpolatedPoints(in:strideByDistance:using:)
-func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByDistanceUsingBlock(range_ unsafe.Pointer, distanceStep float64, block unsafe.Pointer) {
+func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByDistanceUsingBlock(range_ IPKFloatRange, distanceStep float64, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateInterpolatedPointsInRange:strideByDistance:usingBlock:"), range_, distanceStep, block)
 }
 
 // Executes a given block using each point in a range with a parametric step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/enumerateInterpolatedPoints(in:strideByParametricStep:using:)
-func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByParametricStepUsingBlock(range_ unsafe.Pointer, parametricStep float64, block unsafe.Pointer) {
+func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByParametricStepUsingBlock(range_ IPKFloatRange, parametricStep float64, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateInterpolatedPointsInRange:strideByParametricStep:usingBlock:"), range_, parametricStep, block)
 }
 
 // Executes a given block using each point in a range with a time step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/enumerateInterpolatedPoints(in:strideByTime:using:)
-func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ unsafe.Pointer, timeStep foundation.TimeInterval, block unsafe.Pointer) {
+func (s_ StrokePath) EnumerateInterpolatedPointsInRangeStrideByTimeUsingBlock(range_ IPKFloatRange, timeStep foundation.ITimeInterval, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateInterpolatedPointsInRange:strideByTime:usingBlock:"), range_, timeStep, block)
 }
 
@@ -134,8 +134,8 @@ func (s_ StrokePath) InterpolatedLocationAt(parametricValue float64) coregraphic
 // Returns the on-curve point for the provided floating point parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/interpolatedPoint(at:)
-func (s_ StrokePath) InterpolatedPointAt(parametricValue float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("interpolatedPointAt:"), parametricValue)
+func (s_ StrokePath) InterpolatedPointAt(parametricValue float64) StrokePoint {
+	rv := objc.Send[StrokePoint](s_.ID, objc.Sel("interpolatedPointAt:"), parametricValue)
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (s_ StrokePath) ParametricValueOffsetByDistance(parametricValue float64, di
 // Returns a parametric value on the B-spline that’s a specified time from the given parametric value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/parametricValue(_:offsetByTime:)
-func (s_ StrokePath) ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.TimeInterval) float64 {
+func (s_ StrokePath) ParametricValueOffsetByTime(parametricValue float64, timeStep foundation.ITimeInterval) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("parametricValue:offsetByTime:"), parametricValue, timeStep)
 	return rv
 }
@@ -158,16 +158,16 @@ func (s_ StrokePath) ParametricValueOffsetByTime(parametricValue float64, timeSt
 // Returns the B-spline control point at an index point that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/point(at:)
-func (s_ StrokePath) PointAtIndex(i uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("pointAtIndex:"), i)
+func (s_ StrokePath) PointAtIndex(i uint) StrokePoint {
+	rv := objc.Send[StrokePoint](s_.ID, objc.Sel("pointAtIndex:"), i)
 	return rv
 }
 
 // Returns the B-spline control point the location index that you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/subscript(_:)
-func (s_ StrokePath) ObjectAtIndexedSubscript(i uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectAtIndexedSubscript:"), i)
+func (s_ StrokePath) ObjectAtIndexedSubscript(i uint) StrokePoint {
+	rv := objc.Send[StrokePoint](s_.ID, objc.Sel("objectAtIndexedSubscript:"), i)
 	return rv
 }
 
@@ -182,8 +182,8 @@ func (s_ StrokePath) Count() uint {
 // The time at which this stroke path starts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokePathReference/creationDate
-func (s_ StrokePath) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("creationDate"))
+func (s_ StrokePath) CreationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("creationDate"))
 	return rv
 }
 

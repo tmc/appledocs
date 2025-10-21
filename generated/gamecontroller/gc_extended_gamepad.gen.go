@@ -29,7 +29,7 @@ type _GCExtendedGamepadClass struct {
 // An interface definition for the [GCExtendedGamepad] class.
 type IGCExtendedGamepad interface {
 	IGCPhysicalInputProfile
-	SaveSnapshot() unsafe.Pointer
+	SaveSnapshot() GCExtendedGamepadSnapshot
 }
 
 // A controller profile that supports the extended set of gamepad controls.
@@ -85,32 +85,32 @@ func NewGCExtendedGamepad() GCExtendedGamepad {
 // Saves a snapshot of all of the profile’s elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/saveSnapshot()
-func (g_ GCExtendedGamepad) SaveSnapshot() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("saveSnapshot"))
+func (g_ GCExtendedGamepad) SaveSnapshot() GCExtendedGamepadSnapshot {
+	rv := objc.Send[GCExtendedGamepadSnapshot](g_.ID, objc.Sel("saveSnapshot"))
 	return rv
 }
 
 // The main menu button element that players use to enter the secondary menu and pause the game.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonHome
-func (g_ GCExtendedGamepad) ButtonHome() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonHome"))
+func (g_ GCExtendedGamepad) ButtonHome() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonHome"))
 	return rv
 }
 
 // The top face button that uses or another indicator as its label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonY
-func (g_ GCExtendedGamepad) ButtonY() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonY"))
+func (g_ GCExtendedGamepad) ButtonY() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonY"))
 	return rv
 }
 
 // The controller’s directional pad element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/dpad
-func (g_ GCExtendedGamepad) Dpad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dpad"))
+func (g_ GCExtendedGamepad) Dpad() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("dpad"))
 	return rv
 }
 
@@ -135,8 +135,8 @@ func (g_ GCExtendedGamepad) SetValueChangedHandler(value unsafe.Pointer) {
 // The extended gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCExtendedGamepad) ExtendedGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
+func (g_ GCExtendedGamepad) ExtendedGamepad() GCExtendedGamepad {
+	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (g_ GCExtendedGamepad) ExtendedGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCExtendedGamepad) SetExtendedGamepad(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
 
@@ -171,8 +171,8 @@ func (g_ GCExtendedGamepad) SetGamepad(value unsafe.Pointer) {
 // The micro gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCExtendedGamepad) MicroGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
+func (g_ GCExtendedGamepad) MicroGamepad() GCMicroGamepad {
+	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
 
@@ -182,15 +182,15 @@ func (g_ GCExtendedGamepad) MicroGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCExtendedGamepad) SetMicroGamepad(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
 // The motion input profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCExtendedGamepad) Motion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+func (g_ GCExtendedGamepad) Motion() GCMotion {
+	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
 
@@ -200,15 +200,15 @@ func (g_ GCExtendedGamepad) Motion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCExtendedGamepad) SetMotion(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
 
 // The physical input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCExtendedGamepad) PhysicalInputProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
+func (g_ GCExtendedGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
+	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
 }
 
@@ -218,15 +218,15 @@ func (g_ GCExtendedGamepad) PhysicalInputProfile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCExtendedGamepad) SetPhysicalInputProfile(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
 
 // The bottom face button that uses
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttona
-func (g_ GCExtendedGamepad) ButtonA() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonA"))
+func (g_ GCExtendedGamepad) ButtonA() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonA"))
 	return rv
 }
 
@@ -236,15 +236,15 @@ func (g_ GCExtendedGamepad) ButtonA() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttona
-func (g_ GCExtendedGamepad) SetButtonA(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetButtonA(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonA:"), value)
 }
 
 // The right face button that uses
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonb
-func (g_ GCExtendedGamepad) ButtonB() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonB"))
+func (g_ GCExtendedGamepad) ButtonB() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonB"))
 	return rv
 }
 
@@ -254,15 +254,15 @@ func (g_ GCExtendedGamepad) ButtonB() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonb
-func (g_ GCExtendedGamepad) SetButtonB(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetButtonB(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonB:"), value)
 }
 
 // The primary menu button element that players use to enter the main menu and pause the game.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonmenu
-func (g_ GCExtendedGamepad) ButtonMenu() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonMenu"))
+func (g_ GCExtendedGamepad) ButtonMenu() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonMenu"))
 	return rv
 }
 
@@ -272,15 +272,15 @@ func (g_ GCExtendedGamepad) ButtonMenu() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonmenu
-func (g_ GCExtendedGamepad) SetButtonMenu(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetButtonMenu(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonMenu:"), value)
 }
 
 // The controller’s secondary menu button element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonoptions
-func (g_ GCExtendedGamepad) ButtonOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonOptions"))
+func (g_ GCExtendedGamepad) ButtonOptions() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonOptions"))
 	return rv
 }
 
@@ -290,15 +290,15 @@ func (g_ GCExtendedGamepad) ButtonOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonoptions
-func (g_ GCExtendedGamepad) SetButtonOptions(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetButtonOptions(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonOptions:"), value)
 }
 
 // The left face button that uses
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonx
-func (g_ GCExtendedGamepad) ButtonX() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("buttonX"))
+func (g_ GCExtendedGamepad) ButtonX() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonX"))
 	return rv
 }
 
@@ -308,15 +308,15 @@ func (g_ GCExtendedGamepad) ButtonX() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonx
-func (g_ GCExtendedGamepad) SetButtonX(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetButtonX(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonX:"), value)
 }
 
 // The controller for the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/controller
-func (g_ GCExtendedGamepad) Controller() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controller"))
+func (g_ GCExtendedGamepad) Controller() GCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
 	return rv
 }
 
@@ -326,15 +326,15 @@ func (g_ GCExtendedGamepad) Controller() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/controller
-func (g_ GCExtendedGamepad) SetController(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetController(value IGCController) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
 }
 
 // The controller’s left shoulder button element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftshoulder
-func (g_ GCExtendedGamepad) LeftShoulder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("leftShoulder"))
+func (g_ GCExtendedGamepad) LeftShoulder() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftShoulder"))
 	return rv
 }
 
@@ -344,15 +344,15 @@ func (g_ GCExtendedGamepad) LeftShoulder() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftshoulder
-func (g_ GCExtendedGamepad) SetLeftShoulder(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetLeftShoulder(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftShoulder:"), value)
 }
 
 // The controller’s left thumbstick element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCExtendedGamepad) LeftThumbstick() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("leftThumbstick"))
+func (g_ GCExtendedGamepad) LeftThumbstick() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("leftThumbstick"))
 	return rv
 }
 
@@ -362,15 +362,15 @@ func (g_ GCExtendedGamepad) LeftThumbstick() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCExtendedGamepad) SetLeftThumbstick(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetLeftThumbstick(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstick:"), value)
 }
 
 // The button on the left thumbstick of the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstickbutton
-func (g_ GCExtendedGamepad) LeftThumbstickButton() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("leftThumbstickButton"))
+func (g_ GCExtendedGamepad) LeftThumbstickButton() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftThumbstickButton"))
 	return rv
 }
 
@@ -380,15 +380,15 @@ func (g_ GCExtendedGamepad) LeftThumbstickButton() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstickbutton
-func (g_ GCExtendedGamepad) SetLeftThumbstickButton(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetLeftThumbstickButton(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstickButton:"), value)
 }
 
 // The controller’s left trigger element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/lefttrigger
-func (g_ GCExtendedGamepad) LeftTrigger() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("leftTrigger"))
+func (g_ GCExtendedGamepad) LeftTrigger() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftTrigger"))
 	return rv
 }
 
@@ -398,15 +398,15 @@ func (g_ GCExtendedGamepad) LeftTrigger() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/lefttrigger
-func (g_ GCExtendedGamepad) SetLeftTrigger(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetLeftTrigger(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftTrigger:"), value)
 }
 
 // The controller’s right shoulder button element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightshoulder
-func (g_ GCExtendedGamepad) RightShoulder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rightShoulder"))
+func (g_ GCExtendedGamepad) RightShoulder() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightShoulder"))
 	return rv
 }
 
@@ -416,15 +416,15 @@ func (g_ GCExtendedGamepad) RightShoulder() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightshoulder
-func (g_ GCExtendedGamepad) SetRightShoulder(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetRightShoulder(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightShoulder:"), value)
 }
 
 // The controller’s right thumbstick element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstick
-func (g_ GCExtendedGamepad) RightThumbstick() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rightThumbstick"))
+func (g_ GCExtendedGamepad) RightThumbstick() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("rightThumbstick"))
 	return rv
 }
 
@@ -434,15 +434,15 @@ func (g_ GCExtendedGamepad) RightThumbstick() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstick
-func (g_ GCExtendedGamepad) SetRightThumbstick(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetRightThumbstick(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightThumbstick:"), value)
 }
 
 // The button on the right thumbstick of the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstickbutton
-func (g_ GCExtendedGamepad) RightThumbstickButton() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rightThumbstickButton"))
+func (g_ GCExtendedGamepad) RightThumbstickButton() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightThumbstickButton"))
 	return rv
 }
 
@@ -452,15 +452,15 @@ func (g_ GCExtendedGamepad) RightThumbstickButton() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/rightthumbstickbutton
-func (g_ GCExtendedGamepad) SetRightThumbstickButton(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetRightThumbstickButton(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightThumbstickButton:"), value)
 }
 
 // The controller’s right trigger element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/righttrigger
-func (g_ GCExtendedGamepad) RightTrigger() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("rightTrigger"))
+func (g_ GCExtendedGamepad) RightTrigger() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightTrigger"))
 	return rv
 }
 
@@ -470,7 +470,7 @@ func (g_ GCExtendedGamepad) RightTrigger() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/righttrigger
-func (g_ GCExtendedGamepad) SetRightTrigger(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetRightTrigger(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRightTrigger:"), value)
 }
 

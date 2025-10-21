@@ -81,16 +81,16 @@ func NewCBManager() CBManager {
 // The current authorization status for using Bluetooth.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager/authorization-swift.property
-func (c_ CBManager) Authorization() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("authorization"))
+func (c_ CBManager) Authorization() CBManagerAuthorization {
+	rv := objc.Send[CBManagerAuthorization](c_.ID, objc.Sel("authorization"))
 	return rv
 }
 
 // The current state of the manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBManager/state
-func (c_ CBManager) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("state"))
+func (c_ CBManager) State() CBManagerState {
+	rv := objc.Send[CBManagerState](c_.ID, objc.Sel("state"))
 	return rv
 }
 

@@ -86,7 +86,7 @@ func NewHashTable() HashTable {
 // Returns a hash table with given pointer functions options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
-func NewHashTableWithOptions(options unsafe.Pointer) HashTable {
+func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
@@ -103,7 +103,7 @@ func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 // Returns a hash table with given pointer functions options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/init(options:)
-func (hc _HashTableClass) HashTableWithOptions(options unsafe.Pointer) unsafe.Pointer {
+func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
 }
@@ -162,8 +162,8 @@ func (h_ HashTable) SetAnyObject(value unsafe.Pointer) {
 // The pointer functions for the hash table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-func (h_ HashTable) PointerFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("pointerFunctions"))
+func (h_ HashTable) PointerFunctions() NSPointerFunctions {
+	rv := objc.Send[NSPointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 
@@ -173,7 +173,7 @@ func (h_ HashTable) PointerFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-func (h_ HashTable) SetPointerFunctions(value unsafe.Pointer) {
+func (h_ HashTable) SetPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPointerFunctions:"), value)
 }
 

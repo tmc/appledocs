@@ -10,6 +10,9 @@ type PCIBARType uint
 
 const (
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCIBARType/kPCIBARTypeM32PF
+	kPCIBARTypeM32PF PCIBARType = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCIBARType/kPCIBARTypeM64PF
 	kPCIBARTypeM64PF PCIBARType = 0
 )

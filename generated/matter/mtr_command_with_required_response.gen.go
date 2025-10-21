@@ -80,7 +80,7 @@ func NewMTRCommandWithRequiredResponse() MTRCommandWithRequiredResponse {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/init(path:commandFields:requiredResponse:)
-func NewMTRCommandWithRequiredResponseWithPathCommandFieldsRequiredResponse(path unsafe.Pointer, commandFields unsafe.Pointer, requiredResponse unsafe.Pointer) MTRCommandWithRequiredResponse {
+func NewMTRCommandWithRequiredResponseWithPathCommandFieldsRequiredResponse(path IMTRCommandPath, commandFields unsafe.Pointer, requiredResponse unsafe.Pointer) MTRCommandWithRequiredResponse {
 	instance := getMTRCommandWithRequiredResponseClass().Alloc()
 	rv := objc.Send[MTRCommandWithRequiredResponse](instance.ID, objc.Sel("initWithPath:commandFields:requiredResponse:"), path, commandFields, requiredResponse)
 	rv.Autorelease()
@@ -109,8 +109,8 @@ func (m_ MTRCommandWithRequiredResponse) SetCommandFields(value unsafe.Pointer) 
 // The path of the command being invoked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/path
-func (m_ MTRCommandWithRequiredResponse) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("path"))
+func (m_ MTRCommandWithRequiredResponse) Path() MTRCommandPath {
+	rv := objc.Send[MTRCommandPath](m_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRCommandWithRequiredResponse) Path() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommandWithRequiredResponse/path
-func (m_ MTRCommandWithRequiredResponse) SetPath(value unsafe.Pointer) {
+func (m_ MTRCommandWithRequiredResponse) SetPath(value IMTRCommandPath) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
 

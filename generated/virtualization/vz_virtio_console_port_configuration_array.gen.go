@@ -30,8 +30,8 @@ type _VZVirtioConsolePortConfigurationArrayClass struct {
 // An interface definition for the [VZVirtioConsolePortConfigurationArray] class.
 type IVZVirtioConsolePortConfigurationArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(configuration unsafe.Pointer, portIndex uint)
-	ObjectAtIndexedSubscript(portIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(configuration IVZVirtioConsolePortConfiguration, portIndex uint)
+	ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePortConfiguration
 }
 
 // A class that represents a collection of Virtio console port configurations.
@@ -84,15 +84,15 @@ func NewVZVirtioConsolePortConfigurationArray() VZVirtioConsolePortConfiguration
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray/setObject:atIndexedSubscript:
-func (v_ VZVirtioConsolePortConfigurationArray) SetObjectAtIndexedSubscript(configuration unsafe.Pointer, portIndex uint) {
+func (v_ VZVirtioConsolePortConfigurationArray) SetObjectAtIndexedSubscript(configuration IVZVirtioConsolePortConfiguration, portIndex uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setObject:atIndexedSubscript:"), configuration, portIndex)
 }
 
 // Returns the Virtio console port configuration as the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfigurationArray/subscript(_:)
-func (v_ VZVirtioConsolePortConfigurationArray) ObjectAtIndexedSubscript(portIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
+func (v_ VZVirtioConsolePortConfigurationArray) ObjectAtIndexedSubscript(portIndex uint) VZVirtioConsolePortConfiguration {
+	rv := objc.Send[VZVirtioConsolePortConfiguration](v_.ID, objc.Sel("objectAtIndexedSubscript:"), portIndex)
 	return rv
 }
 

@@ -100,7 +100,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) DstOffsetRequir
 // SetDstOffsetRequired sets the value of the dstOffsetRequired property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneResponseParams/dstOffsetRequired
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneResponseParams) SetDstOffsetRequired(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetRequired:"), value)
 }
 

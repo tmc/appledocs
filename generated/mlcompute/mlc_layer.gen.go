@@ -83,8 +83,8 @@ func NewCLayer() CLayer {
 // A device type that indicates where the system executes the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
-func (c_ CLayer) DeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("deviceType"))
+func (c_ CLayer) DeviceType() CDeviceType {
+	rv := objc.Send[CDeviceType](c_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (c_ CLayer) DeviceType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/devicetype
-func (c_ CLayer) SetDeviceType(value unsafe.Pointer) {
+func (c_ CLayer) SetDeviceType(value CDeviceType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeviceType:"), value)
 }
 
@@ -119,8 +119,8 @@ func (c_ CLayer) SetIsDebuggingEnabled(value bool) {
 // A string that helps identify this layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
-func (c_ CLayer) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ CLayer) Label() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (c_ CLayer) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclayer/label
-func (c_ CLayer) SetLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (c_ CLayer) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
 }
 
 // A unique number that identifies each layer.

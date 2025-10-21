@@ -85,7 +85,7 @@ func NewMCBrowserViewController() MCBrowserViewController {
 // Initializes a browser view controller with the provided browser and session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/init(browser:session:)
-func NewMCBrowserViewControllerWithBrowserSession(browser unsafe.Pointer, session unsafe.Pointer) MCBrowserViewController {
+func NewMCBrowserViewControllerWithBrowserSession(browser IMCNearbyServiceBrowser, session IMCSession) MCBrowserViewController {
 	instance := getMCBrowserViewControllerClass().Alloc()
 	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithBrowser:session:"), browser, session)
 	rv.Autorelease()
@@ -97,9 +97,9 @@ func NewMCBrowserViewControllerWithBrowserSession(browser unsafe.Pointer, sessio
 // Initializes a browser view controller using the provided service type and session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/init(serviceType:session:)
-func NewMCBrowserViewControllerWithServiceTypeSession(serviceType string, session unsafe.Pointer) MCBrowserViewController {
+func NewMCBrowserViewControllerWithServiceTypeSession(serviceType appkit.string, session IMCSession) MCBrowserViewController {
 	instance := getMCBrowserViewControllerClass().Alloc()
-	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithServiceType:session:"), objc.String(serviceType), session)
+	rv := objc.Send[MCBrowserViewController](instance.ID, objc.Sel("initWithServiceType:session:"), serviceType, session)
 	rv.Autorelease()
 	return rv
 }
@@ -108,8 +108,8 @@ func NewMCBrowserViewControllerWithServiceTypeSession(serviceType string, sessio
 // The browser object that is used for discovering peers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/browser
-func (m_ MCBrowserViewController) Browser() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("browser"))
+func (m_ MCBrowserViewController) Browser() MCNearbyServiceBrowser {
+	rv := objc.Send[MCNearbyServiceBrowser](m_.ID, objc.Sel("browser"))
 	return rv
 }
 
@@ -170,8 +170,8 @@ func (m_ MCBrowserViewController) SetMinimumNumberOfPeers(value uint) {
 // The multipeer session to which the invited peers are connected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCBrowserViewController/session
-func (m_ MCBrowserViewController) Session() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("session"))
+func (m_ MCBrowserViewController) Session() MCSession {
+	rv := objc.Send[MCSession](m_.ID, objc.Sel("session"))
 	return rv
 }
 

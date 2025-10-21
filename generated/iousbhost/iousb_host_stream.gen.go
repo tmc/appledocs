@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [USBHostStream] class.
@@ -31,7 +32,7 @@ type IUSBHostStream interface {
 	IUSBHostIOSource
 	AbortWithError(error_ unsafe.Pointer) bool
 	AbortWithOptionError(option unsafe.Pointer, error_ unsafe.Pointer) bool
-	EnqueueIORequestWithDataErrorCompletionHandler(data unsafe.Pointer, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
+	EnqueueIORequestWithDataErrorCompletionHandler(data foundation.IMutableData, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool
 }
 
 // The class responsible for sending stream data for function drivers.
@@ -103,7 +104,7 @@ func (u_ USBHostStream) AbortWithOptionError(option unsafe.Pointer, error_ unsaf
 // Enqueues an input/output request on the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/enqueueIORequest(with:completionHandler:)
-func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data unsafe.Pointer, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
+func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data foundation.IMutableData, error_ unsafe.Pointer, completionHandler unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueIORequestWithData:error:completionHandler:"), data, error_, completionHandler)
 	return rv
 }
@@ -111,8 +112,8 @@ func (u_ USBHostStream) EnqueueIORequestWithDataErrorCompletionHandler(data unsa
 // The pipe that creates the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostStream/hostPipe
-func (u_ USBHostStream) HostPipe() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("hostPipe"))
+func (u_ USBHostStream) HostPipe() IOUSBHostPipe {
+	rv := objc.Send[IOUSBHostPipe](u_.ID, objc.Sel("hostPipe"))
 	return rv
 }
 

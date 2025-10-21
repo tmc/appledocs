@@ -83,8 +83,8 @@ func NewChallengeEventHandler() ChallengeEventHandler {
 // Returns the shared instance of the event handler
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKChallengeEventHandler/challengeEventHandler
-func (cc _ChallengeEventHandlerClass) ChallengeEventHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("challengeEventHandler"))
+func (cc _ChallengeEventHandlerClass) ChallengeEventHandler() ChallengeEventHandler {
+	rv := objc.Send[ChallengeEventHandler](objc.ID(cc.class), objc.Sel("challengeEventHandler"))
 	return rv
 }
 

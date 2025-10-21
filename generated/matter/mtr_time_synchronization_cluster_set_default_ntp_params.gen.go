@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRTimeSynchronizationClusterSetDefaultNTPParams() MTRTimeSynchronizatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/defaultNTP
-func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("defaultNTP"))
+func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("defaultNTP"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) DefaultNTP() string {
 // SetDefaultNTP sets the value of the defaultNTP property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/defaultNTP
-func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetDefaultNTP(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNTP:"), objc.String(value))
+func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetDefaultNTP(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultNTP:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
@@ -105,7 +106,7 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +124,7 @@ func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDefaultNTPParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetDefaultNTPParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

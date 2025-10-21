@@ -83,8 +83,8 @@ func NewStencilDescriptor() StencilDescriptor {
 // The operation that is performed to update the values in the stencil attachment when the stencil test passes, but the depth test fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/depthFailureOperation
-func (s_ StencilDescriptor) DepthFailureOperation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("depthFailureOperation"))
+func (s_ StencilDescriptor) DepthFailureOperation() StencilOperation {
+	rv := objc.Send[StencilOperation](s_.ID, objc.Sel("depthFailureOperation"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (s_ StencilDescriptor) DepthFailureOperation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/depthFailureOperation
-func (s_ StencilDescriptor) SetDepthFailureOperation(value unsafe.Pointer) {
+func (s_ StencilDescriptor) SetDepthFailureOperation(value IStencilOperation) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDepthFailureOperation:"), value)
 }
 
 // The operation that is performed to update the values in the stencil attachment when both the stencil test and the depth test pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation
-func (s_ StencilDescriptor) DepthStencilPassOperation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("depthStencilPassOperation"))
+func (s_ StencilDescriptor) DepthStencilPassOperation() StencilOperation {
+	rv := objc.Send[StencilOperation](s_.ID, objc.Sel("depthStencilPassOperation"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (s_ StencilDescriptor) DepthStencilPassOperation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/depthStencilPassOperation
-func (s_ StencilDescriptor) SetDepthStencilPassOperation(value unsafe.Pointer) {
+func (s_ StencilDescriptor) SetDepthStencilPassOperation(value IStencilOperation) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDepthStencilPassOperation:"), value)
 }
 
@@ -155,8 +155,8 @@ func (s_ StencilDescriptor) SetStencilCompareFunction(value unsafe.Pointer) {
 // The operation that is performed to update the values in the stencil attachment when the stencil test fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation
-func (s_ StencilDescriptor) StencilFailureOperation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stencilFailureOperation"))
+func (s_ StencilDescriptor) StencilFailureOperation() StencilOperation {
+	rv := objc.Send[StencilOperation](s_.ID, objc.Sel("stencilFailureOperation"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (s_ StencilDescriptor) StencilFailureOperation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLStencilDescriptor/stencilFailureOperation
-func (s_ StencilDescriptor) SetStencilFailureOperation(value unsafe.Pointer) {
+func (s_ StencilDescriptor) SetStencilFailureOperation(value IStencilOperation) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStencilFailureOperation:"), value)
 }
 

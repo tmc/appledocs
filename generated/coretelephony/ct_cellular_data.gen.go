@@ -101,8 +101,8 @@ func (c_ CellularData) SetCellularDataRestrictionDidUpdateNotifier(value unsafe.
 // The current state of cellular data restrictions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-func (c_ CellularData) RestrictedState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("restrictedState"))
+func (c_ CellularData) RestrictedState() CellularDataRestrictedState {
+	rv := objc.Send[CellularDataRestrictedState](c_.ID, objc.Sel("restrictedState"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (c_ CellularData) RestrictedState() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-func (c_ CellularData) SetRestrictedState(value unsafe.Pointer) {
+func (c_ CellularData) SetRestrictedState(value CellularDataRestrictedState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRestrictedState:"), value)
 }
 

@@ -165,8 +165,8 @@ func (c_ CKModifySubscriptionsOperation) SetSubscriptionIDsToDelete(value unsafe
 // The subscriptions to save to the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
-func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionsToSave"))
+func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() CKSubscription {
+	rv := objc.Send[CKSubscription](c_.ID, objc.Sel("subscriptionsToSave"))
 	return rv
 }
 
@@ -176,7 +176,7 @@ func (c_ CKModifySubscriptionsOperation) SubscriptionsToSave() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifysubscriptionsoperation/subscriptionstosave
-func (c_ CKModifySubscriptionsOperation) SetSubscriptionsToSave(value unsafe.Pointer) {
+func (c_ CKModifySubscriptionsOperation) SetSubscriptionsToSave(value ICKSubscription) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionsToSave:"), value)
 }
 

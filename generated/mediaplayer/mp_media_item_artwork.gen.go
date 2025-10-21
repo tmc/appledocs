@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _MediaItemArtworkClass struct {
 // An interface definition for the [MediaItemArtwork] class.
 type IMediaItemArtwork interface {
 	objectivec.IObject
-	ImageWithSize(size coregraphics.CGSize) unsafe.Pointer
+	ImageWithSize(size coregraphics.CGSize) appkit.Image
 }
 
 // A graphical image, such as music album cover art, associated with a media item.
@@ -97,7 +98,7 @@ func NewMediaItemArtworkWithBoundsSizeRequestHandler(boundsSize coregraphics.CGS
 // Initializes a media item artwork instance with a full-size image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/init(image:)
-func NewMediaItemArtworkWithImage(image unsafe.Pointer) MediaItemArtwork {
+func NewMediaItemArtworkWithImage(image appkit.IImage) MediaItemArtwork {
 	instance := getMediaItemArtworkClass().Alloc()
 	rv := objc.Send[MediaItemArtwork](instance.ID, objc.Sel("initWithImage:"), image)
 	rv.Autorelease()
@@ -108,8 +109,8 @@ func NewMediaItemArtworkWithImage(image unsafe.Pointer) MediaItemArtwork {
 // Returns the artwork image for an item at the given size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemArtwork/image(at:)
-func (m_ MediaItemArtwork) ImageWithSize(size coregraphics.CGSize) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("imageWithSize:"), size)
+func (m_ MediaItemArtwork) ImageWithSize(size coregraphics.CGSize) appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("imageWithSize:"), size)
 	return rv
 }
 

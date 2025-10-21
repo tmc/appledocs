@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,16 +79,16 @@ func NewDomainStateBiometry() DomainStateBiometry {
 // Indicates biometry type available on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/biometryType
-func (d_ DomainStateBiometry) BiometryType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("biometryType"))
+func (d_ DomainStateBiometry) BiometryType() BiometryType {
+	rv := objc.Send[BiometryType](d_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
 // Contains state hash data for the available biometry type. Returns if no biometry entities are enrolled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateBiometry/stateHash
-func (d_ DomainStateBiometry) StateHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("stateHash"))
+func (d_ DomainStateBiometry) StateHash() foundation.NSData {
+	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))
 	return rv
 }
 

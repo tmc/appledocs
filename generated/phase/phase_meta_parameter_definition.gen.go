@@ -84,8 +84,8 @@ func NewPHASEMetaParameterDefinition() PHASEMetaParameterDefinition {
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEMetaParameterDefinition) GlobalMetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+func (p_ PHASEMetaParameterDefinition) GlobalMetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (p_ PHASEMetaParameterDefinition) GlobalMetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASEMetaParameterDefinition) SetGlobalMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+func (p_ PHASEMetaParameterDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
 // A constant value for the parameter definition.
@@ -120,8 +120,8 @@ func (p_ PHASEMetaParameterDefinition) SetValue(value unsafe.Pointer) {
 // The object’s meta parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEMetaParameterDefinition) MetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+func (p_ PHASEMetaParameterDefinition) MetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (p_ PHASEMetaParameterDefinition) MetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASEMetaParameterDefinition) SetMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+func (p_ PHASEMetaParameterDefinition) SetMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
 

@@ -83,8 +83,8 @@ func NewAudioChannelLayout() AudioChannelLayout {
 // The number of channels of audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/channelcount
-func (a_ AudioChannelLayout) ChannelCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channelCount"))
+func (a_ AudioChannelLayout) ChannelCount() AudioChannelCount {
+	rv := objc.Send[AudioChannelCount](a_.ID, objc.Sel("channelCount"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (a_ AudioChannelLayout) ChannelCount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/channelcount
-func (a_ AudioChannelLayout) SetChannelCount(value unsafe.Pointer) {
+func (a_ AudioChannelLayout) SetChannelCount(value IAudioChannelCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelCount:"), value)
 }
 
 // The underlying audio channel layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layout
-func (a_ AudioChannelLayout) Layout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("layout"))
+func (a_ AudioChannelLayout) Layout() AudioChannelLayout {
+	rv := objc.Send[AudioChannelLayout](a_.ID, objc.Sel("layout"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (a_ AudioChannelLayout) Layout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiochannellayout/layout
-func (a_ AudioChannelLayout) SetLayout(value unsafe.Pointer) {
+func (a_ AudioChannelLayout) SetLayout(value IAudioChannelLayout) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLayout:"), value)
 }
 
@@ -136,8 +136,8 @@ func (a_ AudioChannelLayout) SetLayoutTag(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
-func (a_ AudioChannelLayout) AVChannelLayoutKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
+func (a_ AudioChannelLayout) AVChannelLayoutKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVChannelLayoutKey"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EKReminder] class.
@@ -86,7 +87,7 @@ func NewEKReminder() EKReminder {
 // Creates and returns a new reminder in the given event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/init(eventStore:)
-func NewEKReminderWithEventStore(eventStore unsafe.Pointer) EKReminder {
+func NewEKReminderWithEventStore(eventStore IEKEventStore) EKReminder {
 	rv := objc.Send[EKReminder](objc.ID(getEKReminderClass().class), objc.Sel("reminderWithEventStore:"), eventStore)
 	return rv
 }
@@ -95,16 +96,16 @@ func NewEKReminderWithEventStore(eventStore unsafe.Pointer) EKReminder {
 // Creates and returns a new reminder in the given event store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/init(eventStore:)
-func (ec _EKReminderClass) ReminderWithEventStore(eventStore unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("reminderWithEventStore:"), eventStore)
+func (ec _EKReminderClass) ReminderWithEventStore(eventStore IEKEventStore) EKReminder {
+	rv := objc.Send[EKReminder](objc.ID(ec.class), objc.Sel("reminderWithEventStore:"), eventStore)
 	return rv
 }
 
 // The date on which the reminder was completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
-func (e_ EKReminder) CompletionDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("completionDate"))
+func (e_ EKReminder) CompletionDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("completionDate"))
 	return rv
 }
 
@@ -114,15 +115,15 @@ func (e_ EKReminder) CompletionDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/completionDate
-func (e_ EKReminder) SetCompletionDate(value unsafe.Pointer) {
+func (e_ EKReminder) SetCompletionDate(value foundation.IDate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompletionDate:"), value)
 }
 
 // The date by which the reminder should be completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
-func (e_ EKReminder) DueDateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("dueDateComponents"))
+func (e_ EKReminder) DueDateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](e_.ID, objc.Sel("dueDateComponents"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (e_ EKReminder) DueDateComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/dueDateComponents
-func (e_ EKReminder) SetDueDateComponents(value unsafe.Pointer) {
+func (e_ EKReminder) SetDueDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDueDateComponents:"), value)
 }
 
@@ -175,8 +176,8 @@ func (e_ EKReminder) SetPriority(value uint) {
 // The start date of the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
-func (e_ EKReminder) StartDateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("startDateComponents"))
+func (e_ EKReminder) StartDateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](e_.ID, objc.Sel("startDateComponents"))
 	return rv
 }
 
@@ -186,7 +187,7 @@ func (e_ EKReminder) StartDateComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKReminder/startDateComponents
-func (e_ EKReminder) SetStartDateComponents(value unsafe.Pointer) {
+func (e_ EKReminder) SetStartDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setStartDateComponents:"), value)
 }
 

@@ -30,7 +30,7 @@ type _WebExtensionControllerClass struct {
 // An interface definition for the [WebExtensionController] class.
 type IWebExtensionController interface {
 	objectivec.IObject
-	UnloadExtensionContextError(extensionContext unsafe.Pointer, error_ unsafe.Pointer) bool
+	UnloadExtensionContextError(extensionContext IWKWebExtensionContext, error_ unsafe.Pointer) bool
 }
 
 // An object that manages a set of loaded extension contexts.
@@ -84,7 +84,7 @@ func NewWebExtensionController() WebExtensionController {
 // Unloads the specified extension context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtensionController/unload(_:)
-func (w_ WebExtensionController) UnloadExtensionContextError(extensionContext unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (w_ WebExtensionController) UnloadExtensionContextError(extensionContext IWKWebExtensionContext, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("unloadExtensionContext:error:"), extensionContext, error_)
 	return rv
 }
@@ -128,8 +128,8 @@ func (w_ WebExtensionController) SetDelegate(value unsafe.Pointer) {
 // A set of all the currently loaded extension contexts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensioncontexts
-func (w_ WebExtensionController) ExtensionContexts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("extensionContexts"))
+func (w_ WebExtensionController) ExtensionContexts() WKWebExtensionContext {
+	rv := objc.Send[WKWebExtensionContext](w_.ID, objc.Sel("extensionContexts"))
 	return rv
 }
 
@@ -139,15 +139,15 @@ func (w_ WebExtensionController) ExtensionContexts() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensioncontexts
-func (w_ WebExtensionController) SetExtensionContexts(value unsafe.Pointer) {
+func (w_ WebExtensionController) SetExtensionContexts(value IWKWebExtensionContext) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setExtensionContexts:"), value)
 }
 
 // A set of all the currently loaded extensions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensions
-func (w_ WebExtensionController) Extensions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("extensions"))
+func (w_ WebExtensionController) Extensions() WKWebExtension {
+	rv := objc.Send[WKWebExtension](w_.ID, objc.Sel("extensions"))
 	return rv
 }
 
@@ -157,14 +157,14 @@ func (w_ WebExtensionController) Extensions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/extensions
-func (w_ WebExtensionController) SetExtensions(value unsafe.Pointer) {
+func (w_ WebExtensionController) SetExtensions(value IWKWebExtension) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setExtensions:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebExtensionController) WebExtensionController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("webExtensionController"))
+func (w_ WebExtensionController) WebExtensionController() WKWebExtensionController {
+	rv := objc.Send[WKWebExtensionController](w_.ID, objc.Sel("webExtensionController"))
 	return rv
 }
 
@@ -172,7 +172,7 @@ func (w_ WebExtensionController) WebExtensionController() unsafe.Pointer {
 // SetWebExtensionController sets the value of the webExtensionController property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/webextensioncontroller
-func (w_ WebExtensionController) SetWebExtensionController(value unsafe.Pointer) {
+func (w_ WebExtensionController) SetWebExtensionController(value IWKWebExtensionController) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWebExtensionController:"), value)
 }
 

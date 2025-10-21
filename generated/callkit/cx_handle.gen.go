@@ -30,7 +30,7 @@ type _CXHandleClass struct {
 // An interface definition for the [CXHandle] class.
 type ICXHandle interface {
 	objectivec.IObject
-	IsEqualToHandle(handle unsafe.Pointer) bool
+	IsEqualToHandle(handle ICXHandle) bool
 }
 
 // A way to reach a call recipient, such as a phone number or email address.
@@ -86,7 +86,7 @@ func NewCXHandle() CXHandle {
 // Initializes a new handle of a given type with the specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/init(type:value:)
-func NewCXHandleWithTypeValue(type_ unsafe.Pointer, value string) CXHandle {
+func NewCXHandleWithTypeValue(type_ CXHandleType, value string) CXHandle {
 	instance := getCXHandleClass().Alloc()
 	rv := objc.Send[CXHandle](instance.ID, objc.Sel("initWithType:value:"), type_, objc.String(value))
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewCXHandleWithTypeValue(type_ unsafe.Pointer, value string) CXHandle {
 // Returns a Boolean value that indicates whether a given handle is equal to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/isEqualToHandle:
-func (c_ CXHandle) IsEqualToHandle(handle unsafe.Pointer) bool {
+func (c_ CXHandle) IsEqualToHandle(handle ICXHandle) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToHandle:"), handle)
 	return rv
 }
@@ -105,8 +105,8 @@ func (c_ CXHandle) IsEqualToHandle(handle unsafe.Pointer) bool {
 // The type of the handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/type
-func (c_ CXHandle) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ CXHandle) Type() CXHandleType {
+	rv := objc.Send[CXHandleType](c_.ID, objc.Sel("type"))
 	return rv
 }
 

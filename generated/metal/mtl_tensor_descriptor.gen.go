@@ -81,8 +81,8 @@ func NewTensorDescriptor() TensorDescriptor {
 // An array of sizes, in elements, one for each dimension of the tensors you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
-func (t_ TensorDescriptor) Dimensions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dimensions"))
+func (t_ TensorDescriptor) Dimensions() MTLTensorExtents {
+	rv := objc.Send[MTLTensorExtents](t_.ID, objc.Sel("dimensions"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (t_ TensorDescriptor) Dimensions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorDescriptor/dimensions
-func (t_ TensorDescriptor) SetDimensions(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetDimensions(value IMTLTensorExtents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
 }
 
@@ -117,8 +117,8 @@ func (t_ TensorDescriptor) SetCpuCacheMode(value unsafe.Pointer) {
 // A data format for the tensors you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/datatype
-func (t_ TensorDescriptor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dataType"))
+func (t_ TensorDescriptor) DataType() TensorDataType {
+	rv := objc.Send[TensorDataType](t_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (t_ TensorDescriptor) DataType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/datatype
-func (t_ TensorDescriptor) SetDataType(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetDataType(value TensorDataType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDataType:"), value)
 }
 
 // A value that configures the hazard tracking of tensors you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/hazardtrackingmode
-func (t_ TensorDescriptor) HazardTrackingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("hazardTrackingMode"))
+func (t_ TensorDescriptor) HazardTrackingMode() HazardTrackingMode {
+	rv := objc.Send[HazardTrackingMode](t_.ID, objc.Sel("hazardTrackingMode"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (t_ TensorDescriptor) HazardTrackingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/hazardtrackingmode
-func (t_ TensorDescriptor) SetHazardTrackingMode(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetHazardTrackingMode(value HazardTrackingMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHazardTrackingMode:"), value)
 }
 
 // A packed set of the
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/resourceoptions
-func (t_ TensorDescriptor) ResourceOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resourceOptions"))
+func (t_ TensorDescriptor) ResourceOptions() ResourceOptions {
+	rv := objc.Send[ResourceOptions](t_.ID, objc.Sel("resourceOptions"))
 	return rv
 }
 
@@ -164,15 +164,15 @@ func (t_ TensorDescriptor) ResourceOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/resourceoptions
-func (t_ TensorDescriptor) SetResourceOptions(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetResourceOptions(value ResourceOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResourceOptions:"), value)
 }
 
 // A value that configures the memory location and access permissions of tensors you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/storagemode
-func (t_ TensorDescriptor) StorageMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("storageMode"))
+func (t_ TensorDescriptor) StorageMode() StorageMode {
+	rv := objc.Send[StorageMode](t_.ID, objc.Sel("storageMode"))
 	return rv
 }
 
@@ -182,15 +182,15 @@ func (t_ TensorDescriptor) StorageMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/storagemode
-func (t_ TensorDescriptor) SetStorageMode(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetStorageMode(value StorageMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStorageMode:"), value)
 }
 
 // An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/strides
-func (t_ TensorDescriptor) Strides() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("strides"))
+func (t_ TensorDescriptor) Strides() MTLTensorExtents {
+	rv := objc.Send[MTLTensorExtents](t_.ID, objc.Sel("strides"))
 	return rv
 }
 
@@ -200,15 +200,15 @@ func (t_ TensorDescriptor) Strides() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/strides
-func (t_ TensorDescriptor) SetStrides(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetStrides(value IMTLTensorExtents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStrides:"), value)
 }
 
 // A set of contexts in which you can use tensors you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/usage
-func (t_ TensorDescriptor) Usage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("usage"))
+func (t_ TensorDescriptor) Usage() TensorUsage {
+	rv := objc.Send[TensorUsage](t_.ID, objc.Sel("usage"))
 	return rv
 }
 
@@ -218,15 +218,15 @@ func (t_ TensorDescriptor) Usage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordescriptor/usage
-func (t_ TensorDescriptor) SetUsage(value unsafe.Pointer) {
+func (t_ TensorDescriptor) SetUsage(value ITensorUsage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsage:"), value)
 }
 
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorDescriptor) MTLTensorDomain() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorDescriptor) MTLTensorDomain() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
 }
 

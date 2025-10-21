@@ -95,7 +95,7 @@ func (ac _AssetExportSessionClass) AllExportPresets() []string {
 // Returns compatible export presets for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/exportPresets(compatibleWith:)
-func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset unsafe.Pointer) []string {
+func (ac _AssetExportSessionClass) ExportPresetsCompatibleWithAsset(asset IAVAsset) []string {
 	rv := objc.Send[[]string](objc.ID(ac.class), objc.Sel("exportPresetsCompatibleWithAsset:"), asset)
 	return rv
 }
@@ -171,7 +171,7 @@ func (a_ AssetExportSession) DirectoryForTemporaryFiles() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/directoryForTemporaryFiles
-func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value foundation.URL) {
+func (a_ AssetExportSession) SetDirectoryForTemporaryFiles(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
 
@@ -196,8 +196,8 @@ func (a_ AssetExportSession) SetFileLengthLimit(value unsafe.Pointer) {
 // The file type of the output an asset export session writes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputFileType
-func (a_ AssetExportSession) OutputFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFileType"))
+func (a_ AssetExportSession) OutputFileType() FileType {
+	rv := objc.Send[FileType](a_.ID, objc.Sel("outputFileType"))
 	return rv
 }
 
@@ -207,7 +207,7 @@ func (a_ AssetExportSession) OutputFileType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputFileType
-func (a_ AssetExportSession) SetOutputFileType(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetOutputFileType(value FileType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileType:"), value)
 }
 
@@ -225,7 +225,7 @@ func (a_ AssetExportSession) OutputURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetExportSession/outputURL
-func (a_ AssetExportSession) SetOutputURL(value foundation.URL) {
+func (a_ AssetExportSession) SetOutputURL(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputURL:"), value)
 }
 
@@ -276,8 +276,8 @@ func (a_ AssetExportSession) SetTimeRange(value unsafe.Pointer) {
 // An asset that a session exports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/asset
-func (a_ AssetExportSession) Asset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("asset"))
+func (a_ AssetExportSession) Asset() AVAsset {
+	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
 	return rv
 }
 
@@ -287,15 +287,15 @@ func (a_ AssetExportSession) Asset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/asset
-func (a_ AssetExportSession) SetAsset(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
 }
 
 // The parameters for audio mixing and an indication of whether to enable nondefault audio mixing for export.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiomix
-func (a_ AssetExportSession) AudioMix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioMix"))
+func (a_ AssetExportSession) AudioMix() AVAudioMix {
+	rv := objc.Send[AVAudioMix](a_.ID, objc.Sel("audioMix"))
 	return rv
 }
 
@@ -305,15 +305,15 @@ func (a_ AssetExportSession) AudioMix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiomix
-func (a_ AssetExportSession) SetAudioMix(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetAudioMix(value IAVAudioMix) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioMix:"), value)
 }
 
 // A processing algorithm for managing audio pitch for scaled audio edits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiotimepitchalgorithm
-func (a_ AssetExportSession) AudioTimePitchAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
+func (a_ AssetExportSession) AudioTimePitchAlgorithm() AudioTimePitchAlgorithm {
+	rv := objc.Send[AudioTimePitchAlgorithm](a_.ID, objc.Sel("audioTimePitchAlgorithm"))
 	return rv
 }
 
@@ -323,7 +323,7 @@ func (a_ AssetExportSession) AudioTimePitchAlgorithm() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/audiotimepitchalgorithm
-func (a_ AssetExportSession) SetAudioTimePitchAlgorithm(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetAudioTimePitchAlgorithm(value IAudioTimePitchAlgorithm) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAudioTimePitchAlgorithm:"), value)
 }
 
@@ -366,8 +366,8 @@ func (a_ AssetExportSession) SetCustomVideoCompositor(value unsafe.Pointer) {
 // An optional error object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/error
-func (a_ AssetExportSession) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("error"))
+func (a_ AssetExportSession) Error() Error {
+	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -377,7 +377,7 @@ func (a_ AssetExportSession) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/error
-func (a_ AssetExportSession) SetError(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetError(value IError) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setError:"), value)
 }
 
@@ -420,8 +420,8 @@ func (a_ AssetExportSession) SetMaxDuration(value unsafe.Pointer) {
 // The metadata an export session writes to the output container file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadata
-func (a_ AssetExportSession) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("metadata"))
+func (a_ AssetExportSession) Metadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -431,7 +431,7 @@ func (a_ AssetExportSession) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/metadata
-func (a_ AssetExportSession) SetMetadata(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
 }
 
@@ -456,8 +456,8 @@ func (a_ AssetExportSession) SetMetadataItemFilter(value unsafe.Pointer) {
 // The name of the preset that the asset export session uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
-func (a_ AssetExportSession) PresetName() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("presetName"))
+func (a_ AssetExportSession) PresetName() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("presetName"))
 	return rv
 }
 
@@ -467,8 +467,8 @@ func (a_ AssetExportSession) PresetName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/presetname
-func (a_ AssetExportSession) SetPresetName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), objc.String(value))
+func (a_ AssetExportSession) SetPresetName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresetName:"), value)
 }
 
 // A value that indicates the progress of the export.
@@ -510,8 +510,8 @@ func (a_ AssetExportSession) SetStatus(value unsafe.Pointer) {
 // An optional object that provides instructions for how to composite frames of video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition
-func (a_ AssetExportSession) VideoComposition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("videoComposition"))
+func (a_ AssetExportSession) VideoComposition() AVVideoComposition {
+	rv := objc.Send[AVVideoComposition](a_.ID, objc.Sel("videoComposition"))
 	return rv
 }
 
@@ -521,7 +521,7 @@ func (a_ AssetExportSession) VideoComposition() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition
-func (a_ AssetExportSession) SetVideoComposition(value unsafe.Pointer) {
+func (a_ AssetExportSession) SetVideoComposition(value IAVVideoComposition) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVideoComposition:"), value)
 }
 

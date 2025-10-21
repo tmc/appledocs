@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,7 +31,7 @@ type _PHASERandomNodeDefinitionClass struct {
 // An interface definition for the [PHASERandomNodeDefinition] class.
 type IPHASERandomNodeDefinition interface {
 	IPHASESoundEventNodeDefinition
-	AddSubtreeWeight(subtree unsafe.Pointer, weight foundation.Number)
+	AddSubtreeWeight(subtree IPHASESoundEventNodeDefinition, weight foundation.INumber)
 }
 
 // A sound event node that invokes one of its child nodes at random.
@@ -88,9 +89,9 @@ func NewPHASERandomNodeDefinition() PHASERandomNodeDefinition {
 // Creates a random node with the name you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/init(identifier:)
-func NewPHASERandomNodeDefinitionWithIdentifier(identifier string) PHASERandomNodeDefinition {
+func NewPHASERandomNodeDefinitionWithIdentifier(identifier appkit.string) PHASERandomNodeDefinition {
 	instance := getPHASERandomNodeDefinitionClass().Alloc()
-	rv := objc.Send[PHASERandomNodeDefinition](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
+	rv := objc.Send[PHASERandomNodeDefinition](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -99,7 +100,7 @@ func NewPHASERandomNodeDefinitionWithIdentifier(identifier string) PHASERandomNo
 // Adds a node tree that’s one of the random-selection options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASERandomNodeDefinition/addSubtree(_:weight:)
-func (p_ PHASERandomNodeDefinition) AddSubtreeWeight(subtree unsafe.Pointer, weight foundation.Number) {
+func (p_ PHASERandomNodeDefinition) AddSubtreeWeight(subtree IPHASESoundEventNodeDefinition, weight foundation.INumber) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addSubtree:weight:"), subtree, weight)
 }
 

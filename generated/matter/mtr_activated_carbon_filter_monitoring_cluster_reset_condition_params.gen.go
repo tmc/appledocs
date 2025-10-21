@@ -87,7 +87,7 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) ServerSi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterresetconditionparams/serversideprocessingtimeout
-func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) TimedInv
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterresetconditionparams/timedinvoketimeoutms
-func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

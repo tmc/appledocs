@@ -87,7 +87,7 @@ func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurem
 // SetMeasurement sets the value of the measurement property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetMeasurement(value foundation.Number) {
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetMeasurement(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurement:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Order() 
 // SetOrder sets the value of the order property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
-func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value foundation.Number) {
+func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOrder:"), value)
 }
 

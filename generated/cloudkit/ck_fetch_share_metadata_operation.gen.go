@@ -136,8 +136,8 @@ func (c_ CKFetchShareMetadataOperation) SetFetchShareMetadataResultBlock(value u
 // The closure to execute as the operation fetches individual shares.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/persharemetadatablock
-func (c_ CKFetchShareMetadataOperation) PerShareMetadataBlock() foundation.URL {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("perShareMetadataBlock"))
+func (c_ CKFetchShareMetadataOperation) PerShareMetadataBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareMetadataBlock"))
 	return rv
 }
 
@@ -147,14 +147,14 @@ func (c_ CKFetchShareMetadataOperation) PerShareMetadataBlock() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/persharemetadatablock
-func (c_ CKFetchShareMetadataOperation) SetPerShareMetadataBlock(value foundation.URL) {
+func (c_ CKFetchShareMetadataOperation) SetPerShareMetadataBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareMetadataBlock:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/persharemetadataresultblock
-func (c_ CKFetchShareMetadataOperation) PerShareMetadataResultBlock() foundation.URL {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("perShareMetadataResultBlock"))
+func (c_ CKFetchShareMetadataOperation) PerShareMetadataResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareMetadataResultBlock"))
 	return rv
 }
 
@@ -162,7 +162,7 @@ func (c_ CKFetchShareMetadataOperation) PerShareMetadataResultBlock() foundation
 // SetPerShareMetadataResultBlock sets the value of the perShareMetadataResultBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/persharemetadataresultblock
-func (c_ CKFetchShareMetadataOperation) SetPerShareMetadataResultBlock(value foundation.URL) {
+func (c_ CKFetchShareMetadataOperation) SetPerShareMetadataResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareMetadataResultBlock:"), value)
 }
 
@@ -198,7 +198,7 @@ func (c_ CKFetchShareMetadataOperation) ShareURLs() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shareurls
-func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.URL) {
+func (c_ CKFetchShareMetadataOperation) SetShareURLs(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareURLs:"), value)
 }
 

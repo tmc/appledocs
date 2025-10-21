@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentStoreAsynchronousResult] class.
@@ -90,24 +91,24 @@ func (p_ PersistentStoreAsynchronousResult) Cancel() {
 // The managed object context for the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/managedObjectContext
-func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectContext"))
+func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() NSManagedObjectContext {
+	rv := objc.Send[NSManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
 // An error that contains details if the asynchronous fetch request fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/operationError
-func (p_ PersistentStoreAsynchronousResult) OperationError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("operationError"))
+func (p_ PersistentStoreAsynchronousResult) OperationError() foundation.Error {
+	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("operationError"))
 	return rv
 }
 
 // An object that reports progress for the asynchronous fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreAsynchronousResult/progress
-func (p_ PersistentStoreAsynchronousResult) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("progress"))
+func (p_ PersistentStoreAsynchronousResult) Progress() foundation.Progress {
+	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("progress"))
 	return rv
 }
 

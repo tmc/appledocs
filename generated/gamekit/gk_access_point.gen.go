@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -200,8 +202,8 @@ func (a_ AccessPoint) SetIsVisible(value bool) {
 // The corner of the screen to display the access point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
-func (a_ AccessPoint) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("location"))
+func (a_ AccessPoint) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](a_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -211,15 +213,15 @@ func (a_ AccessPoint) Location() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property
-func (a_ AccessPoint) SetLocation(value unsafe.Pointer) {
+func (a_ AccessPoint) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLocation:"), value)
 }
 
 // The window that contains the access point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow
-func (a_ AccessPoint) ParentWindow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("parentWindow"))
+func (a_ AccessPoint) ParentWindow() appkit.Window {
+	rv := objc.Send[appkit.Window](a_.ID, objc.Sel("parentWindow"))
 	return rv
 }
 
@@ -229,7 +231,7 @@ func (a_ AccessPoint) ParentWindow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow
-func (a_ AccessPoint) SetParentWindow(value unsafe.Pointer) {
+func (a_ AccessPoint) SetParentWindow(value appkit.IWindow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParentWindow:"), value)
 }
 

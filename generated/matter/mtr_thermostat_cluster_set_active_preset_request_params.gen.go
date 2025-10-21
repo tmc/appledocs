@@ -78,8 +78,8 @@ func NewMTRThermostatClusterSetActivePresetRequestParams() MTRThermostatClusterS
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/presetHandle
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) PresetHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presetHandle"))
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) PresetHandle() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterSetActivePresetRequestParams) PresetHandle() unsafe
 // SetPresetHandle sets the value of the presetHandle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/presetHandle
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetPresetHandle(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetPresetHandle(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRThermostatClusterSetActivePresetRequestParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRThermostatClusterSetActivePresetRequestParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterSetActivePresetRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThermostatClusterSetActivePresetRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

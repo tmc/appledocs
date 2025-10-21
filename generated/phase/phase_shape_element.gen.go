@@ -83,8 +83,8 @@ func NewPHASEShapeElement() PHASEShapeElement {
 // A surface characteristic that determines the acoustic properties of an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/Element/material
-func (p_ PHASEShapeElement) Material() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("material"))
+func (p_ PHASEShapeElement) Material() PHASEMaterial {
+	rv := objc.Send[PHASEMaterial](p_.ID, objc.Sel("material"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (p_ PHASEShapeElement) Material() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEShape/Element/material
-func (p_ PHASEShapeElement) SetMaterial(value unsafe.Pointer) {
+func (p_ PHASEShapeElement) SetMaterial(value IPHASEMaterial) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaterial:"), value)
 }
 
 // An array of objects that collectively describe the physical characteristics of a surface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseshape/elements
-func (p_ PHASEShapeElement) Elements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("elements"))
+func (p_ PHASEShapeElement) Elements() PHASEShapeElement {
+	rv := objc.Send[PHASEShapeElement](p_.ID, objc.Sel("elements"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (p_ PHASEShapeElement) Elements() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseshape/elements
-func (p_ PHASEShapeElement) SetElements(value unsafe.Pointer) {
+func (p_ PHASEShapeElement) SetElements(value IPHASEShapeElement) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setElements:"), value)
 }
 

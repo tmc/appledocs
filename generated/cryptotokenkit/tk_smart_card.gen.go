@@ -207,8 +207,8 @@ func (t_ TKSmartCard) SetIsValid(value bool) {
 // The slot in which the Smart Card is inserted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-func (t_ TKSmartCard) Slot() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("slot"))
+func (t_ TKSmartCard) Slot() TKSmartCardSlot {
+	rv := objc.Send[TKSmartCardSlot](t_.ID, objc.Sel("slot"))
 	return rv
 }
 
@@ -218,7 +218,7 @@ func (t_ TKSmartCard) Slot() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/slot
-func (t_ TKSmartCard) SetSlot(value unsafe.Pointer) {
+func (t_ TKSmartCard) SetSlot(value ITKSmartCardSlot) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSlot:"), value)
 }
 

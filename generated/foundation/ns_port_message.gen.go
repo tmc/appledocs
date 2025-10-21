@@ -30,7 +30,7 @@ type _PortMessageClass struct {
 // An interface definition for the [PortMessage] class.
 type IPortMessage interface {
 	objectivec.IObject
-	SendBeforeDate(date unsafe.Pointer) bool
+	SendBeforeDate(date IDate) bool
 }
 
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
@@ -86,7 +86,7 @@ func NewPortMessage() PortMessage {
 // Initializes a newly allocated object to send given data on a given port and to receiver replies on another given port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/init(send:receive:components:)
-func NewPortMessageWithSendPortReceivePortComponents(sendPort unsafe.Pointer, replyPort unsafe.Pointer, components objc.ID) PortMessage {
+func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort IPort, components objectivec.IObject) PortMessage {
 	instance := getPortMessageClass().Alloc()
 	rv := objc.Send[PortMessage](instance.ID, objc.Sel("initWithSendPort:receivePort:components:"), sendPort, replyPort, components)
 	rv.Autorelease()
@@ -97,7 +97,7 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort unsafe.Pointer, re
 // Attempts to send the message before the specified date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/send(before:)
-func (p_ PortMessage) SendBeforeDate(date unsafe.Pointer) bool {
+func (p_ PortMessage) SendBeforeDate(date IDate) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:"), date)
 	return rv
 }
@@ -105,8 +105,8 @@ func (p_ PortMessage) SendBeforeDate(date unsafe.Pointer) bool {
 // Returns the data components of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/components
-func (p_ PortMessage) Components() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("components"))
+func (p_ PortMessage) Components() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("components"))
 	return rv
 }
 
@@ -131,16 +131,16 @@ func (p_ PortMessage) SetMsgid(value unsafe.Pointer) {
 // For an outgoing message, returns the port on which replies to the receiver will arrive. For an incoming message, returns the port the receiver did arrive on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
-func (p_ PortMessage) ReceivePort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("receivePort"))
+func (p_ PortMessage) ReceivePort() NSPort {
+	rv := objc.Send[NSPort](p_.ID, objc.Sel("receivePort"))
 	return rv
 }
 
 // For an outgoing message, returns the port the receiver will send itself through. For an incoming message, returns the port replies to the receiver should be sent through.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/sendPort
-func (p_ PortMessage) SendPort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendPort"))
+func (p_ PortMessage) SendPort() NSPort {
+	rv := objc.Send[NSPort](p_.ID, objc.Sel("sendPort"))
 	return rv
 }
 

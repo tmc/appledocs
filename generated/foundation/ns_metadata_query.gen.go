@@ -111,15 +111,15 @@ func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/notificationBatchingInterval
-func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval) {
+func (m_ MetadataQuery) SetNotificationBatchingInterval(value ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotificationBatchingInterval:"), value)
 }
 
 // The queue on which query result notifications are posted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
-func (m_ MetadataQuery) OperationQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationQueue"))
+func (m_ MetadataQuery) OperationQueue() NSOperationQueue {
+	rv := objc.Send[NSOperationQueue](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (m_ MetadataQuery) OperationQueue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
-func (m_ MetadataQuery) SetOperationQueue(value unsafe.Pointer) {
+func (m_ MetadataQuery) SetOperationQueue(value IOperationQueue) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationQueue:"), value)
 }
 
 // The predicate used to filter query results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
-func (m_ MetadataQuery) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predicate"))
+func (m_ MetadataQuery) Predicate() NSPredicate {
+	rv := objc.Send[NSPredicate](m_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -147,23 +147,23 @@ func (m_ MetadataQuery) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
-func (m_ MetadataQuery) SetPredicate(value unsafe.Pointer) {
+func (m_ MetadataQuery) SetPredicate(value IPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // An array containing the query’s results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/results
-func (m_ MetadataQuery) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("results"))
+func (m_ MetadataQuery) Results() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("results"))
 	return rv
 }
 
 // An array containing the search scopes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/searchScopes
-func (m_ MetadataQuery) SearchScopes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("searchScopes"))
+func (m_ MetadataQuery) SearchScopes() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("searchScopes"))
 	return rv
 }
 
@@ -173,7 +173,7 @@ func (m_ MetadataQuery) SearchScopes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/searchScopes
-func (m_ MetadataQuery) SetSearchScopes(value unsafe.Pointer) {
+func (m_ MetadataQuery) SetSearchScopes(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchScopes:"), value)
 }
 
@@ -216,8 +216,8 @@ func (m_ MetadataQuery) SetGroupedResults(value unsafe.Pointer) {
 // An array of grouping attributes. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupingattributes
-func (m_ MetadataQuery) GroupingAttributes() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("groupingAttributes"))
+func (m_ MetadataQuery) GroupingAttributes() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("groupingAttributes"))
 	return rv
 }
 
@@ -227,8 +227,8 @@ func (m_ MetadataQuery) GroupingAttributes() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupingattributes
-func (m_ MetadataQuery) SetGroupingAttributes(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupingAttributes:"), objc.String(value))
+func (m_ MetadataQuery) SetGroupingAttributes(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupingAttributes:"), value)
 }
 
 // A Boolean value that indicates whether the receiver is in the initial gathering phase of the query. (read-only)
@@ -324,8 +324,8 @@ func (m_ MetadataQuery) SetSearchItems(value unsafe.Pointer) {
 // An array of sort descriptor objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/sortdescriptors
-func (m_ MetadataQuery) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sortDescriptors"))
+func (m_ MetadataQuery) SortDescriptors() NSSortDescriptor {
+	rv := objc.Send[NSSortDescriptor](m_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -335,15 +335,15 @@ func (m_ MetadataQuery) SortDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/sortdescriptors
-func (m_ MetadataQuery) SetSortDescriptors(value unsafe.Pointer) {
+func (m_ MetadataQuery) SetSortDescriptors(value ISortDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 
 // An array of attributes whose values are gathered by the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelistattributes
-func (m_ MetadataQuery) ValueListAttributes() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("valueListAttributes"))
+func (m_ MetadataQuery) ValueListAttributes() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("valueListAttributes"))
 	return rv
 }
 
@@ -353,15 +353,15 @@ func (m_ MetadataQuery) ValueListAttributes() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelistattributes
-func (m_ MetadataQuery) SetValueListAttributes(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValueListAttributes:"), objc.String(value))
+func (m_ MetadataQuery) SetValueListAttributes(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValueListAttributes:"), value)
 }
 
 // A dictionary containing the value lists generated by the query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-func (m_ MetadataQuery) ValueLists() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("valueLists"))
+func (m_ MetadataQuery) ValueLists() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("valueLists"))
 	return rv
 }
 
@@ -371,8 +371,8 @@ func (m_ MetadataQuery) ValueLists() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-func (m_ MetadataQuery) SetValueLists(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValueLists:"), objc.String(value))
+func (m_ MetadataQuery) SetValueLists(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValueLists:"), value)
 }
 
 

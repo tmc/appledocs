@@ -87,7 +87,7 @@ func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) BootReason() foundation.Nu
 // SetBootReason sets the value of the bootReason property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterbootreasonevent/bootreason
-func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) SetBootReason(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterBootReasonEvent) SetBootReason(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBootReason:"), value)
 }
 

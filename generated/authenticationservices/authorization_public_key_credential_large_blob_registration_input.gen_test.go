@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = authenticationservices.NewAuthorizationPublicKeyCredentialLargeBlobRegistrationInput
 
+// ExampleNewAuthorizationPublicKeyCredentialLargeBlobRegistrationInputWithSupportRequirement demonstrates how to create a AuthorizationPublicKeyCredentialLargeBlobRegistrationInput instance using NewAuthorizationPublicKeyCredentialLargeBlobRegistrationInputWithSupportRequirement.
+func ExampleNewAuthorizationPublicKeyCredentialLargeBlobRegistrationInputWithSupportRequirement() {
+	_ = authenticationservices.NewAuthorizationPublicKeyCredentialLargeBlobRegistrationInputWithSupportRequirement(
+		authenticationservices.AuthorizationPublicKeyCredentialLargeBlobSupportRequirement{}, // requirement AuthorizationPublicKeyCredentialLargeBlobSupportRequirement
+	)
+	// Output:
+}

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [TemporalAA] class.
@@ -29,7 +30,7 @@ type _TemporalAAClass struct {
 // An interface definition for the [TemporalAA] class.
 type ITemporalAA interface {
 	IKernel
-	EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objc.ID, sourceTexture objc.ID, previousTexture objc.ID, destinationTexture objc.ID, motionVectorTexture objc.ID, depthTexture objc.ID)
+	EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, previousTexture objectivec.IObject, destinationTexture objectivec.IObject, motionVectorTexture objectivec.IObject, depthTexture objectivec.IObject)
 }
 
 //
@@ -79,7 +80,7 @@ func NewTemporalAA() TemporalAA {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSTemporalAA/encode(to:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:)
-func (t_ TemporalAA) EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objc.ID, sourceTexture objc.ID, previousTexture objc.ID, destinationTexture objc.ID, motionVectorTexture objc.ID, depthTexture objc.ID) {
+func (t_ TemporalAA) EncodeToCommandBufferSourceTexturePreviousTextureDestinationTextureMotionVectorTextureDepthTexture(commandBuffer objectivec.IObject, sourceTexture objectivec.IObject, previousTexture objectivec.IObject, destinationTexture objectivec.IObject, motionVectorTexture objectivec.IObject, depthTexture objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:"), commandBuffer, sourceTexture, previousTexture, destinationTexture, motionVectorTexture, depthTexture)
 }
 

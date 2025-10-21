@@ -90,7 +90,7 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) ServerSideProcessingTi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/serverSideProcessingTimeout
-func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimeToAdd() foundation
 // SetTimeToAdd sets the value of the timeToAdd property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timeToAdd
-func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimeToAdd(value foundation.Number) {
+func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimeToAdd(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeToAdd:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimedInvokeTimeoutMs()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timedInvokeTimeoutMs
-func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

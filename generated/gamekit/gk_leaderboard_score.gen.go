@@ -101,8 +101,8 @@ func (l_ LeaderboardScore) SetContext(value int) {
 // The ID that Game Center uses for the leaderboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) LeaderboardID() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("leaderboardID"))
+func (l_ LeaderboardScore) LeaderboardID() appkit.string {
+	rv := objc.Send[appkit.string](l_.ID, objc.Sel("leaderboardID"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (l_ LeaderboardScore) LeaderboardID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/leaderboardid
-func (l_ LeaderboardScore) SetLeaderboardID(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), objc.String(value))
+func (l_ LeaderboardScore) SetLeaderboardID(value appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setLeaderboardID:"), value)
 }
 
 // The player who earns the score.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/player
-func (l_ LeaderboardScore) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("player"))
+func (l_ LeaderboardScore) Player() GKPlayer {
+	rv := objc.Send[GKPlayer](l_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (l_ LeaderboardScore) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkleaderboardscore/player
-func (l_ LeaderboardScore) SetPlayer(value unsafe.Pointer) {
+func (l_ LeaderboardScore) SetPlayer(value IGKPlayer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPlayer:"), value)
 }
 

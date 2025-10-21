@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CNChangeHistoryDeleteContactEvent] class.
@@ -82,8 +83,8 @@ func NewCNChangeHistoryDeleteContactEvent() CNChangeHistoryDeleteContactEvent {
 // A string that uniquely identifies the contact that the user deleted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteContactEvent/contactIdentifier
-func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 

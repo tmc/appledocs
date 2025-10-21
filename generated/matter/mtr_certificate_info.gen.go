@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRCertificateInfo() MTRCertificateInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/issuer
-func (m_ MTRCertificateInfo) Issuer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("issuer"))
+func (m_ MTRCertificateInfo) Issuer() MTRDistinguishedNameInfo {
+	rv := objc.Send[MTRDistinguishedNameInfo](m_.ID, objc.Sel("issuer"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRCertificateInfo) Issuer() unsafe.Pointer {
 // SetIssuer sets the value of the issuer property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/issuer
-func (m_ MTRCertificateInfo) SetIssuer(value unsafe.Pointer) {
+func (m_ MTRCertificateInfo) SetIssuer(value IMTRDistinguishedNameInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIssuer:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notafter
-func (m_ MTRCertificateInfo) NotAfter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("notAfter"))
+func (m_ MTRCertificateInfo) NotAfter() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("notAfter"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (m_ MTRCertificateInfo) NotAfter() unsafe.Pointer {
 // SetNotAfter sets the value of the notAfter property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notafter
-func (m_ MTRCertificateInfo) SetNotAfter(value unsafe.Pointer) {
+func (m_ MTRCertificateInfo) SetNotAfter(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotAfter:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notbefore
-func (m_ MTRCertificateInfo) NotBefore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("notBefore"))
+func (m_ MTRCertificateInfo) NotBefore() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("notBefore"))
 	return rv
 }
 
@@ -116,15 +117,15 @@ func (m_ MTRCertificateInfo) NotBefore() unsafe.Pointer {
 // SetNotBefore sets the value of the notBefore property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/notbefore
-func (m_ MTRCertificateInfo) SetNotBefore(value unsafe.Pointer) {
+func (m_ MTRCertificateInfo) SetNotBefore(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotBefore:"), value)
 }
 
 // Public key data for this certificate
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/publickeydata
-func (m_ MTRCertificateInfo) PublicKeyData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("publicKeyData"))
+func (m_ MTRCertificateInfo) PublicKeyData() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("publicKeyData"))
 	return rv
 }
 
@@ -134,14 +135,14 @@ func (m_ MTRCertificateInfo) PublicKeyData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/publickeydata
-func (m_ MTRCertificateInfo) SetPublicKeyData(value unsafe.Pointer) {
+func (m_ MTRCertificateInfo) SetPublicKeyData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPublicKeyData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/subject
-func (m_ MTRCertificateInfo) Subject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("subject"))
+func (m_ MTRCertificateInfo) Subject() MTRDistinguishedNameInfo {
+	rv := objc.Send[MTRDistinguishedNameInfo](m_.ID, objc.Sel("subject"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (m_ MTRCertificateInfo) Subject() unsafe.Pointer {
 // SetSubject sets the value of the subject property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcertificateinfo/subject
-func (m_ MTRCertificateInfo) SetSubject(value unsafe.Pointer) {
+func (m_ MTRCertificateInfo) SetSubject(value IMTRDistinguishedNameInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubject:"), value)
 }
 

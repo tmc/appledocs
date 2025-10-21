@@ -86,7 +86,7 @@ func NewMIDICISession() MIDICISession {
 // Creates a MIDI-CI session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/init(discoveredNode:dataReadyHandler:disconnectHandler:)
-func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discoveredNode unsafe.Pointer, handler unsafe.Pointer, disconnectHandler unsafe.Pointer) MIDICISession {
+func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discoveredNode IMIDICIDiscoveredNode, handler unsafe.Pointer, disconnectHandler unsafe.Pointer) MIDICISession {
 	instance := getMIDICISessionClass().Alloc()
 	rv := objc.Send[MIDICISession](instance.ID, objc.Sel("initWithDiscoveredNode:dataReadyHandler:disconnectHandler:"), discoveredNode, handler, disconnectHandler)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewMIDICISessionWithDiscoveredNodeDataReadyHandlerDisconnectHandler(discove
 // Information about a MIDI-CI device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/deviceInfo
-func (m_ MIDICISession) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+func (m_ MIDICISession) DeviceInfo() MIDICIDeviceInfo {
+	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (m_ MIDICISession) MaxSysExSize() foundation.Number {
 // The MIDI destination with which the session is communicating.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICISession/midiDestination
-func (m_ MIDICISession) MidiDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("midiDestination"))
+func (m_ MIDICISession) MidiDestination() MIDIEntityRef {
+	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("midiDestination"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MIDICISession) MaxPropertyRequests() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicisession/maxpropertyrequests
-func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.Number) {
+func (m_ MIDICISession) SetMaxPropertyRequests(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxPropertyRequests:"), value)
 }
 
@@ -211,8 +211,8 @@ func (m_ MIDICISession) SetSupportsPropertyCapability(value bool) {
 // A constant value that indicates to use all channels of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midichannelswholeport
-func (m_ MIDICISession) MIDIChannelsWholePort() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MIDIChannelsWholePort"))
+func (m_ MIDICISession) MIDIChannelsWholePort() MIDIChannelNumber {
+	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("MIDIChannelsWholePort"))
 	return rv
 }
 

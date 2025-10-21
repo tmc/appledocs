@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewDDMatch() DDMatch {
 // A substring that the data detection system identifies from an original string as a common type of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch/matchedString
-func (d_ DDMatch) MatchedString() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("matchedString"))
+func (d_ DDMatch) MatchedString() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("matchedString"))
 	return rv
 }
 

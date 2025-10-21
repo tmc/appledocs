@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PHAssetChangeRequest] class.
@@ -87,7 +90,7 @@ func NewPHAssetChangeRequest() PHAssetChangeRequest {
 // Creates a request for modifying the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/init(for:)
-func NewPHAssetChangeRequestForAsset(asset unsafe.Pointer) PHAssetChangeRequest {
+func NewPHAssetChangeRequestForAsset(asset IPHAsset) PHAssetChangeRequest {
 	rv := objc.Send[PHAssetChangeRequest](objc.ID(getPHAssetChangeRequestClass().class), objc.Sel("changeRequestForAsset:"), asset)
 	return rv
 }
@@ -96,14 +99,14 @@ func NewPHAssetChangeRequestForAsset(asset unsafe.Pointer) PHAssetChangeRequest 
 // Requests that the specified assets be deleted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/deleteAssets(_:)
-func (pc _PHAssetChangeRequestClass) DeleteAssets(assets objc.ID) {
+func (pc _PHAssetChangeRequestClass) DeleteAssets(assets objectivec.IObject) {
 	objc.Send[objc.ID](objc.ID(pc.class), objc.Sel("deleteAssets:"), assets)
 }
 
 // Creates a request for modifying the specified asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/init(for:)
-func (pc _PHAssetChangeRequestClass) ChangeRequestForAsset(asset unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetChangeRequestClass) ChangeRequestForAsset(asset IPHAsset) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("changeRequestForAsset:"), asset)
 	return rv
 }
@@ -118,8 +121,8 @@ func (p_ PHAssetChangeRequest) RevertAssetContentToOriginal() {
 // The output of an asset content editing session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/contentEditingOutput
-func (p_ PHAssetChangeRequest) ContentEditingOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentEditingOutput"))
+func (p_ PHAssetChangeRequest) ContentEditingOutput() PHContentEditingOutput {
+	rv := objc.Send[PHContentEditingOutput](p_.ID, objc.Sel("contentEditingOutput"))
 	return rv
 }
 
@@ -129,23 +132,23 @@ func (p_ PHAssetChangeRequest) ContentEditingOutput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/contentEditingOutput
-func (p_ PHAssetChangeRequest) SetContentEditingOutput(value unsafe.Pointer) {
+func (p_ PHAssetChangeRequest) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
 
 // A placeholder object for the asset that the change request creates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetChangeRequest/placeholderForCreatedAsset
-func (p_ PHAssetChangeRequest) PlaceholderForCreatedAsset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("placeholderForCreatedAsset"))
+func (p_ PHAssetChangeRequest) PlaceholderForCreatedAsset() PHObjectPlaceholder {
+	rv := objc.Send[PHObjectPlaceholder](p_.ID, objc.Sel("placeholderForCreatedAsset"))
 	return rv
 }
 
 // The date and time at which the asset claims to have been originally created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/creationdate
-func (p_ PHAssetChangeRequest) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
+func (p_ PHAssetChangeRequest) CreationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -155,7 +158,7 @@ func (p_ PHAssetChangeRequest) CreationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/creationdate
-func (p_ PHAssetChangeRequest) SetCreationDate(value unsafe.Pointer) {
+func (p_ PHAssetChangeRequest) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -198,8 +201,8 @@ func (p_ PHAssetChangeRequest) SetIsHidden(value bool) {
 // The location information saved with the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/location
-func (p_ PHAssetChangeRequest) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("location"))
+func (p_ PHAssetChangeRequest) Location() corelocation.Location {
+	rv := objc.Send[corelocation.Location](p_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -209,7 +212,7 @@ func (p_ PHAssetChangeRequest) Location() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetchangerequest/location
-func (p_ PHAssetChangeRequest) SetLocation(value unsafe.Pointer) {
+func (p_ PHAssetChangeRequest) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocation:"), value)
 }
 

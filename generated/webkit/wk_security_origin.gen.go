@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewSecurityOrigin() SecurityOrigin {
 // The security origin’s host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKSecurityOrigin/host
-func (s_ SecurityOrigin) Host() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("host"))
+func (s_ SecurityOrigin) Host() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("host"))
 	return rv
 }
 
@@ -109,8 +110,8 @@ func (s_ SecurityOrigin) SetPort(value int) {
 // The security origin’s protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/protocol
-func (s_ SecurityOrigin) Protocol() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("protocol"))
+func (s_ SecurityOrigin) Protocol() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("protocol"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (s_ SecurityOrigin) Protocol() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wksecurityorigin/protocol
-func (s_ SecurityOrigin) SetProtocol(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setProtocol:"), objc.String(value))
+func (s_ SecurityOrigin) SetProtocol(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setProtocol:"), value)
 }
 
 

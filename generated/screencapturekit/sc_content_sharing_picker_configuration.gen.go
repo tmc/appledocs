@@ -81,8 +81,8 @@ func NewContentSharingPickerConfiguration() ContentSharingPickerConfiguration {
 // The content-selection modes supported by the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/allowedPickerModes
-func (c_ ContentSharingPickerConfiguration) AllowedPickerModes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("allowedPickerModes"))
+func (c_ ContentSharingPickerConfiguration) AllowedPickerModes() ContentSharingPickerMode {
+	rv := objc.Send[ContentSharingPickerMode](c_.ID, objc.Sel("allowedPickerModes"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (c_ ContentSharingPickerConfiguration) AllowedPickerModes() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPickerConfiguration-c.class/allowedPickerModes
-func (c_ ContentSharingPickerConfiguration) SetAllowedPickerModes(value unsafe.Pointer) {
+func (c_ ContentSharingPickerConfiguration) SetAllowedPickerModes(value ContentSharingPickerMode) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowedPickerModes:"), value)
 }
 

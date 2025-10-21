@@ -82,8 +82,8 @@ func NewCNChangeHistoryUpdateContactEvent() CNChangeHistoryUpdateContactEvent {
 // The contact that the user updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateContactEvent/contact
-func (c_ CNChangeHistoryUpdateContactEvent) Contact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contact"))
+func (c_ CNChangeHistoryUpdateContactEvent) Contact() CNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 

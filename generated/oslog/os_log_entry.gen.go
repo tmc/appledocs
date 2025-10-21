@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,24 +83,24 @@ func NewOSLogEntry() OSLogEntry {
 // The fully formatted message for the entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/composedMessage
-func (o_ OSLogEntry) ComposedMessage() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("composedMessage"))
+func (o_ OSLogEntry) ComposedMessage() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("composedMessage"))
 	return rv
 }
 
 // The timestamp of the entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/date
-func (o_ OSLogEntry) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("date"))
+func (o_ OSLogEntry) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](o_.ID, objc.Sel("date"))
 	return rv
 }
 
 // The current log entry’s storage tag.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntry/storeCategory-swift.property
-func (o_ OSLogEntry) StoreCategory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("storeCategory"))
+func (o_ OSLogEntry) StoreCategory() OSLogEntryStoreCategory {
+	rv := objc.Send[OSLogEntryStoreCategory](o_.ID, objc.Sel("storeCategory"))
 	return rv
 }
 

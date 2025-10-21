@@ -156,8 +156,8 @@ func (w_ WhoseSpecifier) SetStartSubelementIndex(value int) {
 // Returns the test object encapsulated by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/test
-func (w_ WhoseSpecifier) Test() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("test"))
+func (w_ WhoseSpecifier) Test() NSScriptWhoseTest {
+	rv := objc.Send[NSScriptWhoseTest](w_.ID, objc.Sel("test"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (w_ WhoseSpecifier) Test() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nswhosespecifier/test
-func (w_ WhoseSpecifier) SetTest(value unsafe.Pointer) {
+func (w_ WhoseSpecifier) SetTest(value IScriptWhoseTest) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTest:"), value)
 }
 

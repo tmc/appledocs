@@ -118,8 +118,8 @@ func (m_ MTL4RenderPassDescriptor) SetDefaultRasterSampleCount(value uint) {
 // Accesses state information for a render attachment that stores depth data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/depthAttachment
-func (m_ MTL4RenderPassDescriptor) DepthAttachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("depthAttachment"))
+func (m_ MTL4RenderPassDescriptor) DepthAttachment() MTLRenderPassDepthAttachmentDescriptor {
+	rv := objc.Send[MTLRenderPassDepthAttachmentDescriptor](m_.ID, objc.Sel("depthAttachment"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (m_ MTL4RenderPassDescriptor) DepthAttachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/depthAttachment
-func (m_ MTL4RenderPassDescriptor) SetDepthAttachment(value unsafe.Pointer) {
+func (m_ MTL4RenderPassDescriptor) SetDepthAttachment(value IMTLRenderPassDepthAttachmentDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDepthAttachment:"), value)
 }
 
@@ -226,8 +226,8 @@ func (m_ MTL4RenderPassDescriptor) SetRenderTargetWidth(value uint) {
 // Accesses state information for a render attachment that stores stencil data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/stencilAttachment
-func (m_ MTL4RenderPassDescriptor) StencilAttachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("stencilAttachment"))
+func (m_ MTL4RenderPassDescriptor) StencilAttachment() MTLRenderPassStencilAttachmentDescriptor {
+	rv := objc.Send[MTLRenderPassStencilAttachmentDescriptor](m_.ID, objc.Sel("stencilAttachment"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (m_ MTL4RenderPassDescriptor) StencilAttachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/stencilAttachment
-func (m_ MTL4RenderPassDescriptor) SetStencilAttachment(value unsafe.Pointer) {
+func (m_ MTL4RenderPassDescriptor) SetStencilAttachment(value IMTLRenderPassStencilAttachmentDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStencilAttachment:"), value)
 }
 
@@ -334,8 +334,8 @@ func (m_ MTL4RenderPassDescriptor) SetVisibilityResultBuffer(value objc.ID) {
 // Determines if Metal accumulates visibility results between render encoders or resets them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/visibilityResultType
-func (m_ MTL4RenderPassDescriptor) VisibilityResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("visibilityResultType"))
+func (m_ MTL4RenderPassDescriptor) VisibilityResultType() VisibilityResultType {
+	rv := objc.Send[VisibilityResultType](m_.ID, objc.Sel("visibilityResultType"))
 	return rv
 }
 
@@ -345,15 +345,15 @@ func (m_ MTL4RenderPassDescriptor) VisibilityResultType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPassDescriptor/visibilityResultType
-func (m_ MTL4RenderPassDescriptor) SetVisibilityResultType(value unsafe.Pointer) {
+func (m_ MTL4RenderPassDescriptor) SetVisibilityResultType(value VisibilityResultType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVisibilityResultType:"), value)
 }
 
 // Accesses the array of state information for render attachments that store color data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/colorattachments
-func (m_ MTL4RenderPassDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("colorAttachments"))
+func (m_ MTL4RenderPassDescriptor) ColorAttachments() MTLRenderPassColorAttachmentDescriptorArray {
+	rv := objc.Send[MTLRenderPassColorAttachmentDescriptorArray](m_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
@@ -363,7 +363,7 @@ func (m_ MTL4RenderPassDescriptor) ColorAttachments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4renderpassdescriptor/colorattachments
-func (m_ MTL4RenderPassDescriptor) SetColorAttachments(value unsafe.Pointer) {
+func (m_ MTL4RenderPassDescriptor) SetColorAttachments(value IMTLRenderPassColorAttachmentDescriptorArray) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorAttachments:"), value)
 }
 

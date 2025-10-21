@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FPUIActionExtensionContext] class.
@@ -29,7 +30,7 @@ type _FPUIActionExtensionContextClass struct {
 // An interface definition for the [FPUIActionExtensionContext] class.
 type IFPUIActionExtensionContext interface {
 	IExtensionContext
-	CancelRequestWithError(error_ unsafe.Pointer)
+	CancelRequestWithError(error_ foundation.IError)
 	CompleteRequest()
 }
 
@@ -84,7 +85,7 @@ func NewFPUIActionExtensionContext() FPUIActionExtensionContext {
 // Cancels the action and returns the provided error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIActionExtensionContext/cancelRequest(withError:)
-func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ unsafe.Pointer) {
+func (f_ FPUIActionExtensionContext) CancelRequestWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("cancelRequestWithError:"), error_)
 }
 
@@ -101,24 +102,6 @@ func (f_ FPUIActionExtensionContext) CompleteRequest() {
 func (f_ FPUIActionExtensionContext) DomainIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domainIdentifier"))
 	return rv
-}
-
-// The extension context provided by the host app.
-//
-// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
-func (f_ FPUIActionExtensionContext) ExtensionContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("extensionContext"))
-	return rv
-}
-
-
-// SetExtensionContext sets the value of the extensionContext property.
-// The extension context provided by the host app.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/fileproviderui/fpuiactionextensionviewcontroller/extensioncontext
-func (f_ FPUIActionExtensionContext) SetExtensionContext(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setExtensionContext:"), value)
 }
 
 

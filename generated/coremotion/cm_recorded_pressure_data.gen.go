@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RecordedPressureData] class.
@@ -92,8 +93,8 @@ func (r_ RecordedPressureData) Identifier() uint64 {
 // The time and date when the system recorded the measurement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedPressureData/startDate
-func (r_ RecordedPressureData) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startDate"))
+func (r_ RecordedPressureData) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }
 

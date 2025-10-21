@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,40 +93,40 @@ func (f_ Feature) Bounds() coregraphics.CGRect {
 // The type of feature that was discovered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFeature/type
-func (f_ Feature) Type() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("type"))
+func (f_ Feature) Type() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("type"))
 	return rv
 }
 
 // A Core Image feature type for person’s face.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeface
-func (f_ Feature) CIFeatureTypeFace() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeFace"))
+func (f_ Feature) CIFeatureTypeFace() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("CIFeatureTypeFace"))
 	return rv
 }
 
 // A Core Image feature type for QR code object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypeqrcode
-func (f_ Feature) CIFeatureTypeQRCode() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
+func (f_ Feature) CIFeatureTypeQRCode() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("CIFeatureTypeQRCode"))
 	return rv
 }
 
 // A Core Image feature type for rectangular object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetyperectangle
-func (f_ Feature) CIFeatureTypeRectangle() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
+func (f_ Feature) CIFeatureTypeRectangle() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("CIFeatureTypeRectangle"))
 	return rv
 }
 
 // A Core Image feature type for text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cifeaturetypetext
-func (f_ Feature) CIFeatureTypeText() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("CIFeatureTypeText"))
+func (f_ Feature) CIFeatureTypeText() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("CIFeatureTypeText"))
 	return rv
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,48 +85,48 @@ func NewHKQuery() HKQuery {
 // Returns a predicate for a specific FHIR resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(from:fhirResourceType:identifier:)
-func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source unsafe.Pointer, resourceType unsafe.Pointer, identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, objc.String(identifier))
+func (hc _HKQueryClass) PredicateForClinicalRecordsFromSourceFHIRResourceTypeIdentifier(source IHKSource, resourceType HKFHIRResourceType, identifier appkit.string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsFromSource:FHIRResourceType:identifier:"), source, resourceType, identifier)
 	return rv
 }
 
 // Returns a predicate for a specific FHIR type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForClinicalRecords(withFHIRResourceType:)
-func (hc _HKQueryClass) PredicateForClinicalRecordsWithFHIRResourceType(resourceType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsWithFHIRResourceType:"), resourceType)
+func (hc _HKQueryClass) PredicateForClinicalRecordsWithFHIRResourceType(resourceType HKFHIRResourceType) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForClinicalRecordsWithFHIRResourceType:"), resourceType)
 	return rv
 }
 
 // Returns a predicate that matches any objects that have been associated with the provided workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuery/predicateForObjects(from:)-5irg9
-func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("predicateForObjectsFromWorkout:"), workout)
+func (hc _HKQueryClass) PredicateForObjectsFromWorkout(workout IHKWorkout) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(hc.class), objc.Sel("predicateForObjectsFromWorkout:"), workout)
 	return rv
 }
 
 // The key path for accessing the object’s metadata dictionary inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmetadata
-func (h_ HKQuery) HKPredicateKeyPathMetadata() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
+func (h_ HKQuery) HKPredicateKeyPathMetadata() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMetadata"))
 	return rv
 }
 
 // The key path for accessing the object’s UUID inside a predicate format string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathuuid
-func (h_ HKQuery) HKPredicateKeyPathUUID() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
+func (h_ HKQuery) HKPredicateKeyPathUUID() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathUUID"))
 	return rv
 }
 
 // The type of objects being queried.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-func (h_ HKQuery) ObjectType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("objectType"))
+func (h_ HKQuery) ObjectType() HKObjectType {
+	rv := objc.Send[HKObjectType](h_.ID, objc.Sel("objectType"))
 	return rv
 }
 
@@ -134,15 +136,15 @@ func (h_ HKQuery) ObjectType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/objecttype
-func (h_ HKQuery) SetObjectType(value unsafe.Pointer) {
+func (h_ HKQuery) SetObjectType(value HKObjectType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setObjectType:"), value)
 }
 
 // A predicate used to filter the objects returned from the HealthKit store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
-func (h_ HKQuery) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("predicate"))
+func (h_ HKQuery) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -152,15 +154,15 @@ func (h_ HKQuery) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/predicate
-func (h_ HKQuery) SetPredicate(value unsafe.Pointer) {
+func (h_ HKQuery) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // The type of objects being queried.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-func (h_ HKQuery) SampleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sampleType"))
+func (h_ HKQuery) SampleType() HKSampleType {
+	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
 }
 
@@ -170,7 +172,7 @@ func (h_ HKQuery) SampleType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquery/sampletype
-func (h_ HKQuery) SetSampleType(value unsafe.Pointer) {
+func (h_ HKQuery) SetSampleType(value HKSampleType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
 }
 

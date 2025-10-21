@@ -30,7 +30,7 @@ type _DateIntervalClass struct {
 // An interface definition for the [DateInterval] class.
 type IDateInterval interface {
 	objectivec.IObject
-	Compare(dateInterval unsafe.Pointer) unsafe.Pointer
+	Compare(dateInterval IDateInterval) ComparisonResult
 }
 
 // An object representing the span of time between a specific start date and end date.
@@ -86,7 +86,7 @@ func NewDateInterval() DateInterval {
 // Initializes a date interval with a given start date and duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/init(start:duration:)
-func NewDateIntervalWithStartDateDuration(startDate unsafe.Pointer, duration TimeInterval) DateInterval {
+func NewDateIntervalWithStartDateDuration(startDate IDate, duration ITimeInterval) DateInterval {
 	instance := getDateIntervalClass().Alloc()
 	rv := objc.Send[DateInterval](instance.ID, objc.Sel("initWithStartDate:duration:"), startDate, duration)
 	rv.Autorelease()
@@ -97,24 +97,24 @@ func NewDateIntervalWithStartDateDuration(startDate unsafe.Pointer, duration Tim
 // Compares the receiver with the specified date interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/compare(_:)
-func (d_ DateInterval) Compare(dateInterval unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("compare:"), dateInterval)
+func (d_ DateInterval) Compare(dateInterval IDateInterval) ComparisonResult {
+	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), dateInterval)
 	return rv
 }
 
 // The start date of the date interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDateInterval/startDate
-func (d_ DateInterval) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startDate"))
+func (d_ DateInterval) StartDate() NSDate {
+	rv := objc.Send[NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
 // The duration of the date interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
-func (d_ DateInterval) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("duration"))
+func (d_ DateInterval) Duration() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -124,15 +124,15 @@ func (d_ DateInterval) Duration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/duration
-func (d_ DateInterval) SetDuration(value unsafe.Pointer) {
+func (d_ DateInterval) SetDuration(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDuration:"), value)
 }
 
 // The end date of the date interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
-func (d_ DateInterval) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endDate"))
+func (d_ DateInterval) EndDate() Date {
+	rv := objc.Send[Date](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -142,7 +142,7 @@ func (d_ DateInterval) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdateinterval/enddate
-func (d_ DateInterval) SetEndDate(value unsafe.Pointer) {
+func (d_ DateInterval) SetEndDate(value IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
 }
 

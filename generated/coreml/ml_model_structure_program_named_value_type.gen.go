@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewModelStructureProgramNamedValueType() ModelStructureProgramNamedValueTyp
 // The name of the parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/name
-func (m_ ModelStructureProgramNamedValueType) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ ModelStructureProgramNamedValueType) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The type of the parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramNamedValueType/type
-func (m_ ModelStructureProgramNamedValueType) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+func (m_ ModelStructureProgramNamedValueType) Type() MLModelStructureProgramValueType {
+	rv := objc.Send[MLModelStructureProgramValueType](m_.ID, objc.Sel("type"))
 	return rv
 }
 

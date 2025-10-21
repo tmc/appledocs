@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,28 +32,28 @@ type _LayerClass struct {
 // An interface definition for the [Layer] class.
 type ILayer interface {
 	objectivec.IObject
-	ActionForKey(event string) objc.ID
-	AddAnimationForKey(anim unsafe.Pointer, key string)
-	AddConstraint(c unsafe.Pointer)
-	AddSublayer(layer unsafe.Pointer)
+	ActionForKey(event appkit.string) objc.ID
+	AddAnimationForKey(anim IAnimation, key appkit.string)
+	AddConstraint(c IConstraint)
+	AddSublayer(layer ILayer)
 	AffineTransform() coregraphics.CGAffineTransform
-	AnimationForKey(key string) unsafe.Pointer
+	AnimationForKey(key appkit.string) Animation
 	AnimationKeys() []string
 	ContainsPoint(p coregraphics.CGPoint) bool
 	ContentsAreFlipped() bool
-	ConvertRectFromLayer(r coregraphics.CGRect, l unsafe.Pointer) coregraphics.CGRect
-	ConvertPointFromLayer(p coregraphics.CGPoint, l unsafe.Pointer) coregraphics.CGPoint
-	ConvertPointToLayer(p coregraphics.CGPoint, l unsafe.Pointer) coregraphics.CGPoint
-	ConvertRectToLayer(r coregraphics.CGRect, l unsafe.Pointer) coregraphics.CGRect
-	ConvertTimeFromLayer(t unsafe.Pointer, l unsafe.Pointer) unsafe.Pointer
-	ConvertTimeToLayer(t unsafe.Pointer, l unsafe.Pointer) unsafe.Pointer
+	ConvertRectFromLayer(r coregraphics.CGRect, l ILayer) coregraphics.CGRect
+	ConvertPointFromLayer(p coregraphics.CGPoint, l ILayer) coregraphics.CGPoint
+	ConvertPointToLayer(p coregraphics.CGPoint, l ILayer) coregraphics.CGPoint
+	ConvertRectToLayer(r coregraphics.CGRect, l ILayer) coregraphics.CGRect
+	ConvertTimeFromLayer(t ITimeInterval, l ILayer) TimeInterval
+	ConvertTimeToLayer(t ITimeInterval, l ILayer) TimeInterval
 	Display()
 	DisplayIfNeeded()
 	DrawInContext(ctx coregraphics.CGContextRef)
-	HitTest(p coregraphics.CGPoint) unsafe.Pointer
-	InsertSublayerAbove(layer unsafe.Pointer, sibling unsafe.Pointer)
-	InsertSublayerAtIndex(layer unsafe.Pointer, idx unsafe.Pointer)
-	InsertSublayerBelow(layer unsafe.Pointer, sibling unsafe.Pointer)
+	HitTest(p coregraphics.CGPoint) Layer
+	InsertSublayerAbove(layer ILayer, sibling ILayer)
+	InsertSublayerAtIndex(layer ILayer, idx unsafe.Pointer)
+	InsertSublayerBelow(layer ILayer, sibling ILayer)
 	LayoutIfNeeded()
 	LayoutSublayers()
 	ModelLayer() unsafe.Pointer
@@ -61,10 +62,10 @@ type ILayer interface {
 	PreferredFrameSize() coregraphics.CGSize
 	PresentationLayer() unsafe.Pointer
 	RemoveAllAnimations()
-	RemoveAnimationForKey(key string)
+	RemoveAnimationForKey(key appkit.string)
 	RemoveFromSuperlayer()
 	RenderInContext(ctx coregraphics.CGContextRef)
-	ReplaceSublayerWith(oldLayer unsafe.Pointer, newLayer unsafe.Pointer)
+	ReplaceSublayerWith(oldLayer ILayer, newLayer ILayer)
 	ResizeWithOldSuperlayerSize(size coregraphics.CGSize)
 	ResizeSublayersWithOldSize(size coregraphics.CGSize)
 	ScrollPoint(p coregraphics.CGPoint)
@@ -73,7 +74,7 @@ type ILayer interface {
 	SetNeedsDisplay()
 	SetNeedsDisplayInRect(r coregraphics.CGRect)
 	SetNeedsLayout()
-	ShouldArchiveValueForKey(key string) bool
+	ShouldArchiveValueForKey(key appkit.string) bool
 }
 
 // An object that manages image-based content and allows you to perform animations on that content.
@@ -129,7 +130,7 @@ func NewLayer() Layer {
 // Override to copy or initialize custom fields of the specified layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(layer:)
-func NewLayerWithLayer(layer objc.ID) Layer {
+func NewLayerWithLayer(layer objectivec.IObject) Layer {
 	instance := getLayerClass().Alloc()
 	rv := objc.Send[Layer](instance.ID, objc.Sel("initWithLayer:"), layer)
 	rv.Autorelease()
@@ -149,7 +150,7 @@ func NewLayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/cornerCurveExpansionFactor(_:)
-func (lc _LayerClass) CornerCurveExpansionFactor(curve unsafe.Pointer) float64 {
+func (lc _LayerClass) CornerCurveExpansionFactor(curve ILayerCornerCurve) float64 {
 	rv := objc.Send[float64](objc.ID(lc.class), objc.Sel("cornerCurveExpansionFactor:"), curve)
 	return rv
 }
@@ -157,24 +158,24 @@ func (lc _LayerClass) CornerCurveExpansionFactor(curve unsafe.Pointer) float64 {
 // Returns the default action for the current class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/defaultAction(forKey:)
-func (lc _LayerClass) DefaultActionForKey(event string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultActionForKey:"), objc.String(event))
+func (lc _LayerClass) DefaultActionForKey(event appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultActionForKey:"), event)
 	return rv
 }
 
 // Specifies the default value associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/defaultValue(forKey:)
-func (lc _LayerClass) DefaultValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultValueForKey:"), objc.String(key))
+func (lc _LayerClass) DefaultValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("defaultValueForKey:"), key)
 	return rv
 }
 
 // Initializes a layer with a remote client ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/init(remoteClientId:)
-func (lc _LayerClass) LayerWithRemoteClientId(client_id unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("layerWithRemoteClientId:"), client_id)
+func (lc _LayerClass) LayerWithRemoteClientId(client_id unsafe.Pointer) Layer {
+	rv := objc.Send[Layer](objc.ID(lc.class), objc.Sel("layerWithRemoteClientId:"), client_id)
 	return rv
 }
 
@@ -189,37 +190,37 @@ func (lc _LayerClass) Layer() unsafe.Pointer {
 // Returns a Boolean indicating whether changes to the specified key require the layer to be redisplayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/needsDisplay(forKey:)
-func (lc _LayerClass) NeedsDisplayForKey(key string) bool {
-	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("needsDisplayForKey:"), objc.String(key))
+func (lc _LayerClass) NeedsDisplayForKey(key appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("needsDisplayForKey:"), key)
 	return rv
 }
 
 // Returns the action object assigned to the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/action(forKey:)
-func (l_ Layer) ActionForKey(event string) objc.ID {
-	rv := objc.Send[objc.ID](l_.ID, objc.Sel("actionForKey:"), objc.String(event))
+func (l_ Layer) ActionForKey(event appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("actionForKey:"), event)
 	return rv
 }
 
 // Add the specified animation object to the layer’s render tree.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/add(_:forKey:)
-func (l_ Layer) AddAnimationForKey(anim unsafe.Pointer, key string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("addAnimation:forKey:"), anim, objc.String(key))
+func (l_ Layer) AddAnimationForKey(anim IAnimation, key appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("addAnimation:forKey:"), anim, key)
 }
 
 // Adds the specified constraint to the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/addConstraint(_:)
-func (l_ Layer) AddConstraint(c unsafe.Pointer) {
+func (l_ Layer) AddConstraint(c IConstraint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("addConstraint:"), c)
 }
 
 // Appends the layer to the layer’s list of sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/addSublayer(_:)
-func (l_ Layer) AddSublayer(layer unsafe.Pointer) {
+func (l_ Layer) AddSublayer(layer ILayer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("addSublayer:"), layer)
 }
 
@@ -234,8 +235,8 @@ func (l_ Layer) AffineTransform() coregraphics.CGAffineTransform {
 // Returns the animation object with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/animation(forKey:)
-func (l_ Layer) AnimationForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("animationForKey:"), objc.String(key))
+func (l_ Layer) AnimationForKey(key appkit.string) Animation {
+	rv := objc.Send[Animation](l_.ID, objc.Sel("animationForKey:"), key)
 	return rv
 }
 
@@ -266,7 +267,7 @@ func (l_ Layer) ContentsAreFlipped() bool {
 // Converts the rectangle from the specified layer’s coordinate system to the receiver’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/convert(_:from:)-4kx9l
-func (l_ Layer) ConvertRectFromLayer(r coregraphics.CGRect, l unsafe.Pointer) coregraphics.CGRect {
+func (l_ Layer) ConvertRectFromLayer(r coregraphics.CGRect, l ILayer) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](l_.ID, objc.Sel("convertRect:fromLayer:"), r, l)
 	return rv
 }
@@ -274,7 +275,7 @@ func (l_ Layer) ConvertRectFromLayer(r coregraphics.CGRect, l unsafe.Pointer) co
 // Converts the point from the specified layer’s coordinate system to the receiver’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/convert(_:from:)-8kl76
-func (l_ Layer) ConvertPointFromLayer(p coregraphics.CGPoint, l unsafe.Pointer) coregraphics.CGPoint {
+func (l_ Layer) ConvertPointFromLayer(p coregraphics.CGPoint, l ILayer) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](l_.ID, objc.Sel("convertPoint:fromLayer:"), p, l)
 	return rv
 }
@@ -282,7 +283,7 @@ func (l_ Layer) ConvertPointFromLayer(p coregraphics.CGPoint, l unsafe.Pointer) 
 // Converts the point from the receiver’s coordinate system to the specified layer’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/convert(_:to:)-7dcke
-func (l_ Layer) ConvertPointToLayer(p coregraphics.CGPoint, l unsafe.Pointer) coregraphics.CGPoint {
+func (l_ Layer) ConvertPointToLayer(p coregraphics.CGPoint, l ILayer) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](l_.ID, objc.Sel("convertPoint:toLayer:"), p, l)
 	return rv
 }
@@ -290,7 +291,7 @@ func (l_ Layer) ConvertPointToLayer(p coregraphics.CGPoint, l unsafe.Pointer) co
 // Converts the rectangle from the receiver’s coordinate system to the specified layer’s coordinate system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/convert(_:to:)-tly5
-func (l_ Layer) ConvertRectToLayer(r coregraphics.CGRect, l unsafe.Pointer) coregraphics.CGRect {
+func (l_ Layer) ConvertRectToLayer(r coregraphics.CGRect, l ILayer) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](l_.ID, objc.Sel("convertRect:toLayer:"), r, l)
 	return rv
 }
@@ -298,16 +299,16 @@ func (l_ Layer) ConvertRectToLayer(r coregraphics.CGRect, l unsafe.Pointer) core
 // Converts the time interval from the specified layer’s time space to the receiver’s time space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/convertTime(_:from:)
-func (l_ Layer) ConvertTimeFromLayer(t unsafe.Pointer, l unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("convertTime:fromLayer:"), t, l)
+func (l_ Layer) ConvertTimeFromLayer(t ITimeInterval, l ILayer) TimeInterval {
+	rv := objc.Send[TimeInterval](l_.ID, objc.Sel("convertTime:fromLayer:"), t, l)
 	return rv
 }
 
 // Converts the time interval from the receiver’s time space to the specified layer’s time space
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/convertTime(_:to:)
-func (l_ Layer) ConvertTimeToLayer(t unsafe.Pointer, l unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("convertTime:toLayer:"), t, l)
+func (l_ Layer) ConvertTimeToLayer(t ITimeInterval, l ILayer) TimeInterval {
+	rv := objc.Send[TimeInterval](l_.ID, objc.Sel("convertTime:toLayer:"), t, l)
 	return rv
 }
 
@@ -335,29 +336,29 @@ func (l_ Layer) DrawInContext(ctx coregraphics.CGContextRef) {
 // Returns the farthest descendant of the receiver in the layer hierarchy (including itself) that contains the specified point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/hitTest(_:)
-func (l_ Layer) HitTest(p coregraphics.CGPoint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("hitTest:"), p)
+func (l_ Layer) HitTest(p coregraphics.CGPoint) Layer {
+	rv := objc.Send[Layer](l_.ID, objc.Sel("hitTest:"), p)
 	return rv
 }
 
 // Inserts the specified sublayer above a different sublayer that already belongs to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/insertSublayer(_:above:)
-func (l_ Layer) InsertSublayerAbove(layer unsafe.Pointer, sibling unsafe.Pointer) {
+func (l_ Layer) InsertSublayerAbove(layer ILayer, sibling ILayer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("insertSublayer:above:"), layer, sibling)
 }
 
 // Inserts the specified layer into the receiver’s list of sublayers at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/insertSublayer(_:at:)
-func (l_ Layer) InsertSublayerAtIndex(layer unsafe.Pointer, idx unsafe.Pointer) {
+func (l_ Layer) InsertSublayerAtIndex(layer ILayer, idx unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("insertSublayer:atIndex:"), layer, idx)
 }
 
 // Inserts the specified sublayer below a different sublayer that already belongs to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/insertSublayer(_:below:)
-func (l_ Layer) InsertSublayerBelow(layer unsafe.Pointer, sibling unsafe.Pointer) {
+func (l_ Layer) InsertSublayerBelow(layer ILayer, sibling ILayer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("insertSublayer:below:"), layer, sibling)
 }
 
@@ -425,8 +426,8 @@ func (l_ Layer) RemoveAllAnimations() {
 // Remove the animation object with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/removeAnimation(forKey:)
-func (l_ Layer) RemoveAnimationForKey(key string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("removeAnimationForKey:"), objc.String(key))
+func (l_ Layer) RemoveAnimationForKey(key appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("removeAnimationForKey:"), key)
 }
 
 // Detaches the layer from its parent layer.
@@ -446,7 +447,7 @@ func (l_ Layer) RenderInContext(ctx coregraphics.CGContextRef) {
 // Replaces the specified sublayer with a different layer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/replaceSublayer(_:with:)
-func (l_ Layer) ReplaceSublayerWith(oldLayer unsafe.Pointer, newLayer unsafe.Pointer) {
+func (l_ Layer) ReplaceSublayerWith(oldLayer ILayer, newLayer ILayer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("replaceSublayer:with:"), oldLayer, newLayer)
 }
 
@@ -509,8 +510,8 @@ func (l_ Layer) SetNeedsLayout() {
 // Returns a Boolean indicating whether the value of the specified key should be archived.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/shouldArchiveValue(forKey:)
-func (l_ Layer) ShouldArchiveValueForKey(key string) bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("shouldArchiveValueForKey:"), objc.String(key))
+func (l_ Layer) ShouldArchiveValueForKey(key appkit.string) bool {
+	rv := objc.Send[bool](l_.ID, objc.Sel("shouldArchiveValueForKey:"), key)
 	return rv
 }
 
@@ -607,8 +608,8 @@ func (l_ Layer) SetAnchorPointZ(value float64) {
 // A bitmask defining how the layer is resized when the bounds of its superlayer changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/autoresizingMask
-func (l_ Layer) AutoresizingMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("autoresizingMask"))
+func (l_ Layer) AutoresizingMask() AutoresizingMask {
+	rv := objc.Send[AutoresizingMask](l_.ID, objc.Sel("autoresizingMask"))
 	return rv
 }
 
@@ -618,7 +619,7 @@ func (l_ Layer) AutoresizingMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/autoresizingMask
-func (l_ Layer) SetAutoresizingMask(value unsafe.Pointer) {
+func (l_ Layer) SetAutoresizingMask(value AutoresizingMask) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAutoresizingMask:"), value)
 }
 
@@ -643,8 +644,8 @@ func (l_ Layer) SetBackgroundColor(value coregraphics.CGColorRef) {
 // An array of Core Image filters to apply to the content immediately behind the layer. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/backgroundFilters
-func (l_ Layer) BackgroundFilters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("backgroundFilters"))
+func (l_ Layer) BackgroundFilters() objc.ID {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
 
@@ -654,7 +655,7 @@ func (l_ Layer) BackgroundFilters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/backgroundFilters
-func (l_ Layer) SetBackgroundFilters(value unsafe.Pointer) {
+func (l_ Layer) SetBackgroundFilters(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setBackgroundFilters:"), value)
 }
 
@@ -797,8 +798,8 @@ func (l_ Layer) SetContentsCenter(value coregraphics.CGRect) {
 // A hint for the desired storage format of the layer contents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsFormat
-func (l_ Layer) ContentsFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("contentsFormat"))
+func (l_ Layer) ContentsFormat() LayerContentsFormat {
+	rv := objc.Send[LayerContentsFormat](l_.ID, objc.Sel("contentsFormat"))
 	return rv
 }
 
@@ -808,15 +809,15 @@ func (l_ Layer) ContentsFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsFormat
-func (l_ Layer) SetContentsFormat(value unsafe.Pointer) {
+func (l_ Layer) SetContentsFormat(value LayerContentsFormat) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsFormat:"), value)
 }
 
 // A constant that specifies how the layer’s contents are positioned or scaled within its bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
-func (l_ Layer) ContentsGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("contentsGravity"))
+func (l_ Layer) ContentsGravity() LayerContentsGravity {
+	rv := objc.Send[LayerContentsGravity](l_.ID, objc.Sel("contentsGravity"))
 	return rv
 }
 
@@ -826,7 +827,7 @@ func (l_ Layer) ContentsGravity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/contentsGravity
-func (l_ Layer) SetContentsGravity(value unsafe.Pointer) {
+func (l_ Layer) SetContentsGravity(value ILayerContentsGravity) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setContentsGravity:"), value)
 }
 
@@ -883,8 +884,8 @@ func (l_ Layer) SetContentsScale(value float64) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/cornerCurve
-func (l_ Layer) CornerCurve() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("cornerCurve"))
+func (l_ Layer) CornerCurve() LayerCornerCurve {
+	rv := objc.Send[LayerCornerCurve](l_.ID, objc.Sel("cornerCurve"))
 	return rv
 }
 
@@ -892,7 +893,7 @@ func (l_ Layer) CornerCurve() unsafe.Pointer {
 // SetCornerCurve sets the value of the cornerCurve property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/cornerCurve
-func (l_ Layer) SetCornerCurve(value unsafe.Pointer) {
+func (l_ Layer) SetCornerCurve(value ILayerCornerCurve) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCornerCurve:"), value)
 }
 
@@ -953,8 +954,8 @@ func (l_ Layer) SetDrawsAsynchronously(value bool) {
 // A bitmask defining how the edges of the receiver are rasterized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/edgeAntialiasingMask
-func (l_ Layer) EdgeAntialiasingMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("edgeAntialiasingMask"))
+func (l_ Layer) EdgeAntialiasingMask() EdgeAntialiasingMask {
+	rv := objc.Send[EdgeAntialiasingMask](l_.ID, objc.Sel("edgeAntialiasingMask"))
 	return rv
 }
 
@@ -964,15 +965,15 @@ func (l_ Layer) EdgeAntialiasingMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/edgeAntialiasingMask
-func (l_ Layer) SetEdgeAntialiasingMask(value unsafe.Pointer) {
+func (l_ Layer) SetEdgeAntialiasingMask(value EdgeAntialiasingMask) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setEdgeAntialiasingMask:"), value)
 }
 
 // An array of Core Image filters to apply to the contents of the layer and its sublayers. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/filters
-func (l_ Layer) Filters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("filters"))
+func (l_ Layer) Filters() objc.ID {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("filters"))
 	return rv
 }
 
@@ -982,7 +983,7 @@ func (l_ Layer) Filters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/filters
-func (l_ Layer) SetFilters(value unsafe.Pointer) {
+func (l_ Layer) SetFilters(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setFilters:"), value)
 }
 
@@ -1097,8 +1098,8 @@ func (l_ Layer) SetLayoutManager(value objc.ID) {
 // The filter used when increasing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/magnificationFilter
-func (l_ Layer) MagnificationFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("magnificationFilter"))
+func (l_ Layer) MagnificationFilter() LayerContentsFilter {
+	rv := objc.Send[LayerContentsFilter](l_.ID, objc.Sel("magnificationFilter"))
 	return rv
 }
 
@@ -1108,15 +1109,15 @@ func (l_ Layer) MagnificationFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/magnificationFilter
-func (l_ Layer) SetMagnificationFilter(value unsafe.Pointer) {
+func (l_ Layer) SetMagnificationFilter(value ILayerContentsFilter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMagnificationFilter:"), value)
 }
 
 // An optional layer whose alpha channel is used to mask the layer’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/mask
-func (l_ Layer) Mask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("mask"))
+func (l_ Layer) Mask() CALayer {
+	rv := objc.Send[CALayer](l_.ID, objc.Sel("mask"))
 	return rv
 }
 
@@ -1126,14 +1127,14 @@ func (l_ Layer) Mask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/mask
-func (l_ Layer) SetMask(value unsafe.Pointer) {
+func (l_ Layer) SetMask(value ILayer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMask:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/maskedCorners
-func (l_ Layer) MaskedCorners() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("maskedCorners"))
+func (l_ Layer) MaskedCorners() CornerMask {
+	rv := objc.Send[CornerMask](l_.ID, objc.Sel("maskedCorners"))
 	return rv
 }
 
@@ -1141,7 +1142,7 @@ func (l_ Layer) MaskedCorners() unsafe.Pointer {
 // SetMaskedCorners sets the value of the maskedCorners property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/maskedCorners
-func (l_ Layer) SetMaskedCorners(value unsafe.Pointer) {
+func (l_ Layer) SetMaskedCorners(value CornerMask) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMaskedCorners:"), value)
 }
 
@@ -1166,8 +1167,8 @@ func (l_ Layer) SetMasksToBounds(value bool) {
 // The filter used when reducing the size of the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilter
-func (l_ Layer) MinificationFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("minificationFilter"))
+func (l_ Layer) MinificationFilter() LayerContentsFilter {
+	rv := objc.Send[LayerContentsFilter](l_.ID, objc.Sel("minificationFilter"))
 	return rv
 }
 
@@ -1177,7 +1178,7 @@ func (l_ Layer) MinificationFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/minificationFilter
-func (l_ Layer) SetMinificationFilter(value unsafe.Pointer) {
+func (l_ Layer) SetMinificationFilter(value ILayerContentsFilter) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinificationFilter:"), value)
 }
 
@@ -1202,8 +1203,8 @@ func (l_ Layer) SetMinificationFilterBias(value unsafe.Pointer) {
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
-func (l_ Layer) Name() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("name"))
+func (l_ Layer) Name() appkit.string {
+	rv := objc.Send[appkit.string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -1213,8 +1214,8 @@ func (l_ Layer) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/name
-func (l_ Layer) SetName(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
+func (l_ Layer) SetName(value appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
 }
 
 // A Boolean indicating whether the layer contents must be updated when its bounds rectangle changes.
@@ -1273,8 +1274,8 @@ func (l_ Layer) SetPosition(value coregraphics.CGPoint) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/preferredDynamicRange
-func (l_ Layer) PreferredDynamicRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("preferredDynamicRange"))
+func (l_ Layer) PreferredDynamicRange() DynamicRange {
+	rv := objc.Send[DynamicRange](l_.ID, objc.Sel("preferredDynamicRange"))
 	return rv
 }
 
@@ -1282,7 +1283,7 @@ func (l_ Layer) PreferredDynamicRange() unsafe.Pointer {
 // SetPreferredDynamicRange sets the value of the preferredDynamicRange property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/preferredDynamicRange
-func (l_ Layer) SetPreferredDynamicRange(value unsafe.Pointer) {
+func (l_ Layer) SetPreferredDynamicRange(value IDynamicRange) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPreferredDynamicRange:"), value)
 }
 
@@ -1415,8 +1416,8 @@ func (l_ Layer) SetShouldRasterize(value bool) {
 // An optional dictionary used to store property values that aren’t explicitly defined by the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/style
-func (l_ Layer) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("style"))
+func (l_ Layer) Style() objc.ID {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -1426,7 +1427,7 @@ func (l_ Layer) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/style
-func (l_ Layer) SetStyle(value unsafe.Pointer) {
+func (l_ Layer) SetStyle(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setStyle:"), value)
 }
 
@@ -1479,15 +1480,15 @@ func (l_ Layer) SetSublayers(value []Layer) {
 // The superlayer of the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/superlayer
-func (l_ Layer) Superlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("superlayer"))
+func (l_ Layer) Superlayer() CALayer {
+	rv := objc.Send[CALayer](l_.ID, objc.Sel("superlayer"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/toneMapMode-swift.property
-func (l_ Layer) ToneMapMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("toneMapMode"))
+func (l_ Layer) ToneMapMode() ToneMapMode {
+	rv := objc.Send[ToneMapMode](l_.ID, objc.Sel("toneMapMode"))
 	return rv
 }
 
@@ -1495,7 +1496,7 @@ func (l_ Layer) ToneMapMode() unsafe.Pointer {
 // SetToneMapMode sets the value of the toneMapMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CALayer/toneMapMode-swift.property
-func (l_ Layer) SetToneMapMode(value unsafe.Pointer) {
+func (l_ Layer) SetToneMapMode(value ToneMapMode) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setToneMapMode:"), value)
 }
 

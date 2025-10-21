@@ -79,7 +79,7 @@ func NewUSBHostCIControllerStateMachine() USBHostCIControllerStateMachine {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/initWithInterface:error:
-func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ unsafe.Pointer, error_ unsafe.Pointer) USBHostCIControllerStateMachine {
+func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ IOUSBHostControllerInterface, error_ unsafe.Pointer) USBHostCIControllerStateMachine {
 	instance := getUSBHostCIControllerStateMachineClass().Alloc()
 	rv := objc.Send[USBHostCIControllerStateMachine](instance.ID, objc.Sel("initWithInterface:error:"), interface_, error_)
 	rv.Autorelease()
@@ -103,8 +103,8 @@ func (u_ USBHostCIControllerStateMachine) RespondToCommandStatusFrameTimestampEr
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/controllerInterface
-func (u_ USBHostCIControllerStateMachine) ControllerInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
+func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 

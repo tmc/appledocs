@@ -132,7 +132,7 @@ func (c_ CompositionTrackSegment) SourceURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment/sourceurl
-func (c_ CompositionTrackSegment) SetSourceURL(value foundation.URL) {
+func (c_ CompositionTrackSegment) SetSourceURL(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceURL:"), value)
 }
 

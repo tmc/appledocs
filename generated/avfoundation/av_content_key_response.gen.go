@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewContentKeyResponse() ContentKeyResponse {
 // Creates a new key response object for key data and initialization vector sent in the clear.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeyResponse/init(clearKeyData:initializationVector:)
-func NewContentKeyResponseWithClearKeyDataInitializationVector(keyData unsafe.Pointer, initializationVector unsafe.Pointer) ContentKeyResponse {
+func NewContentKeyResponseWithClearKeyDataInitializationVector(keyData foundation.IData, initializationVector foundation.IData) ContentKeyResponse {
 	rv := objc.Send[ContentKeyResponse](objc.ID(getContentKeyResponseClass().class), objc.Sel("contentKeyResponseWithClearKeyData:initializationVector:"), keyData, initializationVector)
 	return rv
 }
@@ -93,7 +94,7 @@ func NewContentKeyResponseWithClearKeyDataInitializationVector(keyData unsafe.Po
 // Creates a content key response with an encrypted key response data blob when FairPlay Streaming is the key delivery method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeyResponse/init(fairPlayStreamingKeyResponseData:)
-func NewContentKeyResponseWithFairPlayStreamingKeyResponseData(keyResponseData unsafe.Pointer) ContentKeyResponse {
+func NewContentKeyResponseWithFairPlayStreamingKeyResponseData(keyResponseData foundation.IData) ContentKeyResponse {
 	rv := objc.Send[ContentKeyResponse](objc.ID(getContentKeyResponseClass().class), objc.Sel("contentKeyResponseWithFairPlayStreamingKeyResponseData:"), keyResponseData)
 	return rv
 }
@@ -102,7 +103,7 @@ func NewContentKeyResponseWithFairPlayStreamingKeyResponseData(keyResponseData u
 // Creates a new key response object for key data and initialization vector sent in the clear.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeyResponse/init(clearKeyData:initializationVector:)
-func (cc _ContentKeyResponseClass) ContentKeyResponseWithClearKeyDataInitializationVector(keyData unsafe.Pointer, initializationVector unsafe.Pointer) unsafe.Pointer {
+func (cc _ContentKeyResponseClass) ContentKeyResponseWithClearKeyDataInitializationVector(keyData foundation.IData, initializationVector foundation.IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("contentKeyResponseWithClearKeyData:initializationVector:"), keyData, initializationVector)
 	return rv
 }
@@ -110,7 +111,7 @@ func (cc _ContentKeyResponseClass) ContentKeyResponseWithClearKeyDataInitializat
 // Creates a content key response with an encrypted key response data blob when FairPlay Streaming is the key delivery method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKeyResponse/init(fairPlayStreamingKeyResponseData:)
-func (cc _ContentKeyResponseClass) ContentKeyResponseWithFairPlayStreamingKeyResponseData(keyResponseData unsafe.Pointer) unsafe.Pointer {
+func (cc _ContentKeyResponseClass) ContentKeyResponseWithFairPlayStreamingKeyResponseData(keyResponseData foundation.IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("contentKeyResponseWithFairPlayStreamingKeyResponseData:"), keyResponseData)
 	return rv
 }

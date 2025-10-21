@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) CostType() foundation.Numbe
 // SetCostType sets the value of the costType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/costType
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCostType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCostType:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) Currency() foundation.Numbe
 // SetCurrency sets the value of the currency property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/currency
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetCurrency(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrency:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) DecimalPoints() foundation.
 // SetDecimalPoints sets the value of the decimalPoints property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/decimalPoints
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetDecimalPoints(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDecimalPoints:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDeviceEnergyManagementClusterCostStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCostStruct/value
-func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterCostStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

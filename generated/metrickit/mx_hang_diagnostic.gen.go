@@ -82,8 +82,8 @@ func NewMXHangDiagnostic() MXHangDiagnostic {
 // The call stack for the app hang report.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHangDiagnostic/callStackTree
-func (m_ MXHangDiagnostic) CallStackTree() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("callStackTree"))
+func (m_ MXHangDiagnostic) CallStackTree() MXCallStackTree {
+	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 

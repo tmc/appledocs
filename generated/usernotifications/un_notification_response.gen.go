@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/gameplaykit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,40 +85,40 @@ func NewUNNotificationResponse() UNNotificationResponse {
 // The identifier string of the action that the user selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationResponse/actionIdentifier
-func (u_ UNNotificationResponse) ActionIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("actionIdentifier"))
+func (u_ UNNotificationResponse) ActionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("actionIdentifier"))
 	return rv
 }
 
 // The notification to which the user responded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationResponse/notification
-func (u_ UNNotificationResponse) Notification() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("notification"))
+func (u_ UNNotificationResponse) Notification() UNNotification {
+	rv := objc.Send[UNNotification](u_.ID, objc.Sel("notification"))
 	return rv
 }
 
 // The scene where the system reflects the user’s response to a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationResponse/targetScene
-func (u_ UNNotificationResponse) TargetScene() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("targetScene"))
+func (u_ UNNotificationResponse) TargetScene() gameplaykit.Scene {
+	rv := objc.Send[gameplaykit.Scene](u_.ID, objc.Sel("targetScene"))
 	return rv
 }
 
 // An action that indicates the user opened the app from the notification interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationdefaultactionidentifier
-func (u_ UNNotificationResponse) UNNotificationDefaultActionIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationDefaultActionIdentifier"))
+func (u_ UNNotificationResponse) UNNotificationDefaultActionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("UNNotificationDefaultActionIdentifier"))
 	return rv
 }
 
 // The action that indicates the user explicitly dismissed the notification interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationdismissactionidentifier
-func (u_ UNNotificationResponse) UNNotificationDismissActionIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNNotificationDismissActionIdentifier"))
+func (u_ UNNotificationResponse) UNNotificationDismissActionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("UNNotificationDismissActionIdentifier"))
 	return rv
 }
 

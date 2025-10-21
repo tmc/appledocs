@@ -84,15 +84,15 @@ func NewUnitElectricResistance() UnitElectricResistance {
 // The ohms unit of electric resistance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
-func (uc _UnitElectricResistanceClass) Ohms() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("ohms"))
+func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
+	rv := objc.Send[NSUnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
 	return rv
 }
 // The ohms unit of electric resistance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricResistance/ohms
-func (u_ UnitElectricResistance) Ohms() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ohms"))
+func (u_ UnitElectricResistance) Ohms() NSUnitElectricResistance {
+	rv := objc.Send[NSUnitElectricResistance](u_.ID, objc.Sel("ohms"))
 	return rv
 }
 

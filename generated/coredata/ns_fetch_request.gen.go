@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchRequest] class.
@@ -87,9 +89,9 @@ func NewFetchRequest() FetchRequest {
 // Initializes a fetch request configured with a given entity name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/init(entityName:)
-func NewFetchRequestWithEntityName(entityName string) FetchRequest {
+func NewFetchRequestWithEntityName(entityName appkit.string) FetchRequest {
 	instance := getFetchRequestClass().Alloc()
-	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
+	rv := objc.Send[FetchRequest](instance.ID, objc.Sel("initWithEntityName:"), entityName)
 	rv.Autorelease()
 	return rv
 }
@@ -98,8 +100,8 @@ func NewFetchRequestWithEntityName(entityName string) FetchRequest {
 // Returns a fetch request configured with a given entity name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/fetchRequestWithEntityName:
-func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), objc.String(entityName))
+func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), entityName)
 	return rv
 }
 
@@ -142,8 +144,8 @@ func (f_ FetchRequest) SetAffectedStores(value []PersistentStore) {
 // The entity specified for the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entity
-func (f_ FetchRequest) Entity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("entity"))
+func (f_ FetchRequest) Entity() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](f_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -153,15 +155,15 @@ func (f_ FetchRequest) Entity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entity
-func (f_ FetchRequest) SetEntity(value unsafe.Pointer) {
+func (f_ FetchRequest) SetEntity(value IEntityDescription) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEntity:"), value)
 }
 
 // The name of the entity the request is configured to fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/entityName
-func (f_ FetchRequest) EntityName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("entityName"))
+func (f_ FetchRequest) EntityName() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("entityName"))
 	return rv
 }
 
@@ -222,8 +224,8 @@ func (f_ FetchRequest) SetFetchOffset(value uint) {
 // The predicate used to filter rows being returned by a query containing a GROUP BY directive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-func (f_ FetchRequest) HavingPredicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("havingPredicate"))
+func (f_ FetchRequest) HavingPredicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("havingPredicate"))
 	return rv
 }
 
@@ -233,7 +235,7 @@ func (f_ FetchRequest) HavingPredicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/havingPredicate
-func (f_ FetchRequest) SetHavingPredicate(value unsafe.Pointer) {
+func (f_ FetchRequest) SetHavingPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHavingPredicate:"), value)
 }
 
@@ -294,8 +296,8 @@ func (f_ FetchRequest) SetIncludesSubentities(value bool) {
 // The predicate of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-func (f_ FetchRequest) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("predicate"))
+func (f_ FetchRequest) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -305,15 +307,15 @@ func (f_ FetchRequest) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/predicate
-func (f_ FetchRequest) SetPredicate(value unsafe.Pointer) {
+func (f_ FetchRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToFetch
-func (f_ FetchRequest) PropertiesToFetch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("propertiesToFetch"))
+func (f_ FetchRequest) PropertiesToFetch() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("propertiesToFetch"))
 	return rv
 }
 
@@ -323,15 +325,15 @@ func (f_ FetchRequest) PropertiesToFetch() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToFetch
-func (f_ FetchRequest) SetPropertiesToFetch(value unsafe.Pointer) {
+func (f_ FetchRequest) SetPropertiesToFetch(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertiesToFetch:"), value)
 }
 
 // An array of objects that indicates how data should be grouped before a select statement is run in a SQL database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToGroupBy
-func (f_ FetchRequest) PropertiesToGroupBy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("propertiesToGroupBy"))
+func (f_ FetchRequest) PropertiesToGroupBy() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("propertiesToGroupBy"))
 	return rv
 }
 
@@ -341,7 +343,7 @@ func (f_ FetchRequest) PropertiesToGroupBy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/propertiesToGroupBy
-func (f_ FetchRequest) SetPropertiesToGroupBy(value unsafe.Pointer) {
+func (f_ FetchRequest) SetPropertiesToGroupBy(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertiesToGroupBy:"), value)
 }
 
@@ -376,8 +378,8 @@ func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
 // The result type of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-func (f_ FetchRequest) ResultType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("resultType"))
+func (f_ FetchRequest) ResultType() FetchRequestResultType {
+	rv := objc.Send[FetchRequestResultType](f_.ID, objc.Sel("resultType"))
 	return rv
 }
 
@@ -387,7 +389,7 @@ func (f_ FetchRequest) ResultType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/resultType
-func (f_ FetchRequest) SetResultType(value unsafe.Pointer) {
+func (f_ FetchRequest) SetResultType(value FetchRequestResultType) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResultType:"), value)
 }
 
@@ -448,8 +450,8 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 // The sort descriptors of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SortDescriptors() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](f_.ID, objc.Sel("sortDescriptors"))
+func (f_ FetchRequest) SortDescriptors() []foundation.SortDescriptor {
+	rv := objc.Send[[]foundation.SortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -459,7 +461,7 @@ func (f_ FetchRequest) SortDescriptors() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []unsafe.Pointer) {
+func (f_ FetchRequest) SetSortDescriptors(value []foundation.ISortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -120,8 +121,8 @@ func (m_ MovieErrorLog) SetEvents(value unsafe.Pointer) {
 // A textual version of the web server error log.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdata
-func (m_ MovieErrorLog) ExtendedLogData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedLogData"))
+func (m_ MovieErrorLog) ExtendedLogData() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("extendedLogData"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MovieErrorLog) ExtendedLogData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieerrorlog/extendedlogdata
-func (m_ MovieErrorLog) SetExtendedLogData(value unsafe.Pointer) {
+func (m_ MovieErrorLog) SetExtendedLogData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogData:"), value)
 }
 

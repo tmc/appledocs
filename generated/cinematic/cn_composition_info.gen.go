@@ -29,7 +29,7 @@ type _CNCompositionInfoClass struct {
 // An interface definition for the [CNCompositionInfo] class.
 type ICNCompositionInfo interface {
 	ICNAssetInfo
-	InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange unsafe.Pointer, assetInfo unsafe.Pointer, startTime unsafe.Pointer, outError unsafe.Pointer) bool
+	InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange unsafe.Pointer, assetInfo ICNAssetInfo, startTime unsafe.Pointer, outError unsafe.Pointer) bool
 }
 
 // An object that enables you to add the appropriate number of tracks for a Cinematic asset.
@@ -83,7 +83,7 @@ func NewCNCompositionInfo() CNCompositionInfo {
 // Inserts a time range of Cinematic source asset into the corresponding tracks of a composition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCompositionInfo-vzoh/insertTimeRange:ofCinematicAssetInfo:atTime:error:
-func (c_ CNCompositionInfo) InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange unsafe.Pointer, assetInfo unsafe.Pointer, startTime unsafe.Pointer, outError unsafe.Pointer) bool {
+func (c_ CNCompositionInfo) InsertTimeRangeOfCinematicAssetInfoAtTimeError(timeRange unsafe.Pointer, assetInfo ICNAssetInfo, startTime unsafe.Pointer, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("insertTimeRange:ofCinematicAssetInfo:atTime:error:"), timeRange, assetInfo, startTime, outError)
 	return rv
 }

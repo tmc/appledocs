@@ -83,24 +83,24 @@ func NewTextureDescriptor() TextureDescriptor {
 // Creates a texture descriptor object for a 2D texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/texture2DDescriptor(pixelFormat:width:height:mipmapped:)
-func (tc _TextureDescriptorClass) Texture2DDescriptorWithPixelFormatWidthHeightMipmapped(pixelFormat unsafe.Pointer, width uint, height uint, mipmapped bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("texture2DDescriptorWithPixelFormat:width:height:mipmapped:"), pixelFormat, width, height, mipmapped)
+func (tc _TextureDescriptorClass) Texture2DDescriptorWithPixelFormatWidthHeightMipmapped(pixelFormat PixelFormat, width uint, height uint, mipmapped bool) TextureDescriptor {
+	rv := objc.Send[TextureDescriptor](objc.ID(tc.class), objc.Sel("texture2DDescriptorWithPixelFormat:width:height:mipmapped:"), pixelFormat, width, height, mipmapped)
 	return rv
 }
 
 // Creates a texture descriptor object for a texture buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/textureBufferDescriptor(with:width:resourceOptions:usage:)
-func (tc _TextureDescriptorClass) TextureBufferDescriptorWithPixelFormatWidthResourceOptionsUsage(pixelFormat unsafe.Pointer, width uint, resourceOptions unsafe.Pointer, usage unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:"), pixelFormat, width, resourceOptions, usage)
+func (tc _TextureDescriptorClass) TextureBufferDescriptorWithPixelFormatWidthResourceOptionsUsage(pixelFormat PixelFormat, width uint, resourceOptions ResourceOptions, usage ITextureUsage) TextureDescriptor {
+	rv := objc.Send[TextureDescriptor](objc.ID(tc.class), objc.Sel("textureBufferDescriptorWithPixelFormat:width:resourceOptions:usage:"), pixelFormat, width, resourceOptions, usage)
 	return rv
 }
 
 // Creates a texture descriptor object for a cube texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/textureCubeDescriptor(pixelFormat:size:mipmapped:)
-func (tc _TextureDescriptorClass) TextureCubeDescriptorWithPixelFormatSizeMipmapped(pixelFormat unsafe.Pointer, size uint, mipmapped bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("textureCubeDescriptorWithPixelFormat:size:mipmapped:"), pixelFormat, size, mipmapped)
+func (tc _TextureDescriptorClass) TextureCubeDescriptorWithPixelFormatSizeMipmapped(pixelFormat PixelFormat, size uint, mipmapped bool) TextureDescriptor {
+	rv := objc.Send[TextureDescriptor](objc.ID(tc.class), objc.Sel("textureCubeDescriptorWithPixelFormat:size:mipmapped:"), pixelFormat, size, mipmapped)
 	return rv
 }
 
@@ -142,8 +142,8 @@ func (t_ TextureDescriptor) SetArrayLength(value uint) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/compressionType
-func (t_ TextureDescriptor) CompressionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("compressionType"))
+func (t_ TextureDescriptor) CompressionType() TextureCompressionType {
+	rv := objc.Send[TextureCompressionType](t_.ID, objc.Sel("compressionType"))
 	return rv
 }
 
@@ -151,7 +151,7 @@ func (t_ TextureDescriptor) CompressionType() unsafe.Pointer {
 // SetCompressionType sets the value of the compressionType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/compressionType
-func (t_ TextureDescriptor) SetCompressionType(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetCompressionType(value TextureCompressionType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCompressionType:"), value)
 }
 
@@ -194,8 +194,8 @@ func (t_ TextureDescriptor) SetDepth(value uint) {
 // The texture’s hazard tracking mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode
-func (t_ TextureDescriptor) HazardTrackingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("hazardTrackingMode"))
+func (t_ TextureDescriptor) HazardTrackingMode() HazardTrackingMode {
+	rv := objc.Send[HazardTrackingMode](t_.ID, objc.Sel("hazardTrackingMode"))
 	return rv
 }
 
@@ -205,7 +205,7 @@ func (t_ TextureDescriptor) HazardTrackingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/hazardTrackingMode
-func (t_ TextureDescriptor) SetHazardTrackingMode(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetHazardTrackingMode(value HazardTrackingMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHazardTrackingMode:"), value)
 }
 
@@ -248,8 +248,8 @@ func (t_ TextureDescriptor) SetMipmapLevelCount(value uint) {
 // The size and bit layout of all pixels in the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/pixelFormat
-func (t_ TextureDescriptor) PixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pixelFormat"))
+func (t_ TextureDescriptor) PixelFormat() PixelFormat {
+	rv := objc.Send[PixelFormat](t_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
@@ -259,15 +259,15 @@ func (t_ TextureDescriptor) PixelFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/pixelFormat
-func (t_ TextureDescriptor) SetPixelFormat(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetPixelFormat(value PixelFormat) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPixelFormat:"), value)
 }
 
 // Determines the page size for a placement sparse texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/placementSparsePageSize
-func (t_ TextureDescriptor) PlacementSparsePageSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("placementSparsePageSize"))
+func (t_ TextureDescriptor) PlacementSparsePageSize() SparsePageSize {
+	rv := objc.Send[SparsePageSize](t_.ID, objc.Sel("placementSparsePageSize"))
 	return rv
 }
 
@@ -277,15 +277,15 @@ func (t_ TextureDescriptor) PlacementSparsePageSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/placementSparsePageSize
-func (t_ TextureDescriptor) SetPlacementSparsePageSize(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetPlacementSparsePageSize(value ISparsePageSize) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlacementSparsePageSize:"), value)
 }
 
 // The behavior of a new memory allocation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/resourceOptions
-func (t_ TextureDescriptor) ResourceOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resourceOptions"))
+func (t_ TextureDescriptor) ResourceOptions() ResourceOptions {
+	rv := objc.Send[ResourceOptions](t_.ID, objc.Sel("resourceOptions"))
 	return rv
 }
 
@@ -295,7 +295,7 @@ func (t_ TextureDescriptor) ResourceOptions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/resourceOptions
-func (t_ TextureDescriptor) SetResourceOptions(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetResourceOptions(value ResourceOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setResourceOptions:"), value)
 }
 
@@ -320,8 +320,8 @@ func (t_ TextureDescriptor) SetSampleCount(value uint) {
 // The location and access permissions of the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/storageMode
-func (t_ TextureDescriptor) StorageMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("storageMode"))
+func (t_ TextureDescriptor) StorageMode() StorageMode {
+	rv := objc.Send[StorageMode](t_.ID, objc.Sel("storageMode"))
 	return rv
 }
 
@@ -331,7 +331,7 @@ func (t_ TextureDescriptor) StorageMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/storageMode
-func (t_ TextureDescriptor) SetStorageMode(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetStorageMode(value StorageMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStorageMode:"), value)
 }
 
@@ -356,8 +356,8 @@ func (t_ TextureDescriptor) SetSwizzle(value unsafe.Pointer) {
 // The dimension and arrangement of texture image data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/textureType
-func (t_ TextureDescriptor) TextureType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("textureType"))
+func (t_ TextureDescriptor) TextureType() TextureType {
+	rv := objc.Send[TextureType](t_.ID, objc.Sel("textureType"))
 	return rv
 }
 
@@ -367,15 +367,15 @@ func (t_ TextureDescriptor) TextureType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/textureType
-func (t_ TextureDescriptor) SetTextureType(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetTextureType(value TextureType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextureType:"), value)
 }
 
 // Options that determine how you can use the texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/usage
-func (t_ TextureDescriptor) Usage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("usage"))
+func (t_ TextureDescriptor) Usage() TextureUsage {
+	rv := objc.Send[TextureUsage](t_.ID, objc.Sel("usage"))
 	return rv
 }
 
@@ -385,7 +385,7 @@ func (t_ TextureDescriptor) Usage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTextureDescriptor/usage
-func (t_ TextureDescriptor) SetUsage(value unsafe.Pointer) {
+func (t_ TextureDescriptor) SetUsage(value ITextureUsage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setUsage:"), value)
 }
 

@@ -110,8 +110,8 @@ func (g_ GraphSingleGateRNNDescriptor) SetBidirectional(value bool) {
 // A parameter that defines the activation function to use with the RNN operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
-func (g_ GraphSingleGateRNNDescriptor) Activation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("activation"))
+func (g_ GraphSingleGateRNNDescriptor) Activation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("activation"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (g_ GraphSingleGateRNNDescriptor) Activation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
-func (g_ GraphSingleGateRNNDescriptor) SetActivation(value unsafe.Pointer) {
+func (g_ GraphSingleGateRNNDescriptor) SetActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActivation:"), value)
 }
 

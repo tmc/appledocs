@@ -112,6 +112,24 @@ func (c_ CKFetchWebAuthTokenOperation) SetAPIToken(value string) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAPIToken:"), objc.String(value))
 }
 
+// The block to execute when the operation finishes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/fetchWebAuthTokenCompletionBlock
+func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchWebAuthTokenCompletionBlock"))
+	return rv
+}
+
+
+// SetFetchWebAuthTokenCompletionBlock sets the value of the fetchWebAuthTokenCompletionBlock property.
+// The block to execute when the operation finishes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchWebAuthTokenOperation/fetchWebAuthTokenCompletionBlock
+func (c_ CKFetchWebAuthTokenOperation) SetFetchWebAuthTokenCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchWebAuthTokenCompletionBlock:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation/fetchwebauthtokenresultblock
 func (c_ CKFetchWebAuthTokenOperation) FetchWebAuthTokenResultBlock() unsafe.Pointer {

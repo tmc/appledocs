@@ -78,8 +78,8 @@ func NewMTRDoorLockClusterLockDoorParams() MTRDoorLockClusterLockDoorParams {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/pincode
-func (m_ MTRDoorLockClusterLockDoorParams) PinCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinCode"))
+func (m_ MTRDoorLockClusterLockDoorParams) PinCode() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("pinCode"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterLockDoorParams) PinCode() unsafe.Pointer {
 // SetPinCode sets the value of the pinCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/pincode
-func (m_ MTRDoorLockClusterLockDoorParams) SetPinCode(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterLockDoorParams) SetPinCode(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterLockDoorParams) ServerSideProcessingTimeout() foundat
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterLockDoorParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockDoorParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterLockDoorParams) TimedInvokeTimeoutMs() foundation.Num
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterlockdoorparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterLockDoorParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterLockDoorParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

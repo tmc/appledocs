@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,14 +32,14 @@ type _FilterGeneratorClass struct {
 // An interface definition for the [FilterGenerator] class.
 type IFilterGenerator interface {
 	objectivec.IObject
-	ConnectObjectWithKeyToObjectWithKey(sourceObject objc.ID, sourceKey string, targetObject objc.ID, targetKey string)
-	DisconnectObjectWithKeyToObjectWithKey(sourceObject objc.ID, sourceKey string, targetObject objc.ID, targetKey string)
-	ExportKeyFromObjectWithName(key string, targetObject objc.ID, exportedKeyName string)
-	Filter() unsafe.Pointer
-	RegisterFilterName(name string)
-	RemoveExportedKey(exportedKeyName string)
-	SetAttributesForExportedKey(attributes objc.ID, key string)
-	WriteToURLAtomically(aURL foundation.URL, flag bool) bool
+	ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey appkit.string, targetObject objectivec.IObject, targetKey appkit.string)
+	DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey appkit.string, targetObject objectivec.IObject, targetKey appkit.string)
+	ExportKeyFromObjectWithName(key appkit.string, targetObject objectivec.IObject, exportedKeyName appkit.string)
+	Filter() Filter
+	RegisterFilterName(name appkit.string)
+	RemoveExportedKey(exportedKeyName appkit.string)
+	SetAttributesForExportedKey(attributes objectivec.IObject, key appkit.string)
+	WriteToURLAtomically(aURL foundation.IURL, flag bool) bool
 }
 
 // An object that creates and configures chains of individual image filters.
@@ -94,7 +95,7 @@ func NewFilterGenerator() FilterGenerator {
 // Initializes a filter generator object with the contents of a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/init(contentsOf:)
-func NewFilterGeneratorWithContentsOfURL(aURL foundation.URL) FilterGenerator {
+func NewFilterGeneratorWithContentsOfURL(aURL foundation.IURL) FilterGenerator {
 	instance := getFilterGeneratorClass().Alloc()
 	rv := objc.Send[FilterGenerator](instance.ID, objc.Sel("initWithContentsOfURL:"), aURL)
 	rv.Autorelease()
@@ -105,73 +106,73 @@ func NewFilterGeneratorWithContentsOfURL(aURL foundation.URL) FilterGenerator {
 // Creates and returns an empty filter generator object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filterGenerator
-func (fc _FilterGeneratorClass) FilterGenerator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterGenerator"))
+func (fc _FilterGeneratorClass) FilterGenerator() FilterGenerator {
+	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("filterGenerator"))
 	return rv
 }
 
 // Creates and returns a filter generator object and initializes it with the contents of a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filterGeneratorWithContentsOfURL:
-func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation.URL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("filterGeneratorWithContentsOfURL:"), aURL)
+func (fc _FilterGeneratorClass) FilterGeneratorWithContentsOfURL(aURL foundation.IURL) FilterGenerator {
+	rv := objc.Send[FilterGenerator](objc.ID(fc.class), objc.Sel("filterGeneratorWithContentsOfURL:"), aURL)
 	return rv
 }
 
 // Adds an object to the filter chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/connect(_:withKey:to:withKey:)
-func (f_ FilterGenerator) ConnectObjectWithKeyToObjectWithKey(sourceObject objc.ID, sourceKey string, targetObject objc.ID, targetKey string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("connectObject:withKey:toObject:withKey:"), sourceObject, objc.String(sourceKey), targetObject, objc.String(targetKey))
+func (f_ FilterGenerator) ConnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey appkit.string, targetObject objectivec.IObject, targetKey appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("connectObject:withKey:toObject:withKey:"), sourceObject, sourceKey, targetObject, targetKey)
 }
 
 // Removes the connection between two objects in the filter chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/disconnectObject(_:withKey:to:withKey:)
-func (f_ FilterGenerator) DisconnectObjectWithKeyToObjectWithKey(sourceObject objc.ID, sourceKey string, targetObject objc.ID, targetKey string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectObject:withKey:toObject:withKey:"), sourceObject, objc.String(sourceKey), targetObject, objc.String(targetKey))
+func (f_ FilterGenerator) DisconnectObjectWithKeyToObjectWithKey(sourceObject objectivec.IObject, sourceKey appkit.string, targetObject objectivec.IObject, targetKey appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("disconnectObject:withKey:toObject:withKey:"), sourceObject, sourceKey, targetObject, targetKey)
 }
 
 // Exports an input or output key of an object in the filter chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/exportKey(_:from:withName:)
-func (f_ FilterGenerator) ExportKeyFromObjectWithName(key string, targetObject objc.ID, exportedKeyName string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("exportKey:fromObject:withName:"), objc.String(key), targetObject, objc.String(exportedKeyName))
+func (f_ FilterGenerator) ExportKeyFromObjectWithName(key appkit.string, targetObject objectivec.IObject, exportedKeyName appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("exportKey:fromObject:withName:"), key, targetObject, exportedKeyName)
 }
 
 // Creates a filter object based on the filter chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/filter()
-func (f_ FilterGenerator) Filter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("filter"))
+func (f_ FilterGenerator) Filter() Filter {
+	rv := objc.Send[Filter](f_.ID, objc.Sel("filter"))
 	return rv
 }
 
 // Registers the name associated with a filter chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/registerFilterName(_:)
-func (f_ FilterGenerator) RegisterFilterName(name string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("registerFilterName:"), objc.String(name))
+func (f_ FilterGenerator) RegisterFilterName(name appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("registerFilterName:"), name)
 }
 
 // Removes a key that was previously exported.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/removeExportedKey(_:)
-func (f_ FilterGenerator) RemoveExportedKey(exportedKeyName string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("removeExportedKey:"), objc.String(exportedKeyName))
+func (f_ FilterGenerator) RemoveExportedKey(exportedKeyName appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("removeExportedKey:"), exportedKeyName)
 }
 
 // Sets a dictionary of attributes for an exported key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/setAttributes(_:forExportedKey:)
-func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objc.ID, key string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:forExportedKey:"), attributes, objc.String(key))
+func (f_ FilterGenerator) SetAttributesForExportedKey(attributes objectivec.IObject, key appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setAttributes:forExportedKey:"), attributes, key)
 }
 
 // Archives a filter generator object to a filter generator file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/write(to:atomically:)
-func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.URL, flag bool) bool {
+func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.IURL, flag bool) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("writeToURL:atomically:"), aURL, flag)
 	return rv
 }
@@ -179,8 +180,8 @@ func (f_ FilterGenerator) WriteToURLAtomically(aURL foundation.URL, flag bool) b
 // The class attributes associated with the filter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/classAttributes
-func (f_ FilterGenerator) ClassAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("classAttributes"))
+func (f_ FilterGenerator) ClassAttributes() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("classAttributes"))
 	return rv
 }
 
@@ -190,15 +191,15 @@ func (f_ FilterGenerator) ClassAttributes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/classAttributes
-func (f_ FilterGenerator) SetClassAttributes(value unsafe.Pointer) {
+func (f_ FilterGenerator) SetClassAttributes(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setClassAttributes:"), value)
 }
 
 // Returns an array of the exported keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFilterGenerator/exportedKeys
-func (f_ FilterGenerator) ExportedKeys() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("exportedKeys"))
+func (f_ FilterGenerator) ExportedKeys() objc.ID {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("exportedKeys"))
 	return rv
 }
 

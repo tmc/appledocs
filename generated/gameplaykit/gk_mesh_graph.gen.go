@@ -29,10 +29,10 @@ type _MeshGraphClass struct {
 // An interface definition for the [MeshGraph] class.
 type IMeshGraph interface {
 	IGraph
-	AddObstacles(obstacles unsafe.Pointer)
+	AddObstacles(obstacles []PolygonObstacle)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
 	ConnectNodeUsingObstacles(node unsafe.Pointer)
-	RemoveObstacles(obstacles unsafe.Pointer)
+	RemoveObstacles(obstacles []PolygonObstacle)
 	TriangleAtIndex(index uint) unsafe.Pointer
 	Triangulate()
 }
@@ -131,7 +131,7 @@ func (mc _MeshGraphClass) GraphWithBufferRadiusMinCoordinateMaxCoordinateNodeCla
 // Adds new obstacles to the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/addObstacles(_:)
-func (m_ MeshGraph) AddObstacles(obstacles unsafe.Pointer) {
+func (m_ MeshGraph) AddObstacles(obstacles []PolygonObstacle) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObstacles:"), obstacles)
 }
 
@@ -152,7 +152,7 @@ func (m_ MeshGraph) ConnectNodeUsingObstacles(node unsafe.Pointer) {
 // Removes the specified obstacle from the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/removeObstacles(_:)
-func (m_ MeshGraph) RemoveObstacles(obstacles unsafe.Pointer) {
+func (m_ MeshGraph) RemoveObstacles(obstacles []PolygonObstacle) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObstacles:"), obstacles)
 }
 
@@ -198,8 +198,8 @@ func (m_ MeshGraph) TriangleCount() uint {
 // A set of options for how to place graph nodes when triangulating the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/triangulationMode
-func (m_ MeshGraph) TriangulationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("triangulationMode"))
+func (m_ MeshGraph) TriangulationMode() MeshGraphTriangulationMode {
+	rv := objc.Send[MeshGraphTriangulationMode](m_.ID, objc.Sel("triangulationMode"))
 	return rv
 }
 
@@ -209,7 +209,7 @@ func (m_ MeshGraph) TriangulationMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKMeshGraph/triangulationMode
-func (m_ MeshGraph) SetTriangulationMode(value unsafe.Pointer) {
+func (m_ MeshGraph) SetTriangulationMode(value MeshGraphTriangulationMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTriangulationMode:"), value)
 }
 

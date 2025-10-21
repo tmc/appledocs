@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -85,8 +86,8 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendRideFeedbackIntent/rideIdentifier
-func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INSendRideFeedbackIntent) RideIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 
@@ -104,15 +105,15 @@ func (i_ INSendRideFeedbackIntent) Rating() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/rating
-func (i_ INSendRideFeedbackIntent) SetRating(value foundation.Number) {
+func (i_ INSendRideFeedbackIntent) SetRating(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRating:"), value)
 }
 
 // The tip for the driver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
-func (i_ INSendRideFeedbackIntent) Tip() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("tip"))
+func (i_ INSendRideFeedbackIntent) Tip() INCurrencyAmount {
+	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("tip"))
 	return rv
 }
 
@@ -122,7 +123,7 @@ func (i_ INSendRideFeedbackIntent) Tip() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendridefeedbackintent/tip
-func (i_ INSendRideFeedbackIntent) SetTip(value unsafe.Pointer) {
+func (i_ INSendRideFeedbackIntent) SetTip(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTip:"), value)
 }
 

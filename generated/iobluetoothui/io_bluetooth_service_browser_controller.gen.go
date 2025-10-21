@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [BluetoothServiceBrowserController] class.
@@ -30,9 +32,9 @@ type _BluetoothServiceBrowserControllerClass struct {
 // An interface definition for the [BluetoothServiceBrowserController] class.
 type IBluetoothServiceBrowserController interface {
 	appkit.IWindowController
-	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow unsafe.Pointer, modalDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer
-	DiscoverWithDeviceAttributesServiceListServiceRecord(deviceAttributes unsafe.Pointer, serviceArray objc.ID, outRecord unsafe.Pointer) unsafe.Pointer
-	GetResults() unsafe.Pointer
+	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow appkit.IWindow, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer
+	DiscoverWithDeviceAttributesServiceListServiceRecord(deviceAttributes unsafe.Pointer, serviceArray objectivec.IObject, outRecord unsafe.Pointer) unsafe.Pointer
+	GetResults() foundation.Array
 }
 
 // A NSWindowController subclass to display a window to search for and perform SDP queries on bluetooth devices within range.
@@ -87,7 +89,7 @@ func NewBluetoothServiceBrowserController() BluetoothServiceBrowserController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/browseDevices:options:
-func (bc _BluetoothServiceBrowserControllerClass) BrowseDevicesOptions(outRecord unsafe.Pointer, inOptions unsafe.Pointer) unsafe.Pointer {
+func (bc _BluetoothServiceBrowserControllerClass) BrowseDevicesOptions(outRecord unsafe.Pointer, inOptions BluetoothServiceBrowserControllerOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("browseDevices:options:"), outRecord, inOptions)
 	return rv
 }
@@ -95,7 +97,7 @@ func (bc _BluetoothServiceBrowserControllerClass) BrowseDevicesOptions(outRecord
 // Runs the service browser panel as a sheet on the target window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/beginSheetModal(for:modalDelegate:didEnd:contextInfo:)
-func (b_ BluetoothServiceBrowserController) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow unsafe.Pointer, modalDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer {
+func (b_ BluetoothServiceBrowserController) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(sheetWindow appkit.IWindow, modalDelegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:"), sheetWindow, modalDelegate, didEndSelector, contextInfo)
 	return rv
 }
@@ -103,7 +105,7 @@ func (b_ BluetoothServiceBrowserController) BeginSheetModalForWindowModalDelegat
 // Invoke an already created window controller to display, and run the modal dialog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/discoverWithDeviceAttributes:serviceList:serviceRecord:
-func (b_ BluetoothServiceBrowserController) DiscoverWithDeviceAttributesServiceListServiceRecord(deviceAttributes unsafe.Pointer, serviceArray objc.ID, outRecord unsafe.Pointer) unsafe.Pointer {
+func (b_ BluetoothServiceBrowserController) DiscoverWithDeviceAttributesServiceListServiceRecord(deviceAttributes unsafe.Pointer, serviceArray objectivec.IObject, outRecord unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("discoverWithDeviceAttributes:serviceList:serviceRecord:"), deviceAttributes, serviceArray, outRecord)
 	return rv
 }
@@ -111,8 +113,8 @@ func (b_ BluetoothServiceBrowserController) DiscoverWithDeviceAttributesServiceL
 // Returns the result of the user’s selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothServiceBrowserController/getResults()
-func (b_ BluetoothServiceBrowserController) GetResults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getResults"))
+func (b_ BluetoothServiceBrowserController) GetResults() foundation.Array {
+	rv := objc.Send[foundation.Array](b_.ID, objc.Sel("getResults"))
 	return rv
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) CoolingSetpoint() foundat
 // SetCoolingSetpoint sets the value of the coolingSetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/coolingSetpoint
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetCoolingSetpoint(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetCoolingSetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolingSetpoint:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) DayOfWeek() foundation.Nu
 // SetDayOfWeek sets the value of the dayOfWeek property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/dayOfWeek
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetDayOfWeek(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetDayOfWeek(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDayOfWeek:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) HeatingSetpoint() foundat
 // SetHeatingSetpoint sets the value of the heatingSetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/heatingSetpoint
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetHeatingSetpoint(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetHeatingSetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatingSetpoint:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presetHandle"))
+func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) PresetHandle() unsafe.Poi
 // SetPresetHandle sets the value of the presetHandle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetPresetHandle(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetPresetHandle(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) SystemMode() foundation.N
 // SetSystemMode sets the value of the systemMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/systemMode
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetSystemMode(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetSystemMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRThermostatClusterScheduleTransitionStruct) TransitionTime() foundati
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleTransitionStruct/transitionTime
-func (m_ MTRThermostatClusterScheduleTransitionStruct) SetTransitionTime(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleTransitionStruct) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

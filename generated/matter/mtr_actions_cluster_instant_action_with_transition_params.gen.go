@@ -87,7 +87,7 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) ActionID() foundati
 // SetActionID sets the value of the actionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/actionid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetActionID(value foundation.Number) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetActionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) InvokeID() foundati
 // SetInvokeID sets the value of the invokeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/invokeid
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value foundation.Number) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetInvokeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) ServerSideProcessin
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRActionsClusterInstantActionWithTransitionParams) TransitionTime() fo
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterinstantactionwithtransitionparams/transitiontime
-func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRActionsClusterInstantActionWithTransitionParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

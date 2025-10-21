@@ -88,14 +88,14 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptor) FabricIndex() foundat
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/fabricindex
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetFabricIndex(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -103,14 +103,14 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptor) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) RootPublicKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootPublicKey"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) RootPublicKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootPublicKey"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptor) RootPublicKey() unsaf
 // SetRootPublicKey sets the value of the rootPublicKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptor/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetRootPublicKey(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptor) SetRootPublicKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
 }
 

@@ -30,7 +30,8 @@ type _QCViewClass struct {
 // An interface definition for the [QCView] class.
 type IQCView interface {
 	appkit.IView
-	OpenGLPixelFormat() unsafe.Pointer
+	EventForwardingMask() uint
+	OpenGLPixelFormat() appkit.OpenGLPixelFormat
 }
 
 // The class is a custom class that loads, plays, and controls Quartz Composer compositions. It is an autonomous view that is driven by an internal timer running on the main thread.
@@ -83,11 +84,19 @@ func NewQCView() QCView {
 }
 
 
+// Retrieves the mask used to filter which types of events are forwarded from the view to the composition during rendering.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCView/eventForwardingMask()
+func (q_ QCView) EventForwardingMask() uint {
+	rv := objc.Send[uint](q_.ID, objc.Sel("eventForwardingMask"))
+	return rv
+}
+
 // Returns the OpenGL pixel format used by the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCView/openGLPixelFormat()
-func (q_ QCView) OpenGLPixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("openGLPixelFormat"))
+func (q_ QCView) OpenGLPixelFormat() appkit.OpenGLPixelFormat {
+	rv := objc.Send[appkit.OpenGLPixelFormat](q_.ID, objc.Sel("openGLPixelFormat"))
 	return rv
 }
 

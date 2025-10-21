@@ -84,16 +84,16 @@ func NewHTTPURLResponse() HTTPURLResponse {
 // Returns a localized string corresponding to a specified HTTP status code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
-func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) string {
-	rv := objc.Send[string](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
+func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) String {
+	rv := objc.Send[String](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
 	return rv
 }
 
 // All HTTP header fields of the response.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/allHeaderFields
-func (h_ HTTPURLResponse) AllHeaderFields() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("allHeaderFields"))
+func (h_ HTTPURLResponse) AllHeaderFields() objc.ID {
+	rv := objc.Send[objc.ID](h_.ID, objc.Sel("allHeaderFields"))
 	return rv
 }
 

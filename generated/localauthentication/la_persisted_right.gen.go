@@ -84,16 +84,16 @@ func NewPersistedRight() PersistedRight {
 // The private key that’s persisted by the right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight/key
-func (p_ PersistedRight) Key() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("key"))
+func (p_ PersistedRight) Key() LAPrivateKey {
+	rv := objc.Send[LAPrivateKey](p_.ID, objc.Sel("key"))
 	return rv
 }
 
 // The data kept secret by the right.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPersistedRight/secret
-func (p_ PersistedRight) Secret() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("secret"))
+func (p_ PersistedRight) Secret() LASecret {
+	rv := objc.Send[LASecret](p_.ID, objc.Sel("secret"))
 	return rv
 }
 

@@ -30,7 +30,7 @@ type _UUIDClass struct {
 // An interface definition for the [UUID] class.
 type IUUID interface {
 	objectivec.IObject
-	Compare(otherUUID unsafe.Pointer) unsafe.Pointer
+	Compare(otherUUID IUUID) ComparisonResult
 }
 
 // A universally unique value that can be used to identify types, interfaces, and other items.
@@ -84,16 +84,16 @@ func NewUUID() UUID {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUUID/compare(_:)
-func (u_ UUID) Compare(otherUUID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("compare:"), otherUUID)
+func (u_ UUID) Compare(otherUUID IUUID) ComparisonResult {
+	rv := objc.Send[ComparisonResult](u_.ID, objc.Sel("compare:"), otherUUID)
 	return rv
 }
 
 // The UUID as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) UuidString() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("uuidString"))
+func (u_ UUID) UuidString() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("uuidString"))
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (u_ UUID) UuidString() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuuid/uuidstring
-func (u_ UUID) SetUuidString(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), objc.String(value))
+func (u_ UUID) SetUuidString(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setUuidString:"), value)
 }
 
 

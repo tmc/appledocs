@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,12 +34,12 @@ type IAsset interface {
 	objectivec.IObject
 	CancelLoading()
 	FindUnusedTrackIDWithCompletionHandler(completionHandler unsafe.Pointer)
-	LoadChapterMetadataGroupsBestMatchingPreferredLanguagesCompletionHandler(preferredLanguages unsafe.Pointer, completionHandler unsafe.Pointer)
+	LoadChapterMetadataGroupsBestMatchingPreferredLanguagesCompletionHandler(preferredLanguages []string, completionHandler unsafe.Pointer)
 	LoadMediaSelectionGroupForMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer)
 	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic unsafe.Pointer, completionHandler unsafe.Pointer)
-	MetadataForFormat(format unsafe.Pointer) []MetadataItem
-	TrackWithTrackID(trackID unsafe.Pointer) unsafe.Pointer
-	TracksWithMediaType(mediaType unsafe.Pointer) []AssetTrack
+	MetadataForFormat(format MetadataFormat) []MetadataItem
+	TrackWithTrackID(trackID unsafe.Pointer) AssetTrack
+	TracksWithMediaType(mediaType MediaType) []AssetTrack
 	UnusedTrackID() unsafe.Pointer
 }
 
@@ -107,7 +108,7 @@ func (a_ Asset) FindUnusedTrackIDWithCompletionHandler(completionHandler unsafe.
 // Loads chapter metadata with a locale that best matches the list of preferred languages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/loadChapterMetadataGroups(bestMatchingPreferredLanguages:completionHandler:)
-func (a_ Asset) LoadChapterMetadataGroupsBestMatchingPreferredLanguagesCompletionHandler(preferredLanguages unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (a_ Asset) LoadChapterMetadataGroupsBestMatchingPreferredLanguagesCompletionHandler(preferredLanguages []string, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:"), preferredLanguages, completionHandler)
 }
 
@@ -128,7 +129,7 @@ func (a_ Asset) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacte
 // Returns an array of metadata items from the container with the specified format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/metadata(forFormat:)
-func (a_ Asset) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
+func (a_ Asset) MetadataForFormat(format MetadataFormat) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](a_.ID, objc.Sel("metadataForFormat:"), format)
 	return rv
 }
@@ -136,15 +137,15 @@ func (a_ Asset) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
 // Returns a track that contains the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/track(withTrackID:)
-func (a_ Asset) TrackWithTrackID(trackID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackWithTrackID:"), trackID)
+func (a_ Asset) TrackWithTrackID(trackID unsafe.Pointer) AssetTrack {
+	rv := objc.Send[AssetTrack](a_.ID, objc.Sel("trackWithTrackID:"), trackID)
 	return rv
 }
 
 // Returns tracks that contain media of a specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/tracks(withMediaType:)
-func (a_ Asset) TracksWithMediaType(mediaType unsafe.Pointer) []AssetTrack {
+func (a_ Asset) TracksWithMediaType(mediaType MediaType) []AssetTrack {
 	rv := objc.Send[[]AssetTrack](a_.ID, objc.Sel("tracksWithMediaType:"), mediaType)
 	return rv
 }
@@ -157,11 +158,19 @@ func (a_ Asset) UnusedTrackID() unsafe.Pointer {
 	return rv
 }
 
+// The array of available media selections for this asset.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/allMediaSelections
+func (a_ Asset) AllMediaSelections() []MediaSelection {
+	rv := objc.Send[[]MediaSelection](a_.ID, objc.Sel("allMediaSelections"))
+	return rv
+}
+
 // The locales of the asset’s chapter metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/availableChapterLocales
-func (a_ Asset) AvailableChapterLocales() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("availableChapterLocales"))
+func (a_ Asset) AvailableChapterLocales() []foundation.Locale {
+	rv := objc.Send[[]foundation.Locale](a_.ID, objc.Sel("availableChapterLocales"))
 	return rv
 }
 
@@ -205,6 +214,14 @@ func (a_ Asset) Metadata() []MetadataItem {
 	return rv
 }
 
+// A time value that indicates how closely playback follows the latest live stream content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/minimumTimeOffsetFromLive
+func (a_ Asset) MinimumTimeOffsetFromLive() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("minimumTimeOffsetFromLive"))
+	return rv
+}
+
 // The encoded or authored size of the visual portion of the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/naturalSize
@@ -216,16 +233,16 @@ func (a_ Asset) NaturalSize() coregraphics.CGSize {
 // The asset’s display mode preference for optimal playback of its content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/preferredDisplayCriteria
-func (a_ Asset) PreferredDisplayCriteria() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredDisplayCriteria"))
+func (a_ Asset) PreferredDisplayCriteria() AVDisplayCriteria {
+	rv := objc.Send[AVDisplayCriteria](a_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
 
 // The default media selections for this asset’s media selection groups.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAsset/preferredMediaSelection
-func (a_ Asset) PreferredMediaSelection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("preferredMediaSelection"))
+func (a_ Asset) PreferredMediaSelection() AVMediaSelection {
+	rv := objc.Send[AVMediaSelection](a_.ID, objc.Sel("preferredMediaSelection"))
 	return rv
 }
 
@@ -243,24 +260,6 @@ func (a_ Asset) PreferredVolume() unsafe.Pointer {
 func (a_ Asset) ReferenceRestrictions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("referenceRestrictions"))
 	return rv
-}
-
-// The array of available media selections for this asset.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/allmediaselections
-func (a_ Asset) AllMediaSelections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("allMediaSelections"))
-	return rv
-}
-
-
-// SetAllMediaSelections sets the value of the allMediaSelections property.
-// The array of available media selections for this asset.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/allmediaselections
-func (a_ Asset) SetAllMediaSelections(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllMediaSelections:"), value)
 }
 
 // An array of media characteristics for which a media selection option is available.
@@ -284,8 +283,8 @@ func (a_ Asset) SetAvailableMediaCharacteristicsWithMediaSelectionOptions(value 
 // The metadata formats this asset contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablemetadataformats
-func (a_ Asset) AvailableMetadataFormats() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableMetadataFormats"))
+func (a_ Asset) AvailableMetadataFormats() MetadataFormat {
+	rv := objc.Send[MetadataFormat](a_.ID, objc.Sel("availableMetadataFormats"))
 	return rv
 }
 
@@ -295,7 +294,7 @@ func (a_ Asset) AvailableMetadataFormats() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/availablemetadataformats
-func (a_ Asset) SetAvailableMetadataFormats(value unsafe.Pointer) {
+func (a_ Asset) SetAvailableMetadataFormats(value MetadataFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
 }
 
@@ -320,8 +319,8 @@ func (a_ Asset) SetCanContainFragments(value bool) {
 // The metadata items an asset contains for common metadata identifiers that provide a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
-func (a_ Asset) CommonMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("commonMetadata"))
+func (a_ Asset) CommonMetadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("commonMetadata"))
 	return rv
 }
 
@@ -331,7 +330,7 @@ func (a_ Asset) CommonMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
-func (a_ Asset) SetCommonMetadata(value unsafe.Pointer) {
+func (a_ Asset) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCommonMetadata:"), value)
 }
 
@@ -356,8 +355,8 @@ func (a_ Asset) SetContainsFragments(value bool) {
 // A metadata item that indicates the asset’s creation date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/creationdate
-func (a_ Asset) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("creationDate"))
+func (a_ Asset) CreationDate() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -367,7 +366,7 @@ func (a_ Asset) CreationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/creationdate
-func (a_ Asset) SetCreationDate(value unsafe.Pointer) {
+func (a_ Asset) SetCreationDate(value IAVMetadataItem) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -500,8 +499,8 @@ func (a_ Asset) SetIsReadable(value bool) {
 // The lyrics of the asset in a language suitable for the current locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/lyrics
-func (a_ Asset) Lyrics() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("lyrics"))
+func (a_ Asset) Lyrics() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("lyrics"))
 	return rv
 }
 
@@ -511,26 +510,8 @@ func (a_ Asset) Lyrics() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/lyrics
-func (a_ Asset) SetLyrics(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLyrics:"), objc.String(value))
-}
-
-// A time value that indicates how closely playback follows the latest live stream content.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/minimumtimeoffsetfromlive
-func (a_ Asset) MinimumTimeOffsetFromLive() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("minimumTimeOffsetFromLive"))
-	return rv
-}
-
-
-// SetMinimumTimeOffsetFromLive sets the value of the minimumTimeOffsetFromLive property.
-// A time value that indicates how closely playback follows the latest live stream content.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/minimumtimeoffsetfromlive
-func (a_ Asset) SetMinimumTimeOffsetFromLive(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMinimumTimeOffsetFromLive:"), value)
+func (a_ Asset) SetLyrics(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLyrics:"), value)
 }
 
 // The total duration of fragments that currently exist, or may exist in the future.
@@ -608,8 +589,8 @@ func (a_ Asset) SetProvidesPreciseDurationAndTiming(value bool) {
 // The track groups an asset contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/trackgroups
-func (a_ Asset) TrackGroups() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("trackGroups"))
+func (a_ Asset) TrackGroups() AVAssetTrackGroup {
+	rv := objc.Send[AVAssetTrackGroup](a_.ID, objc.Sel("trackGroups"))
 	return rv
 }
 
@@ -619,15 +600,15 @@ func (a_ Asset) TrackGroups() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/trackgroups
-func (a_ Asset) SetTrackGroups(value unsafe.Pointer) {
+func (a_ Asset) SetTrackGroups(value IAVAssetTrackGroup) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackGroups:"), value)
 }
 
 // The tracks an asset contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/tracks
-func (a_ Asset) Tracks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("tracks"))
+func (a_ Asset) Tracks() AVAssetTrack {
+	rv := objc.Send[AVAssetTrack](a_.ID, objc.Sel("tracks"))
 	return rv
 }
 
@@ -637,7 +618,7 @@ func (a_ Asset) Tracks() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/tracks
-func (a_ Asset) SetTracks(value unsafe.Pointer) {
+func (a_ Asset) SetTracks(value IAVAssetTrack) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTracks:"), value)
 }
 

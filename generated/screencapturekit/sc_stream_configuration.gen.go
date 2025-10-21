@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -135,8 +137,8 @@ func (s_ StreamConfiguration) SetQueueDepth(value int) {
 // A background color for the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/backgroundcolor
-func (s_ StreamConfiguration) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("backgroundColor"))
+func (s_ StreamConfiguration) BackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -146,7 +148,7 @@ func (s_ StreamConfiguration) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/backgroundcolor
-func (s_ StreamConfiguration) SetBackgroundColor(value unsafe.Pointer) {
+func (s_ StreamConfiguration) SetBackgroundColor(value appkit.IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
@@ -240,8 +242,8 @@ func (s_ StreamConfiguration) SetChannelCount(value int) {
 // A color matrix to apply to the output surface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/colormatrix
-func (s_ StreamConfiguration) ColorMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("colorMatrix"))
+func (s_ StreamConfiguration) ColorMatrix() foundation.String {
+	rv := objc.Send[foundation.String](s_.ID, objc.Sel("colorMatrix"))
 	return rv
 }
 
@@ -251,15 +253,15 @@ func (s_ StreamConfiguration) ColorMatrix() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/colormatrix
-func (s_ StreamConfiguration) SetColorMatrix(value unsafe.Pointer) {
+func (s_ StreamConfiguration) SetColorMatrix(value foundation.IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setColorMatrix:"), value)
 }
 
 // A color space to use for the output buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/colorspacename
-func (s_ StreamConfiguration) ColorSpaceName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("colorSpaceName"))
+func (s_ StreamConfiguration) ColorSpaceName() foundation.String {
+	rv := objc.Send[foundation.String](s_.ID, objc.Sel("colorSpaceName"))
 	return rv
 }
 
@@ -269,7 +271,7 @@ func (s_ StreamConfiguration) ColorSpaceName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/colorspacename
-func (s_ StreamConfiguration) SetColorSpaceName(value unsafe.Pointer) {
+func (s_ StreamConfiguration) SetColorSpaceName(value foundation.IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setColorSpaceName:"), value)
 }
 
@@ -398,8 +400,8 @@ func (s_ StreamConfiguration) SetIncludeChildWindows(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/microphonecapturedeviceid
-func (s_ StreamConfiguration) MicrophoneCaptureDeviceID() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("microphoneCaptureDeviceID"))
+func (s_ StreamConfiguration) MicrophoneCaptureDeviceID() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("microphoneCaptureDeviceID"))
 	return rv
 }
 
@@ -407,8 +409,8 @@ func (s_ StreamConfiguration) MicrophoneCaptureDeviceID() string {
 // SetMicrophoneCaptureDeviceID sets the value of the microphoneCaptureDeviceID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/microphonecapturedeviceid
-func (s_ StreamConfiguration) SetMicrophoneCaptureDeviceID(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMicrophoneCaptureDeviceID:"), objc.String(value))
+func (s_ StreamConfiguration) SetMicrophoneCaptureDeviceID(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMicrophoneCaptureDeviceID:"), value)
 }
 
 // The desired minimum time between frame updates, in seconds.
@@ -591,8 +593,8 @@ func (s_ StreamConfiguration) SetSourceRect(value coregraphics.CGRect) {
 // A name that you provide for identifying the stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/streamname
-func (s_ StreamConfiguration) StreamName() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("streamName"))
+func (s_ StreamConfiguration) StreamName() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("streamName"))
 	return rv
 }
 
@@ -602,8 +604,8 @@ func (s_ StreamConfiguration) StreamName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scstreamconfiguration/streamname
-func (s_ StreamConfiguration) SetStreamName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamName:"), objc.String(value))
+func (s_ StreamConfiguration) SetStreamName(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamName:"), value)
 }
 
 // The width of the output.

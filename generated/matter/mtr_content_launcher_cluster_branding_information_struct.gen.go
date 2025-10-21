@@ -77,8 +77,8 @@ func NewMTRContentLauncherClusterBrandingInformationStruct() MTRContentLauncherC
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/background
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) Background() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("background"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) Background() MTRContentLauncherClusterStyleInformationStruct {
+	rv := objc.Send[MTRContentLauncherClusterStyleInformationStruct](m_.ID, objc.Sel("background"))
 	return rv
 }
 
@@ -86,14 +86,14 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) Background() unsafe
 // SetBackground sets the value of the background property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/background
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetBackground(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetBackground(value IMTRContentLauncherClusterStyleInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBackground:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/logo
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) Logo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("logo"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) Logo() MTRContentLauncherClusterStyleInformationStruct {
+	rv := objc.Send[MTRContentLauncherClusterStyleInformationStruct](m_.ID, objc.Sel("logo"))
 	return rv
 }
 
@@ -101,14 +101,14 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) Logo() unsafe.Point
 // SetLogo sets the value of the logo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/logo
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetLogo(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetLogo(value IMTRContentLauncherClusterStyleInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLogo:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/progressbar
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProgressBar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("progressBar"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProgressBar() MTRContentLauncherClusterStyleInformationStruct {
+	rv := objc.Send[MTRContentLauncherClusterStyleInformationStruct](m_.ID, objc.Sel("progressBar"))
 	return rv
 }
 
@@ -116,14 +116,14 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProgressBar() unsaf
 // SetProgressBar sets the value of the progressBar property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/progressbar
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProgressBar(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProgressBar(value IMTRContentLauncherClusterStyleInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressBar:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/providername
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProviderName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("providerName"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProviderName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("providerName"))
 	return rv
 }
 
@@ -131,14 +131,14 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) ProviderName() stri
 // SetProviderName sets the value of the providerName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/providername
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProviderName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderName:"), objc.String(value))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetProviderName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/splash
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) Splash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("splash"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) Splash() MTRContentLauncherClusterStyleInformationStruct {
+	rv := objc.Send[MTRContentLauncherClusterStyleInformationStruct](m_.ID, objc.Sel("splash"))
 	return rv
 }
 
@@ -146,14 +146,14 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) Splash() unsafe.Poi
 // SetSplash sets the value of the splash property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/splash
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetSplash(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetSplash(value IMTRContentLauncherClusterStyleInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSplash:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/watermark
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) WaterMark() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("waterMark"))
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) WaterMark() MTRContentLauncherClusterStyleInformationStruct {
+	rv := objc.Send[MTRContentLauncherClusterStyleInformationStruct](m_.ID, objc.Sel("waterMark"))
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (m_ MTRContentLauncherClusterBrandingInformationStruct) WaterMark() unsafe.
 // SetWaterMark sets the value of the waterMark property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterbrandinginformationstruct/watermark
-func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetWaterMark(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterBrandingInformationStruct) SetWaterMark(value IMTRContentLauncherClusterStyleInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWaterMark:"), value)
 }
 

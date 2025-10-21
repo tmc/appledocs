@@ -86,7 +86,7 @@ func NewSampler() Sampler {
 // Initializes a sampler with an image object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:)
-func NewSamplerWithImage(im unsafe.Pointer) Sampler {
+func NewSamplerWithImage(im ICIImage) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:"), im)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewSamplerWithImage(im unsafe.Pointer) Sampler {
 // Initializes the sampler with an image object using options specified as key-value pairs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/initWithImage:keysAndValues:
-func NewSamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) Sampler {
+func NewSamplerWithImageKeysAndValues(im ICIImage, key0 objectivec.IObject) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:keysAndValues:"), im, key0)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewSamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) Sampler {
 // Initializes the sampler with an image object using options specified in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/init(image:options:)
-func NewSamplerWithImageOptions(im unsafe.Pointer, dict objc.ID) Sampler {
+func NewSamplerWithImageOptions(im ICIImage, dict objectivec.IObject) Sampler {
 	instance := getSamplerClass().Alloc()
 	rv := objc.Send[Sampler](instance.ID, objc.Sel("initWithImage:options:"), im, dict)
 	rv.Autorelease()
@@ -121,7 +121,7 @@ func NewSamplerWithImageOptions(im unsafe.Pointer, dict objc.ID) Sampler {
 // Creates and returns a sampler that references an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:
-func (sc _SamplerClass) SamplerWithImage(im unsafe.Pointer) unsafe.Pointer {
+func (sc _SamplerClass) SamplerWithImage(im ICIImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:"), im)
 	return rv
 }
@@ -129,7 +129,7 @@ func (sc _SamplerClass) SamplerWithImage(im unsafe.Pointer) unsafe.Pointer {
 // Creates and returns a sampler that references an image using options specified as key-value pairs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:keysAndValues:
-func (sc _SamplerClass) SamplerWithImageKeysAndValues(im unsafe.Pointer, key0 objc.ID) unsafe.Pointer {
+func (sc _SamplerClass) SamplerWithImageKeysAndValues(im ICIImage, key0 objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:keysAndValues:"), im, key0)
 	return rv
 }
@@ -137,7 +137,7 @@ func (sc _SamplerClass) SamplerWithImageKeysAndValues(im unsafe.Pointer, key0 ob
 // Creates and returns a sampler that references an image using options specified in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/samplerWithImage:options:
-func (sc _SamplerClass) SamplerWithImageOptions(im unsafe.Pointer, dict objc.ID) unsafe.Pointer {
+func (sc _SamplerClass) SamplerWithImageOptions(im ICIImage, dict objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("samplerWithImage:options:"), im, dict)
 	return rv
 }
@@ -145,8 +145,8 @@ func (sc _SamplerClass) SamplerWithImageOptions(im unsafe.Pointer, dict objc.ID)
 // The domain of definition (DOD) of the sampler
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CISampler/definition
-func (s_ Sampler) Definition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("definition"))
+func (s_ Sampler) Definition() CIFilterShape {
+	rv := objc.Send[CIFilterShape](s_.ID, objc.Sel("definition"))
 	return rv
 }
 

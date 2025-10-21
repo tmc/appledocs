@@ -86,13 +86,31 @@ func NewCKModifyRecordZonesOperation() CKModifyRecordZonesOperation {
 // Creates an operation for modifying the specified record zones.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/initWithRecordZonesToSave:recordZoneIDsToDelete:
-func NewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave unsafe.Pointer, recordZoneIDsToDelete unsafe.Pointer) CKModifyRecordZonesOperation {
+func NewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave []CKRecordZone, recordZoneIDsToDelete []CKRecordZoneID) CKModifyRecordZonesOperation {
 	instance := getCKModifyRecordZonesOperationClass().Alloc()
 	rv := objc.Send[CKModifyRecordZonesOperation](instance.ID, objc.Sel("initWithRecordZonesToSave:recordZoneIDsToDelete:"), recordZonesToSave, recordZoneIDsToDelete)
 	rv.Autorelease()
 	return rv
 }
 
+
+// The closure to execute after CloudKit modifies all of the record zones.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/modifyRecordZonesCompletionBlock
+func (c_ CKModifyRecordZonesOperation) ModifyRecordZonesCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modifyRecordZonesCompletionBlock"))
+	return rv
+}
+
+
+// SetModifyRecordZonesCompletionBlock sets the value of the modifyRecordZonesCompletionBlock property.
+// The closure to execute after CloudKit modifies all of the record zones.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/modifyRecordZonesCompletionBlock
+func (c_ CKModifyRecordZonesOperation) SetModifyRecordZonesCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setModifyRecordZonesCompletionBlock:"), value)
+}
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordZonesOperation/perRecordZoneDeleteBlock-27i5g

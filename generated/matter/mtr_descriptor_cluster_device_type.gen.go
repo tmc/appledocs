@@ -88,7 +88,7 @@ func (m_ MTRDescriptorClusterDeviceType) Revision() foundation.Number {
 // SetRevision sets the value of the revision property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
-func (m_ MTRDescriptorClusterDeviceType) SetRevision(value foundation.Number) {
+func (m_ MTRDescriptorClusterDeviceType) SetRevision(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
 }
 

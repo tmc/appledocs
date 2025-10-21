@@ -82,8 +82,8 @@ func NewMutableTimedMetadataGroup() MutableTimedMetadataGroup {
 // An array of metadata items in the timed metadata group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/items
-func (m_ MutableTimedMetadataGroup) Items() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("items"))
+func (m_ MutableTimedMetadataGroup) Items() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](m_.ID, objc.Sel("items"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (m_ MutableTimedMetadataGroup) Items() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup/items
-func (m_ MutableTimedMetadataGroup) SetItems(value unsafe.Pointer) {
+func (m_ MutableTimedMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
 }
 

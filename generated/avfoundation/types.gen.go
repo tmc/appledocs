@@ -66,8 +66,6 @@ type AVCaptureMicrophoneMode unsafe.Pointer
 
 type AVCaptureMultichannelAudioMode unsafe.Pointer
 
-type AVCaptureTimecode unsafe.Pointer
-
 type AVCaptureTimecodeGeneratorDelegate unsafe.Pointer
 
 type AVCaptureTimecodeSource unsafe.Pointer
@@ -85,8 +83,6 @@ type AVContentAuthorizationStatus unsafe.Pointer
 type AVContentKeySystem unsafe.Pointer
 
 type AVContentProposal unsafe.Pointer
-
-type AVCoordinatedPlaybackSuspension unsafe.Pointer
 
 type AVCoordinatedPlaybackSuspensionReason unsafe.Pointer
 
@@ -110,13 +106,13 @@ type AVMutableCompositionTrack unsafe.Pointer
 
 type AVPlaybackCoordinationMedium unsafe.Pointer
 
-type AVPlayerItemIntegratedTimelineSnapshot unsafe.Pointer
-
 type AVPlayerItemMediaDataCollector unsafe.Pointer
 
 type AVPlayerItemOutput unsafe.Pointer
 
 type AVPlayerItemRenderedLegibleOutputPushDelegate unsafe.Pointer
+
+type AVPlayerItemSegment unsafe.Pointer
 
 type AVPlayerMediaSelectionCriteria unsafe.Pointer
 

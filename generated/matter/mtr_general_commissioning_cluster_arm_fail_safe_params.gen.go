@@ -87,7 +87,7 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) Breadcrumb() foundatio
 // SetBreadcrumb sets the value of the breadcrumb property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/breadcrumb
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetBreadcrumb(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetBreadcrumb(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ExpiryLengthSeconds() 
 // SetExpiryLengthSeconds sets the value of the expiryLengthSeconds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/expirylengthseconds
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetExpiryLengthSeconds(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetExpiryLengthSeconds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExpiryLengthSeconds:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) ServerSideProcessingTi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) TimedInvokeTimeoutMs()
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsafeparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

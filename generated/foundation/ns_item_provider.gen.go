@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,12 +34,12 @@ type _ItemProviderClass struct {
 type IItemProvider interface {
 	objectivec.IObject
 	CanLoadObjectOfClass(aClass unsafe.Pointer) bool
-	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) unsafe.Pointer
-	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) unsafe.Pointer
-	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) unsafe.Pointer
-	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container unsafe.Pointer, allowedOptions unsafe.Pointer, preparationHandler unsafe.Pointer)
-	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions unsafe.Pointer, visibility unsafe.Pointer, loadHandler unsafe.Pointer)
+	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress
+	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress
+	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress
+	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress
+	RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container cloudkit.ICKContainer, allowedOptions cloudkit.CKAllowedSharingOptions, preparationHandler unsafe.Pointer)
+	RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier appkit.string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
 }
 
 // An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
@@ -93,7 +95,7 @@ func NewItemProvider() ItemProvider {
 // Creates a new item provider, employing a specified object’s type identifiers to specify the data representations eligible for the provider to load.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/init(object:)
-func NewItemProviderWithObject(object objc.ID) ItemProvider {
+func NewItemProviderWithObject(object objectivec.IObject) ItemProvider {
 	instance := getItemProviderClass().Alloc()
 	rv := objc.Send[ItemProvider](instance.ID, objc.Sel("initWithObject:"), object)
 	rv.Autorelease()
@@ -112,47 +114,47 @@ func (i_ ItemProvider) CanLoadObjectOfClass(aClass unsafe.Pointer) bool {
 // Asynchronously copies the provided, typed data into a generic data object, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadDataRepresentation(forTypeIdentifier:completionHandler:)
-func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("loadDataRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
+func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadDataRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
 	return rv
 }
 
 // Asynchronously writes a copy of the provided, typed data to a temporary file, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadFileRepresentation(forTypeIdentifier:completionHandler:)
-func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("loadFileRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
+func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
 	return rv
 }
 
 // Asynchronously opens a file in place, if possible, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadInPlaceFileRepresentation(forTypeIdentifier:completionHandler:)
-func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier string, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:"), objc.String(typeIdentifier), completionHandler)
+func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier appkit.string, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
 	return rv
 }
 
 // Asynchronously loads an object of a specified class to an item provider, returning a progress object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadObject(ofClass:completionHandler:)-8ak5d
-func (i_ ItemProvider) LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("loadObjectOfClass:completionHandler:"), aClass, completionHandler)
+func (i_ ItemProvider) LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) Progress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadObjectOfClass:completionHandler:"), aClass, completionHandler)
 	return rv
 }
 
 // Creates and registers a new collaboration object using a collection of records to share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerCKShareWithContainer:allowedSharingOptions:preparationHandler:
-func (i_ ItemProvider) RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container unsafe.Pointer, allowedOptions unsafe.Pointer, preparationHandler unsafe.Pointer) {
+func (i_ ItemProvider) RegisterCKShareWithContainerAllowedSharingOptionsPreparationHandler(container cloudkit.ICKContainer, allowedOptions cloudkit.CKAllowedSharingOptions, preparationHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("registerCKShareWithContainer:allowedSharingOptions:preparationHandler:"), container, allowedOptions, preparationHandler)
 }
 
 // Registers a file-backed representation for an item, specifying file options, item visibility, and a load handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerFileRepresentation(forTypeIdentifier:fileOptions:visibility:loadHandler:)
-func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier string, fileOptions unsafe.Pointer, visibility unsafe.Pointer, loadHandler unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), objc.String(typeIdentifier), fileOptions, visibility, loadHandler)
+func (i_ ItemProvider) RegisterFileRepresentationForTypeIdentifierFileOptionsVisibilityLoadHandler(typeIdentifier appkit.string, fileOptions ItemProviderFileOptions, visibility IItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:"), typeIdentifier, fileOptions, visibility, loadHandler)
 }
 
 // The preferred style for presenting the item provider’s data.
@@ -184,8 +186,8 @@ func (i_ ItemProvider) SourceFrame() Rect {
 // An optional array of media data associated with the extension item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
-func (i_ ItemProvider) Attachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("attachments"))
+func (i_ ItemProvider) Attachments() NSItemProvider {
+	rv := objc.Send[NSItemProvider](i_.ID, objc.Sel("attachments"))
 	return rv
 }
 
@@ -195,7 +197,7 @@ func (i_ ItemProvider) Attachments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
-func (i_ ItemProvider) SetAttachments(value unsafe.Pointer) {
+func (i_ ItemProvider) SetAttachments(value IItemProvider) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttachments:"), value)
 }
 
@@ -213,7 +215,7 @@ func (i_ ItemProvider) ContainerFrame() Rect {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/containerframe
-func (i_ ItemProvider) SetContainerFrame(value Rect) {
+func (i_ ItemProvider) SetContainerFrame(value IRect) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContainerFrame:"), value)
 }
 
@@ -292,8 +294,8 @@ func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value unsafe.Poin
 // Returns the array of type identifiers for the item provider, in the same order they were registered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
-func (i_ ItemProvider) RegisteredTypeIdentifiers() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("registeredTypeIdentifiers"))
+func (i_ ItemProvider) RegisteredTypeIdentifiers() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("registeredTypeIdentifiers"))
 	return rv
 }
 
@@ -303,15 +305,15 @@ func (i_ ItemProvider) RegisteredTypeIdentifiers() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
-func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), objc.String(value))
+func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), value)
 }
 
 // The filename to use when writing the provided data to a file on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
-func (i_ ItemProvider) SuggestedName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("suggestedName"))
+func (i_ ItemProvider) SuggestedName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("suggestedName"))
 	return rv
 }
 
@@ -321,15 +323,15 @@ func (i_ ItemProvider) SuggestedName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
-func (i_ ItemProvider) SetSuggestedName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), objc.String(value))
+func (i_ ItemProvider) SetSuggestedName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), value)
 }
 
 // The collection of data an app uses to hold private team information during drag and drop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
-func (i_ ItemProvider) TeamData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("teamData"))
+func (i_ ItemProvider) TeamData() Data {
+	rv := objc.Send[Data](i_.ID, objc.Sel("teamData"))
 	return rv
 }
 
@@ -339,7 +341,7 @@ func (i_ ItemProvider) TeamData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
-func (i_ ItemProvider) SetTeamData(value unsafe.Pointer) {
+func (i_ ItemProvider) SetTeamData(value IData) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTeamData:"), value)
 }
 

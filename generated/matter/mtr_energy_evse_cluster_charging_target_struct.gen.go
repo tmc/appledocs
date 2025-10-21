@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) AddedEnergy() foundation.Numb
 // SetAddedEnergy sets the value of the addedEnergy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/addedEnergy
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetAddedEnergy(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAddedEnergy:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetSoC() foundation.Number
 // SetTargetSoC sets the value of the targetSoC property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetSoC
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetSoC(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetSoC:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTREnergyEVSEClusterChargingTargetStruct) TargetTimeMinutesPastMidnight
 // SetTargetTimeMinutesPastMidnight sets the value of the targetTimeMinutesPastMidnight property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterChargingTargetStruct/targetTimeMinutesPastMidnight
-func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterChargingTargetStruct) SetTargetTimeMinutesPastMidnight(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTimeMinutesPastMidnight:"), value)
 }
 

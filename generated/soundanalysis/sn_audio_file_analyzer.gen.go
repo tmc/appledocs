@@ -30,10 +30,10 @@ type _SNAudioFileAnalyzerClass struct {
 // An interface definition for the [SNAudioFileAnalyzer] class.
 type ISNAudioFileAnalyzer interface {
 	objectivec.IObject
-	AddRequestWithObserverError(request objc.ID, observer objc.ID, error_ unsafe.Pointer) bool
+	AddRequestWithObserverError(request objectivec.IObject, observer objectivec.IObject, error_ unsafe.Pointer) bool
 	Analyze()
 	CancelAnalysis()
-	RemoveRequest(request objc.ID)
+	RemoveRequest(request objectivec.IObject)
 	RemoveAllRequests()
 }
 
@@ -88,7 +88,7 @@ func NewSNAudioFileAnalyzer() SNAudioFileAnalyzer {
 // Adds a new analysis request to the audio file analyzer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNAudioFileAnalyzer/add(_:withObserver:)
-func (s_ SNAudioFileAnalyzer) AddRequestWithObserverError(request objc.ID, observer objc.ID, error_ unsafe.Pointer) bool {
+func (s_ SNAudioFileAnalyzer) AddRequestWithObserverError(request objectivec.IObject, observer objectivec.IObject, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("addRequest:withObserver:error:"), request, observer, error_)
 	return rv
 }
@@ -110,7 +110,7 @@ func (s_ SNAudioFileAnalyzer) CancelAnalysis() {
 // Removes an existing request from the audio file analyzer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNAudioFileAnalyzer/remove(_:)
-func (s_ SNAudioFileAnalyzer) RemoveRequest(request objc.ID) {
+func (s_ SNAudioFileAnalyzer) RemoveRequest(request objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeRequest:"), request)
 }
 

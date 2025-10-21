@@ -86,13 +86,31 @@ func NewCKFetchDatabaseChangesOperation() CKFetchDatabaseChangesOperation {
 // Creates an operation for fetching database changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/init(previousServerChangeToken:)
-func NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken(previousServerChangeToken unsafe.Pointer) CKFetchDatabaseChangesOperation {
+func NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken(previousServerChangeToken ICKServerChangeToken) CKFetchDatabaseChangesOperation {
 	instance := getCKFetchDatabaseChangesOperationClass().Alloc()
 	rv := objc.Send[CKFetchDatabaseChangesOperation](instance.ID, objc.Sel("initWithPreviousServerChangeToken:"), previousServerChangeToken)
 	rv.Autorelease()
 	return rv
 }
 
+
+// The closure to execute when the change token updates.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/changeTokenUpdatedBlock
+func (c_ CKFetchDatabaseChangesOperation) ChangeTokenUpdatedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("changeTokenUpdatedBlock"))
+	return rv
+}
+
+
+// SetChangeTokenUpdatedBlock sets the value of the changeTokenUpdatedBlock property.
+// The closure to execute when the change token updates.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/changeTokenUpdatedBlock
+func (c_ CKFetchDatabaseChangesOperation) SetChangeTokenUpdatedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setChangeTokenUpdatedBlock:"), value)
+}
 
 // A Boolean value that indicates whether to send repeated requests to the server.
 //
@@ -112,11 +130,29 @@ func (c_ CKFetchDatabaseChangesOperation) SetFetchAllChanges(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchAllChanges:"), value)
 }
 
+// The closure to execute when the operation finishes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchDatabaseChangesCompletionBlock
+func (c_ CKFetchDatabaseChangesOperation) FetchDatabaseChangesCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchDatabaseChangesCompletionBlock"))
+	return rv
+}
+
+
+// SetFetchDatabaseChangesCompletionBlock sets the value of the fetchDatabaseChangesCompletionBlock property.
+// The closure to execute when the operation finishes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/fetchDatabaseChangesCompletionBlock
+func (c_ CKFetchDatabaseChangesOperation) SetFetchDatabaseChangesCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchDatabaseChangesCompletionBlock:"), value)
+}
+
 // The server change token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/previousServerChangeToken
-func (c_ CKFetchDatabaseChangesOperation) PreviousServerChangeToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previousServerChangeToken"))
+func (c_ CKFetchDatabaseChangesOperation) PreviousServerChangeToken() CKServerChangeToken {
+	rv := objc.Send[CKServerChangeToken](c_.ID, objc.Sel("previousServerChangeToken"))
 	return rv
 }
 
@@ -126,8 +162,80 @@ func (c_ CKFetchDatabaseChangesOperation) PreviousServerChangeToken() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/previousServerChangeToken
-func (c_ CKFetchDatabaseChangesOperation) SetPreviousServerChangeToken(value unsafe.Pointer) {
+func (c_ CKFetchDatabaseChangesOperation) SetPreviousServerChangeToken(value ICKServerChangeToken) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviousServerChangeToken:"), value)
+}
+
+// The closure to execute with a single record zone change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDChangedBlock
+func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDChangedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDChangedBlock"))
+	return rv
+}
+
+
+// SetRecordZoneWithIDChangedBlock sets the value of the recordZoneWithIDChangedBlock property.
+// The closure to execute with a single record zone change.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDChangedBlock
+func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDChangedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDChangedBlock:"), value)
+}
+
+// The closure to execute when a record zone no longer exists.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedBlock
+func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasDeletedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDWasDeletedBlock"))
+	return rv
+}
+
+
+// SetRecordZoneWithIDWasDeletedBlock sets the value of the recordZoneWithIDWasDeletedBlock property.
+// The closure to execute when a record zone no longer exists.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedBlock
+func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasDeletedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDWasDeletedBlock:"), value)
+}
+
+// The closure to execute when a user-invoked account reset deletes a record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock
+func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock"))
+	return rv
+}
+
+
+// SetRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock sets the value of the recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock property.
+// The closure to execute when a user-invoked account reset deletes a record zone.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock
+func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDWasDeletedDueToUserEncryptedDataResetBlock:"), value)
+}
+
+// The closure to execute when CloudKit purges a record zone.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasPurgedBlock
+func (c_ CKFetchDatabaseChangesOperation) RecordZoneWithIDWasPurgedBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordZoneWithIDWasPurgedBlock"))
+	return rv
+}
+
+
+// SetRecordZoneWithIDWasPurgedBlock sets the value of the recordZoneWithIDWasPurgedBlock property.
+// The closure to execute when CloudKit purges a record zone.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchDatabaseChangesOperation/recordZoneWithIDWasPurgedBlock
+func (c_ CKFetchDatabaseChangesOperation) SetRecordZoneWithIDWasPurgedBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordZoneWithIDWasPurgedBlock:"), value)
 }
 
 // The maximum number of results that the operation fetches.

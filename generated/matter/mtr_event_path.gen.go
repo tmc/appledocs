@@ -88,7 +88,7 @@ func (m_ MTREventPath) Event() foundation.Number {
 // SetEvent sets the value of the event property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventpath/event
-func (m_ MTREventPath) SetEvent(value foundation.Number) {
+func (m_ MTREventPath) SetEvent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEvent:"), value)
 }
 

@@ -9,4 +9,12 @@ import (
 // Suppress unused import errors
 var _ = naturallanguage.NewTokenizer
 
+// ExampleNewTokenizerWithUnit demonstrates how to create a Tokenizer instance using NewTokenizerWithUnit.
+// Creates a tokenizer with the specified unit.
+func ExampleNewTokenizerWithUnit() {
+	_ = naturallanguage.NewTokenizerWithUnit(
+		naturallanguage.TokenUnit{}, // unit TokenUnit
+	)
+	// Output:
+}
 

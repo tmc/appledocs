@@ -9,4 +9,12 @@ import (
 // Suppress unused import errors
 var _ = multipeerconnectivity.NewMCSession
 
+// ExampleNewMCSessionWithPeer demonstrates how to create a MCSession instance using NewMCSessionWithPeer.
+// Creates a Multipeer Connectivity session.
+func ExampleNewMCSessionWithPeer() {
+	_ = multipeerconnectivity.NewMCSessionWithPeer(
+		multipeerconnectivity.MCPeerID{}, // myPeerID MCPeerID
+	)
+	// Output:
+}
 

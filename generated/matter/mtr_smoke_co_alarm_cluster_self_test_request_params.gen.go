@@ -87,7 +87,7 @@ func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterselftestrequestparams/serversideprocessingtimeout
-func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterselftestrequestparams/timedinvoketimeoutms
-func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

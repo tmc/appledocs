@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKUserAnnotatedMedicationQuery] class.
@@ -78,7 +79,7 @@ func NewHKUserAnnotatedMedicationQuery() HKUserAnnotatedMedicationQuery {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedicationQuery/init(predicate:limit:resultsHandler:)
-func NewHKUserAnnotatedMedicationQueryWithPredicateLimitResultsHandler(predicate unsafe.Pointer, limit uint, resultsHandler unsafe.Pointer) HKUserAnnotatedMedicationQuery {
+func NewHKUserAnnotatedMedicationQueryWithPredicateLimitResultsHandler(predicate foundation.IPredicate, limit uint, resultsHandler unsafe.Pointer) HKUserAnnotatedMedicationQuery {
 	instance := getHKUserAnnotatedMedicationQueryClass().Alloc()
 	rv := objc.Send[HKUserAnnotatedMedicationQuery](instance.ID, objc.Sel("initWithPredicate:limit:resultsHandler:"), predicate, limit, resultsHandler)
 	rv.Autorelease()

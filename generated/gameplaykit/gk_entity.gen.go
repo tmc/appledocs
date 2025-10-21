@@ -31,10 +31,10 @@ type _EntityClass struct {
 // An interface definition for the [Entity] class.
 type IEntity interface {
 	objectivec.IObject
-	AddComponent(component unsafe.Pointer)
-	ComponentForClass(componentClass objc.Class) unsafe.Pointer
+	AddComponent(component IGKComponent)
+	ComponentForClass(componentClass objc.Class) Component
 	RemoveComponentForClass(componentClass objc.Class)
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
 }
 
 // An object relevant to gameplay, with functionality entirely provided by a collection of component objects.
@@ -97,15 +97,15 @@ func (ec _EntityClass) Entity() unsafe.Pointer {
 // Adds a component to the entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/addComponent(_:)
-func (e_ Entity) AddComponent(component unsafe.Pointer) {
+func (e_ Entity) AddComponent(component IGKComponent) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("addComponent:"), component)
 }
 
 // Returns the entity’s component for the specified component class.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/componentForClass:
-func (e_ Entity) ComponentForClass(componentClass objc.Class) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("componentForClass:"), componentClass)
+func (e_ Entity) ComponentForClass(componentClass objc.Class) Component {
+	rv := objc.Send[Component](e_.ID, objc.Sel("componentForClass:"), componentClass)
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (e_ Entity) RemoveComponentForClass(componentClass objc.Class) {
 // Performs periodic updates for each of the entity’s components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKEntity/update(deltaTime:)
-func (e_ Entity) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (e_ Entity) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 

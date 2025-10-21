@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKDiscreteQuantitySample] class.
@@ -84,8 +85,8 @@ func NewHKDiscreteQuantitySample() HKDiscreteQuantitySample {
 // The average of all quantities contained by the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/averagequantity
-func (h_ HKDiscreteQuantitySample) AverageQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("averageQuantity"))
+func (h_ HKDiscreteQuantitySample) AverageQuantity() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("averageQuantity"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (h_ HKDiscreteQuantitySample) AverageQuantity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/averagequantity
-func (h_ HKDiscreteQuantitySample) SetAverageQuantity(value unsafe.Pointer) {
+func (h_ HKDiscreteQuantitySample) SetAverageQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAverageQuantity:"), value)
 }
 
 // The maximum quantity contained by the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/maximumquantity
-func (h_ HKDiscreteQuantitySample) MaximumQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("maximumQuantity"))
+func (h_ HKDiscreteQuantitySample) MaximumQuantity() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("maximumQuantity"))
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (h_ HKDiscreteQuantitySample) MaximumQuantity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/maximumquantity
-func (h_ HKDiscreteQuantitySample) SetMaximumQuantity(value unsafe.Pointer) {
+func (h_ HKDiscreteQuantitySample) SetMaximumQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMaximumQuantity:"), value)
 }
 
 // The minimum value contained by the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/minimumquantity
-func (h_ HKDiscreteQuantitySample) MinimumQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("minimumQuantity"))
+func (h_ HKDiscreteQuantitySample) MinimumQuantity() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("minimumQuantity"))
 	return rv
 }
 
@@ -131,15 +132,15 @@ func (h_ HKDiscreteQuantitySample) MinimumQuantity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/minimumquantity
-func (h_ HKDiscreteQuantitySample) SetMinimumQuantity(value unsafe.Pointer) {
+func (h_ HKDiscreteQuantitySample) SetMinimumQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMinimumQuantity:"), value)
 }
 
 // The most recent quantity contained by the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantity
-func (h_ HKDiscreteQuantitySample) MostRecentQuantity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("mostRecentQuantity"))
+func (h_ HKDiscreteQuantitySample) MostRecentQuantity() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("mostRecentQuantity"))
 	return rv
 }
 
@@ -149,15 +150,15 @@ func (h_ HKDiscreteQuantitySample) MostRecentQuantity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantity
-func (h_ HKDiscreteQuantitySample) SetMostRecentQuantity(value unsafe.Pointer) {
+func (h_ HKDiscreteQuantitySample) SetMostRecentQuantity(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMostRecentQuantity:"), value)
 }
 
 // The date interval for the most recent quantity contained by the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("mostRecentQuantityDateInterval"))
+func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() foundation.DateInterval {
+	rv := objc.Send[foundation.DateInterval](h_.ID, objc.Sel("mostRecentQuantityDateInterval"))
 	return rv
 }
 
@@ -167,63 +168,63 @@ func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value unsafe.Pointer) {
+func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value foundation.IDateInterval) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setMostRecentQuantityDateInterval:"), value)
 }
 
 // The key path for the sample’s average quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverage
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathAverage"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathAverage"))
 	return rv
 }
 
 // The key path for the sample’s maximum quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmax
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMax"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMax"))
 	return rv
 }
 
 // The key path for the sample’s minimum quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmin
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMin"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMin"))
 	return rv
 }
 
 // The key path for the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecent
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecent"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecent"))
 	return rv
 }
 
 // A key path for the duration of the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentduration
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentDuration"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentDuration"))
 	return rv
 }
 
 // The key path for the end date of the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentenddate
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentEndDate"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentEndDate"))
 	return rv
 }
 
 // The key path for the start date of the sample’s most recent quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentstartdate
-func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentStartDate"))
+func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentStartDate"))
 	return rv
 }
 

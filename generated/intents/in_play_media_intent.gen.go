@@ -87,7 +87,7 @@ func NewINPlayMediaIntent() INPlayMediaIntent {
 // Initialize an intent that describes media content such as a song, podcast episode, or movie.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:
-func NewINPlayMediaIntentWithMediaItemsMediaContainerPlayShuffledPlaybackRepeatModeResumePlaybackPlaybackQueueLocationPlaybackSpeedMediaSearch(mediaItems unsafe.Pointer, mediaContainer unsafe.Pointer, playShuffled foundation.Number, playbackRepeatMode unsafe.Pointer, resumePlayback foundation.Number, playbackQueueLocation unsafe.Pointer, playbackSpeed foundation.Number, mediaSearch unsafe.Pointer) INPlayMediaIntent {
+func NewINPlayMediaIntentWithMediaItemsMediaContainerPlayShuffledPlaybackRepeatModeResumePlaybackPlaybackQueueLocationPlaybackSpeedMediaSearch(mediaItems []INMediaItem, mediaContainer INMediaItem, playShuffled foundation.INumber, playbackRepeatMode INPlaybackRepeatMode, resumePlayback foundation.INumber, playbackQueueLocation unsafe.Pointer, playbackSpeed foundation.INumber, mediaSearch INMediaSearch) INPlayMediaIntent {
 	instance := getINPlayMediaIntentClass().Alloc()
 	rv := objc.Send[INPlayMediaIntent](instance.ID, objc.Sel("initWithMediaItems:mediaContainer:playShuffled:playbackRepeatMode:resumePlayback:playbackQueueLocation:playbackSpeed:mediaSearch:"), mediaItems, mediaContainer, playShuffled, playbackRepeatMode, resumePlayback, playbackQueueLocation, playbackSpeed, mediaSearch)
 	rv.Autorelease()
@@ -106,8 +106,8 @@ func (i_ INPlayMediaIntent) MediaItems() []INMediaItem {
 // An object that contains the search parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INPlayMediaIntent/mediaSearch
-func (i_ INPlayMediaIntent) MediaSearch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaSearch"))
+func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
+	rv := objc.Send[INMediaSearch](i_.ID, objc.Sel("mediaSearch"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (i_ INPlayMediaIntent) ResumePlayback() foundation.Number {
 // The media item container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
-func (i_ INPlayMediaIntent) MediaContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaContainer"))
+func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
+	rv := objc.Send[INMediaItem](i_.ID, objc.Sel("mediaContainer"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (i_ INPlayMediaIntent) MediaContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/mediacontainer
-func (i_ INPlayMediaIntent) SetMediaContainer(value unsafe.Pointer) {
+func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaContainer:"), value)
 }
 
@@ -184,8 +184,8 @@ func (i_ INPlayMediaIntent) SetPlaybackQueueLocation(value unsafe.Pointer) {
 // The repeat mode setting at the time the user plays the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
-func (i_ INPlayMediaIntent) PlaybackRepeatMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("playbackRepeatMode"))
+func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
+	rv := objc.Send[INPlaybackRepeatMode](i_.ID, objc.Sel("playbackRepeatMode"))
 	return rv
 }
 
@@ -195,7 +195,7 @@ func (i_ INPlayMediaIntent) PlaybackRepeatMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inplaymediaintent/playbackrepeatmode
-func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value unsafe.Pointer) {
+func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value INPlaybackRepeatMode) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackRepeatMode:"), value)
 }
 

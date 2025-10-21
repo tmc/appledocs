@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _MCNearbyServiceBrowserClass struct {
 // An interface definition for the [MCNearbyServiceBrowser] class.
 type IMCNearbyServiceBrowser interface {
 	objectivec.IObject
-	InvitePeerToSessionWithContextTimeout(peerID unsafe.Pointer, session unsafe.Pointer, context unsafe.Pointer, timeout foundation.TimeInterval)
+	InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context foundation.IData, timeout foundation.ITimeInterval)
 	StartBrowsingForPeers()
 	StopBrowsingForPeers()
 }
@@ -87,9 +88,9 @@ func NewMCNearbyServiceBrowser() MCNearbyServiceBrowser {
 // Initializes the nearby service browser object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/init(peer:serviceType:)
-func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID unsafe.Pointer, serviceType string) MCNearbyServiceBrowser {
+func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID IMCPeerID, serviceType appkit.string) MCNearbyServiceBrowser {
 	instance := getMCNearbyServiceBrowserClass().Alloc()
-	rv := objc.Send[MCNearbyServiceBrowser](instance.ID, objc.Sel("initWithPeer:serviceType:"), myPeerID, objc.String(serviceType))
+	rv := objc.Send[MCNearbyServiceBrowser](instance.ID, objc.Sel("initWithPeer:serviceType:"), myPeerID, serviceType)
 	rv.Autorelease()
 	return rv
 }
@@ -98,7 +99,7 @@ func NewMCNearbyServiceBrowserWithPeerServiceType(myPeerID unsafe.Pointer, servi
 // Invites a discovered peer to join a Multipeer Connectivity session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/invitePeer(_:to:withContext:timeout:)
-func (m_ MCNearbyServiceBrowser) InvitePeerToSessionWithContextTimeout(peerID unsafe.Pointer, session unsafe.Pointer, context unsafe.Pointer, timeout foundation.TimeInterval) {
+func (m_ MCNearbyServiceBrowser) InvitePeerToSessionWithContextTimeout(peerID IMCPeerID, session IMCSession, context foundation.IData, timeout foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("invitePeer:toSession:withContext:timeout:"), peerID, session, context, timeout)
 }
 
@@ -137,16 +138,16 @@ func (m_ MCNearbyServiceBrowser) SetDelegate(value objc.ID) {
 // The local peer ID for this instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/myPeerID
-func (m_ MCNearbyServiceBrowser) MyPeerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("myPeerID"))
+func (m_ MCNearbyServiceBrowser) MyPeerID() MCPeerID {
+	rv := objc.Send[MCPeerID](m_.ID, objc.Sel("myPeerID"))
 	return rv
 }
 
 // The service type to browse for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCNearbyServiceBrowser/serviceType
-func (m_ MCNearbyServiceBrowser) ServiceType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCNearbyServiceBrowser) ServiceType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 

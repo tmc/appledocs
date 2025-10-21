@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,16 +100,16 @@ func (h_ HKUserAnnotatedMedication) IsArchived() bool {
 // A reference to the specific medication a person is tracking.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/medication
-func (h_ HKUserAnnotatedMedication) Medication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("medication"))
+func (h_ HKUserAnnotatedMedication) Medication() HKMedicationConcept {
+	rv := objc.Send[HKMedicationConcept](h_.ID, objc.Sel("medication"))
 	return rv
 }
 
 // The nickname that a person added to a medication during the entry experience.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKUserAnnotatedMedication/nickname
-func (h_ HKUserAnnotatedMedication) Nickname() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("nickname"))
+func (h_ HKUserAnnotatedMedication) Nickname() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("nickname"))
 	return rv
 }
 

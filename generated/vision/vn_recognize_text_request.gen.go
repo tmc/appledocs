@@ -85,7 +85,7 @@ func NewRecognizeTextRequest() RecognizeTextRequest {
 // Requests a list of languages that the specified revision recognizes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/supportedRecognitionLanguages(for:revision:)
-func (rc _RecognizeTextRequestClass) SupportedRecognitionLanguagesForTextRecognitionLevelRevisionError(recognitionLevel unsafe.Pointer, requestRevision uint, error_ unsafe.Pointer) []string {
+func (rc _RecognizeTextRequestClass) SupportedRecognitionLanguagesForTextRecognitionLevelRevisionError(recognitionLevel RequestTextRecognitionLevel, requestRevision uint, error_ unsafe.Pointer) []string {
 	rv := objc.Send[[]string](objc.ID(rc.class), objc.Sel("supportedRecognitionLanguagesForTextRecognitionLevel:revision:error:"), recognitionLevel, requestRevision, error_)
 	return rv
 }
@@ -175,8 +175,8 @@ func (r_ RecognizeTextRequest) SetRecognitionLanguages(value []string) {
 // A value that determines whether the request prioritizes accuracy or speed in text recognition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/recognitionLevel
-func (r_ RecognizeTextRequest) RecognitionLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognitionLevel"))
+func (r_ RecognizeTextRequest) RecognitionLevel() RequestTextRecognitionLevel {
+	rv := objc.Send[RequestTextRecognitionLevel](r_.ID, objc.Sel("recognitionLevel"))
 	return rv
 }
 
@@ -186,7 +186,7 @@ func (r_ RecognizeTextRequest) RecognitionLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizeTextRequest/recognitionLevel
-func (r_ RecognizeTextRequest) SetRecognitionLevel(value unsafe.Pointer) {
+func (r_ RecognizeTextRequest) SetRecognitionLevel(value RequestTextRecognitionLevel) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRecognitionLevel:"), value)
 }
 

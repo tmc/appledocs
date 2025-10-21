@@ -210,8 +210,8 @@ func (m_ MutableParagraphStyle) SetHeaderLevel(value int) {
 // The paragraph’s threshold for hyphenation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/hyphenationfactor
-func (m_ MutableParagraphStyle) HyphenationFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("hyphenationFactor"))
+func (m_ MutableParagraphStyle) HyphenationFactor() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("hyphenationFactor"))
 	return rv
 }
 
@@ -221,7 +221,7 @@ func (m_ MutableParagraphStyle) HyphenationFactor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/hyphenationfactor
-func (m_ MutableParagraphStyle) SetHyphenationFactor(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetHyphenationFactor(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHyphenationFactor:"), value)
 }
 
@@ -444,8 +444,8 @@ func (m_ MutableParagraphStyle) SetTextLists(value ITextList) {
 // The threshold for using tightening as an alternative to truncation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tighteningfactorfortruncation
-func (m_ MutableParagraphStyle) TighteningFactorForTruncation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("tighteningFactorForTruncation"))
+func (m_ MutableParagraphStyle) TighteningFactorForTruncation() float32 {
+	rv := objc.Send[float32](m_.ID, objc.Sel("tighteningFactorForTruncation"))
 	return rv
 }
 
@@ -455,7 +455,7 @@ func (m_ MutableParagraphStyle) TighteningFactorForTruncation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/tighteningfactorfortruncation
-func (m_ MutableParagraphStyle) SetTighteningFactorForTruncation(value unsafe.Pointer) {
+func (m_ MutableParagraphStyle) SetTighteningFactorForTruncation(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTighteningFactorForTruncation:"), value)
 }
 

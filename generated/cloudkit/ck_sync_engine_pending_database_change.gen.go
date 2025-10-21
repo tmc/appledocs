@@ -81,16 +81,16 @@ func NewCKSyncEnginePendingDatabaseChange() CKSyncEnginePendingDatabaseChange {
 // The type of database change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange/type
-func (c_ CKSyncEnginePendingDatabaseChange) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ CKSyncEnginePendingDatabaseChange) Type() CKSyncEnginePendingDatabaseChangeType {
+	rv := objc.Send[CKSyncEnginePendingDatabaseChangeType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
 // The identifier of the record zone to change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChange/zoneID
-func (c_ CKSyncEnginePendingDatabaseChange) ZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+func (c_ CKSyncEnginePendingDatabaseChange) ZoneID() CKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
 }
 

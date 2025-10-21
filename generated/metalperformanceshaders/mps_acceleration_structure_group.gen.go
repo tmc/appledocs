@@ -80,7 +80,7 @@ func NewAccelerationStructureGroup() AccelerationStructureGroup {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructureGroup/init(device:)
-func NewAccelerationStructureGroupWithDevice(device objc.ID) AccelerationStructureGroup {
+func NewAccelerationStructureGroupWithDevice(device objectivec.IObject) AccelerationStructureGroup {
 	instance := getAccelerationStructureGroupClass().Alloc()
 	rv := objc.Send[AccelerationStructureGroup](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +87,9 @@ func NewACAccountCredential() ACAccountCredential {
 // Initializes an account credential using OAuth 2.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuth2Token:refreshToken:expiryDate:)
-func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, refreshToken string, expiryDate unsafe.Pointer) ACAccountCredential {
+func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token appkit.string, refreshToken appkit.string, expiryDate foundation.IDate) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
-	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuth2Token:refreshToken:expiryDate:"), objc.String(token), objc.String(refreshToken), expiryDate)
+	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuth2Token:refreshToken:expiryDate:"), token, refreshToken, expiryDate)
 	rv.Autorelease()
 	return rv
 }
@@ -97,9 +99,9 @@ func NewACAccountCredentialWithOAuth2TokenRefreshTokenExpiryDate(token string, r
 // Initializes an account credential using OAuth.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/init(oAuthToken:tokenSecret:)
-func NewACAccountCredentialWithOAuthTokenTokenSecret(token string, secret string) ACAccountCredential {
+func NewACAccountCredentialWithOAuthTokenTokenSecret(token appkit.string, secret appkit.string) ACAccountCredential {
 	instance := getACAccountCredentialClass().Alloc()
-	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuthToken:tokenSecret:"), objc.String(token), objc.String(secret))
+	rv := objc.Send[ACAccountCredential](instance.ID, objc.Sel("initWithOAuthToken:tokenSecret:"), token, secret)
 	rv.Autorelease()
 	return rv
 }
@@ -108,8 +110,8 @@ func NewACAccountCredentialWithOAuthTokenTokenSecret(token string, secret string
 // The token used for the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/oauthToken
-func (a_ ACAccountCredential) OauthToken() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("oauthToken"))
+func (a_ ACAccountCredential) OauthToken() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("oauthToken"))
 	return rv
 }
 
@@ -119,8 +121,8 @@ func (a_ ACAccountCredential) OauthToken() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredential/oauthToken
-func (a_ ACAccountCredential) SetOauthToken(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOauthToken:"), objc.String(value))
+func (a_ ACAccountCredential) SetOauthToken(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOauthToken:"), value)
 }
 
 

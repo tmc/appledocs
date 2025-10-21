@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -90,8 +91,8 @@ func (a_ AXBrailleTranslationResult) LocationMap() []foundation.Number {
 // The resulting string after translation or back-translation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXBrailleTranslationResult/resultString
-func (a_ AXBrailleTranslationResult) ResultString() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("resultString"))
+func (a_ AXBrailleTranslationResult) ResultString() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("resultString"))
 	return rv
 }
 

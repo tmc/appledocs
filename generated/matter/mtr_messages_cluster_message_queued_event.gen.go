@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRMessagesClusterMessageQueuedEvent() MTRMessagesClusterMessageQueuedEv
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageQueuedEvent/messageID
-func (m_ MTRMessagesClusterMessageQueuedEvent) MessageID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("messageID"))
+func (m_ MTRMessagesClusterMessageQueuedEvent) MessageID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
 	return rv
 }
 
@@ -86,7 +87,7 @@ func (m_ MTRMessagesClusterMessageQueuedEvent) MessageID() unsafe.Pointer {
 // SetMessageID sets the value of the messageID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageQueuedEvent/messageID
-func (m_ MTRMessagesClusterMessageQueuedEvent) SetMessageID(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageQueuedEvent) SetMessageID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
 

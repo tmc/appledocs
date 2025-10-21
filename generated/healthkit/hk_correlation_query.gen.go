@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKCorrelationQuery] class.
@@ -86,7 +87,7 @@ func NewHKCorrelationQuery() HKCorrelationQuery {
 // Instantiates and returns a correlation query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/init(type:predicate:samplePredicates:completion:)
-func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType unsafe.Pointer, predicate unsafe.Pointer, samplePredicates unsafe.Pointer, completion unsafe.Pointer) HKCorrelationQuery {
+func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlationType HKCorrelationType, predicate foundation.IPredicate, samplePredicates unsafe.Pointer, completion unsafe.Pointer) HKCorrelationQuery {
 	instance := getHKCorrelationQueryClass().Alloc()
 	rv := objc.Send[HKCorrelationQuery](instance.ID, objc.Sel("initWithType:predicate:samplePredicates:completion:"), correlationType, predicate, samplePredicates, completion)
 	rv.Autorelease()
@@ -97,8 +98,8 @@ func NewHKCorrelationQueryWithTypePredicateSamplePredicatesCompletion(correlatio
 // The type of correlation to search for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationQuery/correlationType
-func (h_ HKCorrelationQuery) CorrelationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("correlationType"))
+func (h_ HKCorrelationQuery) CorrelationType() HKCorrelationType {
+	rv := objc.Send[HKCorrelationType](h_.ID, objc.Sel("correlationType"))
 	return rv
 }
 

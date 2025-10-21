@@ -30,13 +30,13 @@ type _MTRClusterMicrowaveOvenModeClass struct {
 // An interface definition for the [MTRClusterMicrowaveOvenMode] class.
 type IMTRClusterMicrowaveOvenMode interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeCurrentModeWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedModesWithParams(params unsafe.Pointer) unsafe.Pointer
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer
 }
 
 // Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
@@ -92,7 +92,7 @@ func NewMTRClusterMicrowaveOvenMode() MTRClusterMicrowaveOvenMode {
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/init(device:endpointID:queue:)
-func NewMTRClusterMicrowaveOvenModeWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterMicrowaveOvenMode {
+func NewMTRClusterMicrowaveOvenModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterMicrowaveOvenMode {
 	instance := getMTRClusterMicrowaveOvenModeClass().Alloc()
 	rv := objc.Send[MTRClusterMicrowaveOvenMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -102,49 +102,49 @@ func NewMTRClusterMicrowaveOvenModeWithDeviceEndpointIDQueue(device unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeCurrentModeWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeSupportedModesWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
 	return rv
 }

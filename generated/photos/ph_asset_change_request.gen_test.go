@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = photos.NewPHAssetChangeRequest
 
+// ExampleNewPHAssetChangeRequestForAsset demonstrates how to create a PHAssetChangeRequest instance using NewPHAssetChangeRequestForAsset.
+// Creates a request for modifying the specified asset.
+func ExampleNewPHAssetChangeRequestForAsset() {
+	_ = photos.NewPHAssetChangeRequestForAsset(
+		photos.PHAsset{}, // asset PHAsset
+	)
+	// Output:
+}

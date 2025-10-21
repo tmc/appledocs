@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStat
 // SetConnectionStatus sets the value of the connectionStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
-func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionStatus:"), value)
 }
 

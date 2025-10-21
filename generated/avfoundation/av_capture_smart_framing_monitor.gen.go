@@ -83,16 +83,16 @@ func NewCaptureSmartFramingMonitor() CaptureSmartFramingMonitor {
 // The latest recommended framing from the monitor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSmartFramingMonitor/recommendedFraming
-func (c_ CaptureSmartFramingMonitor) RecommendedFraming() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recommendedFraming"))
+func (c_ CaptureSmartFramingMonitor) RecommendedFraming() AVCaptureFraming {
+	rv := objc.Send[AVCaptureFraming](c_.ID, objc.Sel("recommendedFraming"))
 	return rv
 }
 
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("smartFramingMonitor"))
+func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
+	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value unsafe.Pointer) {
+func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
 }
 
@@ -127,8 +127,8 @@ func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64) {
 // An array of framings that the monitor is allowed to suggest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) EnabledFramings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("enabledFramings"))
+func (c_ CaptureSmartFramingMonitor) EnabledFramings() AVCaptureFraming {
+	rv := objc.Send[AVCaptureFraming](c_.ID, objc.Sel("enabledFramings"))
 	return rv
 }
 
@@ -138,7 +138,7 @@ func (c_ CaptureSmartFramingMonitor) EnabledFramings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value unsafe.Pointer) {
+func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value IAVCaptureFraming) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledFramings:"), value)
 }
 
@@ -163,8 +163,8 @@ func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool) {
 // An array of framings supported by the monitor in its current configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SupportedFramings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedFramings"))
+func (c_ CaptureSmartFramingMonitor) SupportedFramings() AVCaptureFraming {
+	rv := objc.Send[AVCaptureFraming](c_.ID, objc.Sel("supportedFramings"))
 	return rv
 }
 
@@ -174,7 +174,7 @@ func (c_ CaptureSmartFramingMonitor) SupportedFramings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value unsafe.Pointer) {
+func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value IAVCaptureFraming) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFramings:"), value)
 }
 

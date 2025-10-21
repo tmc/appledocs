@@ -112,8 +112,8 @@ func (s_ STScreenTimeConfigurationObserver) StopObserving() {
 // The configuration being observed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/configuration
-func (s_ STScreenTimeConfigurationObserver) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("configuration"))
+func (s_ STScreenTimeConfigurationObserver) Configuration() STScreenTimeConfiguration {
+	rv := objc.Send[STScreenTimeConfiguration](s_.ID, objc.Sel("configuration"))
 	return rv
 }
 

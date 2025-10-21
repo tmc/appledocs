@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewTelephonyNetworkInfo() TelephonyNetworkInfo {
 // The identifier of the service that’s currently providing data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTTelephonyNetworkInfo/dataServiceIdentifier
-func (t_ TelephonyNetworkInfo) DataServiceIdentifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("dataServiceIdentifier"))
+func (t_ TelephonyNetworkInfo) DataServiceIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("dataServiceIdentifier"))
 	return rv
 }
 
@@ -99,8 +100,8 @@ func (t_ TelephonyNetworkInfo) ServiceCurrentRadioAccessTechnology() unsafe.Poin
 // The current radio access technology registered with the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/currentradioaccesstechnology
-func (t_ TelephonyNetworkInfo) CurrentRadioAccessTechnology() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("currentRadioAccessTechnology"))
+func (t_ TelephonyNetworkInfo) CurrentRadioAccessTechnology() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("currentRadioAccessTechnology"))
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (t_ TelephonyNetworkInfo) CurrentRadioAccessTechnology() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/currentradioaccesstechnology
-func (t_ TelephonyNetworkInfo) SetCurrentRadioAccessTechnology(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentRadioAccessTechnology:"), objc.String(value))
+func (t_ TelephonyNetworkInfo) SetCurrentRadioAccessTechnology(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCurrentRadioAccessTechnology:"), value)
 }
 
 // An object that the system notifies when the data service identifier changes.
@@ -135,8 +136,8 @@ func (t_ TelephonyNetworkInfo) SetDelegate(value unsafe.Pointer) {
 // A dictionary that contains carrier information about each service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/servicesubscribercellularproviders
-func (t_ TelephonyNetworkInfo) ServiceSubscriberCellularProviders() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("serviceSubscriberCellularProviders"))
+func (t_ TelephonyNetworkInfo) ServiceSubscriberCellularProviders() CTCarrier {
+	rv := objc.Send[CTCarrier](t_.ID, objc.Sel("serviceSubscriberCellularProviders"))
 	return rv
 }
 
@@ -146,15 +147,15 @@ func (t_ TelephonyNetworkInfo) ServiceSubscriberCellularProviders() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/servicesubscribercellularproviders
-func (t_ TelephonyNetworkInfo) SetServiceSubscriberCellularProviders(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setServiceSubscriberCellularProviders:"), objc.String(value))
+func (t_ TelephonyNetworkInfo) SetServiceSubscriberCellularProviders(value ICTCarrier) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setServiceSubscriberCellularProviders:"), value)
 }
 
 // A block dispatched when there are updates to the user’s cellular provider information for any service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/servicesubscribercellularprovidersdidupdatenotifier
-func (t_ TelephonyNetworkInfo) ServiceSubscriberCellularProvidersDidUpdateNotifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("serviceSubscriberCellularProvidersDidUpdateNotifier"))
+func (t_ TelephonyNetworkInfo) ServiceSubscriberCellularProvidersDidUpdateNotifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("serviceSubscriberCellularProvidersDidUpdateNotifier"))
 	return rv
 }
 
@@ -164,15 +165,15 @@ func (t_ TelephonyNetworkInfo) ServiceSubscriberCellularProvidersDidUpdateNotifi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/servicesubscribercellularprovidersdidupdatenotifier
-func (t_ TelephonyNetworkInfo) SetServiceSubscriberCellularProvidersDidUpdateNotifier(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setServiceSubscriberCellularProvidersDidUpdateNotifier:"), objc.String(value))
+func (t_ TelephonyNetworkInfo) SetServiceSubscriberCellularProvidersDidUpdateNotifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setServiceSubscriberCellularProvidersDidUpdateNotifier:"), value)
 }
 
 // Information about the user’s cellular service provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/subscribercellularprovider
-func (t_ TelephonyNetworkInfo) SubscriberCellularProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("subscriberCellularProvider"))
+func (t_ TelephonyNetworkInfo) SubscriberCellularProvider() CTCarrier {
+	rv := objc.Send[CTCarrier](t_.ID, objc.Sel("subscriberCellularProvider"))
 	return rv
 }
 
@@ -182,7 +183,7 @@ func (t_ TelephonyNetworkInfo) SubscriberCellularProvider() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/subscribercellularprovider
-func (t_ TelephonyNetworkInfo) SetSubscriberCellularProvider(value unsafe.Pointer) {
+func (t_ TelephonyNetworkInfo) SetSubscriberCellularProvider(value ICTCarrier) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSubscriberCellularProvider:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,16 +92,16 @@ func (p_ PHProjectSection) SectionContents() []PHProjectSectionContent {
 // The intended usage of the section: cover, content, or auxiliary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/sectionType-swift.property
-func (p_ PHProjectSection) SectionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sectionType"))
+func (p_ PHProjectSection) SectionType() PHProjectSectionType {
+	rv := objc.Send[PHProjectSectionType](p_.ID, objc.Sel("sectionType"))
 	return rv
 }
 
 // The optional section title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSection/title
-func (p_ PHProjectSection) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+func (p_ PHProjectSection) Title() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
 	return rv
 }
 

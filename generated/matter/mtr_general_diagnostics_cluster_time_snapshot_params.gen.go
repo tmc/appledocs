@@ -90,7 +90,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTimeSnapshotParams/timedInvokeTimeoutMs
-func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterTimeSnapshotParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

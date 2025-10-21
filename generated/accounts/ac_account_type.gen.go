@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,24 +92,24 @@ func (a_ ACAccountType) AccessGranted() bool {
 // A human-readable description of the account type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/accountTypeDescription
-func (a_ ACAccountType) AccountTypeDescription() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("accountTypeDescription"))
+func (a_ ACAccountType) AccountTypeDescription() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("accountTypeDescription"))
 	return rv
 }
 
 // The unique identifier for the account type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountType/identifier
-func (a_ ACAccountType) Identifier() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
+func (a_ ACAccountType) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The type of service account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
-func (a_ ACAccountType) AccountType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accountType"))
+func (a_ ACAccountType) AccountType() ACAccountType {
+	rv := objc.Send[ACAccountType](a_.ID, objc.Sel("accountType"))
 	return rv
 }
 
@@ -118,7 +119,7 @@ func (a_ ACAccountType) AccountType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accounts/acaccount/accounttype
-func (a_ ACAccountType) SetAccountType(value unsafe.Pointer) {
+func (a_ ACAccountType) SetAccountType(value ACAccountType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccountType:"), value)
 }
 

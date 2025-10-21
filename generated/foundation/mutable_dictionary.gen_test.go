@@ -23,10 +23,10 @@ func ExampleNewMutableDictionaryWithCapacity() {
 	)
 	// Output:
 }
-// ExampleNewMutableDictionaryWithContentsOfFile demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithContentsOfFile.
-func ExampleNewMutableDictionaryWithContentsOfFile() {
-	_ = foundation.NewMutableDictionaryWithContentsOfFile(
-		"/tmp/test", // path string
+// ExampleNewMutableDictionaryWithCoder demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithCoder.
+func ExampleNewMutableDictionaryWithCoder() {
+	_ = foundation.NewMutableDictionaryWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
 	)
 	// Output:
 }
@@ -34,6 +34,13 @@ func ExampleNewMutableDictionaryWithContentsOfFile() {
 func ExampleNewMutableDictionaryWithContentsOfURL() {
 	_ = foundation.NewMutableDictionaryWithContentsOfURL(
 		foundation.URL{}, // url URL
+	)
+	// Output:
+}
+// ExampleNewMutableDictionaryWithOBEXHeadersData demonstrates how to create a MutableDictionary instance using NewMutableDictionaryWithOBEXHeadersData.
+func ExampleNewMutableDictionaryWithOBEXHeadersData() {
+	_ = foundation.NewMutableDictionaryWithOBEXHeadersData(
+		foundation.NSData{}, // inHeadersData NSData
 	)
 	// Output:
 }

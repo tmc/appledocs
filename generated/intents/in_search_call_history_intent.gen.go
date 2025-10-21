@@ -102,8 +102,8 @@ func (i_ INSearchCallHistoryIntent) SetCallCapabilities(value unsafe.Pointer) {
 // The call type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltype
-func (i_ INSearchCallHistoryIntent) CallType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callType"))
+func (i_ INSearchCallHistoryIntent) CallType() INCallRecordType {
+	rv := objc.Send[INCallRecordType](i_.ID, objc.Sel("callType"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (i_ INSearchCallHistoryIntent) CallType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/calltype
-func (i_ INSearchCallHistoryIntent) SetCallType(value unsafe.Pointer) {
+func (i_ INSearchCallHistoryIntent) SetCallType(value INCallRecordType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallType:"), value)
 }
 
@@ -138,8 +138,8 @@ func (i_ INSearchCallHistoryIntent) SetCallTypes(value unsafe.Pointer) {
 // The range of dates associated with the call records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/datecreated
-func (i_ INSearchCallHistoryIntent) DateCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateCreated"))
+func (i_ INSearchCallHistoryIntent) DateCreated() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dateCreated"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (i_ INSearchCallHistoryIntent) DateCreated() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/datecreated
-func (i_ INSearchCallHistoryIntent) SetDateCreated(value unsafe.Pointer) {
+func (i_ INSearchCallHistoryIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
 // The person involved in the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
-func (i_ INSearchCallHistoryIntent) Recipient() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("recipient"))
+func (i_ INSearchCallHistoryIntent) Recipient() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("recipient"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (i_ INSearchCallHistoryIntent) Recipient() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchcallhistoryintent/recipient
-func (i_ INSearchCallHistoryIntent) SetRecipient(value unsafe.Pointer) {
+func (i_ INSearchCallHistoryIntent) SetRecipient(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipient:"), value)
 }
 

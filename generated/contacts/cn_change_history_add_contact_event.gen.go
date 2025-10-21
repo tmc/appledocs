@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CNChangeHistoryAddContactEvent] class.
@@ -82,16 +83,16 @@ func NewCNChangeHistoryAddContactEvent() CNChangeHistoryAddContactEvent {
 // The contact the user added.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/contact
-func (c_ CNChangeHistoryAddContactEvent) Contact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contact"))
+func (c_ CNChangeHistoryAddContactEvent) Contact() CNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 
 // A string that uniquely identifies the container where the user added the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddContactEvent/containerIdentifier
-func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("containerIdentifier"))
+func (c_ CNChangeHistoryAddContactEvent) ContainerIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,19 +82,29 @@ func NewPasskeyAssertionCredential() PasskeyAssertionCredential {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredential/initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:
+func NewPasskeyAssertionCredentialWithUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle foundation.IData, relyingParty appkit.string, signature foundation.IData, clientDataHash foundation.IData, authenticatorData foundation.IData, credentialID foundation.IData, extensionOutput IASPasskeyAssertionCredentialExtensionOutput) PasskeyAssertionCredential {
+	instance := getPasskeyAssertionCredentialClass().Alloc()
+	rv := objc.Send[PasskeyAssertionCredential](instance.ID, objc.Sel("initWithUserHandle:relyingParty:signature:clientDataHash:authenticatorData:credentialID:extensionOutput:"), userHandle, relyingParty, signature, clientDataHash, authenticatorData, credentialID, extensionOutput)
+	rv.Autorelease()
+	return rv
+}
+
+
 // The cryptographic signature of this credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredential/signature
-func (p_ PasskeyAssertionCredential) Signature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("signature"))
+func (p_ PasskeyAssertionCredential) Signature() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("signature"))
 	return rv
 }
 
 // The authenticator data of the application that created this passkey assertion credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/authenticatordata
-func (p_ PasskeyAssertionCredential) AuthenticatorData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("authenticatorData"))
+func (p_ PasskeyAssertionCredential) AuthenticatorData() foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("authenticatorData"))
 	return rv
 }
 
@@ -102,15 +114,15 @@ func (p_ PasskeyAssertionCredential) AuthenticatorData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/authenticatordata
-func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value unsafe.Pointer) {
+func (p_ PasskeyAssertionCredential) SetAuthenticatorData(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAuthenticatorData:"), value)
 }
 
 // A hash of the client data for this credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/clientdatahash
-func (p_ PasskeyAssertionCredential) ClientDataHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("clientDataHash"))
+func (p_ PasskeyAssertionCredential) ClientDataHash() foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("clientDataHash"))
 	return rv
 }
 
@@ -120,15 +132,15 @@ func (p_ PasskeyAssertionCredential) ClientDataHash() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/clientdatahash
-func (p_ PasskeyAssertionCredential) SetClientDataHash(value unsafe.Pointer) {
+func (p_ PasskeyAssertionCredential) SetClientDataHash(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClientDataHash:"), value)
 }
 
 // The identifier for this credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/credentialid
-func (p_ PasskeyAssertionCredential) CredentialID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("credentialID"))
+func (p_ PasskeyAssertionCredential) CredentialID() foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("credentialID"))
 	return rv
 }
 
@@ -138,14 +150,14 @@ func (p_ PasskeyAssertionCredential) CredentialID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/credentialid
-func (p_ PasskeyAssertionCredential) SetCredentialID(value unsafe.Pointer) {
+func (p_ PasskeyAssertionCredential) SetCredentialID(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCredentialID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/extensionoutput-7t6rn
-func (p_ PasskeyAssertionCredential) ExtensionOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("extensionOutput"))
+func (p_ PasskeyAssertionCredential) ExtensionOutput() PasskeyAssertionCredentialExtensionOutput {
+	rv := objc.Send[PasskeyAssertionCredentialExtensionOutput](p_.ID, objc.Sel("extensionOutput"))
 	return rv
 }
 
@@ -153,15 +165,15 @@ func (p_ PasskeyAssertionCredential) ExtensionOutput() unsafe.Pointer {
 // SetExtensionOutput sets the value of the extensionOutput property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/extensionoutput-7t6rn
-func (p_ PasskeyAssertionCredential) SetExtensionOutput(value unsafe.Pointer) {
+func (p_ PasskeyAssertionCredential) SetExtensionOutput(value IPasskeyAssertionCredentialExtensionOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setExtensionOutput:"), value)
 }
 
 // The relying party associated with this passkey.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-func (p_ PasskeyAssertionCredential) RelyingParty() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("relyingParty"))
+func (p_ PasskeyAssertionCredential) RelyingParty() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("relyingParty"))
 	return rv
 }
 
@@ -171,15 +183,15 @@ func (p_ PasskeyAssertionCredential) RelyingParty() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/relyingparty
-func (p_ PasskeyAssertionCredential) SetRelyingParty(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), objc.String(value))
+func (p_ PasskeyAssertionCredential) SetRelyingParty(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setRelyingParty:"), value)
 }
 
 // The user handle of this passkey.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/userhandle
-func (p_ PasskeyAssertionCredential) UserHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("userHandle"))
+func (p_ PasskeyAssertionCredential) UserHandle() foundation.Data {
+	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("userHandle"))
 	return rv
 }
 
@@ -189,9 +201,8 @@ func (p_ PasskeyAssertionCredential) UserHandle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential/userhandle
-func (p_ PasskeyAssertionCredential) SetUserHandle(value unsafe.Pointer) {
+func (p_ PasskeyAssertionCredential) SetUserHandle(value foundation.IData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserHandle:"), value)
 }
-
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _MatchClass struct {
 // An interface definition for the [Match] class.
 type IMatch interface {
 	objectivec.IObject
-	VoiceChatWithName(name string) unsafe.Pointer
+	VoiceChatWithName(name appkit.string) VoiceChat
 }
 
 // A peer-to-peer network between a group of players that sign into Game Center.
@@ -84,8 +85,8 @@ func NewMatch() Match {
 // Joins the local player to a voice channel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatch/voiceChat(withName:)
-func (m_ Match) VoiceChatWithName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("voiceChatWithName:"), objc.String(name))
+func (m_ Match) VoiceChatWithName(name appkit.string) VoiceChat {
+	rv := objc.Send[VoiceChat](m_.ID, objc.Sel("voiceChatWithName:"), name)
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (m_ Match) SetExpectedPlayerCount(value int) {
 // The player identifiers for remote players in the match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
-func (m_ Match) PlayerIDs() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("playerIDs"))
+func (m_ Match) PlayerIDs() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("playerIDs"))
 	return rv
 }
 
@@ -139,15 +140,15 @@ func (m_ Match) PlayerIDs() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerids
-func (m_ Match) SetPlayerIDs(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerIDs:"), objc.String(value))
+func (m_ Match) SetPlayerIDs(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerIDs:"), value)
 }
 
 // The properties for other players that matchmaking rules uses to find players, with some additions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
-func (m_ Match) PlayerProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("playerProperties"))
+func (m_ Match) PlayerProperties() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("playerProperties"))
 	return rv
 }
 
@@ -157,15 +158,15 @@ func (m_ Match) PlayerProperties() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/playerproperties
-func (m_ Match) SetPlayerProperties(value unsafe.Pointer) {
+func (m_ Match) SetPlayerProperties(value appkit.string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayerProperties:"), value)
 }
 
 // The players that join the match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
-func (m_ Match) Players() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("players"))
+func (m_ Match) Players() GKPlayer {
+	rv := objc.Send[GKPlayer](m_.ID, objc.Sel("players"))
 	return rv
 }
 
@@ -175,15 +176,15 @@ func (m_ Match) Players() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/players
-func (m_ Match) SetPlayers(value unsafe.Pointer) {
+func (m_ Match) SetPlayers(value IGKPlayer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlayers:"), value)
 }
 
 // The local player’s properties that matchmaking rules used to find the players with some additions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
-func (m_ Match) Properties() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("properties"))
+func (m_ Match) Properties() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -193,8 +194,8 @@ func (m_ Match) Properties() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatch/properties
-func (m_ Match) SetProperties(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), objc.String(value))
+func (m_ Match) SetProperties(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProperties:"), value)
 }
 
 

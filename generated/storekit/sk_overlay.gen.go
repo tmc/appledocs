@@ -85,7 +85,7 @@ func NewOverlay() Overlay {
 // Creates an overlay you use to recommend another app on the App Store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/init(configuration:)
-func NewOverlayWithConfiguration(configuration unsafe.Pointer) Overlay {
+func NewOverlayWithConfiguration(configuration ISKOverlayConfiguration) Overlay {
 	instance := getOverlayClass().Alloc()
 	rv := objc.Send[Overlay](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -96,8 +96,8 @@ func NewOverlayWithConfiguration(configuration unsafe.Pointer) Overlay {
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/configuration-swift.property
-func (o_ Overlay) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("configuration"))
+func (o_ Overlay) Configuration() SKOverlayConfiguration {
+	rv := objc.Send[SKOverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
 }
 

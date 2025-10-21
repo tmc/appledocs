@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewPersonNameComponents() PersonNameComponents {
 // Name bestowed upon an individual to denote membership in a group or family. .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/familyName
-func (p_ PersonNameComponents) FamilyName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("familyName"))
+func (p_ PersonNameComponents) FamilyName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("familyName"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (p_ PersonNameComponents) FamilyName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/familyName
-func (p_ PersonNameComponents) SetFamilyName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFamilyName:"), objc.String(value))
+func (p_ PersonNameComponents) SetFamilyName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFamilyName:"), value)
 }
 
 // Name bestowed upon an individual to differentiate them from other members of a group that share a family name .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
-func (p_ PersonNameComponents) GivenName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("givenName"))
+func (p_ PersonNameComponents) GivenName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("givenName"))
 	return rv
 }
 
@@ -112,15 +113,15 @@ func (p_ PersonNameComponents) GivenName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/givenName
-func (p_ PersonNameComponents) SetGivenName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGivenName:"), objc.String(value))
+func (p_ PersonNameComponents) SetGivenName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGivenName:"), value)
 }
 
 // Secondary name bestowed upon an individual to differentiate them from others that have the same given name .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
-func (p_ PersonNameComponents) MiddleName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("middleName"))
+func (p_ PersonNameComponents) MiddleName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("middleName"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (p_ PersonNameComponents) MiddleName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/middleName
-func (p_ PersonNameComponents) SetMiddleName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMiddleName:"), objc.String(value))
+func (p_ PersonNameComponents) SetMiddleName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMiddleName:"), value)
 }
 
 // The portion of a name’s full form of address that precedes the name itself .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
-func (p_ PersonNameComponents) NamePrefix() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("namePrefix"))
+func (p_ PersonNameComponents) NamePrefix() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("namePrefix"))
 	return rv
 }
 
@@ -148,15 +149,15 @@ func (p_ PersonNameComponents) NamePrefix() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/namePrefix
-func (p_ PersonNameComponents) SetNamePrefix(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNamePrefix:"), objc.String(value))
+func (p_ PersonNameComponents) SetNamePrefix(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNamePrefix:"), value)
 }
 
 // The portion of a name’s full form of address that follows the name itself .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
-func (p_ PersonNameComponents) NameSuffix() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("nameSuffix"))
+func (p_ PersonNameComponents) NameSuffix() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("nameSuffix"))
 	return rv
 }
 
@@ -166,15 +167,15 @@ func (p_ PersonNameComponents) NameSuffix() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nameSuffix
-func (p_ PersonNameComponents) SetNameSuffix(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNameSuffix:"), objc.String(value))
+func (p_ PersonNameComponents) SetNameSuffix(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNameSuffix:"), value)
 }
 
 // Name substituted for the purposes of familiarity .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
-func (p_ PersonNameComponents) Nickname() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("nickname"))
+func (p_ PersonNameComponents) Nickname() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("nickname"))
 	return rv
 }
 
@@ -184,15 +185,15 @@ func (p_ PersonNameComponents) Nickname() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/nickname
-func (p_ PersonNameComponents) SetNickname(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNickname:"), objc.String(value))
+func (p_ PersonNameComponents) SetNickname(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNickname:"), value)
 }
 
 // The phonetic representation name components of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/phoneticRepresentation
-func (p_ PersonNameComponents) PhoneticRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("phoneticRepresentation"))
+func (p_ PersonNameComponents) PhoneticRepresentation() NSPersonNameComponents {
+	rv := objc.Send[NSPersonNameComponents](p_.ID, objc.Sel("phoneticRepresentation"))
 	return rv
 }
 
@@ -202,7 +203,7 @@ func (p_ PersonNameComponents) PhoneticRepresentation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPersonNameComponents/phoneticRepresentation
-func (p_ PersonNameComponents) SetPhoneticRepresentation(value unsafe.Pointer) {
+func (p_ PersonNameComponents) SetPhoneticRepresentation(value IPersonNameComponents) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPhoneticRepresentation:"), value)
 }
 

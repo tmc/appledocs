@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewURLQueryItem() URLQueryItem {
 // The value for the query item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
-func (u_ URLQueryItem) Value() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("value"))
+func (u_ URLQueryItem) Value() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("value"))
 	return rv
 }
 
 // The query URL component as an array of name/value pairs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-func (u_ URLQueryItem) QueryItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("queryItems"))
+func (u_ URLQueryItem) QueryItems() URLQueryItem {
+	rv := objc.Send[URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (u_ URLQueryItem) QueryItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlcomponents/queryitems
-func (u_ URLQueryItem) SetQueryItems(value unsafe.Pointer) {
+func (u_ URLQueryItem) SetQueryItems(value IURLQueryItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setQueryItems:"), value)
 }
 
 // The name of the query item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-func (u_ URLQueryItem) Name() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("name"))
+func (u_ URLQueryItem) Name() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (u_ URLQueryItem) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlqueryitem/name
-func (u_ URLQueryItem) SetName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), objc.String(value))
+func (u_ URLQueryItem) SetName(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setName:"), value)
 }
 
 

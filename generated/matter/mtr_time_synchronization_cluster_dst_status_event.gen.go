@@ -87,7 +87,7 @@ func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) DstOffsetActive() foundati
 // SetDstOffsetActive sets the value of the dstOffsetActive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterDSTStatusEvent/dstOffsetActive
-func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) SetDstOffsetActive(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterDSTStatusEvent) SetDstOffsetActive(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffsetActive:"), value)
 }
 

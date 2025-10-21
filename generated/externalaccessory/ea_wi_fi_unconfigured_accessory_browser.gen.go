@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _EAWiFiUnconfiguredAccessoryBrowserClass struct {
 // An interface definition for the [EAWiFiUnconfiguredAccessoryBrowser] class.
 type IEAWiFiUnconfiguredAccessoryBrowser interface {
 	objectivec.IObject
-	ConfigureAccessoryWithConfigurationUIOnViewController(accessory unsafe.Pointer, viewController unsafe.Pointer)
-	StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate unsafe.Pointer)
+	ConfigureAccessoryWithConfigurationUIOnViewController(accessory IEAWiFiUnconfiguredAccessory, viewController appkit.IViewController)
+	StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.IPredicate)
 	StopSearchingForUnconfiguredAccessories()
 }
 
@@ -88,7 +90,7 @@ func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser 
 // Creates a browser object that scans for unconfigured accessories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/init(delegate:queue:)
-func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objc.ID, queue unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
+func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
 	instance := getEAWiFiUnconfiguredAccessoryBrowserClass().Alloc()
 	rv := objc.Send[EAWiFiUnconfiguredAccessoryBrowser](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
 	rv.Autorelease()
@@ -99,14 +101,14 @@ func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate objc.ID, qu
 // Begins the configuration process for the specified accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/configureAccessory(_:withConfigurationUIOn:)
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) ConfigureAccessoryWithConfigurationUIOnViewController(accessory unsafe.Pointer, viewController unsafe.Pointer) {
+func (e_ EAWiFiUnconfiguredAccessoryBrowser) ConfigureAccessoryWithConfigurationUIOnViewController(accessory IEAWiFiUnconfiguredAccessory, viewController appkit.IViewController) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("configureAccessory:withConfigurationUIOnViewController:"), accessory, viewController)
 }
 
 // Starts the search for unconfigured accessories that match the specified predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/startSearchingForUnconfiguredAccessories(matching:)
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate unsafe.Pointer) {
+func (e_ EAWiFiUnconfiguredAccessoryBrowser) StartSearchingForUnconfiguredAccessoriesMatchingPredicate(predicate foundation.IPredicate) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("startSearchingForUnconfiguredAccessoriesMatchingPredicate:"), predicate)
 }
 

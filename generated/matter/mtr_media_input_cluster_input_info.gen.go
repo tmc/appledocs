@@ -79,8 +79,8 @@ func NewMTRMediaInputClusterInputInfo() MTRMediaInputClusterInputInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfo/descriptionstring
-func (m_ MTRMediaInputClusterInputInfo) DescriptionString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("descriptionString"))
+func (m_ MTRMediaInputClusterInputInfo) DescriptionString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("descriptionString"))
 	return rv
 }
 
@@ -88,8 +88,8 @@ func (m_ MTRMediaInputClusterInputInfo) DescriptionString() string {
 // SetDescriptionString sets the value of the descriptionString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfo/descriptionstring
-func (m_ MTRMediaInputClusterInputInfo) SetDescriptionString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionString:"), objc.String(value))
+func (m_ MTRMediaInputClusterInputInfo) SetDescriptionString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionString:"), value)
 }
 
 //
@@ -103,7 +103,7 @@ func (m_ MTRMediaInputClusterInputInfo) Index() foundation.Number {
 // SetIndex sets the value of the index property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfo/index
-func (m_ MTRMediaInputClusterInputInfo) SetIndex(value foundation.Number) {
+func (m_ MTRMediaInputClusterInputInfo) SetIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
 
@@ -118,14 +118,14 @@ func (m_ MTRMediaInputClusterInputInfo) InputType() foundation.Number {
 // SetInputType sets the value of the inputType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfo/inputtype
-func (m_ MTRMediaInputClusterInputInfo) SetInputType(value foundation.Number) {
+func (m_ MTRMediaInputClusterInputInfo) SetInputType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInputType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfo/name
-func (m_ MTRMediaInputClusterInputInfo) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRMediaInputClusterInputInfo) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -133,8 +133,8 @@ func (m_ MTRMediaInputClusterInputInfo) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfo/name
-func (m_ MTRMediaInputClusterInputInfo) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRMediaInputClusterInputInfo) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

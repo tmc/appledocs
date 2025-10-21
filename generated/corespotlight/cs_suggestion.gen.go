@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _CSSuggestionClass struct {
 // An interface definition for the [CSSuggestion] class.
 type ICSSuggestion interface {
 	objectivec.IObject
-	Compare(other unsafe.Pointer) unsafe.Pointer
-	CompareByRank(other unsafe.Pointer) unsafe.Pointer
+	Compare(other ICSSuggestion) unsafe.Pointer
+	CompareByRank(other ICSSuggestion) unsafe.Pointer
 }
 
 // The kind of suggestion to use in a query.
@@ -85,30 +86,30 @@ func NewCSSuggestion() CSSuggestion {
 // Compares the suggestion with a second specified suggestion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/compare(_:)
-func (c_ CSSuggestion) Compare(other unsafe.Pointer) unsafe.Pointer {
+func (c_ CSSuggestion) Compare(other ICSSuggestion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compare:"), other)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/compare(byRank:)
-func (c_ CSSuggestion) CompareByRank(other unsafe.Pointer) unsafe.Pointer {
+func (c_ CSSuggestion) CompareByRank(other ICSSuggestion) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("compareByRank:"), other)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/localizedAttributedSuggestion-oq3b
-func (c_ CSSuggestion) LocalizedAttributedSuggestion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedAttributedSuggestion"))
+func (c_ CSSuggestion) LocalizedAttributedSuggestion() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](c_.ID, objc.Sel("localizedAttributedSuggestion"))
 	return rv
 }
 
 // The type of suggestion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSSuggestion/suggestionKind-swift.property
-func (c_ CSSuggestion) SuggestionKind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("suggestionKind"))
+func (c_ CSSuggestion) SuggestionKind() CSSuggestionKind {
+	rv := objc.Send[CSSuggestionKind](c_.ID, objc.Sel("suggestionKind"))
 	return rv
 }
 

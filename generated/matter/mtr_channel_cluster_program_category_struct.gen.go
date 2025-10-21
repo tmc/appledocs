@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewMTRChannelClusterProgramCategoryStruct() MTRChannelClusterProgramCategor
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/category
-func (m_ MTRChannelClusterProgramCategoryStruct) Category() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("category"))
+func (m_ MTRChannelClusterProgramCategoryStruct) Category() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (m_ MTRChannelClusterProgramCategoryStruct) Category() string {
 // SetCategory sets the value of the category property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/category
-func (m_ MTRChannelClusterProgramCategoryStruct) SetCategory(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCategory:"), objc.String(value))
+func (m_ MTRChannelClusterProgramCategoryStruct) SetCategory(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCategory:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/subCategory
-func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subCategory"))
+func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subCategory"))
 	return rv
 }
 
@@ -101,8 +102,8 @@ func (m_ MTRChannelClusterProgramCategoryStruct) SubCategory() string {
 // SetSubCategory sets the value of the subCategory property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterProgramCategoryStruct/subCategory
-func (m_ MTRChannelClusterProgramCategoryStruct) SetSubCategory(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubCategory:"), objc.String(value))
+func (m_ MTRChannelClusterProgramCategoryStruct) SetSubCategory(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubCategory:"), value)
 }
 
 

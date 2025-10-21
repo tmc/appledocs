@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _GCPhysicalInputElementCollectionClass struct {
 // An interface definition for the [GCPhysicalInputElementCollection] class.
 type IGCPhysicalInputElementCollection interface {
 	objectivec.IObject
-	ElementForAlias(alias unsafe.Pointer) unsafe.Pointer
+	ElementForAlias(alias coreml.IKey) unsafe.Pointer
 }
 
 // A collection of physical input elements.
@@ -82,7 +83,7 @@ func NewGCPhysicalInputElementCollection() GCPhysicalInputElementCollection {
 // Returns the element in the collection that uses the specified alias.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCPhysicalInputElementCollection-c.class/elementForAlias:
-func (g_ GCPhysicalInputElementCollection) ElementForAlias(alias unsafe.Pointer) unsafe.Pointer {
+func (g_ GCPhysicalInputElementCollection) ElementForAlias(alias coreml.IKey) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("elementForAlias:"), alias)
 	return rv
 }

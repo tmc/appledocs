@@ -78,8 +78,8 @@ func NewINEditMessageIntent() INEditMessageIntent {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/editedcontent
-func (i_ INEditMessageIntent) EditedContent() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("editedContent"))
+func (i_ INEditMessageIntent) EditedContent() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("editedContent"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (i_ INEditMessageIntent) EditedContent() string {
 // SetEditedContent sets the value of the editedContent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/editedcontent
-func (i_ INEditMessageIntent) SetEditedContent(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setEditedContent:"), objc.String(value))
+func (i_ INEditMessageIntent) SetEditedContent(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setEditedContent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/messageidentifier
-func (i_ INEditMessageIntent) MessageIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("messageIdentifier"))
+func (i_ INEditMessageIntent) MessageIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("messageIdentifier"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (i_ INEditMessageIntent) MessageIdentifier() string {
 // SetMessageIdentifier sets the value of the messageIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/messageidentifier
-func (i_ INEditMessageIntent) SetMessageIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMessageIdentifier:"), objc.String(value))
+func (i_ INEditMessageIntent) SetMessageIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMessageIdentifier:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewCNRenderingSessionAttributes() CNRenderingSessionAttributes {
 // Loads the rendering session attributes from an asset asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSessionAttributes/loadFromAsset:completionHandler:
-func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (cc _CNRenderingSessionAttributesClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
 

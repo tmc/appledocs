@@ -91,8 +91,8 @@ func (a_ AudioSessionRouteDescription) Inputs() []AudioSessionPortDescription {
 // A description of the current audio route’s input and output ports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-func (a_ AudioSessionRouteDescription) CurrentRoute() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentRoute"))
+func (a_ AudioSessionRouteDescription) CurrentRoute() AVAudioSessionRouteDescription {
+	rv := objc.Send[AVAudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
 	return rv
 }
 
@@ -102,15 +102,15 @@ func (a_ AudioSessionRouteDescription) CurrentRoute() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosession/currentroute
-func (a_ AudioSessionRouteDescription) SetCurrentRoute(value unsafe.Pointer) {
+func (a_ AudioSessionRouteDescription) SetCurrentRoute(value IAVAudioSessionRouteDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentRoute:"), value)
 }
 
 // An array of audio output port descriptions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription/outputs
-func (a_ AudioSessionRouteDescription) Outputs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputs"))
+func (a_ AudioSessionRouteDescription) Outputs() AVAudioSessionPortDescription {
+	rv := objc.Send[AVAudioSessionPortDescription](a_.ID, objc.Sel("outputs"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (a_ AudioSessionRouteDescription) Outputs() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiosessionroutedescription/outputs
-func (a_ AudioSessionRouteDescription) SetOutputs(value unsafe.Pointer) {
+func (a_ AudioSessionRouteDescription) SetOutputs(value IAVAudioSessionPortDescription) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputs:"), value)
 }
 

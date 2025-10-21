@@ -82,8 +82,8 @@ func NewINFocusStatusCenter() INFocusStatusCenter {
 // The systemwide object that holds the user’s focus status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/default
-func (ic _INFocusStatusCenterClass) DefaultCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("defaultCenter"))
+func (ic _INFocusStatusCenterClass) DefaultCenter() INFocusStatusCenter {
+	rv := objc.Send[INFocusStatusCenter](objc.ID(ic.class), objc.Sel("defaultCenter"))
 	return rv
 }
 // Asks the system for access to the user’s focus status.
@@ -96,24 +96,24 @@ func (i_ INFocusStatusCenter) RequestAuthorizationWithCompletionHandler(completi
 // Returns your app’s current ability to access the user’s focus status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/authorizationStatus
-func (i_ INFocusStatusCenter) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("authorizationStatus"))
+func (i_ INFocusStatusCenter) AuthorizationStatus() INFocusStatusAuthorizationStatus {
+	rv := objc.Send[INFocusStatusAuthorizationStatus](i_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
 // The systemwide object that holds the user’s focus status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/default
-func (i_ INFocusStatusCenter) DefaultCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("defaultCenter"))
+func (i_ INFocusStatusCenter) DefaultCenter() INFocusStatusCenter {
+	rv := objc.Send[INFocusStatusCenter](i_.ID, objc.Sel("defaultCenter"))
 	return rv
 }
 
 // The user’s ability to receive notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INFocusStatusCenter/focusStatus
-func (i_ INFocusStatusCenter) FocusStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("focusStatus"))
+func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
+	rv := objc.Send[INFocusStatus](i_.ID, objc.Sel("focusStatus"))
 	return rv
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRKeypadInputClusterSendKeyParams) KeyCode() foundation.Number {
 // SetKeyCode sets the value of the keyCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/keycode
-func (m_ MTRKeypadInputClusterSendKeyParams) SetKeyCode(value foundation.Number) {
+func (m_ MTRKeypadInputClusterSendKeyParams) SetKeyCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRKeypadInputClusterSendKeyParams) ServerSideProcessingTimeout() found
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/serversideprocessingtimeout
-func (m_ MTRKeypadInputClusterSendKeyParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRKeypadInputClusterSendKeyParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRKeypadInputClusterSendKeyParams) TimedInvokeTimeoutMs() foundation.N
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/timedinvoketimeoutms
-func (m_ MTRKeypadInputClusterSendKeyParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRKeypadInputClusterSendKeyParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

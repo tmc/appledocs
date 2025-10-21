@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewTremorResult() TremorResult {
 // The result’s end time and date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/endDate
-func (t_ TremorResult) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("endDate"))
+func (t_ TremorResult) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -139,8 +140,8 @@ func (t_ TremorResult) PercentUnknown() unsafe.Pointer {
 // The result’s start time and date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMTremorResult/startDate
-func (t_ TremorResult) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("startDate"))
+func (t_ TremorResult) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("startDate"))
 	return rv
 }
 

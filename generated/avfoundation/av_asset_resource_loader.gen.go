@@ -155,8 +155,8 @@ func (a_ AssetResourceLoader) SetPreloadsEligibleContentKeys(value bool) {
 // The resource loader for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-func (a_ AssetResourceLoader) ResourceLoader() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("resourceLoader"))
+func (a_ AssetResourceLoader) ResourceLoader() AVAssetResourceLoader {
+	rv := objc.Send[AVAssetResourceLoader](a_.ID, objc.Sel("resourceLoader"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (a_ AssetResourceLoader) ResourceLoader() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-func (a_ AssetResourceLoader) SetResourceLoader(value unsafe.Pointer) {
+func (a_ AssetResourceLoader) SetResourceLoader(value IAVAssetResourceLoader) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setResourceLoader:"), value)
 }
 

@@ -101,8 +101,8 @@ func (f_ FragmentedMovieMinder) SetMindingInterval(value unsafe.Pointer) {
 // An array containing the fragmented movie objects being minded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) Movies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("movies"))
+func (f_ FragmentedMovieMinder) Movies() AVFragmentedMovie {
+	rv := objc.Send[AVFragmentedMovie](f_.ID, objc.Sel("movies"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (f_ FragmentedMovieMinder) Movies() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder/movies
-func (f_ FragmentedMovieMinder) SetMovies(value unsafe.Pointer) {
+func (f_ FragmentedMovieMinder) SetMovies(value IAVFragmentedMovie) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setMovies:"), value)
 }
 

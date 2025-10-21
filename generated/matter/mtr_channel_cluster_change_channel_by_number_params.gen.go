@@ -87,7 +87,7 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() foundation.
 // SetMajorNumber sets the value of the majorNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value foundation.Number) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) MinorNumber() foundation.
 // SetMinorNumber sets the value of the minorNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/minornumber
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMinorNumber(value foundation.Number) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMinorNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) ServerSideProcessingTimeo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/serversideprocessingtimeout
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
-func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

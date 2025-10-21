@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INShareFocusStatusIntentResponse] class.
@@ -84,7 +85,7 @@ func NewINShareFocusStatusIntentResponse() INShareFocusStatusIntentResponse {
 // Creates a response with the specified response code and user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntentResponse/init(code:userActivity:)
-func NewINShareFocusStatusIntentResponseWithCodeUserActivity(code unsafe.Pointer, userActivity unsafe.Pointer) INShareFocusStatusIntentResponse {
+func NewINShareFocusStatusIntentResponseWithCodeUserActivity(code INShareFocusStatusIntentResponseCode, userActivity foundation.IUserActivity) INShareFocusStatusIntentResponse {
 	instance := getINShareFocusStatusIntentResponseClass().Alloc()
 	rv := objc.Send[INShareFocusStatusIntentResponse](instance.ID, objc.Sel("initWithCode:userActivity:"), code, userActivity)
 	rv.Autorelease()
@@ -95,8 +96,8 @@ func NewINShareFocusStatusIntentResponseWithCodeUserActivity(code unsafe.Pointer
 // Your app’s ability to handle an intent that shares the user’s focus status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShareFocusStatusIntentResponse/code
-func (i_ INShareFocusStatusIntentResponse) Code() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("code"))
+func (i_ INShareFocusStatusIntentResponse) Code() INShareFocusStatusIntentResponseCode {
+	rv := objc.Send[INShareFocusStatusIntentResponseCode](i_.ID, objc.Sel("code"))
 	return rv
 }
 

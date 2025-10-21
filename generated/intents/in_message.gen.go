@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -83,9 +84,9 @@ func NewINMessage() INMessage {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/init(identifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:reaction:)
-func NewINMessageWithIdentifierConversationIdentifierContentDateSentSenderRecipientsGroupNameServiceNameMessageTypeReferencedMessageReaction(identifier string, conversationIdentifier string, content string, dateSent unsafe.Pointer, sender unsafe.Pointer, recipients unsafe.Pointer, groupName unsafe.Pointer, serviceName string, messageType unsafe.Pointer, referencedMessage unsafe.Pointer, reaction unsafe.Pointer) INMessage {
+func NewINMessageWithIdentifierConversationIdentifierContentDateSentSenderRecipientsGroupNameServiceNameMessageTypeReferencedMessageReaction(identifier appkit.string, conversationIdentifier appkit.string, content appkit.string, dateSent foundation.IDate, sender INPerson, recipients []INPerson, groupName INSpeakableString, serviceName appkit.string, messageType unsafe.Pointer, referencedMessage INMessage, reaction unsafe.Pointer) INMessage {
 	instance := getINMessageClass().Alloc()
-	rv := objc.Send[INMessage](instance.ID, objc.Sel("initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:reaction:"), objc.String(identifier), objc.String(conversationIdentifier), objc.String(content), dateSent, sender, recipients, groupName, objc.String(serviceName), messageType, referencedMessage, reaction)
+	rv := objc.Send[INMessage](instance.ID, objc.Sel("initWithIdentifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:reaction:"), identifier, conversationIdentifier, content, dateSent, sender, recipients, groupName, serviceName, messageType, referencedMessage, reaction)
 	rv.Autorelease()
 	return rv
 }
@@ -94,8 +95,8 @@ func NewINMessageWithIdentifierConversationIdentifierContentDateSentSenderRecipi
 // The date and time the app sent the message to each recipient.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/dateSent
-func (i_ INMessage) DateSent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateSent"))
+func (i_ INMessage) DateSent() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("dateSent"))
 	return rv
 }
 
@@ -151,8 +152,8 @@ func (i_ INMessage) SetAudioMessageFile(value unsafe.Pointer) {
 // The text that Siri recites to the message recipient.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/content
-func (i_ INMessage) Content() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("content"))
+func (i_ INMessage) Content() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -162,15 +163,15 @@ func (i_ INMessage) Content() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/content
-func (i_ INMessage) SetContent(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
+func (i_ INMessage) SetContent(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
 }
 
 // The identifier of the conversation that contains this message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/conversationidentifier
-func (i_ INMessage) ConversationIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("conversationIdentifier"))
+func (i_ INMessage) ConversationIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("conversationIdentifier"))
 	return rv
 }
 
@@ -180,15 +181,15 @@ func (i_ INMessage) ConversationIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/conversationidentifier
-func (i_ INMessage) SetConversationIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), objc.String(value))
+func (i_ INMessage) SetConversationIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), value)
 }
 
 // The name of the grouped conversation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/groupname
-func (i_ INMessage) GroupName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("groupName"))
+func (i_ INMessage) GroupName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("groupName"))
 	return rv
 }
 
@@ -198,15 +199,15 @@ func (i_ INMessage) GroupName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/groupname
-func (i_ INMessage) SetGroupName(value unsafe.Pointer) {
+func (i_ INMessage) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
 
 // The message’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/identifier
-func (i_ INMessage) Identifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+func (i_ INMessage) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -216,8 +217,8 @@ func (i_ INMessage) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/identifier
-func (i_ INMessage) SetIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (i_ INMessage) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 //
@@ -246,7 +247,7 @@ func (i_ INMessage) NumberOfAttachments() foundation.Number {
 // SetNumberOfAttachments sets the value of the numberOfAttachments property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
-func (i_ INMessage) SetNumberOfAttachments(value foundation.Number) {
+func (i_ INMessage) SetNumberOfAttachments(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAttachments:"), value)
 }
 
@@ -268,8 +269,8 @@ func (i_ INMessage) SetReaction(value unsafe.Pointer) {
 // The person who sent the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sender
-func (i_ INMessage) Sender() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sender"))
+func (i_ INMessage) Sender() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("sender"))
 	return rv
 }
 
@@ -279,15 +280,15 @@ func (i_ INMessage) Sender() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sender
-func (i_ INMessage) SetSender(value unsafe.Pointer) {
+func (i_ INMessage) SetSender(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }
 
 // The name of the service that delivers the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/servicename
-func (i_ INMessage) ServiceName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("serviceName"))
+func (i_ INMessage) ServiceName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("serviceName"))
 	return rv
 }
 
@@ -297,8 +298,8 @@ func (i_ INMessage) ServiceName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/servicename
-func (i_ INMessage) SetServiceName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), objc.String(value))
+func (i_ INMessage) SetServiceName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), value)
 }
 
 //

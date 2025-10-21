@@ -84,8 +84,8 @@ func NewDerivedAttributeDescription() DerivedAttributeDescription {
 // An expression for generating derived data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-func (d_ DerivedAttributeDescription) DerivationExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("derivationExpression"))
+func (d_ DerivedAttributeDescription) DerivationExpression() Expression {
+	rv := objc.Send[Expression](d_.ID, objc.Sel("derivationExpression"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (d_ DerivedAttributeDescription) DerivationExpression() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSDerivedAttributeDescription/derivationExpression
-func (d_ DerivedAttributeDescription) SetDerivationExpression(value unsafe.Pointer) {
+func (d_ DerivedAttributeDescription) SetDerivationExpression(value IExpression) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDerivationExpression:"), value)
 }
 

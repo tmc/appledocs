@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewResidencySetDescriptor() ResidencySetDescriptor {
 // An optional name that can help you identify a residency set you create with the descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
-func (r_ ResidencySetDescriptor) Label() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("label"))
+func (r_ ResidencySetDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -94,8 +95,8 @@ func (r_ ResidencySetDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
-func (r_ ResidencySetDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (r_ ResidencySetDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The number of allocations a new residency set can store without reallocating memory.

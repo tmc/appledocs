@@ -30,8 +30,8 @@ type _PHAssetCreationRequestClass struct {
 // An interface definition for the [PHAssetCreationRequest] class.
 type IPHAssetCreationRequest interface {
 	IPHAssetChangeRequest
-	AddResourceWithTypeDataOptions(type_ unsafe.Pointer, data unsafe.Pointer, options unsafe.Pointer)
-	AddResourceWithTypeFileURLOptions(type_ unsafe.Pointer, fileURL foundation.URL, options unsafe.Pointer)
+	AddResourceWithTypeDataOptions(type_ PHAssetResourceType, data foundation.IData, options PHAssetResourceCreationOptions)
+	AddResourceWithTypeFileURLOptions(type_ PHAssetResourceType, fileURL foundation.IURL, options PHAssetResourceCreationOptions)
 }
 
 // A request to create a new Photos asset from underlying data resources, for use in a photo library change block.
@@ -95,7 +95,7 @@ func (pc _PHAssetCreationRequestClass) CreationRequestForAsset() unsafe.Pointer 
 // Returns a Boolean value indicating whether Photos supports creating an asset with the specified combination of resource types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCreationRequest/supportsAssetResourceTypes(_:)
-func (pc _PHAssetCreationRequestClass) SupportsAssetResourceTypes(types unsafe.Pointer) bool {
+func (pc _PHAssetCreationRequestClass) SupportsAssetResourceTypes(types []foundation.INumber) bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("supportsAssetResourceTypes:"), types)
 	return rv
 }
@@ -103,14 +103,14 @@ func (pc _PHAssetCreationRequestClass) SupportsAssetResourceTypes(types unsafe.P
 // Adds a data resource to the asset being created, using the specified data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCreationRequest/addResource(with:data:options:)
-func (p_ PHAssetCreationRequest) AddResourceWithTypeDataOptions(type_ unsafe.Pointer, data unsafe.Pointer, options unsafe.Pointer) {
+func (p_ PHAssetCreationRequest) AddResourceWithTypeDataOptions(type_ PHAssetResourceType, data foundation.IData, options PHAssetResourceCreationOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addResourceWithType:data:options:"), type_, data, options)
 }
 
 // Adds a data resource to the asset being created, using the file at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetCreationRequest/addResource(with:fileURL:options:)
-func (p_ PHAssetCreationRequest) AddResourceWithTypeFileURLOptions(type_ unsafe.Pointer, fileURL foundation.URL, options unsafe.Pointer) {
+func (p_ PHAssetCreationRequest) AddResourceWithTypeFileURLOptions(type_ PHAssetResourceType, fileURL foundation.IURL, options PHAssetResourceCreationOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addResourceWithType:fileURL:options:"), type_, fileURL, options)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) Endpoint() founda
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/endpoint
-func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) SetEndpoint(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) FabricIndex() fou
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/fabricindex
-func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) SetFabricIndex(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) ProviderNodeID() 
 // SetProviderNodeID sets the value of the providerNodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterproviderlocation-76vsq/providernodeid
-func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) SetProviderNodeID(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterProviderLocation) SetProviderNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProviderNodeID:"), value)
 }
 

@@ -91,8 +91,8 @@ func (g_ GCDeviceBattery) BatteryLevel() unsafe.Pointer {
 // The state of a device’s battery.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCDeviceBattery/batteryState
-func (g_ GCDeviceBattery) BatteryState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("batteryState"))
+func (g_ GCDeviceBattery) BatteryState() GCDeviceBatteryState {
+	rv := objc.Send[GCDeviceBatteryState](g_.ID, objc.Sel("batteryState"))
 	return rv
 }
 

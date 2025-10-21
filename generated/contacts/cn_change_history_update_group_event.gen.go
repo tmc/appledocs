@@ -82,8 +82,8 @@ func NewCNChangeHistoryUpdateGroupEvent() CNChangeHistoryUpdateGroupEvent {
 // The group that the user updated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryUpdateGroupEvent/group
-func (c_ CNChangeHistoryUpdateGroupEvent) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CNChangeHistoryUpdateGroupEvent) Group() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 

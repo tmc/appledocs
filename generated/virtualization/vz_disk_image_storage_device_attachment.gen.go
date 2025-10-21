@@ -85,8 +85,8 @@ func NewVZDiskImageStorageDeviceAttachment() VZDiskImageStorageDeviceAttachment 
 // The current cacheing mode for the virtual disk image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/cachingmode
-func (v_ VZDiskImageStorageDeviceAttachment) CachingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("cachingMode"))
+func (v_ VZDiskImageStorageDeviceAttachment) CachingMode() VZDiskImageCachingMode {
+	rv := objc.Send[VZDiskImageCachingMode](v_.ID, objc.Sel("cachingMode"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (v_ VZDiskImageStorageDeviceAttachment) CachingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/cachingmode
-func (v_ VZDiskImageStorageDeviceAttachment) SetCachingMode(value unsafe.Pointer) {
+func (v_ VZDiskImageStorageDeviceAttachment) SetCachingMode(value VZDiskImageCachingMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setCachingMode:"), value)
 }
 
@@ -121,8 +121,8 @@ func (v_ VZDiskImageStorageDeviceAttachment) SetIsReadOnly(value bool) {
 // The mode in which the disk image synchronizes data with the underlying storage device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskImageStorageDeviceAttachment) SynchronizationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("synchronizationMode"))
+func (v_ VZDiskImageStorageDeviceAttachment) SynchronizationMode() VZDiskImageSynchronizationMode {
+	rv := objc.Send[VZDiskImageSynchronizationMode](v_.ID, objc.Sel("synchronizationMode"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (v_ VZDiskImageStorageDeviceAttachment) SynchronizationMode() unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/synchronizationmode
-func (v_ VZDiskImageStorageDeviceAttachment) SetSynchronizationMode(value unsafe.Pointer) {
+func (v_ VZDiskImageStorageDeviceAttachment) SetSynchronizationMode(value VZDiskImageSynchronizationMode) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSynchronizationMode:"), value)
 }
 
@@ -150,7 +150,7 @@ func (v_ VZDiskImageStorageDeviceAttachment) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment/url
-func (v_ VZDiskImageStorageDeviceAttachment) SetUrl(value foundation.URL) {
+func (v_ VZDiskImageStorageDeviceAttachment) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setUrl:"), value)
 }
 

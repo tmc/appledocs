@@ -82,7 +82,7 @@ func NewGraphCreateSparseOpDescriptor() GraphCreateSparseOpDescriptor {
 // Creates a descriptor for a sparse tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/sparseDescriptor(descriptorWithStorageType:dataType:)
-func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(sparseStorageType unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(sparseStorageType GraphSparseStorageType, dataType unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithStorageType:dataType:"), sparseStorageType, dataType)
 	return rv
 }
@@ -90,8 +90,8 @@ func (gc _GraphCreateSparseOpDescriptorClass) DescriptorWithStorageTypeDataType(
 // Defines the storage format of the sparse tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/sparseStorageType
-func (g_ GraphCreateSparseOpDescriptor) SparseStorageType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("sparseStorageType"))
+func (g_ GraphCreateSparseOpDescriptor) SparseStorageType() GraphSparseStorageType {
+	rv := objc.Send[GraphSparseStorageType](g_.ID, objc.Sel("sparseStorageType"))
 	return rv
 }
 
@@ -101,7 +101,7 @@ func (g_ GraphCreateSparseOpDescriptor) SparseStorageType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCreateSparseOpDescriptor/sparseStorageType
-func (g_ GraphCreateSparseOpDescriptor) SetSparseStorageType(value unsafe.Pointer) {
+func (g_ GraphCreateSparseOpDescriptor) SetSparseStorageType(value GraphSparseStorageType) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSparseStorageType:"), value)
 }
 

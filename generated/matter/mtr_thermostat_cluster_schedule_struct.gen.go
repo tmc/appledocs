@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,14 +88,14 @@ func (m_ MTRThermostatClusterScheduleStruct) BuiltIn() foundation.Number {
 // SetBuiltIn sets the value of the builtIn property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/builtIn
-func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleStruct) SetBuiltIn(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBuiltIn:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
-func (m_ MTRThermostatClusterScheduleStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRThermostatClusterScheduleStruct) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,14 +103,14 @@ func (m_ MTRThermostatClusterScheduleStruct) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/name
-func (m_ MTRThermostatClusterScheduleStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRThermostatClusterScheduleStruct) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presetHandle"))
+func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("presetHandle"))
 	return rv
 }
 
@@ -117,14 +118,14 @@ func (m_ MTRThermostatClusterScheduleStruct) PresetHandle() unsafe.Pointer {
 // SetPresetHandle sets the value of the presetHandle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/presetHandle
-func (m_ MTRThermostatClusterScheduleStruct) SetPresetHandle(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleStruct) SetPresetHandle(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetHandle:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/scheduleHandle
-func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("scheduleHandle"))
+func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("scheduleHandle"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (m_ MTRThermostatClusterScheduleStruct) ScheduleHandle() unsafe.Pointer {
 // SetScheduleHandle sets the value of the scheduleHandle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/scheduleHandle
-func (m_ MTRThermostatClusterScheduleStruct) SetScheduleHandle(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleStruct) SetScheduleHandle(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setScheduleHandle:"), value)
 }
 
@@ -147,14 +148,14 @@ func (m_ MTRThermostatClusterScheduleStruct) SystemMode() foundation.Number {
 // SetSystemMode sets the value of the systemMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/systemMode
-func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value foundation.Number) {
+func (m_ MTRThermostatClusterScheduleStruct) SetSystemMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemMode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/transitions
-func (m_ MTRThermostatClusterScheduleStruct) Transitions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transitions"))
+func (m_ MTRThermostatClusterScheduleStruct) Transitions() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("transitions"))
 	return rv
 }
 
@@ -162,7 +163,7 @@ func (m_ MTRThermostatClusterScheduleStruct) Transitions() unsafe.Pointer {
 // SetTransitions sets the value of the transitions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterScheduleStruct/transitions
-func (m_ MTRThermostatClusterScheduleStruct) SetTransitions(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterScheduleStruct) SetTransitions(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitions:"), value)
 }
 

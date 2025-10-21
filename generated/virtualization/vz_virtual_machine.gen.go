@@ -33,11 +33,11 @@ type IVZVirtualMachine interface {
 	objectivec.IObject
 	PauseWithCompletionHandler(completionHandler unsafe.Pointer)
 	RequestStopWithError(error_ unsafe.Pointer) bool
-	RestoreMachineStateFromURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer)
+	RestoreMachineStateFromURLCompletionHandler(saveFileURL foundation.IURL, completionHandler unsafe.Pointer)
 	ResumeWithCompletionHandler(completionHandler unsafe.Pointer)
-	SaveMachineStateToURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer)
+	SaveMachineStateToURLCompletionHandler(saveFileURL foundation.IURL, completionHandler unsafe.Pointer)
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
-	StartWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
+	StartWithOptionsCompletionHandler(options VZVirtualMachineStartOptions, completionHandler unsafe.Pointer)
 	StopWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
@@ -94,7 +94,7 @@ func NewVZVirtualMachine() VZVirtualMachine {
 // Creates the VM and configures it with the specified data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/init(configuration:)
-func NewVZVirtualMachineWithConfiguration(configuration unsafe.Pointer) VZVirtualMachine {
+func NewVZVirtualMachineWithConfiguration(configuration IVZVirtualMachineConfiguration) VZVirtualMachine {
 	instance := getVZVirtualMachineClass().Alloc()
 	rv := objc.Send[VZVirtualMachine](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -106,7 +106,7 @@ func NewVZVirtualMachineWithConfiguration(configuration unsafe.Pointer) VZVirtua
 // Creates and configures the VM with the specified data and dispatch queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/init(configuration:queue:)
-func NewVZVirtualMachineWithConfigurationQueue(configuration unsafe.Pointer, queue unsafe.Pointer) VZVirtualMachine {
+func NewVZVirtualMachineWithConfigurationQueue(configuration IVZVirtualMachineConfiguration, queue unsafe.Pointer) VZVirtualMachine {
 	instance := getVZVirtualMachineClass().Alloc()
 	rv := objc.Send[VZVirtualMachine](instance.ID, objc.Sel("initWithConfiguration:queue:"), configuration, queue)
 	rv.Autorelease()
@@ -139,7 +139,7 @@ func (v_ VZVirtualMachine) RequestStopWithError(error_ unsafe.Pointer) bool {
 // Restores a VM from a previously saved state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/restoreMachineStateFrom(url:completionHandler:)
-func (v_ VZVirtualMachine) RestoreMachineStateFromURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer) {
+func (v_ VZVirtualMachine) RestoreMachineStateFromURLCompletionHandler(saveFileURL foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("restoreMachineStateFromURL:completionHandler:"), saveFileURL, completionHandler)
 }
 
@@ -153,7 +153,7 @@ func (v_ VZVirtualMachine) ResumeWithCompletionHandler(completionHandler unsafe.
 // Saves the state of a VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/saveMachineStateTo(url:completionHandler:)
-func (v_ VZVirtualMachine) SaveMachineStateToURLCompletionHandler(saveFileURL foundation.URL, completionHandler unsafe.Pointer) {
+func (v_ VZVirtualMachine) SaveMachineStateToURLCompletionHandler(saveFileURL foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("saveMachineStateToURL:completionHandler:"), saveFileURL, completionHandler)
 }
 
@@ -167,7 +167,7 @@ func (v_ VZVirtualMachine) StartWithCompletionHandler(completionHandler unsafe.P
 // Starts the VM with the options and a completion handler you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/start(options:completionHandler:)
-func (v_ VZVirtualMachine) StartWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (v_ VZVirtualMachine) StartWithOptionsCompletionHandler(options VZVirtualMachineStartOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("startWithOptions:completionHandler:"), options, completionHandler)
 }
 
@@ -303,8 +303,8 @@ func (v_ VZVirtualMachine) SocketDevices() []VZSocketDevice {
 // The current execution state of the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/state-swift.property
-func (v_ VZVirtualMachine) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("state"))
+func (v_ VZVirtualMachine) State() VZVirtualMachineState {
+	rv := objc.Send[VZVirtualMachineState](v_.ID, objc.Sel("state"))
 	return rv
 }
 

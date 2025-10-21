@@ -88,7 +88,7 @@ func NewAssetWriterInput() AssetWriterInput {
 // Creates an input to append sample buffers of the specified type to the output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput/init(mediaType:outputSettings:)
-func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType unsafe.Pointer, outputSettings unsafe.Pointer) AssetWriterInput {
+func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType MediaType, outputSettings unsafe.Pointer) AssetWriterInput {
 	instance := getAssetWriterInputClass().Alloc()
 	rv := objc.Send[AssetWriterInput](instance.ID, objc.Sel("initWithMediaType:outputSettings:"), mediaType, outputSettings)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewAssetWriterInputWithMediaTypeOutputSettings(mediaType unsafe.Pointer, ou
 // Creates an input that appends sample buffers of the specified type and format hint to the output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriterInput/init(mediaType:outputSettings:sourceFormatHint:)
-func NewAssetWriterInputWithMediaTypeOutputSettingsSourceFormatHint(mediaType unsafe.Pointer, outputSettings unsafe.Pointer, sourceFormatHint unsafe.Pointer) AssetWriterInput {
+func NewAssetWriterInputWithMediaTypeOutputSettingsSourceFormatHint(mediaType MediaType, outputSettings unsafe.Pointer, sourceFormatHint unsafe.Pointer) AssetWriterInput {
 	instance := getAssetWriterInputClass().Alloc()
 	rv := objc.Send[AssetWriterInput](instance.ID, objc.Sel("initWithMediaType:outputSettings:sourceFormatHint:"), mediaType, outputSettings, sourceFormatHint)
 	rv.Autorelease()
@@ -173,8 +173,8 @@ func (a_ AssetWriterInput) SetExpectsMediaDataInRealTime(value bool) {
 // The extended language for the input’s track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/extendedlanguagetag
-func (a_ AssetWriterInput) ExtendedLanguageTag() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
+func (a_ AssetWriterInput) ExtendedLanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -184,8 +184,8 @@ func (a_ AssetWriterInput) ExtendedLanguageTag() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/extendedlanguagetag
-func (a_ AssetWriterInput) SetExtendedLanguageTag(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), objc.String(value))
+func (a_ AssetWriterInput) SetExtendedLanguageTag(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), value)
 }
 
 // A Boolean value that indicates whether the input is ready to accept media data.
@@ -209,8 +209,8 @@ func (a_ AssetWriterInput) SetIsReadyForMoreMediaData(value bool) {
 // The language code of the input’s track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/languagecode
-func (a_ AssetWriterInput) LanguageCode() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
+func (a_ AssetWriterInput) LanguageCode() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
@@ -220,8 +220,8 @@ func (a_ AssetWriterInput) LanguageCode() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/languagecode
-func (a_ AssetWriterInput) SetLanguageCode(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), objc.String(value))
+func (a_ AssetWriterInput) SetLanguageCode(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), value)
 }
 
 // A Boolean value that indicates whether to enable a track in the output for playback and processing.
@@ -281,8 +281,8 @@ func (a_ AssetWriterInput) SetMediaTimeScale(value unsafe.Pointer) {
 // The media type of the samples that the input accepts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatype
-func (a_ AssetWriterInput) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaType"))
+func (a_ AssetWriterInput) MediaType() MediaType {
+	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -292,15 +292,15 @@ func (a_ AssetWriterInput) MediaType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediatype
-func (a_ AssetWriterInput) SetMediaType(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 
 // The track-level metadata to write to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/metadata
-func (a_ AssetWriterInput) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("metadata"))
+func (a_ AssetWriterInput) Metadata() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](a_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -310,7 +310,7 @@ func (a_ AssetWriterInput) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/metadata
-func (a_ AssetWriterInput) SetMetadata(value unsafe.Pointer) {
+func (a_ AssetWriterInput) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
 }
 
@@ -335,8 +335,8 @@ func (a_ AssetWriterInput) SetNaturalSize(value coregraphics.CGSize) {
 // The settings to use for encoding media data you append to the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/outputsettings
-func (a_ AssetWriterInput) OutputSettings() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("outputSettings"))
+func (a_ AssetWriterInput) OutputSettings() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("outputSettings"))
 	return rv
 }
 
@@ -346,8 +346,8 @@ func (a_ AssetWriterInput) OutputSettings() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/outputsettings
-func (a_ AssetWriterInput) SetOutputSettings(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), objc.String(value))
+func (a_ AssetWriterInput) SetOutputSettings(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputSettings:"), value)
 }
 
 // A Boolean value that indicates whether the input attempts to encode the source media data using multiple passes.
@@ -436,7 +436,7 @@ func (a_ AssetWriterInput) SampleReferenceBaseURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriterinput/samplereferencebaseurl
-func (a_ AssetWriterInput) SetSampleReferenceBaseURL(value foundation.URL) {
+func (a_ AssetWriterInput) SetSampleReferenceBaseURL(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSampleReferenceBaseURL:"), value)
 }
 

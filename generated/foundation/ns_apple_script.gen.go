@@ -30,7 +30,7 @@ type _AppleScriptClass struct {
 // An interface definition for the [AppleScript] class.
 type IAppleScript interface {
 	objectivec.IObject
-	ExecuteAppleEventError(event unsafe.Pointer, errorInfo unsafe.Pointer) unsafe.Pointer
+	ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo unsafe.Pointer) AppleEventDescriptor
 }
 
 // An object that provides the ability to load, compile, and execute scripts.
@@ -84,8 +84,8 @@ func NewAppleScript() AppleScript {
 // Executes an Apple event in the context of the receiver, as a means of allowing the application to invoke a handler in the script.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleScript/executeAppleEvent(_:error:)
-func (a_ AppleScript) ExecuteAppleEventError(event unsafe.Pointer, errorInfo unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
+func (a_ AppleScript) ExecuteAppleEventError(event IAppleEventDescriptor, errorInfo unsafe.Pointer) AppleEventDescriptor {
+	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("executeAppleEvent:error:"), event, errorInfo)
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (a_ AppleScript) SetIsCompiled(value bool) {
 // Returns the syntax-highlighted source code of the receiver if the receiver has been compiled and its source code is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
-func (a_ AppleScript) RichTextSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("richTextSource"))
+func (a_ AppleScript) RichTextSource() NSAttributedString {
+	rv := objc.Send[NSAttributedString](a_.ID, objc.Sel("richTextSource"))
 	return rv
 }
 
@@ -121,15 +121,15 @@ func (a_ AppleScript) RichTextSource() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/richtextsource
-func (a_ AppleScript) SetRichTextSource(value unsafe.Pointer) {
+func (a_ AppleScript) SetRichTextSource(value IAttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRichTextSource:"), value)
 }
 
 // The script source for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-func (a_ AppleScript) Source() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("source"))
+func (a_ AppleScript) Source() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("source"))
 	return rv
 }
 
@@ -139,8 +139,8 @@ func (a_ AppleScript) Source() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsapplescript/source
-func (a_ AppleScript) SetSource(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), objc.String(value))
+func (a_ AppleScript) SetSource(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSource:"), value)
 }
 
 

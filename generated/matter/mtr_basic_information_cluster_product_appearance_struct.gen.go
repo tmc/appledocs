@@ -87,7 +87,7 @@ func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() foundation.
 // SetFinish sets the value of the finish property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.Number) {
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() found
 // SetPrimaryColor sets the value of the primaryColor property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
-func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.Number) {
+func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
 }
 

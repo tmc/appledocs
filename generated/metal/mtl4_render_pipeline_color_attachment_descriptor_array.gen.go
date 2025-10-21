@@ -31,8 +31,8 @@ type _MTL4RenderPipelineColorAttachmentDescriptorArrayClass struct {
 type IMTL4RenderPipelineColorAttachmentDescriptorArray interface {
 	objectivec.IObject
 	Reset()
-	SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint)
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(attachment IMTL4RenderPipelineColorAttachmentDescriptor, attachmentIndex uint)
+	ObjectAtIndexedSubscript(attachmentIndex uint) MTL4RenderPipelineColorAttachmentDescriptor
 }
 
 // An array of color attachment descriptions for a render pipeline.
@@ -91,15 +91,15 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptorArray) Reset() {
 // Sets an attachment at an index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptorArray/setObject:atIndexedSubscript:
-func (m_ MTL4RenderPipelineColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment IMTL4RenderPipelineColorAttachmentDescriptor, attachmentIndex uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), attachment, attachmentIndex)
 }
 
 // Accesses a color attachment at a specific index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptorArray/subscript(_:)
-func (m_ MTL4RenderPipelineColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (m_ MTL4RenderPipelineColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) MTL4RenderPipelineColorAttachmentDescriptor {
+	rv := objc.Send[MTL4RenderPipelineColorAttachmentDescriptor](m_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

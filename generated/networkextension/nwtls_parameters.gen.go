@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,8 +118,8 @@ func (n_ NWTLSParameters) SetMinimumSSLProtocolVersion(value int) {
 // The set of allowed cipher suites when negotiating TLS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
-func (n_ NWTLSParameters) SslCipherSuites() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sslCipherSuites"))
+func (n_ NWTLSParameters) SslCipherSuites() foundation.Number {
+	rv := objc.Send[foundation.Number](n_.ID, objc.Sel("sslCipherSuites"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (n_ NWTLSParameters) SslCipherSuites() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/sslciphersuites
-func (n_ NWTLSParameters) SetSslCipherSuites(value unsafe.Pointer) {
+func (n_ NWTLSParameters) SetSslCipherSuites(value foundation.INumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSslCipherSuites:"), value)
 }
 
 // The Session ID to use for the associated TCP connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/tlssessionid
-func (n_ NWTLSParameters) TlsSessionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("tlsSessionID"))
+func (n_ NWTLSParameters) TlsSessionID() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("tlsSessionID"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (n_ NWTLSParameters) TlsSessionID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtlsparameters/tlssessionid
-func (n_ NWTLSParameters) SetTlsSessionID(value unsafe.Pointer) {
+func (n_ NWTLSParameters) SetTlsSessionID(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTlsSessionID:"), value)
 }
 

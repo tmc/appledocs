@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -87,7 +88,7 @@ func NewVZMacGraphicsDisplayConfiguration() VZMacGraphicsDisplayConfiguration {
 // Create a display configuration suitable for showing on the specified screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/init(for:sizeInPoints:)
-func NewVZMacGraphicsDisplayConfigurationForScreenSizeInPoints(screen unsafe.Pointer, sizeInPoints foundation.Size) VZMacGraphicsDisplayConfiguration {
+func NewVZMacGraphicsDisplayConfigurationForScreenSizeInPoints(screen appkit.IScreen, sizeInPoints foundation.ISize) VZMacGraphicsDisplayConfiguration {
 	instance := getVZMacGraphicsDisplayConfigurationClass().Alloc()
 	rv := objc.Send[VZMacGraphicsDisplayConfiguration](instance.ID, objc.Sel("initForScreen:sizeInPoints:"), screen, sizeInPoints)
 	rv.Autorelease()

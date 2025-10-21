@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/imagecapturecore"
 )
 
 // The class instance for the [IKCameraDeviceView] class.
@@ -84,8 +85,8 @@ func NewIKCameraDeviceView() IKCameraDeviceView {
 // The current camera device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/cameradevice
-func (i_ IKCameraDeviceView) CameraDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("cameraDevice"))
+func (i_ IKCameraDeviceView) CameraDevice() imagecapturecore.ICCameraDevice {
+	rv := objc.Send[imagecapturecore.ICCameraDevice](i_.ID, objc.Sel("cameraDevice"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (i_ IKCameraDeviceView) CameraDevice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/cameradevice
-func (i_ IKCameraDeviceView) SetCameraDevice(value unsafe.Pointer) {
+func (i_ IKCameraDeviceView) SetCameraDevice(value imagecapturecore.ICCameraDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCameraDevice:"), value)
 }
 
@@ -228,8 +229,8 @@ func (i_ IKCameraDeviceView) SetDisplaysPostProcessApplicationControl(value bool
 // Allows the “Download All” control to be renamed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadallcontrollabel
-func (i_ IKCameraDeviceView) DownloadAllControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("downloadAllControlLabel"))
+func (i_ IKCameraDeviceView) DownloadAllControlLabel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("downloadAllControlLabel"))
 	return rv
 }
 
@@ -239,15 +240,15 @@ func (i_ IKCameraDeviceView) DownloadAllControlLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadallcontrollabel
-func (i_ IKCameraDeviceView) SetDownloadAllControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadAllControlLabel:"), objc.String(value))
+func (i_ IKCameraDeviceView) SetDownloadAllControlLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadAllControlLabel:"), value)
 }
 
 // Allows the “Download Selected” control to be renamed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadselectedcontrollabel
-func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("downloadSelectedControlLabel"))
+func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("downloadSelectedControlLabel"))
 	return rv
 }
 
@@ -257,8 +258,8 @@ func (i_ IKCameraDeviceView) DownloadSelectedControlLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadselectedcontrollabel
-func (i_ IKCameraDeviceView) SetDownloadSelectedControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadSelectedControlLabel:"), objc.String(value))
+func (i_ IKCameraDeviceView) SetDownloadSelectedControlLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadSelectedControlLabel:"), value)
 }
 
 // Specifies the directory where files are downloaded
@@ -275,7 +276,7 @@ func (i_ IKCameraDeviceView) DownloadsDirectory() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/downloadsdirectory
-func (i_ IKCameraDeviceView) SetDownloadsDirectory(value foundation.URL) {
+func (i_ IKCameraDeviceView) SetDownloadsDirectory(value foundation.IURL) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
 }
 
@@ -365,7 +366,7 @@ func (i_ IKCameraDeviceView) PostProcessApplication() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikcameradeviceview/postprocessapplication
-func (i_ IKCameraDeviceView) SetPostProcessApplication(value foundation.URL) {
+func (i_ IKCameraDeviceView) SetPostProcessApplication(value foundation.IURL) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPostProcessApplication:"), value)
 }
 

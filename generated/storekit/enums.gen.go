@@ -103,6 +103,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKError/Code/paymentCancelled
 	ErrorPaymentCancelled ErrorCode = 0
+	// ErrorStoreProductNotAvailable - Error code indicating that the requested product is not available in the store.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKError/Code/storeProductNotAvailable
+	ErrorStoreProductNotAvailable ErrorCode = 0
 )
 
 // SKOverlayPosition - Constants that identify the position of an overlay on the screen.

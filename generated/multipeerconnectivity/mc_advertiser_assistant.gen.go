@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,9 +88,9 @@ func NewMCAdvertiserAssistant() MCAdvertiserAssistant {
 // Initializes an advertiser assistant object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/init(serviceType:discoveryInfo:session:)
-func NewMCAdvertiserAssistantWithServiceTypeDiscoveryInfoSession(serviceType string, info unsafe.Pointer, session unsafe.Pointer) MCAdvertiserAssistant {
+func NewMCAdvertiserAssistantWithServiceTypeDiscoveryInfoSession(serviceType appkit.string, info unsafe.Pointer, session IMCSession) MCAdvertiserAssistant {
 	instance := getMCAdvertiserAssistantClass().Alloc()
-	rv := objc.Send[MCAdvertiserAssistant](instance.ID, objc.Sel("initWithServiceType:discoveryInfo:session:"), objc.String(serviceType), info, session)
+	rv := objc.Send[MCAdvertiserAssistant](instance.ID, objc.Sel("initWithServiceType:discoveryInfo:session:"), serviceType, info, session)
 	rv.Autorelease()
 	return rv
 }
@@ -138,16 +139,16 @@ func (m_ MCAdvertiserAssistant) DiscoveryInfo() unsafe.Pointer {
 // The service type that your app is advertising.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/serviceType
-func (m_ MCAdvertiserAssistant) ServiceType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("serviceType"))
+func (m_ MCAdvertiserAssistant) ServiceType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("serviceType"))
 	return rv
 }
 
 // The session into which new peers are added after accepting an invitation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCAdvertiserAssistant/session
-func (m_ MCAdvertiserAssistant) Session() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("session"))
+func (m_ MCAdvertiserAssistant) Session() MCSession {
+	rv := objc.Send[MCSession](m_.ID, objc.Sel("session"))
 	return rv
 }
 

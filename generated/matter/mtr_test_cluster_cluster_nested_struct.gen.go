@@ -88,7 +88,7 @@ func (m_ MTRTestClusterClusterNestedStruct) A() foundation.Number {
 // SetA sets the value of the a property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/a
-func (m_ MTRTestClusterClusterNestedStruct) SetA(value foundation.Number) {
+func (m_ MTRTestClusterClusterNestedStruct) SetA(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
 
@@ -103,14 +103,14 @@ func (m_ MTRTestClusterClusterNestedStruct) B() foundation.Number {
 // SetB sets the value of the b property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/b
-func (m_ MTRTestClusterClusterNestedStruct) SetB(value foundation.Number) {
+func (m_ MTRTestClusterClusterNestedStruct) SetB(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/c
-func (m_ MTRTestClusterClusterNestedStruct) C() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("c"))
+func (m_ MTRTestClusterClusterNestedStruct) C() MTRTestClusterClusterSimpleStruct {
+	rv := objc.Send[MTRTestClusterClusterSimpleStruct](m_.ID, objc.Sel("c"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRTestClusterClusterNestedStruct) C() unsafe.Pointer {
 // SetC sets the value of the c property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/c
-func (m_ MTRTestClusterClusterNestedStruct) SetC(value unsafe.Pointer) {
+func (m_ MTRTestClusterClusterNestedStruct) SetC(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
 

@@ -116,8 +116,8 @@ func (v_ VZGenericPlatformConfiguration) NestedVirtualizationSupported() bool {
 // A value that represents a unique identifier for the virtual machine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/machineIdentifier
-func (v_ VZGenericPlatformConfiguration) MachineIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("machineIdentifier"))
+func (v_ VZGenericPlatformConfiguration) MachineIdentifier() VZGenericMachineIdentifier {
+	rv := objc.Send[VZGenericMachineIdentifier](v_.ID, objc.Sel("machineIdentifier"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (v_ VZGenericPlatformConfiguration) MachineIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGenericPlatformConfiguration/machineIdentifier
-func (v_ VZGenericPlatformConfiguration) SetMachineIdentifier(value unsafe.Pointer) {
+func (v_ VZGenericPlatformConfiguration) SetMachineIdentifier(value IVZGenericMachineIdentifier) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMachineIdentifier:"), value)
 }
 

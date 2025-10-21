@@ -9,6 +9,13 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewValue
 
+// ExampleNewValueWithCoder demonstrates how to create a Value instance using NewValueWithCoder.
+func ExampleNewValueWithCoder() {
+	_ = foundation.NewValueWithCoder(
+		foundation.NSCoder{}, // coder NSCoder
+	)
+	// Output:
+}
 // ExampleNewValueWithPoint demonstrates how to create a Value instance using NewValueWithPoint.
 // Creates a new value object containing the specified Foundation point structure.
 func ExampleNewValueWithPoint() {

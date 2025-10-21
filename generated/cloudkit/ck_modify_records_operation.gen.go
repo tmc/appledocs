@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKModifyRecordsOperation] class.
@@ -96,11 +97,29 @@ func (c_ CKModifyRecordsOperation) SetPerRecordDeleteBlock(value unsafe.Pointer)
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordDeleteBlock:"), value)
 }
 
+// The closure to execute with progress information for individual records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordProgressBlock
+func (c_ CKModifyRecordsOperation) PerRecordProgressBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordProgressBlock"))
+	return rv
+}
+
+
+// SetPerRecordProgressBlock sets the value of the perRecordProgressBlock property.
+// The closure to execute with progress information for individual records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/perRecordProgressBlock
+func (c_ CKModifyRecordsOperation) SetPerRecordProgressBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordProgressBlock:"), value)
+}
+
 // A token that tracks local changes to records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) ClientChangeTokenData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clientChangeTokenData"))
+func (c_ CKModifyRecordsOperation) ClientChangeTokenData() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("clientChangeTokenData"))
 	return rv
 }
 
@@ -110,7 +129,7 @@ func (c_ CKModifyRecordsOperation) ClientChangeTokenData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/clientchangetokendata
-func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value unsafe.Pointer) {
+func (c_ CKModifyRecordsOperation) SetClientChangeTokenData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClientChangeTokenData:"), value)
 }
 
@@ -201,8 +220,8 @@ func (c_ CKModifyRecordsOperation) SetPerRecordSaveBlock(value unsafe.Pointer) {
 // The IDs of the records to delete permanently from the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
-func (c_ CKModifyRecordsOperation) RecordIDsToDelete() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordIDsToDelete"))
+func (c_ CKModifyRecordsOperation) RecordIDsToDelete() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordIDsToDelete"))
 	return rv
 }
 
@@ -212,15 +231,15 @@ func (c_ CKModifyRecordsOperation) RecordIDsToDelete() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordidstodelete
-func (c_ CKModifyRecordsOperation) SetRecordIDsToDelete(value unsafe.Pointer) {
+func (c_ CKModifyRecordsOperation) SetRecordIDsToDelete(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordIDsToDelete:"), value)
 }
 
 // The records to save to the database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordstosave
-func (c_ CKModifyRecordsOperation) RecordsToSave() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordsToSave"))
+func (c_ CKModifyRecordsOperation) RecordsToSave() CKRecord {
+	rv := objc.Send[CKRecord](c_.ID, objc.Sel("recordsToSave"))
 	return rv
 }
 
@@ -230,7 +249,7 @@ func (c_ CKModifyRecordsOperation) RecordsToSave() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordstosave
-func (c_ CKModifyRecordsOperation) SetRecordsToSave(value unsafe.Pointer) {
+func (c_ CKModifyRecordsOperation) SetRecordsToSave(value ICKRecord) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordsToSave:"), value)
 }
 
@@ -273,8 +292,8 @@ func (c_ CKModifyRecordsOperation) SetAction(value unsafe.Pointer) {
 // A reference to the record’s parent record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-func (c_ CKModifyRecordsOperation) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("parent"))
+func (c_ CKModifyRecordsOperation) Parent() CKReference {
+	rv := objc.Send[CKReference](c_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -284,7 +303,7 @@ func (c_ CKModifyRecordsOperation) Parent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckrecord/parent
-func (c_ CKModifyRecordsOperation) SetParent(value unsafe.Pointer) {
+func (c_ CKModifyRecordsOperation) SetParent(value ICKReference) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParent:"), value)
 }
 

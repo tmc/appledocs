@@ -78,8 +78,8 @@ func NewMTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams() MTRGen
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) DebugText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) DebugT
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigresponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetDebugText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) ErrorC
 // SetErrorCode sets the value of the errorCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigresponseparams/errorcode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetErrorCode(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetErrorCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) TimedI
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigresponseparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

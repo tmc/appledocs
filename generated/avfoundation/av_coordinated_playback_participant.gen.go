@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCoordinatedPlaybackParticipant() CoordinatedPlaybackParticipant {
 // A unique identifier for the participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CoordinatedPlaybackParticipant) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (c_ CoordinatedPlaybackParticipant) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant/identifier
-func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value unsafe.Pointer) {
+func (c_ CoordinatedPlaybackParticipant) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIdentifier:"), value)
 }
 
@@ -137,8 +138,8 @@ func (c_ CoordinatedPlaybackParticipant) SetSuspensionReasons(value unsafe.Point
 // The identifiers of the other participants in a group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
-func (c_ CoordinatedPlaybackParticipant) OtherParticipants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("otherParticipants"))
+func (c_ CoordinatedPlaybackParticipant) OtherParticipants() AVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](c_.ID, objc.Sel("otherParticipants"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (c_ CoordinatedPlaybackParticipant) OtherParticipants() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants
-func (c_ CoordinatedPlaybackParticipant) SetOtherParticipants(value unsafe.Pointer) {
+func (c_ CoordinatedPlaybackParticipant) SetOtherParticipants(value IAVCoordinatedPlaybackParticipant) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOtherParticipants:"), value)
 }
 

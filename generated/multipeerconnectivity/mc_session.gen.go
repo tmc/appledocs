@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,13 +32,13 @@ type _MCSessionClass struct {
 // An interface definition for the [MCSession] class.
 type IMCSession interface {
 	objectivec.IObject
-	CancelConnectPeer(peerID unsafe.Pointer)
-	ConnectPeerWithNearbyConnectionData(peerID unsafe.Pointer, data unsafe.Pointer)
+	CancelConnectPeer(peerID IMCPeerID)
+	ConnectPeerWithNearbyConnectionData(peerID IMCPeerID, data foundation.IData)
 	Disconnect()
-	NearbyConnectionDataForPeerWithCompletionHandler(peerID unsafe.Pointer, completionHandler unsafe.Pointer)
-	SendDataToPeersWithModeError(data unsafe.Pointer, peerIDs unsafe.Pointer, mode unsafe.Pointer, error_ unsafe.Pointer) bool
-	SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL foundation.URL, resourceName string, peerID unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer
-	StartStreamWithNameToPeerError(streamName string, peerID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	NearbyConnectionDataForPeerWithCompletionHandler(peerID IMCPeerID, completionHandler unsafe.Pointer)
+	SendDataToPeersWithModeError(data foundation.IData, peerIDs []MCPeerID, mode MCSessionSendDataMode, error_ unsafe.Pointer) bool
+	SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL foundation.IURL, resourceName appkit.string, peerID IMCPeerID, completionHandler unsafe.Pointer) foundation.Progress
+	StartStreamWithNameToPeerError(streamName appkit.string, peerID IMCPeerID, error_ unsafe.Pointer) foundation.OutputStream
 }
 
 // An object enables and manages communication among all peers in a Multipeer Connectivity session.
@@ -91,7 +92,7 @@ func NewMCSession() MCSession {
 // Creates a Multipeer Connectivity session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/init(peer:)
-func NewMCSessionWithPeer(myPeerID unsafe.Pointer) MCSession {
+func NewMCSessionWithPeer(myPeerID IMCPeerID) MCSession {
 	instance := getMCSessionClass().Alloc()
 	rv := objc.Send[MCSession](instance.ID, objc.Sel("initWithPeer:"), myPeerID)
 	rv.Autorelease()
@@ -103,7 +104,7 @@ func NewMCSessionWithPeer(myPeerID unsafe.Pointer) MCSession {
 // Creates a Multipeer Connectivity session, providing security information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/init(peer:securityIdentity:encryptionPreference:)
-func NewMCSessionWithPeerSecurityIdentityEncryptionPreference(myPeerID unsafe.Pointer, identity objc.ID, encryptionPreference unsafe.Pointer) MCSession {
+func NewMCSessionWithPeerSecurityIdentityEncryptionPreference(myPeerID IMCPeerID, identity objectivec.IObject, encryptionPreference IMCEncryptionPreference) MCSession {
 	instance := getMCSessionClass().Alloc()
 	rv := objc.Send[MCSession](instance.ID, objc.Sel("initWithPeer:securityIdentity:encryptionPreference:"), myPeerID, identity, encryptionPreference)
 	rv.Autorelease()
@@ -114,14 +115,14 @@ func NewMCSessionWithPeerSecurityIdentityEncryptionPreference(myPeerID unsafe.Po
 // Cancels an attempt to connect to a peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/cancelConnectPeer(_:)
-func (m_ MCSession) CancelConnectPeer(peerID unsafe.Pointer) {
+func (m_ MCSession) CancelConnectPeer(peerID IMCPeerID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("cancelConnectPeer:"), peerID)
 }
 
 // Call this method to connect a peer to the session when using your own service discovery code instead of an or object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/connectPeer(_:withNearbyConnectionData:)
-func (m_ MCSession) ConnectPeerWithNearbyConnectionData(peerID unsafe.Pointer, data unsafe.Pointer) {
+func (m_ MCSession) ConnectPeerWithNearbyConnectionData(peerID IMCPeerID, data foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("connectPeer:withNearbyConnectionData:"), peerID, data)
 }
 
@@ -135,14 +136,14 @@ func (m_ MCSession) Disconnect() {
 // Obtains connection data for the specified peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/nearbyConnectionData(forPeer:withCompletionHandler:)
-func (m_ MCSession) NearbyConnectionDataForPeerWithCompletionHandler(peerID unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (m_ MCSession) NearbyConnectionDataForPeerWithCompletionHandler(peerID IMCPeerID, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("nearbyConnectionDataForPeer:withCompletionHandler:"), peerID, completionHandler)
 }
 
 // Sends a message to nearby peers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/send(_:toPeers:with:)
-func (m_ MCSession) SendDataToPeersWithModeError(data unsafe.Pointer, peerIDs unsafe.Pointer, mode unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (m_ MCSession) SendDataToPeersWithModeError(data foundation.IData, peerIDs []MCPeerID, mode MCSessionSendDataMode, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("sendData:toPeers:withMode:error:"), data, peerIDs, mode, error_)
 	return rv
 }
@@ -150,16 +151,16 @@ func (m_ MCSession) SendDataToPeersWithModeError(data unsafe.Pointer, peerIDs un
 // Sends the contents of a URL to a peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/sendResource(at:withName:toPeer:withCompletionHandler:)
-func (m_ MCSession) SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL foundation.URL, resourceName string, peerID unsafe.Pointer, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sendResourceAtURL:withName:toPeer:withCompletionHandler:"), resourceURL, objc.String(resourceName), peerID, completionHandler)
+func (m_ MCSession) SendResourceAtURLWithNameToPeerWithCompletionHandler(resourceURL foundation.IURL, resourceName appkit.string, peerID IMCPeerID, completionHandler unsafe.Pointer) foundation.Progress {
+	rv := objc.Send[foundation.Progress](m_.ID, objc.Sel("sendResourceAtURL:withName:toPeer:withCompletionHandler:"), resourceURL, resourceName, peerID, completionHandler)
 	return rv
 }
 
 // Opens a byte stream to a nearby peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/startStream(withName:toPeer:)
-func (m_ MCSession) StartStreamWithNameToPeerError(streamName string, peerID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startStreamWithName:toPeer:error:"), objc.String(streamName), peerID, error_)
+func (m_ MCSession) StartStreamWithNameToPeerError(streamName appkit.string, peerID IMCPeerID, error_ unsafe.Pointer) foundation.OutputStream {
+	rv := objc.Send[foundation.OutputStream](m_.ID, objc.Sel("startStreamWithName:toPeer:error:"), streamName, peerID, error_)
 	return rv
 }
 
@@ -192,32 +193,32 @@ func (m_ MCSession) SetDelegate(value objc.ID) {
 // A value indicating whether the connection prefers encrypted connections, unencrypted connections, or has no preference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/encryptionPreference
-func (m_ MCSession) EncryptionPreference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("encryptionPreference"))
+func (m_ MCSession) EncryptionPreference() MCEncryptionPreference {
+	rv := objc.Send[MCEncryptionPreference](m_.ID, objc.Sel("encryptionPreference"))
 	return rv
 }
 
 // A local identifier that represents the device on which your app is currently running.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/myPeerID
-func (m_ MCSession) MyPeerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("myPeerID"))
+func (m_ MCSession) MyPeerID() MCPeerID {
+	rv := objc.Send[MCPeerID](m_.ID, objc.Sel("myPeerID"))
 	return rv
 }
 
 // The security identity of the local peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSession/securityIdentity
-func (m_ MCSession) SecurityIdentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("securityIdentity"))
+func (m_ MCSession) SecurityIdentity() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("securityIdentity"))
 	return rv
 }
 
 // The
 //
 // [Full Topic]: https://developer.apple.com/documentation/multipeerconnectivity/mcerrordomain
-func (m_ MCSession) MCErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MCErrorDomain"))
+func (m_ MCSession) MCErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MCErrorDomain"))
 	return rv
 }
 

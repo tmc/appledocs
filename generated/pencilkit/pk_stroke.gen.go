@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,7 +85,7 @@ func NewStroke() Stroke {
 // Creates a stroke with the line properties, path, transform, and mask that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/init(ink:strokePath:transform:mask:)
-func NewStrokeWithInkStrokePathTransformMask(ink unsafe.Pointer, strokePath unsafe.Pointer, transform coregraphics.CGAffineTransform, mask unsafe.Pointer) Stroke {
+func NewStrokeWithInkStrokePathTransformMask(ink IPKInk, strokePath IPKStrokePath, transform coregraphics.CGAffineTransform, mask appkit.IBezierPath) Stroke {
 	instance := getStrokeClass().Alloc()
 	rv := objc.Send[Stroke](instance.ID, objc.Sel("initWithInk:strokePath:transform:mask:"), ink, strokePath, transform, mask)
 	rv.Autorelease()
@@ -96,7 +97,7 @@ func NewStrokeWithInkStrokePathTransformMask(ink unsafe.Pointer, strokePath unsa
 // Creates a stroke with the line properties, path, transform, mask, and random seed that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/init(ink:strokePath:transform:mask:randomSeed:)
-func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink unsafe.Pointer, strokePath unsafe.Pointer, transform coregraphics.CGAffineTransform, mask unsafe.Pointer, randomSeed unsafe.Pointer) Stroke {
+func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink IPKInk, strokePath IPKStrokePath, transform coregraphics.CGAffineTransform, mask appkit.IBezierPath, randomSeed unsafe.Pointer) Stroke {
 	instance := getStrokeClass().Alloc()
 	rv := objc.Send[Stroke](instance.ID, objc.Sel("initWithInk:strokePath:transform:mask:randomSeed:"), ink, strokePath, transform, mask, randomSeed)
 	rv.Autorelease()
@@ -107,16 +108,16 @@ func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink unsafe.Pointer, strok
 // The line properties used to render this stroke.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/ink
-func (s_ Stroke) Ink() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("ink"))
+func (s_ Stroke) Ink() PKInk {
+	rv := objc.Send[PKInk](s_.ID, objc.Sel("ink"))
 	return rv
 }
 
 // The pretransform mask used to clip the rendering of the stroke.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/mask
-func (s_ Stroke) Mask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mask"))
+func (s_ Stroke) Mask() appkit.BezierPath {
+	rv := objc.Send[appkit.BezierPath](s_.ID, objc.Sel("mask"))
 	return rv
 }
 
@@ -131,8 +132,8 @@ func (s_ Stroke) MaskedPathRanges() []FloatRange {
 // The B-spline path that describes this stroke.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/path
-func (s_ Stroke) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("path"))
+func (s_ Stroke) Path() PKStrokePath {
+	rv := objc.Send[PKStrokePath](s_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (s_ Stroke) RenderBounds() coregraphics.CGRect {
 // The version of PencilKit necessary to use the stroke.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/requiredContentVersion
-func (s_ Stroke) RequiredContentVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("requiredContentVersion"))
+func (s_ Stroke) RequiredContentVersion() ContentVersion {
+	rv := objc.Send[ContentVersion](s_.ID, objc.Sel("requiredContentVersion"))
 	return rv
 }
 

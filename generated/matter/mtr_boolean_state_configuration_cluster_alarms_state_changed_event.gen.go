@@ -87,7 +87,7 @@ func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsActiv
 // SetAlarmsActive sets the value of the alarmsActive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmsactive
-func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsActive(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsActive(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsActive:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) AlarmsSuppr
 // SetAlarmsSuppressed sets the value of the alarmsSuppressed property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclusteralarmsstatechangedevent/alarmssuppressed
-func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsSuppressed(value foundation.Number) {
+func (m_ MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent) SetAlarmsSuppressed(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsSuppressed:"), value)
 }
 

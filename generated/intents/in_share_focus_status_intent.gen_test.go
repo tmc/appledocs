@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = intents.NewINShareFocusStatusIntent
 
+// ExampleNewINShareFocusStatusIntentWithFocusStatus demonstrates how to create a INShareFocusStatusIntent instance using NewINShareFocusStatusIntentWithFocusStatus.
+// Creates an intent with the specified focus status.
+func ExampleNewINShareFocusStatusIntentWithFocusStatus() {
+	_ = intents.NewINShareFocusStatusIntentWithFocusStatus(
+		intents.INFocusStatus{}, // focusStatus INFocusStatus
+	)
+	// Output:
+}

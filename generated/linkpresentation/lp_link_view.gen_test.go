@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = linkpresentation.NewLPLinkView
 
+// ExampleNewLPLinkViewWithMetadata demonstrates how to create a LPLinkView instance using NewLPLinkViewWithMetadata.
+// Initializes a link view with specified metadata.
+func ExampleNewLPLinkViewWithMetadata() {
+	_ = linkpresentation.NewLPLinkViewWithMetadata(
+		linkpresentation.LPLinkMetadata{}, // metadata LPLinkMetadata
+	)
+	// Output:
+}

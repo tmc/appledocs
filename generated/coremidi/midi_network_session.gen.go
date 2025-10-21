@@ -30,8 +30,8 @@ type _MIDINetworkSessionClass struct {
 // An interface definition for the [MIDINetworkSession] class.
 type IMIDINetworkSession interface {
 	objectivec.IObject
-	AddConnection(connection unsafe.Pointer) bool
-	RemoveConnection(connection unsafe.Pointer) bool
+	AddConnection(connection IMIDINetworkConnection) bool
+	RemoveConnection(connection IMIDINetworkConnection) bool
 }
 
 // An object that represents a pairing of a source and destination.
@@ -85,7 +85,7 @@ func NewMIDINetworkSession() MIDINetworkSession {
 // Adds a new connection to this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/addConnection(_:)
-func (m_ MIDINetworkSession) AddConnection(connection unsafe.Pointer) bool {
+func (m_ MIDINetworkSession) AddConnection(connection IMIDINetworkConnection) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("addConnection:"), connection)
 	return rv
 }
@@ -93,7 +93,7 @@ func (m_ MIDINetworkSession) AddConnection(connection unsafe.Pointer) bool {
 // Removes a connection from this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDINetworkSession/removeConnection(_:)
-func (m_ MIDINetworkSession) RemoveConnection(connection unsafe.Pointer) bool {
+func (m_ MIDINetworkSession) RemoveConnection(connection IMIDINetworkConnection) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("removeConnection:"), connection)
 	return rv
 }
@@ -127,24 +127,24 @@ func (m_ MIDINetworkSession) NetworkPort() uint {
 // Indicates that the list of contacts changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationcontactsdidchange
-func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationContactsDidChange"))
+func (m_ MIDINetworkSession) MIDINetworkNotificationContactsDidChange() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MIDINetworkNotificationContactsDidChange"))
 	return rv
 }
 
 // Indicates that other aspects of the session changed, such as the connection list, connection policy, and so on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworknotificationsessiondidchange
-func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MIDINetworkNotificationSessionDidChange"))
+func (m_ MIDINetworkSession) MIDINetworkNotificationSessionDidChange() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MIDINetworkNotificationSessionDidChange"))
 	return rv
 }
 
 // The policy that determines who can connect to this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
-func (m_ MIDINetworkSession) ConnectionPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("connectionPolicy"))
+func (m_ MIDINetworkSession) ConnectionPolicy() MIDINetworkConnectionPolicy {
+	rv := objc.Send[MIDINetworkConnectionPolicy](m_.ID, objc.Sel("connectionPolicy"))
 	return rv
 }
 
@@ -154,7 +154,7 @@ func (m_ MIDINetworkSession) ConnectionPolicy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/connectionpolicy
-func (m_ MIDINetworkSession) SetConnectionPolicy(value unsafe.Pointer) {
+func (m_ MIDINetworkSession) SetConnectionPolicy(value MIDINetworkConnectionPolicy) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionPolicy:"), value)
 }
 
@@ -179,8 +179,8 @@ func (m_ MIDINetworkSession) SetIsEnabled(value bool) {
 // The name of this session’s entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/localname
-func (m_ MIDINetworkSession) LocalName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("localName"))
+func (m_ MIDINetworkSession) LocalName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("localName"))
 	return rv
 }
 
@@ -190,15 +190,15 @@ func (m_ MIDINetworkSession) LocalName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/localname
-func (m_ MIDINetworkSession) SetLocalName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalName:"), objc.String(value))
+func (m_ MIDINetworkSession) SetLocalName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalName:"), value)
 }
 
 // The name with which this session advertises itself over Bonjour.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
-func (m_ MIDINetworkSession) NetworkName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+func (m_ MIDINetworkSession) NetworkName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -208,8 +208,8 @@ func (m_ MIDINetworkSession) NetworkName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midinetworksession/networkname
-func (m_ MIDINetworkSession) SetNetworkName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+func (m_ MIDINetworkSession) SetNetworkName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
 }
 
 

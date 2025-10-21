@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/gameplaykit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -117,8 +119,8 @@ func (c_ Contour) SetChildContourCount(value int) {
 // An array of contours that this contour encloses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/childcontours
-func (c_ Contour) ChildContours() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("childContours"))
+func (c_ Contour) ChildContours() VNContour {
+	rv := objc.Send[VNContour](c_.ID, objc.Sel("childContours"))
 	return rv
 }
 
@@ -128,15 +130,15 @@ func (c_ Contour) ChildContours() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/childcontours
-func (c_ Contour) SetChildContours(value unsafe.Pointer) {
+func (c_ Contour) SetChildContours(value IVNContour) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setChildContours:"), value)
 }
 
 // The contour object’s index path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/indexpath
-func (c_ Contour) IndexPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("indexPath"))
+func (c_ Contour) IndexPath() foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPath"))
 	return rv
 }
 
@@ -146,15 +148,15 @@ func (c_ Contour) IndexPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/indexpath
-func (c_ Contour) SetIndexPath(value unsafe.Pointer) {
+func (c_ Contour) SetIndexPath(value foundation.IIndexPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndexPath:"), value)
 }
 
 // The contour object as a path in normalized coordinates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/normalizedpath
-func (c_ Contour) NormalizedPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("normalizedPath"))
+func (c_ Contour) NormalizedPath() gameplaykit.Path {
+	rv := objc.Send[gameplaykit.Path](c_.ID, objc.Sel("normalizedPath"))
 	return rv
 }
 
@@ -164,7 +166,7 @@ func (c_ Contour) NormalizedPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontour/normalizedpath
-func (c_ Contour) SetNormalizedPath(value unsafe.Pointer) {
+func (c_ Contour) SetNormalizedPath(value gameplaykit.IPath) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNormalizedPath:"), value)
 }
 
@@ -243,8 +245,8 @@ func (c_ Contour) SetTopLevelContourCount(value int) {
 // An array of contours that don’t have another contour enclosing them.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/toplevelcontours
-func (c_ Contour) TopLevelContours() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("topLevelContours"))
+func (c_ Contour) TopLevelContours() VNContour {
+	rv := objc.Send[VNContour](c_.ID, objc.Sel("topLevelContours"))
 	return rv
 }
 
@@ -254,7 +256,7 @@ func (c_ Contour) TopLevelContours() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncontoursobservation/toplevelcontours
-func (c_ Contour) SetTopLevelContours(value unsafe.Pointer) {
+func (c_ Contour) SetTopLevelContours(value IVNContour) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTopLevelContours:"), value)
 }
 

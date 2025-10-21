@@ -191,8 +191,8 @@ func (s_ SampleBufferDisplayLayer) SetPreventsDisplaySleepDuringVideoPlayback(va
 // An object that enqueues video sample buffers for rendering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/samplebufferrenderer
-func (s_ SampleBufferDisplayLayer) SampleBufferRenderer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sampleBufferRenderer"))
+func (s_ SampleBufferDisplayLayer) SampleBufferRenderer() AVSampleBufferVideoRenderer {
+	rv := objc.Send[AVSampleBufferVideoRenderer](s_.ID, objc.Sel("sampleBufferRenderer"))
 	return rv
 }
 
@@ -202,15 +202,15 @@ func (s_ SampleBufferDisplayLayer) SampleBufferRenderer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/samplebufferrenderer
-func (s_ SampleBufferDisplayLayer) SetSampleBufferRenderer(value unsafe.Pointer) {
+func (s_ SampleBufferDisplayLayer) SetSampleBufferRenderer(value IAVSampleBufferVideoRenderer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSampleBufferRenderer:"), value)
 }
 
 // A value that indicates how the layer displays video within its bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/videogravity
-func (s_ SampleBufferDisplayLayer) VideoGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("videoGravity"))
+func (s_ SampleBufferDisplayLayer) VideoGravity() LayerVideoGravity {
+	rv := objc.Send[LayerVideoGravity](s_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
@@ -220,15 +220,15 @@ func (s_ SampleBufferDisplayLayer) VideoGravity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer/videogravity
-func (s_ SampleBufferDisplayLayer) SetVideoGravity(value unsafe.Pointer) {
+func (s_ SampleBufferDisplayLayer) SetVideoGravity(value ILayerVideoGravity) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVideoGravity:"), value)
 }
 
 // The key for the corresponding error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayerfailedtodecodenotificationerrorkey
-func (s_ SampleBufferDisplayLayer) AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey"))
+func (s_ SampleBufferDisplayLayer) AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSampleBufferDisplayLayerFailedToDecodeNotificationErrorKey"))
 	return rv
 }
 

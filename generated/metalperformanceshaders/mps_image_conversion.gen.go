@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ImageConversion] class.
@@ -86,7 +88,7 @@ func NewImageConversion() ImageConversion {
 // Initializes a filter that can convert texture color space, alpha, and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/init(device:srcAlpha:destAlpha:backgroundColor:conversionInfo:)
-func NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(device objc.ID, srcAlpha unsafe.Pointer, destAlpha unsafe.Pointer, backgroundColor float64, conversionInfo CGColorConversionInfoRef) ImageConversion {
+func NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(device objectivec.IObject, srcAlpha AlphaType, destAlpha AlphaType, backgroundColor coregraphics.float64, conversionInfo coregraphics.CGColorConversionInfoRef) ImageConversion {
 	instance := getImageConversionClass().Alloc()
 	rv := objc.Send[ImageConversion](instance.ID, objc.Sel("initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:"), device, srcAlpha, destAlpha, backgroundColor, conversionInfo)
 	rv.Autorelease()
@@ -97,16 +99,16 @@ func NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(
 // Premultiplication description for the destination texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/destinationAlpha
-func (i_ ImageConversion) DestinationAlpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("destinationAlpha"))
+func (i_ ImageConversion) DestinationAlpha() AlphaType {
+	rv := objc.Send[AlphaType](i_.ID, objc.Sel("destinationAlpha"))
 	return rv
 }
 
 // Premultiplication description for the source texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/sourceAlpha
-func (i_ ImageConversion) SourceAlpha() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sourceAlpha"))
+func (i_ ImageConversion) SourceAlpha() AlphaType {
+	rv := objc.Send[AlphaType](i_.ID, objc.Sel("sourceAlpha"))
 	return rv
 }
 

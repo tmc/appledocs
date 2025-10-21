@@ -81,8 +81,8 @@ func NewMEEstimatedSampleLocation() MEEstimatedSampleLocation {
 // The byte source to use to read the data for the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MEEstimatedSampleLocation/byteSource
-func (m_ MEEstimatedSampleLocation) ByteSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("byteSource"))
+func (m_ MEEstimatedSampleLocation) ByteSource() MEByteSource {
+	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSource"))
 	return rv
 }
 

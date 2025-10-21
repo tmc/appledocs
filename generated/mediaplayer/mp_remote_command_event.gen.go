@@ -82,8 +82,8 @@ func NewRemoteCommandEvent() RemoteCommandEvent {
 // The command that sent the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPRemoteCommandEvent/command
-func (r_ RemoteCommandEvent) Command() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("command"))
+func (r_ RemoteCommandEvent) Command() MPRemoteCommand {
+	rv := objc.Send[MPRemoteCommand](r_.ID, objc.Sel("command"))
 	return rv
 }
 

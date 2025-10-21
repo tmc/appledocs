@@ -9,3 +9,19 @@ import (
 // Suppress unused import errors
 var _ = mediaplayer.NewMusicPlayerMediaItemQueueDescriptor
 
+// ExampleNewMusicPlayerMediaItemQueueDescriptorWithItemCollection demonstrates how to create a MusicPlayerMediaItemQueueDescriptor instance using NewMusicPlayerMediaItemQueueDescriptorWithItemCollection.
+// Creates a new queue descriptor using the designated collection.
+func ExampleNewMusicPlayerMediaItemQueueDescriptorWithItemCollection() {
+	_ = mediaplayer.NewMusicPlayerMediaItemQueueDescriptorWithItemCollection(
+		mediaplayer.MPMediaItemCollection{}, // itemCollection MPMediaItemCollection
+	)
+	// Output:
+}
+// ExampleNewMusicPlayerMediaItemQueueDescriptorWithQuery demonstrates how to create a MusicPlayerMediaItemQueueDescriptor instance using NewMusicPlayerMediaItemQueueDescriptorWithQuery.
+// Creates a new queue descriptor using the designated query.
+func ExampleNewMusicPlayerMediaItemQueueDescriptorWithQuery() {
+	_ = mediaplayer.NewMusicPlayerMediaItemQueueDescriptorWithQuery(
+		mediaplayer.MPMediaQuery{}, // query MPMediaQuery
+	)
+	// Output:
+}

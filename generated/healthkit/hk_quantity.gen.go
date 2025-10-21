@@ -30,9 +30,9 @@ type _HKQuantityClass struct {
 // An interface definition for the [HKQuantity] class.
 type IHKQuantity interface {
 	objectivec.IObject
-	Compare(quantity unsafe.Pointer) unsafe.Pointer
-	DoubleValueForUnit(unit unsafe.Pointer) unsafe.Pointer
-	IsCompatibleWithUnit(unit unsafe.Pointer) bool
+	Compare(quantity IHKQuantity) unsafe.Pointer
+	DoubleValueForUnit(unit IHKUnit) unsafe.Pointer
+	IsCompatibleWithUnit(unit IHKUnit) bool
 }
 
 // An object that stores a value for a given unit.
@@ -88,7 +88,7 @@ func NewHKQuantity() HKQuantity {
 // Instantiates and returns a new quantity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)
-func NewHKQuantityWithUnitDoubleValue(unit unsafe.Pointer, value unsafe.Pointer) HKQuantity {
+func NewHKQuantityWithUnitDoubleValue(unit IHKUnit, value unsafe.Pointer) HKQuantity {
 	rv := objc.Send[HKQuantity](objc.ID(getHKQuantityClass().class), objc.Sel("quantityWithUnit:doubleValue:"), unit, value)
 	return rv
 }
@@ -97,7 +97,7 @@ func NewHKQuantityWithUnitDoubleValue(unit unsafe.Pointer, value unsafe.Pointer)
 // Instantiates and returns a new quantity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/init(unit:doubleValue:)
-func (hc _HKQuantityClass) QuantityWithUnitDoubleValue(unit unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func (hc _HKQuantityClass) QuantityWithUnitDoubleValue(unit IHKUnit, value unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("quantityWithUnit:doubleValue:"), unit, value)
 	return rv
 }
@@ -105,7 +105,7 @@ func (hc _HKQuantityClass) QuantityWithUnitDoubleValue(unit unsafe.Pointer, valu
 // Compares two values after converting them to the same units.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/compare(_:)
-func (h_ HKQuantity) Compare(quantity unsafe.Pointer) unsafe.Pointer {
+func (h_ HKQuantity) Compare(quantity IHKQuantity) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("compare:"), quantity)
 	return rv
 }
@@ -113,7 +113,7 @@ func (h_ HKQuantity) Compare(quantity unsafe.Pointer) unsafe.Pointer {
 // Returns the quantity’s value in the provided unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/doubleValue(for:)
-func (h_ HKQuantity) DoubleValueForUnit(unit unsafe.Pointer) unsafe.Pointer {
+func (h_ HKQuantity) DoubleValueForUnit(unit IHKUnit) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("doubleValueForUnit:"), unit)
 	return rv
 }
@@ -121,7 +121,7 @@ func (h_ HKQuantity) DoubleValueForUnit(unit unsafe.Pointer) unsafe.Pointer {
 // Returns a boolean value indicating whether the quantity is compatible with the provided unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQuantity/is(compatibleWith:)
-func (h_ HKQuantity) IsCompatibleWithUnit(unit unsafe.Pointer) bool {
+func (h_ HKQuantity) IsCompatibleWithUnit(unit IHKUnit) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isCompatibleWithUnit:"), unit)
 	return rv
 }

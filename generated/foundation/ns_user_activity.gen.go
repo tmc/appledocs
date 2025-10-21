@@ -7,6 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coreimage"
+	"github.com/tmc/appledocs/generated/corespotlight"
+	"github.com/tmc/appledocs/generated/intents"
+	"github.com/tmc/appledocs/generated/mapkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +35,7 @@ type _UserActivityClass struct {
 // An interface definition for the [UserActivity] class.
 type IUserActivity interface {
 	objectivec.IObject
-	AddUserInfoEntriesFromDictionary(otherDictionary objc.ID)
+	AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject)
 	BecomeCurrent()
 	GetContinuationStreamsWithCompletionHandler(completionHandler unsafe.Pointer)
 	Invalidate()
@@ -90,9 +95,9 @@ func NewUserActivity() UserActivity {
 // Creates a user activity object with the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/init(activityType:)
-func NewUserActivityWithActivityType(activityType string) UserActivity {
+func NewUserActivityWithActivityType(activityType appkit.string) UserActivity {
 	instance := getUserActivityClass().Alloc()
-	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), objc.String(activityType))
+	rv := objc.Send[UserActivity](instance.ID, objc.Sel("initWithActivityType:"), activityType)
 	rv.Autorelease()
 	return rv
 }
@@ -108,14 +113,14 @@ func (uc _UserActivityClass) DeleteAllSavedUserActivitiesWithCompletionHandler(h
 // Deletes user activities created by your app that have the specified persistent identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/deleteSavedUserActivities(withPersistentIdentifiers:completionHandler:)
-func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers unsafe.Pointer, handler unsafe.Pointer) {
+func (uc _UserActivityClass) DeleteSavedUserActivitiesWithPersistentIdentifiersCompletionHandler(persistentIdentifiers []string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:"), persistentIdentifiers, handler)
 }
 
 // Adds the contents of the specified dictionary to the user info dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/addUserInfoEntries(from:)
-func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary objc.ID) {
+func (u_ UserActivity) AddUserInfoEntriesFromDictionary(otherDictionary objectivec.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addUserInfoEntriesFromDictionary:"), otherDictionary)
 }
 
@@ -150,8 +155,8 @@ func (u_ UserActivity) ResignCurrent() {
 // The user activity object’s activity type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/activityType
-func (u_ UserActivity) ActivityType() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("activityType"))
+func (u_ UserActivity) ActivityType() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("activityType"))
 	return rv
 }
 
@@ -166,8 +171,8 @@ func (u_ UserActivity) AppClipActivationPayload() unsafe.Pointer {
 // A set of properties that describe the activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contentAttributeSet
-func (u_ UserActivity) ContentAttributeSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("contentAttributeSet"))
+func (u_ UserActivity) ContentAttributeSet() corespotlight.CSSearchableItemAttributeSet {
+	rv := objc.Send[corespotlight.CSSearchableItemAttributeSet](u_.ID, objc.Sel("contentAttributeSet"))
 	return rv
 }
 
@@ -177,7 +182,7 @@ func (u_ UserActivity) ContentAttributeSet() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/contentAttributeSet
-func (u_ UserActivity) SetContentAttributeSet(value unsafe.Pointer) {
+func (u_ UserActivity) SetContentAttributeSet(value corespotlight.ICSSearchableItemAttributeSet) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setContentAttributeSet:"), value)
 }
 
@@ -210,16 +215,16 @@ func (u_ UserActivity) SetDelegate(value objc.ID) {
 // The barcode that the system scanner passes in.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/detectedBarcodeDescriptor
-func (u_ UserActivity) DetectedBarcodeDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("detectedBarcodeDescriptor"))
+func (u_ UserActivity) DetectedBarcodeDescriptor() coreimage.BarcodeDescriptor {
+	rv := objc.Send[coreimage.BarcodeDescriptor](u_.ID, objc.Sel("detectedBarcodeDescriptor"))
 	return rv
 }
 
 // The date after which the activity is no longer eligible for Handoff or indexing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
-func (u_ UserActivity) ExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("expirationDate"))
+func (u_ UserActivity) ExpirationDate() NSDate {
+	rv := objc.Send[NSDate](u_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
@@ -229,15 +234,15 @@ func (u_ UserActivity) ExpirationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/expirationDate
-func (u_ UserActivity) SetExpirationDate(value unsafe.Pointer) {
+func (u_ UserActivity) SetExpirationDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setExpirationDate:"), value)
 }
 
 // A unique identifier from the app’s media content catalog for the currently displayed media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-func (u_ UserActivity) ExternalMediaContentIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("externalMediaContentIdentifier"))
+func (u_ UserActivity) ExternalMediaContentIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("externalMediaContentIdentifier"))
 	return rv
 }
 
@@ -247,15 +252,15 @@ func (u_ UserActivity) ExternalMediaContentIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-func (u_ UserActivity) SetExternalMediaContentIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), objc.String(value))
+func (u_ UserActivity) SetExternalMediaContentIdentifier(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), value)
 }
 
 // The SiriKit interaction object to use when configuring your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/interaction
-func (u_ UserActivity) Interaction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("interaction"))
+func (u_ UserActivity) Interaction() intents.INInteraction {
+	rv := objc.Send[intents.INInteraction](u_.ID, objc.Sel("interaction"))
 	return rv
 }
 
@@ -360,8 +365,8 @@ func (u_ UserActivity) SetKeywords(value unsafe.Pointer) {
 // Attaches the specified map item to a user activity object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/mapItem
-func (u_ UserActivity) MapItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("mapItem"))
+func (u_ UserActivity) MapItem() mapkit.MKMapItem {
+	rv := objc.Send[mapkit.MKMapItem](u_.ID, objc.Sel("mapItem"))
 	return rv
 }
 
@@ -371,7 +376,7 @@ func (u_ UserActivity) MapItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/mapItem
-func (u_ UserActivity) SetMapItem(value unsafe.Pointer) {
+func (u_ UserActivity) SetMapItem(value mapkit.IMKMapItem) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMapItem:"), value)
 }
 
@@ -404,8 +409,8 @@ func (u_ UserActivity) SetNeedsSave(value bool) {
 // A value used to identify the user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-func (u_ UserActivity) PersistentIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("persistentIdentifier"))
+func (u_ UserActivity) PersistentIdentifier() UserActivityPersistentIdentifier {
+	rv := objc.Send[UserActivityPersistentIdentifier](u_.ID, objc.Sel("persistentIdentifier"))
 	return rv
 }
 
@@ -415,7 +420,7 @@ func (u_ UserActivity) PersistentIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/persistentIdentifier
-func (u_ UserActivity) SetPersistentIdentifier(value unsafe.Pointer) {
+func (u_ UserActivity) SetPersistentIdentifier(value IUserActivityPersistentIdentifier) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPersistentIdentifier:"), value)
 }
 
@@ -433,7 +438,7 @@ func (u_ UserActivity) ReferrerURL() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/referrerURL
-func (u_ UserActivity) SetReferrerURL(value URL) {
+func (u_ UserActivity) SetReferrerURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setReferrerURL:"), value)
 }
 
@@ -476,8 +481,8 @@ func (u_ UserActivity) SetShortcutAvailability(value unsafe.Pointer) {
 // A phrase suggested to the user when they create a shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-func (u_ UserActivity) SuggestedInvocationPhrase() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("suggestedInvocationPhrase"))
+func (u_ UserActivity) SuggestedInvocationPhrase() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("suggestedInvocationPhrase"))
 	return rv
 }
 
@@ -487,8 +492,8 @@ func (u_ UserActivity) SuggestedInvocationPhrase() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-func (u_ UserActivity) SetSuggestedInvocationPhrase(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
+func (u_ UserActivity) SetSuggestedInvocationPhrase(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), value)
 }
 
 // A Boolean value that determines whether the continuing app can request streams to be opened back to the originating app.
@@ -512,8 +517,8 @@ func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
 // A string that identifies the user activity’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-func (u_ UserActivity) TargetContentIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
+func (u_ UserActivity) TargetContentIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
 
@@ -523,15 +528,15 @@ func (u_ UserActivity) TargetContentIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-func (u_ UserActivity) SetTargetContentIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), objc.String(value))
+func (u_ UserActivity) SetTargetContentIdentifier(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), value)
 }
 
 // An optional, user-visible title for this activity, such as a document name or web page title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-func (u_ UserActivity) Title() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("title"))
+func (u_ UserActivity) Title() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -541,15 +546,15 @@ func (u_ UserActivity) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-func (u_ UserActivity) SetTitle(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (u_ UserActivity) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
 }
 
 // A dictionary containing app-specific state information needed to continue an activity on another device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/userInfo
-func (u_ UserActivity) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("userInfo"))
+func (u_ UserActivity) UserInfo() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -559,7 +564,7 @@ func (u_ UserActivity) UserInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/userInfo
-func (u_ UserActivity) SetUserInfo(value unsafe.Pointer) {
+func (u_ UserActivity) SetUserInfo(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUserInfo:"), value)
 }
 
@@ -577,15 +582,15 @@ func (u_ UserActivity) WebpageURL() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/webpageURL
-func (u_ UserActivity) SetWebpageURL(value URL) {
+func (u_ UserActivity) SetWebpageURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setWebpageURL:"), value)
 }
 
 // An activity for viewing your app’s channel guide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/TVServices/TVUserActivityTypeBrowsingChannelGuide
-func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("TVUserActivityTypeBrowsingChannelGuide"))
+func (u_ UserActivity) TVUserActivityTypeBrowsingChannelGuide() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("TVUserActivityTypeBrowsingChannelGuide"))
 	return rv
 }
 
@@ -808,8 +813,8 @@ func (u_ UserActivity) SetNSUserActivityRemoteApplicationTimedOutError(value int
 // An activity that continues from Handoff or a universal link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb
-func (u_ UserActivity) NSUserActivityTypeBrowsingWeb() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("NSUserActivityTypeBrowsingWeb"))
+func (u_ UserActivity) NSUserActivityTypeBrowsingWeb() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("NSUserActivityTypeBrowsingWeb"))
 	return rv
 }
 

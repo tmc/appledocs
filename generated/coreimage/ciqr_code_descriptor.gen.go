@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [QRCodeDescriptor] class.
@@ -86,7 +87,7 @@ func NewQRCodeDescriptor() QRCodeDescriptor {
 // Initializes a QR code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/init(payload:symbolVersion:maskPattern:errorCorrectionLevel:)
-func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload unsafe.Pointer, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel unsafe.Pointer) QRCodeDescriptor {
+func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.IData, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel QRCodeErrorCorrectionLevel) QRCodeDescriptor {
 	instance := getQRCodeDescriptorClass().Alloc()
 	rv := objc.Send[QRCodeDescriptor](instance.ID, objc.Sel("initWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewQRCodeDescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(
 // Creates a QR code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:
-func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload unsafe.Pointer, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel unsafe.Pointer) unsafe.Pointer {
+func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload foundation.IData, symbolVersion int, maskPattern unsafe.Pointer, errorCorrectionLevel QRCodeErrorCorrectionLevel) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(qc.class), objc.Sel("descriptorWithPayload:symbolVersion:maskPattern:errorCorrectionLevel:"), errorCorrectedPayload, symbolVersion, maskPattern, errorCorrectionLevel)
 	return rv
 }
@@ -105,16 +106,16 @@ func (qc _QRCodeDescriptorClass) DescriptorWithPayloadSymbolVersionMaskPatternEr
 // The error-corrected codeword payload that comprises the QR code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectedPayload-swift.property
-func (q_ QRCodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("errorCorrectedPayload"))
+func (q_ QRCodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
+	rv := objc.Send[foundation.NSData](q_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
 
 // The error correction level of the QR code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeDescriptor/errorCorrectionLevel-swift.property
-func (q_ QRCodeDescriptor) ErrorCorrectionLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("errorCorrectionLevel"))
+func (q_ QRCodeDescriptor) ErrorCorrectionLevel() QRCodeErrorCorrectionLevel {
+	rv := objc.Send[QRCodeErrorCorrectionLevel](q_.ID, objc.Sel("errorCorrectionLevel"))
 	return rv
 }
 

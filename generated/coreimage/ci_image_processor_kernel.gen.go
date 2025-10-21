@@ -84,15 +84,15 @@ func NewImageProcessorKernel() ImageProcessorKernel {
 // Call this method on your Core Image Processor Kernel subclass to create a new image of the specified extent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtent:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error_)
+func (ic _ImageProcessorKernelClass) ApplyWithExtentInputsArgumentsError(extent coregraphics.CGRect, inputs []Image, arguments unsafe.Pointer, error_ unsafe.Pointer) Image {
+	rv := objc.Send[Image](objc.ID(ic.class), objc.Sel("applyWithExtent:inputs:arguments:error:"), extent, inputs, arguments, error_)
 	return rv
 }
 
 // Call this method on your multiple-output Core Image Processor Kernel subclass to create an array of new image objects given the specified array of extents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/apply(withExtents:inputs:arguments:)
-func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents unsafe.Pointer, inputs unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) []Image {
+func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extents []Vector, inputs []Image, arguments unsafe.Pointer, error_ unsafe.Pointer) []Image {
 	rv := objc.Send[[]Image](objc.ID(ic.class), objc.Sel("applyWithExtents:inputs:arguments:error:"), extents, inputs, arguments, error_)
 	return rv
 }
@@ -100,23 +100,23 @@ func (ic _ImageProcessorKernelClass) ApplyWithExtentsInputsArgumentsError(extent
 // Override this class method if you want your any of the inputs to be in a specific pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/formatForInput(at:)
-func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("formatForInputAtIndex:"), inputIndex)
+func (ic _ImageProcessorKernelClass) FormatForInputAtIndex(inputIndex unsafe.Pointer) Format {
+	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("formatForInputAtIndex:"), inputIndex)
 	return rv
 }
 
 // Override this class method if your processor has more than one output and you want your processor’s output to be in a specific supported .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat(at:arguments:)
-func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex unsafe.Pointer, arguments unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("outputFormatAtIndex:arguments:"), outputIndex, arguments)
+func (ic _ImageProcessorKernelClass) OutputFormatAtIndexArguments(outputIndex unsafe.Pointer, arguments unsafe.Pointer) Format {
+	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("outputFormatAtIndex:arguments:"), outputIndex, arguments)
 	return rv
 }
 
 // Override this class method to implement your Core Image Processor Kernel subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:output:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs unsafe.Pointer, arguments unsafe.Pointer, output objc.ID, error_ unsafe.Pointer) bool {
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(inputs []objc.ID, arguments unsafe.Pointer, output objectivec.IObject, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:output:error:"), inputs, arguments, output, error_)
 	return rv
 }
@@ -124,7 +124,7 @@ func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputError(input
 // Override this class method of your Core Image Processor Kernel subclass if it needs to produce multiple outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/process(with:arguments:outputs:)
-func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs unsafe.Pointer, arguments unsafe.Pointer, outputs unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (ic _ImageProcessorKernelClass) ProcessWithInputsArgumentsOutputsError(inputs []objc.ID, arguments unsafe.Pointer, outputs []objc.ID, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("processWithInputs:arguments:outputs:error:"), inputs, arguments, outputs, error_)
 	return rv
 }
@@ -148,8 +148,8 @@ func (ic _ImageProcessorKernelClass) RoiTileArrayForInputArgumentsOutputRect(inp
 // Override this class property if you want your processor’s output to be in a specific pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
-func (ic _ImageProcessorKernelClass) OutputFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("outputFormat"))
+func (ic _ImageProcessorKernelClass) OutputFormat() Format {
+	rv := objc.Send[Format](objc.ID(ic.class), objc.Sel("outputFormat"))
 	return rv
 }
 // Override this class property if your processor’s output stores 1.0 into the alpha channel of all pixels within the output extent.
@@ -169,8 +169,8 @@ func (ic _ImageProcessorKernelClass) SynchronizeInputs() unsafe.Pointer {
 // Override this class property if you want your processor’s output to be in a specific pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageProcessorKernel/outputFormat
-func (i_ ImageProcessorKernel) OutputFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("outputFormat"))
+func (i_ ImageProcessorKernel) OutputFormat() Format {
+	rv := objc.Send[Format](i_.ID, objc.Sel("outputFormat"))
 	return rv
 }
 

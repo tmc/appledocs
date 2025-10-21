@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [GraphExecutionDescriptor] class.
@@ -29,8 +30,8 @@ type _GraphExecutionDescriptorClass struct {
 // An interface definition for the [GraphExecutionDescriptor] class.
 type IGraphExecutionDescriptor interface {
 	IGraphObject
-	SignalEventAtExecutionEventValue(event objc.ID, executionStage unsafe.Pointer, value uint64)
-	WaitForEventValue(event objc.ID, value uint64)
+	SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage IGraphExecutionStage, value uint64)
+	WaitForEventValue(event objectivec.IObject, value uint64)
 }
 
 // A class that consists of all the levers to synchronize and schedule graph execution.
@@ -84,22 +85,22 @@ func NewGraphExecutionDescriptor() GraphExecutionDescriptor {
 // Executable signals these shared events at execution stage and immediately proceeds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor/signal(_:atExecutionEvent:value:)
-func (g_ GraphExecutionDescriptor) SignalEventAtExecutionEventValue(event objc.ID, executionStage unsafe.Pointer, value uint64) {
+func (g_ GraphExecutionDescriptor) SignalEventAtExecutionEventValue(event objectivec.IObject, executionStage IGraphExecutionStage, value uint64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("signalEvent:atExecutionEvent:value:"), event, executionStage, value)
 }
 
 // Executable waits on these shared events before scheduling execution on the HW, this does not include encoding which can still continue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutionDescriptor/wait(for:value:)
-func (g_ GraphExecutionDescriptor) WaitForEventValue(event objc.ID, value uint64) {
+func (g_ GraphExecutionDescriptor) WaitForEventValue(event objectivec.IObject, value uint64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("waitForEvent:value:"), event, value)
 }
 
 // The compilation descriptor for the graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/compilationdescriptor
-func (g_ GraphExecutionDescriptor) CompilationDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("compilationDescriptor"))
+func (g_ GraphExecutionDescriptor) CompilationDescriptor() MPSGraphCompilationDescriptor {
+	rv := objc.Send[MPSGraphCompilationDescriptor](g_.ID, objc.Sel("compilationDescriptor"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (g_ GraphExecutionDescriptor) CompilationDescriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutiondescriptor/compilationdescriptor
-func (g_ GraphExecutionDescriptor) SetCompilationDescriptor(value unsafe.Pointer) {
+func (g_ GraphExecutionDescriptor) SetCompilationDescriptor(value IMPSGraphCompilationDescriptor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCompilationDescriptor:"), value)
 }
 

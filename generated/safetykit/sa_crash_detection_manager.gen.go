@@ -98,8 +98,8 @@ func (s_ SACrashDetectionManager) RequestAuthorizationWithCompletionHandler(hand
 // A value that indicates if the person authorized the app to receive Crash Detection events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/authorizationStatus
-func (s_ SACrashDetectionManager) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("authorizationStatus"))
+func (s_ SACrashDetectionManager) AuthorizationStatus() SAAuthorizationStatus {
+	rv := objc.Send[SAAuthorizationStatus](s_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 

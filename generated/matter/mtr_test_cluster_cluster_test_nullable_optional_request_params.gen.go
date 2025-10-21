@@ -88,7 +88,7 @@ func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) Arg1() foundati
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalrequestparams/arg1
-func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) SetArg1(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) SetArg1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) ServerSideProce
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalrequestparams/serversideprocessingtimeout
-func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) TimedInvokeTime
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalrequestparams/timedinvoketimeoutms
-func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTestClusterClusterTestNullableOptionalRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

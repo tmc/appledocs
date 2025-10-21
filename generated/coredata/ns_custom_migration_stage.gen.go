@@ -86,7 +86,7 @@ func NewCustomMigrationStage() CustomMigrationStage {
 // Creates a custom migration stage with the specified source and destination model references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/initWithCurrentModelReference:nextModelReference:
-func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentModel unsafe.Pointer, nextModel unsafe.Pointer) CustomMigrationStage {
+func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentModel IManagedObjectModelReference, nextModel IManagedObjectModelReference) CustomMigrationStage {
 	instance := getCustomMigrationStageClass().Alloc()
 	rv := objc.Send[CustomMigrationStage](instance.ID, objc.Sel("initWithCurrentModelReference:nextModelReference:"), currentModel, nextModel)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentM
 // The reference that represents the migration’s source model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/currentModel
-func (c_ CustomMigrationStage) CurrentModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentModel"))
+func (c_ CustomMigrationStage) CurrentModel() NSManagedObjectModelReference {
+	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("currentModel"))
 	return rv
 }
 
@@ -123,8 +123,8 @@ func (c_ CustomMigrationStage) SetDidMigrateHandler(value unsafe.Pointer) {
 // The reference that represents the migration’s destination model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSCustomMigrationStage/nextModel
-func (c_ CustomMigrationStage) NextModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nextModel"))
+func (c_ CustomMigrationStage) NextModel() NSManagedObjectModelReference {
+	rv := objc.Send[NSManagedObjectModelReference](c_.ID, objc.Sel("nextModel"))
 	return rv
 }
 
@@ -149,8 +149,8 @@ func (c_ CustomMigrationStage) SetWillMigrateHandler(value unsafe.Pointer) {
 // The container that provides access to the migrating persistent store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-func (c_ CustomMigrationStage) Container() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("container"))
+func (c_ CustomMigrationStage) Container() NSPersistentContainer {
+	rv := objc.Send[NSPersistentContainer](c_.ID, objc.Sel("container"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (c_ CustomMigrationStage) Container() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container
-func (c_ CustomMigrationStage) SetContainer(value unsafe.Pointer) {
+func (c_ CustomMigrationStage) SetContainer(value IPersistentContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/metalperformanceshaders"
 )
 
 // The class instance for the [InstanceAccelerationStructureDescriptor] class.
@@ -189,8 +190,8 @@ func (i_ InstanceAccelerationStructureDescriptor) SetInstanceTransformationMatri
 // The bottom-level acceleration structures that instances use in the instance acceleration structure .
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlinstanceaccelerationstructuredescriptor/instancedaccelerationstructures
-func (i_ InstanceAccelerationStructureDescriptor) InstancedAccelerationStructures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("instancedAccelerationStructures"))
+func (i_ InstanceAccelerationStructureDescriptor) InstancedAccelerationStructures() metalperformanceshaders.AccelerationStructure {
+	rv := objc.Send[metalperformanceshaders.AccelerationStructure](i_.ID, objc.Sel("instancedAccelerationStructures"))
 	return rv
 }
 
@@ -200,7 +201,7 @@ func (i_ InstanceAccelerationStructureDescriptor) InstancedAccelerationStructure
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlinstanceaccelerationstructuredescriptor/instancedaccelerationstructures
-func (i_ InstanceAccelerationStructureDescriptor) SetInstancedAccelerationStructures(value unsafe.Pointer) {
+func (i_ InstanceAccelerationStructureDescriptor) SetInstancedAccelerationStructures(value metalperformanceshaders.IAccelerationStructure) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setInstancedAccelerationStructures:"), value)
 }
 
@@ -275,8 +276,8 @@ func (i_ InstanceAccelerationStructureDescriptor) SetMotionTransformStride(value
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlinstanceaccelerationstructuredescriptor/motiontransformtype
-func (i_ InstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformType"))
+func (i_ InstanceAccelerationStructureDescriptor) MotionTransformType() TransformType {
+	rv := objc.Send[TransformType](i_.ID, objc.Sel("motionTransformType"))
 	return rv
 }
 
@@ -284,7 +285,7 @@ func (i_ InstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.P
 // SetMotionTransformType sets the value of the motionTransformType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlinstanceaccelerationstructuredescriptor/motiontransformtype
-func (i_ InstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
+func (i_ InstanceAccelerationStructureDescriptor) SetMotionTransformType(value TransformType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformType:"), value)
 }
 

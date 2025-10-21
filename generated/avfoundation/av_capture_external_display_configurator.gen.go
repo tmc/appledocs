@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [CaptureExternalDisplayConfigurator] class.
@@ -119,8 +120,8 @@ func (c_ CaptureExternalDisplayConfigurator) SetActiveExternalDisplayFrameRate(v
 // The device for which the coordinator configures the preview layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/device
-func (c_ CaptureExternalDisplayConfigurator) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+func (c_ CaptureExternalDisplayConfigurator) Device() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (c_ CaptureExternalDisplayConfigurator) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/device
-func (c_ CaptureExternalDisplayConfigurator) SetDevice(value unsafe.Pointer) {
+func (c_ CaptureExternalDisplayConfigurator) SetDevice(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
 }
 
@@ -155,8 +156,8 @@ func (c_ CaptureExternalDisplayConfigurator) SetIsActive(value bool) {
 // The layer for which the configurator adjusts display properties to match the device’s state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("previewLayer"))
+func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() quartzcore.Layer {
+	rv := objc.Send[quartzcore.Layer](c_.ID, objc.Sel("previewLayer"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (c_ CaptureExternalDisplayConfigurator) PreviewLayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureexternaldisplayconfigurator/previewlayer
-func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value unsafe.Pointer) {
+func (c_ CaptureExternalDisplayConfigurator) SetPreviewLayer(value quartzcore.ILayer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
 }
 

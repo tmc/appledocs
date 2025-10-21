@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -82,16 +83,16 @@ func NewPDFBorder() PDFBorder {
 // A dictionary that contains a deep copy of all border properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/borderKeyValues
-func (p_ PDFBorder) BorderKeyValues() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("borderKeyValues"))
+func (p_ PDFBorder) BorderKeyValues() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("borderKeyValues"))
 	return rv
 }
 
 // Gets the dash pattern for the border as an array of NSNumber objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/dashPattern
-func (p_ PDFBorder) DashPattern() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("dashPattern"))
+func (p_ PDFBorder) DashPattern() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("dashPattern"))
 	return rv
 }
 
@@ -101,7 +102,7 @@ func (p_ PDFBorder) DashPattern() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/dashPattern
-func (p_ PDFBorder) SetDashPattern(value unsafe.Pointer) {
+func (p_ PDFBorder) SetDashPattern(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDashPattern:"), value)
 }
 
@@ -126,8 +127,8 @@ func (p_ PDFBorder) SetLineWidth(value float64) {
 // Sets the border style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/style
-func (p_ PDFBorder) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
+func (p_ PDFBorder) Style() PDFBorderStyle {
+	rv := objc.Send[PDFBorderStyle](p_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -137,7 +138,7 @@ func (p_ PDFBorder) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFBorder/style
-func (p_ PDFBorder) SetStyle(value unsafe.Pointer) {
+func (p_ PDFBorder) SetStyle(value PDFBorderStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 
@@ -162,8 +163,8 @@ func (p_ PDFBorder) SetAlignment(value unsafe.Pointer) {
 // Sets the border style for the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/border
-func (p_ PDFBorder) Border() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("border"))
+func (p_ PDFBorder) Border() PDFBorder {
+	rv := objc.Send[PDFBorder](p_.ID, objc.Sel("border"))
 	return rv
 }
 
@@ -173,7 +174,7 @@ func (p_ PDFBorder) Border() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/border
-func (p_ PDFBorder) SetBorder(value unsafe.Pointer) {
+func (p_ PDFBorder) SetBorder(value IPDFBorder) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBorder:"), value)
 }
 
@@ -198,8 +199,8 @@ func (p_ PDFBorder) SetBounds(value coregraphics.CGRect) {
 // Sets the stroke color for the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFBorder) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("color"))
+func (p_ PDFBorder) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -209,15 +210,15 @@ func (p_ PDFBorder) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFBorder) SetColor(value unsafe.Pointer) {
+func (p_ PDFBorder) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
 
 // Returns the textual content (if any) associated with the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFBorder) Contents() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
+func (p_ PDFBorder) Contents() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -227,15 +228,15 @@ func (p_ PDFBorder) Contents() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFBorder) SetContents(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
+func (p_ PDFBorder) SetContents(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
 }
 
 // The font the annotation uses to display text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/font
-func (p_ PDFBorder) Font() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("font"))
+func (p_ PDFBorder) Font() appkit.Font {
+	rv := objc.Send[appkit.Font](p_.ID, objc.Sel("font"))
 	return rv
 }
 
@@ -245,15 +246,15 @@ func (p_ PDFBorder) Font() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/font
-func (p_ PDFBorder) SetFont(value unsafe.Pointer) {
+func (p_ PDFBorder) SetFont(value appkit.IFont) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFont:"), value)
 }
 
 // The font color the annotation uses to display text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fontcolor
-func (p_ PDFBorder) FontColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fontColor"))
+func (p_ PDFBorder) FontColor() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("fontColor"))
 	return rv
 }
 
@@ -263,7 +264,7 @@ func (p_ PDFBorder) FontColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/fontcolor
-func (p_ PDFBorder) SetFontColor(value unsafe.Pointer) {
+func (p_ PDFBorder) SetFontColor(value appkit.IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFontColor:"), value)
 }
 

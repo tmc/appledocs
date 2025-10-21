@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [OutputStream] class.
@@ -99,9 +100,9 @@ func NewOutputStreamToBufferCapacity(buffer unsafe.Pointer, capacity uint) Outpu
 // Returns an initialized output stream for writing to a specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toFileAtPath:append:)
-func NewOutputStreamToFileAtPathAppend(path string, shouldAppend bool) OutputStream {
+func NewOutputStreamToFileAtPathAppend(path appkit.string, shouldAppend bool) OutputStream {
 	instance := getOutputStreamClass().Alloc()
-	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToFileAtPath:append:"), objc.String(path), shouldAppend)
+	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initToFileAtPath:append:"), path, shouldAppend)
 	rv.Autorelease()
 	return rv
 }
@@ -123,7 +124,7 @@ func NewOutputStreamToMemory() OutputStream {
 // Returns an initialized output stream for writing to a specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(url:append:)-5soau
-func NewOutputStreamWithURLAppend(url URL, shouldAppend bool) OutputStream {
+func NewOutputStreamWithURLAppend(url IURL, shouldAppend bool) OutputStream {
 	instance := getOutputStreamClass().Alloc()
 	rv := objc.Send[OutputStream](instance.ID, objc.Sel("initWithURL:append:"), url, shouldAppend)
 	rv.Autorelease()
@@ -142,15 +143,15 @@ func (oc _OutputStreamClass) OutputStreamToBufferCapacity(buffer unsafe.Pointer,
 // Creates and returns an initialized output stream for writing to a specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOutputStream/outputStreamToFileAtPath:append:
-func (oc _OutputStreamClass) OutputStreamToFileAtPathAppend(path string, shouldAppend bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToFileAtPath:append:"), objc.String(path), shouldAppend)
+func (oc _OutputStreamClass) OutputStreamToFileAtPathAppend(path appkit.string, shouldAppend bool) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamToFileAtPath:append:"), path, shouldAppend)
 	return rv
 }
 
 // Creates and returns an initialized output stream for writing to a specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(URL:append:)-8e5le
-func (oc _OutputStreamClass) OutputStreamWithURLAppend(url URL, shouldAppend bool) unsafe.Pointer {
+func (oc _OutputStreamClass) OutputStreamWithURLAppend(url IURL, shouldAppend bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("outputStreamWithURL:append:"), url, shouldAppend)
 	return rv
 }

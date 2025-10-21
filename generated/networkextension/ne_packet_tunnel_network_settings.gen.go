@@ -83,8 +83,8 @@ func NewNEPacketTunnelNetworkSettings() NEPacketTunnelNetworkSettings {
 // The tunnel IP version 4 settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings
-func (n_ NEPacketTunnelNetworkSettings) IPv4Settings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("IPv4Settings"))
+func (n_ NEPacketTunnelNetworkSettings) IPv4Settings() NEIPv4Settings {
+	rv := objc.Send[NEIPv4Settings](n_.ID, objc.Sel("IPv4Settings"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (n_ NEPacketTunnelNetworkSettings) IPv4Settings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv4Settings
-func (n_ NEPacketTunnelNetworkSettings) SetIPv4Settings(value unsafe.Pointer) {
+func (n_ NEPacketTunnelNetworkSettings) SetIPv4Settings(value INEIPv4Settings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIPv4Settings:"), value)
 }
 
 // The tunnel IP version 6 settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings
-func (n_ NEPacketTunnelNetworkSettings) IPv6Settings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("IPv6Settings"))
+func (n_ NEPacketTunnelNetworkSettings) IPv6Settings() NEIPv6Settings {
+	rv := objc.Send[NEIPv6Settings](n_.ID, objc.Sel("IPv6Settings"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (n_ NEPacketTunnelNetworkSettings) IPv6Settings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/ipv6Settings
-func (n_ NEPacketTunnelNetworkSettings) SetIPv6Settings(value unsafe.Pointer) {
+func (n_ NEPacketTunnelNetworkSettings) SetIPv6Settings(value INEIPv6Settings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIPv6Settings:"), value)
 }
 
@@ -130,7 +130,7 @@ func (n_ NEPacketTunnelNetworkSettings) MTU() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/mtu
-func (n_ NEPacketTunnelNetworkSettings) SetMTU(value foundation.Number) {
+func (n_ NEPacketTunnelNetworkSettings) SetMTU(value foundation.INumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMTU:"), value)
 }
 
@@ -148,7 +148,7 @@ func (n_ NEPacketTunnelNetworkSettings) TunnelOverheadBytes() foundation.Number 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelNetworkSettings/tunnelOverheadBytes
-func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value foundation.Number) {
+func (n_ NEPacketTunnelNetworkSettings) SetTunnelOverheadBytes(value foundation.INumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTunnelOverheadBytes:"), value)
 }
 

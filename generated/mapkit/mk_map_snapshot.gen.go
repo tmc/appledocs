@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -93,16 +94,16 @@ func (m_ MKMapSnapshot) PointForCoordinate(coordinate unsafe.Pointer) coregraphi
 // The visual style that MapKit uses when rendering the snapshot.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/appearance
-func (m_ MKMapSnapshot) Appearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("appearance"))
+func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
+	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
 // The image of the map’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("image"))
+func (m_ MKMapSnapshot) Image() appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (m_ MKMapSnapshot) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) SetImage(value unsafe.Pointer) {
+func (m_ MKMapSnapshot) SetImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
 }
 

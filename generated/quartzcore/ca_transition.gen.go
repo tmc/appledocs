@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [Transition] class.
@@ -138,8 +139,8 @@ func (t_ Transition) SetStartProgress(value unsafe.Pointer) {
 // Specifies an optional subtype that indicates the direction for the predefined motion-based transitions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/subtype
-func (t_ Transition) Subtype() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("subtype"))
+func (t_ Transition) Subtype() TransitionSubtype {
+	rv := objc.Send[TransitionSubtype](t_.ID, objc.Sel("subtype"))
 	return rv
 }
 
@@ -149,15 +150,15 @@ func (t_ Transition) Subtype() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/subtype
-func (t_ Transition) SetSubtype(value unsafe.Pointer) {
+func (t_ Transition) SetSubtype(value ITransitionSubtype) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSubtype:"), value)
 }
 
 // Specifies the predefined transition type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/type
-func (t_ Transition) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("type"))
+func (t_ Transition) Type() TransitionType {
+	rv := objc.Send[TransitionType](t_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -167,15 +168,15 @@ func (t_ Transition) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransition/type
-func (t_ Transition) SetType(value unsafe.Pointer) {
+func (t_ Transition) SetType(value TransitionType) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setType:"), value)
 }
 
 // The background color of the receiver. Animatable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (t_ Transition) BackgroundColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("backgroundColor"))
+func (t_ Transition) BackgroundColor() appkit.Color {
+	rv := objc.Send[appkit.Color](t_.ID, objc.Sel("backgroundColor"))
 	return rv
 }
 
@@ -185,7 +186,7 @@ func (t_ Transition) BackgroundColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor
-func (t_ Transition) SetBackgroundColor(value unsafe.Pointer) {
+func (t_ Transition) SetBackgroundColor(value appkit.IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 

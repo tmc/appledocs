@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/photos"
 )
 
 // The class instance for the [PHProjectExtensionContext] class.
@@ -29,8 +31,8 @@ type _PHProjectExtensionContextClass struct {
 // An interface definition for the [PHProjectExtensionContext] class.
 type IPHProjectExtensionContext interface {
 	IExtensionContext
-	ShowEditorForAsset(asset unsafe.Pointer)
-	UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo unsafe.Pointer, completion unsafe.Pointer) unsafe.Pointer
+	ShowEditorForAsset(asset photos.IPHAsset)
+	UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) foundation.Progress
 }
 
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
@@ -86,31 +88,31 @@ func NewPHProjectExtensionContext() PHProjectExtensionContext {
 // Invokes the built-in photo editor for the given asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/showEditor(for:)
-func (p_ PHProjectExtensionContext) ShowEditorForAsset(asset unsafe.Pointer) {
+func (p_ PHProjectExtensionContext) ShowEditorForAsset(asset photos.IPHAsset) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("showEditorForAsset:"), asset)
 }
 
 // Creates an updated instance from existing project information and current assets.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/updatedProjectInfo(from:completion:)
-func (p_ PHProjectExtensionContext) UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo unsafe.Pointer, completion unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("updatedProjectInfoFromProjectInfo:completion:"), existingProjectInfo, completion)
+func (p_ PHProjectExtensionContext) UpdatedProjectInfoFromProjectInfoCompletion(existingProjectInfo IPHProjectInfo, completion unsafe.Pointer) foundation.Progress {
+	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("updatedProjectInfoFromProjectInfo:completion:"), existingProjectInfo, completion)
 	return rv
 }
 
 // A read-only version of the photo library being modified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/photoLibrary
-func (p_ PHProjectExtensionContext) PhotoLibrary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("photoLibrary"))
+func (p_ PHProjectExtensionContext) PhotoLibrary() photos.PHPhotoLibrary {
+	rv := objc.Send[photos.PHPhotoLibrary](p_.ID, objc.Sel("photoLibrary"))
 	return rv
 }
 
 // A read-only version of the project being edited.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectExtensionContext/project
-func (p_ PHProjectExtensionContext) Project() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("project"))
+func (p_ PHProjectExtensionContext) Project() photos.PHProject {
+	rv := objc.Send[photos.PHProject](p_.ID, objc.Sel("project"))
 	return rv
 }
 

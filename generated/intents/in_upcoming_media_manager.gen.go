@@ -30,7 +30,7 @@ type _INUpcomingMediaManagerClass struct {
 // An interface definition for the [INUpcomingMediaManager] class.
 type IINUpcomingMediaManager interface {
 	objectivec.IObject
-	SetPredictionModeForType(mode unsafe.Pointer, type_ unsafe.Pointer)
+	SetPredictionModeForType(mode INUpcomingMediaPredictionMode, type_ unsafe.Pointer)
 	SetSuggestedMediaIntents(intents unsafe.Pointer)
 }
 
@@ -85,14 +85,14 @@ func NewINUpcomingMediaManager() INUpcomingMediaManager {
 // The shared upcoming media manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/shared
-func (ic _INUpcomingMediaManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("sharedManager"))
+func (ic _INUpcomingMediaManagerClass) SharedManager() INUpcomingMediaManager {
+	rv := objc.Send[INUpcomingMediaManager](objc.ID(ic.class), objc.Sel("sharedManager"))
 	return rv
 }
 // Suggests how Siri should predict media intent shortcuts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/setPredictionMode(_:for:)
-func (i_ INUpcomingMediaManager) SetPredictionModeForType(mode unsafe.Pointer, type_ unsafe.Pointer) {
+func (i_ INUpcomingMediaManager) SetPredictionModeForType(mode INUpcomingMediaPredictionMode, type_ unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPredictionMode:forType:"), mode, type_)
 }
 
@@ -106,8 +106,8 @@ func (i_ INUpcomingMediaManager) SetSuggestedMediaIntents(intents unsafe.Pointer
 // The shared upcoming media manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUpcomingMediaManager/shared
-func (i_ INUpcomingMediaManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sharedManager"))
+func (i_ INUpcomingMediaManager) SharedManager() INUpcomingMediaManager {
+	rv := objc.Send[INUpcomingMediaManager](i_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

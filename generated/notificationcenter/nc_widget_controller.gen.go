@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _NCWidgetControllerClass struct {
 // An interface definition for the [NCWidgetController] class.
 type INCWidgetController interface {
 	objectivec.IObject
-	SetHasContentForWidgetWithBundleIdentifier(flag bool, bundleID string)
+	SetHasContentForWidgetWithBundleIdentifier(flag bool, bundleID appkit.string)
 }
 
 // An object used to specify whether a Today widget has content to display.
@@ -83,8 +84,8 @@ func NewNCWidgetController() NCWidgetController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetController/default()
-func (nc _NCWidgetControllerClass) DefaultWidgetController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("defaultWidgetController"))
+func (nc _NCWidgetControllerClass) DefaultWidgetController() NCWidgetController {
+	rv := objc.Send[NCWidgetController](objc.ID(nc.class), objc.Sel("defaultWidgetController"))
 	return rv
 }
 
@@ -99,8 +100,8 @@ func (nc _NCWidgetControllerClass) WidgetController() unsafe.Pointer {
 // Sets whether the specified widget has content to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NotificationCenter/NCWidgetController/setHasContent(_:forWidgetWithBundleIdentifier:)
-func (n_ NCWidgetController) SetHasContentForWidgetWithBundleIdentifier(flag bool, bundleID string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHasContent:forWidgetWithBundleIdentifier:"), flag, objc.String(bundleID))
+func (n_ NCWidgetController) SetHasContentForWidgetWithBundleIdentifier(flag bool, bundleID appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setHasContent:forWidgetWithBundleIdentifier:"), flag, bundleID)
 }
 
 

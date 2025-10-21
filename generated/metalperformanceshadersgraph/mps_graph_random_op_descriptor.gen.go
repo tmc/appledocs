@@ -100,8 +100,8 @@ func (g_ GraphRandomOpDescriptor) SetDataType(value unsafe.Pointer) {
 // The type of distribution to draw samples from. See MPSGraphRandomDistribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRandomOpDescriptor/distribution
-func (g_ GraphRandomOpDescriptor) Distribution() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("distribution"))
+func (g_ GraphRandomOpDescriptor) Distribution() GraphRandomDistribution {
+	rv := objc.Send[GraphRandomDistribution](g_.ID, objc.Sel("distribution"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (g_ GraphRandomOpDescriptor) Distribution() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphRandomOpDescriptor/distribution
-func (g_ GraphRandomOpDescriptor) SetDistribution(value unsafe.Pointer) {
+func (g_ GraphRandomOpDescriptor) SetDistribution(value IGraphRandomDistribution) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDistribution:"), value)
 }
 
@@ -208,8 +208,8 @@ func (g_ GraphRandomOpDescriptor) SetMinInteger(value int) {
 // The sampling method of the distribution.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/samplingmethod
-func (g_ GraphRandomOpDescriptor) SamplingMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("samplingMethod"))
+func (g_ GraphRandomOpDescriptor) SamplingMethod() GraphRandomNormalSamplingMethod {
+	rv := objc.Send[GraphRandomNormalSamplingMethod](g_.ID, objc.Sel("samplingMethod"))
 	return rv
 }
 
@@ -219,7 +219,7 @@ func (g_ GraphRandomOpDescriptor) SamplingMethod() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor/samplingmethod
-func (g_ GraphRandomOpDescriptor) SetSamplingMethod(value unsafe.Pointer) {
+func (g_ GraphRandomOpDescriptor) SetSamplingMethod(value IGraphRandomNormalSamplingMethod) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setSamplingMethod:"), value)
 }
 

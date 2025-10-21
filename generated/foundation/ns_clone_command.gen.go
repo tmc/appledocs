@@ -29,7 +29,7 @@ type _CloneCommandClass struct {
 // An interface definition for the [CloneCommand] class.
 type ICloneCommand interface {
 	IScriptCommand
-	SetReceiversSpecifier(receiversRef unsafe.Pointer)
+	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 
 // A command that clones one or more scriptable objects.
@@ -85,15 +85,15 @@ func NewCloneCommand() CloneCommand {
 // Sets the receiver’s object specifier;.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand/setReceiversSpecifier(_:)
-func (c_ CloneCommand) SetReceiversSpecifier(receiversRef unsafe.Pointer) {
+func (c_ CloneCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
 
 // Returns a specifier for the object or objects to be cloned.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
-func (c_ CloneCommand) KeySpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keySpecifier"))
+func (c_ CloneCommand) KeySpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](c_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
 
@@ -103,7 +103,7 @@ func (c_ CloneCommand) KeySpecifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsclonecommand/keyspecifier
-func (c_ CloneCommand) SetKeySpecifier(value unsafe.Pointer) {
+func (c_ CloneCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeySpecifier:"), value)
 }
 

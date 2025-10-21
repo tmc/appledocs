@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCBPeer() CBPeer {
 // The UUID associated with the peer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBPeer/identifier
-func (c_ CBPeer) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("identifier"))
+func (c_ CBPeer) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 

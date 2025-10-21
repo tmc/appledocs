@@ -87,14 +87,14 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() foundatio
 // SetCount sets the value of the count property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("enableKey"))
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("enableKey"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() unsaf
 // SetEnableKey sets the value of the enableKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnableKey:"), value)
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcess
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -153,7 +153,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() foundatio
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

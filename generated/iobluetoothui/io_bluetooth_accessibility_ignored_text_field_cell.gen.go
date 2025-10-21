@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [BluetoothAccessibilityIgnoredTextFieldCell] class.
@@ -29,18 +29,20 @@ type _BluetoothAccessibilityIgnoredTextFieldCellClass struct {
 
 // An interface definition for the [BluetoothAccessibilityIgnoredTextFieldCell] class.
 type IBluetoothAccessibilityIgnoredTextFieldCell interface {
-	objectivec.IObject
+	appkit.ITextFieldCell
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothAccessibilityIgnoredTextFieldCell
 type BluetoothAccessibilityIgnoredTextFieldCell struct {
-	objectivec.Object
+	appkit.TextFieldCell
 }
 
 // BluetoothAccessibilityIgnoredTextFieldCellFrom constructs a [BluetoothAccessibilityIgnoredTextFieldCell] from an unsafe.Pointer.
 func BluetoothAccessibilityIgnoredTextFieldCellFrom(ptr unsafe.Pointer) BluetoothAccessibilityIgnoredTextFieldCell {
-	return BluetoothAccessibilityIgnoredTextFieldCell{objectivec.Object{objc.ID(ptr)}}
+	return BluetoothAccessibilityIgnoredTextFieldCell{
+		TextFieldCell: appkit.TextFieldCellFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

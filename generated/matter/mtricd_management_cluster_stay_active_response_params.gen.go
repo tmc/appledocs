@@ -100,7 +100,7 @@ func (m_ MTRICDManagementClusterStayActiveResponseParams) PromisedActiveDuration
 // SetPromisedActiveDuration sets the value of the promisedActiveDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterStayActiveResponseParams/promisedActiveDuration
-func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value foundation.Number) {
+func (m_ MTRICDManagementClusterStayActiveResponseParams) SetPromisedActiveDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPromisedActiveDuration:"), value)
 }
 

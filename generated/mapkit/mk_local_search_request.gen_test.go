@@ -15,11 +15,3 @@ func ExampleNewMKLocalSearchRequest() {
 	_ = mapkit.NewMKLocalSearchRequest()
 	// Output:
 }
-// ExampleNewMKLocalSearchRequestWithNaturalLanguageQuery demonstrates how to create a MKLocalSearchRequest instance using NewMKLocalSearchRequestWithNaturalLanguageQuery.
-// Initializes and returns a local search request based on the provided string.
-func ExampleNewMKLocalSearchRequestWithNaturalLanguageQuery() {
-	_ = mapkit.NewMKLocalSearchRequestWithNaturalLanguageQuery(
-		"naturalLanguageQuery", // naturalLanguageQuery string
-	)
-	// Output:
-}

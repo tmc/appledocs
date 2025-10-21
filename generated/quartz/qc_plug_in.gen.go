@@ -31,7 +31,7 @@ type _QCPlugInClass struct {
 // An interface definition for the [QCPlugIn] class.
 type IQCPlugIn interface {
 	objectivec.IObject
-	ExecuteAtTimeWithArguments(context objc.ID, time foundation.TimeInterval, arguments objc.ID) bool
+	ExecuteAtTimeWithArguments(context objectivec.IObject, time foundation.ITimeInterval, arguments objectivec.IObject) bool
 }
 
 // A base class to subclass for writing custom patches.
@@ -85,7 +85,7 @@ func NewQCPlugIn() QCPlugIn {
 // Performs the processing or rendering tasks appropriate for the custom patch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPlugIn/execute(_:atTime:withArguments:)
-func (q_ QCPlugIn) ExecuteAtTimeWithArguments(context objc.ID, time foundation.TimeInterval, arguments objc.ID) bool {
+func (q_ QCPlugIn) ExecuteAtTimeWithArguments(context objectivec.IObject, time foundation.ITimeInterval, arguments objectivec.IObject) bool {
 	rv := objc.Send[bool](q_.ID, objc.Sel("execute:atTime:withArguments:"), context, time, arguments)
 	return rv
 }

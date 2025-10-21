@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,7 +33,7 @@ type _PersistentContainerClass struct {
 type IPersistentContainer interface {
 	objectivec.IObject
 	LoadPersistentStoresWithCompletionHandler(block unsafe.Pointer)
-	NewBackgroundContext() unsafe.Pointer
+	NewBackgroundContext() ManagedObjectContext
 	PerformBackgroundTask(block unsafe.Pointer)
 }
 
@@ -89,9 +90,9 @@ func NewPersistentContainer() PersistentContainer {
 // Creates a container with the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:)
-func NewPersistentContainerWithName(name string) PersistentContainer {
+func NewPersistentContainerWithName(name appkit.string) PersistentContainer {
 	instance := getPersistentContainerClass().Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), objc.String(name))
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:"), name)
 	rv.Autorelease()
 	return rv
 }
@@ -101,9 +102,9 @@ func NewPersistentContainerWithName(name string) PersistentContainer {
 // Create a container with the specified name and managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/init(name:managedObjectModel:)
-func NewPersistentContainerWithNameManagedObjectModel(name string, model unsafe.Pointer) PersistentContainer {
+func NewPersistentContainerWithNameManagedObjectModel(name appkit.string, model IManagedObjectModel) PersistentContainer {
 	instance := getPersistentContainerClass().Alloc()
-	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:managedObjectModel:"), objc.String(name), model)
+	rv := objc.Send[PersistentContainer](instance.ID, objc.Sel("initWithName:managedObjectModel:"), name, model)
 	rv.Autorelease()
 	return rv
 }
@@ -120,16 +121,16 @@ func (pc _PersistentContainerClass) DefaultDirectoryURL() foundation.URL {
 // Initializes a new persistent container using the provided name for the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:
-func (pc _PersistentContainerClass) PersistentContainerWithName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:"), objc.String(name))
+func (pc _PersistentContainerClass) PersistentContainerWithName(name appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:"), name)
 	return rv
 }
 
 // Initializes a new persistent container using the provided name and managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentContainerWithName:managedObjectModel:
-func (pc _PersistentContainerClass) PersistentContainerWithNameManagedObjectModel(name string, model unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:managedObjectModel:"), objc.String(name), model)
+func (pc _PersistentContainerClass) PersistentContainerWithNameManagedObjectModel(name appkit.string, model IManagedObjectModel) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("persistentContainerWithName:managedObjectModel:"), name, model)
 	return rv
 }
 
@@ -143,8 +144,8 @@ func (p_ PersistentContainer) LoadPersistentStoresWithCompletionHandler(block un
 // Returns a new managed object context that executes on a private queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/newBackgroundContext()
-func (p_ PersistentContainer) NewBackgroundContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("newBackgroundContext"))
+func (p_ PersistentContainer) NewBackgroundContext() ManagedObjectContext {
+	rv := objc.Send[ManagedObjectContext](p_.ID, objc.Sel("newBackgroundContext"))
 	return rv
 }
 
@@ -158,24 +159,24 @@ func (p_ PersistentContainer) PerformBackgroundTask(block unsafe.Pointer) {
 // The container’s managed object model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/managedObjectModel
-func (p_ PersistentContainer) ManagedObjectModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("managedObjectModel"))
+func (p_ PersistentContainer) ManagedObjectModel() NSManagedObjectModel {
+	rv := objc.Send[NSManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
 
 // The container’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/name
-func (p_ PersistentContainer) Name() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ PersistentContainer) Name() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The container’s persistent store coordinator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/persistentStoreCoordinator
-func (p_ PersistentContainer) PersistentStoreCoordinator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("persistentStoreCoordinator"))
+func (p_ PersistentContainer) PersistentStoreCoordinator() NSPersistentStoreCoordinator {
+	rv := objc.Send[NSPersistentStoreCoordinator](p_.ID, objc.Sel("persistentStoreCoordinator"))
 	return rv
 }
 
@@ -210,8 +211,8 @@ func (p_ PersistentContainer) SetPersistentStoreDescriptions(value []PersistentS
 // The main queue’s managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentContainer/viewContext
-func (p_ PersistentContainer) ViewContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("viewContext"))
+func (p_ PersistentContainer) ViewContext() NSManagedObjectContext {
+	rv := objc.Send[NSManagedObjectContext](p_.ID, objc.Sel("viewContext"))
 	return rv
 }
 

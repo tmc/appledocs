@@ -102,8 +102,8 @@ func (i_ INSnoozeTasksIntent) SetAll(value bool) {
 // The next time after the current time that triggers a task to snooze.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
-func (i_ INSnoozeTasksIntent) NextTriggerTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("nextTriggerTime"))
+func (i_ INSnoozeTasksIntent) NextTriggerTime() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("nextTriggerTime"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (i_ INSnoozeTasksIntent) NextTriggerTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insnoozetasksintent/nexttriggertime
-func (i_ INSnoozeTasksIntent) SetNextTriggerTime(value unsafe.Pointer) {
+func (i_ INSnoozeTasksIntent) SetNextTriggerTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNextTriggerTime:"), value)
 }
 

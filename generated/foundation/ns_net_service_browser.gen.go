@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +31,11 @@ type _NetServiceBrowserClass struct {
 // An interface definition for the [NetServiceBrowser] class.
 type INetServiceBrowser interface {
 	objectivec.IObject
-	RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
-	ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer)
+	RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
+	ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode)
 	SearchForBrowsableDomains()
 	SearchForRegistrationDomains()
-	SearchForServicesOfTypeInDomain(type_ string, domainString string)
+	SearchForServicesOfTypeInDomain(type_ appkit.string, domainString appkit.string)
 	Stop()
 }
 
@@ -90,14 +91,14 @@ func NewNetServiceBrowser() NetServiceBrowser {
 // Removes the receiver from the specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/remove(from:forMode:)
-func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (n_ NetServiceBrowser) RemoveFromRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeFromRunLoop:forMode:"), aRunLoop, mode)
 }
 
 // Adds the receiver to the specified run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/schedule(in:forMode:)
-func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop unsafe.Pointer, mode unsafe.Pointer) {
+func (n_ NetServiceBrowser) ScheduleInRunLoopForMode(aRunLoop IRunLoop, mode RunLoopMode) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("scheduleInRunLoop:forMode:"), aRunLoop, mode)
 }
 
@@ -118,8 +119,8 @@ func (n_ NetServiceBrowser) SearchForRegistrationDomains() {
 // Starts a search for services of a particular type within a specific domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetServiceBrowser/searchForServices(ofType:inDomain:)
-func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ string, domainString string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), objc.String(type_), objc.String(domainString))
+func (n_ NetServiceBrowser) SearchForServicesOfTypeInDomain(type_ appkit.string, domainString appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("searchForServicesOfType:inDomain:"), type_, domainString)
 }
 
 // Halts a currently running search or resolution.

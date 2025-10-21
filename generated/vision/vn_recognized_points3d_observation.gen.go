@@ -29,7 +29,7 @@ type _RecognizedPoints3DObservationClass struct {
 // An interface definition for the [RecognizedPoints3DObservation] class.
 type IRecognizedPoints3DObservation interface {
 	IObservation
-	RecognizedPointsForGroupKeyError(groupKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An observation that provides the 3D points for a request.
@@ -83,7 +83,7 @@ func NewRecognizedPoints3DObservation() RecognizedPoints3DObservation {
 // Returns a point for a group key you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoints3DObservation/recognizedPoints(forGroupKey:)
-func (r_ RecognizedPoints3DObservation) RecognizedPointsForGroupKeyError(groupKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (r_ RecognizedPoints3DObservation) RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
 	return rv
 }
@@ -91,8 +91,8 @@ func (r_ RecognizedPoints3DObservation) RecognizedPointsForGroupKeyError(groupKe
 // The available point group keys in the observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablegroupkeys
-func (r_ RecognizedPoints3DObservation) AvailableGroupKeys() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("availableGroupKeys"))
+func (r_ RecognizedPoints3DObservation) AvailableGroupKeys() RecognizedPointGroupKey {
+	rv := objc.Send[RecognizedPointGroupKey](r_.ID, objc.Sel("availableGroupKeys"))
 	return rv
 }
 
@@ -102,15 +102,15 @@ func (r_ RecognizedPoints3DObservation) AvailableGroupKeys() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablegroupkeys
-func (r_ RecognizedPoints3DObservation) SetAvailableGroupKeys(value unsafe.Pointer) {
+func (r_ RecognizedPoints3DObservation) SetAvailableGroupKeys(value IRecognizedPointGroupKey) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableGroupKeys:"), value)
 }
 
 // The available point keys in the observation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablekeys
-func (r_ RecognizedPoints3DObservation) AvailableKeys() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("availableKeys"))
+func (r_ RecognizedPoints3DObservation) AvailableKeys() RecognizedPointKey {
+	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("availableKeys"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (r_ RecognizedPoints3DObservation) AvailableKeys() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedpoints3dobservation/availablekeys
-func (r_ RecognizedPoints3DObservation) SetAvailableKeys(value unsafe.Pointer) {
+func (r_ RecognizedPoints3DObservation) SetAvailableKeys(value IRecognizedPointKey) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAvailableKeys:"), value)
 }
 

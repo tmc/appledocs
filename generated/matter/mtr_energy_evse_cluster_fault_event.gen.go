@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) FaultStateCurrentState() foundation.Num
 // SetFaultStateCurrentState sets the value of the faultStateCurrentState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStateCurrentState
-func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStateCurrentState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStateCurrentState:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) FaultStatePreviousState() foundation.Nu
 // SetFaultStatePreviousState sets the value of the faultStatePreviousState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/faultStatePreviousState
-func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetFaultStatePreviousState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultStatePreviousState:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) SessionID() foundation.Number {
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/sessionID
-func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetSessionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTREnergyEVSEClusterFaultEvent) State() foundation.Number {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterFaultEvent/state
-func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterFaultEvent) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

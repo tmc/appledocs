@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MTRControllerFactoryParams] class.
@@ -78,8 +79,8 @@ func NewMTRControllerFactoryParams() MTRControllerFactoryParams {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) CdCerts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cdCerts"))
+func (m_ MTRControllerFactoryParams) CdCerts() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("cdCerts"))
 	return rv
 }
 
@@ -87,14 +88,14 @@ func (m_ MTRControllerFactoryParams) CdCerts() unsafe.Pointer {
 // SetCdCerts sets the value of the cdCerts property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) SetCdCerts(value unsafe.Pointer) {
+func (m_ MTRControllerFactoryParams) SetCdCerts(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCdCerts:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/paacerts
-func (m_ MTRControllerFactoryParams) PaaCerts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("paaCerts"))
+func (m_ MTRControllerFactoryParams) PaaCerts() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("paaCerts"))
 	return rv
 }
 
@@ -102,7 +103,7 @@ func (m_ MTRControllerFactoryParams) PaaCerts() unsafe.Pointer {
 // SetPaaCerts sets the value of the paaCerts property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/paacerts
-func (m_ MTRControllerFactoryParams) SetPaaCerts(value unsafe.Pointer) {
+func (m_ MTRControllerFactoryParams) SetPaaCerts(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaaCerts:"), value)
 }
 

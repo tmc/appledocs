@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,8 +33,8 @@ type INEPacketTunnelFlow interface {
 	objectivec.IObject
 	ReadPacketObjectsWithCompletionHandler(completionHandler unsafe.Pointer)
 	ReadPacketsWithCompletionHandler(completionHandler unsafe.Pointer)
-	WritePacketObjects(packets unsafe.Pointer) bool
-	WritePacketsWithProtocols(packets unsafe.Pointer, protocols unsafe.Pointer) bool
+	WritePacketObjects(packets []NEPacket) bool
+	WritePacketsWithProtocols(packets []foundation.IData, protocols []foundation.INumber) bool
 }
 
 // An object you use to read and write packets to and from the tunnel’s virtual interface.
@@ -101,7 +102,7 @@ func (n_ NEPacketTunnelFlow) ReadPacketsWithCompletionHandler(completionHandler 
 // Write multiple IP packets to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow/writePacketObjects(_:)
-func (n_ NEPacketTunnelFlow) WritePacketObjects(packets unsafe.Pointer) bool {
+func (n_ NEPacketTunnelFlow) WritePacketObjects(packets []NEPacket) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("writePacketObjects:"), packets)
 	return rv
 }
@@ -109,7 +110,7 @@ func (n_ NEPacketTunnelFlow) WritePacketObjects(packets unsafe.Pointer) bool {
 // Writes IP packets to the TUN interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelFlow/writePackets(_:withProtocols:)
-func (n_ NEPacketTunnelFlow) WritePacketsWithProtocols(packets unsafe.Pointer, protocols unsafe.Pointer) bool {
+func (n_ NEPacketTunnelFlow) WritePacketsWithProtocols(packets []foundation.IData, protocols []foundation.INumber) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("writePackets:withProtocols:"), packets, protocols)
 	return rv
 }

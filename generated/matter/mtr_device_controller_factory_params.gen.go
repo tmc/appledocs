@@ -78,8 +78,8 @@ func NewMTRDeviceControllerFactoryParams() MTRDeviceControllerFactoryParams {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
+func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []foundation.Data {
+	rv := objc.Send[[]foundation.Data](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificat
 // SetProductAttestationAuthorityCertificates sets the value of the productAttestationAuthorityCertificates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []unsafe.Pointer) {
+func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []foundation.IData) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -103,8 +103,8 @@ func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertifi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerFactoryParams) CertificationDeclarationCertificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificationDeclarationCertificates"))
+func (m_ MTRDeviceControllerFactoryParams) CertificationDeclarationCertificates() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclarationCertificates"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (m_ MTRDeviceControllerFactoryParams) CertificationDeclarationCertificates(
 // SetCertificationDeclarationCertificates sets the value of the certificationDeclarationCertificates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerFactoryParams) SetCertificationDeclarationCertificates(value unsafe.Pointer) {
+func (m_ MTRDeviceControllerFactoryParams) SetCertificationDeclarationCertificates(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
 }
 
@@ -142,7 +142,7 @@ func (m_ MTRDeviceControllerFactoryParams) Port() foundation.Number {
 // SetPort sets the value of the port property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/port
-func (m_ MTRDeviceControllerFactoryParams) SetPort(value foundation.Number) {
+func (m_ MTRDeviceControllerFactoryParams) SetPort(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPort:"), value)
 }
 

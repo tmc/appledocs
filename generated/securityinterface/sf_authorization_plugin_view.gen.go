@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,15 +38,15 @@ type ISFAuthorizationPluginView interface {
 	DidDeactivate()
 	DisplayView()
 	EngineRef() unsafe.Pointer
-	FirstKeyView() unsafe.Pointer
-	FirstResponder() unsafe.Pointer
-	LastError() unsafe.Pointer
-	LastKeyView() unsafe.Pointer
+	FirstKeyView() appkit.View
+	FirstResponder() appkit.Responder
+	LastError() foundation.Error
+	LastKeyView() appkit.View
 	SetButtonEnabled(inButtonType unsafe.Pointer, inEnabled bool)
 	SetEnabled(inEnabled bool)
 	UpdateView()
-	ViewForType(inType unsafe.Pointer) unsafe.Pointer
-	WillActivateWithUser(inUserInformation objc.ID)
+	ViewForType(inType unsafe.Pointer) appkit.View
+	WillActivateWithUser(inUserInformation objectivec.IObject)
 }
 
 // Allows authorization plug-in developers to create a custom view their plug-in can display.
@@ -155,32 +157,32 @@ func (s_ SFAuthorizationPluginView) EngineRef() unsafe.Pointer {
 // Returns the first view in the keyboard loop of the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/firstKeyView()
-func (s_ SFAuthorizationPluginView) FirstKeyView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("firstKeyView"))
+func (s_ SFAuthorizationPluginView) FirstKeyView() appkit.View {
+	rv := objc.Send[appkit.View](s_.ID, objc.Sel("firstKeyView"))
 	return rv
 }
 
 // Returns the view that should get focus for keyboard events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/firstResponder()
-func (s_ SFAuthorizationPluginView) FirstResponder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("firstResponder"))
+func (s_ SFAuthorizationPluginView) FirstResponder() appkit.Responder {
+	rv := objc.Send[appkit.Responder](s_.ID, objc.Sel("firstResponder"))
 	return rv
 }
 
 // Returns the last error that occurred during evaluation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/lastError()
-func (s_ SFAuthorizationPluginView) LastError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lastError"))
+func (s_ SFAuthorizationPluginView) LastError() foundation.Error {
+	rv := objc.Send[foundation.Error](s_.ID, objc.Sel("lastError"))
 	return rv
 }
 
 // Returns the last view in the keyboard loop of the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/lastKeyView()
-func (s_ SFAuthorizationPluginView) LastKeyView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lastKeyView"))
+func (s_ SFAuthorizationPluginView) LastKeyView() appkit.View {
+	rv := objc.Send[appkit.View](s_.ID, objc.Sel("lastKeyView"))
 	return rv
 }
 
@@ -208,15 +210,15 @@ func (s_ SFAuthorizationPluginView) UpdateView() {
 // Returns the appropriate view object for the specified view type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/view(for:)
-func (s_ SFAuthorizationPluginView) ViewForType(inType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("viewForType:"), inType)
+func (s_ SFAuthorizationPluginView) ViewForType(inType unsafe.Pointer) appkit.View {
+	rv := objc.Send[appkit.View](s_.ID, objc.Sel("viewForType:"), inType)
 	return rv
 }
 
 // Tells the authorization plug-in that its user interface is about to be made active by the Apple-provided Security Agent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFAuthorizationPluginView/willActivate(withUser:)
-func (s_ SFAuthorizationPluginView) WillActivateWithUser(inUserInformation objc.ID) {
+func (s_ SFAuthorizationPluginView) WillActivateWithUser(inUserInformation objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("willActivateWithUser:"), inUserInformation)
 }
 

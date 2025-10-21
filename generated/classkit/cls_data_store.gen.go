@@ -31,11 +31,11 @@ type _SDataStoreClass struct {
 // An interface definition for the [SDataStore] class.
 type ISDataStore interface {
 	objectivec.IObject
-	CompleteAllAssignedActivitiesMatching(contextPath unsafe.Pointer)
-	ContextsMatchingPredicateCompletion(predicate unsafe.Pointer, completion unsafe.Pointer)
-	ContextsMatchingIdentifierPathCompletion(identifierPath unsafe.Pointer, completion unsafe.Pointer)
-	FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer)
-	RemoveContext(context unsafe.Pointer)
+	CompleteAllAssignedActivitiesMatching(contextPath []string)
+	ContextsMatchingPredicateCompletion(predicate foundation.IPredicate, completion unsafe.Pointer)
+	ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
+	FetchActivityForURLCompletion(url foundation.IURL, completion unsafe.Pointer)
+	RemoveContext(context ICLSContext)
 	SaveWithCompletion(completion unsafe.Pointer)
 }
 
@@ -90,42 +90,42 @@ func NewSDataStore() SDataStore {
 // The shared data store object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/shared
-func (sc _SDataStoreClass) Shared() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("shared"))
+func (sc _SDataStoreClass) Shared() SDataStore {
+	rv := objc.Send[CLSDataStore](objc.ID(sc.class), objc.Sel("shared"))
 	return rv
 }
 // Marks all of the assigned and active activities for the given context path as complete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/completeAllAssignedActivities(matching:)
-func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath unsafe.Pointer) {
+func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath []string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("completeAllAssignedActivitiesMatching:"), contextPath)
 }
 
 // Fetches all the contexts matching a predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matching:completion:)
-func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate unsafe.Pointer, completion unsafe.Pointer) {
+func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate foundation.IPredicate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingPredicate:completion:"), predicate, completion)
 }
 
 // Fetches all the contexts along a given identifier path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matchingIdentifierPath:completion:)
-func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath unsafe.Pointer, completion unsafe.Pointer) {
+func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingIdentifierPath:completion:"), identifierPath, completion)
 }
 
 // Fetches an activity for a given document so you can record progress on the associated task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/fetchActivity(for:completion:)
-func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.URL, completion unsafe.Pointer) {
+func (s_ SDataStore) FetchActivityForURLCompletion(url foundation.IURL, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fetchActivityForURL:completion:"), url, completion)
 }
 
 // Marks a context for removal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/remove(_:)
-func (s_ SDataStore) RemoveContext(context unsafe.Pointer) {
+func (s_ SDataStore) RemoveContext(context ICLSContext) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeContext:"), context)
 }
 
@@ -139,8 +139,8 @@ func (s_ SDataStore) SaveWithCompletion(completion unsafe.Pointer) {
 // The currently active context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/activeContext
-func (s_ SDataStore) ActiveContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("activeContext"))
+func (s_ SDataStore) ActiveContext() CLSContext {
+	rv := objc.Send[CLSContext](s_.ID, objc.Sel("activeContext"))
 	return rv
 }
 
@@ -165,24 +165,24 @@ func (s_ SDataStore) SetDelegate(value objc.ID) {
 // The app’s top-level context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/mainAppContext
-func (s_ SDataStore) MainAppContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mainAppContext"))
+func (s_ SDataStore) MainAppContext() CLSContext {
+	rv := objc.Send[CLSContext](s_.ID, objc.Sel("mainAppContext"))
 	return rv
 }
 
 // The currently running activity within the currently active context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/runningActivity
-func (s_ SDataStore) RunningActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("runningActivity"))
+func (s_ SDataStore) RunningActivity() CLSActivity {
+	rv := objc.Send[CLSActivity](s_.ID, objc.Sel("runningActivity"))
 	return rv
 }
 
 // The shared data store object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/shared
-func (s_ SDataStore) Shared() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("shared"))
+func (s_ SDataStore) Shared() CLSDataStore {
+	rv := objc.Send[CLSDataStore](s_.ID, objc.Sel("shared"))
 	return rv
 }
 

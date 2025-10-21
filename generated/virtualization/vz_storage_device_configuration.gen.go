@@ -83,8 +83,8 @@ func NewVZStorageDeviceConfiguration() VZStorageDeviceConfiguration {
 // The attachment object that provides the underlying storage for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration/attachment
-func (v_ VZStorageDeviceConfiguration) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+func (v_ VZStorageDeviceConfiguration) Attachment() VZStorageDeviceAttachment {
+	rv := objc.Send[VZStorageDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (v_ VZStorageDeviceConfiguration) Attachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration/attachment
-func (v_ VZStorageDeviceConfiguration) SetAttachment(value unsafe.Pointer) {
+func (v_ VZStorageDeviceConfiguration) SetAttachment(value IVZStorageDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 

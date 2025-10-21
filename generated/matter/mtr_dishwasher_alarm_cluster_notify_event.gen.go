@@ -87,7 +87,7 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) Active() foundation.Number {
 // SetActive sets the value of the active property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/active
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetActive(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetActive(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActive:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) Inactive() foundation.Number {
 // SetInactive sets the value of the inactive property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/inactive
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetInactive(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetInactive(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInactive:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) Mask() foundation.Number {
 // SetMask sets the value of the mask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/mask
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetMask(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMask:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDishwasherAlarmClusterNotifyEvent) State() foundation.Number {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterNotifyEvent/state
-func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetState(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterNotifyEvent) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

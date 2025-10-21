@@ -82,7 +82,7 @@ func NewCLossLayer() CLossLayer {
 // Creates a mean squared loss layer with the reduction type and weights you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCLossLayer/meanSquaredError(reductionType:weights:)
-func (cc _CLossLayerClass) MeanSquaredErrorLossWithReductionTypeWeights(reductionType unsafe.Pointer, weights unsafe.Pointer) unsafe.Pointer {
+func (cc _CLossLayerClass) MeanSquaredErrorLossWithReductionTypeWeights(reductionType CReductionType, weights IMLCTensor) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("meanSquaredErrorLossWithReductionType:weights:"), reductionType, weights)
 	return rv
 }
@@ -108,8 +108,8 @@ func (c_ CLossLayer) SetDescriptor(value unsafe.Pointer) {
 // The loss label weights tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/weights
-func (c_ CLossLayer) Weights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+func (c_ CLossLayer) Weights() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (c_ CLossLayer) Weights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlclosslayer/weights
-func (c_ CLossLayer) SetWeights(value unsafe.Pointer) {
+func (c_ CLossLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
 }
 

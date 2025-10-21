@@ -83,8 +83,8 @@ func NewHKHealthConceptIdentifier() HKHealthConceptIdentifier {
 // The domain this identifier belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier/domain
-func (h_ HKHealthConceptIdentifier) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("domain"))
+func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain {
+	rv := objc.Send[HKHealthConceptDomain](h_.ID, objc.Sel("domain"))
 	return rv
 }
 

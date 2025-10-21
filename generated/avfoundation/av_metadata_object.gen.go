@@ -92,8 +92,8 @@ func (m_ MetadataObject) Bounds() coregraphics.CGRect {
 // The current focus mode when an object is detected during a Cinematic Video recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/cinematicVideoFocusMode
-func (m_ MetadataObject) CinematicVideoFocusMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cinematicVideoFocusMode"))
+func (m_ MetadataObject) CinematicVideoFocusMode() CaptureCinematicVideoFocusMode {
+	rv := objc.Send[CaptureCinematicVideoFocusMode](m_.ID, objc.Sel("cinematicVideoFocusMode"))
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (m_ MetadataObject) Time() unsafe.Pointer {
 // The type of metadata that this object provides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataObject/type
-func (m_ MetadataObject) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+func (m_ MetadataObject) Type() MetadataObjectType {
+	rv := objc.Send[MetadataObjectType](m_.ID, objc.Sel("type"))
 	return rv
 }
 

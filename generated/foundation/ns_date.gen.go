@@ -83,15 +83,15 @@ func NewDate() Date {
 // A date object representing a date in the distant future.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
-func (dc _DateClass) DistantFuture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("distantFuture"))
+func (dc _DateClass) DistantFuture() Date {
+	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantFuture"))
 	return rv
 }
 // A date object representing a date in the distant past.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-func (dc _DateClass) DistantPast() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("distantPast"))
+func (dc _DateClass) DistantPast() Date {
+	rv := objc.Send[NSDate](objc.ID(dc.class), objc.Sel("distantPast"))
 	return rv
 }
 // The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
@@ -104,16 +104,16 @@ func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
 // A date object representing a date in the distant future.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
-func (d_ Date) DistantFuture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantFuture"))
+func (d_ Date) DistantFuture() NSDate {
+	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantFuture"))
 	return rv
 }
 
 // A date object representing a date in the distant past.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
-func (d_ Date) DistantPast() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantPast"))
+func (d_ Date) DistantPast() NSDate {
+	rv := objc.Send[NSDate](d_.ID, objc.Sel("distantPast"))
 	return rv
 }
 
@@ -146,8 +146,8 @@ func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 // A string representation of the date object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
-func (d_ Date) Description() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+func (d_ Date) Description() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -157,8 +157,8 @@ func (d_ Date) Description() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/description
-func (d_ Date) SetDescription(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
+func (d_ Date) SetDescription(value appkit.string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), value)
 }
 
 //
@@ -179,8 +179,8 @@ func (d_ Date) SetSrAbsoluteTime(value unsafe.Pointer) {
 // The interval between the date object and 00:00:00 UTC on 1 January 1970.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
-func (d_ Date) TimeIntervalSince1970() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeIntervalSince1970"))
+func (d_ Date) TimeIntervalSince1970() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
 }
 
@@ -190,15 +190,15 @@ func (d_ Date) TimeIntervalSince1970() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsince1970
-func (d_ Date) SetTimeIntervalSince1970(value unsafe.Pointer) {
+func (d_ Date) SetTimeIntervalSince1970(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSince1970:"), value)
 }
 
 // The interval between the date object and the current date and time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
-func (d_ Date) TimeIntervalSinceNow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timeIntervalSinceNow"))
+func (d_ Date) TimeIntervalSinceNow() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
 }
 
@@ -208,7 +208,7 @@ func (d_ Date) TimeIntervalSinceNow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincenow
-func (d_ Date) SetTimeIntervalSinceNow(value unsafe.Pointer) {
+func (d_ Date) SetTimeIntervalSinceNow(value ITimeInterval) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeIntervalSinceNow:"), value)
 }
 

@@ -29,7 +29,7 @@ type _GraphExecutableClass struct {
 // An interface definition for the [GraphExecutable] class.
 type IGraphExecutable interface {
 	IGraphObject
-	GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device unsafe.Pointer, inputTypes unsafe.Pointer, compilationDescriptor unsafe.Pointer) []GraphShapedType
+	GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []GraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []GraphShapedType
 }
 
 // The compiled representation of a compute graph executable.
@@ -85,7 +85,7 @@ func NewGraphExecutable() GraphExecutable {
 // Get output shapes for a specialized executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphExecutable/getOutputTypes(with:inputTypes:compilationDescriptor:)
-func (g_ GraphExecutable) GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device unsafe.Pointer, inputTypes unsafe.Pointer, compilationDescriptor unsafe.Pointer) []GraphShapedType {
+func (g_ GraphExecutable) GetOutputTypesWithDeviceInputTypesCompilationDescriptor(device IMPSGraphDevice, inputTypes []GraphType, compilationDescriptor IMPSGraphCompilationDescriptor) []GraphShapedType {
 	rv := objc.Send[[]GraphShapedType](g_.ID, objc.Sel("getOutputTypesWithDevice:inputTypes:compilationDescriptor:"), device, inputTypes, compilationDescriptor)
 	return rv
 }
@@ -101,8 +101,8 @@ func (g_ GraphExecutable) TargetTensors() []GraphTensor {
 // Tensors fed to the graph, can be used to order the inputs when executable is created with a graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/feedtensors
-func (g_ GraphExecutable) FeedTensors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("feedTensors"))
+func (g_ GraphExecutable) FeedTensors() MPSGraphTensor {
+	rv := objc.Send[MPSGraphTensor](g_.ID, objc.Sel("feedTensors"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (g_ GraphExecutable) FeedTensors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/feedtensors
-func (g_ GraphExecutable) SetFeedTensors(value unsafe.Pointer) {
+func (g_ GraphExecutable) SetFeedTensors(value IMPSGraphTensor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setFeedTensors:"), value)
 }
 
 // Options for the graph executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/options
-func (g_ GraphExecutable) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("options"))
+func (g_ GraphExecutable) Options() GraphOptions {
+	rv := objc.Send[GraphOptions](g_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (g_ GraphExecutable) Options() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutable/options
-func (g_ GraphExecutable) SetOptions(value unsafe.Pointer) {
+func (g_ GraphExecutable) SetOptions(value GraphOptions) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptions:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -82,8 +83,8 @@ func NewFSModuleIdentity() FSModuleIdentity {
 // The module’s bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSModuleIdentity/bundleIdentifier
-func (f_ FSModuleIdentity) BundleIdentifier() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("bundleIdentifier"))
+func (f_ FSModuleIdentity) BundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 

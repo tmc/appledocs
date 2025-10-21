@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHProjectTextElement] class.
@@ -82,24 +84,24 @@ func NewPHProjectTextElement() PHProjectTextElement {
 // The stylized attributed string for the text element as presented to the user in Photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/attributedText
-func (p_ PHProjectTextElement) AttributedText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attributedText"))
+func (p_ PHProjectTextElement) AttributedText() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("attributedText"))
 	return rv
 }
 
 // The raw unformatted string for the text element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/text
-func (p_ PHProjectTextElement) Text() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("text"))
+func (p_ PHProjectTextElement) Text() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("text"))
 	return rv
 }
 
 // The enumerated type of the text element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/textElementType
-func (p_ PHProjectTextElement) TextElementType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("textElementType"))
+func (p_ PHProjectTextElement) TextElementType() PHProjectTextElementType {
+	rv := objc.Send[PHProjectTextElementType](p_.ID, objc.Sel("textElementType"))
 	return rv
 }
 

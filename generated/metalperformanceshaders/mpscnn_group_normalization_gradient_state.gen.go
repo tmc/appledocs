@@ -114,8 +114,8 @@ func (c_ CNNGroupNormalizationGradientState) SetGamma(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
-func (c_ CNNGroupNormalizationGradientState) GroupNormalization() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("groupNormalization"))
+func (c_ CNNGroupNormalizationGradientState) GroupNormalization() MPSCNNGroupNormalization {
+	rv := objc.Send[MPSCNNGroupNormalization](c_.ID, objc.Sel("groupNormalization"))
 	return rv
 }
 
@@ -123,7 +123,7 @@ func (c_ CNNGroupNormalizationGradientState) GroupNormalization() unsafe.Pointer
 // SetGroupNormalization sets the value of the groupNormalization property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientstate/groupnormalization
-func (c_ CNNGroupNormalizationGradientState) SetGroupNormalization(value unsafe.Pointer) {
+func (c_ CNNGroupNormalizationGradientState) SetGroupNormalization(value IMPSCNNGroupNormalization) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGroupNormalization:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,18 +32,18 @@ type _AssetTrackClass struct {
 // An interface definition for the [AssetTrack] class.
 type IAssetTrack interface {
 	objectivec.IObject
-	AssociatedTracksOfType(trackAssociationType unsafe.Pointer) []AssetTrack
+	AssociatedTracksOfType(trackAssociationType TrackAssociationType) []AssetTrack
 	HasMediaCharacteristic(mediaCharacteristic unsafe.Pointer) bool
-	LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType unsafe.Pointer, completionHandler unsafe.Pointer)
-	LoadMetadataForFormatCompletionHandler(format unsafe.Pointer, completionHandler unsafe.Pointer)
+	LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType TrackAssociationType, completionHandler unsafe.Pointer)
+	LoadMetadataForFormatCompletionHandler(format MetadataFormat, completionHandler unsafe.Pointer)
 	LoadSamplePresentationTimeForTrackTimeCompletionHandler(trackTime unsafe.Pointer, completionHandler unsafe.Pointer)
 	LoadSegmentForTrackTimeCompletionHandler(trackTime unsafe.Pointer, completionHandler unsafe.Pointer)
-	MakeSampleCursorWithPresentationTimeStamp(presentationTimeStamp unsafe.Pointer) unsafe.Pointer
-	MakeSampleCursorAtFirstSampleInDecodeOrder() unsafe.Pointer
-	MakeSampleCursorAtLastSampleInDecodeOrder() unsafe.Pointer
-	MetadataForFormat(format unsafe.Pointer) []MetadataItem
+	MakeSampleCursorWithPresentationTimeStamp(presentationTimeStamp unsafe.Pointer) SampleCursor
+	MakeSampleCursorAtFirstSampleInDecodeOrder() SampleCursor
+	MakeSampleCursorAtLastSampleInDecodeOrder() SampleCursor
+	MetadataForFormat(format MetadataFormat) []MetadataItem
 	SamplePresentationTimeForTrackTime(trackTime unsafe.Pointer) unsafe.Pointer
-	SegmentForTrackTime(trackTime unsafe.Pointer) unsafe.Pointer
+	SegmentForTrackTime(trackTime unsafe.Pointer) AssetTrackSegment
 }
 
 // An object that models a track of media that an asset contains.
@@ -96,7 +97,7 @@ func NewAssetTrack() AssetTrack {
 // Returns an array of associated tracks that have the specified association type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/associatedTracks(ofType:)
-func (a_ AssetTrack) AssociatedTracksOfType(trackAssociationType unsafe.Pointer) []AssetTrack {
+func (a_ AssetTrack) AssociatedTracksOfType(trackAssociationType TrackAssociationType) []AssetTrack {
 	rv := objc.Send[[]AssetTrack](a_.ID, objc.Sel("associatedTracksOfType:"), trackAssociationType)
 	return rv
 }
@@ -112,14 +113,14 @@ func (a_ AssetTrack) HasMediaCharacteristic(mediaCharacteristic unsafe.Pointer) 
 // Loads associated tracks that have the specified association type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadAssociatedTracks(ofType:completionHandler:)
-func (a_ AssetTrack) LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (a_ AssetTrack) LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType TrackAssociationType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("loadAssociatedTracksOfType:completionHandler:"), trackAssociationType, completionHandler)
 }
 
 // Loads metadata items that a track contains for the specified format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadMetadata(for:completionHandler:)
-func (a_ AssetTrack) LoadMetadataForFormatCompletionHandler(format unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (a_ AssetTrack) LoadMetadataForFormatCompletionHandler(format MetadataFormat, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("loadMetadataForFormat:completionHandler:"), format, completionHandler)
 }
 
@@ -140,31 +141,31 @@ func (a_ AssetTrack) LoadSegmentForTrackTimeCompletionHandler(trackTime unsafe.P
 // Creates a sample cursor and positions it at or near the specified presentation timestamp.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/makeSampleCursor(presentationTimeStamp:)
-func (a_ AssetTrack) MakeSampleCursorWithPresentationTimeStamp(presentationTimeStamp unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("makeSampleCursorWithPresentationTimeStamp:"), presentationTimeStamp)
+func (a_ AssetTrack) MakeSampleCursorWithPresentationTimeStamp(presentationTimeStamp unsafe.Pointer) SampleCursor {
+	rv := objc.Send[SampleCursor](a_.ID, objc.Sel("makeSampleCursorWithPresentationTimeStamp:"), presentationTimeStamp)
 	return rv
 }
 
 // Creates a sample cursor and positions it at the track’s first media sample in decode order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtFirstSampleInDecodeOrder()
-func (a_ AssetTrack) MakeSampleCursorAtFirstSampleInDecodeOrder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("makeSampleCursorAtFirstSampleInDecodeOrder"))
+func (a_ AssetTrack) MakeSampleCursorAtFirstSampleInDecodeOrder() SampleCursor {
+	rv := objc.Send[SampleCursor](a_.ID, objc.Sel("makeSampleCursorAtFirstSampleInDecodeOrder"))
 	return rv
 }
 
 // Creates a sample cursor and positions it at the track’s last media sample in decode order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtLastSampleInDecodeOrder()
-func (a_ AssetTrack) MakeSampleCursorAtLastSampleInDecodeOrder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("makeSampleCursorAtLastSampleInDecodeOrder"))
+func (a_ AssetTrack) MakeSampleCursorAtLastSampleInDecodeOrder() SampleCursor {
+	rv := objc.Send[SampleCursor](a_.ID, objc.Sel("makeSampleCursorAtLastSampleInDecodeOrder"))
 	return rv
 }
 
 // Returns metadata items that a track contains for the specified format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/metadata(forFormat:)
-func (a_ AssetTrack) MetadataForFormat(format unsafe.Pointer) []MetadataItem {
+func (a_ AssetTrack) MetadataForFormat(format MetadataFormat) []MetadataItem {
 	rv := objc.Send[[]MetadataItem](a_.ID, objc.Sel("metadataForFormat:"), format)
 	return rv
 }
@@ -180,16 +181,16 @@ func (a_ AssetTrack) SamplePresentationTimeForTrackTime(trackTime unsafe.Pointer
 // Retrieves a segment with a target time range that contains, or is closest to, the specified track time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/segment(forTrackTime:)
-func (a_ AssetTrack) SegmentForTrackTime(trackTime unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("segmentForTrackTime:"), trackTime)
+func (a_ AssetTrack) SegmentForTrackTime(trackTime unsafe.Pointer) AssetTrackSegment {
+	rv := objc.Send[AssetTrackSegment](a_.ID, objc.Sel("segmentForTrackTime:"), trackTime)
 	return rv
 }
 
 // The asset object that contains this track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/asset
-func (a_ AssetTrack) Asset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("asset"))
+func (a_ AssetTrack) Asset() AVAsset {
+	rv := objc.Send[AVAsset](a_.ID, objc.Sel("asset"))
 	return rv
 }
 
@@ -236,16 +237,16 @@ func (a_ AssetTrack) EstimatedDataRate() unsafe.Pointer {
 // The language tag of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/extendedLanguageTag
-func (a_ AssetTrack) ExtendedLanguageTag() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
+func (a_ AssetTrack) ExtendedLanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
 // The format descriptions of the media samples that a track references.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/formatDescriptions
-func (a_ AssetTrack) FormatDescriptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("formatDescriptions"))
+func (a_ AssetTrack) FormatDescriptions() objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("formatDescriptions"))
 	return rv
 }
 
@@ -292,16 +293,16 @@ func (a_ AssetTrack) SelfContained() bool {
 // The language code of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/languageCode
-func (a_ AssetTrack) LanguageCode() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
+func (a_ AssetTrack) LanguageCode() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
 
 // The type of media that a track presents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/mediaType
-func (a_ AssetTrack) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaType"))
+func (a_ AssetTrack) MediaType() MediaType {
+	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
 

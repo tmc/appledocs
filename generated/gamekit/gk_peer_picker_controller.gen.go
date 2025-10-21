@@ -99,8 +99,8 @@ func (p_ PeerPickerController) Show() {
 // A mask that determines the types of connections a dialog presents to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
-func (p_ PeerPickerController) ConnectionTypesMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("connectionTypesMask"))
+func (p_ PeerPickerController) ConnectionTypesMask() PeerPickerConnectionType {
+	rv := objc.Send[PeerPickerConnectionType](p_.ID, objc.Sel("connectionTypesMask"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (p_ PeerPickerController) ConnectionTypesMask() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKPeerPickerController/connectionTypesMask
-func (p_ PeerPickerController) SetConnectionTypesMask(value unsafe.Pointer) {
+func (p_ PeerPickerController) SetConnectionTypesMask(value PeerPickerConnectionType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConnectionTypesMask:"), value)
 }
 

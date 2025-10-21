@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewAttestationInfo() AttestationInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/certificationdeclaration
-func (a_ AttestationInfo) CertificationDeclaration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("certificationDeclaration"))
+func (a_ AttestationInfo) CertificationDeclaration() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("certificationDeclaration"))
 	return rv
 }
 
@@ -86,14 +87,14 @@ func (a_ AttestationInfo) CertificationDeclaration() unsafe.Pointer {
 // SetCertificationDeclaration sets the value of the certificationDeclaration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/certificationdeclaration
-func (a_ AttestationInfo) SetCertificationDeclaration(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetCertificationDeclaration(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCertificationDeclaration:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/challenge
-func (a_ AttestationInfo) Challenge() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("challenge"))
+func (a_ AttestationInfo) Challenge() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("challenge"))
 	return rv
 }
 
@@ -101,14 +102,14 @@ func (a_ AttestationInfo) Challenge() unsafe.Pointer {
 // SetChallenge sets the value of the challenge property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/challenge
-func (a_ AttestationInfo) SetChallenge(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetChallenge(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChallenge:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/dac
-func (a_ AttestationInfo) Dac() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dac"))
+func (a_ AttestationInfo) Dac() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("dac"))
 	return rv
 }
 
@@ -116,14 +117,14 @@ func (a_ AttestationInfo) Dac() unsafe.Pointer {
 // SetDac sets the value of the dac property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/dac
-func (a_ AttestationInfo) SetDac(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetDac(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDac:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elements
-func (a_ AttestationInfo) Elements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("elements"))
+func (a_ AttestationInfo) Elements() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("elements"))
 	return rv
 }
 
@@ -131,14 +132,14 @@ func (a_ AttestationInfo) Elements() unsafe.Pointer {
 // SetElements sets the value of the elements property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elements
-func (a_ AttestationInfo) SetElements(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetElements(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setElements:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elementssignature
-func (a_ AttestationInfo) ElementsSignature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("elementsSignature"))
+func (a_ AttestationInfo) ElementsSignature() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("elementsSignature"))
 	return rv
 }
 
@@ -146,14 +147,14 @@ func (a_ AttestationInfo) ElementsSignature() unsafe.Pointer {
 // SetElementsSignature sets the value of the elementsSignature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/elementssignature
-func (a_ AttestationInfo) SetElementsSignature(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetElementsSignature(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setElementsSignature:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/firmwareinfo
-func (a_ AttestationInfo) FirmwareInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("firmwareInfo"))
+func (a_ AttestationInfo) FirmwareInfo() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("firmwareInfo"))
 	return rv
 }
 
@@ -161,14 +162,14 @@ func (a_ AttestationInfo) FirmwareInfo() unsafe.Pointer {
 // SetFirmwareInfo sets the value of the firmwareInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/firmwareinfo
-func (a_ AttestationInfo) SetFirmwareInfo(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetFirmwareInfo(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFirmwareInfo:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/nonce
-func (a_ AttestationInfo) Nonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("nonce"))
+func (a_ AttestationInfo) Nonce() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("nonce"))
 	return rv
 }
 
@@ -176,14 +177,14 @@ func (a_ AttestationInfo) Nonce() unsafe.Pointer {
 // SetNonce sets the value of the nonce property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/nonce
-func (a_ AttestationInfo) SetNonce(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetNonce(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNonce:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/pai
-func (a_ AttestationInfo) Pai() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("pai"))
+func (a_ AttestationInfo) Pai() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("pai"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (a_ AttestationInfo) Pai() unsafe.Pointer {
 // SetPai sets the value of the pai property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/attestationinfo/pai
-func (a_ AttestationInfo) SetPai(value unsafe.Pointer) {
+func (a_ AttestationInfo) SetPai(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPai:"), value)
 }
 

@@ -29,11 +29,11 @@ type _MutableAttributedStringClass struct {
 // An interface definition for the [MutableAttributedString] class.
 type IMutableAttributedString interface {
 	IAttributedString
-	AppendAttributedString(attrString unsafe.Pointer)
-	AppendLocalizedFormat(format unsafe.Pointer)
-	InsertAttributedStringAtIndex(attrString unsafe.Pointer, loc uint)
-	ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString unsafe.Pointer)
-	SetAttributedString(attrString unsafe.Pointer)
+	AppendAttributedString(attrString IAttributedString)
+	AppendLocalizedFormat(format IAttributedString)
+	InsertAttributedStringAtIndex(attrString IAttributedString, loc uint)
+	ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString)
+	SetAttributedString(attrString IAttributedString)
 }
 
 // A mutable string with associated attributes (such as visual style, hyperlinks, or accessibility data) for portions of its text.
@@ -89,42 +89,42 @@ func NewMutableAttributedString() MutableAttributedString {
 // Adds the characters and attributes of a given attributed string to the end of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/append(_:)
-func (m_ MutableAttributedString) AppendAttributedString(attrString unsafe.Pointer) {
+func (m_ MutableAttributedString) AppendAttributedString(attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendAttributedString:"), attrString)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/appendLocalizedFormat:
-func (m_ MutableAttributedString) AppendLocalizedFormat(format unsafe.Pointer) {
+func (m_ MutableAttributedString) AppendLocalizedFormat(format IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("appendLocalizedFormat:"), format)
 }
 
 // Inserts the characters and attributes of the given attributed string into the receiver at the given index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/insert(_:at:)
-func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString unsafe.Pointer, loc uint) {
+func (m_ MutableAttributedString) InsertAttributedStringAtIndex(attrString IAttributedString, loc uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertAttributedString:atIndex:"), attrString, loc)
 }
 
 // Replaces the characters and attributes in a given range with the characters and attributes of the given attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/replaceCharacters(in:with:)-1uaw7
-func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ Range, attrString unsafe.Pointer) {
+func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(range_ IRange, attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceCharactersInRange:withAttributedString:"), range_, attrString)
 }
 
 // Replaces the receiver’s entire contents with the characters and attributes of the given attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/setAttributedString(_:)
-func (m_ MutableAttributedString) SetAttributedString(attrString unsafe.Pointer) {
+func (m_ MutableAttributedString) SetAttributedString(attrString IAttributedString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedString:"), attrString)
 }
 
 // The character contents of the receiver as a mutable string object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
-func (m_ MutableAttributedString) MutableString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mutableString"))
+func (m_ MutableAttributedString) MutableString() NSMutableString {
+	rv := objc.Send[NSMutableString](m_.ID, objc.Sel("mutableString"))
 	return rv
 }
 
@@ -134,7 +134,7 @@ func (m_ MutableAttributedString) MutableString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmutableattributedstring/mutablestring
-func (m_ MutableAttributedString) SetMutableString(value unsafe.Pointer) {
+func (m_ MutableAttributedString) SetMutableString(value IMutableString) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMutableString:"), value)
 }
 

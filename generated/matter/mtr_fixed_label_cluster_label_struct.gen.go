@@ -77,8 +77,8 @@ func NewMTRFixedLabelClusterLabelStruct() MTRFixedLabelClusterLabelStruct {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/label
-func (m_ MTRFixedLabelClusterLabelStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRFixedLabelClusterLabelStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -86,14 +86,14 @@ func (m_ MTRFixedLabelClusterLabelStruct) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/label
-func (m_ MTRFixedLabelClusterLabelStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRFixedLabelClusterLabelStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/value
-func (m_ MTRFixedLabelClusterLabelStruct) Value() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+func (m_ MTRFixedLabelClusterLabelStruct) Value() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -101,8 +101,8 @@ func (m_ MTRFixedLabelClusterLabelStruct) Value() string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/value
-func (m_ MTRFixedLabelClusterLabelStruct) SetValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+func (m_ MTRFixedLabelClusterLabelStruct) SetValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

@@ -79,8 +79,8 @@ func NewMTRAccessControlClusterExtensionEntry() MTRAccessControlClusterExtension
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/data
-func (m_ MTRAccessControlClusterExtensionEntry) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRAccessControlClusterExtensionEntry) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -88,7 +88,7 @@ func (m_ MTRAccessControlClusterExtensionEntry) Data() unsafe.Pointer {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/data
-func (m_ MTRAccessControlClusterExtensionEntry) SetData(value unsafe.Pointer) {
+func (m_ MTRAccessControlClusterExtensionEntry) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRAccessControlClusterExtensionEntry) FabricIndex() foundation.Number 
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/fabricindex
-func (m_ MTRAccessControlClusterExtensionEntry) SetFabricIndex(value foundation.Number) {
+func (m_ MTRAccessControlClusterExtensionEntry) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

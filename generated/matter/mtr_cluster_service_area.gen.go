@@ -30,19 +30,19 @@ type _MTRClusterServiceAreaClass struct {
 // An interface definition for the [MTRClusterServiceArea] class.
 type IMTRClusterServiceArea interface {
 	IMTRGenericCluster
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeCurrentAreaWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeEstimatedEndTimeWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeProgressWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSelectedAreasWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedAreasWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSupportedMapsWithParams(params unsafe.Pointer) unsafe.Pointer
-	SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeCurrentAreaWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeEstimatedEndTimeWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeProgressWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSelectedAreasWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedAreasWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSupportedMapsWithParams(params IMTRReadParams) unsafe.Pointer
+	SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSelectAreasParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSkipAreaParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
 }
 
 // Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
@@ -98,7 +98,7 @@ func NewMTRClusterServiceArea() MTRClusterServiceArea {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/init(device:endpointID:queue:)
-func NewMTRClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterServiceArea {
+func NewMTRClusterServiceAreaWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterServiceArea {
 	instance := getMTRClusterServiceAreaClass().Alloc()
 	rv := objc.Send[MTRClusterServiceArea](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -108,90 +108,90 @@ func NewMTRClusterServiceAreaWithDeviceEndpointIDQueue(device unsafe.Pointer, en
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeAttributeList(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeClusterRevision(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeCurrentArea(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeCurrentAreaWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeCurrentAreaWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeCurrentAreaWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeEstimatedEndTime(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeEstimatedEndTimeWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeEstimatedEndTimeWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeEstimatedEndTimeWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeFeatureMap(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeProgress(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeProgressWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeProgressWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeProgressWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeSelectedAreas(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeSelectedAreasWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeSelectedAreasWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSelectedAreasWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeSupportedAreas(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeSupportedAreasWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeSupportedAreasWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedAreasWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeSupportedMaps(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeSupportedMapsWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterServiceArea) ReadAttributeSupportedMapsWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSupportedMapsWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/selectAreas(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterServiceArea) SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterServiceArea) SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSelectAreasParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("selectAreasWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/skip(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterServiceArea) SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterServiceArea) SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSkipAreaParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("skipAreaWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

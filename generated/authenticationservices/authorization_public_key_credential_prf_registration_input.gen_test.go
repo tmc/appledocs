@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = authenticationservices.NewAuthorizationPublicKeyCredentialPRFRegistrationInput
 
+// ExampleNewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues demonstrates how to create a AuthorizationPublicKeyCredentialPRFRegistrationInput instance using NewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues.
+func ExampleNewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues() {
+	_ = authenticationservices.NewAuthorizationPublicKeyCredentialPRFRegistrationInputWithInputValues(
+		authenticationservices.ASAuthorizationPublicKeyCredentialPRFAssertionInputValues{}, // inputValues ASAuthorizationPublicKeyCredentialPRFAssertionInputValues
+	)
+	// Output:
+}

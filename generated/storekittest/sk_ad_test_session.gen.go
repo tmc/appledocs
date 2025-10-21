@@ -7,8 +7,10 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/storekit"
 )
 
 // The class instance for the [AdTestSession] class.
@@ -32,10 +34,10 @@ type _AdTestSessionClass struct {
 type IAdTestSession interface {
 	objectivec.IObject
 	FlushPostbacksWithResponses(responses unsafe.Pointer)
-	SetPostbacksError(postbacks unsafe.Pointer, error_ unsafe.Pointer) bool
-	ValidateImpressionPublicKeyError(impression unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool
-	ValidateImpressionWithParametersPublicKeyError(parameters unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool
-	ValidateWebAdImpressionPayloadPublicKeyError(impressionData unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool
+	SetPostbacksError(postbacks []AdTestPostback, error_ unsafe.Pointer) bool
+	ValidateImpressionPublicKeyError(impression storekit.IAdImpression, publicKey appkit.string, error_ unsafe.Pointer) bool
+	ValidateImpressionWithParametersPublicKeyError(parameters unsafe.Pointer, publicKey appkit.string, error_ unsafe.Pointer) bool
+	ValidateWebAdImpressionPayloadPublicKeyError(impressionData foundation.IData, publicKey appkit.string, error_ unsafe.Pointer) bool
 }
 
 // The class you use to test ad impressions and postbacks in Xcode.
@@ -97,7 +99,7 @@ func (a_ AdTestSession) FlushPostbacksWithResponses(responses unsafe.Pointer) {
 // Add test postbacks to the test session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/setPostbacks(_:)
-func (a_ AdTestSession) SetPostbacksError(postbacks unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (a_ AdTestSession) SetPostbacksError(postbacks []AdTestPostback, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPostbacks:error:"), postbacks, error_)
 	return rv
 }
@@ -105,24 +107,24 @@ func (a_ AdTestSession) SetPostbacksError(postbacks unsafe.Pointer, error_ unsaf
 // Validates an impression for a view-through ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validate(_:publicKey:)
-func (a_ AdTestSession) ValidateImpressionPublicKeyError(impression unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpression:publicKey:error:"), impression, objc.String(publicKey), error_)
+func (a_ AdTestSession) ValidateImpressionPublicKeyError(impression storekit.IAdImpression, publicKey appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpression:publicKey:error:"), impression, publicKey, error_)
 	return rv
 }
 
 // Validates an impression for a StoreKit-rendered ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validateImpression(parameters:publicKey:)
-func (a_ AdTestSession) ValidateImpressionWithParametersPublicKeyError(parameters unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpressionWithParameters:publicKey:error:"), parameters, objc.String(publicKey), error_)
+func (a_ AdTestSession) ValidateImpressionWithParametersPublicKeyError(parameters unsafe.Pointer, publicKey appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpressionWithParameters:publicKey:error:"), parameters, publicKey, error_)
 	return rv
 }
 
 // Validates an impression for a web ad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validateWebAdImpressionPayload(_:publicKey:)
-func (a_ AdTestSession) ValidateWebAdImpressionPayloadPublicKeyError(impressionData unsafe.Pointer, publicKey string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("validateWebAdImpressionPayload:publicKey:error:"), impressionData, objc.String(publicKey), error_)
+func (a_ AdTestSession) ValidateWebAdImpressionPayloadPublicKeyError(impressionData foundation.IData, publicKey appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("validateWebAdImpressionPayload:publicKey:error:"), impressionData, publicKey, error_)
 	return rv
 }
 

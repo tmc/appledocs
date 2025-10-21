@@ -82,16 +82,16 @@ func NewCNChangeHistoryRemoveSubgroupFromGroupEvent() CNChangeHistoryRemoveSubgr
 // The group where the user removed a subgroup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent/group
-func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("group"))
+func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Group() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
 }
 
 // The subgroup that the user removed from the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryRemoveSubgroupFromGroupEvent/subgroup
-func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Subgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subgroup"))
+func (c_ CNChangeHistoryRemoveSubgroupFromGroupEvent) Subgroup() CNGroup {
+	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv
 }
 

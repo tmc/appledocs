@@ -77,8 +77,8 @@ func NewMTRServiceAreaClusterAreaInfoStruct() MTRServiceAreaClusterAreaInfoStruc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/landmarkInfo
-func (m_ MTRServiceAreaClusterAreaInfoStruct) LandmarkInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("landmarkInfo"))
+func (m_ MTRServiceAreaClusterAreaInfoStruct) LandmarkInfo() MTRServiceAreaClusterLandmarkInfoStruct {
+	rv := objc.Send[MTRServiceAreaClusterLandmarkInfoStruct](m_.ID, objc.Sel("landmarkInfo"))
 	return rv
 }
 
@@ -86,14 +86,14 @@ func (m_ MTRServiceAreaClusterAreaInfoStruct) LandmarkInfo() unsafe.Pointer {
 // SetLandmarkInfo sets the value of the landmarkInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/landmarkInfo
-func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLandmarkInfo(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLandmarkInfo(value IMTRServiceAreaClusterLandmarkInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkInfo:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/locationInfo
-func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locationInfo"))
+func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() MTRDataTypeLocationDescriptorStruct {
+	rv := objc.Send[MTRDataTypeLocationDescriptorStruct](m_.ID, objc.Sel("locationInfo"))
 	return rv
 }
 
@@ -101,7 +101,7 @@ func (m_ MTRServiceAreaClusterAreaInfoStruct) LocationInfo() unsafe.Pointer {
 // SetLocationInfo sets the value of the locationInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaInfoStruct/locationInfo
-func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLocationInfo(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterAreaInfoStruct) SetLocationInfo(value IMTRDataTypeLocationDescriptorStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocationInfo:"), value)
 }
 

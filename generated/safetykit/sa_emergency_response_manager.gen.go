@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _SAEmergencyResponseManagerClass struct {
 // An interface definition for the [SAEmergencyResponseManager] class.
 type ISAEmergencyResponseManager interface {
 	objectivec.IObject
-	DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber string, handler unsafe.Pointer)
+	DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber appkit.string, handler unsafe.Pointer)
 }
 
 // Provides actions in response to a Crash Detection event.
@@ -84,8 +85,8 @@ func NewSAEmergencyResponseManager() SAEmergencyResponseManager {
 // Request the system to dial a voice call on behalf of someone involved in a crash.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SAEmergencyResponseManager/dialVoiceCall(toPhoneNumber:completionHandler:)
-func (s_ SAEmergencyResponseManager) DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber string, handler unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("dialVoiceCallToPhoneNumber:completionHandler:"), objc.String(phoneNumber), handler)
+func (s_ SAEmergencyResponseManager) DialVoiceCallToPhoneNumberCompletionHandler(phoneNumber appkit.string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("dialVoiceCallToPhoneNumber:completionHandler:"), phoneNumber, handler)
 }
 
 // The object that receives voice call status updates and requested emergency response actions.

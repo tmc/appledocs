@@ -29,7 +29,7 @@ type _UserUnixTaskClass struct {
 // An interface definition for the [UserUnixTask] class.
 type IUserUnixTask interface {
 	IUserScriptTask
-	ExecuteWithArgumentsCompletionHandler(arguments unsafe.Pointer, handler unsafe.Pointer)
+	ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer)
 }
 
 // An object that executes unix applications.
@@ -85,15 +85,15 @@ func NewUserUnixTask() UserUnixTask {
 // Execute the unix script with the specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/execute(withArguments:completionHandler:)
-func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments unsafe.Pointer, handler unsafe.Pointer) {
+func (u_ UserUnixTask) ExecuteWithArgumentsCompletionHandler(arguments []string, handler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithArguments:completionHandler:"), arguments, handler)
 }
 
 // The standard error stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardError
-func (u_ UserUnixTask) StandardError() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardError"))
+func (u_ UserUnixTask) StandardError() NSFileHandle {
+	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardError"))
 	return rv
 }
 
@@ -103,15 +103,15 @@ func (u_ UserUnixTask) StandardError() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardError
-func (u_ UserUnixTask) SetStandardError(value unsafe.Pointer) {
+func (u_ UserUnixTask) SetStandardError(value IFileHandle) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardError:"), value)
 }
 
 // The standard input stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
-func (u_ UserUnixTask) StandardInput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardInput"))
+func (u_ UserUnixTask) StandardInput() NSFileHandle {
+	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardInput"))
 	return rv
 }
 
@@ -121,15 +121,15 @@ func (u_ UserUnixTask) StandardInput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
-func (u_ UserUnixTask) SetStandardInput(value unsafe.Pointer) {
+func (u_ UserUnixTask) SetStandardInput(value IFileHandle) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardInput:"), value)
 }
 
 // The standard output stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
-func (u_ UserUnixTask) StandardOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardOutput"))
+func (u_ UserUnixTask) StandardOutput() NSFileHandle {
+	rv := objc.Send[NSFileHandle](u_.ID, objc.Sel("standardOutput"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (u_ UserUnixTask) StandardOutput() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
-func (u_ UserUnixTask) SetStandardOutput(value unsafe.Pointer) {
+func (u_ UserUnixTask) SetStandardOutput(value IFileHandle) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardOutput:"), value)
 }
 

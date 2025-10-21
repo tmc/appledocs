@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CWMutableNetworkProfile] class.
@@ -84,8 +85,8 @@ func NewCWMutableNetworkProfile() CWMutableNetworkProfile {
 // The security type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
-func (c_ CWMutableNetworkProfile) Security() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("security"))
+func (c_ CWMutableNetworkProfile) Security() CWSecurity {
+	rv := objc.Send[CWSecurity](c_.ID, objc.Sel("security"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (c_ CWMutableNetworkProfile) Security() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/security
-func (c_ CWMutableNetworkProfile) SetSecurity(value unsafe.Pointer) {
+func (c_ CWMutableNetworkProfile) SetSecurity(value ICWSecurity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSecurity:"), value)
 }
 
 // The service set identifier (SSID).
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SsidData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ssidData"))
+func (c_ CWMutableNetworkProfile) SsidData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (c_ CWMutableNetworkProfile) SsidData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMutableNetworkProfile/ssidData
-func (c_ CWMutableNetworkProfile) SetSsidData(value unsafe.Pointer) {
+func (c_ CWMutableNetworkProfile) SetSsidData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSsidData:"), value)
 }
 
 // The preferred networks list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-func (c_ CWMutableNetworkProfile) NetworkProfiles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("networkProfiles"))
+func (c_ CWMutableNetworkProfile) NetworkProfiles() foundation.OrderedSet {
+	rv := objc.Send[foundation.OrderedSet](c_.ID, objc.Sel("networkProfiles"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (c_ CWMutableNetworkProfile) NetworkProfiles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles
-func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value unsafe.Pointer) {
+func (c_ CWMutableNetworkProfile) SetNetworkProfiles(value foundation.IOrderedSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNetworkProfiles:"), value)
 }
 

@@ -90,7 +90,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() f
 // SetTargetTemperature sets the value of the targetTemperature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value foundation.Number) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperature:"), value)
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLeve
 // SetTargetTemperatureLevel sets the value of the targetTemperatureLevel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value foundation.Number) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperatureLevel:"), value)
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

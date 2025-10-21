@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricID() foun
 // SetFabricID sets the value of the fabricID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricid-5teul
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricID(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricId() foun
 // SetFabricId sets the value of the fabricId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricid-5tetp
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricId(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricId:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) FabricIndex() f
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/fabricindex
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricIndex(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) Label() string 
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/label
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -147,7 +147,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) NodeID() founda
 // SetNodeID sets the value of the nodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/nodeid-3hsb0
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeID(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 
@@ -162,14 +162,14 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) NodeId() founda
 // SetNodeId sets the value of the nodeId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/nodeid-3hsbw
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeId(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetNodeId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeId:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) RootPublicKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootPublicKey"))
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) RootPublicKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootPublicKey"))
 	return rv
 }
 
@@ -177,7 +177,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) RootPublicKey()
 // SetRootPublicKey sets the value of the rootPublicKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/rootpublickey
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetRootPublicKey(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetRootPublicKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) VendorID() foun
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/vendorid-3iay9
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorID(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) VendorId() foun
 // SetVendorId sets the value of the vendorId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterfabricdescriptorstruct/vendorid-3iaxd
-func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorId(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterFabricDescriptorStruct) SetVendorId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorId:"), value)
 }
 

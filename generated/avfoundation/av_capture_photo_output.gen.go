@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CapturePhotoOutput] class.
@@ -29,7 +30,7 @@ type _CapturePhotoOutputClass struct {
 // An interface definition for the [CapturePhotoOutput] class.
 type ICapturePhotoOutput interface {
 	ICaptureOutput
-	CapturePhotoWithSettingsDelegate(settings unsafe.Pointer, delegate objc.ID)
+	CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate objectivec.IObject)
 }
 
 // A capture output for still image, Live Photos, and other photography workflows.
@@ -85,7 +86,7 @@ func NewCapturePhotoOutput() CapturePhotoOutput {
 // Initiates a photo capture using the specified settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)
-func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings unsafe.Pointer, delegate objc.ID) {
+func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("capturePhotoWithSettings:delegate:"), settings, delegate)
 }
 
@@ -110,8 +111,8 @@ func (c_ CapturePhotoOutput) SetConstantColorEnabled(value bool) {
 // The currently active color space for capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activecolorspace
-func (c_ CapturePhotoOutput) ActiveColorSpace() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("activeColorSpace"))
+func (c_ CapturePhotoOutput) ActiveColorSpace() CaptureColorSpace {
+	rv := objc.Send[CaptureColorSpace](c_.ID, objc.Sel("activeColorSpace"))
 	return rv
 }
 
@@ -121,15 +122,15 @@ func (c_ CapturePhotoOutput) ActiveColorSpace() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activecolorspace
-func (c_ CapturePhotoOutput) SetActiveColorSpace(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetActiveColorSpace(value ICaptureColorSpace) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveColorSpace:"), value)
 }
 
 // The portrait effects matte captured with the photo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-func (c_ CapturePhotoOutput) PortraitEffectsMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("portraitEffectsMatte"))
+func (c_ CapturePhotoOutput) PortraitEffectsMatte() AVPortraitEffectsMatte {
+	rv := objc.Send[AVPortraitEffectsMatte](c_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
 }
 
@@ -139,15 +140,15 @@ func (c_ CapturePhotoOutput) PortraitEffectsMatte() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-func (c_ CapturePhotoOutput) SetPortraitEffectsMatte(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetPortraitEffectsMatte(value IAVPortraitEffectsMatte) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPortraitEffectsMatte:"), value)
 }
 
 // An array of video codecs currently available for Live Photo movie captures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
-func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableLivePhotoVideoCodecTypes"))
+func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableLivePhotoVideoCodecTypes"))
 	return rv
 }
 
@@ -157,15 +158,15 @@ func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
-func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableLivePhotoVideoCodecTypes:"), value)
 }
 
 // The compression codecs this capture output currently supports for photo capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
-func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availablePhotoCodecTypes"))
+func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availablePhotoCodecTypes"))
 	return rv
 }
 
@@ -175,15 +176,15 @@ func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
-func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoCodecTypes:"), value)
 }
 
 // The list of file types currently supported for photo capture and output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
-func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availablePhotoFileTypes"))
+func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() FileType {
+	rv := objc.Send[FileType](c_.ID, objc.Sel("availablePhotoFileTypes"))
 	return rv
 }
 
@@ -193,7 +194,7 @@ func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
-func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoFileTypes:"), value)
 }
 
@@ -217,8 +218,8 @@ func (c_ CapturePhotoOutput) SetAvailablePhotoPixelFormatTypes(value unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
-func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableRawPhotoCodecTypes"))
+func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() VideoCodecType {
+	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableRawPhotoCodecTypes"))
 	return rv
 }
 
@@ -226,15 +227,15 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() unsafe.Pointer {
 // SetAvailableRawPhotoCodecTypes sets the value of the availableRawPhotoCodecTypes property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value VideoCodecType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoCodecTypes:"), value)
 }
 
 // The list of file types currently supported for RAW format capture and output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
-func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableRawPhotoFileTypes"))
+func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() FileType {
+	rv := objc.Send[FileType](c_.ID, objc.Sel("availableRawPhotoFileTypes"))
 	return rv
 }
 
@@ -244,7 +245,7 @@ func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value FileType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoFileTypes:"), value)
 }
 
@@ -965,8 +966,8 @@ func (c_ CapturePhotoOutput) SetMaxPhotoQualityPrioritization(value unsafe.Point
 // A photo settings object that controls how the photo output detects and handles automatic flash and stabilization modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/photosettingsforscenemonitoring
-func (c_ CapturePhotoOutput) PhotoSettingsForSceneMonitoring() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("photoSettingsForSceneMonitoring"))
+func (c_ CapturePhotoOutput) PhotoSettingsForSceneMonitoring() AVCapturePhotoSettings {
+	rv := objc.Send[AVCapturePhotoSettings](c_.ID, objc.Sel("photoSettingsForSceneMonitoring"))
 	return rv
 }
 
@@ -976,15 +977,15 @@ func (c_ CapturePhotoOutput) PhotoSettingsForSceneMonitoring() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/photosettingsforscenemonitoring
-func (c_ CapturePhotoOutput) SetPhotoSettingsForSceneMonitoring(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetPhotoSettingsForSceneMonitoring(value IAVCapturePhotoSettings) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPhotoSettingsForSceneMonitoring:"), value)
 }
 
 // An array of photo settings for which the photo output has prepared capture resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preparedphotosettingsarray
-func (c_ CapturePhotoOutput) PreparedPhotoSettingsArray() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("preparedPhotoSettingsArray"))
+func (c_ CapturePhotoOutput) PreparedPhotoSettingsArray() AVCapturePhotoSettings {
+	rv := objc.Send[AVCapturePhotoSettings](c_.ID, objc.Sel("preparedPhotoSettingsArray"))
 	return rv
 }
 
@@ -994,7 +995,7 @@ func (c_ CapturePhotoOutput) PreparedPhotoSettingsArray() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preparedphotosettingsarray
-func (c_ CapturePhotoOutput) SetPreparedPhotoSettingsArray(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetPreparedPhotoSettingsArray(value IAVCapturePhotoSettings) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparedPhotoSettingsArray:"), value)
 }
 

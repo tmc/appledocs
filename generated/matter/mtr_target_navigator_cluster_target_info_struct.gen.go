@@ -87,14 +87,14 @@ func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Identifier() foundation.Numb
 // SetIdentifier sets the value of the identifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/identifier
-func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetIdentifier(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetIdentifier(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
-func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
-func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

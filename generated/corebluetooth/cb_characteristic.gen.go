@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CBCharacteristic] class.
@@ -108,24 +109,24 @@ func (c_ CBCharacteristic) IsNotifying() bool {
 // The properties of the characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/properties
-func (c_ CBCharacteristic) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("properties"))
+func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
+	rv := objc.Send[CBCharacteristicProperties](c_.ID, objc.Sel("properties"))
 	return rv
 }
 
 // The service to which this characteristic belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/service
-func (c_ CBCharacteristic) Service() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("service"))
+func (c_ CBCharacteristic) Service() CBService {
+	rv := objc.Send[CBService](c_.ID, objc.Sel("service"))
 	return rv
 }
 
 // The value of the characteristic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/value
-func (c_ CBCharacteristic) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
+func (c_ CBCharacteristic) Value() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
 }
 

@@ -175,8 +175,8 @@ func (t_ Typesetter) SetCurrentTextContainer(value ITextContainer) {
 // Returns the current hyphenation factor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/hyphenationfactor
-func (t_ Typesetter) HyphenationFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("hyphenationFactor"))
+func (t_ Typesetter) HyphenationFactor() float32 {
+	rv := objc.Send[float32](t_.ID, objc.Sel("hyphenationFactor"))
 	return rv
 }
 
@@ -186,7 +186,7 @@ func (t_ Typesetter) HyphenationFactor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstypesetter/hyphenationfactor
-func (t_ Typesetter) SetHyphenationFactor(value unsafe.Pointer) {
+func (t_ Typesetter) SetHyphenationFactor(value float32) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHyphenationFactor:"), value)
 }
 

@@ -78,8 +78,8 @@ func NewMTRCommissioningParameters() MTRCommissioningParameters {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/attestationnonce
-func (m_ MTRCommissioningParameters) AttestationNonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationNonce"))
+func (m_ MTRCommissioningParameters) AttestationNonce() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationNonce"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRCommissioningParameters) AttestationNonce() unsafe.Pointer {
 // SetAttestationNonce sets the value of the attestationNonce property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/attestationnonce
-func (m_ MTRCommissioningParameters) SetAttestationNonce(value unsafe.Pointer) {
+func (m_ MTRCommissioningParameters) SetAttestationNonce(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationNonce:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+func (m_ MTRCommissioningParameters) CountryCode() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRCommissioningParameters) CountryCode() string {
 // SetCountryCode sets the value of the countryCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/countrycode
-func (m_ MTRCommissioningParameters) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+func (m_ MTRCommissioningParameters) SetCountryCode(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
-func (m_ MTRCommissioningParameters) CsrNonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csrNonce"))
+func (m_ MTRCommissioningParameters) CsrNonce() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrNonce"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRCommissioningParameters) CsrNonce() unsafe.Pointer {
 // SetCsrNonce sets the value of the csrNonce property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/csrnonce-8gx94
-func (m_ MTRCommissioningParameters) SetCsrNonce(value unsafe.Pointer) {
+func (m_ MTRCommissioningParameters) SetCsrNonce(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRCommissioningParameters) FailSafeExpiryTimeoutSecs() foundation.Numb
 // SetFailSafeExpiryTimeoutSecs sets the value of the failSafeExpiryTimeoutSecs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/failsafeexpirytimeoutsecs
-func (m_ MTRCommissioningParameters) SetFailSafeExpiryTimeoutSecs(value foundation.Number) {
+func (m_ MTRCommissioningParameters) SetFailSafeExpiryTimeoutSecs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeExpiryTimeoutSecs:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRCommissioningParameters) FailSafeTimeout() foundation.Number {
 // SetFailSafeTimeout sets the value of the failSafeTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/failsafetimeout
-func (m_ MTRCommissioningParameters) SetFailSafeTimeout(value foundation.Number) {
+func (m_ MTRCommissioningParameters) SetFailSafeTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeTimeout:"), value)
 }
 
@@ -201,8 +201,8 @@ func (m_ MTRCommissioningParameters) SetSkipCommissioningComplete(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
-func (m_ MTRCommissioningParameters) ThreadOperationalDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("threadOperationalDataset"))
+func (m_ MTRCommissioningParameters) ThreadOperationalDataset() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("threadOperationalDataset"))
 	return rv
 }
 
@@ -210,14 +210,14 @@ func (m_ MTRCommissioningParameters) ThreadOperationalDataset() unsafe.Pointer {
 // SetThreadOperationalDataset sets the value of the threadOperationalDataset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/threadoperationaldataset
-func (m_ MTRCommissioningParameters) SetThreadOperationalDataset(value unsafe.Pointer) {
+func (m_ MTRCommissioningParameters) SetThreadOperationalDataset(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadOperationalDataset:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wificredentials
-func (m_ MTRCommissioningParameters) WifiCredentials() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("wifiCredentials"))
+func (m_ MTRCommissioningParameters) WifiCredentials() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("wifiCredentials"))
 	return rv
 }
 
@@ -225,14 +225,14 @@ func (m_ MTRCommissioningParameters) WifiCredentials() unsafe.Pointer {
 // SetWifiCredentials sets the value of the wifiCredentials property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wificredentials
-func (m_ MTRCommissioningParameters) SetWifiCredentials(value unsafe.Pointer) {
+func (m_ MTRCommissioningParameters) SetWifiCredentials(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWifiCredentials:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wifissid
-func (m_ MTRCommissioningParameters) WifiSSID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("wifiSSID"))
+func (m_ MTRCommissioningParameters) WifiSSID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("wifiSSID"))
 	return rv
 }
 
@@ -240,7 +240,7 @@ func (m_ MTRCommissioningParameters) WifiSSID() unsafe.Pointer {
 // SetWifiSSID sets the value of the wifiSSID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissioningparameters/wifissid
-func (m_ MTRCommissioningParameters) SetWifiSSID(value unsafe.Pointer) {
+func (m_ MTRCommissioningParameters) SetWifiSSID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWifiSSID:"), value)
 }
 

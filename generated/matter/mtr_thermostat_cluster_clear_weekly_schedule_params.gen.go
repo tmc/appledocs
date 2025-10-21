@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterClearWeeklyScheduleParams) ServerSideProcessingTime
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterclearweeklyscheduleparams/serversideprocessingtimeout
-func (m_ MTRThermostatClusterClearWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterClearWeeklyScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterClearWeeklyScheduleParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterclearweeklyscheduleparams/timedinvoketimeoutms
-func (m_ MTRThermostatClusterClearWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThermostatClusterClearWeeklyScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRDishwasherAlarmClusterResetParams) Alarms() foundation.Number {
 // SetAlarms sets the value of the alarms property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/alarms
-func (m_ MTRDishwasherAlarmClusterResetParams) SetAlarms(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterResetParams) SetAlarms(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarms:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRDishwasherAlarmClusterResetParams) ServerSideProcessingTimeout() fou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherAlarmClusterResetParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterResetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRDishwasherAlarmClusterResetParams) TimedInvokeTimeoutMs() foundation
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherAlarmClusterResetParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherAlarmClusterResetParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDishwasherAlarmClusterResetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

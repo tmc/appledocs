@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,10 +32,10 @@ type _MediaLibraryClass struct {
 // An interface definition for the [MediaLibrary] class.
 type IMediaLibrary interface {
 	objectivec.IObject
-	AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer)
+	AddItemWithProductIDCompletionHandler(productID appkit.string, completionHandler unsafe.Pointer)
 	BeginGeneratingLibraryChangeNotifications()
 	EndGeneratingLibraryChangeNotifications()
-	GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid unsafe.Pointer, creationMetadata unsafe.Pointer, completionHandler unsafe.Pointer)
+	GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid foundation.IUUID, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer)
 }
 
 // An object that represents the state of synced media items on a device.
@@ -87,16 +89,16 @@ func NewMediaLibrary() MediaLibrary {
 // Returns whether the app can access the user’s media library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/authorizationStatus()
-func (mc _MediaLibraryClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("authorizationStatus"))
+func (mc _MediaLibraryClass) AuthorizationStatus() MediaLibraryAuthorizationStatus {
+	rv := objc.Send[MediaLibraryAuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
 // Returns an instance of the default media library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/default()
-func (mc _MediaLibraryClass) DefaultMediaLibrary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("defaultMediaLibrary"))
+func (mc _MediaLibraryClass) DefaultMediaLibrary() MediaLibrary {
+	rv := objc.Send[MediaLibrary](objc.ID(mc.class), objc.Sel("defaultMediaLibrary"))
 	return rv
 }
 
@@ -110,8 +112,8 @@ func (mc _MediaLibraryClass) RequestAuthorization(completionHandler unsafe.Point
 // Adds the designated item to the user’s music library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/addItem(withProductID:completionHandler:)
-func (m_ MediaLibrary) AddItemWithProductIDCompletionHandler(productID string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), objc.String(productID), completionHandler)
+func (m_ MediaLibrary) AddItemWithProductIDCompletionHandler(productID appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addItemWithProductID:completionHandler:"), productID, completionHandler)
 }
 
 // Asks the media library to turn on notifications for whenever the library changes.
@@ -131,15 +133,15 @@ func (m_ MediaLibrary) EndGeneratingLibraryChangeNotifications() {
 // Retrieves an app maintained existing playlist or creates a new playlist when no playlist exists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/getPlaylist(with:creationMetadata:completionHandler:)
-func (m_ MediaLibrary) GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid unsafe.Pointer, creationMetadata unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (m_ MediaLibrary) GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid foundation.IUUID, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getPlaylistWithUUID:creationMetadata:completionHandler:"), uuid, creationMetadata, completionHandler)
 }
 
 // The calendar date on which the media library was last modified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/lastModifiedDate
-func (m_ MediaLibrary) LastModifiedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lastModifiedDate"))
+func (m_ MediaLibrary) LastModifiedDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("lastModifiedDate"))
 	return rv
 }
 

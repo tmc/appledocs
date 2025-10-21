@@ -102,7 +102,7 @@ func (m_ MTRGroupsClusterGetGroupMembershipParams) ServerSideProcessingTimeout()
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/serversideprocessingtimeout
-func (m_ MTRGroupsClusterGetGroupMembershipParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGroupsClusterGetGroupMembershipParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupsClusterGetGroupMembershipParams) TimedInvokeTimeoutMs() founda
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/timedinvoketimeoutms
-func (m_ MTRGroupsClusterGetGroupMembershipParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupsClusterGetGroupMembershipParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -30,10 +30,10 @@ type _CKSyncEngineStateClass struct {
 // An interface definition for the [CKSyncEngineState] class.
 type ICKSyncEngineState interface {
 	objectivec.IObject
-	AddPendingDatabaseChanges(changes unsafe.Pointer)
-	AddPendingRecordZoneChanges(changes unsafe.Pointer)
-	RemovePendingDatabaseChanges(changes unsafe.Pointer)
-	RemovePendingRecordZoneChanges(changes unsafe.Pointer)
+	AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange)
+	AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
+	RemovePendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange)
+	RemovePendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange)
 }
 
 // An object that manages the sync engine’s state.
@@ -87,36 +87,36 @@ func NewCKSyncEngineState() CKSyncEngineState {
 // Adds the specified database changes to the state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingDatabaseChanges:
-func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes unsafe.Pointer) {
+func (c_ CKSyncEngineState) AddPendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingDatabaseChanges:"), changes)
 }
 
 // Adds the specified record zone changes to the state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/addPendingRecordZoneChanges:
-func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes unsafe.Pointer) {
+func (c_ CKSyncEngineState) AddPendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addPendingRecordZoneChanges:"), changes)
 }
 
 // Removes the specified database changes from the state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/removePendingDatabaseChanges:
-func (c_ CKSyncEngineState) RemovePendingDatabaseChanges(changes unsafe.Pointer) {
+func (c_ CKSyncEngineState) RemovePendingDatabaseChanges(changes []CKSyncEnginePendingDatabaseChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingDatabaseChanges:"), changes)
 }
 
 // Removes the specified record zone changes from the state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineState/removePendingRecordZoneChanges:
-func (c_ CKSyncEngineState) RemovePendingRecordZoneChanges(changes unsafe.Pointer) {
+func (c_ CKSyncEngineState) RemovePendingRecordZoneChanges(changes []CKSyncEnginePendingRecordZoneChange) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removePendingRecordZoneChanges:"), changes)
 }
 
 // The user record ID for the corresponding user record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKSyncEngineState) UserRecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userRecordID"))
+func (c_ CKSyncEngineState) UserRecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("userRecordID"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (c_ CKSyncEngineState) UserRecordID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckuseridentity/userrecordid
-func (c_ CKSyncEngineState) SetUserRecordID(value unsafe.Pointer) {
+func (c_ CKSyncEngineState) SetUserRecordID(value ICKRecordID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUserRecordID:"), value)
 }
 

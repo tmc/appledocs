@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PDFAnnotationCircle] class.
@@ -79,8 +80,8 @@ func NewPDFAnnotationCircle() PDFAnnotationCircle {
 // Sets the stroke color for the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationCircle) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("color"))
+func (p_ PDFAnnotationCircle) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -90,7 +91,7 @@ func (p_ PDFAnnotationCircle) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationCircle) SetColor(value unsafe.Pointer) {
+func (p_ PDFAnnotationCircle) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
 
@@ -115,8 +116,8 @@ func (p_ PDFAnnotationCircle) SetLineWidth(value float64) {
 // Sets the border style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationCircle) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
+func (p_ PDFAnnotationCircle) Style() PDFBorderStyle {
+	rv := objc.Send[PDFBorderStyle](p_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (p_ PDFAnnotationCircle) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationCircle) SetStyle(value unsafe.Pointer) {
+func (p_ PDFAnnotationCircle) SetStyle(value PDFBorderStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 

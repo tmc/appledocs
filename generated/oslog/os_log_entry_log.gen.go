@@ -84,8 +84,8 @@ func NewOSLogEntryLog() OSLogEntryLog {
 // The log level of the entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogEntryLog/level-swift.property
-func (o_ OSLogEntryLog) Level() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("level"))
+func (o_ OSLogEntryLog) Level() OSLogEntryLogLevel {
+	rv := objc.Send[OSLogEntryLogLevel](o_.ID, objc.Sel("level"))
 	return rv
 }
 

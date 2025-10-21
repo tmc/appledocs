@@ -87,14 +87,14 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) Breadcrumb() f
 // SetBreadcrumb sets the value of the breadcrumb property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/breadcrumb
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() 
 // SetCountryCode sets the value of the countryCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
 }
 
 //
@@ -117,7 +117,7 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) NewRegulatoryC
 // SetNewRegulatoryConfig sets the value of the newRegulatoryConfig property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/newregulatoryconfig
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetNewRegulatoryConfig(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetNewRegulatoryConfig(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewRegulatoryConfig:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) ServerSideProc
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) TimedInvokeTim
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

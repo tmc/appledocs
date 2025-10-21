@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,9 +35,9 @@ type IBluetoothHandsFree interface {
 	ConnectSCO()
 	Disconnect()
 	DisconnectSCO()
-	Indicator(indicatorName string) unsafe.Pointer
+	Indicator(indicatorName appkit.string) unsafe.Pointer
 	IsSCOConnected() bool
-	SetIndicatorValue(indicatorName string, indicatorValue unsafe.Pointer)
+	SetIndicatorValue(indicatorName appkit.string, indicatorValue unsafe.Pointer)
 }
 
 // Hands free profile class.
@@ -92,7 +93,7 @@ func NewBluetoothHandsFree() BluetoothHandsFree {
 // Create a new IOBluetoothHandsFree object
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/init(device:delegate:)
-func NewBluetoothHandsFreeWithDeviceDelegate(device unsafe.Pointer, inDelegate objc.ID) BluetoothHandsFree {
+func NewBluetoothHandsFreeWithDeviceDelegate(device IOBluetoothDevice, inDelegate objectivec.IObject) BluetoothHandsFree {
 	instance := getBluetoothHandsFreeClass().Alloc()
 	rv := objc.Send[BluetoothHandsFree](instance.ID, objc.Sel("initWithDevice:delegate:"), device, inDelegate)
 	rv.Autorelease()
@@ -131,8 +132,8 @@ func (b_ BluetoothHandsFree) DisconnectSCO() {
 // Return an indicator’s value
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/indicator(_:)
-func (b_ BluetoothHandsFree) Indicator(indicatorName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("indicator:"), objc.String(indicatorName))
+func (b_ BluetoothHandsFree) Indicator(indicatorName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("indicator:"), indicatorName)
 	return rv
 }
 
@@ -147,8 +148,8 @@ func (b_ BluetoothHandsFree) IsSCOConnected() bool {
 // Set an indicator’s value
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/setIndicator(_:value:)
-func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName string, indicatorValue unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), objc.String(indicatorName), indicatorValue)
+func (b_ BluetoothHandsFree) SetIndicatorValue(indicatorName appkit.string, indicatorValue unsafe.Pointer) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setIndicator:value:"), indicatorName, indicatorValue)
 }
 
 // Return the delegate
@@ -172,8 +173,8 @@ func (b_ BluetoothHandsFree) SetDelegate(value objc.ID) {
 // Return the IOBluetoothDevice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/device
-func (b_ BluetoothHandsFree) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("device"))
+func (b_ BluetoothHandsFree) Device() IOBluetoothDevice {
+	rv := objc.Send[IOBluetoothDevice](b_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -291,8 +292,8 @@ func (b_ BluetoothHandsFree) SetOutputVolume(value unsafe.Pointer) {
 // Return the device’s SMS mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothHandsFree/smsMode
-func (b_ BluetoothHandsFree) SMSMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("SMSMode"))
+func (b_ BluetoothHandsFree) SMSMode() BluetoothSMSMode {
+	rv := objc.Send[BluetoothSMSMode](b_.ID, objc.Sel("SMSMode"))
 	return rv
 }
 

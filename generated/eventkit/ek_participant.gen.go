@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/addressbook"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,8 +32,8 @@ type _EKParticipantClass struct {
 // An interface definition for the [EKParticipant] class.
 type IEKParticipant interface {
 	IEKObject
-	ABPersonInAddressBook(addressBook unsafe.Pointer) unsafe.Pointer
-	ABRecordWithAddressBook(addressBook unsafe.Pointer) unsafe.Pointer
+	ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson
+	ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef
 }
 
 // A class that represents person, group, or room invited to a calendar event.
@@ -87,24 +89,24 @@ func NewEKParticipant() EKParticipant {
 // Returns the address book record that represents the participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abPerson(in:)
-func (e_ EKParticipant) ABPersonInAddressBook(addressBook unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("ABPersonInAddressBook:"), addressBook)
+func (e_ EKParticipant) ABPersonInAddressBook(addressBook addressbook.IABAddressBook) addressbook.ABPerson {
+	rv := objc.Send[addressbook.ABPerson](e_.ID, objc.Sel("ABPersonInAddressBook:"), addressBook)
 	return rv
 }
 
 // Returns the address book record that represents the participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
-func (e_ EKParticipant) ABRecordWithAddressBook(addressBook unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
+func (e_ EKParticipant) ABRecordWithAddressBook(addressBook IABAddressBookRef) ABRecordRef {
+	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
 	return rv
 }
 
 // A predicate to use with the Contacts framework to retrieve the corresponding contact instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
-func (e_ EKParticipant) ContactPredicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("contactPredicate"))
+func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("contactPredicate"))
 	return rv
 }
 
@@ -119,32 +121,32 @@ func (e_ EKParticipant) CurrentUser() bool {
 // The participant’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/name
-func (e_ EKParticipant) Name() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EKParticipant) Name() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The participant’s role in the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantRole
-func (e_ EKParticipant) ParticipantRole() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("participantRole"))
+func (e_ EKParticipant) ParticipantRole() EKParticipantRole {
+	rv := objc.Send[EKParticipantRole](e_.ID, objc.Sel("participantRole"))
 	return rv
 }
 
 // The participant’s attendance status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantStatus
-func (e_ EKParticipant) ParticipantStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("participantStatus"))
+func (e_ EKParticipant) ParticipantStatus() EKParticipantStatus {
+	rv := objc.Send[EKParticipantStatus](e_.ID, objc.Sel("participantStatus"))
 	return rv
 }
 
 // The participant’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/participantType
-func (e_ EKParticipant) ParticipantType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("participantType"))
+func (e_ EKParticipant) ParticipantType() EKParticipantType {
+	rv := objc.Send[EKParticipantType](e_.ID, objc.Sel("participantType"))
 	return rv
 }
 

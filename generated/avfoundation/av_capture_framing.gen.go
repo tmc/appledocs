@@ -91,8 +91,8 @@ func (c_ CaptureFraming) ZoomFactor() unsafe.Pointer {
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-func (c_ CaptureFraming) SmartFramingMonitor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("smartFramingMonitor"))
+func (c_ CaptureFraming) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
+	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (c_ CaptureFraming) SmartFramingMonitor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-func (c_ CaptureFraming) SetSmartFramingMonitor(value unsafe.Pointer) {
+func (c_ CaptureFraming) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
 }
 

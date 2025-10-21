@@ -140,7 +140,7 @@ func NewImageWithSizeFlippedDrawingHandler(size coregraphics.CGSize, drawingHand
 // Creates a symbol image with the symbol name and variable value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
-func NewImageWithSymbolNameVariableValue(name string, value unsafe.Pointer) Image {
+func NewImageWithSymbolNameVariableValue(name string, value float64) Image {
 	rv := objc.Send[Image](objc.ID(getImageClass().class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
 	return rv
 }
@@ -175,7 +175,7 @@ func (ic _ImageClass) ImageWithSizeFlippedDrawingHandler(size coregraphics.CGSiz
 // Creates a symbol image with the symbol name and variable value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/init(symbolName:variableValue:)
-func (ic _ImageClass) ImageWithSymbolNameVariableValue(name string, value unsafe.Pointer) unsafe.Pointer {
+func (ic _ImageClass) ImageWithSymbolNameVariableValue(name string, value float64) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithSymbolName:variableValue:"), objc.String(name), value)
 	return rv
 }

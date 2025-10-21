@@ -83,11 +83,19 @@ func NewMKAnnotationView() MKAnnotationView {
 }
 
 
+// The clustering annotation view that replaces the annotation view.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/cluster
+func (m_ MKAnnotationView) ClusterAnnotationView() MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("clusterAnnotationView"))
+	return rv
+}
+
 // An identifier that determines whether the annotation view participates in clustering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) ClusteringIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("clusteringIdentifier"))
+func (m_ MKAnnotationView) ClusteringIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("clusteringIdentifier"))
 	return rv
 }
 
@@ -97,8 +105,8 @@ func (m_ MKAnnotationView) ClusteringIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKAnnotationView/clusteringIdentifier
-func (m_ MKAnnotationView) SetClusteringIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), objc.String(value))
+func (m_ MKAnnotationView) SetClusteringIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setClusteringIdentifier:"), value)
 }
 
 // An offset that changes the accessory’s default anchor point.
@@ -194,8 +202,8 @@ func (m_ MKAnnotationView) SetCenterOffset(value coregraphics.CGPoint) {
 // The clustering annotation view that replaces the annotation view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/cluster
-func (m_ MKAnnotationView) Cluster() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cluster"))
+func (m_ MKAnnotationView) Cluster() MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("cluster"))
 	return rv
 }
 
@@ -205,7 +213,7 @@ func (m_ MKAnnotationView) Cluster() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/cluster
-func (m_ MKAnnotationView) SetCluster(value unsafe.Pointer) {
+func (m_ MKAnnotationView) SetCluster(value IMKAnnotationView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
 
@@ -230,8 +238,8 @@ func (m_ MKAnnotationView) SetCollisionMode(value unsafe.Pointer) {
 // The detail accessory view to use in the standard callout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/detailcalloutaccessoryview
-func (m_ MKAnnotationView) DetailCalloutAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("detailCalloutAccessoryView"))
+func (m_ MKAnnotationView) DetailCalloutAccessoryView() appkit.View {
+	rv := objc.Send[appkit.View](m_.ID, objc.Sel("detailCalloutAccessoryView"))
 	return rv
 }
 
@@ -241,7 +249,7 @@ func (m_ MKAnnotationView) DetailCalloutAccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/detailcalloutaccessoryview
-func (m_ MKAnnotationView) SetDetailCalloutAccessoryView(value unsafe.Pointer) {
+func (m_ MKAnnotationView) SetDetailCalloutAccessoryView(value appkit.IView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDetailCalloutAccessoryView:"), value)
 }
 
@@ -284,8 +292,8 @@ func (m_ MKAnnotationView) SetDragState(value unsafe.Pointer) {
 // The image the annotation view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/image
-func (m_ MKAnnotationView) Image() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("image"))
+func (m_ MKAnnotationView) Image() appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
 	return rv
 }
 
@@ -295,7 +303,7 @@ func (m_ MKAnnotationView) Image() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/image
-func (m_ MKAnnotationView) SetImage(value unsafe.Pointer) {
+func (m_ MKAnnotationView) SetImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
 }
 
@@ -374,8 +382,8 @@ func (m_ MKAnnotationView) SetIsSelected(value bool) {
 // The view to display on the left side of the standard callout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview
-func (m_ MKAnnotationView) LeftCalloutAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("leftCalloutAccessoryView"))
+func (m_ MKAnnotationView) LeftCalloutAccessoryView() appkit.View {
+	rv := objc.Send[appkit.View](m_.ID, objc.Sel("leftCalloutAccessoryView"))
 	return rv
 }
 
@@ -385,7 +393,7 @@ func (m_ MKAnnotationView) LeftCalloutAccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/leftcalloutaccessoryview
-func (m_ MKAnnotationView) SetLeftCalloutAccessoryView(value unsafe.Pointer) {
+func (m_ MKAnnotationView) SetLeftCalloutAccessoryView(value appkit.IView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLeftCalloutAccessoryView:"), value)
 }
 
@@ -410,8 +418,8 @@ func (m_ MKAnnotationView) SetLeftCalloutOffset(value coregraphics.CGPoint) {
 // The string that identifies that the annotation view is reusable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
-func (m_ MKAnnotationView) ReuseIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("reuseIdentifier"))
+func (m_ MKAnnotationView) ReuseIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("reuseIdentifier"))
 	return rv
 }
 
@@ -421,15 +429,15 @@ func (m_ MKAnnotationView) ReuseIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/reuseidentifier
-func (m_ MKAnnotationView) SetReuseIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReuseIdentifier:"), objc.String(value))
+func (m_ MKAnnotationView) SetReuseIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReuseIdentifier:"), value)
 }
 
 // The view to display on the right side of the standard callout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutaccessoryview
-func (m_ MKAnnotationView) RightCalloutAccessoryView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rightCalloutAccessoryView"))
+func (m_ MKAnnotationView) RightCalloutAccessoryView() appkit.View {
+	rv := objc.Send[appkit.View](m_.ID, objc.Sel("rightCalloutAccessoryView"))
 	return rv
 }
 
@@ -439,7 +447,7 @@ func (m_ MKAnnotationView) RightCalloutAccessoryView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkannotationview/rightcalloutaccessoryview
-func (m_ MKAnnotationView) SetRightCalloutAccessoryView(value unsafe.Pointer) {
+func (m_ MKAnnotationView) SetRightCalloutAccessoryView(value appkit.IView) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRightCalloutAccessoryView:"), value)
 }
 

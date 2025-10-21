@@ -100,8 +100,8 @@ func (m_ MovieTrack) SetAlternateGroupID(value int) {
 // The storage container for media data added to a track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
-func (m_ MovieTrack) MediaDataStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaDataStorage"))
+func (m_ MovieTrack) MediaDataStorage() AVMediaDataStorage {
+	rv := objc.Send[AVMediaDataStorage](m_.ID, objc.Sel("mediaDataStorage"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (m_ MovieTrack) MediaDataStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
-func (m_ MovieTrack) SetMediaDataStorage(value unsafe.Pointer) {
+func (m_ MovieTrack) SetMediaDataStorage(value IAVMediaDataStorage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDataStorage:"), value)
 }
 

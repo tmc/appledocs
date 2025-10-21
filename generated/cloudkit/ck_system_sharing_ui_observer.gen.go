@@ -85,7 +85,7 @@ func NewCKSystemSharingUIObserver() CKSystemSharingUIObserver {
 // Creates and initializes an observer using the provided container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSystemSharingUIObserver/init(container:)
-func NewCKSystemSharingUIObserverWithContainer(container unsafe.Pointer) CKSystemSharingUIObserver {
+func NewCKSystemSharingUIObserverWithContainer(container ICKContainer) CKSystemSharingUIObserver {
 	instance := getCKSystemSharingUIObserverClass().Alloc()
 	rv := objc.Send[CKSystemSharingUIObserver](instance.ID, objc.Sel("initWithContainer:"), container)
 	rv.Autorelease()

@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Nullable
 // SetNullableInt sets the value of the nullableInt property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullableint
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableInt(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableInt(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableInt:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Nullable
 // SetNullableOptionalInt sets the value of the nullableOptionalInt property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullableoptionalint
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableOptionalInt(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableOptionalInt(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalInt:"), value)
 }
 
@@ -138,8 +138,8 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNulla
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullableoptionalstring
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableOptionalString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableOptionalString"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableOptionalString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("nullableOptionalString"))
 	return rv
 }
 
@@ -147,14 +147,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Nullable
 // SetNullableOptionalString sets the value of the nullableOptionalString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullableoptionalstring
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableOptionalString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalString:"), objc.String(value))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableOptionalString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalString:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullableoptionalstruct
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableOptionalStruct() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableOptionalStruct"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableOptionalStruct() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("nullableOptionalStruct"))
 	return rv
 }
 
@@ -162,14 +162,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Nullable
 // SetNullableOptionalStruct sets the value of the nullableOptionalStruct property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullableoptionalstruct
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableOptionalStruct(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableOptionalStruct(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStruct:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullablestring
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("nullableString"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("nullableString"))
 	return rv
 }
 
@@ -177,14 +177,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Nullable
 // SetNullableString sets the value of the nullableString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullablestring
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableString:"), objc.String(value))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableString:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullablestruct
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableStruct() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nullableStruct"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) NullableStruct() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("nullableStruct"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Nullable
 // SetNullableStruct sets the value of the nullableStruct property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/nullablestruct
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableStruct(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetNullableStruct(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStruct:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Optional
 // SetOptionalInt sets the value of the optionalInt property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/optionalint
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptionalInt(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptionalInt(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalInt:"), value)
 }
 
@@ -228,8 +228,8 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/optionalstring
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) OptionalString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("optionalString"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) OptionalString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("optionalString"))
 	return rv
 }
 
@@ -237,14 +237,14 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Optional
 // SetOptionalString sets the value of the optionalString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/optionalstring
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptionalString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalString:"), objc.String(value))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptionalString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalString:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/optionalstruct
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) OptionalStruct() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("optionalStruct"))
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) OptionalStruct() MTRUnitTestingClusterSimpleStruct {
+	rv := objc.Send[MTRUnitTestingClusterSimpleStruct](m_.ID, objc.Sel("optionalStruct"))
 	return rv
 }
 
@@ -252,7 +252,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) Optional
 // SetOptionalStruct sets the value of the optionalStruct property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/optionalstruct
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptionalStruct(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetOptionalStruct(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStruct:"), value)
 }
 
@@ -267,7 +267,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) ServerSi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -282,7 +282,7 @@ func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) TimedInv
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestcomplexnullableoptionalrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestComplexNullableOptionalRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

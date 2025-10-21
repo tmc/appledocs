@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = avfoundation.NewCaptureDevice
 
-// ExampleNewCaptureDeviceWithUniqueID demonstrates how to create a CaptureDevice instance using NewCaptureDeviceWithUniqueID.
-// Creates an object that represents a device with the specified identifier.
-func ExampleNewCaptureDeviceWithUniqueID() {
-	_ = avfoundation.NewCaptureDeviceWithUniqueID(
-		"deviceUniqueID", // deviceUniqueID string
-	)
-	// Output:
-}

@@ -84,8 +84,8 @@ func NewMKPolygon() MKPolygon {
 // The array of polygons that nest inside the enclosing polygon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpolygon/interiorpolygons
-func (m_ MKPolygon) InteriorPolygons() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("interiorPolygons"))
+func (m_ MKPolygon) InteriorPolygons() MKPolygon {
+	rv := objc.Send[MKPolygon](m_.ID, objc.Sel("interiorPolygons"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (m_ MKPolygon) InteriorPolygons() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpolygon/interiorpolygons
-func (m_ MKPolygon) SetInteriorPolygons(value unsafe.Pointer) {
+func (m_ MKPolygon) SetInteriorPolygons(value IMKPolygon) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInteriorPolygons:"), value)
 }
 

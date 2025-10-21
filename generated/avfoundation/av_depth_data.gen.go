@@ -101,8 +101,8 @@ func (d_ DepthData) SetAvailableDepthDataTypes(value unsafe.Pointer) {
 // The imaging parameters with which this depth data was captured.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
-func (d_ DepthData) CameraCalibrationData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("cameraCalibrationData"))
+func (d_ DepthData) CameraCalibrationData() AVCameraCalibrationData {
+	rv := objc.Send[AVCameraCalibrationData](d_.ID, objc.Sel("cameraCalibrationData"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (d_ DepthData) CameraCalibrationData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata
-func (d_ DepthData) SetCameraCalibrationData(value unsafe.Pointer) {
+func (d_ DepthData) SetCameraCalibrationData(value IAVCameraCalibrationData) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCameraCalibrationData:"), value)
 }
 

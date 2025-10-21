@@ -81,8 +81,8 @@ func NewPlaybackSpeed() PlaybackSpeed {
 // A localized name for a speed that’s suitable for display in a user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizedname
-func (p_ PlaybackSpeed) LocalizedName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedName"))
+func (p_ PlaybackSpeed) LocalizedName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (p_ PlaybackSpeed) LocalizedName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizedname
-func (p_ PlaybackSpeed) SetLocalizedName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedName:"), objc.String(value))
+func (p_ PlaybackSpeed) SetLocalizedName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedName:"), value)
 }
 
 // A localized numeric name for a speed that’s suitable for display in a user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizednumericname
-func (p_ PlaybackSpeed) LocalizedNumericName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedNumericName"))
+func (p_ PlaybackSpeed) LocalizedNumericName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedNumericName"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (p_ PlaybackSpeed) LocalizedNumericName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplaybackspeed/localizednumericname
-func (p_ PlaybackSpeed) SetLocalizedNumericName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedNumericName:"), objc.String(value))
+func (p_ PlaybackSpeed) SetLocalizedNumericName(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedNumericName:"), value)
 }
 
 // The playback rate to use when you select this speed.
@@ -135,8 +135,8 @@ func (p_ PlaybackSpeed) SetRate(value unsafe.Pointer) {
 // The currently selected playback speed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/selectedspeed
-func (p_ PlaybackSpeed) SelectedSpeed() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedSpeed"))
+func (p_ PlaybackSpeed) SelectedSpeed() AVPlaybackSpeed {
+	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("selectedSpeed"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (p_ PlaybackSpeed) SelectedSpeed() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/selectedspeed
-func (p_ PlaybackSpeed) SetSelectedSpeed(value unsafe.Pointer) {
+func (p_ PlaybackSpeed) SetSelectedSpeed(value IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedSpeed:"), value)
 }
 
 // A list of user-selectable playback speeds to show in the playback speed control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/speeds
-func (p_ PlaybackSpeed) Speeds() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("speeds"))
+func (p_ PlaybackSpeed) Speeds() AVPlaybackSpeed {
+	rv := objc.Send[AVPlaybackSpeed](p_.ID, objc.Sel("speeds"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (p_ PlaybackSpeed) Speeds() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avplayerview/speeds
-func (p_ PlaybackSpeed) SetSpeeds(value unsafe.Pointer) {
+func (p_ PlaybackSpeed) SetSpeeds(value IAVPlaybackSpeed) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSpeeds:"), value)
 }
 

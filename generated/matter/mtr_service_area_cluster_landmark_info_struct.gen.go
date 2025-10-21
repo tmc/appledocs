@@ -87,7 +87,7 @@ func (m_ MTRServiceAreaClusterLandmarkInfoStruct) LandmarkTag() foundation.Numbe
 // SetLandmarkTag sets the value of the landmarkTag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/landmarkTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value foundation.Number) {
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetLandmarkTag(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLandmarkTag:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRServiceAreaClusterLandmarkInfoStruct) RelativePositionTag() foundati
 // SetRelativePositionTag sets the value of the relativePositionTag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterLandmarkInfoStruct/relativePositionTag
-func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value foundation.Number) {
+func (m_ MTRServiceAreaClusterLandmarkInfoStruct) SetRelativePositionTag(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRelativePositionTag:"), value)
 }
 

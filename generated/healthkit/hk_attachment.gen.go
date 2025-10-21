@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // The class instance for the [HKAttachment] class.
@@ -83,8 +85,8 @@ func NewHKAttachment() HKAttachment {
 // The type of data stored in the attached file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
-func (h_ HKAttachment) ContentType() UTType {
-	rv := objc.Send[UTType](h_.ID, objc.Sel("contentType"))
+func (h_ HKAttachment) ContentType() uniformtypeidentifiers.UTType {
+	rv := objc.Send[uniformtypeidentifiers.UTType](h_.ID, objc.Sel("contentType"))
 	return rv
 }
 
@@ -94,15 +96,15 @@ func (h_ HKAttachment) ContentType() UTType {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/contenttype
-func (h_ HKAttachment) SetContentType(value UTType) {
+func (h_ HKAttachment) SetContentType(value uniformtypeidentifiers.UTType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContentType:"), value)
 }
 
 // The attachment’s creation date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/creationdate
-func (h_ HKAttachment) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("creationDate"))
+func (h_ HKAttachment) CreationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -112,15 +114,15 @@ func (h_ HKAttachment) CreationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/creationdate
-func (h_ HKAttachment) SetCreationDate(value unsafe.Pointer) {
+func (h_ HKAttachment) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCreationDate:"), value)
 }
 
 // The universally unique identifier for the attached file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/identifier
-func (h_ HKAttachment) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("identifier"))
+func (h_ HKAttachment) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -130,15 +132,15 @@ func (h_ HKAttachment) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/identifier
-func (h_ HKAttachment) SetIdentifier(value unsafe.Pointer) {
+func (h_ HKAttachment) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // Additional data associated with the attachment in the HealthKit store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) Metadata() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("metadata"))
+func (h_ HKAttachment) Metadata() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -148,15 +150,15 @@ func (h_ HKAttachment) Metadata() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/metadata
-func (h_ HKAttachment) SetMetadata(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), objc.String(value))
+func (h_ HKAttachment) SetMetadata(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setMetadata:"), value)
 }
 
 // The name of the attached file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
-func (h_ HKAttachment) Name() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("name"))
+func (h_ HKAttachment) Name() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -166,8 +168,8 @@ func (h_ HKAttachment) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkattachment/name
-func (h_ HKAttachment) SetName(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), objc.String(value))
+func (h_ HKAttachment) SetName(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
 }
 
 // The attachment’s size (in bytes).

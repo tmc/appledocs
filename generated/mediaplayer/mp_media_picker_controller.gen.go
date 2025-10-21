@@ -87,7 +87,7 @@ func NewMediaPickerController() MediaPickerController {
 // Initializes a media item picker for specified media types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/init(mediaTypes:)
-func NewMediaPickerControllerWithMediaTypes(mediaTypes unsafe.Pointer) MediaPickerController {
+func NewMediaPickerControllerWithMediaTypes(mediaTypes MediaType) MediaPickerController {
 	instance := getMediaPickerControllerClass().Alloc()
 	rv := objc.Send[MediaPickerController](instance.ID, objc.Sel("initWithMediaTypes:"), mediaTypes)
 	rv.Autorelease()
@@ -134,16 +134,16 @@ func (m_ MediaPickerController) SetDelegate(value objc.ID) {
 // The media types that media item picker presents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/mediaTypes
-func (m_ MediaPickerController) MediaTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaTypes"))
+func (m_ MediaPickerController) MediaTypes() MediaType {
+	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaTypes"))
 	return rv
 }
 
 // A prompt, for the user, that appears above the navigation bar buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/prompt
-func (m_ MediaPickerController) Prompt() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("prompt"))
+func (m_ MediaPickerController) Prompt() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("prompt"))
 	return rv
 }
 
@@ -153,8 +153,8 @@ func (m_ MediaPickerController) Prompt() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/prompt
-func (m_ MediaPickerController) SetPrompt(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), objc.String(value))
+func (m_ MediaPickerController) SetPrompt(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrompt:"), value)
 }
 
 // A Boolean value specifying whether to display iCloud Media Library items for a media picker.

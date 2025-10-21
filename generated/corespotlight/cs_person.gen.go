@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewCSPerson() CSPerson {
 // Returns a new object initialized with the specified display name and contact attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/init(displayName:handles:handleIdentifier:)
-func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handles unsafe.Pointer, handleIdentifier string) CSPerson {
+func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName appkit.string, handles []string, handleIdentifier appkit.string) CSPerson {
 	instance := getCSPersonClass().Alloc()
-	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), objc.String(displayName), handles, objc.String(handleIdentifier))
+	rv := objc.Send[CSPerson](instance.ID, objc.Sel("initWithDisplayName:handles:handleIdentifier:"), displayName, handles, handleIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -96,8 +97,8 @@ func NewCSPersonWithDisplayNameHandlesHandleIdentifier(displayName string, handl
 // The identifier for the contact associated with the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) ContactIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("contactIdentifier"))
+func (c_ CSPerson) ContactIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
 }
 
@@ -107,23 +108,23 @@ func (c_ CSPerson) ContactIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/contactIdentifier
-func (c_ CSPerson) SetContactIdentifier(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), objc.String(value))
+func (c_ CSPerson) SetContactIdentifier(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), value)
 }
 
 // A display name for the person.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/displayName
-func (c_ CSPerson) DisplayName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("displayName"))
+func (c_ CSPerson) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // A key that identifies the type of contact property represented by the person object’s handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSPerson/handleIdentifier
-func (c_ CSPerson) HandleIdentifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("handleIdentifier"))
+func (c_ CSPerson) HandleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("handleIdentifier"))
 	return rv
 }
 

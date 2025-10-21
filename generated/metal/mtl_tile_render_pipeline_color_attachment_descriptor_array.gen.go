@@ -30,8 +30,8 @@ type _TileRenderPipelineColorAttachmentDescriptorArrayClass struct {
 // An interface definition for the [TileRenderPipelineColorAttachmentDescriptorArray] class.
 type ITileRenderPipelineColorAttachmentDescriptorArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint)
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(attachment IMTLTileRenderPipelineColorAttachmentDescriptor, attachmentIndex uint)
+	ObjectAtIndexedSubscript(attachmentIndex uint) TileRenderPipelineColorAttachmentDescriptor
 }
 
 // An array of color attachment descriptors for the tile render pipeline.
@@ -83,15 +83,15 @@ func NewTileRenderPipelineColorAttachmentDescriptorArray() TileRenderPipelineCol
 // Sets the render pipeline state for a specified color attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptorArray/setObject:atIndexedSubscript:
-func (t_ TileRenderPipelineColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint) {
+func (t_ TileRenderPipelineColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment IMTLTileRenderPipelineColorAttachmentDescriptor, attachmentIndex uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setObject:atIndexedSubscript:"), attachment, attachmentIndex)
 }
 
 // Returns the render pipeline state for the specified color attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptorArray/subscript(_:)
-func (t_ TileRenderPipelineColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (t_ TileRenderPipelineColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) TileRenderPipelineColorAttachmentDescriptor {
+	rv := objc.Send[TileRenderPipelineColorAttachmentDescriptor](t_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

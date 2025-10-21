@@ -87,7 +87,7 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) Index() foundation.Number {
 // SetIndex sets the value of the index property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/index
-func (m_ MTRAudioOutputClusterSelectOutputParams) SetIndex(value foundation.Number) {
+func (m_ MTRAudioOutputClusterSelectOutputParams) SetIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) ServerSideProcessingTimeout() 
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/serversideprocessingtimeout
-func (m_ MTRAudioOutputClusterSelectOutputParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRAudioOutputClusterSelectOutputParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) TimedInvokeTimeoutMs() foundat
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
-func (m_ MTRAudioOutputClusterSelectOutputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRAudioOutputClusterSelectOutputParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

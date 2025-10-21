@@ -100,7 +100,7 @@ func (m_ MTRICDManagementClusterRegisterClientResponseParams) IcdCounter() found
 // SetIcdCounter sets the value of the icdCounter property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientResponseParams/icdCounter
-func (m_ MTRICDManagementClusterRegisterClientResponseParams) SetIcdCounter(value foundation.Number) {
+func (m_ MTRICDManagementClusterRegisterClientResponseParams) SetIcdCounter(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIcdCounter:"), value)
 }
 

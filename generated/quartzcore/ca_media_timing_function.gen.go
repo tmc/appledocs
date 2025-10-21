@@ -98,7 +98,7 @@ func NewMediaTimingFunctionWithControlPoints(c1x unsafe.Pointer, c1y unsafe.Poin
 // Creates and returns a new instance of configured with the predefined timing function specified by .
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(name:)
-func NewMediaTimingFunctionWithName(name unsafe.Pointer) MediaTimingFunction {
+func NewMediaTimingFunctionWithName(name IMediaTimingFunctionName) MediaTimingFunction {
 	rv := objc.Send[MediaTimingFunction](objc.ID(getMediaTimingFunctionClass().class), objc.Sel("functionWithName:"), name)
 	return rv
 }
@@ -115,7 +115,7 @@ func (mc _MediaTimingFunctionClass) FunctionWithControlPoints(c1x unsafe.Pointer
 // Creates and returns a new instance of configured with the predefined timing function specified by .
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMediaTimingFunction/init(name:)
-func (mc _MediaTimingFunctionClass) FunctionWithName(name unsafe.Pointer) unsafe.Pointer {
+func (mc _MediaTimingFunctionClass) FunctionWithName(name IMediaTimingFunctionName) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("functionWithName:"), name)
 	return rv
 }

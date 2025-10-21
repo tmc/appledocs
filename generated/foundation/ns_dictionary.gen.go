@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,42 +33,42 @@ type IDictionary interface {
 	objectivec.IObject
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
 	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len_ uint) uint
-	DescriptionWithLocale(locale objc.ID) string
-	DescriptionWithLocaleIndent(locale objc.ID, level uint) string
+	DescriptionWithLocale(locale objectivec.IObject) String
+	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
-	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
-	FileCreationDate() unsafe.Pointer
+	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
+	FileCreationDate() Date
 	FileExtensionHidden() bool
 	FileGroupOwnerAccountID() Number
-	FileGroupOwnerAccountName() string
+	FileGroupOwnerAccountName() String
 	FileHFSCreatorCode() unsafe.Pointer
 	FileHFSTypeCode() unsafe.Pointer
 	FileIsAppendOnly() bool
 	FileIsImmutable() bool
-	FileModificationDate() unsafe.Pointer
+	FileModificationDate() Date
 	FileOwnerAccountID() Number
-	FileOwnerAccountName() string
+	FileOwnerAccountName() String
 	FilePosixPermissions() uint
 	FileSize() uint64
 	FileSystemFileNumber() uint
 	FileSystemNumber() int
-	FileType() string
+	FileType() String
 	GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Pointer)
 	GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint)
 	IsEqualToDictionary(otherDictionary unsafe.Pointer) bool
 	KeyEnumerator() unsafe.Pointer
-	KeysOfEntriesWithOptionsPassingTest(opts unsafe.Pointer, predicate unsafe.Pointer) unsafe.Pointer
+	KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	KeysOfEntriesPassingTest(predicate unsafe.Pointer) unsafe.Pointer
 	KeysSortedByValueUsingComparator(cmptr unsafe.Pointer) []objc.ID
-	KeysSortedByValueWithOptionsUsingComparator(opts unsafe.Pointer, cmptr unsafe.Pointer) []objc.ID
+	KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr unsafe.Pointer) []objc.ID
 	KeysSortedByValueUsingSelector(comparator objc.SEL) []objc.ID
 	ObjectForKey(aKey unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
-	ObjectsForKeysNotFoundMarker(keys unsafe.Pointer, marker unsafe.Pointer) []objc.ID
+	ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.Pointer) []objc.ID
 	ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer
-	WriteToURLError(url URL, error_ unsafe.Pointer) bool
-	WriteToURLAtomically(url URL, atomically bool) bool
-	WriteToFileAtomically(path string, useAuxiliaryFile bool) bool
+	WriteToURLError(url IURL, error_ IError) bool
+	WriteToURLAtomically(url IURL, atomically bool) bool
+	WriteToFileAtomically(path appkit.string, useAuxiliaryFile bool) bool
 }
 
 // A static collection of objects associated with unique keys.
@@ -123,7 +124,7 @@ func NewDictionary() Dictionary {
 // Creates a dictionary initialized from data in the provided unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(coder:)
-func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
+func NewDictionaryWithCoder(coder ICoder) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -135,9 +136,9 @@ func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
 // Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfFile:)
-func NewDictionaryWithContentsOfFile(path string) Dictionary {
+func NewDictionaryWithContentsOfFile(path appkit.string) Dictionary {
 	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -147,7 +148,7 @@ func NewDictionaryWithContentsOfFile(path string) Dictionary {
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
-func NewDictionaryWithContentsOfURL(url URL) Dictionary {
+func NewDictionaryWithContentsOfURL(url IURL) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -159,7 +160,7 @@ func NewDictionaryWithContentsOfURL(url URL) Dictionary {
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
-func NewDictionaryWithContentsOfURLError(url URL, error_ unsafe.Pointer) Dictionary {
+func NewDictionaryWithContentsOfURLError(url IURL, error_ IError) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
@@ -195,7 +196,7 @@ func NewDictionaryWithDictionaryCopyItems(otherDictionary unsafe.Pointer, flag b
 // Creates a dictionary containing a given key and value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
-func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objc.ID) Dictionary {
+func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objectivec.IObject) Dictionary {
 	rv := objc.Send[Dictionary](objc.ID(getDictionaryClass().class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	return rv
 }
@@ -205,7 +206,7 @@ func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objc.ID) Dictionar
 // Initializes a newly allocated dictionary with entries constructed from the specified set of values and keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/initWithObjectsAndKeys:
-func NewDictionaryWithObjectsAndKeys(firstObject objc.ID) Dictionary {
+func NewDictionaryWithObjectsAndKeys(firstObject objectivec.IObject) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjectsAndKeys:"), firstObject)
 	rv.Autorelease()
@@ -217,7 +218,7 @@ func NewDictionaryWithObjectsAndKeys(firstObject objc.ID) Dictionary {
 // Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
-func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) Dictionary {
+func NewDictionaryWithObjectsForKeys(objects []objc.ID, keys []objc.ID) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
 	rv.Autorelease()
@@ -229,7 +230,7 @@ func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer
 // Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:count:)
-func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objc.ID, cnt uint) Dictionary {
+func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objectivec.IObject, cnt uint) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:count:"), objects, keys, cnt)
 	rv.Autorelease()
@@ -248,15 +249,15 @@ func (dc _DictionaryClass) Dictionary() unsafe.Pointer {
 // Creates a dictionary using the keys and values found in a file specified by a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfFile:
-func (dc _DictionaryClass) DictionaryWithContentsOfFile(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), objc.String(path))
+func (dc _DictionaryClass) DictionaryWithContentsOfFile(path appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
 	return rv
 }
 
 // Creates a dictionary using the keys and values found in a resource specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithContentsOfURL:error:
-func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url URL, error_ unsafe.Pointer) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithContentsOfURLError(url IURL, error_ IError) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -272,7 +273,7 @@ func (dc _DictionaryClass) DictionaryWithDictionary(dict unsafe.Pointer) unsafe.
 // Creates a dictionary containing entries constructed from the contents of an array of keys and an array of values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithObjects:forKeys:
-func (dc _DictionaryClass) DictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectsForKeys(objects []objc.ID, keys []objc.ID) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObjects:forKeys:"), objects, keys)
 	return rv
 }
@@ -280,7 +281,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsForKeys(objects unsafe.Pointer, 
 // Creates a dictionary containing a specified number of objects from a C array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithObjects:forKeys:count:
-func (dc _DictionaryClass) DictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objc.ID, cnt uint) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objectivec.IObject, cnt uint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObjects:forKeys:count:"), objects, keys, cnt)
 	return rv
 }
@@ -288,7 +289,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsForKeysCount(objects unsafe.Poin
 // Creates a dictionary containing entries constructed from the specified set of values and keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithObjectsAndKeys:
-func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objc.ID) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObjectsAndKeys:"), firstObject)
 	return rv
 }
@@ -296,7 +297,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objc.ID) uns
 // Creates a dictionary using the keys and values found in a resource specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-98pl3
-func (dc _DictionaryClass) DictionaryWithContentsOfURL(url URL) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithContentsOfURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
@@ -304,7 +305,7 @@ func (dc _DictionaryClass) DictionaryWithContentsOfURL(url URL) unsafe.Pointer {
 // Creates a dictionary containing a given key and value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
-func (dc _DictionaryClass) DictionaryWithObjectForKey(object unsafe.Pointer, key objc.ID) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectForKey(object unsafe.Pointer, key objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	return rv
 }
@@ -312,7 +313,7 @@ func (dc _DictionaryClass) DictionaryWithObjectForKey(object unsafe.Pointer, key
 // Creates a shared key set object for the specified keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/sharedKeySet(forKeys:)
-func (dc _DictionaryClass) SharedKeySetForKeys(keys unsafe.Pointer) objc.ID {
+func (dc _DictionaryClass) SharedKeySetForKeys(keys []objc.ID) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("sharedKeySetForKeys:"), keys)
 	return rv
 }
@@ -336,16 +337,16 @@ func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state unsafe.Pointe
 // Returns a string object that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:)
-func (d_ Dictionary) DescriptionWithLocale(locale objc.ID) string {
-	rv := objc.Send[string](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
+func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) String {
+	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
 
 // Returns a string object that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:indent:)
-func (d_ Dictionary) DescriptionWithLocaleIndent(locale objc.ID, level uint) string {
-	rv := objc.Send[string](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
+func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) String {
+	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
 
@@ -359,15 +360,15 @@ func (d_ Dictionary) EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer) {
 // Applies a given block object to the entries of the dictionary, with options specifying how the enumeration is performed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/enumerateKeysAndObjects(options:using:)
-func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer) {
+func (d_ Dictionary) EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("enumerateKeysAndObjectsWithOptions:usingBlock:"), opts, block)
 }
 
 // Returns the file’s creation date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileCreationDate()
-func (d_ Dictionary) FileCreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileCreationDate"))
+func (d_ Dictionary) FileCreationDate() Date {
+	rv := objc.Send[Date](d_.ID, objc.Sel("fileCreationDate"))
 	return rv
 }
 
@@ -390,8 +391,8 @@ func (d_ Dictionary) FileGroupOwnerAccountID() Number {
 // Returns the file’s group owner account name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileGroupOwnerAccountName()
-func (d_ Dictionary) FileGroupOwnerAccountName() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("fileGroupOwnerAccountName"))
+func (d_ Dictionary) FileGroupOwnerAccountName() String {
+	rv := objc.Send[String](d_.ID, objc.Sel("fileGroupOwnerAccountName"))
 	return rv
 }
 
@@ -430,8 +431,8 @@ func (d_ Dictionary) FileIsImmutable() bool {
 // Returns file’s modification date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileModificationDate()
-func (d_ Dictionary) FileModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileModificationDate"))
+func (d_ Dictionary) FileModificationDate() Date {
+	rv := objc.Send[Date](d_.ID, objc.Sel("fileModificationDate"))
 	return rv
 }
 
@@ -446,8 +447,8 @@ func (d_ Dictionary) FileOwnerAccountID() Number {
 // Returns the file’s owner account name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileOwnerAccountName()
-func (d_ Dictionary) FileOwnerAccountName() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("fileOwnerAccountName"))
+func (d_ Dictionary) FileOwnerAccountName() String {
+	rv := objc.Send[String](d_.ID, objc.Sel("fileOwnerAccountName"))
 	return rv
 }
 
@@ -486,8 +487,8 @@ func (d_ Dictionary) FileSystemNumber() int {
 // Returns the file type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileType()
-func (d_ Dictionary) FileType() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("fileType"))
+func (d_ Dictionary) FileType() String {
+	rv := objc.Send[String](d_.ID, objc.Sel("fileType"))
 	return rv
 }
 
@@ -524,7 +525,7 @@ func (d_ Dictionary) KeyEnumerator() unsafe.Pointer {
 // Returns the set of keys whose corresponding value satisfies a constraint described by a block object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysOfEntries(options:passingTest:)
-func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts unsafe.Pointer, predicate unsafe.Pointer) unsafe.Pointer {
+func (d_ Dictionary) KeysOfEntriesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keysOfEntriesWithOptions:passingTest:"), opts, predicate)
 	return rv
 }
@@ -548,7 +549,7 @@ func (d_ Dictionary) KeysSortedByValueUsingComparator(cmptr unsafe.Pointer) []ob
 // Returns an array of the dictionary’s keys, in the order they would be in if the dictionary were sorted by its values using a given comparator block and a specified set of options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/keysSortedByValue(options:usingComparator:)
-func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts unsafe.Pointer, cmptr unsafe.Pointer) []objc.ID {
+func (d_ Dictionary) KeysSortedByValueWithOptionsUsingComparator(opts SortOptions, cmptr unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("keysSortedByValueWithOptions:usingComparator:"), opts, cmptr)
 	return rv
 }
@@ -580,7 +581,7 @@ func (d_ Dictionary) ObjectEnumerator() unsafe.Pointer {
 // Returns as a static array the set of objects from the dictionary that corresponds to the specified keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/objects(forKeys:notFoundMarker:)
-func (d_ Dictionary) ObjectsForKeysNotFoundMarker(keys unsafe.Pointer, marker unsafe.Pointer) []objc.ID {
+func (d_ Dictionary) ObjectsForKeysNotFoundMarker(keys []objc.ID, marker unsafe.Pointer) []objc.ID {
 	rv := objc.Send[[]objc.ID](d_.ID, objc.Sel("objectsForKeys:notFoundMarker:"), keys, marker)
 	return rv
 }
@@ -596,15 +597,15 @@ func (d_ Dictionary) ObjectForKeyedSubscript(key unsafe.Pointer) unsafe.Pointer 
 // Returns the value associated with a given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/value(forKey:)
-func (d_ Dictionary) ValueForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("valueForKey:"), objc.String(key))
+func (d_ Dictionary) ValueForKey(key appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("valueForKey:"), key)
 	return rv
 }
 
 // Writes a property list representation of the contents of the dictionary to a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:)
-func (d_ Dictionary) WriteToURLError(url URL, error_ unsafe.Pointer) bool {
+func (d_ Dictionary) WriteToURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:error:"), url, error_)
 	return rv
 }
@@ -612,7 +613,7 @@ func (d_ Dictionary) WriteToURLError(url URL, error_ unsafe.Pointer) bool {
 // Writes a property list representation of the contents of the dictionary to a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(to:atomically:)
-func (d_ Dictionary) WriteToURLAtomically(url URL, atomically bool) bool {
+func (d_ Dictionary) WriteToURLAtomically(url IURL, atomically bool) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("writeToURL:atomically:"), url, atomically)
 	return rv
 }
@@ -620,8 +621,8 @@ func (d_ Dictionary) WriteToURLAtomically(url URL, atomically bool) bool {
 // Writes a property list representation of the contents of the dictionary to a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/write(toFile:atomically:)
-func (d_ Dictionary) WriteToFileAtomically(path string, useAuxiliaryFile bool) bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), objc.String(path), useAuxiliaryFile)
+func (d_ Dictionary) WriteToFileAtomically(path appkit.string, useAuxiliaryFile bool) bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("writeToFile:atomically:"), path, useAuxiliaryFile)
 	return rv
 }
 
@@ -652,16 +653,16 @@ func (d_ Dictionary) Count() uint {
 // A string that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description
-func (d_ Dictionary) Description() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+func (d_ Dictionary) Description() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
 // A string that represents the contents of the dictionary, formatted in file format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/descriptionInStringsFileFormat
-func (d_ Dictionary) DescriptionInStringsFileFormat() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
+func (d_ Dictionary) DescriptionInStringsFileFormat() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
 	return rv
 }
 

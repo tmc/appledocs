@@ -86,7 +86,7 @@ func NewPHASEEnvelopeDistanceModelParameters() PHASEEnvelopeDistanceModelParamet
 // Creates the distance model parameters with an envelope.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters/init(envelope:)
-func NewPHASEEnvelopeDistanceModelParametersWithEnvelope(envelope unsafe.Pointer) PHASEEnvelopeDistanceModelParameters {
+func NewPHASEEnvelopeDistanceModelParametersWithEnvelope(envelope IPHASEEnvelope) PHASEEnvelopeDistanceModelParameters {
 	instance := getPHASEEnvelopeDistanceModelParametersClass().Alloc()
 	rv := objc.Send[PHASEEnvelopeDistanceModelParameters](instance.ID, objc.Sel("initWithEnvelope:"), envelope)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewPHASEEnvelopeDistanceModelParametersWithEnvelope(envelope unsafe.Pointer
 // An envelope that shapes sound dissipation over distance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeDistanceModelParameters/envelope
-func (p_ PHASEEnvelopeDistanceModelParameters) Envelope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("envelope"))
+func (p_ PHASEEnvelopeDistanceModelParameters) Envelope() PHASEEnvelope {
+	rv := objc.Send[PHASEEnvelope](p_.ID, objc.Sel("envelope"))
 	return rv
 }
 

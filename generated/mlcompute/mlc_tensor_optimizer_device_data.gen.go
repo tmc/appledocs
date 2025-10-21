@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewCTensorOptimizerDeviceData() CTensorOptimizerDeviceData {
 // The tensor data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/data
-func (c_ CTensorOptimizerDeviceData) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("data"))
+func (c_ CTensorOptimizerDeviceData) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (c_ CTensorOptimizerDeviceData) Data() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/data
-func (c_ CTensorOptimizerDeviceData) SetData(value unsafe.Pointer) {
+func (c_ CTensorOptimizerDeviceData) SetData(value foundation.IData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setData:"), value)
 }
 
 // The configuration object you use to create a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/descriptor
-func (c_ CTensorOptimizerDeviceData) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CTensorOptimizerDeviceData) Descriptor() MLCTensorDescriptor {
+	rv := objc.Send[MLCTensorDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (c_ CTensorOptimizerDeviceData) Descriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/descriptor
-func (c_ CTensorOptimizerDeviceData) SetDescriptor(value unsafe.Pointer) {
+func (c_ CTensorOptimizerDeviceData) SetDescriptor(value IMLCTensorDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
 }
 
 // The device associated with this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/device
-func (c_ CTensorOptimizerDeviceData) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+func (c_ CTensorOptimizerDeviceData) Device() MLCDevice {
+	rv := objc.Send[MLCDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (c_ CTensorOptimizerDeviceData) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/device
-func (c_ CTensorOptimizerDeviceData) SetDevice(value unsafe.Pointer) {
+func (c_ CTensorOptimizerDeviceData) SetDevice(value IMLCDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
 }
 
@@ -153,8 +154,8 @@ func (c_ CTensorOptimizerDeviceData) SetHasValidNumerics(value bool) {
 // A string that identifes this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/label
-func (c_ CTensorOptimizerDeviceData) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ CTensorOptimizerDeviceData) Label() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -164,15 +165,15 @@ func (c_ CTensorOptimizerDeviceData) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/label
-func (c_ CTensorOptimizerDeviceData) SetLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (c_ CTensorOptimizerDeviceData) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
 }
 
 // An array that contains optimizer buffers you specify when you create a tensor parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdata
-func (c_ CTensorOptimizerDeviceData) OptimizerData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optimizerData"))
+func (c_ CTensorOptimizerDeviceData) OptimizerData() MLCTensorData {
+	rv := objc.Send[MLCTensorData](c_.ID, objc.Sel("optimizerData"))
 	return rv
 }
 
@@ -182,15 +183,15 @@ func (c_ CTensorOptimizerDeviceData) OptimizerData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdata
-func (c_ CTensorOptimizerDeviceData) SetOptimizerData(value unsafe.Pointer) {
+func (c_ CTensorOptimizerDeviceData) SetOptimizerData(value IMLCTensorData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizerData:"), value)
 }
 
 // An array that contains the device optimizer buffers you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdevicedata
-func (c_ CTensorOptimizerDeviceData) OptimizerDeviceData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("optimizerDeviceData"))
+func (c_ CTensorOptimizerDeviceData) OptimizerDeviceData() MLCTensorOptimizerDeviceData {
+	rv := objc.Send[MLCTensorOptimizerDeviceData](c_.ID, objc.Sel("optimizerDeviceData"))
 	return rv
 }
 
@@ -200,7 +201,7 @@ func (c_ CTensorOptimizerDeviceData) OptimizerDeviceData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensor/optimizerdevicedata
-func (c_ CTensorOptimizerDeviceData) SetOptimizerDeviceData(value unsafe.Pointer) {
+func (c_ CTensorOptimizerDeviceData) SetOptimizerDeviceData(value IMLCTensorOptimizerDeviceData) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOptimizerDeviceData:"), value)
 }
 

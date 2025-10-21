@@ -88,7 +88,7 @@ func (m_ MTRAccessControlClusterAccessControlEntry) AuthMode() foundation.Number
 // SetAuthMode sets the value of the authMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentry/authmode
-func (m_ MTRAccessControlClusterAccessControlEntry) SetAuthMode(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntry) SetAuthMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthMode:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRAccessControlClusterAccessControlEntry) FabricIndex() foundation.Num
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentry/fabricindex
-func (m_ MTRAccessControlClusterAccessControlEntry) SetFabricIndex(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntry) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRAccessControlClusterAccessControlEntry) Privilege() foundation.Numbe
 // SetPrivilege sets the value of the privilege property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentry/privilege
-func (m_ MTRAccessControlClusterAccessControlEntry) SetPrivilege(value foundation.Number) {
+func (m_ MTRAccessControlClusterAccessControlEntry) SetPrivilege(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrivilege:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEModeClusterModeTagStruct) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/mfgCode
-func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
+func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEModeClusterModeTagStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterModeTagStruct/value
-func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetValue(value foundation.Number) {
+func (m_ MTREnergyEVSEModeClusterModeTagStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

@@ -87,7 +87,7 @@ func NewSFSpeechURLRecognitionRequest() SFSpeechURLRecognitionRequest {
 // Creates a speech recognition request, initialized with the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechURLRecognitionRequest/init(url:)
-func NewSFSpeechURLRecognitionRequestWithURL(URL foundation.URL) SFSpeechURLRecognitionRequest {
+func NewSFSpeechURLRecognitionRequestWithURL(URL foundation.IURL) SFSpeechURLRecognitionRequest {
 	instance := getSFSpeechURLRecognitionRequestClass().Alloc()
 	rv := objc.Send[SFSpeechURLRecognitionRequest](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()

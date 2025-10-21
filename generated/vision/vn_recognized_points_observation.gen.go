@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 )
 
 // The class instance for the [RecognizedPointsObservation] class.
@@ -29,9 +30,9 @@ type _RecognizedPointsObservationClass struct {
 // An interface definition for the [RecognizedPointsObservation] class.
 type IRecognizedPointsObservation interface {
 	IObservation
-	KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
-	RecognizedPointForKeyError(pointKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	RecognizedPointsForGroupKeyError(groupKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) coreml.MultiArray
+	RecognizedPointForKeyError(pointKey IRecognizedPointKey, error_ unsafe.Pointer) RecognizedPoint
+	RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An observation that provides the points the analysis recognized.
@@ -85,23 +86,23 @@ func NewRecognizedPointsObservation() RecognizedPointsObservation {
 // Retrieves the grouping of normalized point coordinates and confidence scores in a format compatible with Core ML.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/keypointsMultiArray()
-func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("keypointsMultiArrayAndReturnError:"), error_)
+func (r_ RecognizedPointsObservation) KeypointsMultiArrayAndReturnError(error_ unsafe.Pointer) coreml.MultiArray {
+	rv := objc.Send[coreml.MultiArray](r_.ID, objc.Sel("keypointsMultiArrayAndReturnError:"), error_)
 	return rv
 }
 
 // Retrieves a recognized point for a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoint(forKey:)
-func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
+func (r_ RecognizedPointsObservation) RecognizedPointForKeyError(pointKey IRecognizedPointKey, error_ unsafe.Pointer) RecognizedPoint {
+	rv := objc.Send[RecognizedPoint](r_.ID, objc.Sel("recognizedPointForKey:error:"), pointKey, error_)
 	return rv
 }
 
 // Retrieves the recognized points for a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPointsObservation/recognizedPoints(forGroupKey:)
-func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (r_ RecognizedPointsObservation) RecognizedPointsForGroupKeyError(groupKey IRecognizedPointGroupKey, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("recognizedPointsForGroupKey:error:"), groupKey, error_)
 	return rv
 }

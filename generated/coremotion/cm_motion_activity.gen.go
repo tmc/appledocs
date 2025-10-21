@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MotionActivity] class.
@@ -92,8 +93,8 @@ func (m_ MotionActivity) Automotive() bool {
 // The confidence in the assessment of the motion type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/confidence
-func (m_ MotionActivity) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("confidence"))
+func (m_ MotionActivity) Confidence() MotionActivityConfidence {
+	rv := objc.Send[MotionActivityConfidence](m_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -116,8 +117,8 @@ func (m_ MotionActivity) Running() bool {
 // The time at which the change in motion occurred.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity/startDate
-func (m_ MotionActivity) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startDate"))
+func (m_ MotionActivity) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("startDate"))
 	return rv
 }
 

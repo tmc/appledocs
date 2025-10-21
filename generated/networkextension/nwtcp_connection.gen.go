@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewNWTCPConnection() NWTCPConnection {
 // The network path over which the connection was established.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/connectedpath
-func (n_ NWTCPConnection) ConnectedPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("connectedPath"))
+func (n_ NWTCPConnection) ConnectedPath() NWPath {
+	rv := objc.Send[NWPath](n_.ID, objc.Sel("connectedPath"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (n_ NWTCPConnection) ConnectedPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/connectedpath
-func (n_ NWTCPConnection) SetConnectedPath(value unsafe.Pointer) {
+func (n_ NWTCPConnection) SetConnectedPath(value INWPath) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setConnectedPath:"), value)
 }
 
 // The destination endpoint with which this connection was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/endpoint
-func (n_ NWTCPConnection) Endpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("endpoint"))
+func (n_ NWTCPConnection) Endpoint() NWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("endpoint"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (n_ NWTCPConnection) Endpoint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/endpoint
-func (n_ NWTCPConnection) SetEndpoint(value unsafe.Pointer) {
+func (n_ NWTCPConnection) SetEndpoint(value INWEndpoint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEndpoint:"), value)
 }
 
 // The connection-wide error property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/error
-func (n_ NWTCPConnection) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("error"))
+func (n_ NWTCPConnection) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](n_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (n_ NWTCPConnection) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/error
-func (n_ NWTCPConnection) SetError(value unsafe.Pointer) {
+func (n_ NWTCPConnection) SetError(value foundation.IError) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setError:"), value)
 }
 
@@ -171,8 +172,8 @@ func (n_ NWTCPConnection) SetIsViable(value bool) {
 // The IP address endpoint from which the connection was established.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/localaddress
-func (n_ NWTCPConnection) LocalAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("localAddress"))
+func (n_ NWTCPConnection) LocalAddress() NWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localAddress"))
 	return rv
 }
 
@@ -182,15 +183,15 @@ func (n_ NWTCPConnection) LocalAddress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/localaddress
-func (n_ NWTCPConnection) SetLocalAddress(value unsafe.Pointer) {
+func (n_ NWTCPConnection) SetLocalAddress(value INWEndpoint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalAddress:"), value)
 }
 
 // The IP address endpoint to which the connection was established.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/remoteaddress
-func (n_ NWTCPConnection) RemoteAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("remoteAddress"))
+func (n_ NWTCPConnection) RemoteAddress() NWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteAddress"))
 	return rv
 }
 
@@ -200,7 +201,7 @@ func (n_ NWTCPConnection) RemoteAddress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/remoteaddress
-func (n_ NWTCPConnection) SetRemoteAddress(value unsafe.Pointer) {
+func (n_ NWTCPConnection) SetRemoteAddress(value INWEndpoint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteAddress:"), value)
 }
 
@@ -225,8 +226,8 @@ func (n_ NWTCPConnection) SetState(value unsafe.Pointer) {
 // The TXT record associated with a connected Bonjour service endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/txtrecord
-func (n_ NWTCPConnection) TxtRecord() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("txtRecord"))
+func (n_ NWTCPConnection) TxtRecord() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("txtRecord"))
 	return rv
 }
 
@@ -236,7 +237,7 @@ func (n_ NWTCPConnection) TxtRecord() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/txtrecord
-func (n_ NWTCPConnection) SetTxtRecord(value unsafe.Pointer) {
+func (n_ NWTCPConnection) SetTxtRecord(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTxtRecord:"), value)
 }
 

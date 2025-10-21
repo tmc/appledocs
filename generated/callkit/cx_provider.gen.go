@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +32,13 @@ type _CXProviderClass struct {
 type ICXProvider interface {
 	objectivec.IObject
 	Invalidate()
-	PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID unsafe.Pointer) []CXCallAction
-	ReportCallWithUUIDEndedAtDateReason(UUID unsafe.Pointer, dateEnded unsafe.Pointer, endedReason unsafe.Pointer)
-	ReportCallWithUUIDUpdated(UUID unsafe.Pointer, update unsafe.Pointer)
-	ReportNewIncomingCallWithUUIDUpdateCompletion(UUID unsafe.Pointer, update unsafe.Pointer, completion unsafe.Pointer)
-	ReportOutgoingCallWithUUIDConnectedAtDate(UUID unsafe.Pointer, dateConnected unsafe.Pointer)
-	ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID unsafe.Pointer, dateStartedConnecting unsafe.Pointer)
-	SetDelegateQueue(delegate objc.ID, queue unsafe.Pointer)
+	PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.IUUID) []CXCallAction
+	ReportCallWithUUIDEndedAtDateReason(UUID foundation.IUUID, dateEnded foundation.IDate, endedReason ICXCallEndedReason)
+	ReportCallWithUUIDUpdated(UUID foundation.IUUID, update ICXCallUpdate)
+	ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.IUUID, update ICXCallUpdate, completion unsafe.Pointer)
+	ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.IUUID, dateConnected foundation.IDate)
+	ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.IUUID, dateStartedConnecting foundation.IDate)
+	SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer)
 }
 
 // An object that represents a telephony provider.
@@ -93,7 +94,7 @@ func NewCXProvider() CXProvider {
 // Initializes a new provider with the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/init(configuration:)
-func NewCXProviderWithConfiguration(configuration unsafe.Pointer) CXProvider {
+func NewCXProviderWithConfiguration(configuration ICXProviderConfiguration) CXProvider {
 	instance := getCXProviderClass().Alloc()
 	rv := objc.Send[CXProvider](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -104,7 +105,7 @@ func NewCXProviderWithConfiguration(configuration unsafe.Pointer) CXProvider {
 // Reports a new incoming call after your notification service extension decrypts a VoIP call request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingVoIPPushPayload(_:completion:)
-func (cc _CXProviderClass) ReportNewIncomingVoIPPushPayloadCompletion(dictionaryPayload objc.ID, completion unsafe.Pointer) {
+func (cc _CXProviderClass) ReportNewIncomingVoIPPushPayloadCompletion(dictionaryPayload objectivec.IObject, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("reportNewIncomingVoIPPushPayload:completion:"), dictionaryPayload, completion)
 }
 
@@ -118,7 +119,7 @@ func (c_ CXProvider) Invalidate() {
 // Returns all call actions in any pending transactions of the specified class for the specified call identifier that are incomplete.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingCallActions(of:withCall:)
-func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID unsafe.Pointer) []CXCallAction {
+func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.IUUID) []CXCallAction {
 	rv := objc.Send[[]CXCallAction](c_.ID, objc.Sel("pendingCallActionsOfClass:withCallUUID:"), callActionClass, callUUID)
 	return rv
 }
@@ -126,50 +127,50 @@ func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.
 // Reports to the provider that a call with the specified identifier ended at a given date for a particular reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:endedAt:reason:)
-func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID unsafe.Pointer, dateEnded unsafe.Pointer, endedReason unsafe.Pointer) {
+func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID foundation.IUUID, dateEnded foundation.IDate, endedReason ICXCallEndedReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:endedAtDate:reason:"), UUID, dateEnded, endedReason)
 }
 
 // Reports to the provider that an active call updated its information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:updated:)
-func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID unsafe.Pointer, update unsafe.Pointer) {
+func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID foundation.IUUID, update ICXCallUpdate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:updated:"), UUID, update)
 }
 
 // Reports a new incoming call with the specified unique identifier to the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)
-func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID unsafe.Pointer, update unsafe.Pointer, completion unsafe.Pointer) {
+func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.IUUID, update ICXCallUpdate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportNewIncomingCallWithUUID:update:completion:"), UUID, update, completion)
 }
 
 // Reports to the provider that an outgoing call with the specified unique identifier finished connecting at a particular time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:connectedAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID unsafe.Pointer, dateConnected unsafe.Pointer) {
+func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.IUUID, dateConnected foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:connectedAtDate:"), UUID, dateConnected)
 }
 
 // Reports to the provider that an outgoing call with the specified unique identifier started connecting at a particular time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:startedConnectingAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID unsafe.Pointer, dateStartedConnecting unsafe.Pointer) {
+func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.IUUID, dateStartedConnecting foundation.IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:startedConnectingAtDate:"), UUID, dateStartedConnecting)
 }
 
 // Sets a provider delegate, specifying an optional queue on which to execute delegate methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/setDelegate(_:queue:)
-func (c_ CXProvider) SetDelegateQueue(delegate objc.ID, queue unsafe.Pointer) {
+func (c_ CXProvider) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
 
 // The configuration of the provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/configuration
-func (c_ CXProvider) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("configuration"))
+func (c_ CXProvider) Configuration() CXProviderConfiguration {
+	rv := objc.Send[CXProviderConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -179,7 +180,7 @@ func (c_ CXProvider) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/configuration
-func (c_ CXProvider) SetConfiguration(value unsafe.Pointer) {
+func (c_ CXProvider) SetConfiguration(value ICXProviderConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
 

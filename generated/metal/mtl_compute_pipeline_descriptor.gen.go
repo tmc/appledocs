@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +85,8 @@ func NewComputePipelineDescriptor() ComputePipelineDescriptor {
 // A string that identifies the instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ ComputePipelineDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -94,8 +96,8 @@ func (c_ ComputePipelineDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePipelineDescriptor/label
-func (c_ ComputePipelineDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (c_ ComputePipelineDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The binary archives that contain any precompiled shader functions to link.
@@ -119,8 +121,8 @@ func (c_ ComputePipelineDescriptor) SetBinaryArchives(value unsafe.Pointer) {
 // The buffer mutability options to apply to the next kernel call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/buffers
-func (c_ ComputePipelineDescriptor) Buffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("buffers"))
+func (c_ ComputePipelineDescriptor) Buffers() MTLPipelineBufferDescriptorArray {
+	rv := objc.Send[MTLPipelineBufferDescriptorArray](c_.ID, objc.Sel("buffers"))
 	return rv
 }
 
@@ -130,7 +132,7 @@ func (c_ ComputePipelineDescriptor) Buffers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/buffers
-func (c_ ComputePipelineDescriptor) SetBuffers(value unsafe.Pointer) {
+func (c_ ComputePipelineDescriptor) SetBuffers(value IMTLPipelineBufferDescriptorArray) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBuffers:"), value)
 }
 
@@ -173,8 +175,8 @@ func (c_ ComputePipelineDescriptor) SetInsertLibraries(value unsafe.Pointer) {
 // The functions with available function pointers for the next kernel call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/linkedfunctions
-func (c_ ComputePipelineDescriptor) LinkedFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("linkedFunctions"))
+func (c_ ComputePipelineDescriptor) LinkedFunctions() MTLLinkedFunctions {
+	rv := objc.Send[MTLLinkedFunctions](c_.ID, objc.Sel("linkedFunctions"))
 	return rv
 }
 
@@ -184,7 +186,7 @@ func (c_ ComputePipelineDescriptor) LinkedFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/linkedfunctions
-func (c_ ComputePipelineDescriptor) SetLinkedFunctions(value unsafe.Pointer) {
+func (c_ ComputePipelineDescriptor) SetLinkedFunctions(value IMTLLinkedFunctions) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLinkedFunctions:"), value)
 }
 
@@ -244,8 +246,8 @@ func (c_ ComputePipelineDescriptor) SetPreloadedLibraries(value unsafe.Pointer) 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/requiredthreadsperthreadgroup
-func (c_ ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+func (c_ ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](c_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
 }
 
@@ -253,15 +255,15 @@ func (c_ ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Point
 // SetRequiredThreadsPerThreadgroup sets the value of the requiredThreadsPerThreadgroup property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/requiredthreadsperthreadgroup
-func (c_ ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+func (c_ ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
 
 // A value that enables or disables shader validation for the pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/shadervalidation
-func (c_ ComputePipelineDescriptor) ShaderValidation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shaderValidation"))
+func (c_ ComputePipelineDescriptor) ShaderValidation() ShaderValidation {
+	rv := objc.Send[ShaderValidation](c_.ID, objc.Sel("shaderValidation"))
 	return rv
 }
 
@@ -271,15 +273,15 @@ func (c_ ComputePipelineDescriptor) ShaderValidation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/shadervalidation
-func (c_ ComputePipelineDescriptor) SetShaderValidation(value unsafe.Pointer) {
+func (c_ ComputePipelineDescriptor) SetShaderValidation(value IShaderValidation) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShaderValidation:"), value)
 }
 
 // The organization of input and output data for the next kernel call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/stageinputdescriptor
-func (c_ ComputePipelineDescriptor) StageInputDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stageInputDescriptor"))
+func (c_ ComputePipelineDescriptor) StageInputDescriptor() MTLStageInputOutputDescriptor {
+	rv := objc.Send[MTLStageInputOutputDescriptor](c_.ID, objc.Sel("stageInputDescriptor"))
 	return rv
 }
 
@@ -289,7 +291,7 @@ func (c_ ComputePipelineDescriptor) StageInputDescriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/stageinputdescriptor
-func (c_ ComputePipelineDescriptor) SetStageInputDescriptor(value unsafe.Pointer) {
+func (c_ ComputePipelineDescriptor) SetStageInputDescriptor(value IMTLStageInputOutputDescriptor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStageInputDescriptor:"), value)
 }
 

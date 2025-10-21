@@ -119,8 +119,8 @@ func (c_ IOCommandQueueDescriptor) SetMaxCommandsInFlight(value uint) {
 // Configures the priority for a new input/output command queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/priority
-func (c_ IOCommandQueueDescriptor) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("priority"))
+func (c_ IOCommandQueueDescriptor) Priority() IOPriority {
+	rv := objc.Send[IOPriority](c_.ID, objc.Sel("priority"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (c_ IOCommandQueueDescriptor) Priority() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/priority
-func (c_ IOCommandQueueDescriptor) SetPriority(value unsafe.Pointer) {
+func (c_ IOCommandQueueDescriptor) SetPriority(value IOPriority) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -155,8 +155,8 @@ func (c_ IOCommandQueueDescriptor) SetScratchBufferAllocator(value objc.ID) {
 // Configures the queue type for a new input/output command queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/type
-func (c_ IOCommandQueueDescriptor) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
+func (c_ IOCommandQueueDescriptor) Type() IOCommandQueueType {
+	rv := objc.Send[IOCommandQueueType](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (c_ IOCommandQueueDescriptor) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/type
-func (c_ IOCommandQueueDescriptor) SetType(value unsafe.Pointer) {
+func (c_ IOCommandQueueDescriptor) SetType(value IOCommandQueueType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 

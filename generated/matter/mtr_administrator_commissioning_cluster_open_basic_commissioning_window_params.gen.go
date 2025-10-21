@@ -87,7 +87,7 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 // SetCommissioningTimeout sets the value of the commissioningTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
-func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetCommissioningTimeout(value foundation.Number) {
+func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetCommissioningTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/serversideprocessingtimeout
-func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/timedinvoketimeoutms
-func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

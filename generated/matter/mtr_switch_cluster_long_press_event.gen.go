@@ -87,7 +87,7 @@ func (m_ MTRSwitchClusterLongPressEvent) NewPosition() foundation.Number {
 // SetNewPosition sets the value of the newPosition property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrswitchclusterlongpressevent/newposition
-func (m_ MTRSwitchClusterLongPressEvent) SetNewPosition(value foundation.Number) {
+func (m_ MTRSwitchClusterLongPressEvent) SetNewPosition(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewPosition:"), value)
 }
 

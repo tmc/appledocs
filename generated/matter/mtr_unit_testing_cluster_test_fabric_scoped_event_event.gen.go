@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestFabricScopedEventEvent) FabricIndex() foundati
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestfabricscopedeventevent/fabricindex
-func (m_ MTRUnitTestingClusterTestFabricScopedEventEvent) SetFabricIndex(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestFabricScopedEventEvent) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

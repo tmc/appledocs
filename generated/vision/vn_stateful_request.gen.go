@@ -79,6 +79,19 @@ func NewStatefulRequest() StatefulRequest {
 }
 
 
+
+
+// Initializes a video-based request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNStatefulRequest/init(frameAnalysisSpacing:completionHandler:)
+func NewStatefulRequestWithFrameAnalysisSpacingCompletionHandler(frameAnalysisSpacing unsafe.Pointer, completionHandler unsafe.Pointer) StatefulRequest {
+	instance := getStatefulRequestClass().Alloc()
+	rv := objc.Send[StatefulRequest](instance.ID, objc.Sel("initWithFrameAnalysisSpacing:completionHandler:"), frameAnalysisSpacing, completionHandler)
+	rv.Autorelease()
+	return rv
+}
+
+
 // A time value that indicates the interval between analysis operations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnstatefulrequest/frameanalysisspacing
@@ -114,6 +127,5 @@ func (s_ StatefulRequest) MinimumLatencyFrameCount() int {
 func (s_ StatefulRequest) SetMinimumLatencyFrameCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumLatencyFrameCount:"), value)
 }
-
 
 

@@ -84,24 +84,24 @@ func NewGCControllerDirectionPad() GCControllerDirectionPad {
 // The x-axis element of the directional pad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/xAxis
-func (g_ GCControllerDirectionPad) XAxis() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xAxis"))
+func (g_ GCControllerDirectionPad) XAxis() GCControllerAxisInput {
+	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("xAxis"))
 	return rv
 }
 
 // The y-axis element of the directional pad.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerDirectionPad/yAxis
-func (g_ GCControllerDirectionPad) YAxis() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("yAxis"))
+func (g_ GCControllerDirectionPad) YAxis() GCControllerAxisInput {
+	rv := objc.Send[GCControllerAxisInput](g_.ID, objc.Sel("yAxis"))
 	return rv
 }
 
 // The button element used for the negative y-axis direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down
-func (g_ GCControllerDirectionPad) Down() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("down"))
+func (g_ GCControllerDirectionPad) Down() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("down"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (g_ GCControllerDirectionPad) Down() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/down
-func (g_ GCControllerDirectionPad) SetDown(value unsafe.Pointer) {
+func (g_ GCControllerDirectionPad) SetDown(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDown:"), value)
 }
 
 // The button element that changes the negative x-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left
-func (g_ GCControllerDirectionPad) Left() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("left"))
+func (g_ GCControllerDirectionPad) Left() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("left"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (g_ GCControllerDirectionPad) Left() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/left
-func (g_ GCControllerDirectionPad) SetLeft(value unsafe.Pointer) {
+func (g_ GCControllerDirectionPad) SetLeft(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeft:"), value)
 }
 
 // The button element that changes the positive x-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right
-func (g_ GCControllerDirectionPad) Right() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("right"))
+func (g_ GCControllerDirectionPad) Right() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("right"))
 	return rv
 }
 
@@ -147,15 +147,15 @@ func (g_ GCControllerDirectionPad) Right() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/right
-func (g_ GCControllerDirectionPad) SetRight(value unsafe.Pointer) {
+func (g_ GCControllerDirectionPad) SetRight(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setRight:"), value)
 }
 
 // The button element that changes the positive y-axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up
-func (g_ GCControllerDirectionPad) Up() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("up"))
+func (g_ GCControllerDirectionPad) Up() GCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("up"))
 	return rv
 }
 
@@ -165,7 +165,7 @@ func (g_ GCControllerDirectionPad) Up() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpad/up
-func (g_ GCControllerDirectionPad) SetUp(value unsafe.Pointer) {
+func (g_ GCControllerDirectionPad) SetUp(value IGCControllerButtonInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUp:"), value)
 }
 

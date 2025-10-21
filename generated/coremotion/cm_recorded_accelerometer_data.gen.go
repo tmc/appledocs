@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [RecordedAccelerometerData] class.
@@ -92,8 +93,8 @@ func (r_ RecordedAccelerometerData) Identifier() uint64 {
 // The wall clock time when the sensor sample was recorded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData/startDate
-func (r_ RecordedAccelerometerData) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startDate"))
+func (r_ RecordedAccelerometerData) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](r_.ID, objc.Sel("startDate"))
 	return rv
 }
 

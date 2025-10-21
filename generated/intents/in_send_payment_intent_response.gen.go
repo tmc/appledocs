@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INSendPaymentIntentResponse] class.
@@ -81,6 +82,19 @@ func NewINSendPaymentIntentResponse() INSendPaymentIntentResponse {
 }
 
 
+
+
+// Initializes the response object with the specified code and user activity object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/init(code:userActivity:)
+func NewINSendPaymentIntentResponseWithCodeUserActivity(code unsafe.Pointer, userActivity foundation.IUserActivity) INSendPaymentIntentResponse {
+	instance := getINSendPaymentIntentResponseClass().Alloc()
+	rv := objc.Send[INSendPaymentIntentResponse](instance.ID, objc.Sel("initWithCode:userActivity:"), code, userActivity)
+	rv.Autorelease()
+	return rv
+}
+
+
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/code
@@ -91,7 +105,7 @@ func (i_ INSendPaymentIntentResponse) Code() unsafe.Pointer {
 
 // The details of the payment transaction.
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintentresponse/paymentrecord
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/paymentRecord
 func (i_ INSendPaymentIntentResponse) PaymentRecord() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentRecord"))
 	return rv
@@ -102,10 +116,9 @@ func (i_ INSendPaymentIntentResponse) PaymentRecord() unsafe.Pointer {
 // The details of the payment transaction.
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/intents/insendpaymentintentresponse/paymentrecord
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INSendPaymentIntentResponse/paymentRecord
 func (i_ INSendPaymentIntentResponse) SetPaymentRecord(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentRecord:"), value)
 }
-
 
 

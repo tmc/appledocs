@@ -30,26 +30,26 @@ type _CaptureSessionClass struct {
 // An interface definition for the [CaptureSession] class.
 type ICaptureSession interface {
 	objectivec.IObject
-	AddConnection(connection unsafe.Pointer)
+	AddConnection(connection IAVCaptureConnection)
 	AddControl(control unsafe.Pointer)
-	AddInput(input unsafe.Pointer)
-	AddInputWithNoConnections(input unsafe.Pointer)
-	AddOutput(output unsafe.Pointer)
-	AddOutputWithNoConnections(output unsafe.Pointer)
+	AddInput(input IAVCaptureInput)
+	AddInputWithNoConnections(input IAVCaptureInput)
+	AddOutput(output IAVCaptureOutput)
+	AddOutputWithNoConnections(output IAVCaptureOutput)
 	BeginConfiguration()
-	CanAddConnection(connection unsafe.Pointer) bool
+	CanAddConnection(connection IAVCaptureConnection) bool
 	CanAddControl(control unsafe.Pointer) bool
-	CanAddInput(input unsafe.Pointer) bool
-	CanAddOutput(output unsafe.Pointer) bool
-	CanSetSessionPreset(preset unsafe.Pointer) bool
+	CanAddInput(input IAVCaptureInput) bool
+	CanAddOutput(output IAVCaptureOutput) bool
+	CanSetSessionPreset(preset ICaptureSessionPreset) bool
 	CommitConfiguration()
-	RemoveConnection(connection unsafe.Pointer)
+	RemoveConnection(connection IAVCaptureConnection)
 	RemoveControl(control unsafe.Pointer)
-	RemoveInput(input unsafe.Pointer)
-	RemoveOutput(output unsafe.Pointer)
+	RemoveInput(input IAVCaptureInput)
+	RemoveOutput(output IAVCaptureOutput)
 	RunDeferredStartWhenNeeded()
-	SetControlsDelegateQueue(controlsDelegate objc.ID, controlsDelegateCallbackQueue unsafe.Pointer)
-	SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objc.ID, deferredStartDelegateCallbackQueue unsafe.Pointer)
+	SetControlsDelegateQueue(controlsDelegate objectivec.IObject, controlsDelegateCallbackQueue unsafe.Pointer)
+	SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objectivec.IObject, deferredStartDelegateCallbackQueue unsafe.Pointer)
 	StartRunning()
 	StopRunning()
 }
@@ -105,7 +105,7 @@ func NewCaptureSession() CaptureSession {
 // Adds a connection to the capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addConnection(_:)
-func (c_ CaptureSession) AddConnection(connection unsafe.Pointer) {
+func (c_ CaptureSession) AddConnection(connection IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addConnection:"), connection)
 }
 
@@ -119,28 +119,28 @@ func (c_ CaptureSession) AddControl(control unsafe.Pointer) {
 // Adds a capture input to the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addInput(_:)
-func (c_ CaptureSession) AddInput(input unsafe.Pointer) {
+func (c_ CaptureSession) AddInput(input IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addInput:"), input)
 }
 
 // Adds a capture input to a session without forming any connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addInputWithNoConnections(_:)
-func (c_ CaptureSession) AddInputWithNoConnections(input unsafe.Pointer) {
+func (c_ CaptureSession) AddInputWithNoConnections(input IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addInputWithNoConnections:"), input)
 }
 
 // Adds an output to the capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addOutput(_:)
-func (c_ CaptureSession) AddOutput(output unsafe.Pointer) {
+func (c_ CaptureSession) AddOutput(output IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addOutput:"), output)
 }
 
 // Adds a capture output to the session without forming any connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/addOutputWithNoConnections(_:)
-func (c_ CaptureSession) AddOutputWithNoConnections(output unsafe.Pointer) {
+func (c_ CaptureSession) AddOutputWithNoConnections(output IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addOutputWithNoConnections:"), output)
 }
 
@@ -154,7 +154,7 @@ func (c_ CaptureSession) BeginConfiguration() {
 // Determines whether a you can add a connection to a capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddConnection(_:)
-func (c_ CaptureSession) CanAddConnection(connection unsafe.Pointer) bool {
+func (c_ CaptureSession) CanAddConnection(connection IAVCaptureConnection) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddConnection:"), connection)
 	return rv
 }
@@ -170,7 +170,7 @@ func (c_ CaptureSession) CanAddControl(control unsafe.Pointer) bool {
 // Determines whether you can add an input to a session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddInput(_:)
-func (c_ CaptureSession) CanAddInput(input unsafe.Pointer) bool {
+func (c_ CaptureSession) CanAddInput(input IAVCaptureInput) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddInput:"), input)
 	return rv
 }
@@ -178,7 +178,7 @@ func (c_ CaptureSession) CanAddInput(input unsafe.Pointer) bool {
 // Determines whether you can add an output to a session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canAddOutput(_:)
-func (c_ CaptureSession) CanAddOutput(output unsafe.Pointer) bool {
+func (c_ CaptureSession) CanAddOutput(output IAVCaptureOutput) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canAddOutput:"), output)
 	return rv
 }
@@ -186,7 +186,7 @@ func (c_ CaptureSession) CanAddOutput(output unsafe.Pointer) bool {
 // Determines whether you can configure a capture session with the specified preset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/canSetSessionPreset(_:)
-func (c_ CaptureSession) CanSetSessionPreset(preset unsafe.Pointer) bool {
+func (c_ CaptureSession) CanSetSessionPreset(preset ICaptureSessionPreset) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("canSetSessionPreset:"), preset)
 	return rv
 }
@@ -201,7 +201,7 @@ func (c_ CaptureSession) CommitConfiguration() {
 // Removes a capture connection from the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeConnection(_:)
-func (c_ CaptureSession) RemoveConnection(connection unsafe.Pointer) {
+func (c_ CaptureSession) RemoveConnection(connection IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeConnection:"), connection)
 }
 
@@ -215,14 +215,14 @@ func (c_ CaptureSession) RemoveControl(control unsafe.Pointer) {
 // Removes an input from the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeInput(_:)
-func (c_ CaptureSession) RemoveInput(input unsafe.Pointer) {
+func (c_ CaptureSession) RemoveInput(input IAVCaptureInput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeInput:"), input)
 }
 
 // Removes an output from a capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/removeOutput(_:)
-func (c_ CaptureSession) RemoveOutput(output unsafe.Pointer) {
+func (c_ CaptureSession) RemoveOutput(output IAVCaptureOutput) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeOutput:"), output)
 }
 
@@ -236,14 +236,14 @@ func (c_ CaptureSession) RunDeferredStartWhenNeeded() {
 // Sets a delegate object for the system to call when it activates and presents controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/setControlsDelegate(_:queue:)
-func (c_ CaptureSession) SetControlsDelegateQueue(controlsDelegate objc.ID, controlsDelegateCallbackQueue unsafe.Pointer) {
+func (c_ CaptureSession) SetControlsDelegateQueue(controlsDelegate objectivec.IObject, controlsDelegateCallbackQueue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlsDelegate:queue:"), controlsDelegate, controlsDelegateCallbackQueue)
 }
 
 // Sets a delegate object for the session to call when performing deferred start.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/setDeferredStartDelegate(_:deferredStartDelegateCallbackQueue:)
-func (c_ CaptureSession) SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objc.ID, deferredStartDelegateCallbackQueue unsafe.Pointer) {
+func (c_ CaptureSession) SetDeferredStartDelegateDeferredStartDelegateCallbackQueue(deferredStartDelegate objectivec.IObject, deferredStartDelegateCallbackQueue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDeferredStartDelegate:deferredStartDelegateCallbackQueue:"), deferredStartDelegate, deferredStartDelegateCallbackQueue)
 }
 
@@ -492,8 +492,8 @@ func (c_ CaptureSession) Outputs() []CaptureOutput {
 // A preset value that indicates the quality level or bit rate of the output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-func (c_ CaptureSession) SessionPreset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sessionPreset"))
+func (c_ CaptureSession) SessionPreset() CaptureSessionPreset {
+	rv := objc.Send[CaptureSessionPreset](c_.ID, objc.Sel("sessionPreset"))
 	return rv
 }
 
@@ -503,7 +503,7 @@ func (c_ CaptureSession) SessionPreset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSession/sessionPreset
-func (c_ CaptureSession) SetSessionPreset(value unsafe.Pointer) {
+func (c_ CaptureSession) SetSessionPreset(value ICaptureSessionPreset) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSessionPreset:"), value)
 }
 

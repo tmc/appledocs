@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MTL4TileRenderPipelineDescriptor] class.
@@ -90,8 +91,8 @@ func (m_ MTL4TileRenderPipelineDescriptor) Reset() {
 // Access an array of descriptors that configure the properties of each color attachment in the tile render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/colorAttachments
-func (m_ MTL4TileRenderPipelineDescriptor) ColorAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("colorAttachments"))
+func (m_ MTL4TileRenderPipelineDescriptor) ColorAttachments() MTLTileRenderPipelineColorAttachmentDescriptorArray {
+	rv := objc.Send[MTLTileRenderPipelineColorAttachmentDescriptorArray](m_.ID, objc.Sel("colorAttachments"))
 	return rv
 }
 
@@ -134,8 +135,8 @@ func (m_ MTL4TileRenderPipelineDescriptor) SetRasterSampleCount(value uint) {
 // Sets the required number of threads per threadgroup for tile dispatches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
-func (m_ MTL4TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+func (m_ MTL4TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](m_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
 }
 
@@ -145,7 +146,7 @@ func (m_ MTL4TileRenderPipelineDescriptor) RequiredThreadsPerThreadgroup() unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4TileRenderPipelineDescriptor/requiredThreadsPerThreadgroup
-func (m_ MTL4TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+func (m_ MTL4TileRenderPipelineDescriptor) SetRequiredThreadsPerThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
 

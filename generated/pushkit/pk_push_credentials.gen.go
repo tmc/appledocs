@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewPushCredentials() PushCredentials {
 // A unique device token to use when sending push notifications to the current device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PushKit/PKPushCredentials/token
-func (p_ PushCredentials) Token() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("token"))
+func (p_ PushCredentials) Token() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("token"))
 	return rv
 }
 
 // The push type constant associated with the token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushcredentials/type
-func (p_ PushCredentials) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+func (p_ PushCredentials) Type() PushType {
+	rv := objc.Send[PushType](p_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -102,7 +103,7 @@ func (p_ PushCredentials) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pushkit/pkpushcredentials/type
-func (p_ PushCredentials) SetType(value unsafe.Pointer) {
+func (p_ PushCredentials) SetType(value PushType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
 

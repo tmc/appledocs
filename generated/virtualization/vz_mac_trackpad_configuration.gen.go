@@ -85,8 +85,8 @@ func NewVZMacTrackpadConfiguration() VZMacTrackpadConfiguration {
 // The list of pointing devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/pointingdevices
-func (v_ VZMacTrackpadConfiguration) PointingDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("pointingDevices"))
+func (v_ VZMacTrackpadConfiguration) PointingDevices() VZPointingDeviceConfiguration {
+	rv := objc.Send[VZPointingDeviceConfiguration](v_.ID, objc.Sel("pointingDevices"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (v_ VZMacTrackpadConfiguration) PointingDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/pointingdevices
-func (v_ VZMacTrackpadConfiguration) SetPointingDevices(value unsafe.Pointer) {
+func (v_ VZMacTrackpadConfiguration) SetPointingDevices(value IVZPointingDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPointingDevices:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewAuthorizationPublicKeyCredentialPRFRegistrationOutput() AuthorizationPub
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFRegistrationOutput-c.class/first
-func (a_ AuthorizationPublicKeyCredentialPRFRegistrationOutput) First() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("first"))
+func (a_ AuthorizationPublicKeyCredentialPRFRegistrationOutput) First() foundation.NSData {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("first"))
 	return rv
 }
 

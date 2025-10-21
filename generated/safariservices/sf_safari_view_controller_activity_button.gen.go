@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,9 +78,9 @@ func NewSFSafariViewControllerActivityButton() SFSafariViewControllerActivityBut
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/init(templateImage:extensionIdentifier:)
-func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage unsafe.Pointer, extensionIdentifier string) SFSafariViewControllerActivityButton {
+func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage appkit.IImage, extensionIdentifier appkit.string) SFSafariViewControllerActivityButton {
 	instance := getSFSafariViewControllerActivityButtonClass().Alloc()
-	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, objc.String(extensionIdentifier))
+	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, extensionIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -87,15 +88,15 @@ func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/extensionIdentifier
-func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("extensionIdentifier"))
+func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("extensionIdentifier"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
-func (s_ SFSafariViewControllerActivityButton) TemplateImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("templateImage"))
+func (s_ SFSafariViewControllerActivityButton) TemplateImage() appkit.Image {
+	rv := objc.Send[appkit.Image](s_.ID, objc.Sel("templateImage"))
 	return rv
 }
 
@@ -103,7 +104,7 @@ func (s_ SFSafariViewControllerActivityButton) TemplateImage() unsafe.Pointer {
 // SetTemplateImage sets the value of the templateImage property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
-func (s_ SFSafariViewControllerActivityButton) SetTemplateImage(value unsafe.Pointer) {
+func (s_ SFSafariViewControllerActivityButton) SetTemplateImage(value appkit.IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTemplateImage:"), value)
 }
 

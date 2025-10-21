@@ -81,16 +81,16 @@ func NewAudioSessionPortExtensionBluetoothMicrophone() AudioSessionPortExtension
 // Describes whether this port supports far-field input capture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/farFieldCapture
-func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("farFieldCapture"))
+func (a_ AudioSessionPortExtensionBluetoothMicrophone) FarFieldCapture() AVAudioSessionCapability {
+	rv := objc.Send[AVAudioSessionCapability](a_.ID, objc.Sel("farFieldCapture"))
 	return rv
 }
 
 // Describes whether this port supports Bluetooth high-quality recording.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSessionPortExtensionBluetoothMicrophone/highQualityRecording
-func (a_ AudioSessionPortExtensionBluetoothMicrophone) HighQualityRecording() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("highQualityRecording"))
+func (a_ AudioSessionPortExtensionBluetoothMicrophone) HighQualityRecording() AVAudioSessionCapability {
+	rv := objc.Send[AVAudioSessionCapability](a_.ID, objc.Sel("highQualityRecording"))
 	return rv
 }
 

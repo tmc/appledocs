@@ -83,8 +83,8 @@ func NewOptimizationHints() OptimizationHints {
 // The anticipated reshape frequency
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/reshapeFrequency
-func (o_ OptimizationHints) ReshapeFrequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("reshapeFrequency"))
+func (o_ OptimizationHints) ReshapeFrequency() ReshapeFrequencyHint {
+	rv := objc.Send[ReshapeFrequencyHint](o_.ID, objc.Sel("reshapeFrequency"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (o_ OptimizationHints) ReshapeFrequency() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/reshapeFrequency
-func (o_ OptimizationHints) SetReshapeFrequency(value unsafe.Pointer) {
+func (o_ OptimizationHints) SetReshapeFrequency(value IReshapeFrequencyHint) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setReshapeFrequency:"), value)
 }
 
 // Optimization strategy for the model specialization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/specializationStrategy
-func (o_ OptimizationHints) SpecializationStrategy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("specializationStrategy"))
+func (o_ OptimizationHints) SpecializationStrategy() SpecializationStrategy {
+	rv := objc.Send[SpecializationStrategy](o_.ID, objc.Sel("specializationStrategy"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (o_ OptimizationHints) SpecializationStrategy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLOptimizationHints-c.class/specializationStrategy
-func (o_ OptimizationHints) SetSpecializationStrategy(value unsafe.Pointer) {
+func (o_ OptimizationHints) SetSpecializationStrategy(value SpecializationStrategy) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setSpecializationStrategy:"), value)
 }
 

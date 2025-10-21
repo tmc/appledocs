@@ -31,8 +31,8 @@ type _AssetWriterClass struct {
 // An interface definition for the [AssetWriter] class.
 type IAssetWriter interface {
 	objectivec.IObject
-	AddInput(input unsafe.Pointer)
-	CanAddInput(input unsafe.Pointer) bool
+	AddInput(input IAVAssetWriterInput)
+	CanAddInput(input IAVAssetWriterInput) bool
 	CanAddInputGroup(inputGroup unsafe.Pointer) bool
 	CancelWriting()
 	FinishWriting() bool
@@ -104,14 +104,14 @@ func NewAssetWriterWithContentType(outputContentType unsafe.Pointer) AssetWriter
 // Adds an input to an asset writer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/add(_:)-4c4d0
-func (a_ AssetWriter) AddInput(input unsafe.Pointer) {
+func (a_ AssetWriter) AddInput(input IAVAssetWriterInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addInput:"), input)
 }
 
 // Determines whether the asset writer supports adding the input.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/canAdd(_:)-6al7j
-func (a_ AssetWriter) CanAddInput(input unsafe.Pointer) bool {
+func (a_ AssetWriter) CanAddInput(input IAVAssetWriterInput) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canAddInput:"), input)
 	return rv
 }
@@ -194,15 +194,15 @@ func (a_ AssetWriter) DirectoryForTemporaryFiles() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/directoryForTemporaryFiles
-func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value foundation.URL) {
+func (a_ AssetWriter) SetDirectoryForTemporaryFiles(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDirectoryForTemporaryFiles:"), value)
 }
 
 // An error object that describes an asset-writing failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/error
-func (a_ AssetWriter) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("error"))
+func (a_ AssetWriter) Error() Error {
+	rv := objc.Send[Error](a_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -291,8 +291,8 @@ func (a_ AssetWriter) SetMovieTimeScale(value unsafe.Pointer) {
 // The type of container file that the writer outputs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/outputFileType
-func (a_ AssetWriter) OutputFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFileType"))
+func (a_ AssetWriter) OutputFileType() FileType {
+	rv := objc.Send[FileType](a_.ID, objc.Sel("outputFileType"))
 	return rv
 }
 
@@ -361,8 +361,8 @@ func (a_ AssetWriter) SetShouldOptimizeForNetworkUse(value bool) {
 // The status of writing samples to the output file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetWriter/status-swift.property
-func (a_ AssetWriter) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("status"))
+func (a_ AssetWriter) Status() AssetWriterStatus {
+	rv := objc.Send[AssetWriterStatus](a_.ID, objc.Sel("status"))
 	return rv
 }
 
@@ -423,8 +423,8 @@ func (a_ AssetWriter) SetInputGroups(value unsafe.Pointer) {
 // The inputs an asset writer contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
-func (a_ AssetWriter) Inputs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputs"))
+func (a_ AssetWriter) Inputs() AVAssetWriterInput {
+	rv := objc.Send[AVAssetWriterInput](a_.ID, objc.Sel("inputs"))
 	return rv
 }
 
@@ -434,15 +434,15 @@ func (a_ AssetWriter) Inputs() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/inputs
-func (a_ AssetWriter) SetInputs(value unsafe.Pointer) {
+func (a_ AssetWriter) SetInputs(value IAVAssetWriterInput) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setInputs:"), value)
 }
 
 // A profile for the output file type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletypeprofile
-func (a_ AssetWriter) OutputFileTypeProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFileTypeProfile"))
+func (a_ AssetWriter) OutputFileTypeProfile() FileTypeProfile {
+	rv := objc.Send[FileTypeProfile](a_.ID, objc.Sel("outputFileTypeProfile"))
 	return rv
 }
 
@@ -452,7 +452,7 @@ func (a_ AssetWriter) OutputFileTypeProfile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetwriter/outputfiletypeprofile
-func (a_ AssetWriter) SetOutputFileTypeProfile(value unsafe.Pointer) {
+func (a_ AssetWriter) SetOutputFileTypeProfile(value IFileTypeProfile) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOutputFileTypeProfile:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewSubscriberInfo() SubscriberInfo {
 // Returns the cellular network subscribers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriberInfo/subscriber()
-func (sc _SubscriberInfoClass) Subscriber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("subscriber"))
+func (sc _SubscriberInfoClass) Subscriber() Subscriber {
+	rv := objc.Send[Subscriber](objc.ID(sc.class), objc.Sel("subscriber"))
 	return rv
 }
 
 // A data object containing authorization information about the subscriber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ SubscriberInfo) CarrierToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("carrierToken"))
+func (s_ SubscriberInfo) CarrierToken() foundation.Data {
+	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (s_ SubscriberInfo) CarrierToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ SubscriberInfo) SetCarrierToken(value unsafe.Pointer) {
+func (s_ SubscriberInfo) SetCarrierToken(value foundation.IData) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ SubscriberInfo) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (s_ SubscriberInfo) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ SubscriberInfo) SetIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (s_ SubscriberInfo) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 

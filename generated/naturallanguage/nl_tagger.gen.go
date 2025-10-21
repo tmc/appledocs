@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +32,18 @@ type _TaggerClass struct {
 // An interface definition for the [Tagger] class.
 type ITagger interface {
 	objectivec.IObject
-	EnumerateTagsInRangeUnitSchemeOptionsUsingBlock(range_ Range, unit unsafe.Pointer, scheme unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer)
-	GazetteersForTagScheme(tagScheme unsafe.Pointer) []Gazetteer
-	ModelsForTagScheme(tagScheme unsafe.Pointer) []Model
-	SetGazetteersForTagScheme(gazetteers unsafe.Pointer, tagScheme unsafe.Pointer)
-	SetLanguageRange(language unsafe.Pointer, range_ Range)
-	SetModelsForTagScheme(models unsafe.Pointer, tagScheme unsafe.Pointer)
-	SetOrthographyRange(orthography unsafe.Pointer, range_ Range)
-	TagAtIndexUnitSchemeTokenRange(characterIndex uint, unit unsafe.Pointer, scheme unsafe.Pointer, tokenRange unsafe.Pointer) unsafe.Pointer
-	TagHypothesesAtIndexUnitSchemeMaximumCountTokenRange(characterIndex uint, unit unsafe.Pointer, scheme unsafe.Pointer, maximumCount uint, tokenRange unsafe.Pointer) unsafe.Pointer
-	TagsInRangeUnitSchemeOptionsTokenRanges(range_ Range, unit unsafe.Pointer, scheme unsafe.Pointer, options unsafe.Pointer, tokenRanges unsafe.Pointer) []string
-	TokenRangeAtIndexUnit(characterIndex uint, unit unsafe.Pointer) Range
-	TokenRangeForRangeUnit(range_ Range, unit unsafe.Pointer) Range
+	EnumerateTagsInRangeUnitSchemeOptionsUsingBlock(range_ foundation.IRange, unit ITokenUnit, scheme ITagScheme, options TaggerOptions, block unsafe.Pointer)
+	GazetteersForTagScheme(tagScheme ITagScheme) []Gazetteer
+	ModelsForTagScheme(tagScheme ITagScheme) []Model
+	SetGazetteersForTagScheme(gazetteers []Gazetteer, tagScheme ITagScheme)
+	SetLanguageRange(language ILanguage, range_ foundation.IRange)
+	SetModelsForTagScheme(models []Model, tagScheme ITagScheme)
+	SetOrthographyRange(orthography foundation.IOrthography, range_ foundation.IRange)
+	TagAtIndexUnitSchemeTokenRange(characterIndex uint, unit ITokenUnit, scheme ITagScheme, tokenRange unsafe.Pointer) Tag
+	TagHypothesesAtIndexUnitSchemeMaximumCountTokenRange(characterIndex uint, unit ITokenUnit, scheme ITagScheme, maximumCount uint, tokenRange unsafe.Pointer) unsafe.Pointer
+	TagsInRangeUnitSchemeOptionsTokenRanges(range_ foundation.IRange, unit ITokenUnit, scheme ITagScheme, options TaggerOptions, tokenRanges []foundation.IValue) []string
+	TokenRangeAtIndexUnit(characterIndex uint, unit ITokenUnit) foundation.Range
+	TokenRangeForRangeUnit(range_ foundation.IRange, unit ITokenUnit) foundation.Range
 }
 
 // A tagger that analyzes natural language text.
@@ -97,7 +99,7 @@ func NewTagger() Tagger {
 // Creates a linguistic tagger instance using the specified tag schemes and options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/init(tagSchemes:)
-func NewTaggerWithTagSchemes(tagSchemes unsafe.Pointer) Tagger {
+func NewTaggerWithTagSchemes(tagSchemes []string) Tagger {
 	instance := getTaggerClass().Alloc()
 	rv := objc.Send[Tagger](instance.ID, objc.Sel("initWithTagSchemes:"), tagSchemes)
 	rv.Autorelease()
@@ -108,7 +110,7 @@ func NewTaggerWithTagSchemes(tagSchemes unsafe.Pointer) Tagger {
 // Retrieves the tag schemes available for a particular unit (like word or sentence) and language on the current device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/availableTagSchemes(for:language:)
-func (tc _TaggerClass) AvailableTagSchemesForUnitLanguage(unit unsafe.Pointer, language unsafe.Pointer) []string {
+func (tc _TaggerClass) AvailableTagSchemesForUnitLanguage(unit ITokenUnit, language ILanguage) []string {
 	rv := objc.Send[[]string](objc.ID(tc.class), objc.Sel("availableTagSchemesForUnit:language:"), unit, language)
 	return rv
 }
@@ -116,21 +118,21 @@ func (tc _TaggerClass) AvailableTagSchemesForUnitLanguage(unit unsafe.Pointer, l
 // Asks the Natural Language framework to load any missing assets for a tag scheme onto the device for the given language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/requestAssets(for:tagScheme:completionHandler:)
-func (tc _TaggerClass) RequestAssetsForLanguageTagSchemeCompletionHandler(language unsafe.Pointer, tagScheme unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (tc _TaggerClass) RequestAssetsForLanguageTagSchemeCompletionHandler(language ILanguage, tagScheme ITagScheme, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("requestAssetsForLanguage:tagScheme:completionHandler:"), language, tagScheme, completionHandler)
 }
 
 // Enumerates a block over the tagger’s string, given a range, token unit, and tag scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/enumerateTagsInRange:unit:scheme:options:usingBlock:
-func (t_ Tagger) EnumerateTagsInRangeUnitSchemeOptionsUsingBlock(range_ Range, unit unsafe.Pointer, scheme unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) {
+func (t_ Tagger) EnumerateTagsInRangeUnitSchemeOptionsUsingBlock(range_ foundation.IRange, unit ITokenUnit, scheme ITagScheme, options TaggerOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("enumerateTagsInRange:unit:scheme:options:usingBlock:"), range_, unit, scheme, options, block)
 }
 
 // Retrieves the gazetteers attached to a tag scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/gazetteers(for:)
-func (t_ Tagger) GazetteersForTagScheme(tagScheme unsafe.Pointer) []Gazetteer {
+func (t_ Tagger) GazetteersForTagScheme(tagScheme ITagScheme) []Gazetteer {
 	rv := objc.Send[[]Gazetteer](t_.ID, objc.Sel("gazetteersForTagScheme:"), tagScheme)
 	return rv
 }
@@ -138,7 +140,7 @@ func (t_ Tagger) GazetteersForTagScheme(tagScheme unsafe.Pointer) []Gazetteer {
 // Returns the models that apply to the given tag scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/models(forTagScheme:)
-func (t_ Tagger) ModelsForTagScheme(tagScheme unsafe.Pointer) []Model {
+func (t_ Tagger) ModelsForTagScheme(tagScheme ITagScheme) []Model {
 	rv := objc.Send[[]Model](t_.ID, objc.Sel("modelsForTagScheme:"), tagScheme)
 	return rv
 }
@@ -146,43 +148,43 @@ func (t_ Tagger) ModelsForTagScheme(tagScheme unsafe.Pointer) []Model {
 // Attaches gazetteers to a tag scheme, typically one gazetteer per language or one language-independent gazetteer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/setGazetteers(_:for:)
-func (t_ Tagger) SetGazetteersForTagScheme(gazetteers unsafe.Pointer, tagScheme unsafe.Pointer) {
+func (t_ Tagger) SetGazetteersForTagScheme(gazetteers []Gazetteer, tagScheme ITagScheme) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGazetteers:forTagScheme:"), gazetteers, tagScheme)
 }
 
 // Sets the language for a range of text within the tagger’s string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/setLanguage:range:
-func (t_ Tagger) SetLanguageRange(language unsafe.Pointer, range_ Range) {
+func (t_ Tagger) SetLanguageRange(language ILanguage, range_ foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLanguage:range:"), language, range_)
 }
 
 // Assigns models for a tag scheme.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/setModels(_:forTagScheme:)
-func (t_ Tagger) SetModelsForTagScheme(models unsafe.Pointer, tagScheme unsafe.Pointer) {
+func (t_ Tagger) SetModelsForTagScheme(models []Model, tagScheme ITagScheme) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setModels:forTagScheme:"), models, tagScheme)
 }
 
 // Sets the orthography for the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/setOrthography:range:
-func (t_ Tagger) SetOrthographyRange(orthography unsafe.Pointer, range_ Range) {
+func (t_ Tagger) SetOrthographyRange(orthography foundation.IOrthography, range_ foundation.IRange) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setOrthography:range:"), orthography, range_)
 }
 
 // Finds a tag for a given linguistic unit, for a single scheme, at the specified character position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/tagAtIndex:unit:scheme:tokenRange:
-func (t_ Tagger) TagAtIndexUnitSchemeTokenRange(characterIndex uint, unit unsafe.Pointer, scheme unsafe.Pointer, tokenRange unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tagAtIndex:unit:scheme:tokenRange:"), characterIndex, unit, scheme, tokenRange)
+func (t_ Tagger) TagAtIndexUnitSchemeTokenRange(characterIndex uint, unit ITokenUnit, scheme ITagScheme, tokenRange unsafe.Pointer) Tag {
+	rv := objc.Send[Tag](t_.ID, objc.Sel("tagAtIndex:unit:scheme:tokenRange:"), characterIndex, unit, scheme, tokenRange)
 	return rv
 }
 
 // Finds multiple possible tags for a given linguistic unit, for a single scheme, at the specified character position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:
-func (t_ Tagger) TagHypothesesAtIndexUnitSchemeMaximumCountTokenRange(characterIndex uint, unit unsafe.Pointer, scheme unsafe.Pointer, maximumCount uint, tokenRange unsafe.Pointer) unsafe.Pointer {
+func (t_ Tagger) TagHypothesesAtIndexUnitSchemeMaximumCountTokenRange(characterIndex uint, unit ITokenUnit, scheme ITagScheme, maximumCount uint, tokenRange unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tagHypothesesAtIndex:unit:scheme:maximumCount:tokenRange:"), characterIndex, unit, scheme, maximumCount, tokenRange)
 	return rv
 }
@@ -190,7 +192,7 @@ func (t_ Tagger) TagHypothesesAtIndexUnitSchemeMaximumCountTokenRange(characterI
 // Finds an array of linguistic tags and token ranges for a given string range and linguistic unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/tagsInRange:unit:scheme:options:tokenRanges:
-func (t_ Tagger) TagsInRangeUnitSchemeOptionsTokenRanges(range_ Range, unit unsafe.Pointer, scheme unsafe.Pointer, options unsafe.Pointer, tokenRanges unsafe.Pointer) []string {
+func (t_ Tagger) TagsInRangeUnitSchemeOptionsTokenRanges(range_ foundation.IRange, unit ITokenUnit, scheme ITagScheme, options TaggerOptions, tokenRanges []foundation.IValue) []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("tagsInRange:unit:scheme:options:tokenRanges:"), range_, unit, scheme, options, tokenRanges)
 	return rv
 }
@@ -198,32 +200,32 @@ func (t_ Tagger) TagsInRangeUnitSchemeOptionsTokenRanges(range_ Range, unit unsa
 // Returns the range of the linguistic unit containing the specified character index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/tokenRangeAtIndex:unit:
-func (t_ Tagger) TokenRangeAtIndexUnit(characterIndex uint, unit unsafe.Pointer) Range {
-	rv := objc.Send[Range](t_.ID, objc.Sel("tokenRangeAtIndex:unit:"), characterIndex, unit)
+func (t_ Tagger) TokenRangeAtIndexUnit(characterIndex uint, unit ITokenUnit) foundation.Range {
+	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("tokenRangeAtIndex:unit:"), characterIndex, unit)
 	return rv
 }
 
 // Finds the entire range of all tokens of the specified linguistic unit contained completely or partially within the specified range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/tokenRangeForRange:unit:
-func (t_ Tagger) TokenRangeForRangeUnit(range_ Range, unit unsafe.Pointer) Range {
-	rv := objc.Send[Range](t_.ID, objc.Sel("tokenRangeForRange:unit:"), range_, unit)
+func (t_ Tagger) TokenRangeForRangeUnit(range_ foundation.IRange, unit ITokenUnit) foundation.Range {
+	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("tokenRangeForRange:unit:"), range_, unit)
 	return rv
 }
 
 // The dominant language of the string set for the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/dominantLanguage
-func (t_ Tagger) DominantLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("dominantLanguage"))
+func (t_ Tagger) DominantLanguage() Language {
+	rv := objc.Send[Language](t_.ID, objc.Sel("dominantLanguage"))
 	return rv
 }
 
 // The string being analyzed by the linguistic tagger.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/string
-func (t_ Tagger) String() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("string"))
+func (t_ Tagger) String() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -233,8 +235,8 @@ func (t_ Tagger) String() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTagger/string
-func (t_ Tagger) SetString(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
+func (t_ Tagger) SetString(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
 }
 
 // The tag schemes configured for this linguistic tagger.

@@ -100,7 +100,7 @@ func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) Token() 
 // SetToken sets the value of the token property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterReviewFabricRestrictionsResponseParams/token
-func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value foundation.Number) {
+func (m_ MTRAccessControlClusterReviewFabricRestrictionsResponseParams) SetToken(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToken:"), value)
 }
 

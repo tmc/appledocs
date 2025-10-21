@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewMediaPlaylistCreationMetadata() MediaPlaylistCreationMetadata {
 // Creates a new playlist metadata object with the designated name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/init(name:)
-func NewMediaPlaylistCreationMetadataWithName(name string) MediaPlaylistCreationMetadata {
+func NewMediaPlaylistCreationMetadataWithName(name appkit.string) MediaPlaylistCreationMetadata {
 	instance := getMediaPlaylistCreationMetadataClass().Alloc()
-	rv := objc.Send[MediaPlaylistCreationMetadata](instance.ID, objc.Sel("initWithName:"), objc.String(name))
+	rv := objc.Send[MediaPlaylistCreationMetadata](instance.ID, objc.Sel("initWithName:"), name)
 	rv.Autorelease()
 	return rv
 }
@@ -96,8 +97,8 @@ func NewMediaPlaylistCreationMetadataWithName(name string) MediaPlaylistCreation
 // App defined display name for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/authorDisplayName
-func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("authorDisplayName"))
+func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("authorDisplayName"))
 	return rv
 }
 
@@ -107,15 +108,15 @@ func (m_ MediaPlaylistCreationMetadata) AuthorDisplayName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/authorDisplayName
-func (m_ MediaPlaylistCreationMetadata) SetAuthorDisplayName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthorDisplayName:"), objc.String(value))
+func (m_ MediaPlaylistCreationMetadata) SetAuthorDisplayName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthorDisplayName:"), value)
 }
 
 // The descriptive text for the playlist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
-func (m_ MediaPlaylistCreationMetadata) DescriptionText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("descriptionText"))
+func (m_ MediaPlaylistCreationMetadata) DescriptionText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("descriptionText"))
 	return rv
 }
 
@@ -125,15 +126,15 @@ func (m_ MediaPlaylistCreationMetadata) DescriptionText() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/descriptionText
-func (m_ MediaPlaylistCreationMetadata) SetDescriptionText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionText:"), objc.String(value))
+func (m_ MediaPlaylistCreationMetadata) SetDescriptionText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionText:"), value)
 }
 
 // The playlist’s displayed name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylistCreationMetadata/name
-func (m_ MediaPlaylistCreationMetadata) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MediaPlaylistCreationMetadata) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 

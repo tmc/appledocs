@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -137,8 +138,8 @@ func (n_ NEFilterReport) SetBytesOutboundCount(value int) {
 // The type of event indicated by this report.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.property
-func (n_ NEFilterReport) Event() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("event"))
+func (n_ NEFilterReport) Event() appkit.Event {
+	rv := objc.Send[appkit.Event](n_.ID, objc.Sel("event"))
 	return rv
 }
 
@@ -148,15 +149,15 @@ func (n_ NEFilterReport) Event() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.property
-func (n_ NEFilterReport) SetEvent(value unsafe.Pointer) {
+func (n_ NEFilterReport) SetEvent(value appkit.IEvent) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setEvent:"), value)
 }
 
 // The flow on which the associated action was taken.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/flow
-func (n_ NEFilterReport) Flow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("flow"))
+func (n_ NEFilterReport) Flow() NEFilterFlow {
+	rv := objc.Send[NEFilterFlow](n_.ID, objc.Sel("flow"))
 	return rv
 }
 
@@ -166,7 +167,7 @@ func (n_ NEFilterReport) Flow() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterreport/flow
-func (n_ NEFilterReport) SetFlow(value unsafe.Pointer) {
+func (n_ NEFilterReport) SetFlow(value INEFilterFlow) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFlow:"), value)
 }
 

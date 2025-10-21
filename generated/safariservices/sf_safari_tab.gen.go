@@ -36,7 +36,7 @@ type ISFSafariTab interface {
 	GetActivePageWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetContainingWindowWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetPagesWithCompletionHandler(completionHandler unsafe.Pointer)
-	NavigateToURL(url foundation.URL)
+	NavigateToURL(url foundation.IURL)
 }
 
 // A proxy for a tab in a Safari window.
@@ -120,7 +120,7 @@ func (s_ SFSafariTab) GetPagesWithCompletionHandler(completionHandler unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariTab/navigate(to:)
-func (s_ SFSafariTab) NavigateToURL(url foundation.URL) {
+func (s_ SFSafariTab) NavigateToURL(url foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("navigateToURL:"), url)
 }
 

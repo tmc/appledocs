@@ -86,7 +86,7 @@ func NewVZMacAuxiliaryStorage() VZMacAuxiliaryStorage {
 // Creates an initialized Mac auxiliary storage instance that describes a specific hardware model at a URL you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(creatingStorageAt:hardwareModel:options:)
-func NewVZMacAuxiliaryStorageCreatingStorageAtURLHardwareModelOptionsError(URL foundation.URL, hardwareModel unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) VZMacAuxiliaryStorage {
+func NewVZMacAuxiliaryStorageCreatingStorageAtURLHardwareModelOptionsError(URL foundation.IURL, hardwareModel IVZMacHardwareModel, options VZMacAuxiliaryStorageInitializationOptions, error_ unsafe.Pointer) VZMacAuxiliaryStorage {
 	instance := getVZMacAuxiliaryStorageClass().Alloc()
 	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initCreatingStorageAtURL:hardwareModel:options:error:"), URL, hardwareModel, options, error_)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewVZMacAuxiliaryStorageCreatingStorageAtURLHardwareModelOptionsError(URL f
 // Initializes an auxiliary storage object with data from the location at the URL you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(contentsOfURL:)
-func NewVZMacAuxiliaryStorageWithContentsOfURL(URL foundation.URL) VZMacAuxiliaryStorage {
+func NewVZMacAuxiliaryStorageWithContentsOfURL(URL foundation.IURL) VZMacAuxiliaryStorage {
 	instance := getVZMacAuxiliaryStorageClass().Alloc()
 	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initWithContentsOfURL:"), URL)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewVZMacAuxiliaryStorageWithContentsOfURL(URL foundation.URL) VZMacAuxiliar
 // Initializes an auxiliary storage object with data from the location at the URL you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/init(url:)
-func NewVZMacAuxiliaryStorageWithURL(URL foundation.URL) VZMacAuxiliaryStorage {
+func NewVZMacAuxiliaryStorageWithURL(URL foundation.IURL) VZMacAuxiliaryStorage {
 	instance := getVZMacAuxiliaryStorageClass().Alloc()
 	rv := objc.Send[VZMacAuxiliaryStorage](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -129,8 +129,8 @@ func (v_ VZMacAuxiliaryStorage) URL() foundation.URL {
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacAuxiliaryStorage) MostFeaturefulSupportedConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
+func (v_ VZMacAuxiliaryStorage) MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements {
+	rv := objc.Send[VZMacOSConfigurationRequirements](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
 	return rv
 }
 
@@ -140,15 +140,15 @@ func (v_ VZMacAuxiliaryStorage) MostFeaturefulSupportedConfiguration() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration
-func (v_ VZMacAuxiliaryStorage) SetMostFeaturefulSupportedConfiguration(value unsafe.Pointer) {
+func (v_ VZMacAuxiliaryStorage) SetMostFeaturefulSupportedConfiguration(value IVZMacOSConfigurationRequirements) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMostFeaturefulSupportedConfiguration:"), value)
 }
 
 // The Mac auxiliary storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage
-func (v_ VZMacAuxiliaryStorage) AuxiliaryStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("auxiliaryStorage"))
+func (v_ VZMacAuxiliaryStorage) AuxiliaryStorage() VZMacAuxiliaryStorage {
+	rv := objc.Send[VZMacAuxiliaryStorage](v_.ID, objc.Sel("auxiliaryStorage"))
 	return rv
 }
 
@@ -158,15 +158,15 @@ func (v_ VZMacAuxiliaryStorage) AuxiliaryStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage
-func (v_ VZMacAuxiliaryStorage) SetAuxiliaryStorage(value unsafe.Pointer) {
+func (v_ VZMacAuxiliaryStorage) SetAuxiliaryStorage(value IVZMacAuxiliaryStorage) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAuxiliaryStorage:"), value)
 }
 
 // The Mac hardware model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacAuxiliaryStorage) HardwareModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
+func (v_ VZMacAuxiliaryStorage) HardwareModel() VZMacHardwareModel {
+	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
 }
 
@@ -176,7 +176,7 @@ func (v_ VZMacAuxiliaryStorage) HardwareModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacAuxiliaryStorage) SetHardwareModel(value unsafe.Pointer) {
+func (v_ VZMacAuxiliaryStorage) SetHardwareModel(value IVZMacHardwareModel) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
 }
 

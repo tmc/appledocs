@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _MXCallStackTreeClass struct {
 // An interface definition for the [MXCallStackTree] class.
 type IMXCallStackTree interface {
 	objectivec.IObject
-	JSONRepresentation() unsafe.Pointer
+	JSONRepresentation() foundation.Data
 }
 
 // An object representing the call stack for an exception.
@@ -82,16 +83,16 @@ func NewMXCallStackTree() MXCallStackTree {
 // Returns the contents of the stack tree in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCallStackTree/jsonRepresentation()
-func (m_ MXCallStackTree) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXCallStackTree) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXCallStackTree) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXCallStackTree) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

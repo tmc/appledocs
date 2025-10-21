@@ -82,8 +82,8 @@ func NewRecognizedPoint() RecognizedPoint {
 // The point’s identifier label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRecognizedPoint/identifier
-func (r_ RecognizedPoint) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("identifier"))
+func (r_ RecognizedPoint) Identifier() RecognizedPointKey {
+	rv := objc.Send[RecognizedPointKey](r_.ID, objc.Sel("identifier"))
 	return rv
 }
 

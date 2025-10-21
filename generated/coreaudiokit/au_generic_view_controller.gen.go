@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
 // The class instance for the [GenericViewController] class.
@@ -78,8 +79,8 @@ func NewGenericViewController() GenericViewController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewController/auAudioUnit
-func (g_ GenericViewController) AuAudioUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("auAudioUnit"))
+func (g_ GenericViewController) AuAudioUnit() audiotoolbox.AudioUnit {
+	rv := objc.Send[audiotoolbox.AudioUnit](g_.ID, objc.Sel("auAudioUnit"))
 	return rv
 }
 
@@ -87,7 +88,7 @@ func (g_ GenericViewController) AuAudioUnit() unsafe.Pointer {
 // SetAuAudioUnit sets the value of the auAudioUnit property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/AUGenericViewController/auAudioUnit
-func (g_ GenericViewController) SetAuAudioUnit(value unsafe.Pointer) {
+func (g_ GenericViewController) SetAuAudioUnit(value audiotoolbox.IAudioUnit) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setAuAudioUnit:"), value)
 }
 

@@ -119,27 +119,9 @@ func (p_ PlayerPlaybackCoordinator) PlaybackCoordinationMedium() unsafe.Pointer 
 // A player that participates in coordinated playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerPlaybackCoordinator/player
-func (p_ PlayerPlaybackCoordinator) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("player"))
+func (p_ PlayerPlaybackCoordinator) Player() AVPlayer {
+	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
 	return rv
-}
-
-// The playback coordinator for the player.
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/playbackcoordinator
-func (p_ PlayerPlaybackCoordinator) PlaybackCoordinator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playbackCoordinator"))
-	return rv
-}
-
-
-// SetPlaybackCoordinator sets the value of the playbackCoordinator property.
-// The playback coordinator for the player.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/playbackcoordinator
-func (p_ PlayerPlaybackCoordinator) SetPlaybackCoordinator(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackCoordinator:"), value)
 }
 
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.

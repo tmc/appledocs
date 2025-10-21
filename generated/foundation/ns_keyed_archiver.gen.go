@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [KeyedArchiver] class.
@@ -29,7 +30,7 @@ type _KeyedArchiverClass struct {
 // An interface definition for the [KeyedArchiver] class.
 type IKeyedArchiver interface {
 	ICoder
-	EncodeDoubleForKey(value unsafe.Pointer, key string)
+	EncodeDoubleForKey(value unsafe.Pointer, key appkit.string)
 }
 
 // An encoder that stores an object’s data to an archive referenced by keys.
@@ -85,8 +86,8 @@ func NewKeyedArchiver() KeyedArchiver {
 // Encodes a given value and associates it with a key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedArchiver/encode(_:forKey:)-1mkfl
-func (k_ KeyedArchiver) EncodeDoubleForKey(value unsafe.Pointer, key string) {
-	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, objc.String(key))
+func (k_ KeyedArchiver) EncodeDoubleForKey(value unsafe.Pointer, key appkit.string) {
+	objc.Send[objc.ID](k_.ID, objc.Sel("encodeDouble:forKey:"), value, key)
 }
 
 // The archiver’s delegate.
@@ -110,8 +111,8 @@ func (k_ KeyedArchiver) SetDelegate(value unsafe.Pointer) {
 // The encoded data for the archiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/encodeddata
-func (k_ KeyedArchiver) EncodedData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("encodedData"))
+func (k_ KeyedArchiver) EncodedData() Data {
+	rv := objc.Send[Data](k_.ID, objc.Sel("encodedData"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (k_ KeyedArchiver) EncodedData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nskeyedarchiver/encodeddata
-func (k_ KeyedArchiver) SetEncodedData(value unsafe.Pointer) {
+func (k_ KeyedArchiver) SetEncodedData(value IData) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setEncodedData:"), value)
 }
 

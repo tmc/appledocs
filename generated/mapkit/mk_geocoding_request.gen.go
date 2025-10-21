@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewMKGeocodingRequest() MKGeocodingRequest {
 // The string used to initialize the geocoder.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
-func (m_ MKGeocodingRequest) AddressString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("addressString"))
+func (m_ MKGeocodingRequest) AddressString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("addressString"))
 	return rv
 }
 
@@ -92,8 +93,8 @@ func (m_ MKGeocodingRequest) AddressString() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/addressstring
-func (m_ MKGeocodingRequest) SetAddressString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), objc.String(value))
+func (m_ MKGeocodingRequest) SetAddressString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAddressString:"), value)
 }
 
 // A Boolean value that indicates whether the current geocoding request is in a cancelled state.
@@ -135,8 +136,8 @@ func (m_ MKGeocodingRequest) SetIsLoading(value bool) {
 // A value that indicates the default locale the geocoder should use when processing requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
-func (m_ MKGeocodingRequest) PreferredLocale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredLocale"))
+func (m_ MKGeocodingRequest) PreferredLocale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("preferredLocale"))
 	return rv
 }
 
@@ -146,7 +147,7 @@ func (m_ MKGeocodingRequest) PreferredLocale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkgeocodingrequest/preferredlocale
-func (m_ MKGeocodingRequest) SetPreferredLocale(value unsafe.Pointer) {
+func (m_ MKGeocodingRequest) SetPreferredLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredLocale:"), value)
 }
 

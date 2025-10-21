@@ -84,8 +84,8 @@ func NewCKDatabaseOperation() CKDatabaseOperation {
 // The database that the operation uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
-func (c_ CKDatabaseOperation) Database() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("database"))
+func (c_ CKDatabaseOperation) Database() CKDatabase {
+	rv := objc.Send[CKDatabase](c_.ID, objc.Sel("database"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (c_ CKDatabaseOperation) Database() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabaseoperation/database
-func (c_ CKDatabaseOperation) SetDatabase(value unsafe.Pointer) {
+func (c_ CKDatabaseOperation) SetDatabase(value ICKDatabase) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabase:"), value)
 }
 

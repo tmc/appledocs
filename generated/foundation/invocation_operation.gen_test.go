@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewInvocationOperation
 
+// ExampleNewInvocationOperationWithInvocation demonstrates how to create a InvocationOperation instance using NewInvocationOperationWithInvocation.
+// Returns an   object initialized with the specified invocation object.
+func ExampleNewInvocationOperationWithInvocation() {
+	_ = foundation.NewInvocationOperationWithInvocation(
+		foundation.NSInvocation{}, // inv NSInvocation
+	)
+	// Output:
+}

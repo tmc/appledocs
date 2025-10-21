@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MutableDictionary] class.
@@ -36,27 +38,27 @@ type IMutableDictionary interface {
 	AddByteSequenceHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
 	AddConnectionIDHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
 	AddCountHeader(inCount unsafe.Pointer) unsafe.Pointer
-	AddDescriptionHeader(inDescriptionString string) unsafe.Pointer
+	AddDescriptionHeader(inDescriptionString appkit.string) unsafe.Pointer
 	AddEntriesFromDictionary(otherDictionary unsafe.Pointer)
 	AddHTTPHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
 	AddImageDescriptorHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
-	AddImageHandleHeader(type_ string) unsafe.Pointer
+	AddImageHandleHeader(type_ appkit.string) unsafe.Pointer
 	AddLengthHeader(length unsafe.Pointer) unsafe.Pointer
-	AddNameHeader(inNameString string) unsafe.Pointer
+	AddNameHeader(inNameString appkit.string) unsafe.Pointer
 	AddObjectClassHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
 	AddTargetHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
 	AddTime4ByteHeader(time4Byte unsafe.Pointer) unsafe.Pointer
 	AddTimeISOHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
-	AddTypeHeader(type_ string) unsafe.Pointer
+	AddTypeHeader(type_ appkit.string) unsafe.Pointer
 	AddUserDefinedHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
 	AddWhoHeaderLength(inHeaderData unsafe.Pointer, inHeaderDataLength unsafe.Pointer) unsafe.Pointer
-	GetHeaderBytes() unsafe.Pointer
+	GetHeaderBytes() MutableData
 	RemoveAllObjects()
 	RemoveObjectForKey(aKey unsafe.Pointer)
-	RemoveObjectsForKeys(keyArray unsafe.Pointer)
+	RemoveObjectsForKeys(keyArray []objc.ID)
 	SetDictionary(otherDictionary unsafe.Pointer)
-	SetObjectForKey(anObject unsafe.Pointer, aKey objc.ID)
-	SetObjectForKeyedSubscript(obj unsafe.Pointer, key objc.ID)
+	SetObjectForKey(anObject unsafe.Pointer, aKey objectivec.IObject)
+	SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject)
 }
 
 // A dynamic collection of objects associated with unique keys.
@@ -123,7 +125,7 @@ func NewMutableDictionaryWithCapacity(numItems uint) MutableDictionary {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(coder:)
-func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
+func NewMutableDictionaryWithCoder(coder ICoder) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -132,16 +134,16 @@ func NewMutableDictionaryWithCoder(coder unsafe.Pointer) MutableDictionary {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfFile:
-func NewMutableDictionaryWithContentsOfFile(path string) MutableDictionary {
+func NewMutableDictionaryWithContentsOfFile(path appkit.string) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
-	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/initWithContentsOfURL:
-func NewMutableDictionaryWithContentsOfURL(url URL) MutableDictionary {
+func NewMutableDictionaryWithContentsOfURL(url IURL) MutableDictionary {
 	instance := getMutableDictionaryClass().Alloc()
 	rv := objc.Send[MutableDictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -150,7 +152,7 @@ func NewMutableDictionaryWithContentsOfURL(url URL) MutableDictionary {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
-func NewMutableDictionaryWithOBEXHeadersData(inHeadersData unsafe.Pointer) MutableDictionary {
+func NewMutableDictionaryWithOBEXHeadersData(inHeadersData IData) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
 	return rv
 }
@@ -167,7 +169,7 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 // Creates a mutable dictionary which is optimized for dealing with a known set of keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
-func NewMutableDictionaryWithSharedKeySet(keyset objc.ID) MutableDictionary {
+func NewMutableDictionaryWithSharedKeySet(keyset objectivec.IObject) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
@@ -183,14 +185,14 @@ func (mc _MutableDictionaryClass) DictionaryWithCapacity(numItems uint) unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/dictionaryWithContentsOfFile:
-func (mc _MutableDictionaryClass) DictionaryWithContentsOfFile(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithContentsOfFile:"), objc.String(path))
+func (mc _MutableDictionaryClass) DictionaryWithContentsOfFile(path appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithContentsOfFile:"), path)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(OBEXHeadersData:)
-func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersData(inHeadersData unsafe.Pointer) unsafe.Pointer {
+func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersData(inHeadersData IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithOBEXHeadersData:"), inHeadersData)
 	return rv
 }
@@ -204,7 +206,7 @@ func (mc _MutableDictionaryClass) DictionaryWithOBEXHeadersDataHeadersDataSize(i
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(contentsOfURL:)
-func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url URL) unsafe.Pointer {
+func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithContentsOfURL:"), url)
 	return rv
 }
@@ -212,7 +214,7 @@ func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url URL) unsafe.Po
 // Creates a mutable dictionary which is optimized for dealing with a known set of keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
-func (mc _MutableDictionaryClass) DictionaryWithSharedKeySet(keyset objc.ID) unsafe.Pointer {
+func (mc _MutableDictionaryClass) DictionaryWithSharedKeySet(keyset objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
@@ -275,8 +277,8 @@ func (m_ MutableDictionary) AddCountHeader(inCount unsafe.Pointer) unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addDescriptionHeader(_:)
-func (m_ MutableDictionary) AddDescriptionHeader(inDescriptionString string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addDescriptionHeader:"), objc.String(inDescriptionString))
+func (m_ MutableDictionary) AddDescriptionHeader(inDescriptionString appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addDescriptionHeader:"), inDescriptionString)
 	return rv
 }
 
@@ -303,8 +305,8 @@ func (m_ MutableDictionary) AddImageDescriptorHeaderLength(inHeaderData unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addImageHandleHeader(_:)
-func (m_ MutableDictionary) AddImageHandleHeader(type_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addImageHandleHeader:"), objc.String(type_))
+func (m_ MutableDictionary) AddImageHandleHeader(type_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addImageHandleHeader:"), type_)
 	return rv
 }
 
@@ -317,8 +319,8 @@ func (m_ MutableDictionary) AddLengthHeader(length unsafe.Pointer) unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addNameHeader(_:)
-func (m_ MutableDictionary) AddNameHeader(inNameString string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addNameHeader:"), objc.String(inNameString))
+func (m_ MutableDictionary) AddNameHeader(inNameString appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addNameHeader:"), inNameString)
 	return rv
 }
 
@@ -352,8 +354,8 @@ func (m_ MutableDictionary) AddTimeISOHeaderLength(inHeaderData unsafe.Pointer, 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/addTypeHeader(_:)
-func (m_ MutableDictionary) AddTypeHeader(type_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTypeHeader:"), objc.String(type_))
+func (m_ MutableDictionary) AddTypeHeader(type_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("addTypeHeader:"), type_)
 	return rv
 }
 
@@ -373,8 +375,8 @@ func (m_ MutableDictionary) AddWhoHeaderLength(inHeaderData unsafe.Pointer, inHe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/getHeaderBytes()
-func (m_ MutableDictionary) GetHeaderBytes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("getHeaderBytes"))
+func (m_ MutableDictionary) GetHeaderBytes() MutableData {
+	rv := objc.Send[MutableData](m_.ID, objc.Sel("getHeaderBytes"))
 	return rv
 }
 
@@ -395,7 +397,7 @@ func (m_ MutableDictionary) RemoveObjectForKey(aKey unsafe.Pointer) {
 // Removes from the dictionary entries specified by elements in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/removeObjects(forKeys:)
-func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray unsafe.Pointer) {
+func (m_ MutableDictionary) RemoveObjectsForKeys(keyArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsForKeys:"), keyArray)
 }
 
@@ -409,22 +411,22 @@ func (m_ MutableDictionary) SetDictionary(otherDictionary unsafe.Pointer) {
 // Adds a given key-value pair to the dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setObject(_:forKey:)
-func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey objc.ID) {
+func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
 // Adds a given key-value pair to the dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setObject:forKeyedSubscript:
-func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key objc.ID) {
+func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKeyedSubscript:"), obj, key)
 }
 
 // Adds a given key-value pair to the dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setValue(_:forKey:)
-func (m_ MutableDictionary) SetValueForKey(value unsafe.Pointer, key string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
+func (m_ MutableDictionary) SetValueForKey(value unsafe.Pointer, key appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:forKey:"), value, key)
 }
 
 

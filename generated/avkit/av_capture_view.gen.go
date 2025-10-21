@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 )
 
 // The class instance for the [CaptureView] class.
@@ -30,7 +31,7 @@ type _CaptureViewClass struct {
 // An interface definition for the [CaptureView] class.
 type ICaptureView interface {
 	appkit.IView
-	SetSessionShowVideoPreviewShowAudioPreview(session unsafe.Pointer, showVideoPreview bool, showAudioPreview bool)
+	SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.ICaptureSession, showVideoPreview bool, showAudioPreview bool)
 }
 
 // A view that displays standard user interface controls for capturing media data.
@@ -84,15 +85,15 @@ func NewCaptureView() CaptureView {
 // Sets the view’s capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/setSession(_:showVideoPreview:showAudioPreview:)
-func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session unsafe.Pointer, showVideoPreview bool, showAudioPreview bool) {
+func (c_ CaptureView) SetSessionShowVideoPreviewShowAudioPreview(session avfoundation.ICaptureSession, showVideoPreview bool, showAudioPreview bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSession:showVideoPreview:showAudioPreview:"), session, showVideoPreview, showAudioPreview)
 }
 
 // The style of the capture controls presented by the view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/controlsStyle
-func (c_ CaptureView) ControlsStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("controlsStyle"))
+func (c_ CaptureView) ControlsStyle() CaptureViewControlsStyle {
+	rv := objc.Send[CaptureViewControlsStyle](c_.ID, objc.Sel("controlsStyle"))
 	return rv
 }
 
@@ -102,7 +103,7 @@ func (c_ CaptureView) ControlsStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/controlsStyle
-func (c_ CaptureView) SetControlsStyle(value unsafe.Pointer) {
+func (c_ CaptureView) SetControlsStyle(value CaptureViewControlsStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setControlsStyle:"), value)
 }
 
@@ -127,16 +128,16 @@ func (c_ CaptureView) SetDelegate(value objc.ID) {
 // The capture file output used to record media data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/fileOutput
-func (c_ CaptureView) FileOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fileOutput"))
+func (c_ CaptureView) FileOutput() avfoundation.CaptureFileOutput {
+	rv := objc.Send[avfoundation.CaptureFileOutput](c_.ID, objc.Sel("fileOutput"))
 	return rv
 }
 
 // The view’s associated capture session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVCaptureView/session
-func (c_ CaptureView) Session() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("session"))
+func (c_ CaptureView) Session() avfoundation.CaptureSession {
+	rv := objc.Send[avfoundation.CaptureSession](c_.ID, objc.Sel("session"))
 	return rv
 }
 

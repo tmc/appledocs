@@ -86,7 +86,7 @@ func NewMKCircleRenderer() MKCircleRenderer {
 // Creates a new overlay view using the specified circle overlay object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/init(circle:)
-func NewMKCircleRendererWithCircle(circle unsafe.Pointer) MKCircleRenderer {
+func NewMKCircleRendererWithCircle(circle IMKCircle) MKCircleRenderer {
 	instance := getMKCircleRendererClass().Alloc()
 	rv := objc.Send[MKCircleRenderer](instance.ID, objc.Sel("initWithCircle:"), circle)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewMKCircleRendererWithCircle(circle unsafe.Pointer) MKCircleRenderer {
 // The circle overlay object that contains the information for drawing the overlay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKCircleRenderer/circle
-func (m_ MKCircleRenderer) Circle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("circle"))
+func (m_ MKCircleRenderer) Circle() MKCircle {
+	rv := objc.Send[MKCircle](m_.ID, objc.Sel("circle"))
 	return rv
 }
 

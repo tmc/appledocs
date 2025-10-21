@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _MetalDisplayLinkClass struct {
 // An interface definition for the [MetalDisplayLink] class.
 type IMetalDisplayLink interface {
 	objectivec.IObject
-	AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer)
+	AddToRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
 	Invalidate()
-	RemoveFromRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer)
+	RemoveFromRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
 }
 
 // A class your Metal app uses to register for callbacks to synchronize its animations for a display.
@@ -88,7 +89,7 @@ func NewMetalDisplayLink() MetalDisplayLink {
 // Creates a display link for Metal from a Core Animation layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/init(metalLayer:)
-func NewMetalDisplayLinkWithMetalLayer(layer unsafe.Pointer) MetalDisplayLink {
+func NewMetalDisplayLinkWithMetalLayer(layer IMetalLayer) MetalDisplayLink {
 	instance := getMetalDisplayLinkClass().Alloc()
 	rv := objc.Send[MetalDisplayLink](instance.ID, objc.Sel("initWithMetalLayer:"), layer)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewMetalDisplayLinkWithMetalLayer(layer unsafe.Pointer) MetalDisplayLink {
 // Registers the display link with a run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/add(to:forMode:)
-func (m_ MetalDisplayLink) AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer) {
+func (m_ MetalDisplayLink) AddToRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addToRunLoop:forMode:"), runloop, mode)
 }
 
@@ -113,7 +114,7 @@ func (m_ MetalDisplayLink) Invalidate() {
 // Removes a mode’s display link from a run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalDisplayLink/remove(from:forMode:)
-func (m_ MetalDisplayLink) RemoveFromRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer) {
+func (m_ MetalDisplayLink) RemoveFromRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeFromRunLoop:forMode:"), runloop, mode)
 }
 

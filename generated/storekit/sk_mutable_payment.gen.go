@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MutablePayment] class.
@@ -84,8 +86,8 @@ func NewMutablePayment() MutablePayment {
 // A string that associates the transaction with a user account on your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) ApplicationUsername() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationUsername"))
+func (m_ MutablePayment) ApplicationUsername() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationUsername"))
 	return rv
 }
 
@@ -95,15 +97,15 @@ func (m_ MutablePayment) ApplicationUsername() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/applicationUsername
-func (m_ MutablePayment) SetApplicationUsername(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), objc.String(value))
+func (m_ MutablePayment) SetApplicationUsername(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationUsername:"), value)
 }
 
 // The details of the discount offer to apply to the payment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/paymentDiscount
-func (m_ MutablePayment) PaymentDiscount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("paymentDiscount"))
+func (m_ MutablePayment) PaymentDiscount() SKPaymentDiscount {
+	rv := objc.Send[SKPaymentDiscount](m_.ID, objc.Sel("paymentDiscount"))
 	return rv
 }
 
@@ -113,15 +115,15 @@ func (m_ MutablePayment) PaymentDiscount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/paymentDiscount
-func (m_ MutablePayment) SetPaymentDiscount(value unsafe.Pointer) {
+func (m_ MutablePayment) SetPaymentDiscount(value ISKPaymentDiscount) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPaymentDiscount:"), value)
 }
 
 // A string that identifies a product that can be purchased from within your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) ProductIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("productIdentifier"))
+func (m_ MutablePayment) ProductIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("productIdentifier"))
 	return rv
 }
 
@@ -131,8 +133,8 @@ func (m_ MutablePayment) ProductIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/productIdentifier
-func (m_ MutablePayment) SetProductIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), objc.String(value))
+func (m_ MutablePayment) SetProductIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifier:"), value)
 }
 
 // The number of items the user wants to purchase.
@@ -156,8 +158,8 @@ func (m_ MutablePayment) SetQuantity(value int) {
 // Reserved for future use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/requestData
-func (m_ MutablePayment) RequestData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requestData"))
+func (m_ MutablePayment) RequestData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("requestData"))
 	return rv
 }
 
@@ -167,7 +169,7 @@ func (m_ MutablePayment) RequestData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKMutablePayment/requestData
-func (m_ MutablePayment) SetRequestData(value unsafe.Pointer) {
+func (m_ MutablePayment) SetRequestData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestData:"), value)
 }
 

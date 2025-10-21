@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -31,7 +32,7 @@ type _SBApplicationClass struct {
 type ISBApplication interface {
 	ISBObject
 	Activate()
-	ClassForScriptingClass(className string) objc.Class
+	ClassForScriptingClass(className appkit.string) objc.Class
 }
 
 // The class provides a mechanism enabling an Objective-C program to send Apple events to a scriptable application and receive Apple events in response. It thereby makes it possible for that program to control the application and exchange data with it. Scripting Bridge works by bridging data types between Apple event descriptors and Cocoa objects.
@@ -89,9 +90,9 @@ func NewSBApplication() SBApplication {
 // Returns an instance of an subclass that represents the target application identified by the given bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/init(bundleIdentifier:)
-func NewSBApplicationWithBundleIdentifier(ident string) SBApplication {
+func NewSBApplicationWithBundleIdentifier(ident appkit.string) SBApplication {
 	instance := getSBApplicationClass().Alloc()
-	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), objc.String(ident))
+	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithBundleIdentifier:"), ident)
 	rv.Autorelease()
 	return rv
 }
@@ -113,7 +114,7 @@ func NewSBApplicationWithProcessIdentifier(pid unsafe.Pointer) SBApplication {
 // Returns an instance of an subclass that represents the target application identified by the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/init(url:)
-func NewSBApplicationWithURL(url foundation.URL) SBApplication {
+func NewSBApplicationWithURL(url foundation.IURL) SBApplication {
 	instance := getSBApplicationClass().Alloc()
 	rv := objc.Send[SBApplication](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
@@ -124,24 +125,24 @@ func NewSBApplicationWithURL(url foundation.URL) SBApplication {
 // Returns the shared instance representing the target application specified by its bundle identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithBundleIdentifier:
-func (sc _SBApplicationClass) ApplicationWithBundleIdentifier(ident string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("applicationWithBundleIdentifier:"), objc.String(ident))
+func (sc _SBApplicationClass) ApplicationWithBundleIdentifier(ident appkit.string) SBApplication {
+	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithBundleIdentifier:"), ident)
 	return rv
 }
 
 // Returns the shared instance representing a target application specified by its process identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithProcessIdentifier:
-func (sc _SBApplicationClass) ApplicationWithProcessIdentifier(pid unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("applicationWithProcessIdentifier:"), pid)
+func (sc _SBApplicationClass) ApplicationWithProcessIdentifier(pid unsafe.Pointer) SBApplication {
+	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithProcessIdentifier:"), pid)
 	return rv
 }
 
 // Returns the shared instance representing a target application specified by the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/applicationWithURL:
-func (sc _SBApplicationClass) ApplicationWithURL(url foundation.URL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("applicationWithURL:"), url)
+func (sc _SBApplicationClass) ApplicationWithURL(url foundation.IURL) SBApplication {
+	rv := objc.Send[SBApplication](objc.ID(sc.class), objc.Sel("applicationWithURL:"), url)
 	return rv
 }
 
@@ -155,8 +156,8 @@ func (s_ SBApplication) Activate() {
 // Returns a class object that represents a particular class in the target application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBApplication/class(forScriptingClass:)
-func (s_ SBApplication) ClassForScriptingClass(className string) objc.Class {
-	rv := objc.Send[objc.Class](s_.ID, objc.Sel("classForScriptingClass:"), objc.String(className))
+func (s_ SBApplication) ClassForScriptingClass(className appkit.string) objc.Class {
+	rv := objc.Send[objc.Class](s_.ID, objc.Sel("classForScriptingClass:"), className)
 	return rv
 }
 

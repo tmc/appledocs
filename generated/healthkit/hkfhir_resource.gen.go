@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -82,32 +83,32 @@ func NewHKFHIRResource() HKFHIRResource {
 // The JSON representation of the FHIR resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/data
-func (h_ HKFHIRResource) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("data"))
+func (h_ HKFHIRResource) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](h_.ID, objc.Sel("data"))
 	return rv
 }
 
 // The FHIR version used by this resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/fhirVersion
-func (h_ HKFHIRResource) FHIRVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("FHIRVersion"))
+func (h_ HKFHIRResource) FHIRVersion() HKFHIRVersion {
+	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("FHIRVersion"))
 	return rv
 }
 
 // The value from the FHIR resource’s field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/identifier
-func (h_ HKFHIRResource) Identifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
+func (h_ HKFHIRResource) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The value from the FHIR resource’s field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/resourceType
-func (h_ HKFHIRResource) ResourceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("resourceType"))
+func (h_ HKFHIRResource) ResourceType() HKFHIRResourceType {
+	rv := objc.Send[HKFHIRResourceType](h_.ID, objc.Sel("resourceType"))
 	return rv
 }
 

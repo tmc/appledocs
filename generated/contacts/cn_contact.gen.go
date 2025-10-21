@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +32,9 @@ type _CNContactClass struct {
 // An interface definition for the [CNContact] class.
 type ICNContact interface {
 	objectivec.IObject
-	AreKeysAvailable(keyDescriptors unsafe.Pointer) bool
-	IsKeyAvailable(key string) bool
-	IsUnifiedWithContactWithIdentifier(contactIdentifier string) bool
+	AreKeysAvailable(keyDescriptors []objc.ID) bool
+	IsKeyAvailable(key appkit.string) bool
+	IsUnifiedWithContactWithIdentifier(contactIdentifier appkit.string) bool
 }
 
 // An immutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.
@@ -86,7 +88,7 @@ func NewCNContact() CNContact {
 // Returns a comparator to sort contacts with the specified order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/comparator(forNameSortOrder:)
-func (cc _CNContactClass) ComparatorForNameSortOrder(sortOrder unsafe.Pointer) unsafe.Pointer {
+func (cc _CNContactClass) ComparatorForNameSortOrder(sortOrder ICNContactSortOrder) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("comparatorForNameSortOrder:"), sortOrder)
 	return rv
 }
@@ -102,63 +104,63 @@ func (cc _CNContactClass) DescriptorForAllComparatorKeys() objc.ID {
 // Returns a string containing the localized contact property name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/localizedString(forKey:)
-func (cc _CNContactClass) LocalizedStringForKey(key string) string {
-	rv := objc.Send[string](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), objc.String(key))
+func (cc _CNContactClass) LocalizedStringForKey(key appkit.string) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(cc.class), objc.Sel("localizedStringForKey:"), key)
 	return rv
 }
 
 // Returns a predicate to find the contacts whose phone number matches the specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(matching:)
-func (cc _CNContactClass) PredicateForContactsMatchingPhoneNumber(phoneNumber unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingPhoneNumber:"), phoneNumber)
+func (cc _CNContactClass) PredicateForContactsMatchingPhoneNumber(phoneNumber ICNPhoneNumber) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingPhoneNumber:"), phoneNumber)
 	return rv
 }
 
 // Returns a predicate to find the contacts whose email address matches the specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(matchingEmailAddress:)
-func (cc _CNContactClass) PredicateForContactsMatchingEmailAddress(emailAddress string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingEmailAddress:"), objc.String(emailAddress))
+func (cc _CNContactClass) PredicateForContactsMatchingEmailAddress(emailAddress appkit.string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingEmailAddress:"), emailAddress)
 	return rv
 }
 
 // Returns a predicate to find the contacts matching the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(matchingName:)
-func (cc _CNContactClass) PredicateForContactsMatchingName(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingName:"), objc.String(name))
+func (cc _CNContactClass) PredicateForContactsMatchingName(name appkit.string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsMatchingName:"), name)
 	return rv
 }
 
 // Returns a predicate to find the contacts matching the specified identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContacts(withIdentifiers:)
-func (cc _CNContactClass) PredicateForContactsWithIdentifiers(identifiers unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("predicateForContactsWithIdentifiers:"), identifiers)
+func (cc _CNContactClass) PredicateForContactsWithIdentifiers(identifiers []string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsWithIdentifiers:"), identifiers)
 	return rv
 }
 
 // Returns a predicate to find the contacts in the specified container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContactsInContainer(withIdentifier:)
-func (cc _CNContactClass) PredicateForContactsInContainerWithIdentifier(containerIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("predicateForContactsInContainerWithIdentifier:"), objc.String(containerIdentifier))
+func (cc _CNContactClass) PredicateForContactsInContainerWithIdentifier(containerIdentifier appkit.string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsInContainerWithIdentifier:"), containerIdentifier)
 	return rv
 }
 
 // Returns a predicate to find the contacts that are members in the specified group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/predicateForContactsInGroup(withIdentifier:)
-func (cc _CNContactClass) PredicateForContactsInGroupWithIdentifier(groupIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("predicateForContactsInGroupWithIdentifier:"), objc.String(groupIdentifier))
+func (cc _CNContactClass) PredicateForContactsInGroupWithIdentifier(groupIdentifier appkit.string) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](objc.ID(cc.class), objc.Sel("predicateForContactsInGroupWithIdentifier:"), groupIdentifier)
 	return rv
 }
 
 // Determines whether all contact property values for the specified keys are fetched.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/areKeysAvailable(_:)
-func (c_ CNContact) AreKeysAvailable(keyDescriptors unsafe.Pointer) bool {
+func (c_ CNContact) AreKeysAvailable(keyDescriptors []objc.ID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("areKeysAvailable:"), keyDescriptors)
 	return rv
 }
@@ -166,24 +168,24 @@ func (c_ CNContact) AreKeysAvailable(keyDescriptors unsafe.Pointer) bool {
 // Determines whether the contact property value for the specified key is fetched.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/isKeyAvailable(_:)
-func (c_ CNContact) IsKeyAvailable(key string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isKeyAvailable:"), objc.String(key))
+func (c_ CNContact) IsKeyAvailable(key appkit.string) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isKeyAvailable:"), key)
 	return rv
 }
 
 // Returns a Boolean indicating whether the current contact is a unified contact and includes a contact with the specified identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/isUnifiedWithContact(withIdentifier:)
-func (c_ CNContact) IsUnifiedWithContactWithIdentifier(contactIdentifier string) bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isUnifiedWithContactWithIdentifier:"), objc.String(contactIdentifier))
+func (c_ CNContact) IsUnifiedWithContactWithIdentifier(contactIdentifier appkit.string) bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isUnifiedWithContactWithIdentifier:"), contactIdentifier)
 	return rv
 }
 
 // A date component for the Gregorian birthday of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/birthday
-func (c_ CNContact) Birthday() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("birthday"))
+func (c_ CNContact) Birthday() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](c_.ID, objc.Sel("birthday"))
 	return rv
 }
 
@@ -198,8 +200,8 @@ func (c_ CNContact) ContactRelations() []CNLabeledValue {
 // An enum identifying the contact type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/contactType
-func (c_ CNContact) ContactType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contactType"))
+func (c_ CNContact) ContactType() CNContactType {
+	rv := objc.Send[CNContactType](c_.ID, objc.Sel("contactType"))
 	return rv
 }
 
@@ -214,8 +216,8 @@ func (c_ CNContact) Dates() []CNLabeledValue {
 // The name of the department associated with the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/departmentName
-func (c_ CNContact) DepartmentName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("departmentName"))
+func (c_ CNContact) DepartmentName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("departmentName"))
 	return rv
 }
 
@@ -230,32 +232,32 @@ func (c_ CNContact) EmailAddresses() []CNLabeledValue {
 // The family name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/familyName
-func (c_ CNContact) FamilyName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("familyName"))
+func (c_ CNContact) FamilyName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("familyName"))
 	return rv
 }
 
 // The given name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/givenName
-func (c_ CNContact) GivenName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("givenName"))
+func (c_ CNContact) GivenName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("givenName"))
 	return rv
 }
 
 // A value that uniquely identifies a contact on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/identifier
-func (c_ CNContact) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ CNContact) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The profile picture of a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/imageData
-func (c_ CNContact) ImageData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("imageData"))
+func (c_ CNContact) ImageData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("imageData"))
 	return rv
 }
 
@@ -278,64 +280,64 @@ func (c_ CNContact) InstantMessageAddresses() []CNLabeledValue {
 // The contact’s job title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/jobTitle
-func (c_ CNContact) JobTitle() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("jobTitle"))
+func (c_ CNContact) JobTitle() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("jobTitle"))
 	return rv
 }
 
 // The middle name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/middleName
-func (c_ CNContact) MiddleName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("middleName"))
+func (c_ CNContact) MiddleName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("middleName"))
 	return rv
 }
 
 // The name prefix of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/namePrefix
-func (c_ CNContact) NamePrefix() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("namePrefix"))
+func (c_ CNContact) NamePrefix() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("namePrefix"))
 	return rv
 }
 
 // The name suffix of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nameSuffix
-func (c_ CNContact) NameSuffix() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("nameSuffix"))
+func (c_ CNContact) NameSuffix() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("nameSuffix"))
 	return rv
 }
 
 // The nickname of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nickname
-func (c_ CNContact) Nickname() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("nickname"))
+func (c_ CNContact) Nickname() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("nickname"))
 	return rv
 }
 
 // A date component for the non-Gregorian birthday of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/nonGregorianBirthday
-func (c_ CNContact) NonGregorianBirthday() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("nonGregorianBirthday"))
+func (c_ CNContact) NonGregorianBirthday() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](c_.ID, objc.Sel("nonGregorianBirthday"))
 	return rv
 }
 
 // A string containing notes for the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/note
-func (c_ CNContact) Note() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("note"))
+func (c_ CNContact) Note() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("note"))
 	return rv
 }
 
 // The name of the organization associated with the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/organizationName
-func (c_ CNContact) OrganizationName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("organizationName"))
+func (c_ CNContact) OrganizationName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("organizationName"))
 	return rv
 }
 
@@ -350,32 +352,32 @@ func (c_ CNContact) PhoneNumbers() []CNLabeledValue {
 // A string for the phonetic family name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticFamilyName
-func (c_ CNContact) PhoneticFamilyName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticFamilyName"))
+func (c_ CNContact) PhoneticFamilyName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("phoneticFamilyName"))
 	return rv
 }
 
 // The phonetic given name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticGivenName
-func (c_ CNContact) PhoneticGivenName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticGivenName"))
+func (c_ CNContact) PhoneticGivenName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("phoneticGivenName"))
 	return rv
 }
 
 // The phonetic middle name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticMiddleName
-func (c_ CNContact) PhoneticMiddleName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticMiddleName"))
+func (c_ CNContact) PhoneticMiddleName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("phoneticMiddleName"))
 	return rv
 }
 
 // The phonetic name of the organization associated with the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/phoneticOrganizationName
-func (c_ CNContact) PhoneticOrganizationName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("phoneticOrganizationName"))
+func (c_ CNContact) PhoneticOrganizationName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("phoneticOrganizationName"))
 	return rv
 }
 
@@ -390,8 +392,8 @@ func (c_ CNContact) PostalAddresses() []CNLabeledValue {
 // A string for the previous family name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/previousFamilyName
-func (c_ CNContact) PreviousFamilyName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("previousFamilyName"))
+func (c_ CNContact) PreviousFamilyName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("previousFamilyName"))
 	return rv
 }
 
@@ -406,8 +408,8 @@ func (c_ CNContact) SocialProfiles() []CNLabeledValue {
 // The thumbnail version of the contact’s profile picture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContact/thumbnailImageData
-func (c_ CNContact) ThumbnailImageData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("thumbnailImageData"))
+func (c_ CNContact) ThumbnailImageData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("thumbnailImageData"))
 	return rv
 }
 

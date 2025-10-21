@@ -29,8 +29,8 @@ type _HumanHandPoseObservationClass struct {
 // An interface definition for the [HumanHandPoseObservation] class.
 type IHumanHandPoseObservation interface {
 	IRecognizedPointsObservation
-	RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	RecognizedPointsForJointsGroupNameError(jointsGroupName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	RecognizedPointForJointNameError(jointName IHumanHandPoseObservationJointName, error_ unsafe.Pointer) RecognizedPoint
+	RecognizedPointsForJointsGroupNameError(jointsGroupName IHumanHandPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An observation that provides the hand points the analysis recognized.
@@ -84,15 +84,15 @@ func NewHumanHandPoseObservation() HumanHandPoseObservation {
 // Retrieves the recognized point for a joint name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanHandPoseObservation/recognizedPoint(_:)
-func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
+func (h_ HumanHandPoseObservation) RecognizedPointForJointNameError(jointName IHumanHandPoseObservationJointName, error_ unsafe.Pointer) RecognizedPoint {
+	rv := objc.Send[RecognizedPoint](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
 }
 
 // Retrieves the recognized points associated with the joint group name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanHandPoseObservation/recognizedPoints(_:)
-func (h_ HumanHandPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (h_ HumanHandPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName IHumanHandPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
 }
@@ -116,8 +116,8 @@ func (h_ HumanHandPoseObservation) AvailableJointsGroupNames() []string {
 // The chirality, or handedness, of a pose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanHandPoseObservation/chirality
-func (h_ HumanHandPoseObservation) Chirality() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("chirality"))
+func (h_ HumanHandPoseObservation) Chirality() Chirality {
+	rv := objc.Send[Chirality](h_.ID, objc.Sel("chirality"))
 	return rv
 }
 

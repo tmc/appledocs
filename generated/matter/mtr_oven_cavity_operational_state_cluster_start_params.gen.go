@@ -90,7 +90,7 @@ func (m_ MTROvenCavityOperationalStateClusterStartParams) ServerSideProcessingTi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterStartParams/serverSideProcessingTimeout
-func (m_ MTROvenCavityOperationalStateClusterStartParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROvenCavityOperationalStateClusterStartParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTROvenCavityOperationalStateClusterStartParams) TimedInvokeTimeoutMs()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterStartParams/timedInvokeTimeoutMs
-func (m_ MTROvenCavityOperationalStateClusterStartParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROvenCavityOperationalStateClusterStartParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

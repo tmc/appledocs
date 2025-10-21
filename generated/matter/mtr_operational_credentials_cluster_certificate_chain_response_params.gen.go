@@ -78,8 +78,8 @@ func NewMTROperationalCredentialsClusterCertificateChainResponseParams() MTROper
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/certificate
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) Certificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("certificate"))
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) Certificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificate"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) Certifi
 // SetCertificate sets the value of the certificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/certificate
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetCertificate(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificate:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) TimedIn
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercertificatechainresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCertificateChainResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

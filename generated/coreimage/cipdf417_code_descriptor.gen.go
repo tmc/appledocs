@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDF417CodeDescriptor] class.
@@ -86,7 +87,7 @@ func NewPDF417CodeDescriptor() PDF417CodeDescriptor {
 // Initializes an PDF417 code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/init(payload:isCompact:rowCount:columnCount:)
-func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, rowCount int, columnCount int) PDF417CodeDescriptor {
+func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.IData, isCompact bool, rowCount int, columnCount int) PDF417CodeDescriptor {
 	instance := getPDF417CodeDescriptorClass().Alloc()
 	rv := objc.Send[PDF417CodeDescriptor](instance.ID, objc.Sel("initWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
 	rv.Autorelease()
@@ -97,7 +98,7 @@ func NewPDF417CodeDescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrect
 // Creates an PDF417 code descriptor for the given payload and parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/descriptorWithPayload:isCompact:rowCount:columnCount:
-func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload unsafe.Pointer, isCompact bool, rowCount int, columnCount int) unsafe.Pointer {
+func (pc _PDF417CodeDescriptorClass) DescriptorWithPayloadIsCompactRowCountColumnCount(errorCorrectedPayload foundation.IData, isCompact bool, rowCount int, columnCount int) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("descriptorWithPayload:isCompact:rowCount:columnCount:"), errorCorrectedPayload, isCompact, rowCount, columnCount)
 	return rv
 }
@@ -113,8 +114,8 @@ func (p_ PDF417CodeDescriptor) ColumnCount() int {
 // The error-corrected payload containing the data encoded in the PDF417 code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIPDF417CodeDescriptor/errorCorrectedPayload-swift.property
-func (p_ PDF417CodeDescriptor) ErrorCorrectedPayload() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("errorCorrectedPayload"))
+func (p_ PDF417CodeDescriptor) ErrorCorrectedPayload() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("errorCorrectedPayload"))
 	return rv
 }
 

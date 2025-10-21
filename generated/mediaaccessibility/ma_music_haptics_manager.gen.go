@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _MAMusicHapticsManagerClass struct {
 type IMAMusicHapticsManager interface {
 	objectivec.IObject
 	AddStatusObserver(statusHandler unsafe.Pointer) objc.ID
-	CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode string, completionHandler unsafe.Pointer)
-	RemoveStatusObserver(registrationToken objc.ID)
+	CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode appkit.string, completionHandler unsafe.Pointer)
+	RemoveStatusObserver(registrationToken objectivec.IObject)
 }
 
 // A class that reports information about the Music Haptics feature.
@@ -86,8 +87,8 @@ func NewMAMusicHapticsManager() MAMusicHapticsManager {
 // The shared Music Haptics manager object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHapticsManager/shared
-func (mc _MAMusicHapticsManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("sharedManager"))
+func (mc _MAMusicHapticsManagerClass) SharedManager() MAMusicHapticsManager {
+	rv := objc.Send[MAMusicHapticsManager](objc.ID(mc.class), objc.Sel("sharedManager"))
 	return rv
 }
 // Adds an observer to monitor the status of haptic playback for the Now Playing song.
@@ -101,14 +102,14 @@ func (m_ MAMusicHapticsManager) AddStatusObserver(statusHandler unsafe.Pointer) 
 // Checks whether a haptic track is available for the song with the specified International Standard Recording Code (ISRC).
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHapticsManager/checkHapticTrackAvailabilityForMedia(matchingCode:completionHandler:)
-func (m_ MAMusicHapticsManager) CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"), objc.String(internationalStandardRecordingCode), completionHandler)
+func (m_ MAMusicHapticsManager) CheckHapticTrackAvailabilityForMediaMatchingCodeCompletionHandler(internationalStandardRecordingCode appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("checkHapticTrackAvailabilityForMediaMatchingCode:completionHandler:"), internationalStandardRecordingCode, completionHandler)
 }
 
 // Removes the observer monitoring the status of haptic playback for the Now Playing song.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHapticsManager/removeStatusObserver(_:)
-func (m_ MAMusicHapticsManager) RemoveStatusObserver(registrationToken objc.ID) {
+func (m_ MAMusicHapticsManager) RemoveStatusObserver(registrationToken objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeStatusObserver:"), registrationToken)
 }
 
@@ -123,8 +124,8 @@ func (m_ MAMusicHapticsManager) IsActive() bool {
 // The shared Music Haptics manager object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHapticsManager/shared
-func (m_ MAMusicHapticsManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sharedManager"))
+func (m_ MAMusicHapticsManager) SharedManager() MAMusicHapticsManager {
+	rv := objc.Send[MAMusicHapticsManager](m_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

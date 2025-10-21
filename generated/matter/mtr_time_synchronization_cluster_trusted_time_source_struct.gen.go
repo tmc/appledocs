@@ -87,7 +87,7 @@ func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) Endpoint() founda
 // SetEndpoint sets the value of the endpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/endpoint
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetEndpoint(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetEndpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) FabricIndex() fou
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/fabricIndex
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetFabricIndex(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) NodeID() foundati
 // SetNodeID sets the value of the nodeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTrustedTimeSourceStruct/nodeID
-func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetNodeID(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterTrustedTimeSourceStruct) SetNodeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
 }
 

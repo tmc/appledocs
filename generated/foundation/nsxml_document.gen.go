@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [XMLDocument] class.
@@ -29,13 +30,13 @@ type _XMLDocumentClass struct {
 // An interface definition for the [XMLDocument] class.
 type IXMLDocument interface {
 	IXMLNode
-	AddChild(child unsafe.Pointer)
-	InsertChildrenAtIndex(children unsafe.Pointer, index uint)
-	ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID
-	ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID
+	AddChild(child IXMLNode)
+	InsertChildrenAtIndex(children []XMLNode, index uint)
+	ObjectByApplyingXSLTArgumentsError(xslt IData, arguments unsafe.Pointer, error_ IError) objc.ID
+	ObjectByApplyingXSLTStringArgumentsError(xslt appkit.string, arguments unsafe.Pointer, error_ IError) objc.ID
 	RemoveChildAtIndex(index uint)
-	RootElement() unsafe.Pointer
-	SetRootElement(root unsafe.Pointer)
+	RootElement() XMLElement
+	SetRootElement(root IXMLElement)
 }
 
 // An XML document as internalized into a logical tree structure.
@@ -93,7 +94,7 @@ func NewXMLDocument() XMLDocument {
 // Initializes and returns an object created from an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(data:options:)
-func NewXMLDocumentWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDocument {
+func NewXMLDocumentWithDataOptionsError(data IData, mask XMLNodeOptions, error_ IError) XMLDocument {
 	instance := getXMLDocumentClass().Alloc()
 	rv := objc.Send[XMLDocument](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
@@ -104,21 +105,21 @@ func NewXMLDocumentWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer
 // Adds a child node after the last of the receiver’s existing children.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/addChild(_:)
-func (x_ XMLDocument) AddChild(child unsafe.Pointer) {
+func (x_ XMLDocument) AddChild(child IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("addChild:"), child)
 }
 
 // Inserts an array of children at a specified position in the receiver’s array of children.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/insertChildren(_:at:)
-func (x_ XMLDocument) InsertChildrenAtIndex(children unsafe.Pointer, index uint) {
+func (x_ XMLDocument) InsertChildrenAtIndex(children []XMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
 
 // Applies the XSLT pattern rules and templates (specified as a data object) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLT:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
+func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt IData, arguments unsafe.Pointer, error_ IError) objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLT:arguments:error:"), xslt, arguments, error_)
 	return rv
 }
@@ -126,8 +127,8 @@ func (x_ XMLDocument) ObjectByApplyingXSLTArgumentsError(xslt unsafe.Pointer, ar
 // Applies the XSLT pattern rules and templates (specified as a string) to the receiver and returns a document object containing transformed XML or HTML markup.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/object(byApplyingXSLTString:arguments:)
-func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt string, arguments unsafe.Pointer, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), objc.String(xslt), arguments, error_)
+func (x_ XMLDocument) ObjectByApplyingXSLTStringArgumentsError(xslt appkit.string, arguments unsafe.Pointer, error_ IError) objc.ID {
+	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectByApplyingXSLTString:arguments:error:"), xslt, arguments, error_)
 	return rv
 }
 
@@ -141,23 +142,23 @@ func (x_ XMLDocument) RemoveChildAtIndex(index uint) {
 // Returns the root element of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/rootElement()
-func (x_ XMLDocument) RootElement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("rootElement"))
+func (x_ XMLDocument) RootElement() XMLElement {
+	rv := objc.Send[XMLElement](x_.ID, objc.Sel("rootElement"))
 	return rv
 }
 
 // Set the root element of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/setRootElement(_:)
-func (x_ XMLDocument) SetRootElement(root unsafe.Pointer) {
+func (x_ XMLDocument) SetRootElement(root IXMLElement) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setRootElement:"), root)
 }
 
 // Returns the MIME type for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) MIMEType() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("MIMEType"))
+func (x_ XMLDocument) MIMEType() appkit.string {
+	rv := objc.Send[appkit.string](x_.ID, objc.Sel("MIMEType"))
 	return rv
 }
 
@@ -167,23 +168,23 @@ func (x_ XMLDocument) MIMEType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) SetMIMEType(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
+func (x_ XMLDocument) SetMIMEType(value appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), value)
 }
 
 // Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/xmlData
-func (x_ XMLDocument) XMLData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("XMLData"))
+func (x_ XMLDocument) XMLData() NSData {
+	rv := objc.Send[NSData](x_.ID, objc.Sel("XMLData"))
 	return rv
 }
 
 // Sets the character encoding of the receiver to
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) CharacterEncoding() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("characterEncoding"))
+func (x_ XMLDocument) CharacterEncoding() appkit.string {
+	rv := objc.Send[appkit.string](x_.ID, objc.Sel("characterEncoding"))
 	return rv
 }
 
@@ -193,8 +194,8 @@ func (x_ XMLDocument) CharacterEncoding() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/characterencoding
-func (x_ XMLDocument) SetCharacterEncoding(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), objc.String(value))
+func (x_ XMLDocument) SetCharacterEncoding(value appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setCharacterEncoding:"), value)
 }
 
 // Sets the kind of output content for the receiver.
@@ -218,8 +219,8 @@ func (x_ XMLDocument) SetDocumentContentKind(value unsafe.Pointer) {
 // Returns an
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDocument) Dtd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("dtd"))
+func (x_ XMLDocument) Dtd() NSXMLDTD {
+	rv := objc.Send[NSXMLDTD](x_.ID, objc.Sel("dtd"))
 	return rv
 }
 
@@ -229,7 +230,7 @@ func (x_ XMLDocument) Dtd() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/dtd
-func (x_ XMLDocument) SetDtd(value unsafe.Pointer) {
+func (x_ XMLDocument) SetDtd(value IXMLDTD) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setDtd:"), value)
 }
 
@@ -254,8 +255,8 @@ func (x_ XMLDocument) SetIsStandalone(value bool) {
 // Sets the version of the receiver’s XML.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) Version() string {
-	rv := objc.Send[string](x_.ID, objc.Sel("version"))
+func (x_ XMLDocument) Version() appkit.string {
+	rv := objc.Send[appkit.string](x_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -265,8 +266,8 @@ func (x_ XMLDocument) Version() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmldocument/version
-func (x_ XMLDocument) SetVersion(value string) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), objc.String(value))
+func (x_ XMLDocument) SetVersion(value appkit.string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setVersion:"), value)
 }
 
 

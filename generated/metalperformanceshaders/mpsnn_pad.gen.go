@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,7 +78,7 @@ func NewPad() Pad {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPad/init(coder:device:)
-func NewPadWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) Pad {
+func NewPadWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) Pad {
 	instance := getPadClass().Alloc()
 	rv := objc.Send[Pad](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

@@ -447,8 +447,8 @@ func (c_ CKNotificationInfo) SetTitleLocalizationKey(value string) {
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKNotificationInfo) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKNotificationInfo) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -458,7 +458,7 @@ func (c_ CKNotificationInfo) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKNotificationInfo) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKNotificationInfo) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

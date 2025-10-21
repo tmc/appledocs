@@ -78,8 +78,8 @@ func NewMTRTargetNavigatorClusterNavigateTargetResponseParams() MTRTargetNavigat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
-func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
-func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetData(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Status() foundat
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/status
-func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) TimedInvokeTimeo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/timedinvoketimeoutms
-func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

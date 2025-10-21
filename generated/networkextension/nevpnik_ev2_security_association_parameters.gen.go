@@ -171,8 +171,8 @@ func (n_ NEVPNIKEv2SecurityAssociationParameters) SetPostQuantumKeyExchangeMetho
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/childsecurityassociationparameters
-func (n_ NEVPNIKEv2SecurityAssociationParameters) ChildSecurityAssociationParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("childSecurityAssociationParameters"))
+func (n_ NEVPNIKEv2SecurityAssociationParameters) ChildSecurityAssociationParameters() NEVPNIKEv2SecurityAssociationParameters {
+	rv := objc.Send[NEVPNIKEv2SecurityAssociationParameters](n_.ID, objc.Sel("childSecurityAssociationParameters"))
 	return rv
 }
 
@@ -182,15 +182,15 @@ func (n_ NEVPNIKEv2SecurityAssociationParameters) ChildSecurityAssociationParame
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/childsecurityassociationparameters
-func (n_ NEVPNIKEv2SecurityAssociationParameters) SetChildSecurityAssociationParameters(value unsafe.Pointer) {
+func (n_ NEVPNIKEv2SecurityAssociationParameters) SetChildSecurityAssociationParameters(value INEVPNIKEv2SecurityAssociationParameters) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setChildSecurityAssociationParameters:"), value)
 }
 
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ikesecurityassociationparameters
-func (n_ NEVPNIKEv2SecurityAssociationParameters) IkeSecurityAssociationParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ikeSecurityAssociationParameters"))
+func (n_ NEVPNIKEv2SecurityAssociationParameters) IkeSecurityAssociationParameters() NEVPNIKEv2SecurityAssociationParameters {
+	rv := objc.Send[NEVPNIKEv2SecurityAssociationParameters](n_.ID, objc.Sel("ikeSecurityAssociationParameters"))
 	return rv
 }
 
@@ -200,7 +200,7 @@ func (n_ NEVPNIKEv2SecurityAssociationParameters) IkeSecurityAssociationParamete
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ikesecurityassociationparameters
-func (n_ NEVPNIKEv2SecurityAssociationParameters) SetIkeSecurityAssociationParameters(value unsafe.Pointer) {
+func (n_ NEVPNIKEv2SecurityAssociationParameters) SetIkeSecurityAssociationParameters(value INEVPNIKEv2SecurityAssociationParameters) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIkeSecurityAssociationParameters:"), value)
 }
 

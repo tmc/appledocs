@@ -87,9 +87,9 @@ func NewGameCenterViewController() GameCenterViewController {
 // Creates a view controller that presents a leaderboard set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(leaderboardSetID:)
-func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) GameCenterViewController {
+func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID appkit.string) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
-	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), objc.String(leaderboardSetID))
+	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithLeaderboardSetID:"), leaderboardSetID)
 	rv.Autorelease()
 	return rv
 }
@@ -99,7 +99,7 @@ func NewGameCenterViewControllerWithLeaderboardSetID(leaderboardSetID string) Ga
 // Creates a view controller that presents a player’s Game Center profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameCenterViewController/init(player:)
-func NewGameCenterViewControllerWithPlayer(player unsafe.Pointer) GameCenterViewController {
+func NewGameCenterViewControllerWithPlayer(player IGKPlayer) GameCenterViewController {
 	instance := getGameCenterViewControllerClass().Alloc()
 	rv := objc.Send[GameCenterViewController](instance.ID, objc.Sel("initWithPlayer:"), player)
 	rv.Autorelease()

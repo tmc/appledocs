@@ -81,8 +81,8 @@ func NewMeshBuffer() MeshBuffer {
 // The allocator object used to create this mesh buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBuffer/allocator
-func (m_ MeshBuffer) Allocator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("allocator"))
+func (m_ MeshBuffer) Allocator() MTKMeshBufferAllocator {
+	rv := objc.Send[MTKMeshBufferAllocator](m_.ID, objc.Sel("allocator"))
 	return rv
 }
 

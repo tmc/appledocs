@@ -83,8 +83,8 @@ func NewPipelineBufferDescriptor() PipelineBufferDescriptor {
 // A mutability option that determines whether you can update a buffer’s contents before related commands use the buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPipelineBufferDescriptor/mutability
-func (p_ PipelineBufferDescriptor) Mutability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mutability"))
+func (p_ PipelineBufferDescriptor) Mutability() Mutability {
+	rv := objc.Send[Mutability](p_.ID, objc.Sel("mutability"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (p_ PipelineBufferDescriptor) Mutability() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPipelineBufferDescriptor/mutability
-func (p_ PipelineBufferDescriptor) SetMutability(value unsafe.Pointer) {
+func (p_ PipelineBufferDescriptor) SetMutability(value IMutability) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMutability:"), value)
 }
 

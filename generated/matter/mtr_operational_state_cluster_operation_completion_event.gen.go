@@ -87,7 +87,7 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) CompletionErrorCode
 // SetCompletionErrorCode sets the value of the completionErrorCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
-func (m_ MTROperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.Number) {
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) PausedTime() founda
 // SetPausedTime sets the value of the pausedTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
-func (m_ MTROperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.Number) {
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) TotalOperationalTim
 // SetTotalOperationalTime sets the value of the totalOperationalTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/totaloperationaltime
-func (m_ MTROperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value foundation.Number) {
+func (m_ MTROperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
 

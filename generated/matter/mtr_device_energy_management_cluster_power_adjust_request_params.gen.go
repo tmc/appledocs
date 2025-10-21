@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Cause() found
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetCause(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetCause(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Duration() fo
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) Power() found
 // SetPower sets the value of the power property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/power
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPower:"), value)
 }
 
@@ -135,7 +135,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) ServerSidePro
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -153,7 +153,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) TimedInvokeTi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

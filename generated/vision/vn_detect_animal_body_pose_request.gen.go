@@ -82,8 +82,8 @@ func NewDetectAnimalBodyPoseRequest() DetectAnimalBodyPoseRequest {
 // The animal body pose the request observes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
-func (d_ DetectAnimalBodyPoseRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectAnimalBodyPoseRequest) Results() VNAnimalBodyPoseObservation {
+	rv := objc.Send[VNAnimalBodyPoseObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (d_ DetectAnimalBodyPoseRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest/results
-func (d_ DetectAnimalBodyPoseRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectAnimalBodyPoseRequest) SetResults(value IVNAnimalBodyPoseObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

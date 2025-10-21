@@ -120,8 +120,8 @@ func (n_ NINearbyPeerConfiguration) SetExtendedDistanceMeasurementEnabled(value 
 // A value that uniquely identifies the other peer in the interaction session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyPeerConfiguration/peerDiscoveryToken
-func (n_ NINearbyPeerConfiguration) PeerDiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("peerDiscoveryToken"))
+func (n_ NINearbyPeerConfiguration) PeerDiscoveryToken() NIDiscoveryToken {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("peerDiscoveryToken"))
 	return rv
 }
 

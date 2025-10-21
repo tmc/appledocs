@@ -83,8 +83,8 @@ func NewLinkedFunctions() LinkedFunctions {
 // Creates an empty linked functions object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLLinkedFunctions/linkedFunctions
-func (lc _LinkedFunctionsClass) LinkedFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("linkedFunctions"))
+func (lc _LinkedFunctionsClass) LinkedFunctions() LinkedFunctions {
+	rv := objc.Send[LinkedFunctions](objc.ID(lc.class), objc.Sel("linkedFunctions"))
 	return rv
 }
 
@@ -229,8 +229,8 @@ func (l_ LinkedFunctions) SetConstantValues(value unsafe.Pointer) {
 // The name of the function to fetch from the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
-func (l_ LinkedFunctions) Name() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("name"))
+func (l_ LinkedFunctions) Name() appkit.string {
+	rv := objc.Send[appkit.string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -240,15 +240,15 @@ func (l_ LinkedFunctions) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/name
-func (l_ LinkedFunctions) SetName(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
+func (l_ LinkedFunctions) SetName(value appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
 }
 
 // Flags specifying how Metal should create the new function object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/options
-func (l_ LinkedFunctions) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("options"))
+func (l_ LinkedFunctions) Options() FunctionOptions {
+	rv := objc.Send[FunctionOptions](l_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -258,15 +258,15 @@ func (l_ LinkedFunctions) Options() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/options
-func (l_ LinkedFunctions) SetOptions(value unsafe.Pointer) {
+func (l_ LinkedFunctions) SetOptions(value FunctionOptions) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setOptions:"), value)
 }
 
 // A new name for the created function object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
-func (l_ LinkedFunctions) SpecializedName() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("specializedName"))
+func (l_ LinkedFunctions) SpecializedName() appkit.string {
+	rv := objc.Send[appkit.string](l_.ID, objc.Sel("specializedName"))
 	return rv
 }
 
@@ -276,8 +276,8 @@ func (l_ LinkedFunctions) SpecializedName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunctiondescriptor/specializedname
-func (l_ LinkedFunctions) SetSpecializedName(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setSpecializedName:"), objc.String(value))
+func (l_ LinkedFunctions) SetSpecializedName(value appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setSpecializedName:"), value)
 }
 
 

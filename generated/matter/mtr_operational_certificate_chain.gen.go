@@ -87,14 +87,14 @@ func (m_ MTROperationalCertificateChain) AdminSubject() foundation.Number {
 // SetAdminSubject sets the value of the adminSubject property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/adminsubject
-func (m_ MTROperationalCertificateChain) SetAdminSubject(value foundation.Number) {
+func (m_ MTROperationalCertificateChain) SetAdminSubject(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminSubject:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/intermediatecertificate
-func (m_ MTROperationalCertificateChain) IntermediateCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("intermediateCertificate"))
+func (m_ MTROperationalCertificateChain) IntermediateCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificate"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTROperationalCertificateChain) IntermediateCertificate() unsafe.Pointe
 // SetIntermediateCertificate sets the value of the intermediateCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/intermediatecertificate
-func (m_ MTROperationalCertificateChain) SetIntermediateCertificate(value unsafe.Pointer) {
+func (m_ MTROperationalCertificateChain) SetIntermediateCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/operationalcertificate
-func (m_ MTROperationalCertificateChain) OperationalCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificate"))
+func (m_ MTROperationalCertificateChain) OperationalCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificate"))
 	return rv
 }
 
@@ -117,14 +117,14 @@ func (m_ MTROperationalCertificateChain) OperationalCertificate() unsafe.Pointer
 // SetOperationalCertificate sets the value of the operationalCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/operationalcertificate
-func (m_ MTROperationalCertificateChain) SetOperationalCertificate(value unsafe.Pointer) {
+func (m_ MTROperationalCertificateChain) SetOperationalCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificate:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/rootcertificate
-func (m_ MTROperationalCertificateChain) RootCertificate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificate"))
+func (m_ MTROperationalCertificateChain) RootCertificate() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROperationalCertificateChain) RootCertificate() unsafe.Pointer {
 // SetRootCertificate sets the value of the rootCertificate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcertificatechain/rootcertificate
-func (m_ MTROperationalCertificateChain) SetRootCertificate(value unsafe.Pointer) {
+func (m_ MTROperationalCertificateChain) SetRootCertificate(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
 

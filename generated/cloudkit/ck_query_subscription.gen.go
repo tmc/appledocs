@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKQuerySubscription] class.
@@ -86,7 +87,7 @@ func NewCKQuerySubscription() CKQuerySubscription {
 // Creates a query-based subscription from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/init(coder:)
-func NewCKQuerySubscriptionWithCoder(aDecoder unsafe.Pointer) CKQuerySubscription {
+func NewCKQuerySubscriptionWithCoder(aDecoder foundation.ICoder) CKQuerySubscription {
 	instance := getCKQuerySubscriptionClass().Alloc()
 	rv := objc.Send[CKQuerySubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewCKQuerySubscriptionWithCoder(aDecoder unsafe.Pointer) CKQuerySubscriptio
 // Creates a query-based subscription that queries records of a specific type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:options:
-func NewCKQuerySubscriptionWithRecordTypePredicateOptions(recordType unsafe.Pointer, predicate unsafe.Pointer, querySubscriptionOptions unsafe.Pointer) CKQuerySubscription {
+func NewCKQuerySubscriptionWithRecordTypePredicateOptions(recordType unsafe.Pointer, predicate foundation.IPredicate, querySubscriptionOptions CKQuerySubscriptionOptions) CKQuerySubscription {
 	instance := getCKQuerySubscriptionClass().Alloc()
 	rv := objc.Send[CKQuerySubscription](instance.ID, objc.Sel("initWithRecordType:predicate:options:"), recordType, predicate, querySubscriptionOptions)
 	rv.Autorelease()
@@ -110,7 +111,7 @@ func NewCKQuerySubscriptionWithRecordTypePredicateOptions(recordType unsafe.Poin
 // Creates a named query-based subscription that queries records of a specific type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/initWithRecordType:predicate:subscriptionID:options:
-func NewCKQuerySubscriptionWithRecordTypePredicateSubscriptionIDOptions(recordType unsafe.Pointer, predicate unsafe.Pointer, subscriptionID unsafe.Pointer, querySubscriptionOptions unsafe.Pointer) CKQuerySubscription {
+func NewCKQuerySubscriptionWithRecordTypePredicateSubscriptionIDOptions(recordType unsafe.Pointer, predicate foundation.IPredicate, subscriptionID unsafe.Pointer, querySubscriptionOptions CKQuerySubscriptionOptions) CKQuerySubscription {
 	instance := getCKQuerySubscriptionClass().Alloc()
 	rv := objc.Send[CKQuerySubscription](instance.ID, objc.Sel("initWithRecordType:predicate:subscriptionID:options:"), recordType, predicate, subscriptionID, querySubscriptionOptions)
 	rv.Autorelease()
@@ -121,16 +122,16 @@ func NewCKQuerySubscriptionWithRecordTypePredicateSubscriptionIDOptions(recordTy
 // The matching criteria to apply to records.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/predicate
-func (c_ CKQuerySubscription) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicate"))
+func (c_ CKQuerySubscription) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
 // Options that define the behavior of the subscription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/querySubscriptionOptions
-func (c_ CKQuerySubscription) QuerySubscriptionOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("querySubscriptionOptions"))
+func (c_ CKQuerySubscription) QuerySubscriptionOptions() CKQuerySubscriptionOptions {
+	rv := objc.Send[CKQuerySubscriptionOptions](c_.ID, objc.Sel("querySubscriptionOptions"))
 	return rv
 }
 
@@ -145,8 +146,8 @@ func (c_ CKQuerySubscription) RecordType() unsafe.Pointer {
 // The ID of the record zone that the subscription queries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/zoneID
-func (c_ CKQuerySubscription) ZoneID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneID"))
+func (c_ CKQuerySubscription) ZoneID() CKRecordZoneID {
+	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
 }
 
@@ -156,15 +157,15 @@ func (c_ CKQuerySubscription) ZoneID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/zoneID
-func (c_ CKQuerySubscription) SetZoneID(value unsafe.Pointer) {
+func (c_ CKQuerySubscription) SetZoneID(value ICKRecordZoneID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setZoneID:"), value)
 }
 
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQuerySubscription) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKQuerySubscription) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -174,7 +175,7 @@ func (c_ CKQuerySubscription) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQuerySubscription) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKQuerySubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

@@ -279,8 +279,8 @@ func (s_ SpeechSynthesizer) Speaking() bool {
 // The synthesizer’s speaking rate (words per minute).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/rate
-func (s_ SpeechSynthesizer) Rate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rate"))
+func (s_ SpeechSynthesizer) Rate() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("rate"))
 	return rv
 }
 
@@ -290,7 +290,7 @@ func (s_ SpeechSynthesizer) Rate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/rate
-func (s_ SpeechSynthesizer) SetRate(value unsafe.Pointer) {
+func (s_ SpeechSynthesizer) SetRate(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -315,8 +315,8 @@ func (s_ SpeechSynthesizer) SetUsesFeedbackWindow(value bool) {
 // The synthesizer’s speaking volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/volume
-func (s_ SpeechSynthesizer) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("volume"))
+func (s_ SpeechSynthesizer) Volume() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -326,7 +326,7 @@ func (s_ SpeechSynthesizer) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/volume
-func (s_ SpeechSynthesizer) SetVolume(value unsafe.Pointer) {
+func (s_ SpeechSynthesizer) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 

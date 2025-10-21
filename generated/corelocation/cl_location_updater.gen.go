@@ -84,7 +84,7 @@ func NewLocationUpdater() LocationUpdater {
 // Creates a location updater with the configuration and queue that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationUpdater/liveUpdaterWithConfiguration:queue:handler:
-func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configuration unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
+func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configuration ILiveUpdateConfiguration, queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithConfiguration:queue:handler:"), configuration, queue, handler)
 	return rv
 }

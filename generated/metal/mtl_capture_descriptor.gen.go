@@ -100,8 +100,8 @@ func (c_ CaptureDescriptor) SetCaptureObject(value objc.ID) {
 // The destination for any captured command data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/destination
-func (c_ CaptureDescriptor) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("destination"))
+func (c_ CaptureDescriptor) Destination() CaptureDestination {
+	rv := objc.Send[CaptureDestination](c_.ID, objc.Sel("destination"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (c_ CaptureDescriptor) Destination() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/destination
-func (c_ CaptureDescriptor) SetDestination(value unsafe.Pointer) {
+func (c_ CaptureDescriptor) SetDestination(value ICaptureDestination) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDestination:"), value)
 }
 
@@ -129,7 +129,7 @@ func (c_ CaptureDescriptor) OutputURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcapturedescriptor/outputurl
-func (c_ CaptureDescriptor) SetOutputURL(value foundation.URL) {
+func (c_ CaptureDescriptor) SetOutputURL(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputURL:"), value)
 }
 

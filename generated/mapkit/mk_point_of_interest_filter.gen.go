@@ -83,8 +83,8 @@ func NewMKPointOfInterestFilter() MKPointOfInterestFilter {
 // A filter that lists point of interest categories to include or exclude in the search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
-func (m_ MKPointOfInterestFilter) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+func (m_ MKPointOfInterestFilter) PointOfInterestFilter() MKPointOfInterestFilter {
+	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (m_ MKPointOfInterestFilter) PointOfInterestFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/pointofinterestfilter
-func (m_ MKPointOfInterestFilter) SetPointOfInterestFilter(value unsafe.Pointer) {
+func (m_ MKPointOfInterestFilter) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 

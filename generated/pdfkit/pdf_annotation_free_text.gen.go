@@ -84,8 +84,8 @@ func NewPDFAnnotationFreeText() PDFAnnotationFreeText {
 // Returns the textual content (if any) associated with the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFAnnotationFreeText) Contents() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("contents"))
+func (p_ PDFAnnotationFreeText) Contents() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (p_ PDFAnnotationFreeText) Contents() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/contents
-func (p_ PDFAnnotationFreeText) SetContents(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), objc.String(value))
+func (p_ PDFAnnotationFreeText) SetContents(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContents:"), value)
 }
 
 

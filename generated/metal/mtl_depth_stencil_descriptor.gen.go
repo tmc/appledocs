@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewDepthStencilDescriptor() DepthStencilDescriptor {
 // The stencil descriptor for back-facing primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/backFaceStencil
-func (d_ DepthStencilDescriptor) BackFaceStencil() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("backFaceStencil"))
+func (d_ DepthStencilDescriptor) BackFaceStencil() MTLStencilDescriptor {
+	rv := objc.Send[MTLStencilDescriptor](d_.ID, objc.Sel("backFaceStencil"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (d_ DepthStencilDescriptor) BackFaceStencil() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/backFaceStencil
-func (d_ DepthStencilDescriptor) SetBackFaceStencil(value unsafe.Pointer) {
+func (d_ DepthStencilDescriptor) SetBackFaceStencil(value IMTLStencilDescriptor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setBackFaceStencil:"), value)
 }
 
@@ -119,8 +120,8 @@ func (d_ DepthStencilDescriptor) SetDepthCompareFunction(value unsafe.Pointer) {
 // The stencil descriptor for front-facing primitives.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/frontFaceStencil
-func (d_ DepthStencilDescriptor) FrontFaceStencil() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("frontFaceStencil"))
+func (d_ DepthStencilDescriptor) FrontFaceStencil() MTLStencilDescriptor {
+	rv := objc.Send[MTLStencilDescriptor](d_.ID, objc.Sel("frontFaceStencil"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (d_ DepthStencilDescriptor) FrontFaceStencil() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/frontFaceStencil
-func (d_ DepthStencilDescriptor) SetFrontFaceStencil(value unsafe.Pointer) {
+func (d_ DepthStencilDescriptor) SetFrontFaceStencil(value IMTLStencilDescriptor) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrontFaceStencil:"), value)
 }
 
@@ -155,8 +156,8 @@ func (d_ DepthStencilDescriptor) SetDepthWriteEnabled(value bool) {
 // A string that identifies this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) Label() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("label"))
+func (d_ DepthStencilDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -166,8 +167,8 @@ func (d_ DepthStencilDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDepthStencilDescriptor/label
-func (d_ DepthStencilDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (d_ DepthStencilDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLabel:"), value)
 }
 
 // A Boolean value that indicates whether depth values can be written to the depth attachment.

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [GraphDevice] class.
@@ -84,7 +85,7 @@ func NewGraphDevice() GraphDevice {
 // Creates a device from a given Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/init(mtlDevice:)
-func NewGraphDeviceWithMTLDevice(metalDevice objc.ID) GraphDevice {
+func NewGraphDeviceWithMTLDevice(metalDevice objectivec.IObject) GraphDevice {
 	rv := objc.Send[GraphDevice](objc.ID(getGraphDeviceClass().class), objc.Sel("deviceWithMTLDevice:"), metalDevice)
 	return rv
 }
@@ -93,7 +94,7 @@ func NewGraphDeviceWithMTLDevice(metalDevice objc.ID) GraphDevice {
 // Creates a device from a given Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/init(mtlDevice:)
-func (gc _GraphDeviceClass) DeviceWithMTLDevice(metalDevice objc.ID) unsafe.Pointer {
+func (gc _GraphDeviceClass) DeviceWithMTLDevice(metalDevice objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("deviceWithMTLDevice:"), metalDevice)
 	return rv
 }
@@ -109,8 +110,8 @@ func (g_ GraphDevice) MetalDevice() objc.ID {
 // Device of the MPSGraphDevice.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDevice/type
-func (g_ GraphDevice) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("type"))
+func (g_ GraphDevice) Type() GraphDeviceType {
+	rv := objc.Send[GraphDeviceType](g_.ID, objc.Sel("type"))
 	return rv
 }
 

@@ -90,8 +90,8 @@ func (nc _NEHotspotNetworkClass) FetchCurrentWithCompletionHandler(completionHan
 // The BSSID for the Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) Bssid() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("bssid"))
+func (n_ NEHotspotNetwork) Bssid() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("bssid"))
 	return rv
 }
 
@@ -101,8 +101,8 @@ func (n_ NEHotspotNetwork) Bssid() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) SetBssid(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), objc.String(value))
+func (n_ NEHotspotNetwork) SetBssid(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), value)
 }
 
 // Indicates whether the network was joined automatically or was joined explicitly by the user.
@@ -216,8 +216,8 @@ func (n_ NEHotspotNetwork) SetSignalStrength(value unsafe.Pointer) {
 // The SSID for the Wi-Fi network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) Ssid() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("ssid"))
+func (n_ NEHotspotNetwork) Ssid() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("ssid"))
 	return rv
 }
 
@@ -227,8 +227,8 @@ func (n_ NEHotspotNetwork) Ssid() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) SetSsid(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), objc.String(value))
+func (n_ NEHotspotNetwork) SetSsid(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), value)
 }
 
 

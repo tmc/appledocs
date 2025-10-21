@@ -78,8 +78,8 @@ func NewMTRTimeSynchronizationClusterSetDSTOffsetParams() MTRTimeSynchronization
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/dstOffset
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) DstOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dstOffset"))
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) DstOffset() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("dstOffset"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) DstOffset() unsafe.Poi
 // SetDstOffset sets the value of the dstOffset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/dstOffset
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetDstOffset(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetDstOffset(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDstOffset:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) ServerSideProcessingTi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) TimedInvokeTimeoutMs()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetDSTOffsetParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetDSTOffsetParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

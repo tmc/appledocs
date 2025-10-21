@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewGraph
 
+// ExampleNewGraphWithNodes demonstrates how to create a Graph instance using NewGraphWithNodes.
+// Initializes a graph with the specified list of nodes.
+func ExampleNewGraphWithNodes() {
+	_ = gameplaykit.NewGraphWithNodes(
+		[]gameplaykit.GraphNode{}, // nodes []GraphNode
+	)
+	// Output:
+}

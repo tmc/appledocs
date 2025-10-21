@@ -87,7 +87,7 @@ func (m_ MTRBarrierControlClusterBarrierControlStopParams) ServerSideProcessingT
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolstopparams/serversideprocessingtimeout
-func (m_ MTRBarrierControlClusterBarrierControlStopParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRBarrierControlClusterBarrierControlStopParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBarrierControlClusterBarrierControlStopParams) TimedInvokeTimeoutMs(
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolstopparams/timedinvoketimeoutms
-func (m_ MTRBarrierControlClusterBarrierControlStopParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRBarrierControlClusterBarrierControlStopParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

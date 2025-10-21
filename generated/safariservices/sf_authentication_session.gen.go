@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -88,9 +89,9 @@ func NewSFAuthenticationSession() SFAuthenticationSession {
 // Initializes the SFAuthenticationSession in an application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFAuthenticationSession/init(url:callbackURLScheme:completionHandler:)
-func NewSFAuthenticationSessionWithURLCallbackURLSchemeCompletionHandler(URL foundation.URL, callbackURLScheme string, completionHandler unsafe.Pointer) SFAuthenticationSession {
+func NewSFAuthenticationSessionWithURLCallbackURLSchemeCompletionHandler(URL foundation.IURL, callbackURLScheme appkit.string, completionHandler unsafe.Pointer) SFAuthenticationSession {
 	instance := getSFAuthenticationSessionClass().Alloc()
-	rv := objc.Send[SFAuthenticationSession](instance.ID, objc.Sel("initWithURL:callbackURLScheme:completionHandler:"), URL, objc.String(callbackURLScheme), completionHandler)
+	rv := objc.Send[SFAuthenticationSession](instance.ID, objc.Sel("initWithURL:callbackURLScheme:completionHandler:"), URL, callbackURLScheme, completionHandler)
 	rv.Autorelease()
 	return rv
 }
@@ -114,16 +115,16 @@ func (s_ SFAuthenticationSession) Start() bool {
 // The domain for authentication errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfauthenticationerrordomain
-func (s_ SFAuthenticationSession) SFAuthenticationErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFAuthenticationErrorDomain"))
+func (s_ SFAuthenticationSession) SFAuthenticationErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("SFAuthenticationErrorDomain"))
 	return rv
 }
 
 // The domain for content blocker errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/sfcontentblockererrordomain
-func (s_ SFAuthenticationSession) SFContentBlockerErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SFContentBlockerErrorDomain"))
+func (s_ SFAuthenticationSession) SFContentBlockerErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("SFContentBlockerErrorDomain"))
 	return rv
 }
 

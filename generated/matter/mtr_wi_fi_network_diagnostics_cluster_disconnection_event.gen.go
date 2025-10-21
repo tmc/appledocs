@@ -87,7 +87,7 @@ func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) ReasonCode() founda
 // SetReasonCode sets the value of the reasonCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterdisconnectionevent/reasoncode
-func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) SetReasonCode(value foundation.Number) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent) SetReasonCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReasonCode:"), value)
 }
 

@@ -83,8 +83,8 @@ func NewIncrementalStoreNode() IncrementalStoreNode {
 // The object ID that identifies the data stored by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSIncrementalStoreNode/objectID
-func (i_ IncrementalStoreNode) ObjectID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("objectID"))
+func (i_ IncrementalStoreNode) ObjectID() NSManagedObjectID {
+	rv := objc.Send[NSManagedObjectID](i_.ID, objc.Sel("objectID"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _NERelayManagerClass struct {
 // An interface definition for the [NERelayManager] class.
 type INERelayManager interface {
 	objectivec.IObject
-	GetLastClientErrorsCompletionHandler(seconds foundation.TimeInterval, completionHandler unsafe.Pointer)
+	GetLastClientErrorsCompletionHandler(seconds foundation.ITimeInterval, completionHandler unsafe.Pointer)
 	LoadFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	RemoveFromPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
 	SaveToPreferencesWithCompletionHandler(completionHandler unsafe.Pointer)
@@ -95,14 +96,14 @@ func (nc _NERelayManagerClass) LoadAllManagersFromPreferencesWithCompletionHandl
 // Access the single instance of a network relay manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/shared()
-func (nc _NERelayManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("sharedManager"))
+func (nc _NERelayManagerClass) SharedManager() NERelayManager {
+	rv := objc.Send[NERelayManager](objc.ID(nc.class), objc.Sel("sharedManager"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/getLastClientErrors(_:completionHandler:)
-func (n_ NERelayManager) GetLastClientErrorsCompletionHandler(seconds foundation.TimeInterval, completionHandler unsafe.Pointer) {
+func (n_ NERelayManager) GetLastClientErrorsCompletionHandler(seconds foundation.ITimeInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("getLastClientErrors:completionHandler:"), seconds, completionHandler)
 }
 
@@ -231,8 +232,8 @@ func (n_ NERelayManager) SetUIToggleEnabled(value bool) {
 // A string that contains the display name of the relay configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
-func (n_ NERelayManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NERelayManager) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -242,8 +243,8 @@ func (n_ NERelayManager) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NERelayManager/localizedDescription
-func (n_ NERelayManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NERelayManager) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
 
 // A list of domain strings used to determine which connections will use the relay configuration contained in this object.
@@ -358,8 +359,8 @@ func (n_ NERelayManager) SetRelays(value []NERelay) {
 // The domain for errors resulting from calls to the relay manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nerelayerrordomain
-func (n_ NERelayManager) NERelayErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NERelayErrorDomain"))
+func (n_ NERelayManager) NERelayErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NERelayErrorDomain"))
 	return rv
 }
 

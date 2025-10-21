@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NEPacketTunnelProvider] class.
@@ -29,11 +31,11 @@ type _NEPacketTunnelProviderClass struct {
 // An interface definition for the [NEPacketTunnelProvider] class.
 type INEPacketTunnelProvider interface {
 	INETunnelProvider
-	CancelTunnelWithError(error_ unsafe.Pointer)
-	CreateTCPConnectionThroughTunnelToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint unsafe.Pointer, enableTLS bool, TLSParameters unsafe.Pointer, delegate objc.ID) unsafe.Pointer
-	CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint unsafe.Pointer, localEndpoint unsafe.Pointer) unsafe.Pointer
+	CancelTunnelWithError(error_ foundation.IError)
+	CreateTCPConnectionThroughTunnelToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection
+	CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession
 	StartTunnelWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
-	StopTunnelWithReasonCompletionHandler(reason unsafe.Pointer, completionHandler unsafe.Pointer)
+	StopTunnelWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer)
 }
 
 // The principal class for a packet tunnel provider app extension.
@@ -89,23 +91,23 @@ func NewNEPacketTunnelProvider() NEPacketTunnelProvider {
 // Stop the network tunnel from the Packet Tunnel Provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/cancelTunnelWithError(_:)
-func (n_ NEPacketTunnelProvider) CancelTunnelWithError(error_ unsafe.Pointer) {
+func (n_ NEPacketTunnelProvider) CancelTunnelWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("cancelTunnelWithError:"), error_)
 }
 
 // Create a TCP connection through the current tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/createTCPConnectionThroughTunnel(to:enableTLS:tlsParameters:delegate:)
-func (n_ NEPacketTunnelProvider) CreateTCPConnectionThroughTunnelToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint unsafe.Pointer, enableTLS bool, TLSParameters unsafe.Pointer, delegate objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:"), remoteEndpoint, enableTLS, TLSParameters, delegate)
+func (n_ NEPacketTunnelProvider) CreateTCPConnectionThroughTunnelToEndpointEnableTLSTLSParametersDelegate(remoteEndpoint INWEndpoint, enableTLS bool, TLSParameters INWTLSParameters, delegate objectivec.IObject) NWTCPConnection {
+	rv := objc.Send[NWTCPConnection](n_.ID, objc.Sel("createTCPConnectionThroughTunnelToEndpoint:enableTLS:TLSParameters:delegate:"), remoteEndpoint, enableTLS, TLSParameters, delegate)
 	return rv
 }
 
 // Creates a UDP session through the current tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/createUDPSessionThroughTunnel(to:from:)
-func (n_ NEPacketTunnelProvider) CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint unsafe.Pointer, localEndpoint unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("createUDPSessionThroughTunnelToEndpoint:fromEndpoint:"), remoteEndpoint, localEndpoint)
+func (n_ NEPacketTunnelProvider) CreateUDPSessionThroughTunnelToEndpointFromEndpoint(remoteEndpoint INWEndpoint, localEndpoint INWHostEndpoint) NWUDPSession {
+	rv := objc.Send[NWUDPSession](n_.ID, objc.Sel("createUDPSessionThroughTunnelToEndpoint:fromEndpoint:"), remoteEndpoint, localEndpoint)
 	return rv
 }
 
@@ -119,15 +121,15 @@ func (n_ NEPacketTunnelProvider) StartTunnelWithOptionsCompletionHandler(options
 // Stop the network tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/stopTunnel(with:completionHandler:)
-func (n_ NEPacketTunnelProvider) StopTunnelWithReasonCompletionHandler(reason unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (n_ NEPacketTunnelProvider) StopTunnelWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stopTunnelWithReason:completionHandler:"), reason, completionHandler)
 }
 
 // A object which is used to receive IP packets routed to the tunnel’s virtual interface and inject IP packets into the networking stack via the tunnel’s virtual interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacketTunnelProvider/packetFlow
-func (n_ NEPacketTunnelProvider) PacketFlow() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("packetFlow"))
+func (n_ NEPacketTunnelProvider) PacketFlow() NEPacketTunnelFlow {
+	rv := objc.Send[NEPacketTunnelFlow](n_.ID, objc.Sel("packetFlow"))
 	return rv
 }
 

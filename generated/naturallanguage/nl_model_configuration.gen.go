@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,7 +82,7 @@ func NewModelConfiguration() ModelConfiguration {
 // Returns the current Natural Language framework version in the OS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/currentRevision(for:)
-func (mc _ModelConfigurationClass) CurrentRevisionForType(type_ unsafe.Pointer) uint {
+func (mc _ModelConfigurationClass) CurrentRevisionForType(type_ ModelType) uint {
 	rv := objc.Send[uint](objc.ID(mc.class), objc.Sel("currentRevisionForType:"), type_)
 	return rv
 }
@@ -89,16 +90,16 @@ func (mc _ModelConfigurationClass) CurrentRevisionForType(type_ unsafe.Pointer) 
 // Returns the versions of the Natural Language framework the OS supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/supportedRevisions(for:)
-func (mc _ModelConfigurationClass) SupportedRevisionsForType(type_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("supportedRevisionsForType:"), type_)
+func (mc _ModelConfigurationClass) SupportedRevisionsForType(type_ ModelType) foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](objc.ID(mc.class), objc.Sel("supportedRevisionsForType:"), type_)
 	return rv
 }
 
 // The language the model supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/language
-func (m_ ModelConfiguration) Language() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("language"))
+func (m_ ModelConfiguration) Language() Language {
+	rv := objc.Send[Language](m_.ID, objc.Sel("language"))
 	return rv
 }
 
@@ -113,16 +114,16 @@ func (m_ ModelConfiguration) Revision() uint {
 // The natural language model type of the model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModelConfiguration/type
-func (m_ ModelConfiguration) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("type"))
+func (m_ ModelConfiguration) Type() ModelType {
+	rv := objc.Send[ModelType](m_.ID, objc.Sel("type"))
 	return rv
 }
 
 // A configuration describing the natural language model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
-func (m_ ModelConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("configuration"))
+func (m_ ModelConfiguration) Configuration() NLModelConfiguration {
+	rv := objc.Send[NLModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (m_ ModelConfiguration) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/naturallanguage/nlmodel/configuration
-func (m_ ModelConfiguration) SetConfiguration(value unsafe.Pointer) {
+func (m_ ModelConfiguration) SetConfiguration(value INLModelConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConfiguration:"), value)
 }
 

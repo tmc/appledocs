@@ -89,7 +89,7 @@ func NewMIDIPlayer() MIDIPlayer {
 // Creates a player to play a MIDI file with the specified soundbank.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(contentsOf:soundBankURL:)
-func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.URL, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.IURL, bankURL foundation.IURL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithContentsOfURL:soundBankURL:error:"), inURL, bankURL, outError)
 	rv.Autorelease()
@@ -101,7 +101,7 @@ func NewMIDIPlayerWithContentsOfURLSoundBankURLError(inURL foundation.URL, bankU
 // Creates a player to play MIDI data with the specified soundbank.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/init(data:soundBankURL:)
-func NewMIDIPlayerWithDataSoundBankURLError(data unsafe.Pointer, bankURL foundation.URL, outError unsafe.Pointer) MIDIPlayer {
+func NewMIDIPlayerWithDataSoundBankURLError(data foundation.IData, bankURL foundation.IURL, outError unsafe.Pointer) MIDIPlayer {
 	instance := getMIDIPlayerClass().Alloc()
 	rv := objc.Send[MIDIPlayer](instance.ID, objc.Sel("initWithData:soundBankURL:error:"), data, bankURL, outError)
 	rv.Autorelease()
@@ -144,7 +144,7 @@ func (m_ MIDIPlayer) CurrentPosition() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVMIDIPlayer/currentPosition
-func (m_ MIDIPlayer) SetCurrentPosition(value foundation.TimeInterval) {
+func (m_ MIDIPlayer) SetCurrentPosition(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentPosition:"), value)
 }
 

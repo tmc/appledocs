@@ -9,12 +9,3 @@ import (
 // Suppress unused import errors
 var _ = classkit.NewSQuantityItem
 
-// ExampleNewSQuantityItemWithIdentifierTitle demonstrates how to create a SQuantityItem instance using NewSQuantityItemWithIdentifierTitle.
-// Initializes an activity item that records a discrete quantity.
-func ExampleNewSQuantityItemWithIdentifierTitle() {
-	_ = classkit.NewSQuantityItemWithIdentifierTitle(
-		"identifier", // identifier string
-		"title", // title string
-	)
-	// Output:
-}

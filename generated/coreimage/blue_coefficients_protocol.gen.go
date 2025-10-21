@@ -1,0 +1,21 @@
+// Code generated from Apple documentation for CoreImage. DO NOT EDIT.
+
+package coreimage
+
+import "github.com/ebitengine/purego/objc"
+
+// blueCoefficientsProtocol is the blueCoefficients protocol.
+//
+// Availability:
+//   - Mac Catalyst 13.1+
+//   - iOS 5.0+
+//   - iPadOS 5.0+
+//   - macOS 10.4+
+//   - visionOS 1.0+
+//
+// Use this protocol when registering custom classes that conform to blueCoefficients.
+var blueCoefficientsProtocol *objc.Protocol
+
+func init() {
+	blueCoefficientsProtocol = objc.GetProtocol("blueCoefficients")
+}

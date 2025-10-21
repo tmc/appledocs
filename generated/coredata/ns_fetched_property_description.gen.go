@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [FetchedPropertyDescription] class.
@@ -84,8 +85,8 @@ func NewFetchedPropertyDescription() FetchedPropertyDescription {
 // The fetch request of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
-func (f_ FetchedPropertyDescription) FetchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fetchRequest"))
+func (f_ FetchedPropertyDescription) FetchRequest() NSFetchRequest {
+	rv := objc.Send[NSFetchRequest](f_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (f_ FetchedPropertyDescription) FetchRequest() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedPropertyDescription/fetchRequest
-func (f_ FetchedPropertyDescription) SetFetchRequest(value unsafe.Pointer) {
+func (f_ FetchedPropertyDescription) SetFetchRequest(value IFetchRequest) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchRequest:"), value)
 }
 
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchedPropertyDescription) AffectedStores() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("affectedStores"))
+func (f_ FetchedPropertyDescription) AffectedStores() NSPersistentStore {
+	rv := objc.Send[NSPersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (f_ FetchedPropertyDescription) AffectedStores() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/affectedstores
-func (f_ FetchedPropertyDescription) SetAffectedStores(value unsafe.Pointer) {
+func (f_ FetchedPropertyDescription) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
 }
 
@@ -174,8 +175,8 @@ func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
 // The predicate of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchedPropertyDescription) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("predicate"))
+func (f_ FetchedPropertyDescription) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](f_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -185,7 +186,7 @@ func (f_ FetchedPropertyDescription) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsfetchrequest/predicate
-func (f_ FetchedPropertyDescription) SetPredicate(value unsafe.Pointer) {
+func (f_ FetchedPropertyDescription) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
 

@@ -83,23 +83,23 @@ func NewContentWorld() ContentWorld {
 // The content world for the current webpage’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
-func (cc _ContentWorldClass) PageWorld() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("pageWorld"))
+func (cc _ContentWorldClass) PageWorld() ContentWorld {
+	rv := objc.Send[WKContentWorld](objc.ID(cc.class), objc.Sel("pageWorld"))
 	return rv
 }
 // The content world for the current webpage’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKContentWorld/page
-func (c_ ContentWorld) PageWorld() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("pageWorld"))
+func (c_ ContentWorld) PageWorld() WKContentWorld {
+	rv := objc.Send[WKContentWorld](c_.ID, objc.Sel("pageWorld"))
 	return rv
 }
 
 // The name of a custom content world.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
-func (c_ ContentWorld) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ ContentWorld) Name() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (c_ ContentWorld) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkcontentworld/name
-func (c_ ContentWorld) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ ContentWorld) SetName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PHAssetResourceUploadJob] class.
@@ -84,7 +85,7 @@ func NewPHAssetResourceUploadJob() PHAssetResourceUploadJob {
 // Returns all asset resource upload jobs applicable for a given action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/fetchJobs(action:options:)
-func (pc _PHAssetResourceUploadJobClass) FetchJobsWithActionOptions(action unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHAssetResourceUploadJobClass) FetchJobsWithActionOptions(action IPHAssetResourceUploadJobAction, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchJobsWithAction:options:"), action, options)
 	return rv
 }
@@ -98,8 +99,8 @@ func (pc _PHAssetResourceUploadJobClass) JobLimit() int {
 // The asset resource this upload job represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/destination
-func (p_ PHAssetResourceUploadJob) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("destination"))
+func (p_ PHAssetResourceUploadJob) Destination() foundation.URLRequest {
+	rv := objc.Send[foundation.URLRequest](p_.ID, objc.Sel("destination"))
 	return rv
 }
 
@@ -113,16 +114,16 @@ func (p_ PHAssetResourceUploadJob) JobLimit() int {
 // The maximum number of unacknowledged upload jobs allowed, this includes registered, pending, succeeded and failed jobs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/resource
-func (p_ PHAssetResourceUploadJob) Resource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("resource"))
+func (p_ PHAssetResourceUploadJob) Resource() PHAssetResource {
+	rv := objc.Send[PHAssetResource](p_.ID, objc.Sel("resource"))
 	return rv
 }
 
 // The destination to send this asset resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/state-swift.property
-func (p_ PHAssetResourceUploadJob) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("state"))
+func (p_ PHAssetResourceUploadJob) State() PHAssetResourceUploadJobState {
+	rv := objc.Send[PHAssetResourceUploadJobState](p_.ID, objc.Sel("state"))
 	return rv
 }
 

@@ -87,7 +87,7 @@ func NewINStartWorkoutIntent() INStartWorkoutIntent {
 // Initializes an intent object with the specified workout information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:
-func NewINStartWorkoutIntentWithWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLocationTypeIsOpenEnded(workoutName unsafe.Pointer, goalValue foundation.Number, workoutGoalUnitType unsafe.Pointer, workoutLocationType unsafe.Pointer, isOpenEnded foundation.Number) INStartWorkoutIntent {
+func NewINStartWorkoutIntentWithWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLocationTypeIsOpenEnded(workoutName INSpeakableString, goalValue foundation.INumber, workoutGoalUnitType unsafe.Pointer, workoutLocationType unsafe.Pointer, isOpenEnded foundation.INumber) INStartWorkoutIntent {
 	instance := getINStartWorkoutIntentClass().Alloc()
 	rv := objc.Send[INStartWorkoutIntent](instance.ID, objc.Sel("initWithWorkoutName:goalValue:workoutGoalUnitType:workoutLocationType:isOpenEnded:"), workoutName, goalValue, workoutGoalUnitType, workoutLocationType, isOpenEnded)
 	rv.Autorelease()
@@ -106,8 +106,8 @@ func (i_ INStartWorkoutIntent) WorkoutGoalUnitType() unsafe.Pointer {
 // The name of the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INStartWorkoutIntent/workoutName
-func (i_ INStartWorkoutIntent) WorkoutName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
 	return rv
 }
 

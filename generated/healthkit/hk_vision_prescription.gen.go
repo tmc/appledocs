@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKVisionPrescription] class.
@@ -84,8 +85,8 @@ func NewHKVisionPrescription() HKVisionPrescription {
 // The date when the doctor issued the prescription.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-func (h_ HKVisionPrescription) DateIssued() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("dateIssued"))
+func (h_ HKVisionPrescription) DateIssued() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("dateIssued"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (h_ HKVisionPrescription) DateIssued() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/dateissued
-func (h_ HKVisionPrescription) SetDateIssued(value unsafe.Pointer) {
+func (h_ HKVisionPrescription) SetDateIssued(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDateIssued:"), value)
 }
 
 // The date when the prescription expires.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) ExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("expirationDate"))
+func (h_ HKVisionPrescription) ExpirationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (h_ HKVisionPrescription) ExpirationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkvisionprescription/expirationdate
-func (h_ HKVisionPrescription) SetExpirationDate(value unsafe.Pointer) {
+func (h_ HKVisionPrescription) SetExpirationDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setExpirationDate:"), value)
 }
 

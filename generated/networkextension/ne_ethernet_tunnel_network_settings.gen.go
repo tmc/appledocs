@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [NEEthernetTunnelNetworkSettings] class.
@@ -86,9 +87,9 @@ func NewNEEthernetTunnelNetworkSettings() NEEthernetTunnelNetworkSettings {
 // Creates a settings object with a given tunnel remote address and MAC address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings/init(tunnelRemoteAddress:ethernetAddress:mtu:)
-func NewNEEthernetTunnelNetworkSettingsWithTunnelRemoteAddressEthernetAddressMtu(address string, ethernetAddress string, mtu int) NEEthernetTunnelNetworkSettings {
+func NewNEEthernetTunnelNetworkSettingsWithTunnelRemoteAddressEthernetAddressMtu(address appkit.string, ethernetAddress appkit.string, mtu int) NEEthernetTunnelNetworkSettings {
 	instance := getNEEthernetTunnelNetworkSettingsClass().Alloc()
-	rv := objc.Send[NEEthernetTunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:ethernetAddress:mtu:"), objc.String(address), objc.String(ethernetAddress), mtu)
+	rv := objc.Send[NEEthernetTunnelNetworkSettings](instance.ID, objc.Sel("initWithTunnelRemoteAddress:ethernetAddress:mtu:"), address, ethernetAddress, mtu)
 	rv.Autorelease()
 	return rv
 }
@@ -97,8 +98,8 @@ func NewNEEthernetTunnelNetworkSettingsWithTunnelRemoteAddressEthernetAddressMtu
 // The ethernet address of the tunnel interface, as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEEthernetTunnelNetworkSettings/ethernetAddress
-func (n_ NEEthernetTunnelNetworkSettings) EthernetAddress() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("ethernetAddress"))
+func (n_ NEEthernetTunnelNetworkSettings) EthernetAddress() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("ethernetAddress"))
 	return rv
 }
 

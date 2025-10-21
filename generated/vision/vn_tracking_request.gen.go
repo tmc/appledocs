@@ -93,8 +93,8 @@ func (t_ TrackingRequest) SupportedNumberOfTrackersAndReturnError(error_ unsafe.
 // The observation object defining a region to track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
-func (t_ TrackingRequest) InputObservation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("inputObservation"))
+func (t_ TrackingRequest) InputObservation() VNDetectedObjectObservation {
+	rv := objc.Send[VNDetectedObjectObservation](t_.ID, objc.Sel("inputObservation"))
 	return rv
 }
 
@@ -104,7 +104,7 @@ func (t_ TrackingRequest) InputObservation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vntrackingrequest/inputobservation
-func (t_ TrackingRequest) SetInputObservation(value unsafe.Pointer) {
+func (t_ TrackingRequest) SetInputObservation(value IVNDetectedObjectObservation) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setInputObservation:"), value)
 }
 

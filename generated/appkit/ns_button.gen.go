@@ -39,7 +39,7 @@ type IButton interface {
 	PerformKeyEquivalent(key IEvent) bool
 	SetButtonType(type_ ButtonType)
 	SetNextState()
-	SetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
+	SetPeriodicDelayInterval(delay float32, interval float32)
 	SetTitleWithMnemonic(stringWithAmpersand string)
 }
 
@@ -238,7 +238,7 @@ func (b_ Button) SetNextState() {
 // Sets the message delay and interval periods for a continuous button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/setPeriodicDelay(_:interval:)
-func (b_ Button) SetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer) {
+func (b_ Button) SetPeriodicDelayInterval(delay float32, interval float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
 

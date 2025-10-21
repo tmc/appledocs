@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewTurnBasedParticipant() TurnBasedParticipant {
 // The date and time that the participant’s turn timed out.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKTurnBasedParticipant/timeoutDate
-func (t_ TurnBasedParticipant) TimeoutDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("timeoutDate"))
+func (t_ TurnBasedParticipant) TimeoutDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](t_.ID, objc.Sel("timeoutDate"))
 	return rv
 }
 
 // The players that participate in a turn-based match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-func (t_ TurnBasedParticipant) Participants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("participants"))
+func (t_ TurnBasedParticipant) Participants() GKTurnBasedParticipant {
+	rv := objc.Send[GKTurnBasedParticipant](t_.ID, objc.Sel("participants"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (t_ TurnBasedParticipant) Participants() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants
-func (t_ TurnBasedParticipant) SetParticipants(value unsafe.Pointer) {
+func (t_ TurnBasedParticipant) SetParticipants(value IGKTurnBasedParticipant) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setParticipants:"), value)
 }
 
 // The date and time that this participant last took a turn in the game.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
-func (t_ TurnBasedParticipant) LastTurnDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("lastTurnDate"))
+func (t_ TurnBasedParticipant) LastTurnDate() foundation.Date {
+	rv := objc.Send[foundation.Date](t_.ID, objc.Sel("lastTurnDate"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (t_ TurnBasedParticipant) LastTurnDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/lastturndate
-func (t_ TurnBasedParticipant) SetLastTurnDate(value unsafe.Pointer) {
+func (t_ TurnBasedParticipant) SetLastTurnDate(value foundation.IDate) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLastTurnDate:"), value)
 }
 
@@ -145,8 +146,8 @@ func (t_ TurnBasedParticipant) SetMatchOutcome(value unsafe.Pointer) {
 // The player object containing the participant details.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player
-func (t_ TurnBasedParticipant) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("player"))
+func (t_ TurnBasedParticipant) Player() GKPlayer {
+	rv := objc.Send[GKPlayer](t_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -156,15 +157,15 @@ func (t_ TurnBasedParticipant) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player
-func (t_ TurnBasedParticipant) SetPlayer(value unsafe.Pointer) {
+func (t_ TurnBasedParticipant) SetPlayer(value IGKPlayer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayer:"), value)
 }
 
 // The player identifier for this participant.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-func (t_ TurnBasedParticipant) PlayerID() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("playerID"))
+func (t_ TurnBasedParticipant) PlayerID() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("playerID"))
 	return rv
 }
 
@@ -174,8 +175,8 @@ func (t_ TurnBasedParticipant) PlayerID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid
-func (t_ TurnBasedParticipant) SetPlayerID(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), objc.String(value))
+func (t_ TurnBasedParticipant) SetPlayerID(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlayerID:"), value)
 }
 
 // The status of the participant.

@@ -87,7 +87,7 @@ func (m_ MTRBasicInformationClusterLeaveEvent) FabricIndex() foundation.Number {
 // SetFabricIndex sets the value of the fabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterleaveevent/fabricindex
-func (m_ MTRBasicInformationClusterLeaveEvent) SetFabricIndex(value foundation.Number) {
+func (m_ MTRBasicInformationClusterLeaveEvent) SetFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
 

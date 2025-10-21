@@ -81,8 +81,8 @@ func NewMediaSelection() MediaSelection {
 // The asset associated with the media selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
-func (m_ MediaSelection) Asset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("asset"))
+func (m_ MediaSelection) Asset() AVAsset {
+	rv := objc.Send[AVAsset](m_.ID, objc.Sel("asset"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (m_ MediaSelection) Asset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmediaselection/asset
-func (m_ MediaSelection) SetAsset(value unsafe.Pointer) {
+func (m_ MediaSelection) SetAsset(value IAVAsset) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAsset:"), value)
 }
 

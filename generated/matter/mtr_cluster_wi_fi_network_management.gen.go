@@ -30,15 +30,15 @@ type _MTRClusterWiFiNetworkManagementClass struct {
 // An interface definition for the [MTRClusterWiFiNetworkManagement] class.
 type IMTRClusterWiFiNetworkManagement interface {
 	IMTRGenericCluster
-	NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributePassphraseSurrogateWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeSSIDWithParams(params unsafe.Pointer) unsafe.Pointer
+	NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributePassphraseSurrogateWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeSSIDWithParams(params IMTRReadParams) unsafe.Pointer
 }
 
 // Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
@@ -94,7 +94,7 @@ func NewMTRClusterWiFiNetworkManagement() MTRClusterWiFiNetworkManagement {
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/init(device:endpointID:queue:)
-func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterWiFiNetworkManagement {
+func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterWiFiNetworkManagement {
 	instance := getMTRClusterWiFiNetworkManagementClass().Alloc()
 	rv := objc.Send[MTRClusterWiFiNetworkManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -104,61 +104,61 @@ func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/networkPassphraseRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("networkPassphraseRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/networkPassphraseRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("networkPassphraseRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributePassphraseSurrogate(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributePassphraseSurrogateWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributePassphraseSurrogateWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributePassphraseSurrogateWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeSSID(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeSSIDWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeSSIDWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeSSIDWithParams:"), params)
 	return rv
 }

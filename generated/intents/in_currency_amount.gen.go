@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewINCurrencyAmount() INCurrencyAmount {
 // The monetary amount associated with the currency.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/amount
-func (i_ INCurrencyAmount) Amount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("amount"))
+func (i_ INCurrencyAmount) Amount() foundation.DecimalNumber {
+	rv := objc.Send[foundation.DecimalNumber](i_.ID, objc.Sel("amount"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (i_ INCurrencyAmount) Amount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/amount
-func (i_ INCurrencyAmount) SetAmount(value unsafe.Pointer) {
+func (i_ INCurrencyAmount) SetAmount(value foundation.IDecimalNumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAmount:"), value)
 }
 
 // The ISO 4217 currency code that applies to the monetary amount.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
-func (i_ INCurrencyAmount) CurrencyCode() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("currencyCode"))
+func (i_ INCurrencyAmount) CurrencyCode() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("currencyCode"))
 	return rv
 }
 
@@ -112,8 +113,8 @@ func (i_ INCurrencyAmount) CurrencyCode() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incurrencyamount/currencycode
-func (i_ INCurrencyAmount) SetCurrencyCode(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), objc.String(value))
+func (i_ INCurrencyAmount) SetCurrencyCode(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), value)
 }
 
 

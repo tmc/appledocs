@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,18 +31,18 @@ type _RuleSystemClass struct {
 // An interface definition for the [RuleSystem] class.
 type IRuleSystem interface {
 	objectivec.IObject
-	AddRule(rule unsafe.Pointer)
-	AddRulesFromArray(rules unsafe.Pointer)
-	AssertFact(fact objc.ID)
-	AssertFactGrade(fact objc.ID, grade unsafe.Pointer)
+	AddRule(rule IGKRule)
+	AddRulesFromArray(rules []Rule)
+	AssertFact(fact objectivec.IObject)
+	AssertFactGrade(fact objectivec.IObject, grade unsafe.Pointer)
 	Evaluate()
-	GradeForFact(fact objc.ID) unsafe.Pointer
-	MaximumGradeForFacts(facts objc.ID) unsafe.Pointer
-	MinimumGradeForFacts(facts objc.ID) unsafe.Pointer
+	GradeForFact(fact objectivec.IObject) unsafe.Pointer
+	MaximumGradeForFacts(facts objectivec.IObject) unsafe.Pointer
+	MinimumGradeForFacts(facts objectivec.IObject) unsafe.Pointer
 	RemoveAllRules()
 	Reset()
-	RetractFact(fact objc.ID)
-	RetractFactGrade(fact objc.ID, grade unsafe.Pointer)
+	RetractFact(fact objectivec.IObject)
+	RetractFactGrade(fact objectivec.IObject, grade unsafe.Pointer)
 }
 
 // A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
@@ -96,28 +97,28 @@ func NewRuleSystem() RuleSystem {
 // Adds the specified rule to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5
-func (r_ RuleSystem) AddRule(rule unsafe.Pointer) {
+func (r_ RuleSystem) AddRule(rule IGKRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRule:"), rule)
 }
 
 // Adds the specified list of rules to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw
-func (r_ RuleSystem) AddRulesFromArray(rules unsafe.Pointer) {
+func (r_ RuleSystem) AddRulesFromArray(rules []Rule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRulesFromArray:"), rules)
 }
 
 // Adds the specified fact to the fact set with a membership grade of 1.0, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:)
-func (r_ RuleSystem) AssertFact(fact objc.ID) {
+func (r_ RuleSystem) AssertFact(fact objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:"), fact)
 }
 
 // Increases the membership grade of the specified fact by the specified amount, adding it to the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)
-func (r_ RuleSystem) AssertFactGrade(fact objc.ID, grade unsafe.Pointer) {
+func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:grade:"), fact, grade)
 }
 
@@ -131,7 +132,7 @@ func (r_ RuleSystem) Evaluate() {
 // Returns the membership grade of the specified fact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/grade(forFact:)
-func (r_ RuleSystem) GradeForFact(fact objc.ID) unsafe.Pointer {
+func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("gradeForFact:"), fact)
 	return rv
 }
@@ -139,7 +140,7 @@ func (r_ RuleSystem) GradeForFact(fact objc.ID) unsafe.Pointer {
 // Returns the highest membership grade among the specified facts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/maximumGrade(forFacts:)
-func (r_ RuleSystem) MaximumGradeForFacts(facts objc.ID) unsafe.Pointer {
+func (r_ RuleSystem) MaximumGradeForFacts(facts objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("maximumGradeForFacts:"), facts)
 	return rv
 }
@@ -147,7 +148,7 @@ func (r_ RuleSystem) MaximumGradeForFacts(facts objc.ID) unsafe.Pointer {
 // Returns the lowest membership grade among the specified facts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/minimumGrade(forFacts:)
-func (r_ RuleSystem) MinimumGradeForFacts(facts objc.ID) unsafe.Pointer {
+func (r_ RuleSystem) MinimumGradeForFacts(facts objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("minimumGradeForFacts:"), facts)
 	return rv
 }
@@ -169,14 +170,14 @@ func (r_ RuleSystem) Reset() {
 // Removes the specified fact from the fact set, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:)
-func (r_ RuleSystem) RetractFact(fact objc.ID) {
+func (r_ RuleSystem) RetractFact(fact objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:"), fact)
 }
 
 // Reduces the membership grade of the specified fact by the specified amount, removing it from the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)
-func (r_ RuleSystem) RetractFactGrade(fact objc.ID, grade unsafe.Pointer) {
+func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:grade:"), fact, grade)
 }
 
@@ -199,8 +200,8 @@ func (r_ RuleSystem) Executed() []Rule {
 // The list of facts claimed by the rule system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/facts
-func (r_ RuleSystem) Facts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("facts"))
+func (r_ RuleSystem) Facts() objc.ID {
+	rv := objc.Send[objc.ID](r_.ID, objc.Sel("facts"))
 	return rv
 }
 
@@ -215,8 +216,8 @@ func (r_ RuleSystem) Rules() []Rule {
 // A dictionary of state information to be evaluated by the system’s rules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/state
-func (r_ RuleSystem) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("state"))
+func (r_ RuleSystem) State() foundation.MutableDictionary {
+	rv := objc.Send[foundation.MutableDictionary](r_.ID, objc.Sel("state"))
 	return rv
 }
 

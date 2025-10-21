@@ -118,8 +118,8 @@ func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexBufferOf
 // The data type of indices in the index buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indextype
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexType"))
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](a_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indextype
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
 }
 
@@ -199,8 +199,8 @@ func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTriangleCount
 // An array of motion keyframes, each containing triangle data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexbuffers
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("vertexBuffers"))
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexBuffers() MTLMotionKeyframeData {
+	rv := objc.Send[MTLMotionKeyframeData](a_.ID, objc.Sel("vertexBuffers"))
 	return rv
 }
 
@@ -210,7 +210,7 @@ func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexBuffers() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexbuffers
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexBuffers(value unsafe.Pointer) {
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexBuffers(value IMTLMotionKeyframeData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVertexBuffers:"), value)
 }
 

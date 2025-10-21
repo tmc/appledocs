@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewINCallRecord() INCallRecord {
 // The audio and video capabilities of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callcapability
-func (i_ INCallRecord) CallCapability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callCapability"))
+func (i_ INCallRecord) CallCapability() INCallCapability {
+	rv := objc.Send[INCallCapability](i_.ID, objc.Sel("callCapability"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (i_ INCallRecord) CallCapability() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callcapability
-func (i_ INCallRecord) SetCallCapability(value unsafe.Pointer) {
+func (i_ INCallRecord) SetCallCapability(value INCallCapability) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
 
@@ -119,8 +120,8 @@ func (i_ INCallRecord) SetCallDuration(value unsafe.Pointer) {
 // The type of call that resulted from the attempt.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callrecordtype
-func (i_ INCallRecord) CallRecordType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("callRecordType"))
+func (i_ INCallRecord) CallRecordType() INCallRecordType {
+	rv := objc.Send[INCallRecordType](i_.ID, objc.Sel("callRecordType"))
 	return rv
 }
 
@@ -130,15 +131,15 @@ func (i_ INCallRecord) CallRecordType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/callrecordtype
-func (i_ INCallRecord) SetCallRecordType(value unsafe.Pointer) {
+func (i_ INCallRecord) SetCallRecordType(value INCallRecordType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordType:"), value)
 }
 
 // The person who participated in the call with the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/caller
-func (i_ INCallRecord) Caller() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("caller"))
+func (i_ INCallRecord) Caller() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("caller"))
 	return rv
 }
 
@@ -148,15 +149,15 @@ func (i_ INCallRecord) Caller() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/caller
-func (i_ INCallRecord) SetCaller(value unsafe.Pointer) {
+func (i_ INCallRecord) SetCaller(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCaller:"), value)
 }
 
 // The date and time at which the call was initiated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/datecreated
-func (i_ INCallRecord) DateCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dateCreated"))
+func (i_ INCallRecord) DateCreated() foundation.Date {
+	rv := objc.Send[foundation.Date](i_.ID, objc.Sel("dateCreated"))
 	return rv
 }
 
@@ -166,15 +167,15 @@ func (i_ INCallRecord) DateCreated() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/datecreated
-func (i_ INCallRecord) SetDateCreated(value unsafe.Pointer) {
+func (i_ INCallRecord) SetDateCreated(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
 
 // A unique string that you can use to locate the call in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
-func (i_ INCallRecord) Identifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("identifier"))
+func (i_ INCallRecord) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -184,8 +185,8 @@ func (i_ INCallRecord) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/identifier
-func (i_ INCallRecord) SetIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (i_ INCallRecord) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The number of calls in the call record.
@@ -209,8 +210,8 @@ func (i_ INCallRecord) SetNumberOfCalls(value int) {
 // The recipient of the user’s call request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/participants
-func (i_ INCallRecord) Participants() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("participants"))
+func (i_ INCallRecord) Participants() INPerson {
+	rv := objc.Send[INPerson](i_.ID, objc.Sel("participants"))
 	return rv
 }
 
@@ -220,7 +221,7 @@ func (i_ INCallRecord) Participants() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incallrecord/participants
-func (i_ INCallRecord) SetParticipants(value unsafe.Pointer) {
+func (i_ INCallRecord) SetParticipants(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
 }
 

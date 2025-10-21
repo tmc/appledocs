@@ -83,7 +83,7 @@ func NewMKLookAroundSnapshotter() MKLookAroundSnapshotter {
 // Create a new snapshotter object with the scene and options you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKLookAroundSnapshotter/init(scene:options:)
-func NewMKLookAroundSnapshotterWithSceneOptions(scene unsafe.Pointer, options unsafe.Pointer) MKLookAroundSnapshotter {
+func NewMKLookAroundSnapshotterWithSceneOptions(scene IMKLookAroundScene, options unsafe.Pointer) MKLookAroundSnapshotter {
 	instance := getMKLookAroundSnapshotterClass().Alloc()
 	rv := objc.Send[MKLookAroundSnapshotter](instance.ID, objc.Sel("initWithScene:options:"), scene, options)
 	rv.Autorelease()

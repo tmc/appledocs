@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewCNFetchResult() CNFetchResult {
 // An opaque token that indicates a point in history in the user’s Contacts database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/currentHistoryToken
-func (c_ CNFetchResult) CurrentHistoryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentHistoryToken"))
+func (c_ CNFetchResult) CurrentHistoryToken() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
 }
 

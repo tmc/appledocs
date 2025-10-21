@@ -30,7 +30,7 @@ type _DDDiscoverySessionClass struct {
 // An interface definition for the [DDDiscoverySession] class.
 type IDDDiscoverySession interface {
 	objectivec.IObject
-	ReportEvent(inEvent unsafe.Pointer)
+	ReportEvent(inEvent IDDDeviceEvent)
 }
 
 // An object that relays device discovery events from the extension to the system.
@@ -84,7 +84,7 @@ func NewDDDiscoverySession() DDDiscoverySession {
 // Reports an event to the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)
-func (d_ DDDiscoverySession) ReportEvent(inEvent unsafe.Pointer) {
+func (d_ DDDiscoverySession) ReportEvent(inEvent IDDDeviceEvent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("reportEvent:"), inEvent)
 }
 

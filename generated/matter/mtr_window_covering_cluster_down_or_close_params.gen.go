@@ -87,7 +87,7 @@ func (m_ MTRWindowCoveringClusterDownOrCloseParams) ServerSideProcessingTimeout(
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclusterdownorcloseparams/serversideprocessingtimeout
-func (m_ MTRWindowCoveringClusterDownOrCloseParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterDownOrCloseParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWindowCoveringClusterDownOrCloseParams) TimedInvokeTimeoutMs() found
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwindowcoveringclusterdownorcloseparams/timedinvoketimeoutms
-func (m_ MTRWindowCoveringClusterDownOrCloseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWindowCoveringClusterDownOrCloseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -95,16 +95,16 @@ func (c_ CaptureVideoPreviewLayer) RectForMetadataOutputRectOfInterest(rectInMet
 // An object that describes the connection from the layer to a particular input port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoPreviewLayer/connection
-func (c_ CaptureVideoPreviewLayer) Connection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("connection"))
+func (c_ CaptureVideoPreviewLayer) Connection() AVCaptureConnection {
+	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connection"))
 	return rv
 }
 
 // A capture session with visual output to preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoPreviewLayer/session
-func (c_ CaptureVideoPreviewLayer) Session() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("session"))
+func (c_ CaptureVideoPreviewLayer) Session() AVCaptureSession {
+	rv := objc.Send[AVCaptureSession](c_.ID, objc.Sel("session"))
 	return rv
 }
 
@@ -114,7 +114,7 @@ func (c_ CaptureVideoPreviewLayer) Session() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureVideoPreviewLayer/session
-func (c_ CaptureVideoPreviewLayer) SetSession(value unsafe.Pointer) {
+func (c_ CaptureVideoPreviewLayer) SetSession(value IAVCaptureSession) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSession:"), value)
 }
 
@@ -175,8 +175,8 @@ func (c_ CaptureVideoPreviewLayer) SetIsPreviewing(value bool) {
 // A value that indicates how the layer displays video content within its bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
-func (c_ CaptureVideoPreviewLayer) VideoGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("videoGravity"))
+func (c_ CaptureVideoPreviewLayer) VideoGravity() LayerVideoGravity {
+	rv := objc.Send[LayerVideoGravity](c_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
@@ -186,7 +186,7 @@ func (c_ CaptureVideoPreviewLayer) VideoGravity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer/videogravity
-func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value unsafe.Pointer) {
+func (c_ CaptureVideoPreviewLayer) SetVideoGravity(value ILayerVideoGravity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

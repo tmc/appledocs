@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewPreviewReplyAttachment() PreviewReplyAttachment {
 // Creates a preview reply attachment with the specified type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/init(data:contentType:)
-func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentType unsafe.Pointer) PreviewReplyAttachment {
+func NewPreviewReplyAttachmentWithDataContentType(data foundation.IData, contentType unsafe.Pointer) PreviewReplyAttachment {
 	instance := getPreviewReplyAttachmentClass().Alloc()
 	rv := objc.Send[PreviewReplyAttachment](instance.ID, objc.Sel("initWithData:contentType:"), data, contentType)
 	rv.Autorelease()
@@ -96,24 +97,24 @@ func NewPreviewReplyAttachmentWithDataContentType(data unsafe.Pointer, contentTy
 // The content type of the preview attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/contentType
-func (p_ PreviewReplyAttachment) ContentType() UTType {
-	rv := objc.Send[UTType](p_.ID, objc.Sel("contentType"))
+func (p_ PreviewReplyAttachment) ContentType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentType"))
 	return rv
 }
 
 // The data of the preview attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewReplyAttachment/data
-func (p_ PreviewReplyAttachment) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("data"))
+func (p_ PreviewReplyAttachment) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("data"))
 	return rv
 }
 
 // The attachments for a preview reply that provide additional data for the system to display the preview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
-func (p_ PreviewReplyAttachment) Attachments() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("attachments"))
+func (p_ PreviewReplyAttachment) Attachments() QLPreviewReplyAttachment {
+	rv := objc.Send[QLPreviewReplyAttachment](p_.ID, objc.Sel("attachments"))
 	return rv
 }
 
@@ -123,8 +124,8 @@ func (p_ PreviewReplyAttachment) Attachments() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklookui/qlpreviewreply/attachments
-func (p_ PreviewReplyAttachment) SetAttachments(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), objc.String(value))
+func (p_ PreviewReplyAttachment) SetAttachments(value IQLPreviewReplyAttachment) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), value)
 }
 
 

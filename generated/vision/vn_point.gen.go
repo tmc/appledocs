@@ -31,7 +31,7 @@ type _PointClass struct {
 // An interface definition for the [Point] class.
 type IPoint interface {
 	objectivec.IObject
-	DistanceToPoint(point unsafe.Pointer) unsafe.Pointer
+	DistanceToPoint(point IVNPoint) unsafe.Pointer
 }
 
 // An immutable object that represents a single 2D point in an image.
@@ -108,15 +108,15 @@ func NewPointWithXY(x unsafe.Pointer, y unsafe.Pointer) Point {
 // Creates a point object that’s shifted by the X and Y offsets of the specified vector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/apply(_:to:)
-func (pc _PointClass) PointByApplyingVectorToPoint(vector unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pointByApplyingVector:toPoint:"), vector, point)
+func (pc _PointClass) PointByApplyingVectorToPoint(vector IVNVector, point IVNPoint) Point {
+	rv := objc.Send[Point](objc.ID(pc.class), objc.Sel("pointByApplyingVector:toPoint:"), vector, point)
 	return rv
 }
 
 // Calculates the distance between two points.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:_:)
-func (pc _PointClass) DistanceBetweenPointPoint(point1 unsafe.Pointer, point2 unsafe.Pointer) unsafe.Pointer {
+func (pc _PointClass) DistanceBetweenPointPoint(point1 IVNPoint, point2 IVNPoint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("distanceBetweenPoint:point:"), point1, point2)
 	return rv
 }
@@ -124,14 +124,14 @@ func (pc _PointClass) DistanceBetweenPointPoint(point1 unsafe.Pointer, point2 un
 // A point object that represents the origin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/zero
-func (pc _PointClass) ZeroPoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("zeroPoint"))
+func (pc _PointClass) ZeroPoint() Point {
+	rv := objc.Send[VNPoint](objc.ID(pc.class), objc.Sel("zeroPoint"))
 	return rv
 }
 // Returns the distance to another point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/distance(_:)
-func (p_ Point) DistanceToPoint(point unsafe.Pointer) unsafe.Pointer {
+func (p_ Point) DistanceToPoint(point IVNPoint) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("distanceToPoint:"), point)
 	return rv
 }
@@ -163,8 +163,8 @@ func (p_ Point) Y() unsafe.Pointer {
 // A point object that represents the origin.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNPoint/zero
-func (p_ Point) ZeroPoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("zeroPoint"))
+func (p_ Point) ZeroPoint() VNPoint {
+	rv := objc.Send[VNPoint](p_.ID, objc.Sel("zeroPoint"))
 	return rv
 }
 

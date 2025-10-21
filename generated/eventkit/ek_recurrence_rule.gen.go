@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -87,7 +88,7 @@ func NewEKRecurrenceRule() EKRecurrenceRule {
 // Initializes and returns a recurrence rule with a given frequency and additional scheduling information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ unsafe.Pointer, interval int, days unsafe.Pointer, monthDays unsafe.Pointer, months unsafe.Pointer, weeksOfTheYear unsafe.Pointer, daysOfTheYear unsafe.Pointer, setPositions unsafe.Pointer, end unsafe.Pointer) EKRecurrenceRule {
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMonthMonthsOfTheYearWeeksOfTheYearDaysOfTheYearSetPositionsEnd(type_ IEKRecurrenceFrequency, interval int, days []EKRecurrenceDayOfWeek, monthDays []foundation.INumber, months []foundation.INumber, weeksOfTheYear []foundation.INumber, daysOfTheYear []foundation.INumber, setPositions []foundation.INumber, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear:weeksOfTheYear:daysOfTheYear:setPositions:end:"), type_, interval, days, monthDays, months, weeksOfTheYear, daysOfTheYear, setPositions, end)
 	rv.Autorelease()
@@ -99,7 +100,7 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalDaysOfTheWeekDaysOfTheMon
 // Initializes and returns a simple recurrence rule with a given frequency, interval, and end.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/init(recurrenceWith:interval:end:)
-func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ unsafe.Pointer, interval int, end unsafe.Pointer) EKRecurrenceRule {
+func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ IEKRecurrenceFrequency, interval int, end IEKRecurrenceEnd) EKRecurrenceRule {
 	instance := getEKRecurrenceRuleClass().Alloc()
 	rv := objc.Send[EKRecurrenceRule](instance.ID, objc.Sel("initRecurrenceWithFrequency:interval:end:"), type_, interval, end)
 	rv.Autorelease()
@@ -110,8 +111,8 @@ func NewEKRecurrenceRuleRecurrenceWithFrequencyIntervalEnd(type_ unsafe.Pointer,
 // The identifier for the recurrence rule’s calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/calendarIdentifier
-func (e_ EKRecurrenceRule) CalendarIdentifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarIdentifier"))
+func (e_ EKRecurrenceRule) CalendarIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarIdentifier"))
 	return rv
 }
 
@@ -150,8 +151,8 @@ func (e_ EKRecurrenceRule) FirstDayOfTheWeek() int {
 // The frequency of the recurrence rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/frequency
-func (e_ EKRecurrenceRule) Frequency() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("frequency"))
+func (e_ EKRecurrenceRule) Frequency() EKRecurrenceFrequency {
+	rv := objc.Send[EKRecurrenceFrequency](e_.ID, objc.Sel("frequency"))
 	return rv
 }
 
@@ -174,8 +175,8 @@ func (e_ EKRecurrenceRule) MonthsOfTheYear() []foundation.Number {
 // Indicates when the recurrence rule ends.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/recurrenceEnd
-func (e_ EKRecurrenceRule) RecurrenceEnd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("recurrenceEnd"))
+func (e_ EKRecurrenceRule) RecurrenceEnd() EKRecurrenceEnd {
+	rv := objc.Send[EKRecurrenceEnd](e_.ID, objc.Sel("recurrenceEnd"))
 	return rv
 }
 
@@ -185,7 +186,7 @@ func (e_ EKRecurrenceRule) RecurrenceEnd() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKRecurrenceRule/recurrenceEnd
-func (e_ EKRecurrenceRule) SetRecurrenceEnd(value unsafe.Pointer) {
+func (e_ EKRecurrenceRule) SetRecurrenceEnd(value IEKRecurrenceEnd) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRecurrenceEnd:"), value)
 }
 

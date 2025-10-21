@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKClinicalRecord] class.
@@ -84,32 +86,32 @@ func NewHKClinicalRecord() HKClinicalRecord {
 // An identifier that indicates the type of record, such as an allergic reaction, a lab result, or a medical procedure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/clinicalType
-func (h_ HKClinicalRecord) ClinicalType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("clinicalType"))
+func (h_ HKClinicalRecord) ClinicalType() HKClinicalType {
+	rv := objc.Send[HKClinicalType](h_.ID, objc.Sel("clinicalType"))
 	return rv
 }
 
 // The primary display name as shown in the Health app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/displayName
-func (h_ HKClinicalRecord) DisplayName() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("displayName"))
+func (h_ HKClinicalRecord) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // The Fast Healthcare Interoperability Resources (FHIR) data for this record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKClinicalRecord/fhirResource
-func (h_ HKClinicalRecord) FHIRResource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("FHIRResource"))
+func (h_ HKClinicalRecord) FHIRResource() HKFHIRResource {
+	rv := objc.Send[HKFHIRResource](h_.ID, objc.Sel("FHIRResource"))
 	return rv
 }
 
 // The sample’s end date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
-func (h_ HKClinicalRecord) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+func (h_ HKClinicalRecord) EndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -119,15 +121,15 @@ func (h_ HKClinicalRecord) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/enddate
-func (h_ HKClinicalRecord) SetEndDate(value unsafe.Pointer) {
+func (h_ HKClinicalRecord) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
 // The sample’s start date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
-func (h_ HKClinicalRecord) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+func (h_ HKClinicalRecord) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -137,7 +139,7 @@ func (h_ HKClinicalRecord) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksample/startdate
-func (h_ HKClinicalRecord) SetStartDate(value unsafe.Pointer) {
+func (h_ HKClinicalRecord) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _DomainStateCompanionClass struct {
 // An interface definition for the [DomainStateCompanion] class.
 type IDomainStateCompanion interface {
 	objectivec.IObject
-	StateHashForCompanionType(companionType unsafe.Pointer) unsafe.Pointer
+	StateHashForCompanionType(companionType CompanionType) foundation.Data
 }
 
 //
@@ -79,8 +80,8 @@ func NewDomainStateCompanion() DomainStateCompanion {
 // Returns state hash data for the given companion type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash(for:)
-func (d_ DomainStateCompanion) StateHashForCompanionType(companionType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("stateHashForCompanionType:"), companionType)
+func (d_ DomainStateCompanion) StateHashForCompanionType(companionType CompanionType) foundation.Data {
+	rv := objc.Send[foundation.Data](d_.ID, objc.Sel("stateHashForCompanionType:"), companionType)
 	return rv
 }
 
@@ -95,8 +96,8 @@ func (d_ DomainStateCompanion) AvailableCompanionTypes() unsafe.Pointer {
 // Contains combined state hash data for all available companion types. . Returns if no companion devices are paired.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LADomainStateCompanion/stateHash
-func (d_ DomainStateCompanion) StateHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("stateHash"))
+func (d_ DomainStateCompanion) StateHash() foundation.NSData {
+	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("stateHash"))
 	return rv
 }
 

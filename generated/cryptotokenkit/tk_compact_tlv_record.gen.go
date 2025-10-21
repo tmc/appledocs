@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewTKCompactTLVRecord() TKCompactTLVRecord {
 // Initializes a TLV record with the specified tag and value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKCompactTLVRecord/init(tag:value:)
-func NewTKCompactTLVRecordWithTagValue(tag unsafe.Pointer, value unsafe.Pointer) TKCompactTLVRecord {
+func NewTKCompactTLVRecordWithTagValue(tag unsafe.Pointer, value foundation.IData) TKCompactTLVRecord {
 	instance := getTKCompactTLVRecordClass().Alloc()
 	rv := objc.Send[TKCompactTLVRecord](instance.ID, objc.Sel("initWithTag:value:"), tag, value)
 	rv.Autorelease()

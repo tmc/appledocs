@@ -78,7 +78,7 @@ func NewReshapeGradientNode() ReshapeGradientNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeGradientNode/init(sourceGradient:sourceImage:gradientState:)
-func NewReshapeGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient unsafe.Pointer, sourceImage unsafe.Pointer, gradientState unsafe.Pointer) ReshapeGradientNode {
+func NewReshapeGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) ReshapeGradientNode {
 	instance := getReshapeGradientNodeClass().Alloc()
 	rv := objc.Send[ReshapeGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	rv.Autorelease()

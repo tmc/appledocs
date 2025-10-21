@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewWaterTemperature() WaterTemperature {
 // The time and date when the system recorded the measurements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterTemperature/date
-func (w_ WaterTemperature) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("date"))
+func (w_ WaterTemperature) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
 }
 

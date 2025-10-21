@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewINDateComponentsRange() INDateComponentsRange {
 // The end date of the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/enddatecomponents
-func (i_ INDateComponentsRange) EndDateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("endDateComponents"))
+func (i_ INDateComponentsRange) EndDateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("endDateComponents"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (i_ INDateComponentsRange) EndDateComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/enddatecomponents
-func (i_ INDateComponentsRange) SetEndDateComponents(value unsafe.Pointer) {
+func (i_ INDateComponentsRange) SetEndDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDateComponents:"), value)
 }
 
@@ -119,8 +120,8 @@ func (i_ INDateComponentsRange) SetRecurrenceRule(value unsafe.Pointer) {
 // The start date of the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/startdatecomponents
-func (i_ INDateComponentsRange) StartDateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("startDateComponents"))
+func (i_ INDateComponentsRange) StartDateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("startDateComponents"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (i_ INDateComponentsRange) StartDateComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/indatecomponentsrange/startdatecomponents
-func (i_ INDateComponentsRange) SetStartDateComponents(value unsafe.Pointer) {
+func (i_ INDateComponentsRange) SetStartDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStartDateComponents:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKStatisticsCollectionQuery] class.
@@ -84,8 +85,8 @@ func NewHKStatisticsCollectionQuery() HKStatisticsCollectionQuery {
 // The anchor date for the collection’s time intervals.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) AnchorDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anchorDate"))
+func (h_ HKStatisticsCollectionQuery) AnchorDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("anchorDate"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (h_ HKStatisticsCollectionQuery) AnchorDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/anchordate
-func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value unsafe.Pointer) {
+func (h_ HKStatisticsCollectionQuery) SetAnchorDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAnchorDate:"), value)
 }
 
@@ -120,8 +121,8 @@ func (h_ HKStatisticsCollectionQuery) SetInitialResultsHandler(value unsafe.Poin
 // The date components that define the time interval for each statistics object in the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) IntervalComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("intervalComponents"))
+func (h_ HKStatisticsCollectionQuery) IntervalComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("intervalComponents"))
 	return rv
 }
 
@@ -131,15 +132,15 @@ func (h_ HKStatisticsCollectionQuery) IntervalComponents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/intervalcomponents
-func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value unsafe.Pointer) {
+func (h_ HKStatisticsCollectionQuery) SetIntervalComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIntervalComponents:"), value)
 }
 
 // A list of options that define the type of statistical calculations performed and the way in which data from multiple sources are merged.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/options
-func (h_ HKStatisticsCollectionQuery) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("options"))
+func (h_ HKStatisticsCollectionQuery) Options() HKStatisticsOptions {
+	rv := objc.Send[HKStatisticsOptions](h_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (h_ HKStatisticsCollectionQuery) Options() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/options
-func (h_ HKStatisticsCollectionQuery) SetOptions(value unsafe.Pointer) {
+func (h_ HKStatisticsCollectionQuery) SetOptions(value HKStatisticsOptions) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setOptions:"), value)
 }
 

@@ -100,8 +100,8 @@ func (n_ NEHotspotEAPSettings) SetIsTLSClientCertificateRequired(value bool) {
 // The identity string to be used in the EAP-Identity/Response packet during outer EAP authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/outeridentity
-func (n_ NEHotspotEAPSettings) OuterIdentity() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("outerIdentity"))
+func (n_ NEHotspotEAPSettings) OuterIdentity() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("outerIdentity"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (n_ NEHotspotEAPSettings) OuterIdentity() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/outeridentity
-func (n_ NEHotspotEAPSettings) SetOuterIdentity(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOuterIdentity:"), objc.String(value))
+func (n_ NEHotspotEAPSettings) SetOuterIdentity(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setOuterIdentity:"), value)
 }
 
 // The password component of the IEEE 802.1X authentication credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/password
-func (n_ NEHotspotEAPSettings) Password() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("password"))
+func (n_ NEHotspotEAPSettings) Password() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("password"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (n_ NEHotspotEAPSettings) Password() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/password
-func (n_ NEHotspotEAPSettings) SetPassword(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPassword:"), objc.String(value))
+func (n_ NEHotspotEAPSettings) SetPassword(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setPassword:"), value)
 }
 
 // The Transport Layer Security (TLS) version to use during a TLS authentication handshake.
@@ -165,15 +165,15 @@ func (n_ NEHotspotEAPSettings) SupportedEAPTypes() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/supportedeaptypes
-func (n_ NEHotspotEAPSettings) SetSupportedEAPTypes(value foundation.Number) {
+func (n_ NEHotspotEAPSettings) SetSupportedEAPTypes(value foundation.INumber) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSupportedEAPTypes:"), value)
 }
 
 // An array of server certificate common name strings used to verify a server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
-func (n_ NEHotspotEAPSettings) TrustedServerNames() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("trustedServerNames"))
+func (n_ NEHotspotEAPSettings) TrustedServerNames() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("trustedServerNames"))
 	return rv
 }
 
@@ -183,8 +183,8 @@ func (n_ NEHotspotEAPSettings) TrustedServerNames() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
-func (n_ NEHotspotEAPSettings) SetTrustedServerNames(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTrustedServerNames:"), objc.String(value))
+func (n_ NEHotspotEAPSettings) SetTrustedServerNames(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setTrustedServerNames:"), value)
 }
 
 // The inner-layer authentication protocol used by a TTLS module.
@@ -208,8 +208,8 @@ func (n_ NEHotspotEAPSettings) SetTtlsInnerAuthenticationType(value unsafe.Point
 // The user name string for EAP authentication, encoded as UTF-8.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
-func (n_ NEHotspotEAPSettings) Username() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("username"))
+func (n_ NEHotspotEAPSettings) Username() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("username"))
 	return rv
 }
 
@@ -219,8 +219,8 @@ func (n_ NEHotspotEAPSettings) Username() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
-func (n_ NEHotspotEAPSettings) SetUsername(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), objc.String(value))
+func (n_ NEHotspotEAPSettings) SetUsername(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), value)
 }
 
 

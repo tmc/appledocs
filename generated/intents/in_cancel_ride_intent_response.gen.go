@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INCancelRideIntentResponse] class.
@@ -84,8 +85,8 @@ func NewINCancelRideIntentResponse() INCancelRideIntentResponse {
 // The cancellation fee charged by your service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfee
-func (i_ INCancelRideIntentResponse) CancellationFee() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("cancellationFee"))
+func (i_ INCancelRideIntentResponse) CancellationFee() INCurrencyAmount {
+	rv := objc.Send[INCurrencyAmount](i_.ID, objc.Sel("cancellationFee"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (i_ INCancelRideIntentResponse) CancellationFee() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfee
-func (i_ INCancelRideIntentResponse) SetCancellationFee(value unsafe.Pointer) {
+func (i_ INCancelRideIntentResponse) SetCancellationFee(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFee:"), value)
 }
 
 // The amount of time that must elapse before cancellation fees apply.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfeethreshold
-func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("cancellationFeeThreshold"))
+func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("cancellationFeeThreshold"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelrideintentresponse/cancellationfeethreshold
-func (i_ INCancelRideIntentResponse) SetCancellationFeeThreshold(value unsafe.Pointer) {
+func (i_ INCancelRideIntentResponse) SetCancellationFeeThreshold(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFeeThreshold:"), value)
 }
 

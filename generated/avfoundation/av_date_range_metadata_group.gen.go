@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewDateRangeMetadataGroup() DateRangeMetadataGroup {
 // The end date for the metadata date range group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
-func (d_ DateRangeMetadataGroup) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endDate"))
+func (d_ DateRangeMetadataGroup) EndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (d_ DateRangeMetadataGroup) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
-func (d_ DateRangeMetadataGroup) SetEndDate(value unsafe.Pointer) {
+func (d_ DateRangeMetadataGroup) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
 }
 
 // An array of associated metadata items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
-func (d_ DateRangeMetadataGroup) Items() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("items"))
+func (d_ DateRangeMetadataGroup) Items() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](d_.ID, objc.Sel("items"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (d_ DateRangeMetadataGroup) Items() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
-func (d_ DateRangeMetadataGroup) SetItems(value unsafe.Pointer) {
+func (d_ DateRangeMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setItems:"), value)
 }
 
 // The start date for the metadata date range group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
-func (d_ DateRangeMetadataGroup) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startDate"))
+func (d_ DateRangeMetadataGroup) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (d_ DateRangeMetadataGroup) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
-func (d_ DateRangeMetadataGroup) SetStartDate(value unsafe.Pointer) {
+func (d_ DateRangeMetadataGroup) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setStartDate:"), value)
 }
 

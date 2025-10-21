@@ -100,8 +100,8 @@ func (d_ DetectHumanRectanglesRequest) SetUpperBodyOnly(value bool) {
 // The results of the request to find rectangular regions that contain people in an image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
-func (d_ DetectHumanRectanglesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectHumanRectanglesRequest) Results() VNHumanObservation {
+	rv := objc.Send[VNHumanObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (d_ DetectHumanRectanglesRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest/results
-func (d_ DetectHumanRectanglesRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectHumanRectanglesRequest) SetResults(value IVNHumanObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

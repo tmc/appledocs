@@ -107,16 +107,16 @@ func (i_ ImageConstraint) PixelsWide() int {
 // Additional sizes this image feature supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageConstraint/sizeConstraint
-func (i_ ImageConstraint) SizeConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sizeConstraint"))
+func (i_ ImageConstraint) SizeConstraint() MLImageSizeConstraint {
+	rv := objc.Send[MLImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
 	return rv
 }
 
 // The size and format constraints for an image feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-func (i_ ImageConstraint) ImageConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageConstraint"))
+func (i_ ImageConstraint) ImageConstraint() MLImageConstraint {
+	rv := objc.Send[MLImageConstraint](i_.ID, objc.Sel("imageConstraint"))
 	return rv
 }
 
@@ -126,15 +126,15 @@ func (i_ ImageConstraint) ImageConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/imageconstraint
-func (i_ ImageConstraint) SetImageConstraint(value unsafe.Pointer) {
+func (i_ ImageConstraint) SetImageConstraint(value IMLImageConstraint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageConstraint:"), value)
 }
 
 // The type of this feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (i_ ImageConstraint) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
+func (i_ ImageConstraint) Type() FeatureType {
+	rv := objc.Send[FeatureType](i_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -144,7 +144,7 @@ func (i_ ImageConstraint) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/type
-func (i_ ImageConstraint) SetType(value unsafe.Pointer) {
+func (i_ ImageConstraint) SetType(value FeatureType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
 

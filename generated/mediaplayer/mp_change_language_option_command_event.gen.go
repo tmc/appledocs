@@ -82,8 +82,8 @@ func NewChangeLanguageOptionCommandEvent() ChangeLanguageOptionCommandEvent {
 // The requested language option to change.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/languageoption
-func (c_ ChangeLanguageOptionCommandEvent) LanguageOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("languageOption"))
+func (c_ ChangeLanguageOptionCommandEvent) LanguageOption() MPNowPlayingInfoLanguageOption {
+	rv := objc.Send[MPNowPlayingInfoLanguageOption](c_.ID, objc.Sel("languageOption"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (c_ ChangeLanguageOptionCommandEvent) LanguageOption() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptioncommandevent/languageoption
-func (c_ ChangeLanguageOptionCommandEvent) SetLanguageOption(value unsafe.Pointer) {
+func (c_ ChangeLanguageOptionCommandEvent) SetLanguageOption(value IMPNowPlayingInfoLanguageOption) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLanguageOption:"), value)
 }
 

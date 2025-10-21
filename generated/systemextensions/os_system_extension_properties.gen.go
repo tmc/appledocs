@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -82,8 +83,8 @@ func NewOSSystemExtensionProperties() OSSystemExtensionProperties {
 // The bundle version of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleVersion
-func (o_ OSSystemExtensionProperties) BundleVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
+func (o_ OSSystemExtensionProperties) BundleVersion() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleVersion"))
 	return rv
 }
 
@@ -97,8 +98,8 @@ func (o_ OSSystemExtensionProperties) IsAwaitingUserApproval() bool {
 // The bundle identifier of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) BundleIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
+func (o_ OSSystemExtensionProperties) BundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
@@ -108,15 +109,15 @@ func (o_ OSSystemExtensionProperties) BundleIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
+func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), value)
 }
 
 // The bundle short version string of the extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleshortversion
-func (o_ OSSystemExtensionProperties) BundleShortVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleShortVersion"))
+func (o_ OSSystemExtensionProperties) BundleShortVersion() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (o_ OSSystemExtensionProperties) BundleShortVersion() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleshortversion
-func (o_ OSSystemExtensionProperties) SetBundleShortVersion(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), objc.String(value))
+func (o_ OSSystemExtensionProperties) SetBundleShortVersion(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), value)
 }
 
 //
@@ -174,7 +175,7 @@ func (o_ OSSystemExtensionProperties) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/url
-func (o_ OSSystemExtensionProperties) SetUrl(value foundation.URL) {
+func (o_ OSSystemExtensionProperties) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUrl:"), value)
 }
 

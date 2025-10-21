@@ -82,6 +82,42 @@ func NewCKAcceptSharesOperation() CKAcceptSharesOperation {
 }
 
 
+// The closure to execute when the operation finishes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/acceptSharesCompletionBlock
+func (c_ CKAcceptSharesOperation) AcceptSharesCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("acceptSharesCompletionBlock"))
+	return rv
+}
+
+
+// SetAcceptSharesCompletionBlock sets the value of the acceptSharesCompletionBlock property.
+// The closure to execute when the operation finishes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/acceptSharesCompletionBlock
+func (c_ CKAcceptSharesOperation) SetAcceptSharesCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAcceptSharesCompletionBlock:"), value)
+}
+
+// The block to execute as CloudKit processes individual shares.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/perShareCompletionBlock
+func (c_ CKAcceptSharesOperation) PerShareCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareCompletionBlock"))
+	return rv
+}
+
+
+// SetPerShareCompletionBlock sets the value of the perShareCompletionBlock property.
+// The block to execute as CloudKit processes individual shares.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAcceptSharesOperation/perShareCompletionBlock
+func (c_ CKAcceptSharesOperation) SetPerShareCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareCompletionBlock:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/acceptsharesresultblock
 func (c_ CKAcceptSharesOperation) AcceptSharesResultBlock() unsafe.Pointer {
@@ -99,8 +135,8 @@ func (c_ CKAcceptSharesOperation) SetAcceptSharesResultBlock(value unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/pershareresultblock
-func (c_ CKAcceptSharesOperation) PerShareResultBlock() cloudkit.CKShare {
-	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("perShareResultBlock"))
+func (c_ CKAcceptSharesOperation) PerShareResultBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perShareResultBlock"))
 	return rv
 }
 
@@ -108,15 +144,15 @@ func (c_ CKAcceptSharesOperation) PerShareResultBlock() cloudkit.CKShare {
 // SetPerShareResultBlock sets the value of the perShareResultBlock property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/pershareresultblock
-func (c_ CKAcceptSharesOperation) SetPerShareResultBlock(value cloudkit.CKShare) {
+func (c_ CKAcceptSharesOperation) SetPerShareResultBlock(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPerShareResultBlock:"), value)
 }
 
 // The share metadatas to process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
-func (c_ CKAcceptSharesOperation) ShareMetadatas() cloudkit.CKShare {
-	rv := objc.Send[cloudkit.CKShare](c_.ID, objc.Sel("shareMetadatas"))
+func (c_ CKAcceptSharesOperation) ShareMetadatas() CKShareMetadata {
+	rv := objc.Send[CKShareMetadata](c_.ID, objc.Sel("shareMetadatas"))
 	return rv
 }
 
@@ -126,7 +162,7 @@ func (c_ CKAcceptSharesOperation) ShareMetadatas() cloudkit.CKShare {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation/sharemetadatas
-func (c_ CKAcceptSharesOperation) SetShareMetadatas(value cloudkit.CKShare) {
+func (c_ CKAcceptSharesOperation) SetShareMetadatas(value ICKShareMetadata) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShareMetadatas:"), value)
 }
 
@@ -170,7 +206,7 @@ func (c_ CKAcceptSharesOperation) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckshare/url
-func (c_ CKAcceptSharesOperation) SetUrl(value foundation.URL) {
+func (c_ CKAcceptSharesOperation) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUrl:"), value)
 }
 

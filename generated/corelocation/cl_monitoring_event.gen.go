@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -114,16 +116,16 @@ func (m_ MonitoringEvent) ConditionUnsupported() bool {
 // The date the event occurs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/date
-func (m_ MonitoringEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("date"))
+func (m_ MonitoringEvent) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("date"))
 	return rv
 }
 
 // A string that represents the identifier of a monitored condition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/identifier
-func (m_ MonitoringEvent) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
+func (m_ MonitoringEvent) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -153,8 +155,8 @@ func (m_ MonitoringEvent) ServiceSessionRequired() bool {
 // The state of the condition at the time of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLMonitoringEvent/state
-func (m_ MonitoringEvent) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MonitoringEvent) State() MonitoringState {
+	rv := objc.Send[MonitoringState](m_.ID, objc.Sel("state"))
 	return rv
 }
 

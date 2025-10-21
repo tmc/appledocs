@@ -31,16 +31,16 @@ type _VolumeViewClass struct {
 // An interface definition for the [VolumeView] class.
 type IVolumeView interface {
 	appkit.IView
-	MaximumVolumeSliderImageForState(state unsafe.Pointer) unsafe.Pointer
-	MinimumVolumeSliderImageForState(state unsafe.Pointer) unsafe.Pointer
-	RouteButtonImageForState(state unsafe.Pointer) unsafe.Pointer
+	MaximumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image
+	MinimumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image
+	RouteButtonImageForState(state unsafe.Pointer) appkit.Image
 	RouteButtonRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect
-	SetMaximumVolumeSliderImageForState(image unsafe.Pointer, state unsafe.Pointer)
-	SetMinimumVolumeSliderImageForState(image unsafe.Pointer, state unsafe.Pointer)
-	SetRouteButtonImageForState(image unsafe.Pointer, state unsafe.Pointer)
-	SetVolumeThumbImageForState(image unsafe.Pointer, state unsafe.Pointer)
+	SetMaximumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer)
+	SetMinimumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer)
+	SetRouteButtonImageForState(image appkit.IImage, state unsafe.Pointer)
+	SetVolumeThumbImageForState(image appkit.IImage, state unsafe.Pointer)
 	VolumeSliderRectForBounds(bounds coregraphics.CGRect) coregraphics.CGRect
-	VolumeThumbImageForState(state unsafe.Pointer) unsafe.Pointer
+	VolumeThumbImageForState(state unsafe.Pointer) appkit.Image
 	VolumeThumbRectForBoundsVolumeSliderRectValue(bounds coregraphics.CGRect, rect coregraphics.CGRect, value unsafe.Pointer) coregraphics.CGRect
 }
 
@@ -97,24 +97,24 @@ func NewVolumeView() VolumeView {
 // Returns the maximum volume image associated with the specified control state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/maximumVolumeSliderImage(for:)
-func (v_ VolumeView) MaximumVolumeSliderImageForState(state unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("maximumVolumeSliderImageForState:"), state)
+func (v_ VolumeView) MaximumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image {
+	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("maximumVolumeSliderImageForState:"), state)
 	return rv
 }
 
 // Returns the minimum volume image associated with the specified control state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/minimumVolumeSliderImage(for:)
-func (v_ VolumeView) MinimumVolumeSliderImageForState(state unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("minimumVolumeSliderImageForState:"), state)
+func (v_ VolumeView) MinimumVolumeSliderImageForState(state unsafe.Pointer) appkit.Image {
+	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("minimumVolumeSliderImageForState:"), state)
 	return rv
 }
 
 // Returns the button image associated with the specified control state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/routeButtonImage(for:)
-func (v_ VolumeView) RouteButtonImageForState(state unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("routeButtonImageForState:"), state)
+func (v_ VolumeView) RouteButtonImageForState(state unsafe.Pointer) appkit.Image {
+	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("routeButtonImageForState:"), state)
 	return rv
 }
 
@@ -129,28 +129,28 @@ func (v_ VolumeView) RouteButtonRectForBounds(bounds coregraphics.CGRect) coregr
 // Assigns a maximum volume slider image to the specified control states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setMaximumVolumeSliderImage(_:for:)
-func (v_ VolumeView) SetMaximumVolumeSliderImageForState(image unsafe.Pointer, state unsafe.Pointer) {
+func (v_ VolumeView) SetMaximumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaximumVolumeSliderImage:forState:"), image, state)
 }
 
 // Assigns a minimum volume slider image to the specified control states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setMinimumVolumeSliderImage(_:for:)
-func (v_ VolumeView) SetMinimumVolumeSliderImageForState(image unsafe.Pointer, state unsafe.Pointer) {
+func (v_ VolumeView) SetMinimumVolumeSliderImageForState(image appkit.IImage, state unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMinimumVolumeSliderImage:forState:"), image, state)
 }
 
 // Assigns a button image to the specified control states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setRouteButtonImage(_:for:)
-func (v_ VolumeView) SetRouteButtonImageForState(image unsafe.Pointer, state unsafe.Pointer) {
+func (v_ VolumeView) SetRouteButtonImageForState(image appkit.IImage, state unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setRouteButtonImage:forState:"), image, state)
 }
 
 // Assigns a thumb image to the specified control states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setVolumeThumbImage(_:for:)
-func (v_ VolumeView) SetVolumeThumbImageForState(image unsafe.Pointer, state unsafe.Pointer) {
+func (v_ VolumeView) SetVolumeThumbImageForState(image appkit.IImage, state unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeThumbImage:forState:"), image, state)
 }
 
@@ -165,8 +165,8 @@ func (v_ VolumeView) VolumeSliderRectForBounds(bounds coregraphics.CGRect) coreg
 // Returns the thumb image associated with the specified control state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeThumbImage(for:)
-func (v_ VolumeView) VolumeThumbImageForState(state unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("volumeThumbImageForState:"), state)
+func (v_ VolumeView) VolumeThumbImageForState(state unsafe.Pointer) appkit.Image {
+	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("volumeThumbImageForState:"), state)
 	return rv
 }
 
@@ -233,8 +233,8 @@ func (v_ VolumeView) SetShowsVolumeSlider(value bool) {
 // The image used to designate the European Union volume limit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
-func (v_ VolumeView) VolumeWarningSliderImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("volumeWarningSliderImage"))
+func (v_ VolumeView) VolumeWarningSliderImage() appkit.Image {
+	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("volumeWarningSliderImage"))
 	return rv
 }
 
@@ -244,7 +244,7 @@ func (v_ VolumeView) VolumeWarningSliderImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
-func (v_ VolumeView) SetVolumeWarningSliderImage(value unsafe.Pointer) {
+func (v_ VolumeView) SetVolumeWarningSliderImage(value appkit.IImage) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeWarningSliderImage:"), value)
 }
 

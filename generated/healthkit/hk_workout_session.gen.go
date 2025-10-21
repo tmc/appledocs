@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,9 @@ type _HKWorkoutSessionClass struct {
 type IHKWorkoutSession interface {
 	objectivec.IObject
 	End()
-	EndCurrentActivityOnDate(date unsafe.Pointer)
+	EndCurrentActivityOnDate(date foundation.IDate)
 	Pause()
+	Resume()
 }
 
 // A session that tracks a person’s workout.
@@ -93,7 +95,7 @@ func (h_ HKWorkoutSession) End() {
 // Ends the current workout activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/endCurrentActivity(on:)
-func (h_ HKWorkoutSession) EndCurrentActivityOnDate(date unsafe.Pointer) {
+func (h_ HKWorkoutSession) EndCurrentActivityOnDate(date foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("endCurrentActivityOnDate:"), date)
 }
 
@@ -104,27 +106,34 @@ func (h_ HKWorkoutSession) Pause() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("pause"))
 }
 
+// Resumes the workout session.
+//
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/resume()
+func (h_ HKWorkoutSession) Resume() {
+	objc.Send[objc.ID](h_.ID, objc.Sel("resume"))
+}
+
 // A value that indicates whether the workout session occurred indoors or outdoors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/locationType
-func (h_ HKWorkoutSession) LocationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("locationType"))
+func (h_ HKWorkoutSession) LocationType() HKWorkoutSessionLocationType {
+	rv := objc.Send[HKWorkoutSessionLocationType](h_.ID, objc.Sel("locationType"))
 	return rv
 }
 
 // The workout session’s current state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKWorkoutSession/state
-func (h_ HKWorkoutSession) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("state"))
+func (h_ HKWorkoutSession) State() HKWorkoutSessionState {
+	rv := objc.Send[HKWorkoutSessionState](h_.ID, objc.Sel("state"))
 	return rv
 }
 
 // The workout activity performed during this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
-func (h_ HKWorkoutSession) ActivityType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("activityType"))
+func (h_ HKWorkoutSession) ActivityType() HKWorkoutActivityType {
+	rv := objc.Send[HKWorkoutActivityType](h_.ID, objc.Sel("activityType"))
 	return rv
 }
 
@@ -134,15 +143,15 @@ func (h_ HKWorkoutSession) ActivityType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/activitytype
-func (h_ HKWorkoutSession) SetActivityType(value unsafe.Pointer) {
+func (h_ HKWorkoutSession) SetActivityType(value HKWorkoutActivityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityType:"), value)
 }
 
 // The current workout activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
-func (h_ HKWorkoutSession) CurrentActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("currentActivity"))
+func (h_ HKWorkoutSession) CurrentActivity() HKWorkoutActivity {
+	rv := objc.Send[HKWorkoutActivity](h_.ID, objc.Sel("currentActivity"))
 	return rv
 }
 
@@ -152,7 +161,7 @@ func (h_ HKWorkoutSession) CurrentActivity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/currentactivity
-func (h_ HKWorkoutSession) SetCurrentActivity(value unsafe.Pointer) {
+func (h_ HKWorkoutSession) SetCurrentActivity(value IHKWorkoutActivity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCurrentActivity:"), value)
 }
 
@@ -177,8 +186,8 @@ func (h_ HKWorkoutSession) SetDelegate(value unsafe.Pointer) {
 // The ending time and date for this workout session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
-func (h_ HKWorkoutSession) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("endDate"))
+func (h_ HKWorkoutSession) EndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -188,15 +197,15 @@ func (h_ HKWorkoutSession) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/enddate
-func (h_ HKWorkoutSession) SetEndDate(value unsafe.Pointer) {
+func (h_ HKWorkoutSession) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setEndDate:"), value)
 }
 
 // The starting time and date for this workout session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
-func (h_ HKWorkoutSession) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+func (h_ HKWorkoutSession) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -206,15 +215,15 @@ func (h_ HKWorkoutSession) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/startdate
-func (h_ HKWorkoutSession) SetStartDate(value unsafe.Pointer) {
+func (h_ HKWorkoutSession) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 
 // A value that indicates whether the session is a primary session or a mirrored session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
-func (h_ HKWorkoutSession) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("type"))
+func (h_ HKWorkoutSession) Type() HKWorkoutSessionType {
+	rv := objc.Send[HKWorkoutSessionType](h_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -224,15 +233,15 @@ func (h_ HKWorkoutSession) Type() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/type
-func (h_ HKWorkoutSession) SetType(value unsafe.Pointer) {
+func (h_ HKWorkoutSession) SetType(value HKWorkoutSessionType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setType:"), value)
 }
 
 // The configuration object that describes this workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
-func (h_ HKWorkoutSession) WorkoutConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("workoutConfiguration"))
+func (h_ HKWorkoutSession) WorkoutConfiguration() HKWorkoutConfiguration {
+	rv := objc.Send[HKWorkoutConfiguration](h_.ID, objc.Sel("workoutConfiguration"))
 	return rv
 }
 
@@ -242,7 +251,7 @@ func (h_ HKWorkoutSession) WorkoutConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkworkoutsession/workoutconfiguration
-func (h_ HKWorkoutSession) SetWorkoutConfiguration(value unsafe.Pointer) {
+func (h_ HKWorkoutSession) SetWorkoutConfiguration(value IHKWorkoutConfiguration) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setWorkoutConfiguration:"), value)
 }
 

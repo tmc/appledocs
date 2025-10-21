@@ -100,8 +100,8 @@ func (e_ EnergyFormatter) SetIsForFoodEnergyUse(value bool) {
 // The number formatter used to format the numbers in energy strings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
-func (e_ EnergyFormatter) NumberFormatter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("numberFormatter"))
+func (e_ EnergyFormatter) NumberFormatter() NSNumberFormatter {
+	rv := objc.Send[NSNumberFormatter](e_.ID, objc.Sel("numberFormatter"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (e_ EnergyFormatter) NumberFormatter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/energyformatter/numberformatter
-func (e_ EnergyFormatter) SetNumberFormatter(value unsafe.Pointer) {
+func (e_ EnergyFormatter) SetNumberFormatter(value INumberFormatter) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setNumberFormatter:"), value)
 }
 

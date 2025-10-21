@@ -31,10 +31,10 @@ type _VZGraphicsDisplayClass struct {
 // An interface definition for the [VZGraphicsDisplay] class.
 type IVZGraphicsDisplay interface {
 	objectivec.IObject
-	AddObserver(observer objc.ID)
-	ReconfigureWithConfigurationError(configuration unsafe.Pointer, error_ unsafe.Pointer) bool
+	AddObserver(observer objectivec.IObject)
+	ReconfigureWithConfigurationError(configuration IVZGraphicsDisplayConfiguration, error_ unsafe.Pointer) bool
 	ReconfigureWithSizeInPixelsError(sizeInPixels coregraphics.CGSize, error_ unsafe.Pointer) bool
-	RemoveObserver(observer objc.ID)
+	RemoveObserver(observer objectivec.IObject)
 }
 
 // A class that represents a graphics display in a VM.
@@ -88,14 +88,14 @@ func NewVZGraphicsDisplay() VZGraphicsDisplay {
 // Adds an observer to notify about display configuration changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/addObserver(_:)
-func (v_ VZGraphicsDisplay) AddObserver(observer objc.ID) {
+func (v_ VZGraphicsDisplay) AddObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("addObserver:"), observer)
 }
 
 // Reconfigure this display with the new display configuration you provide.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/reconfigure(configuration:)
-func (v_ VZGraphicsDisplay) ReconfigureWithConfigurationError(configuration unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (v_ VZGraphicsDisplay) ReconfigureWithConfigurationError(configuration IVZGraphicsDisplayConfiguration, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("reconfigureWithConfiguration:error:"), configuration, error_)
 	return rv
 }
@@ -111,7 +111,7 @@ func (v_ VZGraphicsDisplay) ReconfigureWithSizeInPixelsError(sizeInPixels coregr
 // Removes a display configuration change observer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZGraphicsDisplay/removeObserver(_:)
-func (v_ VZGraphicsDisplay) RemoveObserver(observer objc.ID) {
+func (v_ VZGraphicsDisplay) RemoveObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("removeObserver:"), observer)
 }
 
@@ -126,8 +126,8 @@ func (v_ VZGraphicsDisplay) SizeInPixels() coregraphics.CGSize {
 // The list of graphics displays configured for this graphics device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays
-func (v_ VZGraphicsDisplay) Displays() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("displays"))
+func (v_ VZGraphicsDisplay) Displays() VZGraphicsDisplay {
+	rv := objc.Send[VZGraphicsDisplay](v_.ID, objc.Sel("displays"))
 	return rv
 }
 
@@ -137,7 +137,7 @@ func (v_ VZGraphicsDisplay) Displays() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays
-func (v_ VZGraphicsDisplay) SetDisplays(value unsafe.Pointer) {
+func (v_ VZGraphicsDisplay) SetDisplays(value IVZGraphicsDisplay) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), value)
 }
 

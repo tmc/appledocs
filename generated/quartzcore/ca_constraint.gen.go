@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,8 +86,8 @@ func NewConstraint() Constraint {
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:)
-func NewConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer) Constraint {
-	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:"), attr, objc.String(srcId), srcAttr)
+func NewConstraintWithAttributeRelativeToAttribute(attr ConstraintAttribute, srcId appkit.string, srcAttr ConstraintAttribute) Constraint {
+	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:"), attr, srcId, srcAttr)
 	return rv
 }
 
@@ -95,8 +96,8 @@ func NewConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId st
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:offset:)
-func NewConstraintWithAttributeRelativeToAttributeOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, c float64) Constraint {
-	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, objc.String(srcId), srcAttr, c)
+func NewConstraintWithAttributeRelativeToAttributeOffset(attr ConstraintAttribute, srcId appkit.string, srcAttr ConstraintAttribute, c float64) Constraint {
+	rv := objc.Send[Constraint](objc.ID(getConstraintClass().class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, srcId, srcAttr, c)
 	return rv
 }
 
@@ -105,9 +106,9 @@ func NewConstraintWithAttributeRelativeToAttributeOffset(attr unsafe.Pointer, sr
 // Returns an object with the specified parameters. Designated initializer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:scale:offset:)
-func NewConstraintWithAttributeRelativeToAttributeScaleOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, m float64, c float64) Constraint {
+func NewConstraintWithAttributeRelativeToAttributeScaleOffset(attr ConstraintAttribute, srcId appkit.string, srcAttr ConstraintAttribute, m float64, c float64) Constraint {
 	instance := getConstraintClass().Alloc()
-	rv := objc.Send[Constraint](instance.ID, objc.Sel("initWithAttribute:relativeTo:attribute:scale:offset:"), attr, objc.String(srcId), srcAttr, m, c)
+	rv := objc.Send[Constraint](instance.ID, objc.Sel("initWithAttribute:relativeTo:attribute:scale:offset:"), attr, srcId, srcAttr, m, c)
 	rv.Autorelease()
 	return rv
 }
@@ -116,32 +117,32 @@ func NewConstraintWithAttributeRelativeToAttributeScaleOffset(attr unsafe.Pointe
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/constraintWithAttribute:relativeTo:attribute:scale:offset:
-func (cc _ConstraintClass) ConstraintWithAttributeRelativeToAttributeScaleOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, m float64, c float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constraintWithAttribute:relativeTo:attribute:scale:offset:"), attr, objc.String(srcId), srcAttr, m, c)
+func (cc _ConstraintClass) ConstraintWithAttributeRelativeToAttributeScaleOffset(attr ConstraintAttribute, srcId appkit.string, srcAttr ConstraintAttribute, m float64, c float64) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constraintWithAttribute:relativeTo:attribute:scale:offset:"), attr, srcId, srcAttr, m, c)
 	return rv
 }
 
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:)
-func (cc _ConstraintClass) ConstraintWithAttributeRelativeToAttribute(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constraintWithAttribute:relativeTo:attribute:"), attr, objc.String(srcId), srcAttr)
+func (cc _ConstraintClass) ConstraintWithAttributeRelativeToAttribute(attr ConstraintAttribute, srcId appkit.string, srcAttr ConstraintAttribute) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constraintWithAttribute:relativeTo:attribute:"), attr, srcId, srcAttr)
 	return rv
 }
 
 // Creates and returns an object with the specified parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/init(attribute:relativeTo:attribute:offset:)
-func (cc _ConstraintClass) ConstraintWithAttributeRelativeToAttributeOffset(attr unsafe.Pointer, srcId string, srcAttr unsafe.Pointer, c float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, objc.String(srcId), srcAttr, c)
+func (cc _ConstraintClass) ConstraintWithAttributeRelativeToAttributeOffset(attr ConstraintAttribute, srcId appkit.string, srcAttr ConstraintAttribute, c float64) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("constraintWithAttribute:relativeTo:attribute:offset:"), attr, srcId, srcAttr, c)
 	return rv
 }
 
 // The attribute the constraint affects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/attribute
-func (c_ Constraint) Attribute() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attribute"))
+func (c_ Constraint) Attribute() ConstraintAttribute {
+	rv := objc.Send[ConstraintAttribute](c_.ID, objc.Sel("attribute"))
 	return rv
 }
 
@@ -164,16 +165,16 @@ func (c_ Constraint) Scale() float64 {
 // The constraint attribute of the layer the receiver is calculated relative to
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/sourceAttribute
-func (c_ Constraint) SourceAttribute() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceAttribute"))
+func (c_ Constraint) SourceAttribute() ConstraintAttribute {
+	rv := objc.Send[ConstraintAttribute](c_.ID, objc.Sel("sourceAttribute"))
 	return rv
 }
 
 // Name of the layer that the constraint is calculated relative to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraint/sourceName
-func (c_ Constraint) SourceName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("sourceName"))
+func (c_ Constraint) SourceName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("sourceName"))
 	return rv
 }
 

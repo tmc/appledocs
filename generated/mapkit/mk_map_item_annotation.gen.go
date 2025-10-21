@@ -83,7 +83,7 @@ func NewMKMapItemAnnotation() MKMapItemAnnotation {
 // Creates a map item annotation
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemAnnotation/init(mapItem:)
-func NewMKMapItemAnnotationWithMapItem(mapItem unsafe.Pointer) MKMapItemAnnotation {
+func NewMKMapItemAnnotationWithMapItem(mapItem IMKMapItem) MKMapItemAnnotation {
 	instance := getMKMapItemAnnotationClass().Alloc()
 	rv := objc.Send[MKMapItemAnnotation](instance.ID, objc.Sel("initWithMapItem:"), mapItem)
 	rv.Autorelease()
@@ -94,8 +94,8 @@ func NewMKMapItemAnnotationWithMapItem(mapItem unsafe.Pointer) MKMapItemAnnotati
 // The map item represented by this annotation
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapItemAnnotation/mapItem
-func (m_ MKMapItemAnnotation) MapItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapItem"))
+func (m_ MKMapItemAnnotation) MapItem() MKMapItem {
+	rv := objc.Send[MKMapItem](m_.ID, objc.Sel("mapItem"))
 	return rv
 }
 

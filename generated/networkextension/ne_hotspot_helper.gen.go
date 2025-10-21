@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewNEHotspotHelper() NEHotspotHelper {
 // Return the list of network interfaces managed by the Hotspot Helper infrastructure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelper/supportedNetworkInterfaces()
-func (nc _NEHotspotHelperClass) SupportedNetworkInterfaces() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("supportedNetworkInterfaces"))
+func (nc _NEHotspotHelperClass) SupportedNetworkInterfaces() foundation.Array {
+	rv := objc.Send[foundation.Array](objc.ID(nc.class), objc.Sel("supportedNetworkInterfaces"))
 	return rv
 }
 
 // The string displayed in Wi-Fi Settings for a network handled by the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/knehotspothelperoptiondisplayname
-func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
+func (n_ NEHotspotHelper) KNEHotspotHelperOptionDisplayName() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("kNEHotspotHelperOptionDisplayName"))
 	return rv
 }
 

@@ -30,7 +30,7 @@ type _GridGraphClass struct {
 type IGridGraph interface {
 	IGraph
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
-	ConnectNodeToAdjacentNodes(node unsafe.Pointer)
+	ConnectNodeToAdjacentNodes(node IGKGridGraphNode)
 	NodeAtGridPosition(position unsafe.Pointer) unsafe.Pointer
 }
 
@@ -135,7 +135,7 @@ func (g_ GridGraph) ClassForGenericArgumentAtIndex(index uint) objc.Class {
 // Adds the specified node to the graph, connecting it to its nearest neighbors in the grid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGridGraph/connectToAdjacentNodes(node:)
-func (g_ GridGraph) ConnectNodeToAdjacentNodes(node unsafe.Pointer) {
+func (g_ GridGraph) ConnectNodeToAdjacentNodes(node IGKGridGraphNode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("connectNodeToAdjacentNodes:"), node)
 }
 

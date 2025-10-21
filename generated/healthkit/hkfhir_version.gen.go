@@ -84,8 +84,8 @@ func NewHKFHIRVersion() HKFHIRVersion {
 // The JSON representation of the FHIR resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-func (h_ HKFHIRVersion) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("data"))
+func (h_ HKFHIRVersion) Data() foundation.Data {
+	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (h_ HKFHIRVersion) Data() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-func (h_ HKFHIRVersion) SetData(value unsafe.Pointer) {
+func (h_ HKFHIRVersion) SetData(value foundation.IData) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setData:"), value)
 }
 
 // The FHIR version used by this resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
-func (h_ HKFHIRVersion) FhirVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("fhirVersion"))
+func (h_ HKFHIRVersion) FhirVersion() HKFHIRVersion {
+	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("fhirVersion"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (h_ HKFHIRVersion) FhirVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
-func (h_ HKFHIRVersion) SetFhirVersion(value unsafe.Pointer) {
+func (h_ HKFHIRVersion) SetFhirVersion(value IHKFHIRVersion) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFhirVersion:"), value)
 }
 
 // The value from the FHIR resource’s
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRVersion) Identifier() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("identifier"))
+func (h_ HKFHIRVersion) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (h_ HKFHIRVersion) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRVersion) SetIdentifier(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (h_ HKFHIRVersion) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The value from the FHIR resource’s
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
-func (h_ HKFHIRVersion) ResourceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("resourceType"))
+func (h_ HKFHIRVersion) ResourceType() HKFHIRResourceType {
+	rv := objc.Send[HKFHIRResourceType](h_.ID, objc.Sel("resourceType"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (h_ HKFHIRVersion) ResourceType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
-func (h_ HKFHIRVersion) SetResourceType(value unsafe.Pointer) {
+func (h_ HKFHIRVersion) SetResourceType(value HKFHIRResourceType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setResourceType:"), value)
 }
 
@@ -167,7 +167,7 @@ func (h_ HKFHIRVersion) SourceURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-func (h_ HKFHIRVersion) SetSourceURL(value foundation.URL) {
+func (h_ HKFHIRVersion) SetSourceURL(value foundation.IURL) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceURL:"), value)
 }
 
@@ -246,8 +246,8 @@ func (h_ HKFHIRVersion) SetPatchVersion(value int) {
 // A string representation of the version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/stringrepresentation
-func (h_ HKFHIRVersion) StringRepresentation() string {
-	rv := objc.Send[string](h_.ID, objc.Sel("stringRepresentation"))
+func (h_ HKFHIRVersion) StringRepresentation() appkit.string {
+	rv := objc.Send[appkit.string](h_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 
@@ -257,8 +257,8 @@ func (h_ HKFHIRVersion) StringRepresentation() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirversion/stringrepresentation
-func (h_ HKFHIRVersion) SetStringRepresentation(value string) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setStringRepresentation:"), objc.String(value))
+func (h_ HKFHIRVersion) SetStringRepresentation(value appkit.string) {
+	objc.Send[objc.ID](h_.ID, objc.Sel("setStringRepresentation:"), value)
 }
 
 

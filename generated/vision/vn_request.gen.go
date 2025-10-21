@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _RequestClass struct {
 type IRequest interface {
 	objectivec.IObject
 	Cancel()
-	ComputeDeviceForComputeStage(computeStage unsafe.Pointer) objc.ID
-	SetComputeDeviceForComputeStage(computeDevice objc.ID, computeStage unsafe.Pointer)
+	ComputeDeviceForComputeStage(computeStage IComputeStage) objc.ID
+	SetComputeDeviceForComputeStage(computeDevice objectivec.IObject, computeStage IComputeStage)
 	SupportedComputeStageDevicesAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
 }
 
@@ -114,8 +115,8 @@ func (rc _RequestClass) DefaultRevision() uint {
 // The collection of currently-supported algorithm versions for the class of request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedRevisions
-func (rc _RequestClass) SupportedRevisions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("supportedRevisions"))
+func (rc _RequestClass) SupportedRevisions() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](objc.ID(rc.class), objc.Sel("supportedRevisions"))
 	return rv
 }
 // Cancels the request before it can finish executing.
@@ -128,7 +129,7 @@ func (r_ Request) Cancel() {
 // Returns the compute device for a compute stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/computeDeviceForComputeStage:
-func (r_ Request) ComputeDeviceForComputeStage(computeStage unsafe.Pointer) objc.ID {
+func (r_ Request) ComputeDeviceForComputeStage(computeStage IComputeStage) objc.ID {
 	rv := objc.Send[objc.ID](r_.ID, objc.Sel("computeDeviceForComputeStage:"), computeStage)
 	return rv
 }
@@ -136,7 +137,7 @@ func (r_ Request) ComputeDeviceForComputeStage(computeStage unsafe.Pointer) objc
 // Assigns a compute device for a compute stage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/setComputeDevice:forComputeStage:
-func (r_ Request) SetComputeDeviceForComputeStage(computeDevice objc.ID, computeStage unsafe.Pointer) {
+func (r_ Request) SetComputeDeviceForComputeStage(computeDevice objectivec.IObject, computeStage IComputeStage) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setComputeDevice:forComputeStage:"), computeDevice, computeStage)
 }
 
@@ -219,8 +220,8 @@ func (r_ Request) SetRevision(value uint) {
 // The collection of currently-supported algorithm versions for the class of request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNRequest/supportedRevisions
-func (r_ Request) SupportedRevisions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("supportedRevisions"))
+func (r_ Request) SupportedRevisions() foundation.IndexSet {
+	rv := objc.Send[foundation.IndexSet](r_.ID, objc.Sel("supportedRevisions"))
 	return rv
 }
 

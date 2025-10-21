@@ -139,8 +139,8 @@ func (a_ ATSTypesetter) SetCurrentTextContainer(value ITextContainer) {
 // The threshold controlling when hyphenation is attempted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/hyphenationfactor
-func (a_ ATSTypesetter) HyphenationFactor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("hyphenationFactor"))
+func (a_ ATSTypesetter) HyphenationFactor() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("hyphenationFactor"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (a_ ATSTypesetter) HyphenationFactor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsatstypesetter/hyphenationfactor
-func (a_ ATSTypesetter) SetHyphenationFactor(value unsafe.Pointer) {
+func (a_ ATSTypesetter) SetHyphenationFactor(value float32) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHyphenationFactor:"), value)
 }
 

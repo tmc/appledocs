@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [VZVirtioConsolePortConfiguration] class.
@@ -103,8 +104,8 @@ func (v_ VZVirtioConsolePortConfiguration) SetIsConsole(value bool) {
 // The name of the port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
+func (v_ VZVirtioConsolePortConfiguration) Name() appkit.string {
+	rv := objc.Send[appkit.string](v_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -114,15 +115,15 @@ func (v_ VZVirtioConsolePortConfiguration) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioConsolePortConfiguration/name
-func (v_ VZVirtioConsolePortConfiguration) SetName(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
+func (v_ VZVirtioConsolePortConfiguration) SetName(value appkit.string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), value)
 }
 
 // The array of console devices that you expose to the guest operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
-func (v_ VZVirtioConsolePortConfiguration) ConsoleDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("consoleDevices"))
+func (v_ VZVirtioConsolePortConfiguration) ConsoleDevices() VZConsoleDeviceConfiguration {
+	rv := objc.Send[VZConsoleDeviceConfiguration](v_.ID, objc.Sel("consoleDevices"))
 	return rv
 }
 
@@ -132,7 +133,7 @@ func (v_ VZVirtioConsolePortConfiguration) ConsoleDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/consoledevices
-func (v_ VZVirtioConsolePortConfiguration) SetConsoleDevices(value unsafe.Pointer) {
+func (v_ VZVirtioConsolePortConfiguration) SetConsoleDevices(value IVZConsoleDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
 }
 

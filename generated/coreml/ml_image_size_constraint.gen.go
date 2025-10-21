@@ -108,8 +108,8 @@ func (i_ ImageSizeConstraint) PixelsWideRange() foundation.Range {
 // Indicator of which properties to inspect for this image size constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLImageSizeConstraint/type
-func (i_ ImageSizeConstraint) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("type"))
+func (i_ ImageSizeConstraint) Type() ImageSizeConstraintType {
+	rv := objc.Send[ImageSizeConstraintType](i_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -152,8 +152,8 @@ func (i_ ImageSizeConstraint) SetPixelsWide(value int) {
 // Additional sizes this image feature supports.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
-func (i_ ImageSizeConstraint) SizeConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sizeConstraint"))
+func (i_ ImageSizeConstraint) SizeConstraint() MLImageSizeConstraint {
+	rv := objc.Send[MLImageSizeConstraint](i_.ID, objc.Sel("sizeConstraint"))
 	return rv
 }
 
@@ -163,7 +163,7 @@ func (i_ ImageSizeConstraint) SizeConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlimageconstraint/sizeconstraint
-func (i_ ImageSizeConstraint) SetSizeConstraint(value unsafe.Pointer) {
+func (i_ ImageSizeConstraint) SetSizeConstraint(value IMLImageSizeConstraint) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeConstraint:"), value)
 }
 

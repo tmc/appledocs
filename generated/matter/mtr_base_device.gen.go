@@ -77,8 +77,8 @@ func NewMTRBaseDevice() MTRBaseDevice {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasedevice/sessiontransporttype
-func (m_ MTRBaseDevice) SessionTransportType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionTransportType"))
+func (m_ MTRBaseDevice) SessionTransportType() MTRTransportType {
+	rv := objc.Send[MTRTransportType](m_.ID, objc.Sel("sessionTransportType"))
 	return rv
 }
 
@@ -86,7 +86,7 @@ func (m_ MTRBaseDevice) SessionTransportType() unsafe.Pointer {
 // SetSessionTransportType sets the value of the sessionTransportType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasedevice/sessiontransporttype
-func (m_ MTRBaseDevice) SetSessionTransportType(value unsafe.Pointer) {
+func (m_ MTRBaseDevice) SetSessionTransportType(value MTRTransportType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionTransportType:"), value)
 }
 

@@ -81,13 +81,25 @@ func NewINPauseWorkoutIntent() INPauseWorkoutIntent {
 }
 
 
-// The name of the workout to pause.
+
+
+// Initializes an intent object with the specified workout name.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Intents/INPauseWorkoutIntent/workoutName
-func (i_ INPauseWorkoutIntent) WorkoutName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INPauseWorkoutIntent/init(workoutName:)
+func NewINPauseWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INPauseWorkoutIntent {
+	instance := getINPauseWorkoutIntentClass().Alloc()
+	rv := objc.Send[INPauseWorkoutIntent](instance.ID, objc.Sel("initWithWorkoutName:"), workoutName)
+	rv.Autorelease()
 	return rv
 }
 
+
+// The name of the workout to pause.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Intents/INPauseWorkoutIntent/workoutName
+func (i_ INPauseWorkoutIntent) WorkoutName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
+	return rv
+}
 
 

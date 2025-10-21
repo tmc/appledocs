@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _DisplayLinkClass struct {
 // An interface definition for the [DisplayLink] class.
 type IDisplayLink interface {
 	objectivec.IObject
-	AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer)
+	AddToRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
 	Invalidate()
-	RemoveFromRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer)
+	RemoveFromRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer)
 }
 
 // A timer object that allows your app to synchronize its drawing to the refresh rate of the display.
@@ -88,7 +89,7 @@ func NewDisplayLink() DisplayLink {
 // Creates a display link for a target that calls its selector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/init(target:selector:)
-func NewDisplayLinkWithTargetSelector(target objc.ID, sel objc.SEL) DisplayLink {
+func NewDisplayLinkWithTargetSelector(target objectivec.IObject, sel objc.SEL) DisplayLink {
 	rv := objc.Send[DisplayLink](objc.ID(getDisplayLinkClass().class), objc.Sel("displayLinkWithTarget:selector:"), target, sel)
 	return rv
 }
@@ -97,15 +98,15 @@ func NewDisplayLinkWithTargetSelector(target objc.ID, sel objc.SEL) DisplayLink 
 // Creates a display link for a target that calls its selector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/init(target:selector:)
-func (dc _DisplayLinkClass) DisplayLinkWithTargetSelector(target objc.ID, sel objc.SEL) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("displayLinkWithTarget:selector:"), target, sel)
+func (dc _DisplayLinkClass) DisplayLinkWithTargetSelector(target objectivec.IObject, sel objc.SEL) DisplayLink {
+	rv := objc.Send[DisplayLink](objc.ID(dc.class), objc.Sel("displayLinkWithTarget:selector:"), target, sel)
 	return rv
 }
 
 // Registers the display link with a run loop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/add(to:forMode:)
-func (d_ DisplayLink) AddToRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer) {
+func (d_ DisplayLink) AddToRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addToRunLoop:forMode:"), runloop, mode)
 }
 
@@ -119,15 +120,15 @@ func (d_ DisplayLink) Invalidate() {
 // Removes the display link from the run loop for the given mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/remove(from:forMode:)
-func (d_ DisplayLink) RemoveFromRunLoopForMode(runloop unsafe.Pointer, mode unsafe.Pointer) {
+func (d_ DisplayLink) RemoveFromRunLoopForMode(runloop foundation.IRunLoop, mode unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("removeFromRunLoop:forMode:"), runloop, mode)
 }
 
 // The time interval between screen refresh updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/duration
-func (d_ DisplayLink) Duration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("duration"))
+func (d_ DisplayLink) Duration() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("duration"))
 	return rv
 }
 
@@ -206,16 +207,16 @@ func (d_ DisplayLink) SetPreferredFramesPerSecond(value int) {
 // The time interval that represents when the next frame displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/targetTimestamp
-func (d_ DisplayLink) TargetTimestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("targetTimestamp"))
+func (d_ DisplayLink) TargetTimestamp() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("targetTimestamp"))
 	return rv
 }
 
 // The time interval that represents when the last frame displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CADisplayLink/timestamp
-func (d_ DisplayLink) Timestamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("timestamp"))
+func (d_ DisplayLink) Timestamp() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timestamp"))
 	return rv
 }
 

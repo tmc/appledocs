@@ -78,8 +78,8 @@ func NewMTRNetworkCommissioningClusterNetworkConfigResponseParams() MTRNetworkCo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) DebugText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) DebugText() 
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetDebugText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) NetworkIndex
 // SetNetworkIndex sets the value of the networkIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/networkindex
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkIndex(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkIndex:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) NetworkingSt
 // SetNetworkingStatus sets the value of the networkingStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/networkingstatus
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkingStatus(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetNetworkingStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkingStatus:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) TimedInvokeT
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkconfigresponseparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterNetworkConfigResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

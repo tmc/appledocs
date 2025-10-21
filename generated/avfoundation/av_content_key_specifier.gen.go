@@ -117,8 +117,8 @@ func (c_ ContentKeySpecifier) SetKeySystem(value unsafe.Pointer) {
 // A dictionary of options with which you initialized the specifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/options
-func (c_ ContentKeySpecifier) Options() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("options"))
+func (c_ ContentKeySpecifier) Options() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -128,8 +128,8 @@ func (c_ ContentKeySpecifier) Options() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier/options
-func (c_ ContentKeySpecifier) SetOptions(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), objc.String(value))
+func (c_ ContentKeySpecifier) SetOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOptions:"), value)
 }
 
 

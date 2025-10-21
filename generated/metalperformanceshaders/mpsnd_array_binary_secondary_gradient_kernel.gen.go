@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayBinarySecondaryGradientKernel] class.
@@ -78,7 +79,7 @@ func NewNDArrayBinarySecondaryGradientKernel() NDArrayBinarySecondaryGradientKer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayBinarySecondaryGradientKernel/init(device:)
-func NewNDArrayBinarySecondaryGradientKernelWithDevice(device objc.ID) NDArrayBinarySecondaryGradientKernel {
+func NewNDArrayBinarySecondaryGradientKernelWithDevice(device objectivec.IObject) NDArrayBinarySecondaryGradientKernel {
 	instance := getNDArrayBinarySecondaryGradientKernelClass().Alloc()
 	rv := objc.Send[NDArrayBinarySecondaryGradientKernel](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

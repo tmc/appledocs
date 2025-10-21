@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,15 +78,15 @@ func NewMIDIUMPEndpoint() MIDIUMPEndpoint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/deviceInfo
-func (m_ MIDIUMPEndpoint) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+func (m_ MIDIUMPEndpoint) DeviceInfo() MIDI2DeviceInfo {
+	rv := objc.Send[MIDI2DeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/endpointType
-func (m_ MIDIUMPEndpoint) EndpointType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("endpointType"))
+func (m_ MIDIUMPEndpoint) EndpointType() MIDIUMPCIObjectBackingType {
+	rv := objc.Send[MIDIUMPCIObjectBackingType](m_.ID, objc.Sel("endpointType"))
 	return rv
 }
 
@@ -137,43 +138,43 @@ func (m_ MIDIUMPEndpoint) HasStaticFunctionBlocks() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiDestination
-func (m_ MIDIUMPEndpoint) MIDIDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MIDIDestination"))
+func (m_ MIDIUMPEndpoint) MIDIDestination() MIDIEndpointRef {
+	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("MIDIDestination"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiProtocol
-func (m_ MIDIUMPEndpoint) MIDIProtocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MIDIProtocol"))
+func (m_ MIDIUMPEndpoint) MIDIProtocol() MIDIProtocolID {
+	rv := objc.Send[MIDIProtocolID](m_.ID, objc.Sel("MIDIProtocol"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/midiSource
-func (m_ MIDIUMPEndpoint) MIDISource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MIDISource"))
+func (m_ MIDIUMPEndpoint) MIDISource() MIDIEndpointRef {
+	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("MIDISource"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/name
-func (m_ MIDIUMPEndpoint) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPEndpoint) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/productInstanceID
-func (m_ MIDIUMPEndpoint) ProductInstanceID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("productInstanceID"))
+func (m_ MIDIUMPEndpoint) ProductInstanceID() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("productInstanceID"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPEndpoint/supportedMIDIProtocols
-func (m_ MIDIUMPEndpoint) SupportedMIDIProtocols() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("supportedMIDIProtocols"))
+func (m_ MIDIUMPEndpoint) SupportedMIDIProtocols() MIDIUMPProtocolOptions {
+	rv := objc.Send[MIDIUMPProtocolOptions](m_.ID, objc.Sel("supportedMIDIProtocols"))
 	return rv
 }
 

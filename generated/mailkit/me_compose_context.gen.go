@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,22 +78,22 @@ func NewMEComposeContext() MEComposeContext {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/action
-func (m_ MEComposeContext) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))
+func (m_ MEComposeContext) Action() MEComposeUserAction {
+	rv := objc.Send[MEComposeUserAction](m_.ID, objc.Sel("action"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/originalMessage
-func (m_ MEComposeContext) OriginalMessage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("originalMessage"))
+func (m_ MEComposeContext) OriginalMessage() MEMessage {
+	rv := objc.Send[MEMessage](m_.ID, objc.Sel("originalMessage"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/contextid
-func (m_ MEComposeContext) ContextID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("contextID"))
+func (m_ MEComposeContext) ContextID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("contextID"))
 	return rv
 }
 
@@ -100,7 +101,7 @@ func (m_ MEComposeContext) ContextID() unsafe.Pointer {
 // SetContextID sets the value of the contextID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/contextid
-func (m_ MEComposeContext) SetContextID(value unsafe.Pointer) {
+func (m_ MEComposeContext) SetContextID(value foundation.IUUID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContextID:"), value)
 }
 

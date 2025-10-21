@@ -100,8 +100,8 @@ func (c_ CEmbeddingLayer) SetDescriptor(value unsafe.Pointer) {
 // The weights tensor that contains the word embedding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weights
-func (c_ CEmbeddingLayer) Weights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+func (c_ CEmbeddingLayer) Weights() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (c_ CEmbeddingLayer) Weights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weights
-func (c_ CEmbeddingLayer) SetWeights(value unsafe.Pointer) {
+func (c_ CEmbeddingLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
 }
 
 // The tensor parameter that describes the weights for the optimizer update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weightsparameter
-func (c_ CEmbeddingLayer) WeightsParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightsParameter"))
+func (c_ CEmbeddingLayer) WeightsParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("weightsParameter"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (c_ CEmbeddingLayer) WeightsParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcembeddinglayer/weightsparameter
-func (c_ CEmbeddingLayer) SetWeightsParameter(value unsafe.Pointer) {
+func (c_ CEmbeddingLayer) SetWeightsParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
 }
 

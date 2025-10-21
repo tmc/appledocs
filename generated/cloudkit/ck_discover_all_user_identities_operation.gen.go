@@ -82,6 +82,42 @@ func NewCKDiscoverAllUserIdentitiesOperation() CKDiscoverAllUserIdentitiesOperat
 
 
 
+// The closure to execute when the operation finishes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/discoverAllUserIdentitiesCompletionBlock
+func (c_ CKDiscoverAllUserIdentitiesOperation) DiscoverAllUserIdentitiesCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("discoverAllUserIdentitiesCompletionBlock"))
+	return rv
+}
+
+
+// SetDiscoverAllUserIdentitiesCompletionBlock sets the value of the discoverAllUserIdentitiesCompletionBlock property.
+// The closure to execute when the operation finishes.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/discoverAllUserIdentitiesCompletionBlock
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetDiscoverAllUserIdentitiesCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setDiscoverAllUserIdentitiesCompletionBlock:"), value)
+}
+
+// The closure to execute for each user identity.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/userIdentityDiscoveredBlock
+func (c_ CKDiscoverAllUserIdentitiesOperation) UserIdentityDiscoveredBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentityDiscoveredBlock"))
+	return rv
+}
+
+
+// SetUserIdentityDiscoveredBlock sets the value of the userIdentityDiscoveredBlock property.
+// The closure to execute for each user identity.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDiscoverAllUserIdentitiesOperation/userIdentityDiscoveredBlock
+func (c_ CKDiscoverAllUserIdentitiesOperation) SetUserIdentityDiscoveredBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setUserIdentityDiscoveredBlock:"), value)
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiesresultblock
 func (c_ CKDiscoverAllUserIdentitiesOperation) DiscoverAllUserIdentitiesResultBlock() unsafe.Pointer {

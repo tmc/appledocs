@@ -84,15 +84,15 @@ func NewUnitLength() UnitLength {
 // The hectometers unit of length.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
-func (uc _UnitLengthClass) Hectometers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("hectometers"))
+func (uc _UnitLengthClass) Hectometers() UnitLength {
+	rv := objc.Send[NSUnitLength](objc.ID(uc.class), objc.Sel("hectometers"))
 	return rv
 }
 // The hectometers unit of length.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitLength/hectometers
-func (u_ UnitLength) Hectometers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("hectometers"))
+func (u_ UnitLength) Hectometers() NSUnitLength {
+	rv := objc.Send[NSUnitLength](u_.ID, objc.Sel("hectometers"))
 	return rv
 }
 

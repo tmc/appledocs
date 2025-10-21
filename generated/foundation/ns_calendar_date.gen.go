@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CalendarDate] class.
@@ -30,8 +32,8 @@ type _CalendarDateClass struct {
 type ICalendarDate interface {
 	IDate
 	DayOfCommonEra() int
-	DescriptionWithCalendarFormat(format string) string
-	DescriptionWithCalendarFormatLocale(format string, locale objc.ID) string
+	DescriptionWithCalendarFormat(format appkit.string) String
+	DescriptionWithCalendarFormatLocale(format appkit.string, locale objectivec.IObject) String
 	HourOfDay() int
 }
 
@@ -85,7 +87,7 @@ func NewCalendarDate() CalendarDate {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dateWithYear:month:day:hour:minute:second:timeZone:
-func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uint, day uint, hour uint, minute uint, second uint, aTimeZone unsafe.Pointer) objc.ID {
+func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uint, day uint, hour uint, minute uint, second uint, aTimeZone ITimeZone) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("dateWithYear:month:day:hour:minute:second:timeZone:"), year, month, day, hour, minute, second, aTimeZone)
 	return rv
 }
@@ -106,15 +108,15 @@ func (c_ CalendarDate) DayOfCommonEra() int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:
-func (c_ CalendarDate) DescriptionWithCalendarFormat(format string) string {
-	rv := objc.Send[string](c_.ID, objc.Sel("descriptionWithCalendarFormat:"), objc.String(format))
+func (c_ CalendarDate) DescriptionWithCalendarFormat(format appkit.string) String {
+	rv := objc.Send[String](c_.ID, objc.Sel("descriptionWithCalendarFormat:"), format)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:locale:
-func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format string, locale objc.ID) string {
-	rv := objc.Send[string](c_.ID, objc.Sel("descriptionWithCalendarFormat:locale:"), objc.String(format), locale)
+func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format appkit.string, locale objectivec.IObject) String {
+	rv := objc.Send[String](c_.ID, objc.Sel("descriptionWithCalendarFormat:locale:"), format, locale)
 	return rv
 }
 

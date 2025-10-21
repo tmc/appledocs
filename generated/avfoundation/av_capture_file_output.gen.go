@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CaptureFileOutput] class.
@@ -30,7 +31,7 @@ type _CaptureFileOutputClass struct {
 // An interface definition for the [CaptureFileOutput] class.
 type ICaptureFileOutput interface {
 	ICaptureOutput
-	StartRecordingToOutputFileURLRecordingDelegate(outputFileURL foundation.URL, delegate objc.ID)
+	StartRecordingToOutputFileURLRecordingDelegate(outputFileURL foundation.IURL, delegate objectivec.IObject)
 }
 
 // The abstract superclass for capture outputs that can record captured data to a file.
@@ -84,7 +85,7 @@ func NewCaptureFileOutput() CaptureFileOutput {
 // Starts recording media to the specified output URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFileOutput/startRecording(to:recordingDelegate:)
-func (c_ CaptureFileOutput) StartRecordingToOutputFileURLRecordingDelegate(outputFileURL foundation.URL, delegate objc.ID) {
+func (c_ CaptureFileOutput) StartRecordingToOutputFileURLRecordingDelegate(outputFileURL foundation.IURL, delegate objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("startRecordingToOutputFileURL:recordingDelegate:"), outputFileURL, delegate)
 }
 
@@ -210,7 +211,7 @@ func (c_ CaptureFileOutput) OutputFileURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/outputfileurl
-func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.URL) {
+func (c_ CaptureFileOutput) SetOutputFileURL(value foundation.IURL) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOutputFileURL:"), value)
 }
 

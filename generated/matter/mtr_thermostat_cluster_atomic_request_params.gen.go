@@ -78,8 +78,8 @@ func NewMTRThermostatClusterAtomicRequestParams() MTRThermostatClusterAtomicRequ
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/attributeRequests
-func (m_ MTRThermostatClusterAtomicRequestParams) AttributeRequests() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attributeRequests"))
+func (m_ MTRThermostatClusterAtomicRequestParams) AttributeRequests() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("attributeRequests"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) AttributeRequests() unsafe.Poi
 // SetAttributeRequests sets the value of the attributeRequests property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/attributeRequests
-func (m_ MTRThermostatClusterAtomicRequestParams) SetAttributeRequests(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetAttributeRequests(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeRequests:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) RequestType() foundation.Numbe
 // SetRequestType sets the value of the requestType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/requestType
-func (m_ MTRThermostatClusterAtomicRequestParams) SetRequestType(value foundation.Number) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetRequestType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestType:"), value)
 }
 
@@ -120,7 +120,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) ServerSideProcessingTimeout() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/serverSideProcessingTimeout
-func (m_ MTRThermostatClusterAtomicRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -138,7 +138,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) TimedInvokeTimeoutMs() foundat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timedInvokeTimeoutMs
-func (m_ MTRThermostatClusterAtomicRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -153,7 +153,7 @@ func (m_ MTRThermostatClusterAtomicRequestParams) Timeout() foundation.Number {
 // SetTimeout sets the value of the timeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicRequestParams/timeout
-func (m_ MTRThermostatClusterAtomicRequestParams) SetTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterAtomicRequestParams) SetTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
 

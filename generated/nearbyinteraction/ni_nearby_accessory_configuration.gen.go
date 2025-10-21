@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NINearbyAccessoryConfiguration] class.
@@ -86,7 +87,7 @@ func NewNINearbyAccessoryConfiguration() NINearbyAccessoryConfiguration {
 // Creates a configuration for an accessory with the given Bluetooth peer identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/init(accessoryData:bluetoothPeerIdentifier:)
-func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierError(accessoryData unsafe.Pointer, identifier unsafe.Pointer, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
+func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierError(accessoryData foundation.IData, identifier foundation.IUUID, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
 	instance := getNINearbyAccessoryConfigurationClass().Alloc()
 	rv := objc.Send[NINearbyAccessoryConfiguration](instance.ID, objc.Sel("initWithAccessoryData:bluetoothPeerIdentifier:error:"), accessoryData, identifier, error_)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewNINearbyAccessoryConfigurationWithAccessoryDataBluetoothPeerIdentifierEr
 // Creates a configuration for interaction between iPhone and third-party accessories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/init(data:)
-func NewNINearbyAccessoryConfigurationWithDataError(data unsafe.Pointer, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
+func NewNINearbyAccessoryConfigurationWithDataError(data foundation.IData, error_ unsafe.Pointer) NINearbyAccessoryConfiguration {
 	instance := getNINearbyAccessoryConfigurationClass().Alloc()
 	rv := objc.Send[NINearbyAccessoryConfiguration](instance.ID, objc.Sel("initWithData:error:"), data, error_)
 	rv.Autorelease()
@@ -109,8 +110,8 @@ func NewNINearbyAccessoryConfigurationWithDataError(data unsafe.Pointer, error_ 
 // An identifier for the accessory in a session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyAccessoryConfiguration/accessoryDiscoveryToken
-func (n_ NINearbyAccessoryConfiguration) AccessoryDiscoveryToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("accessoryDiscoveryToken"))
+func (n_ NINearbyAccessoryConfiguration) AccessoryDiscoveryToken() NIDiscoveryToken {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("accessoryDiscoveryToken"))
 	return rv
 }
 

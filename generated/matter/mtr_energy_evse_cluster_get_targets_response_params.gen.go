@@ -90,8 +90,8 @@ func NewMTREnergyEVSEClusterGetTargetsResponseParamsWithResponseValueError(respo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams/chargingTargetSchedules
-func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) ChargingTargetSchedules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("chargingTargetSchedules"))
+func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) ChargingTargetSchedules() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("chargingTargetSchedules"))
 	return rv
 }
 
@@ -99,7 +99,7 @@ func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) ChargingTargetSchedules()
 // SetChargingTargetSchedules sets the value of the chargingTargetSchedules property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterGetTargetsResponseParams/chargingTargetSchedules
-func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) SetChargingTargetSchedules(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterGetTargetsResponseParams) SetChargingTargetSchedules(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingTargetSchedules:"), value)
 }
 

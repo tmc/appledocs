@@ -87,7 +87,7 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeParams) NewMode() foundation.Numbe
 // SetNewMode sets the value of the newMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/newMode
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeParams) ServerSideProcessingTimeou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRWaterHeaterModeClusterChangeToModeParams) TimedInvokeTimeoutMs() fou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWaterHeaterModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

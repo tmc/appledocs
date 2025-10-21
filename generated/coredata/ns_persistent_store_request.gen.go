@@ -109,8 +109,8 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []PersistentStore) {
 // The type of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreRequest/requestType
-func (p_ PersistentStoreRequest) RequestType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("requestType"))
+func (p_ PersistentStoreRequest) RequestType() PersistentStoreRequestType {
+	rv := objc.Send[PersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
 	return rv
 }
 

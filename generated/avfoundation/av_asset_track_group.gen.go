@@ -95,7 +95,7 @@ func (a_ AssetTrackGroup) TrackIDs() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrackgroup/trackids
-func (a_ AssetTrackGroup) SetTrackIDs(value foundation.Number) {
+func (a_ AssetTrackGroup) SetTrackIDs(value foundation.INumber) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackIDs:"), value)
 }
 

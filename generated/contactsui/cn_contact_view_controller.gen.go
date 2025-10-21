@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/contacts"
 )
 
 // The class instance for the [CNContactViewController] class.
@@ -30,7 +31,7 @@ type _CNContactViewControllerClass struct {
 // An interface definition for the [CNContactViewController] class.
 type ICNContactViewController interface {
 	appkit.IViewController
-	HighlightPropertyWithKeyIdentifier(key string, identifier string)
+	HighlightPropertyWithKeyIdentifier(key appkit.string, identifier appkit.string)
 }
 
 // A view controller that displays a new, unknown, or existing contact.
@@ -88,7 +89,7 @@ func NewCNContactViewController() CNContactViewController {
 // Initializes a view controller for an existing contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func NewCNContactViewControllerForContact(contact unsafe.Pointer) CNContactViewController {
+func NewCNContactViewControllerForContact(contact contacts.ICNContact) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
@@ -98,7 +99,7 @@ func NewCNContactViewControllerForContact(contact unsafe.Pointer) CNContactViewC
 // Initializes a view controller for a new contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
-func NewCNContactViewControllerForNewContact(contact unsafe.Pointer) CNContactViewController {
+func NewCNContactViewControllerForNewContact(contact contacts.ICNContact) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForNewContact:"), contact)
 	return rv
 }
@@ -108,7 +109,7 @@ func NewCNContactViewControllerForNewContact(contact unsafe.Pointer) CNContactVi
 // Initializes a view controller for an unknown contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
-func NewCNContactViewControllerForUnknownContact(contact unsafe.Pointer) CNContactViewController {
+func NewCNContactViewControllerForUnknownContact(contact contacts.ICNContact) CNContactViewController {
 	rv := objc.Send[CNContactViewController](objc.ID(getCNContactViewControllerClass().class), objc.Sel("viewControllerForUnknownContact:"), contact)
 	return rv
 }
@@ -125,7 +126,7 @@ func (cc _CNContactViewControllerClass) DescriptorForRequiredKeys() objc.ID {
 // Initializes a view controller for an existing contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(for:)
-func (cc _CNContactViewControllerClass) ViewControllerForContact(contact unsafe.Pointer) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForContact(contact contacts.ICNContact) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForContact:"), contact)
 	return rv
 }
@@ -133,7 +134,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForContact(contact unsafe.
 // Initializes a view controller for a new contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forNewContact:)
-func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact unsafe.Pointer) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact contacts.ICNContact) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForNewContact:"), contact)
 	return rv
 }
@@ -141,7 +142,7 @@ func (cc _CNContactViewControllerClass) ViewControllerForNewContact(contact unsa
 // Initializes a view controller for an unknown contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/init(forUnknownContact:)
-func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact unsafe.Pointer) unsafe.Pointer {
+func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact contacts.ICNContact) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("viewControllerForUnknownContact:"), contact)
 	return rv
 }
@@ -149,8 +150,8 @@ func (cc _CNContactViewControllerClass) ViewControllerForUnknownContact(contact 
 // Highlights the property of the contact being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/highlightProperty(withKey:identifier:)
-func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key string, identifier string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("highlightPropertyWithKey:identifier:"), objc.String(key), objc.String(identifier))
+func (c_ CNContactViewController) HighlightPropertyWithKeyIdentifier(key appkit.string, identifier appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("highlightPropertyWithKey:identifier:"), key, identifier)
 }
 
 // Determines whether to display buttons for actions such as sending a text message or initiating a FaceTime call.
@@ -192,8 +193,8 @@ func (c_ CNContactViewController) SetAllowsEditing(value bool) {
 // The name to use if the contact has no display name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) AlternateName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("alternateName"))
+func (c_ CNContactViewController) AlternateName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("alternateName"))
 	return rv
 }
 
@@ -203,23 +204,23 @@ func (c_ CNContactViewController) AlternateName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/alternateName
-func (c_ CNContactViewController) SetAlternateName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), objc.String(value))
+func (c_ CNContactViewController) SetAlternateName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAlternateName:"), value)
 }
 
 // The contact being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contact
-func (c_ CNContactViewController) Contact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contact"))
+func (c_ CNContactViewController) Contact() contacts.CNContact {
+	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 
 // The contact store from which the contact was fetched or to which it will be saved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contactStore
-func (c_ CNContactViewController) ContactStore() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contactStore"))
+func (c_ CNContactViewController) ContactStore() contacts.CNContactStore {
+	rv := objc.Send[contacts.CNContactStore](c_.ID, objc.Sel("contactStore"))
 	return rv
 }
 
@@ -229,7 +230,7 @@ func (c_ CNContactViewController) ContactStore() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contactStore
-func (c_ CNContactViewController) SetContactStore(value unsafe.Pointer) {
+func (c_ CNContactViewController) SetContactStore(value contacts.ICNContactStore) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContactStore:"), value)
 }
 
@@ -254,8 +255,8 @@ func (c_ CNContactViewController) SetDelegate(value objc.ID) {
 // The contact property keys to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/displayedPropertyKeys
-func (c_ CNContactViewController) DisplayedPropertyKeys() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("displayedPropertyKeys"))
+func (c_ CNContactViewController) DisplayedPropertyKeys() objc.ID {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("displayedPropertyKeys"))
 	return rv
 }
 
@@ -265,15 +266,15 @@ func (c_ CNContactViewController) DisplayedPropertyKeys() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/displayedPropertyKeys
-func (c_ CNContactViewController) SetDisplayedPropertyKeys(value unsafe.Pointer) {
+func (c_ CNContactViewController) SetDisplayedPropertyKeys(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDisplayedPropertyKeys:"), value)
 }
 
 // The message displayed under the name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) Message() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("message"))
+func (c_ CNContactViewController) Message() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -283,15 +284,15 @@ func (c_ CNContactViewController) Message() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/message
-func (c_ CNContactViewController) SetMessage(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), objc.String(value))
+func (c_ CNContactViewController) SetMessage(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMessage:"), value)
 }
 
 // The container in which to add a new contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentContainer
-func (c_ CNContactViewController) ParentContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("parentContainer"))
+func (c_ CNContactViewController) ParentContainer() contacts.CNContainer {
+	rv := objc.Send[contacts.CNContainer](c_.ID, objc.Sel("parentContainer"))
 	return rv
 }
 
@@ -301,15 +302,15 @@ func (c_ CNContactViewController) ParentContainer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentContainer
-func (c_ CNContactViewController) SetParentContainer(value unsafe.Pointer) {
+func (c_ CNContactViewController) SetParentContainer(value contacts.ICNContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParentContainer:"), value)
 }
 
 // The group in which to add a new contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentGroup
-func (c_ CNContactViewController) ParentGroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("parentGroup"))
+func (c_ CNContactViewController) ParentGroup() contacts.CNGroup {
+	rv := objc.Send[contacts.CNGroup](c_.ID, objc.Sel("parentGroup"))
 	return rv
 }
 
@@ -319,7 +320,7 @@ func (c_ CNContactViewController) ParentGroup() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentGroup
-func (c_ CNContactViewController) SetParentGroup(value unsafe.Pointer) {
+func (c_ CNContactViewController) SetParentGroup(value contacts.ICNGroup) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setParentGroup:"), value)
 }
 

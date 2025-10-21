@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,15 +91,15 @@ func (m_ MEMessage) AllRecipientAddresses() []MEEmailAddress {
 // The date that the recipient received the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/dateReceived
-func (m_ MEMessage) DateReceived() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dateReceived"))
+func (m_ MEMessage) DateReceived() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("dateReceived"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/encryptionState
-func (m_ MEMessage) EncryptionState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("encryptionState"))
+func (m_ MEMessage) EncryptionState() MEMessageEncryptionState {
+	rv := objc.Send[MEMessageEncryptionState](m_.ID, objc.Sel("encryptionState"))
 	return rv
 }
 
@@ -112,16 +114,16 @@ func (m_ MEMessage) Headers() unsafe.Pointer {
 // The subject of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEMessage/subject
-func (m_ MEMessage) Subject() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subject"))
+func (m_ MEMessage) Subject() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("subject"))
 	return rv
 }
 
 // An array of email addresses for the concealed tertiary recipients of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
-func (m_ MEMessage) BccAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bccAddresses"))
+func (m_ MEMessage) BccAddresses() MEEmailAddress {
+	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("bccAddresses"))
 	return rv
 }
 
@@ -131,15 +133,15 @@ func (m_ MEMessage) BccAddresses() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/bccaddresses
-func (m_ MEMessage) SetBccAddresses(value unsafe.Pointer) {
+func (m_ MEMessage) SetBccAddresses(value IMEEmailAddress) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBccAddresses:"), value)
 }
 
 // An array of email addresses for the secondary recipients of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
-func (m_ MEMessage) CcAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ccAddresses"))
+func (m_ MEMessage) CcAddresses() MEEmailAddress {
+	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("ccAddresses"))
 	return rv
 }
 
@@ -149,15 +151,15 @@ func (m_ MEMessage) CcAddresses() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/ccaddresses
-func (m_ MEMessage) SetCcAddresses(value unsafe.Pointer) {
+func (m_ MEMessage) SetCcAddresses(value IMEEmailAddress) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCcAddresses:"), value)
 }
 
 // The sender’s email address.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
-func (m_ MEMessage) FromAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("fromAddress"))
+func (m_ MEMessage) FromAddress() MEEmailAddress {
+	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("fromAddress"))
 	return rv
 }
 
@@ -167,15 +169,15 @@ func (m_ MEMessage) FromAddress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/fromaddress
-func (m_ MEMessage) SetFromAddress(value unsafe.Pointer) {
+func (m_ MEMessage) SetFromAddress(value IMEEmailAddress) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFromAddress:"), value)
 }
 
 // The raw RFC 2822 header and body content of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) RawData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rawData"))
+func (m_ MEMessage) RawData() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rawData"))
 	return rv
 }
 
@@ -185,15 +187,15 @@ func (m_ MEMessage) RawData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/rawdata
-func (m_ MEMessage) SetRawData(value unsafe.Pointer) {
+func (m_ MEMessage) SetRawData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRawData:"), value)
 }
 
 // An array of email addresses to use when replying to the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
-func (m_ MEMessage) ReplyToAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("replyToAddresses"))
+func (m_ MEMessage) ReplyToAddresses() MEEmailAddress {
+	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("replyToAddresses"))
 	return rv
 }
 
@@ -203,15 +205,15 @@ func (m_ MEMessage) ReplyToAddresses() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/replytoaddresses
-func (m_ MEMessage) SetReplyToAddresses(value unsafe.Pointer) {
+func (m_ MEMessage) SetReplyToAddresses(value IMEEmailAddress) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReplyToAddresses:"), value)
 }
 
 // The state of the mail message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
-func (m_ MEMessage) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MEMessage) State() MEMessageState {
+	rv := objc.Send[MEMessageState](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -221,15 +223,15 @@ func (m_ MEMessage) State() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/state
-func (m_ MEMessage) SetState(value unsafe.Pointer) {
+func (m_ MEMessage) SetState(value MEMessageState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 
 // An array of email addresses for the primary recipients of the message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
-func (m_ MEMessage) ToAddresses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("toAddresses"))
+func (m_ MEMessage) ToAddresses() MEEmailAddress {
+	rv := objc.Send[MEEmailAddress](m_.ID, objc.Sel("toAddresses"))
 	return rv
 }
 
@@ -239,7 +241,7 @@ func (m_ MEMessage) ToAddresses() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/memessage/toaddresses
-func (m_ MEMessage) SetToAddresses(value unsafe.Pointer) {
+func (m_ MEMessage) SetToAddresses(value IMEEmailAddress) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setToAddresses:"), value)
 }
 

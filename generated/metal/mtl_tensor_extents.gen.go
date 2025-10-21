@@ -83,8 +83,8 @@ func NewTensorExtents() TensorExtents {
 // An error domain for errors that pertain to creating a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorExtents) MTLTensorDomain() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorExtents) MTLTensorDomain() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
 }
 

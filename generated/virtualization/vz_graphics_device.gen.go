@@ -91,8 +91,8 @@ func (v_ VZGraphicsDevice) Displays() []VZGraphicsDisplay {
 // The list of configured graphics devices on the virtual machine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/graphicsdevices
-func (v_ VZGraphicsDevice) GraphicsDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("graphicsDevices"))
+func (v_ VZGraphicsDevice) GraphicsDevices() VZGraphicsDevice {
+	rv := objc.Send[VZGraphicsDevice](v_.ID, objc.Sel("graphicsDevices"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (v_ VZGraphicsDevice) GraphicsDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/graphicsdevices
-func (v_ VZGraphicsDevice) SetGraphicsDevices(value unsafe.Pointer) {
+func (v_ VZGraphicsDevice) SetGraphicsDevices(value IVZGraphicsDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setGraphicsDevices:"), value)
 }
 

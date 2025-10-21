@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (a_ AudioFormat) FormatDescription() unsafe.Pointer {
 // The number of channels of audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channelcount
-func (a_ AudioFormat) ChannelCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channelCount"))
+func (a_ AudioFormat) ChannelCount() AudioChannelCount {
+	rv := objc.Send[AudioChannelCount](a_.ID, objc.Sel("channelCount"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (a_ AudioFormat) ChannelCount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channelcount
-func (a_ AudioFormat) SetChannelCount(value unsafe.Pointer) {
+func (a_ AudioFormat) SetChannelCount(value IAudioChannelCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelCount:"), value)
 }
 
 // The underlying audio channel layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channellayout
-func (a_ AudioFormat) ChannelLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("channelLayout"))
+func (a_ AudioFormat) ChannelLayout() AVAudioChannelLayout {
+	rv := objc.Send[AVAudioChannelLayout](a_.ID, objc.Sel("channelLayout"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (a_ AudioFormat) ChannelLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/channellayout
-func (a_ AudioFormat) SetChannelLayout(value unsafe.Pointer) {
+func (a_ AudioFormat) SetChannelLayout(value IAVAudioChannelLayout) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setChannelLayout:"), value)
 }
 
 // The common format identifier instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/commonformat
-func (a_ AudioFormat) CommonFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("commonFormat"))
+func (a_ AudioFormat) CommonFormat() AudioCommonFormat {
+	rv := objc.Send[AudioCommonFormat](a_.ID, objc.Sel("commonFormat"))
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (a_ AudioFormat) CommonFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/commonformat
-func (a_ AudioFormat) SetCommonFormat(value unsafe.Pointer) {
+func (a_ AudioFormat) SetCommonFormat(value AudioCommonFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCommonFormat:"), value)
 }
 
@@ -181,8 +182,8 @@ func (a_ AudioFormat) SetIsStandard(value bool) {
 // An object that contains metadata that encoders and decoders require.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/magiccookie
-func (a_ AudioFormat) MagicCookie() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("magicCookie"))
+func (a_ AudioFormat) MagicCookie() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("magicCookie"))
 	return rv
 }
 
@@ -192,7 +193,7 @@ func (a_ AudioFormat) MagicCookie() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/magiccookie
-func (a_ AudioFormat) SetMagicCookie(value unsafe.Pointer) {
+func (a_ AudioFormat) SetMagicCookie(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMagicCookie:"), value)
 }
 
@@ -217,8 +218,8 @@ func (a_ AudioFormat) SetSampleRate(value unsafe.Pointer) {
 // A dictionary that represents the format as a dictionary using audio setting keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/settings
-func (a_ AudioFormat) Settings() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("settings"))
+func (a_ AudioFormat) Settings() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("settings"))
 	return rv
 }
 
@@ -228,8 +229,8 @@ func (a_ AudioFormat) Settings() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioformat/settings
-func (a_ AudioFormat) SetSettings(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setSettings:"), objc.String(value))
+func (a_ AudioFormat) SetSettings(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setSettings:"), value)
 }
 
 // The audio format properties of a stream of audio data.
@@ -252,8 +253,8 @@ func (a_ AudioFormat) SetStreamDescription(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avchannellayoutkey
-func (a_ AudioFormat) AVChannelLayoutKey() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AVChannelLayoutKey"))
+func (a_ AudioFormat) AVChannelLayoutKey() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AVChannelLayoutKey"))
 	return rv
 }
 

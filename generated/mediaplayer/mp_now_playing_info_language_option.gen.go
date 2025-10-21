@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,9 +88,9 @@ func NewNowPlayingInfoLanguageOption() NowPlayingInfoLanguageOption {
 // Creates a single language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/init(type:languageTag:characteristics:displayName:identifier:)
-func NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier(languageOptionType unsafe.Pointer, languageTag string, languageOptionCharacteristics unsafe.Pointer, displayName string, identifier string) NowPlayingInfoLanguageOption {
+func NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier(languageOptionType NowPlayingInfoLanguageOptionType, languageTag appkit.string, languageOptionCharacteristics []string, displayName appkit.string, identifier appkit.string) NowPlayingInfoLanguageOption {
 	instance := getNowPlayingInfoLanguageOptionClass().Alloc()
-	rv := objc.Send[NowPlayingInfoLanguageOption](instance.ID, objc.Sel("initWithType:languageTag:characteristics:displayName:identifier:"), languageOptionType, objc.String(languageTag), languageOptionCharacteristics, objc.String(displayName), objc.String(identifier))
+	rv := objc.Send[NowPlayingInfoLanguageOption](instance.ID, objc.Sel("initWithType:languageTag:characteristics:displayName:identifier:"), languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -114,16 +115,16 @@ func (n_ NowPlayingInfoLanguageOption) IsAutomaticLegibleLanguageOption() bool {
 // The display name for a language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/displayName
-func (n_ NowPlayingInfoLanguageOption) DisplayName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("displayName"))
+func (n_ NowPlayingInfoLanguageOption) DisplayName() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("displayName"))
 	return rv
 }
 
 // The unique identifier for the language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/identifier
-func (n_ NowPlayingInfoLanguageOption) Identifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("identifier"))
+func (n_ NowPlayingInfoLanguageOption) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -138,16 +139,16 @@ func (n_ NowPlayingInfoLanguageOption) LanguageOptionCharacteristics() []string 
 // The type of language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/languageOptionType
-func (n_ NowPlayingInfoLanguageOption) LanguageOptionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("languageOptionType"))
+func (n_ NowPlayingInfoLanguageOption) LanguageOptionType() NowPlayingInfoLanguageOptionType {
+	rv := objc.Send[NowPlayingInfoLanguageOptionType](n_.ID, objc.Sel("languageOptionType"))
 	return rv
 }
 
 // The abbreviated language code for the language option.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption/languageTag
-func (n_ NowPlayingInfoLanguageOption) LanguageTag() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("languageTag"))
+func (n_ NowPlayingInfoLanguageOption) LanguageTag() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("languageTag"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKSampleQuery] class.
@@ -86,7 +87,7 @@ func NewHKSampleQuery() HKSampleQuery {
 // Creates a query for samples that match any of the query descriptors you provided, sorted by the sort descriptors you provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleQuery/init(queryDescriptors:limit:sortDescriptors:resultsHandler:)
-func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors unsafe.Pointer, limit int, sortDescriptors unsafe.Pointer, resultsHandler unsafe.Pointer) HKSampleQuery {
+func NewHKSampleQueryWithQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors []HKQueryDescriptor, limit int, sortDescriptors []foundation.ISortDescriptor, resultsHandler unsafe.Pointer) HKSampleQuery {
 	instance := getHKSampleQueryClass().Alloc()
 	rv := objc.Send[HKSampleQuery](instance.ID, objc.Sel("initWithQueryDescriptors:limit:sortDescriptors:resultsHandler:"), queryDescriptors, limit, sortDescriptors, resultsHandler)
 	rv.Autorelease()
@@ -123,8 +124,8 @@ func (h_ HKSampleQuery) SetLimit(value int) {
 // The sort descriptors that specify the order of the results returned by this query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SortDescriptors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sortDescriptors"))
+func (h_ HKSampleQuery) SortDescriptors() foundation.SortDescriptor {
+	rv := objc.Send[foundation.SortDescriptor](h_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -134,7 +135,7 @@ func (h_ HKSampleQuery) SortDescriptors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hksamplequery/sortdescriptors
-func (h_ HKSampleQuery) SetSortDescriptors(value unsafe.Pointer) {
+func (h_ HKSampleQuery) SetSortDescriptors(value foundation.ISortDescriptor) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSortDescriptors:"), value)
 }
 

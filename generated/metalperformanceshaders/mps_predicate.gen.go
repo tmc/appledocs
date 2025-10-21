@@ -77,7 +77,7 @@ func NewPredicate() Predicate {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate/init(device:)
-func NewPredicateWithDevice(device objc.ID) Predicate {
+func NewPredicateWithDevice(device objectivec.IObject) Predicate {
 	instance := getPredicateClass().Alloc()
 	rv := objc.Send[Predicate](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

@@ -32,7 +32,7 @@ type IAEAssessmentSession interface {
 	objectivec.IObject
 	Begin()
 	End()
-	UpdateToConfiguration(configuration unsafe.Pointer)
+	UpdateToConfiguration(configuration IAEAssessmentConfiguration)
 }
 
 // A session that your app uses to protect an assessment.
@@ -88,7 +88,7 @@ func NewAEAssessmentSession() AEAssessmentSession {
 // Creates a new assessment session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/init(configuration:)
-func NewAEAssessmentSessionWithConfiguration(configuration unsafe.Pointer) AEAssessmentSession {
+func NewAEAssessmentSessionWithConfiguration(configuration IAEAssessmentConfiguration) AEAssessmentSession {
 	instance := getAEAssessmentSessionClass().Alloc()
 	rv := objc.Send[AEAssessmentSession](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
@@ -127,15 +127,15 @@ func (a_ AEAssessmentSession) End() {
 // Changes the session to use the specified configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/update(to:)
-func (a_ AEAssessmentSession) UpdateToConfiguration(configuration unsafe.Pointer) {
+func (a_ AEAssessmentSession) UpdateToConfiguration(configuration IAEAssessmentConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("updateToConfiguration:"), configuration)
 }
 
 // The current configuration of the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AutomaticAssessmentConfiguration/AEAssessmentSession/configuration
-func (a_ AEAssessmentSession) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configuration"))
+func (a_ AEAssessmentSession) Configuration() AEAssessmentConfiguration {
+	rv := objc.Send[AEAssessmentConfiguration](a_.ID, objc.Sel("configuration"))
 	return rv
 }
 

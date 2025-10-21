@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [CNNMultiaryKernel] class.
@@ -86,8 +87,8 @@ func (c_ CNNMultiaryKernel) DilationRateYatIndex(index uint) uint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
-func (c_ CNNMultiaryKernel) ClipRect() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clipRect"))
+func (c_ CNNMultiaryKernel) ClipRect() corelocation.Region {
+	rv := objc.Send[corelocation.Region](c_.ID, objc.Sel("clipRect"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (c_ CNNMultiaryKernel) ClipRect() unsafe.Pointer {
 // SetClipRect sets the value of the clipRect property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnmultiarykernel/cliprect
-func (c_ CNNMultiaryKernel) SetClipRect(value unsafe.Pointer) {
+func (c_ CNNMultiaryKernel) SetClipRect(value corelocation.IRegion) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setClipRect:"), value)
 }
 

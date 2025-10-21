@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEAppProxyTCPFlow] class.
@@ -30,7 +31,7 @@ type _NEAppProxyTCPFlowClass struct {
 type INEAppProxyTCPFlow interface {
 	INEAppProxyFlow
 	ReadDataWithCompletionHandler(completionHandler unsafe.Pointer)
-	WriteDataWithCompletionHandler(data unsafe.Pointer, completionHandler unsafe.Pointer)
+	WriteDataWithCompletionHandler(data foundation.IData, completionHandler unsafe.Pointer)
 }
 
 // An object for reading and writing data to and from a TCP connection being proxied by the provider.
@@ -93,15 +94,15 @@ func (n_ NEAppProxyTCPFlow) ReadDataWithCompletionHandler(completionHandler unsa
 // Write data to the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyTCPFlow/write(_:withCompletionHandler:)
-func (n_ NEAppProxyTCPFlow) WriteDataWithCompletionHandler(data unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (n_ NEAppProxyTCPFlow) WriteDataWithCompletionHandler(data foundation.IData, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("writeData:withCompletionHandler:"), data, completionHandler)
 }
 
 // An object containing information about the intended remote endpoint of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyTCPFlow/remoteEndpoint
-func (n_ NEAppProxyTCPFlow) RemoteEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("remoteEndpoint"))
+func (n_ NEAppProxyTCPFlow) RemoteEndpoint() NWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteEndpoint"))
 	return rv
 }
 

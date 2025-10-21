@@ -81,23 +81,23 @@ func NewContentSharingPicker() ContentSharingPicker {
 // The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
-func (cc _ContentSharingPickerClass) SharedPicker() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedPicker"))
+func (cc _ContentSharingPickerClass) SharedPicker() ContentSharingPicker {
+	rv := objc.Send[SCContentSharingPicker](objc.ID(cc.class), objc.Sel("sharedPicker"))
 	return rv
 }
 // The system-provided picker UI instance for capturing display and audio content from someone’s Mac.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentSharingPicker/shared
-func (c_ ContentSharingPicker) SharedPicker() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sharedPicker"))
+func (c_ ContentSharingPicker) SharedPicker() SCContentSharingPicker {
+	rv := objc.Send[SCContentSharingPicker](c_.ID, objc.Sel("sharedPicker"))
 	return rv
 }
 
 // Sets the configuration for the content capture picker for all streams, providing allowed selection modes and content excluded from selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/configuration
-func (c_ ContentSharingPicker) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("configuration"))
+func (c_ ContentSharingPicker) Configuration() ContentSharingPickerConfiguration {
+	rv := objc.Send[ContentSharingPickerConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -107,15 +107,15 @@ func (c_ ContentSharingPicker) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/configuration
-func (c_ ContentSharingPicker) SetConfiguration(value unsafe.Pointer) {
+func (c_ ContentSharingPicker) SetConfiguration(value IContentSharingPickerConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
 }
 
 // The default configuration to use for the content capture picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/defaultconfiguration-94q2b
-func (c_ ContentSharingPicker) DefaultConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultConfiguration"))
+func (c_ ContentSharingPicker) DefaultConfiguration() ContentSharingPickerConfiguration {
+	rv := objc.Send[ContentSharingPickerConfiguration](c_.ID, objc.Sel("defaultConfiguration"))
 	return rv
 }
 
@@ -125,7 +125,7 @@ func (c_ ContentSharingPicker) DefaultConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/defaultconfiguration-94q2b
-func (c_ ContentSharingPicker) SetDefaultConfiguration(value unsafe.Pointer) {
+func (c_ ContentSharingPicker) SetDefaultConfiguration(value IContentSharingPickerConfiguration) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDefaultConfiguration:"), value)
 }
 

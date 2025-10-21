@@ -86,7 +86,7 @@ func NewContentFilter() ContentFilter {
 // Creates a filter that captures a display, excluding windows of the specified apps.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter/init(display:excludingApplications:exceptingWindows:)
-func NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(display unsafe.Pointer, applications unsafe.Pointer, exceptingWindows unsafe.Pointer) ContentFilter {
+func NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(display ISCDisplay, applications []RunningApplication, exceptingWindows []Window) ContentFilter {
 	instance := getContentFilterClass().Alloc()
 	rv := objc.Send[ContentFilter](instance.ID, objc.Sel("initWithDisplay:excludingApplications:exceptingWindows:"), display, applications, exceptingWindows)
 	rv.Autorelease()
@@ -98,7 +98,7 @@ func NewContentFilterWithDisplayExcludingApplicationsExceptingWindows(display un
 // Creates a filter that captures the contents of a display, excluding the specified windows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCContentFilter/init(display:excludingWindows:)
-func NewContentFilterWithDisplayExcludingWindows(display unsafe.Pointer, excluded unsafe.Pointer) ContentFilter {
+func NewContentFilterWithDisplayExcludingWindows(display ISCDisplay, excluded []Window) ContentFilter {
 	instance := getContentFilterClass().Alloc()
 	rv := objc.Send[ContentFilter](instance.ID, objc.Sel("initWithDisplay:excludingWindows:"), display, excluded)
 	rv.Autorelease()
@@ -141,8 +141,8 @@ func (c_ ContentFilter) SetContentRect(value coregraphics.CGRect) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedapplications
-func (c_ ContentFilter) IncludedApplications() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("includedApplications"))
+func (c_ ContentFilter) IncludedApplications() SCRunningApplication {
+	rv := objc.Send[SCRunningApplication](c_.ID, objc.Sel("includedApplications"))
 	return rv
 }
 
@@ -150,14 +150,14 @@ func (c_ ContentFilter) IncludedApplications() unsafe.Pointer {
 // SetIncludedApplications sets the value of the includedApplications property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedapplications
-func (c_ ContentFilter) SetIncludedApplications(value unsafe.Pointer) {
+func (c_ ContentFilter) SetIncludedApplications(value ISCRunningApplication) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedApplications:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includeddisplays
-func (c_ ContentFilter) IncludedDisplays() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("includedDisplays"))
+func (c_ ContentFilter) IncludedDisplays() SCDisplay {
+	rv := objc.Send[SCDisplay](c_.ID, objc.Sel("includedDisplays"))
 	return rv
 }
 
@@ -165,14 +165,14 @@ func (c_ ContentFilter) IncludedDisplays() unsafe.Pointer {
 // SetIncludedDisplays sets the value of the includedDisplays property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includeddisplays
-func (c_ ContentFilter) SetIncludedDisplays(value unsafe.Pointer) {
+func (c_ ContentFilter) SetIncludedDisplays(value ISCDisplay) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedDisplays:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedwindows
-func (c_ ContentFilter) IncludedWindows() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("includedWindows"))
+func (c_ ContentFilter) IncludedWindows() SCWindow {
+	rv := objc.Send[SCWindow](c_.ID, objc.Sel("includedWindows"))
 	return rv
 }
 
@@ -180,7 +180,7 @@ func (c_ ContentFilter) IncludedWindows() unsafe.Pointer {
 // SetIncludedWindows sets the value of the includedWindows property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/includedwindows
-func (c_ ContentFilter) SetIncludedWindows(value unsafe.Pointer) {
+func (c_ ContentFilter) SetIncludedWindows(value ISCWindow) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIncludedWindows:"), value)
 }
 
@@ -223,8 +223,8 @@ func (c_ ContentFilter) SetStreamType(value unsafe.Pointer) {
 // The display style of the sharable content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/style
-func (c_ ContentFilter) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("style"))
+func (c_ ContentFilter) Style() ShareableContentStyle {
+	rv := objc.Send[ShareableContentStyle](c_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -234,7 +234,7 @@ func (c_ ContentFilter) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/screencapturekit/sccontentfilter/style
-func (c_ ContentFilter) SetStyle(value unsafe.Pointer) {
+func (c_ ContentFilter) SetStyle(value ShareableContentStyle) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setStyle:"), value)
 }
 

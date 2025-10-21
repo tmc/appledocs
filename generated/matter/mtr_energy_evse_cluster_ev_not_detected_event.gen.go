@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionDuration() foundation.Nu
 // SetSessionDuration sets the value of the sessionDuration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionDuration
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionEnergyCharged() foundati
 // SetSessionEnergyCharged sets the value of the sessionEnergyCharged property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionEnergyCharged
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionEnergyCharged(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionEnergyCharged:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SessionID() foundation.Number {
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetSessionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) State() foundation.Number {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVNotDetectedEvent/state
-func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEVNotDetectedEvent) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

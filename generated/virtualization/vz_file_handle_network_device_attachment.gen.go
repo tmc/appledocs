@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [VZFileHandleNetworkDeviceAttachment] class.
@@ -86,7 +87,7 @@ func NewVZFileHandleNetworkDeviceAttachment() VZFileHandleNetworkDeviceAttachmen
 // Creates the attachment from a file handle that contains a connected datagram socket.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZFileHandleNetworkDeviceAttachment/init(fileHandle:)
-func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle unsafe.Pointer) VZFileHandleNetworkDeviceAttachment {
+func NewVZFileHandleNetworkDeviceAttachmentWithFileHandle(fileHandle foundation.IFileHandle) VZFileHandleNetworkDeviceAttachment {
 	instance := getVZFileHandleNetworkDeviceAttachmentClass().Alloc()
 	rv := objc.Send[VZFileHandleNetworkDeviceAttachment](instance.ID, objc.Sel("initWithFileHandle:"), fileHandle)
 	rv.Autorelease()
@@ -115,8 +116,8 @@ func (v_ VZFileHandleNetworkDeviceAttachment) SetMaximumTransmissionUnit(value i
 // The file handle assigned to this attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment/filehandle
-func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("fileHandle"))
+func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() foundation.FileHandle {
+	rv := objc.Send[foundation.FileHandle](v_.ID, objc.Sel("fileHandle"))
 	return rv
 }
 
@@ -126,15 +127,15 @@ func (v_ VZFileHandleNetworkDeviceAttachment) FileHandle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzfilehandlenetworkdeviceattachment/filehandle
-func (v_ VZFileHandleNetworkDeviceAttachment) SetFileHandle(value unsafe.Pointer) {
+func (v_ VZFileHandleNetworkDeviceAttachment) SetFileHandle(value foundation.IFileHandle) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setFileHandle:"), value)
 }
 
 // The object that defines how the virtual network device communicates with the host system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() VZNetworkDeviceAttachment {
+	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
@@ -144,15 +145,15 @@ func (v_ VZFileHandleNetworkDeviceAttachment) Attachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration/attachment
-func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value unsafe.Pointer) {
+func (v_ VZFileHandleNetworkDeviceAttachment) SetAttachment(value IVZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
 // The array of network devices that you expose to the guest operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("networkDevices"))
+func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() VZNetworkDeviceConfiguration {
+	rv := objc.Send[VZNetworkDeviceConfiguration](v_.ID, objc.Sel("networkDevices"))
 	return rv
 }
 
@@ -162,7 +163,7 @@ func (v_ VZFileHandleNetworkDeviceAttachment) NetworkDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/networkdevices
-func (v_ VZFileHandleNetworkDeviceAttachment) SetNetworkDevices(value unsafe.Pointer) {
+func (v_ VZFileHandleNetworkDeviceAttachment) SetNetworkDevices(value IVZNetworkDeviceConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
 }
 

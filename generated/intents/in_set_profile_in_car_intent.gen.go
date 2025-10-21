@@ -84,8 +84,8 @@ func NewINSetProfileInCarIntent() INSetProfileInCarIntent {
 // The name of the car associated with the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/carname
-func (i_ INSetProfileInCarIntent) CarName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+func (i_ INSetProfileInCarIntent) CarName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (i_ INSetProfileInCarIntent) CarName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/carname
-func (i_ INSetProfileInCarIntent) SetCarName(value unsafe.Pointer) {
+func (i_ INSetProfileInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
@@ -135,8 +135,8 @@ func (i_ INSetProfileInCarIntent) SetIsDefaultProfile(value bool) {
 // The name assigned to the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilelabel
-func (i_ INSetProfileInCarIntent) ProfileLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("profileLabel"))
+func (i_ INSetProfileInCarIntent) ProfileLabel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("profileLabel"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (i_ INSetProfileInCarIntent) ProfileLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilelabel
-func (i_ INSetProfileInCarIntent) SetProfileLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
+func (i_ INSetProfileInCarIntent) SetProfileLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), value)
 }
 
 // The name assigned to the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilename
-func (i_ INSetProfileInCarIntent) ProfileName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("profileName"))
+func (i_ INSetProfileInCarIntent) ProfileName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("profileName"))
 	return rv
 }
 
@@ -164,8 +164,8 @@ func (i_ INSetProfileInCarIntent) ProfileName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/profilename
-func (i_ INSetProfileInCarIntent) SetProfileName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
+func (i_ INSetProfileInCarIntent) SetProfileName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), value)
 }
 
 // The profile index from which to restore the settings.

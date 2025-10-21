@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -84,38 +85,38 @@ func NewURLSessionConfiguration() URLSessionConfiguration {
 // Creates a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/background(withIdentifier:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfigurationWithIdentifier(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("backgroundSessionConfigurationWithIdentifier:"), objc.String(identifier))
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfigurationWithIdentifier(identifier appkit.string) URLSessionConfiguration {
+	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfigurationWithIdentifier:"), identifier)
 	return rv
 }
 
 // Returns a session configuration object that allows HTTP and HTTPS uploads or downloads to be performed in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/backgroundSessionConfiguration(_:)
-func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), objc.String(identifier))
+func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifier appkit.string) URLSessionConfiguration {
+	rv := objc.Send[URLSessionConfiguration](objc.ID(uc.class), objc.Sel("backgroundSessionConfiguration:"), identifier)
 	return rv
 }
 
 // A default session configuration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
-func (uc _URLSessionConfigurationClass) DefaultSessionConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultSessionConfiguration"))
+func (uc _URLSessionConfigurationClass) DefaultSessionConfiguration() URLSessionConfiguration {
+	rv := objc.Send[NSURLSessionConfiguration](objc.ID(uc.class), objc.Sel("defaultSessionConfiguration"))
 	return rv
 }
 // A session configuration that uses no persistent storage for caches, cookies, or credentials.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
-func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("ephemeralSessionConfiguration"))
+func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() URLSessionConfiguration {
+	rv := objc.Send[NSURLSessionConfiguration](objc.ID(uc.class), objc.Sel("ephemeralSessionConfiguration"))
 	return rv
 }
 // An array of proxy configuration objects containing information about the proxies to use within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) ProxyConfigurations() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](u_.ID, objc.Sel("proxyConfigurations"))
+func (u_ URLSessionConfiguration) ProxyConfigurations() []Object {
+	rv := objc.Send[[]Object](u_.ID, objc.Sel("proxyConfigurations"))
 	return rv
 }
 
@@ -125,7 +126,7 @@ func (u_ URLSessionConfiguration) ProxyConfigurations() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
-func (u_ URLSessionConfiguration) SetProxyConfigurations(value []unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetProxyConfigurations(value []Object) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -196,8 +197,8 @@ func (u_ URLSessionConfiguration) SetAllowsExpensiveNetworkAccess(value bool) {
 // A dictionary containing information about the proxy to use within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/connectionProxyDictionary
-func (u_ URLSessionConfiguration) ConnectionProxyDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("connectionProxyDictionary"))
+func (u_ URLSessionConfiguration) ConnectionProxyDictionary() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("connectionProxyDictionary"))
 	return rv
 }
 
@@ -207,31 +208,31 @@ func (u_ URLSessionConfiguration) ConnectionProxyDictionary() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/connectionProxyDictionary
-func (u_ URLSessionConfiguration) SetConnectionProxyDictionary(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetConnectionProxyDictionary(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnectionProxyDictionary:"), value)
 }
 
 // A default session configuration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
-func (u_ URLSessionConfiguration) DefaultSessionConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaultSessionConfiguration"))
+func (u_ URLSessionConfiguration) DefaultSessionConfiguration() NSURLSessionConfiguration {
+	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("defaultSessionConfiguration"))
 	return rv
 }
 
 // A session configuration that uses no persistent storage for caches, cookies, or credentials.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
-func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
+func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() NSURLSessionConfiguration {
+	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
 	return rv
 }
 
 // A dictionary of additional headers to send with requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpAdditionalHeaders
-func (u_ URLSessionConfiguration) HTTPAdditionalHeaders() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("HTTPAdditionalHeaders"))
+func (u_ URLSessionConfiguration) HTTPAdditionalHeaders() objc.ID {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("HTTPAdditionalHeaders"))
 	return rv
 }
 
@@ -241,7 +242,7 @@ func (u_ URLSessionConfiguration) HTTPAdditionalHeaders() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpAdditionalHeaders
-func (u_ URLSessionConfiguration) SetHTTPAdditionalHeaders(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetHTTPAdditionalHeaders(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPAdditionalHeaders:"), value)
 }
 
@@ -266,8 +267,8 @@ func (u_ URLSessionConfiguration) SetHTTPCookieAcceptPolicy(value unsafe.Pointer
 // The cookie store for storing cookies within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpCookieStorage
-func (u_ URLSessionConfiguration) HTTPCookieStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("HTTPCookieStorage"))
+func (u_ URLSessionConfiguration) HTTPCookieStorage() NSHTTPCookieStorage {
+	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("HTTPCookieStorage"))
 	return rv
 }
 
@@ -277,7 +278,7 @@ func (u_ URLSessionConfiguration) HTTPCookieStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpCookieStorage
-func (u_ URLSessionConfiguration) SetHTTPCookieStorage(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetHTTPCookieStorage(value IHTTPCookieStorage) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHTTPCookieStorage:"), value)
 }
 
@@ -338,8 +339,8 @@ func (u_ URLSessionConfiguration) SetHTTPShouldUsePipelining(value bool) {
 // The background session identifier of the configuration object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/identifier
-func (u_ URLSessionConfiguration) Identifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
+func (u_ URLSessionConfiguration) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -364,8 +365,8 @@ func (u_ URLSessionConfiguration) SetDiscretionary(value bool) {
 // A service type that specifies the Multipath TCP connection policy for transmitting data over Wi-Fi and cellular interfaces.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
-func (u_ URLSessionConfiguration) MultipathServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("multipathServiceType"))
+func (u_ URLSessionConfiguration) MultipathServiceType() URLSessionMultipathServiceType {
+	rv := objc.Send[URLSessionMultipathServiceType](u_.ID, objc.Sel("multipathServiceType"))
 	return rv
 }
 
@@ -375,15 +376,15 @@ func (u_ URLSessionConfiguration) MultipathServiceType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/multipathServiceType-swift.property
-func (u_ URLSessionConfiguration) SetMultipathServiceType(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetMultipathServiceType(value URLSessionMultipathServiceType) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMultipathServiceType:"), value)
 }
 
 // The type of network service for all tasks within network sessions to enable Cellular Network Slicing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
-func (u_ URLSessionConfiguration) NetworkServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("networkServiceType"))
+func (u_ URLSessionConfiguration) NetworkServiceType() URLRequestNetworkServiceType {
+	rv := objc.Send[URLRequestNetworkServiceType](u_.ID, objc.Sel("networkServiceType"))
 	return rv
 }
 
@@ -393,7 +394,7 @@ func (u_ URLSessionConfiguration) NetworkServiceType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/networkServiceType
-func (u_ URLSessionConfiguration) SetNetworkServiceType(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetNetworkServiceType(value URLRequestNetworkServiceType) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkServiceType:"), value)
 }
 
@@ -418,8 +419,8 @@ func (u_ URLSessionConfiguration) SetSessionSendsLaunchEvents(value bool) {
 // The identifier for the shared container into which files in background URL sessions should be downloaded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
-func (u_ URLSessionConfiguration) SharedContainerIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("sharedContainerIdentifier"))
+func (u_ URLSessionConfiguration) SharedContainerIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("sharedContainerIdentifier"))
 	return rv
 }
 
@@ -429,8 +430,8 @@ func (u_ URLSessionConfiguration) SharedContainerIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/sharedContainerIdentifier
-func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedContainerIdentifier:"), objc.String(value))
+func (u_ URLSessionConfiguration) SetSharedContainerIdentifier(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSharedContainerIdentifier:"), value)
 }
 
 // A Boolean value that indicates whether TCP connections should be kept open when the app moves to the background.
@@ -465,7 +466,7 @@ func (u_ URLSessionConfiguration) TimeoutIntervalForRequest() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/timeoutIntervalForRequest
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value TimeInterval) {
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForRequest(value ITimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForRequest:"), value)
 }
 
@@ -483,7 +484,7 @@ func (u_ URLSessionConfiguration) TimeoutIntervalForResource() TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/timeoutIntervalForResource
-func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value TimeInterval) {
+func (u_ URLSessionConfiguration) SetTimeoutIntervalForResource(value ITimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutIntervalForResource:"), value)
 }
 
@@ -541,8 +542,8 @@ func (u_ URLSessionConfiguration) SetWaitsForConnectivity(value bool) {
 // A copy of the configuration object for this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSessionConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("configuration"))
+func (u_ URLSessionConfiguration) Configuration() NSURLSessionConfiguration {
+	rv := objc.Send[NSURLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -552,7 +553,7 @@ func (u_ URLSessionConfiguration) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/configuration
-func (u_ URLSessionConfiguration) SetConfiguration(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetConfiguration(value IURLSessionConfiguration) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConfiguration:"), value)
 }
 
@@ -712,8 +713,8 @@ func (u_ URLSessionConfiguration) SetTlsMinimumSupportedProtocolVersion(value un
 // The URL cache for providing cached responses to requests within the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcache
-func (u_ URLSessionConfiguration) UrlCache() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("urlCache"))
+func (u_ URLSessionConfiguration) UrlCache() NSURLCache {
+	rv := objc.Send[NSURLCache](u_.ID, objc.Sel("urlCache"))
 	return rv
 }
 
@@ -723,15 +724,15 @@ func (u_ URLSessionConfiguration) UrlCache() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcache
-func (u_ URLSessionConfiguration) SetUrlCache(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetUrlCache(value IURLCache) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrlCache:"), value)
 }
 
 // A credential store that provides credentials for authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcredentialstorage
-func (u_ URLSessionConfiguration) UrlCredentialStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("urlCredentialStorage"))
+func (u_ URLSessionConfiguration) UrlCredentialStorage() NSURLCredentialStorage {
+	rv := objc.Send[NSURLCredentialStorage](u_.ID, objc.Sel("urlCredentialStorage"))
 	return rv
 }
 
@@ -741,7 +742,7 @@ func (u_ URLSessionConfiguration) UrlCredentialStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/urlcredentialstorage
-func (u_ URLSessionConfiguration) SetUrlCredentialStorage(value unsafe.Pointer) {
+func (u_ URLSessionConfiguration) SetUrlCredentialStorage(value IURLCredentialStorage) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrlCredentialStorage:"), value)
 }
 

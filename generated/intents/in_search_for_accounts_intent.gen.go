@@ -84,8 +84,8 @@ func NewINSearchForAccountsIntent() INSearchForAccountsIntent {
 // The nickname that the user assigned to the account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/accountnickname
-func (i_ INSearchForAccountsIntent) AccountNickname() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("accountNickname"))
+func (i_ INSearchForAccountsIntent) AccountNickname() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("accountNickname"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (i_ INSearchForAccountsIntent) AccountNickname() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/accountnickname
-func (i_ INSearchForAccountsIntent) SetAccountNickname(value unsafe.Pointer) {
+func (i_ INSearchForAccountsIntent) SetAccountNickname(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAccountNickname:"), value)
 }
 
@@ -120,8 +120,8 @@ func (i_ INSearchForAccountsIntent) SetAccountType(value unsafe.Pointer) {
 // The name of an organization attached to the account.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/organizationname
-func (i_ INSearchForAccountsIntent) OrganizationName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("organizationName"))
+func (i_ INSearchForAccountsIntent) OrganizationName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("organizationName"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (i_ INSearchForAccountsIntent) OrganizationName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforaccountsintent/organizationname
-func (i_ INSearchForAccountsIntent) SetOrganizationName(value unsafe.Pointer) {
+func (i_ INSearchForAccountsIntent) SetOrganizationName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOrganizationName:"), value)
 }
 

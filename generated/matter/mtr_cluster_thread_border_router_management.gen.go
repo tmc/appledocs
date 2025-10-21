@@ -30,23 +30,23 @@ type _MTRClusterThreadBorderRouterManagementClass struct {
 // An interface definition for the [MTRClusterThreadBorderRouterManagement] class.
 type IMTRClusterThreadBorderRouterManagement interface {
 	IMTRGenericCluster
-	GetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	GetActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	GetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	GetPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeActiveDatasetTimestampWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeBorderAgentIDWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeBorderRouterNameWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeInterfaceEnabledWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributePendingDatasetTimestampWithParams(params unsafe.Pointer) unsafe.Pointer
-	ReadAttributeThreadVersionWithParams(params unsafe.Pointer) unsafe.Pointer
-	SetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
-	SetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer)
+	GetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	GetActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	GetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	GetPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeActiveDatasetTimestampWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeBorderAgentIDWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeBorderRouterNameWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeInterfaceEnabledWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributePendingDatasetTimestampWithParams(params IMTRReadParams) unsafe.Pointer
+	ReadAttributeThreadVersionWithParams(params IMTRReadParams) unsafe.Pointer
+	SetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
+	SetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer)
 }
 
 // Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
@@ -102,7 +102,7 @@ func NewMTRClusterThreadBorderRouterManagement() MTRClusterThreadBorderRouterMan
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/init(device:endpointID:queue:)
-func NewMTRClusterThreadBorderRouterManagementWithDeviceEndpointIDQueue(device unsafe.Pointer, endpointID foundation.Number, queue unsafe.Pointer) MTRClusterThreadBorderRouterManagement {
+func NewMTRClusterThreadBorderRouterManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID foundation.INumber, queue unsafe.Pointer) MTRClusterThreadBorderRouterManagement {
 	instance := getMTRClusterThreadBorderRouterManagementClass().Alloc()
 	rv := objc.Send[MTRClusterThreadBorderRouterManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
@@ -112,114 +112,114 @@ func NewMTRClusterThreadBorderRouterManagementWithDeviceEndpointIDQueue(device u
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getActiveDatasetRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getActiveDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getActiveDatasetRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getActiveDatasetRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getPendingDatasetRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getPendingDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getPendingDatasetRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getPendingDatasetRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeAcceptedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeActiveDatasetTimestamp(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeActiveDatasetTimestampWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeActiveDatasetTimestampWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeActiveDatasetTimestampWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeAttributeListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeBorderAgentID(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeBorderAgentIDWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeBorderAgentIDWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeBorderAgentIDWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeBorderRouterName(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeBorderRouterNameWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeBorderRouterNameWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeBorderRouterNameWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeClusterRevisionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeFeatureMapWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeGeneratedCommandListWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeInterfaceEnabled(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeInterfaceEnabledWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeInterfaceEnabledWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeInterfaceEnabledWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributePendingDatasetTimestamp(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributePendingDatasetTimestampWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributePendingDatasetTimestampWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributePendingDatasetTimestampWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeThreadVersion(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeThreadVersionWithParams(params unsafe.Pointer) unsafe.Pointer {
+func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeThreadVersionWithParams(params IMTRReadParams) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("readAttributeThreadVersionWithParams:"), params)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/setActiveDatasetRequestWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) SetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadBorderRouterManagement) SetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/setPendingDatasetRequestWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) SetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params unsafe.Pointer, expectedDataValueDictionaries unsafe.Pointer, expectedValueIntervalMs foundation.Number, completion unsafe.Pointer) {
+func (m_ MTRClusterThreadBorderRouterManagement) SetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, expectedDataValueDictionaries []foundation.IDictionary, expectedValueIntervalMs foundation.INumber, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPendingDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
 }
 

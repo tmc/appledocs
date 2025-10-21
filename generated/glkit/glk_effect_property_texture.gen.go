@@ -102,8 +102,8 @@ func (g_ GLKEffectPropertyTexture) SetEnabled(value unsafe.Pointer) {
 // The mode the texture uses to compute its output fragment color. See .
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/envMode
-func (g_ GLKEffectPropertyTexture) EnvMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("envMode"))
+func (g_ GLKEffectPropertyTexture) EnvMode() GLKTextureEnvMode {
+	rv := objc.Send[GLKTextureEnvMode](g_.ID, objc.Sel("envMode"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (g_ GLKEffectPropertyTexture) EnvMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/envMode
-func (g_ GLKEffectPropertyTexture) SetEnvMode(value unsafe.Pointer) {
+func (g_ GLKEffectPropertyTexture) SetEnvMode(value GLKTextureEnvMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setEnvMode:"), value)
 }
 
@@ -138,8 +138,8 @@ func (g_ GLKEffectPropertyTexture) SetName(value unsafe.Pointer) {
 // The kind of texture pointed to by the texture stage. See .
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/target
-func (g_ GLKEffectPropertyTexture) Target() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("target"))
+func (g_ GLKEffectPropertyTexture) Target() GLKTextureTarget {
+	rv := objc.Send[GLKTextureTarget](g_.ID, objc.Sel("target"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (g_ GLKEffectPropertyTexture) Target() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTexture/target
-func (g_ GLKEffectPropertyTexture) SetTarget(value unsafe.Pointer) {
+func (g_ GLKEffectPropertyTexture) SetTarget(value IGLKTextureTarget) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTarget:"), value)
 }
 

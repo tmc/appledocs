@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -32,7 +33,7 @@ type _FeatureValueClass struct {
 // An interface definition for the [FeatureValue] class.
 type IFeatureValue interface {
 	objectivec.IObject
-	IsEqualToFeatureValue(value unsafe.Pointer) bool
+	IsEqualToFeatureValue(value IMLFeatureValue) bool
 }
 
 // A generic wrapper around an underlying value and the value’s type.
@@ -88,7 +89,7 @@ func NewFeatureValue() FeatureValue {
 // Creates a feature value with a type that represents an undefined or missing value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(undefined:)
-func NewFeatureValueUndefinedFeatureValueWithType(type_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueUndefinedFeatureValueWithType(type_ FeatureType) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("undefinedFeatureValueWithType:"), type_)
 	return rv
 }
@@ -98,7 +99,7 @@ func NewFeatureValueUndefinedFeatureValueWithType(type_ unsafe.Pointer) FeatureV
 // Creates a feature value that contains an image defined by a core graphics image and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(CGImage:constraint:options:)
-func NewFeatureValueWithCGImageConstraintOptionsError(cgImage coregraphics.CGImageRef, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithCGImageConstraintOptionsError(cgImage coregraphics.CGImageRef, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithCGImage:constraint:options:error:"), cgImage, constraint, options, error_)
 	return rv
 }
@@ -108,7 +109,7 @@ func NewFeatureValueWithCGImageConstraintOptionsError(cgImage coregraphics.CGIma
 // Creates a feature value that contains an image defined by a core graphics image, an orientation, and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(CGImage:orientation:constraint:options:)
-func NewFeatureValueWithCGImageOrientationConstraintOptionsError(cgImage coregraphics.CGImageRef, orientation unsafe.Pointer, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithCGImageOrientationConstraintOptionsError(cgImage coregraphics.CGImageRef, orientation unsafe.Pointer, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithCGImage:orientation:constraint:options:error:"), cgImage, orientation, constraint, options, error_)
 	return rv
 }
@@ -158,7 +159,7 @@ func NewFeatureValueWithDouble(value unsafe.Pointer) FeatureValue {
 // Creates a feature value that contains an image defined by an image URL and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:constraint:options:)
-func NewFeatureValueWithImageAtURLConstraintOptionsError(url foundation.URL, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithImageAtURLConstraintOptionsError(url foundation.IURL, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithImageAtURL:constraint:options:error:"), url, constraint, options, error_)
 	return rv
 }
@@ -168,7 +169,7 @@ func NewFeatureValueWithImageAtURLConstraintOptionsError(url foundation.URL, con
 // Creates a feature value that contains an image defined by an image URL, an orientation, and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:orientation:constraint:options:)
-func NewFeatureValueWithImageAtURLOrientationConstraintOptionsError(url foundation.URL, orientation unsafe.Pointer, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithImageAtURLOrientationConstraintOptionsError(url foundation.IURL, orientation unsafe.Pointer, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithImageAtURL:orientation:constraint:options:error:"), url, orientation, constraint, options, error_)
 	return rv
 }
@@ -178,7 +179,7 @@ func NewFeatureValueWithImageAtURLOrientationConstraintOptionsError(url foundati
 // Creates a feature value that contains an image defined by an image URL and the image’s orientation, size, and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:)
-func NewFeatureValueWithImageAtURLOrientationPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.URL, orientation unsafe.Pointer, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithImageAtURLOrientationPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.IURL, orientation unsafe.Pointer, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithImageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:"), url, orientation, pixelsWide, pixelsHigh, pixelFormatType, options, error_)
 	return rv
 }
@@ -188,7 +189,7 @@ func NewFeatureValueWithImageAtURLOrientationPixelsWidePixelsHighPixelFormatType
 // Creates a feature value that contains an image defined by an image URL and the image’s size and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:)
-func NewFeatureValueWithImageAtURLPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.URL, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithImageAtURLPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.IURL, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:"), url, pixelsWide, pixelsHigh, pixelFormatType, options, error_)
 	return rv
 }
@@ -208,7 +209,7 @@ func NewFeatureValueWithInt64(value unsafe.Pointer) FeatureValue {
 // Creates a feature value that contains a multidimensional array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(multiArray:)
-func NewFeatureValueWithMultiArray(value unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithMultiArray(value IMLMultiArray) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithMultiArray:"), value)
 	return rv
 }
@@ -228,7 +229,7 @@ func NewFeatureValueWithPixelBuffer(value unsafe.Pointer) FeatureValue {
 // Creates a feature value that contains a sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(sequence:)
-func NewFeatureValueWithSequence(sequence unsafe.Pointer) FeatureValue {
+func NewFeatureValueWithSequence(sequence IMLSequence) FeatureValue {
 	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithSequence:"), sequence)
 	return rv
 }
@@ -238,8 +239,8 @@ func NewFeatureValueWithSequence(sequence unsafe.Pointer) FeatureValue {
 // Creates a feature value that contains a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(string:)
-func NewFeatureValueWithString(value string) FeatureValue {
-	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithString:"), objc.String(value))
+func NewFeatureValueWithString(value appkit.string) FeatureValue {
+	rv := objc.Send[FeatureValue](objc.ID(getFeatureValueClass().class), objc.Sel("featureValueWithString:"), value)
 	return rv
 }
 
@@ -247,7 +248,7 @@ func NewFeatureValueWithString(value string) FeatureValue {
 // Creates a feature value that contains an image defined by a core graphics image and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(CGImage:constraint:options:)
-func (fc _FeatureValueClass) FeatureValueWithCGImageConstraintOptionsError(cgImage coregraphics.CGImageRef, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithCGImageConstraintOptionsError(cgImage coregraphics.CGImageRef, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithCGImage:constraint:options:error:"), cgImage, constraint, options, error_)
 	return rv
 }
@@ -255,7 +256,7 @@ func (fc _FeatureValueClass) FeatureValueWithCGImageConstraintOptionsError(cgIma
 // Creates a feature value that contains an image defined by a core graphics image, an orientation, and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(CGImage:orientation:constraint:options:)
-func (fc _FeatureValueClass) FeatureValueWithCGImageOrientationConstraintOptionsError(cgImage coregraphics.CGImageRef, orientation unsafe.Pointer, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithCGImageOrientationConstraintOptionsError(cgImage coregraphics.CGImageRef, orientation unsafe.Pointer, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithCGImage:orientation:constraint:options:error:"), cgImage, orientation, constraint, options, error_)
 	return rv
 }
@@ -295,7 +296,7 @@ func (fc _FeatureValueClass) FeatureValueWithDouble(value unsafe.Pointer) unsafe
 // Creates a feature value that contains an image defined by an image URL and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:constraint:options:)
-func (fc _FeatureValueClass) FeatureValueWithImageAtURLConstraintOptionsError(url foundation.URL, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithImageAtURLConstraintOptionsError(url foundation.IURL, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithImageAtURL:constraint:options:error:"), url, constraint, options, error_)
 	return rv
 }
@@ -303,7 +304,7 @@ func (fc _FeatureValueClass) FeatureValueWithImageAtURLConstraintOptionsError(ur
 // Creates a feature value that contains an image defined by an image URL, an orientation, and a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:orientation:constraint:options:)
-func (fc _FeatureValueClass) FeatureValueWithImageAtURLOrientationConstraintOptionsError(url foundation.URL, orientation unsafe.Pointer, constraint unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithImageAtURLOrientationConstraintOptionsError(url foundation.IURL, orientation unsafe.Pointer, constraint IMLImageConstraint, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithImageAtURL:orientation:constraint:options:error:"), url, orientation, constraint, options, error_)
 	return rv
 }
@@ -311,7 +312,7 @@ func (fc _FeatureValueClass) FeatureValueWithImageAtURLOrientationConstraintOpti
 // Creates a feature value that contains an image defined by an image URL and the image’s orientation, size, and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:)
-func (fc _FeatureValueClass) FeatureValueWithImageAtURLOrientationPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.URL, orientation unsafe.Pointer, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithImageAtURLOrientationPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.IURL, orientation unsafe.Pointer, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithImageAtURL:orientation:pixelsWide:pixelsHigh:pixelFormatType:options:error:"), url, orientation, pixelsWide, pixelsHigh, pixelFormatType, options, error_)
 	return rv
 }
@@ -319,7 +320,7 @@ func (fc _FeatureValueClass) FeatureValueWithImageAtURLOrientationPixelsWidePixe
 // Creates a feature value that contains an image defined by an image URL and the image’s size and pixel format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(imageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:)
-func (fc _FeatureValueClass) FeatureValueWithImageAtURLPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.URL, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithImageAtURLPixelsWidePixelsHighPixelFormatTypeOptionsError(url foundation.IURL, pixelsWide int, pixelsHigh int, pixelFormatType unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithImageAtURL:pixelsWide:pixelsHigh:pixelFormatType:options:error:"), url, pixelsWide, pixelsHigh, pixelFormatType, options, error_)
 	return rv
 }
@@ -335,7 +336,7 @@ func (fc _FeatureValueClass) FeatureValueWithInt64(value unsafe.Pointer) unsafe.
 // Creates a feature value that contains a multidimensional array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(multiArray:)
-func (fc _FeatureValueClass) FeatureValueWithMultiArray(value unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithMultiArray(value IMLMultiArray) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithMultiArray:"), value)
 	return rv
 }
@@ -351,7 +352,7 @@ func (fc _FeatureValueClass) FeatureValueWithPixelBuffer(value unsafe.Pointer) u
 // Creates a feature value that contains a sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(sequence:)
-func (fc _FeatureValueClass) FeatureValueWithSequence(sequence unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) FeatureValueWithSequence(sequence IMLSequence) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithSequence:"), sequence)
 	return rv
 }
@@ -359,15 +360,15 @@ func (fc _FeatureValueClass) FeatureValueWithSequence(sequence unsafe.Pointer) u
 // Creates a feature value that contains a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(string:)
-func (fc _FeatureValueClass) FeatureValueWithString(value string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithString:"), objc.String(value))
+func (fc _FeatureValueClass) FeatureValueWithString(value appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("featureValueWithString:"), value)
 	return rv
 }
 
 // Creates a feature value with a type that represents an undefined or missing value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/init(undefined:)
-func (fc _FeatureValueClass) UndefinedFeatureValueWithType(type_ unsafe.Pointer) unsafe.Pointer {
+func (fc _FeatureValueClass) UndefinedFeatureValueWithType(type_ FeatureType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("undefinedFeatureValueWithType:"), type_)
 	return rv
 }
@@ -375,7 +376,7 @@ func (fc _FeatureValueClass) UndefinedFeatureValueWithType(type_ unsafe.Pointer)
 // Returns a Boolean value that indicates whether a feature value is equal to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/isEqual(to:)
-func (f_ FeatureValue) IsEqualToFeatureValue(value unsafe.Pointer) bool {
+func (f_ FeatureValue) IsEqualToFeatureValue(value IMLFeatureValue) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isEqualToFeatureValue:"), value)
 	return rv
 }
@@ -423,32 +424,32 @@ func (f_ FeatureValue) Undefined() bool {
 // The underlying multiarray of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/multiArrayValue
-func (f_ FeatureValue) MultiArrayValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("multiArrayValue"))
+func (f_ FeatureValue) MultiArrayValue() MLMultiArray {
+	rv := objc.Send[MLMultiArray](f_.ID, objc.Sel("multiArrayValue"))
 	return rv
 }
 
 // The underlying sequence of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/sequenceValue
-func (f_ FeatureValue) SequenceValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("sequenceValue"))
+func (f_ FeatureValue) SequenceValue() MLSequence {
+	rv := objc.Send[MLSequence](f_.ID, objc.Sel("sequenceValue"))
 	return rv
 }
 
 // The underlying string of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/stringValue
-func (f_ FeatureValue) StringValue() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("stringValue"))
+func (f_ FeatureValue) StringValue() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
 // The type of the feature value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLFeatureValue/type
-func (f_ FeatureValue) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("type"))
+func (f_ FeatureValue) Type() FeatureType {
+	rv := objc.Send[FeatureType](f_.ID, objc.Sel("type"))
 	return rv
 }
 

@@ -86,7 +86,7 @@ func NewCKFetchRecordsOperation() CKFetchRecordsOperation {
 // Creates a fetch operation for retrieving the records with the specified IDs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/init(recordIDs:)
-func NewCKFetchRecordsOperationWithRecordIDs(recordIDs unsafe.Pointer) CKFetchRecordsOperation {
+func NewCKFetchRecordsOperationWithRecordIDs(recordIDs []CKRecordID) CKFetchRecordsOperation {
 	instance := getCKFetchRecordsOperationClass().Alloc()
 	rv := objc.Send[CKFetchRecordsOperation](instance.ID, objc.Sel("initWithRecordIDs:"), recordIDs)
 	rv.Autorelease()
@@ -128,6 +128,60 @@ func (c_ CKFetchRecordsOperation) SetDesiredKeys(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), nsArray)
+}
+
+// The closure to execute after CloudKit retrieves all of the records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/fetchRecordsCompletionBlock
+func (c_ CKFetchRecordsOperation) FetchRecordsCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("fetchRecordsCompletionBlock"))
+	return rv
+}
+
+
+// SetFetchRecordsCompletionBlock sets the value of the fetchRecordsCompletionBlock property.
+// The closure to execute after CloudKit retrieves all of the records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/fetchRecordsCompletionBlock
+func (c_ CKFetchRecordsOperation) SetFetchRecordsCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFetchRecordsCompletionBlock:"), value)
+}
+
+// The closure to execute when a record becomes available.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordCompletionBlock
+func (c_ CKFetchRecordsOperation) PerRecordCompletionBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordCompletionBlock"))
+	return rv
+}
+
+
+// SetPerRecordCompletionBlock sets the value of the perRecordCompletionBlock property.
+// The closure to execute when a record becomes available.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordCompletionBlock
+func (c_ CKFetchRecordsOperation) SetPerRecordCompletionBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordCompletionBlock:"), value)
+}
+
+// The closure to execute with progress information for individual records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordProgressBlock
+func (c_ CKFetchRecordsOperation) PerRecordProgressBlock() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("perRecordProgressBlock"))
+	return rv
+}
+
+
+// SetPerRecordProgressBlock sets the value of the perRecordProgressBlock property.
+// The closure to execute with progress information for individual records.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKFetchRecordsOperation/perRecordProgressBlock
+func (c_ CKFetchRecordsOperation) SetPerRecordProgressBlock(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPerRecordProgressBlock:"), value)
 }
 
 // The record IDs of the records to fetch.

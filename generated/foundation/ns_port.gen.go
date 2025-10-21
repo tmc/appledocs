@@ -32,7 +32,7 @@ type IPort interface {
 	objectivec.IObject
 	Delegate() objc.ID
 	Invalidate()
-	SendBeforeDateComponentsFromReserved(limitDate unsafe.Pointer, components unsafe.Pointer, receivePort unsafe.Pointer, headerSpaceReserved uint) bool
+	SendBeforeDateComponentsFromReserved(limitDate IDate, components IMutableArray, receivePort IPort, headerSpaceReserved uint) bool
 }
 
 // An abstract class that represents a communication channel.
@@ -86,8 +86,8 @@ func NewPort() Port {
 // Creates and returns a new object capable of both sending and receiving messages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPort/port
-func (pc _PortClass) Port() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("port"))
+func (pc _PortClass) Port() Port {
+	rv := objc.Send[Port](objc.ID(pc.class), objc.Sel("port"))
 	return rv
 }
 
@@ -109,7 +109,7 @@ func (p_ Port) Invalidate() {
 // This method is provided for subclasses that have custom types of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Port/send(before:components:from:reserved:)
-func (p_ Port) SendBeforeDateComponentsFromReserved(limitDate unsafe.Pointer, components unsafe.Pointer, receivePort unsafe.Pointer, headerSpaceReserved uint) bool {
+func (p_ Port) SendBeforeDateComponentsFromReserved(limitDate IDate, components IMutableArray, receivePort IPort, headerSpaceReserved uint) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:components:from:reserved:"), limitDate, components, receivePort, headerSpaceReserved)
 	return rv
 }

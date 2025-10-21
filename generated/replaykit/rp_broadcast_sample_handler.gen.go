@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [RPBroadcastSampleHandler] class.
@@ -29,13 +31,13 @@ type _RPBroadcastSampleHandlerClass struct {
 // An interface definition for the [RPBroadcastSampleHandler] class.
 type IRPBroadcastSampleHandler interface {
 	IRPBroadcastHandler
-	BroadcastAnnotatedWithApplicationInfo(applicationInfo objc.ID)
+	BroadcastAnnotatedWithApplicationInfo(applicationInfo objectivec.IObject)
 	BroadcastFinished()
 	BroadcastPaused()
 	BroadcastResumed()
 	BroadcastStartedWithSetupInfo(setupInfo unsafe.Pointer)
-	FinishBroadcastWithError(error_ unsafe.Pointer)
-	ProcessSampleBufferWithType(sampleBuffer unsafe.Pointer, sampleBufferType unsafe.Pointer)
+	FinishBroadcastWithError(error_ foundation.IError)
+	ProcessSampleBufferWithType(sampleBuffer unsafe.Pointer, sampleBufferType RPSampleBufferType)
 }
 
 // An object that processes buffer objects as received from ReplayKit.
@@ -91,7 +93,7 @@ func NewRPBroadcastSampleHandler() RPBroadcastSampleHandler {
 // Perform any required actions after starting a live broadcast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastSampleHandler/broadcastAnnotated(withApplicationInfo:)
-func (r_ RPBroadcastSampleHandler) BroadcastAnnotatedWithApplicationInfo(applicationInfo objc.ID) {
+func (r_ RPBroadcastSampleHandler) BroadcastAnnotatedWithApplicationInfo(applicationInfo objectivec.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("broadcastAnnotatedWithApplicationInfo:"), applicationInfo)
 }
 
@@ -126,30 +128,30 @@ func (r_ RPBroadcastSampleHandler) BroadcastStartedWithSetupInfo(setupInfo unsaf
 // Stops the broadcast and passes an error back to the broadcasting app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastSampleHandler/finishBroadcastWithError(_:)
-func (r_ RPBroadcastSampleHandler) FinishBroadcastWithError(error_ unsafe.Pointer) {
+func (r_ RPBroadcastSampleHandler) FinishBroadcastWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("finishBroadcastWithError:"), error_)
 }
 
 // Processes video and audio data as it becomes available during a live broadcast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastSampleHandler/processSampleBuffer(_:with:)
-func (r_ RPBroadcastSampleHandler) ProcessSampleBufferWithType(sampleBuffer unsafe.Pointer, sampleBufferType unsafe.Pointer) {
+func (r_ RPBroadcastSampleHandler) ProcessSampleBufferWithType(sampleBuffer unsafe.Pointer, sampleBufferType RPSampleBufferType) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("processSampleBuffer:withType:"), sampleBuffer, sampleBufferType)
 }
 
 // The key to retrieve the app’s bundle identifier from the user-information dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/replaykit/rpapplicationinfobundleidentifierkey
-func (r_ RPBroadcastSampleHandler) RPApplicationInfoBundleIdentifierKey() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("RPApplicationInfoBundleIdentifierKey"))
+func (r_ RPBroadcastSampleHandler) RPApplicationInfoBundleIdentifierKey() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("RPApplicationInfoBundleIdentifierKey"))
 	return rv
 }
 
 // The sample attachment key that describes the video orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/replaykit/rpvideosampleorientationkey
-func (r_ RPBroadcastSampleHandler) RPVideoSampleOrientationKey() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("RPVideoSampleOrientationKey"))
+func (r_ RPBroadcastSampleHandler) RPVideoSampleOrientationKey() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("RPVideoSampleOrientationKey"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [RelativeDateTimeFormatter] class.
@@ -84,8 +85,8 @@ func NewRelativeDateTimeFormatter() RelativeDateTimeFormatter {
 // The calendar to use for formatting values that don’t have an inherent calendar of their own.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
-func (r_ RelativeDateTimeFormatter) Calendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("calendar"))
+func (r_ RelativeDateTimeFormatter) Calendar() Calendar {
+	rv := objc.Send[Calendar](r_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -95,7 +96,7 @@ func (r_ RelativeDateTimeFormatter) Calendar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/calendar
-func (r_ RelativeDateTimeFormatter) SetCalendar(value unsafe.Pointer) {
+func (r_ RelativeDateTimeFormatter) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCalendar:"), value)
 }
 
@@ -120,8 +121,8 @@ func (r_ RelativeDateTimeFormatter) SetDateTimeStyle(value unsafe.Pointer) {
 // A description of where the formatted string will appear, allowing the formatter to capitalize the output appropriately.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
-func (r_ RelativeDateTimeFormatter) FormattingContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("formattingContext"))
+func (r_ RelativeDateTimeFormatter) FormattingContext() coreimage.Context {
+	rv := objc.Send[coreimage.Context](r_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
@@ -131,15 +132,15 @@ func (r_ RelativeDateTimeFormatter) FormattingContext() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/formattingcontext
-func (r_ RelativeDateTimeFormatter) SetFormattingContext(value unsafe.Pointer) {
+func (r_ RelativeDateTimeFormatter) SetFormattingContext(value coreimage.IContext) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setFormattingContext:"), value)
 }
 
 // The locale to use when formatting the date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
-func (r_ RelativeDateTimeFormatter) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("locale"))
+func (r_ RelativeDateTimeFormatter) Locale() Locale {
+	rv := objc.Send[Locale](r_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -149,7 +150,7 @@ func (r_ RelativeDateTimeFormatter) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/relativedatetimeformatter/locale
-func (r_ RelativeDateTimeFormatter) SetLocale(value unsafe.Pointer) {
+func (r_ RelativeDateTimeFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLocale:"), value)
 }
 

@@ -117,8 +117,8 @@ func (s_ SampleBufferRequest) SetDirection(value unsafe.Pointer) {
 // The limiting position for sample loading.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/limitcursor
-func (s_ SampleBufferRequest) LimitCursor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("limitCursor"))
+func (s_ SampleBufferRequest) LimitCursor() AVSampleCursor {
+	rv := objc.Send[AVSampleCursor](s_.ID, objc.Sel("limitCursor"))
 	return rv
 }
 
@@ -128,7 +128,7 @@ func (s_ SampleBufferRequest) LimitCursor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/limitcursor
-func (s_ SampleBufferRequest) SetLimitCursor(value unsafe.Pointer) {
+func (s_ SampleBufferRequest) SetLimitCursor(value IAVSampleCursor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLimitCursor:"), value)
 }
 
@@ -189,8 +189,8 @@ func (s_ SampleBufferRequest) SetPreferredMinSampleCount(value int) {
 // The starting cursor position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/startcursor
-func (s_ SampleBufferRequest) StartCursor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("startCursor"))
+func (s_ SampleBufferRequest) StartCursor() AVSampleCursor {
+	rv := objc.Send[AVSampleCursor](s_.ID, objc.Sel("startCursor"))
 	return rv
 }
 
@@ -200,7 +200,7 @@ func (s_ SampleBufferRequest) StartCursor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/startcursor
-func (s_ SampleBufferRequest) SetStartCursor(value unsafe.Pointer) {
+func (s_ SampleBufferRequest) SetStartCursor(value IAVSampleCursor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStartCursor:"), value)
 }
 

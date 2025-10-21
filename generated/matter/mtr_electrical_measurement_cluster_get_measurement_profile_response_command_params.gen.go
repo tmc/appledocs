@@ -87,7 +87,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 // SetAttributeId sets the value of the attributeId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/attributeid
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetAttributeId(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetAttributeId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeId:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 // SetNumberOfIntervalsDelivered sets the value of the numberOfIntervalsDelivered property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/numberofintervalsdelivered
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetNumberOfIntervalsDelivered(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetNumberOfIntervalsDelivered(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfIntervalsDelivered:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 // SetProfileIntervalPeriod sets the value of the profileIntervalPeriod property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/profileintervalperiod
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetProfileIntervalPeriod(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetProfileIntervalPeriod(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileIntervalPeriod:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/starttime
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetStartTime(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetStartTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/status
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetStatus(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/timedinvoketimeoutms
-func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

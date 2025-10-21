@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,16 +93,16 @@ func (m_ MediaQuerySection) Range() foundation.Range {
 // The localized title of the media query section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/title
-func (m_ MediaQuerySection) Title() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ MediaQuerySection) Title() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
 // An array representing the section grouping of the query’s specified media item collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections
-func (m_ MediaQuerySection) CollectionSections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("collectionSections"))
+func (m_ MediaQuerySection) CollectionSections() MPMediaQuerySection {
+	rv := objc.Send[MPMediaQuerySection](m_.ID, objc.Sel("collectionSections"))
 	return rv
 }
 
@@ -111,15 +112,15 @@ func (m_ MediaQuerySection) CollectionSections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections
-func (m_ MediaQuerySection) SetCollectionSections(value unsafe.Pointer) {
+func (m_ MediaQuerySection) SetCollectionSections(value IMPMediaQuerySection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCollectionSections:"), value)
 }
 
 // An array representing the section grouping of the query’s specified media items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections
-func (m_ MediaQuerySection) ItemSections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("itemSections"))
+func (m_ MediaQuerySection) ItemSections() MPMediaQuerySection {
+	rv := objc.Send[MPMediaQuerySection](m_.ID, objc.Sel("itemSections"))
 	return rv
 }
 
@@ -129,7 +130,7 @@ func (m_ MediaQuerySection) ItemSections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections
-func (m_ MediaQuerySection) SetItemSections(value unsafe.Pointer) {
+func (m_ MediaQuerySection) SetItemSections(value IMPMediaQuerySection) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItemSections:"), value)
 }
 

@@ -119,8 +119,8 @@ func (p_ PlayerInterstitialEventMonitor) SetTimeControlStatus(value unsafe.Point
 // An array of player item configurations to use as templates for player items that play interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
-func (p_ PlayerInterstitialEventMonitor) TemplateItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("templateItems"))
+func (p_ PlayerInterstitialEventMonitor) TemplateItems() AVPlayerItem {
+	rv := objc.Send[AVPlayerItem](p_.ID, objc.Sel("templateItems"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (p_ PlayerInterstitialEventMonitor) TemplateItems() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/templateitems
-func (p_ PlayerInterstitialEventMonitor) SetTemplateItems(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventMonitor) SetTemplateItems(value IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateItems:"), value)
 }
 
 // The current interstitial event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currentevent
-func (p_ PlayerInterstitialEventMonitor) CurrentEvent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentEvent"))
+func (p_ PlayerInterstitialEventMonitor) CurrentEvent() AVPlayerInterstitialEvent {
+	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("currentEvent"))
 	return rv
 }
 
@@ -148,15 +148,15 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEvent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currentevent
-func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventMonitor) SetCurrentEvent(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEvent:"), value)
 }
 
 // The skip control label for the currentEvent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
+func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("currentEventSkipControlLabel"))
 	return rv
 }
 
@@ -166,8 +166,8 @@ func (p_ PlayerInterstitialEventMonitor) CurrentEventSkipControlLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskipcontrollabel
-func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), objc.String(value))
+func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkipControlLabel(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentEventSkipControlLabel:"), value)
 }
 
 // The skippable event state for the currentEvent.
@@ -191,8 +191,8 @@ func (p_ PlayerInterstitialEventMonitor) SetCurrentEventSkippableState(value uns
 // The schedule of interstitial events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/events
-func (p_ PlayerInterstitialEventMonitor) Events() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("events"))
+func (p_ PlayerInterstitialEventMonitor) Events() AVPlayerInterstitialEvent {
+	rv := objc.Send[AVPlayerInterstitialEvent](p_.ID, objc.Sel("events"))
 	return rv
 }
 
@@ -202,15 +202,15 @@ func (p_ PlayerInterstitialEventMonitor) Events() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/events
-func (p_ PlayerInterstitialEventMonitor) SetEvents(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventMonitor) SetEvents(value IAVPlayerInterstitialEvent) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEvents:"), value)
 }
 
 // An object that plays interstitial content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialplayer
-func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("interstitialPlayer"))
+func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() AVQueuePlayer {
+	rv := objc.Send[AVQueuePlayer](p_.ID, objc.Sel("interstitialPlayer"))
 	return rv
 }
 
@@ -220,15 +220,15 @@ func (p_ PlayerInterstitialEventMonitor) InterstitialPlayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialplayer
-func (p_ PlayerInterstitialEventMonitor) SetInterstitialPlayer(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventMonitor) SetInterstitialPlayer(value IAVQueuePlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInterstitialPlayer:"), value)
 }
 
 // An object that plays primary content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/primaryplayer
-func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("primaryPlayer"))
+func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() AVPlayer {
+	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("primaryPlayer"))
 	return rv
 }
 
@@ -238,7 +238,7 @@ func (p_ PlayerInterstitialEventMonitor) PrimaryPlayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/primaryplayer
-func (p_ PlayerInterstitialEventMonitor) SetPrimaryPlayer(value unsafe.Pointer) {
+func (p_ PlayerInterstitialEventMonitor) SetPrimaryPlayer(value IAVPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPrimaryPlayer:"), value)
 }
 

@@ -84,8 +84,8 @@ func NewDetectRectanglesRequest() DetectRectanglesRequest {
 // A specifying the maximum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
-func (d_ DetectRectanglesRequest) MaximumAspectRatio() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("maximumAspectRatio"))
+func (d_ DetectRectanglesRequest) MaximumAspectRatio() AspectRatio {
+	rv := objc.Send[AspectRatio](d_.ID, objc.Sel("maximumAspectRatio"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (d_ DetectRectanglesRequest) MaximumAspectRatio() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/maximumAspectRatio
-func (d_ DetectRectanglesRequest) SetMaximumAspectRatio(value unsafe.Pointer) {
+func (d_ DetectRectanglesRequest) SetMaximumAspectRatio(value IAspectRatio) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumAspectRatio:"), value)
 }
 
@@ -120,8 +120,8 @@ func (d_ DetectRectanglesRequest) SetMaximumObservations(value uint) {
 // A specifying the minimum aspect ratio of the rectangle to detect, defined as the shorter dimension over the longer dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
-func (d_ DetectRectanglesRequest) MinimumAspectRatio() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumAspectRatio"))
+func (d_ DetectRectanglesRequest) MinimumAspectRatio() AspectRatio {
+	rv := objc.Send[AspectRatio](d_.ID, objc.Sel("minimumAspectRatio"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (d_ DetectRectanglesRequest) MinimumAspectRatio() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumAspectRatio
-func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value unsafe.Pointer) {
+func (d_ DetectRectanglesRequest) SetMinimumAspectRatio(value IAspectRatio) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumAspectRatio:"), value)
 }
 
 // A value specifying the minimum acceptable confidence level.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
-func (d_ DetectRectanglesRequest) MinimumConfidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("minimumConfidence"))
+func (d_ DetectRectanglesRequest) MinimumConfidence() Confidence {
+	rv := objc.Send[Confidence](d_.ID, objc.Sel("minimumConfidence"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (d_ DetectRectanglesRequest) MinimumConfidence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNDetectRectanglesRequest/minimumConfidence
-func (d_ DetectRectanglesRequest) SetMinimumConfidence(value unsafe.Pointer) {
+func (d_ DetectRectanglesRequest) SetMinimumConfidence(value IConfidence) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinimumConfidence:"), value)
 }
 
@@ -174,8 +174,8 @@ func (d_ DetectRectanglesRequest) SetMinimumSize(value unsafe.Pointer) {
 // A float specifying the number of degrees a rectangle corner angle can deviate from 90°.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/quadraturetolerance
-func (d_ DetectRectanglesRequest) QuadratureTolerance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("quadratureTolerance"))
+func (d_ DetectRectanglesRequest) QuadratureTolerance() Degrees {
+	rv := objc.Send[Degrees](d_.ID, objc.Sel("quadratureTolerance"))
 	return rv
 }
 
@@ -185,15 +185,15 @@ func (d_ DetectRectanglesRequest) QuadratureTolerance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/quadraturetolerance
-func (d_ DetectRectanglesRequest) SetQuadratureTolerance(value unsafe.Pointer) {
+func (d_ DetectRectanglesRequest) SetQuadratureTolerance(value IDegrees) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setQuadratureTolerance:"), value)
 }
 
 // The results of the request to detect rectangles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/results
-func (d_ DetectRectanglesRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("results"))
+func (d_ DetectRectanglesRequest) Results() VNRectangleObservation {
+	rv := objc.Send[VNRectangleObservation](d_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (d_ DetectRectanglesRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectrectanglesrequest/results
-func (d_ DetectRectanglesRequest) SetResults(value unsafe.Pointer) {
+func (d_ DetectRectanglesRequest) SetResults(value IVNRectangleObservation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setResults:"), value)
 }
 

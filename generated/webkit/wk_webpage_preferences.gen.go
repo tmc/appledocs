@@ -119,8 +119,8 @@ func (w_ WebpagePreferences) SetLockdownModeEnabled(value bool) {
 // The content mode for the web view to use when it loads and renders a webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredContentMode
-func (w_ WebpagePreferences) PreferredContentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredContentMode"))
+func (w_ WebpagePreferences) PreferredContentMode() ContentMode {
+	rv := objc.Send[ContentMode](w_.ID, objc.Sel("preferredContentMode"))
 	return rv
 }
 
@@ -130,14 +130,14 @@ func (w_ WebpagePreferences) PreferredContentMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredContentMode
-func (w_ WebpagePreferences) SetPreferredContentMode(value unsafe.Pointer) {
+func (w_ WebpagePreferences) SetPreferredContentMode(value ContentMode) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredContentMode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredHTTPSNavigationPolicy
-func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("preferredHTTPSNavigationPolicy"))
+func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() WebpagePreferencesUpgradeToHTTPSPolicy {
+	rv := objc.Send[WebpagePreferencesUpgradeToHTTPSPolicy](w_.ID, objc.Sel("preferredHTTPSNavigationPolicy"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (w_ WebpagePreferences) PreferredHTTPSNavigationPolicy() unsafe.Pointer {
 // SetPreferredHTTPSNavigationPolicy sets the value of the preferredHTTPSNavigationPolicy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebpagePreferences/preferredHTTPSNavigationPolicy
-func (w_ WebpagePreferences) SetPreferredHTTPSNavigationPolicy(value unsafe.Pointer) {
+func (w_ WebpagePreferences) SetPreferredHTTPSNavigationPolicy(value WebpagePreferencesUpgradeToHTTPSPolicy) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setPreferredHTTPSNavigationPolicy:"), value)
 }
 

@@ -83,7 +83,7 @@ func NewMESampleLocation() MESampleLocation {
 // Creates a sample location object with the byte source and sample location that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation/init(byteSource:sampleLocation:)
-func NewMESampleLocationWithByteSourceSampleLocation(byteSource unsafe.Pointer, sampleLocation unsafe.Pointer) MESampleLocation {
+func NewMESampleLocationWithByteSourceSampleLocation(byteSource IMEByteSource, sampleLocation unsafe.Pointer) MESampleLocation {
 	instance := getMESampleLocationClass().Alloc()
 	rv := objc.Send[MESampleLocation](instance.ID, objc.Sel("initWithByteSource:sampleLocation:"), byteSource, sampleLocation)
 	rv.Autorelease()
@@ -94,8 +94,8 @@ func NewMESampleLocationWithByteSourceSampleLocation(byteSource unsafe.Pointer, 
 // The byte source to use to read the data for the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleLocation/byteSource
-func (m_ MESampleLocation) ByteSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("byteSource"))
+func (m_ MESampleLocation) ByteSource() MEByteSource {
+	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSource"))
 	return rv
 }
 

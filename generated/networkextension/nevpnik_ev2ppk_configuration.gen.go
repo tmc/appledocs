@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewNEVPNIKEv2PPKConfiguration() NEVPNIKEv2PPKConfiguration {
 // The identifier for the PPK.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/identifier
-func (n_ NEVPNIKEv2PPKConfiguration) Identifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("identifier"))
+func (n_ NEVPNIKEv2PPKConfiguration) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -92,8 +93,8 @@ func (n_ NEVPNIKEv2PPKConfiguration) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/identifier
-func (n_ NEVPNIKEv2PPKConfiguration) SetIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (n_ NEVPNIKEv2PPKConfiguration) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // A Boolean value that indicates whether it’s mandatory for the VPN server to use this PPK.
@@ -117,8 +118,8 @@ func (n_ NEVPNIKEv2PPKConfiguration) SetIsMandatory(value bool) {
 // A persistent reference to the key in the keychain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/keychainreference
-func (n_ NEVPNIKEv2PPKConfiguration) KeychainReference() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("keychainReference"))
+func (n_ NEVPNIKEv2PPKConfiguration) KeychainReference() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("keychainReference"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (n_ NEVPNIKEv2PPKConfiguration) KeychainReference() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnikev2ppkconfiguration/keychainreference
-func (n_ NEVPNIKEv2PPKConfiguration) SetKeychainReference(value unsafe.Pointer) {
+func (n_ NEVPNIKEv2PPKConfiguration) SetKeychainReference(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setKeychainReference:"), value)
 }
 
@@ -153,8 +154,8 @@ func (n_ NEVPNIKEv2PPKConfiguration) SetAllowPostQuantumKeyExchangeFallback(valu
 // The configuration for a post-quantum pre-shared key (PPK).
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ppkconfiguration
-func (n_ NEVPNIKEv2PPKConfiguration) PpkConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ppkConfiguration"))
+func (n_ NEVPNIKEv2PPKConfiguration) PpkConfiguration() NEVPNIKEv2PPKConfiguration {
+	rv := objc.Send[NEVPNIKEv2PPKConfiguration](n_.ID, objc.Sel("ppkConfiguration"))
 	return rv
 }
 
@@ -164,7 +165,7 @@ func (n_ NEVPNIKEv2PPKConfiguration) PpkConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnprotocolikev2/ppkconfiguration
-func (n_ NEVPNIKEv2PPKConfiguration) SetPpkConfiguration(value unsafe.Pointer) {
+func (n_ NEVPNIKEv2PPKConfiguration) SetPpkConfiguration(value INEVPNIKEv2PPKConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPpkConfiguration:"), value)
 }
 

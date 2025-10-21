@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +85,16 @@ func NewPictureInPictureControllerContentSource() PictureInPictureControllerCont
 // The view that contains the video content of the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/activeVideoCallSourceView
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("activeVideoCallSourceView"))
+func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
 	return rv
 }
 
 // The view controller that presents the video call content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("activeVideoCallContentViewController"))
+func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewController() AVPictureInPictureVideoCallViewController {
+	rv := objc.Send[AVPictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
 	return rv
 }
 
@@ -102,15 +104,15 @@ func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewCont
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallContentViewController(value unsafe.Pointer) {
+func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallContentViewController:"), value)
 }
 
 // The presenting player layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/playerlayer
-func (p_ PictureInPictureControllerContentSource) PlayerLayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playerLayer"))
+func (p_ PictureInPictureControllerContentSource) PlayerLayer() avfoundation.PlayerLayer {
+	rv := objc.Send[avfoundation.PlayerLayer](p_.ID, objc.Sel("playerLayer"))
 	return rv
 }
 
@@ -120,15 +122,15 @@ func (p_ PictureInPictureControllerContentSource) PlayerLayer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/playerlayer
-func (p_ PictureInPictureControllerContentSource) SetPlayerLayer(value unsafe.Pointer) {
+func (p_ PictureInPictureControllerContentSource) SetPlayerLayer(value avfoundation.IPlayerLayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayerLayer:"), value)
 }
 
 // The presenting sample buffer display layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferdisplaylayer
-func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sampleBufferDisplayLayer"))
+func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() avfoundation.SampleBufferDisplayLayer {
+	rv := objc.Send[avfoundation.SampleBufferDisplayLayer](p_.ID, objc.Sel("sampleBufferDisplayLayer"))
 	return rv
 }
 
@@ -138,7 +140,7 @@ func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferdisplaylayer
-func (p_ PictureInPictureControllerContentSource) SetSampleBufferDisplayLayer(value unsafe.Pointer) {
+func (p_ PictureInPictureControllerContentSource) SetSampleBufferDisplayLayer(value avfoundation.ISampleBufferDisplayLayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSampleBufferDisplayLayer:"), value)
 }
 
@@ -163,8 +165,8 @@ func (p_ PictureInPictureControllerContentSource) SetSampleBufferPlaybackDelegat
 // The source of the controller’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.property
-func (p_ PictureInPictureControllerContentSource) ContentSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentSource"))
+func (p_ PictureInPictureControllerContentSource) ContentSource() AVPictureInPictureControllerContentSource {
+	rv := objc.Send[AVPictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
 	return rv
 }
 
@@ -174,7 +176,7 @@ func (p_ PictureInPictureControllerContentSource) ContentSource() unsafe.Pointer
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.property
-func (p_ PictureInPictureControllerContentSource) SetContentSource(value unsafe.Pointer) {
+func (p_ PictureInPictureControllerContentSource) SetContentSource(value IAVPictureInPictureControllerContentSource) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSource:"), value)
 }
 

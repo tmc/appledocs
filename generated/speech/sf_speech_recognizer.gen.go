@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _SFSpeechRecognizerClass struct {
 // An interface definition for the [SFSpeechRecognizer] class.
 type ISFSpeechRecognizer interface {
 	objectivec.IObject
-	RecognitionTaskWithRequestDelegate(request unsafe.Pointer, delegate objc.ID) unsafe.Pointer
+	RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate objectivec.IObject) SFSpeechRecognitionTask
 }
 
 // An object you use to check for the availability of the speech recognition service, and to initiate the speech recognition process.
@@ -84,8 +85,8 @@ func NewSFSpeechRecognizer() SFSpeechRecognizer {
 // Recognizes speech from the audio source associated with the specified request, using the specified delegate to manage the results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognizer/recognitionTask(with:delegate:)
-func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestDelegate(request unsafe.Pointer, delegate objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("recognitionTaskWithRequest:delegate:"), request, delegate)
+func (s_ SFSpeechRecognizer) RecognitionTaskWithRequestDelegate(request ISFSpeechRecognitionRequest, delegate objectivec.IObject) SFSpeechRecognitionTask {
+	rv := objc.Send[SFSpeechRecognitionTask](s_.ID, objc.Sel("recognitionTaskWithRequest:delegate:"), request, delegate)
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (s_ SFSpeechRecognizer) SetSupportsOnDeviceRecognition(value bool) {
 // A hint that indicates the type of speech recognition being requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
-func (s_ SFSpeechRecognizer) DefaultTaskHint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("defaultTaskHint"))
+func (s_ SFSpeechRecognizer) DefaultTaskHint() SFSpeechRecognitionTaskHint {
+	rv := objc.Send[SFSpeechRecognitionTaskHint](s_.ID, objc.Sel("defaultTaskHint"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (s_ SFSpeechRecognizer) DefaultTaskHint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/defaulttaskhint
-func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value unsafe.Pointer) {
+func (s_ SFSpeechRecognizer) SetDefaultTaskHint(value ISFSpeechRecognitionTaskHint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultTaskHint:"), value)
 }
 
@@ -164,8 +165,8 @@ func (s_ SFSpeechRecognizer) SetIsAvailable(value bool) {
 // The locale of the speech recognizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/locale
-func (s_ SFSpeechRecognizer) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("locale"))
+func (s_ SFSpeechRecognizer) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](s_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -175,15 +176,15 @@ func (s_ SFSpeechRecognizer) Locale() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/locale
-func (s_ SFSpeechRecognizer) SetLocale(value unsafe.Pointer) {
+func (s_ SFSpeechRecognizer) SetLocale(value foundation.ILocale) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
 }
 
 // The queue on which to execute recognition task handlers and delegate methods.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/queue
-func (s_ SFSpeechRecognizer) Queue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("queue"))
+func (s_ SFSpeechRecognizer) Queue() foundation.OperationQueue {
+	rv := objc.Send[foundation.OperationQueue](s_.ID, objc.Sel("queue"))
 	return rv
 }
 
@@ -193,7 +194,7 @@ func (s_ SFSpeechRecognizer) Queue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognizer/queue
-func (s_ SFSpeechRecognizer) SetQueue(value unsafe.Pointer) {
+func (s_ SFSpeechRecognizer) SetQueue(value foundation.IOperationQueue) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setQueue:"), value)
 }
 

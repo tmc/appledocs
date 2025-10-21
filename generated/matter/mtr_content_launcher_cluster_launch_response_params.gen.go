@@ -79,8 +79,8 @@ func NewMTRContentLauncherClusterLaunchResponseParams() MTRContentLauncherCluste
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchresponseparams/data
-func (m_ MTRContentLauncherClusterLaunchResponseParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentLauncherClusterLaunchResponseParams) Data() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -88,8 +88,8 @@ func (m_ MTRContentLauncherClusterLaunchResponseParams) Data() string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchresponseparams/data
-func (m_ MTRContentLauncherClusterLaunchResponseParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRContentLauncherClusterLaunchResponseParams) SetData(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
@@ -103,7 +103,7 @@ func (m_ MTRContentLauncherClusterLaunchResponseParams) Status() foundation.Numb
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchresponseparams/status
-func (m_ MTRContentLauncherClusterLaunchResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRContentLauncherClusterLaunchResponseParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchresponseparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLaunchResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

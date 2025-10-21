@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,23 +82,23 @@ func NewOSSystemExtensionRequest() OSSystemExtensionRequest {
 // Creates a request to activate a System Extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/activationRequest(forExtensionWithIdentifier:queue:)
-func (oc _OSSystemExtensionRequestClass) ActivationRequestForExtensionQueue(identifier string, queue unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("activationRequestForExtension:queue:"), objc.String(identifier), queue)
+func (oc _OSSystemExtensionRequestClass) ActivationRequestForExtensionQueue(identifier appkit.string, queue unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("activationRequestForExtension:queue:"), identifier, queue)
 	return rv
 }
 
 // Creates a request to deactivate a System Extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/deactivationRequest(forExtensionWithIdentifier:queue:)
-func (oc _OSSystemExtensionRequestClass) DeactivationRequestForExtensionQueue(identifier string, queue unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("deactivationRequestForExtension:queue:"), objc.String(identifier), queue)
+func (oc _OSSystemExtensionRequestClass) DeactivationRequestForExtensionQueue(identifier appkit.string, queue unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("deactivationRequestForExtension:queue:"), identifier, queue)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/propertiesRequest(forExtensionWithIdentifier:queue:)
-func (oc _OSSystemExtensionRequestClass) PropertiesRequestForExtensionQueue(identifier string, queue unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("propertiesRequestForExtension:queue:"), objc.String(identifier), queue)
+func (oc _OSSystemExtensionRequestClass) PropertiesRequestForExtensionQueue(identifier appkit.string, queue unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("propertiesRequestForExtension:queue:"), identifier, queue)
 	return rv
 }
 
@@ -122,8 +123,8 @@ func (o_ OSSystemExtensionRequest) SetDelegate(value objc.ID) {
 // The bundle identifier of the target extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionRequest/identifier
-func (o_ OSSystemExtensionRequest) Identifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("identifier"))
+func (o_ OSSystemExtensionRequest) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("identifier"))
 	return rv
 }
 

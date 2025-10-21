@@ -15,3 +15,11 @@ func ExampleNewToolPicker() {
 	_ = pencilkit.NewToolPicker()
 	// Output:
 }
+// ExampleNewToolPickerWithToolItems demonstrates how to create a ToolPicker instance using NewToolPickerWithToolItems.
+// Creates a new tool picker with the tools you specify.
+func ExampleNewToolPickerWithToolItems() {
+	_ = pencilkit.NewToolPickerWithToolItems(
+		[]pencilkit.ToolPickerItem{}, // items []ToolPickerItem
+	)
+	// Output:
+}

@@ -78,8 +78,8 @@ func NewMTROTAHeader() MTROTAHeader {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
-func (m_ MTROTAHeader) ImageDigest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("imageDigest"))
+func (m_ MTROTAHeader) ImageDigest() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("imageDigest"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTROTAHeader) ImageDigest() unsafe.Pointer {
 // SetImageDigest sets the value of the imageDigest property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigest
-func (m_ MTROTAHeader) SetImageDigest(value unsafe.Pointer) {
+func (m_ MTROTAHeader) SetImageDigest(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageDigest:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigesttype
-func (m_ MTROTAHeader) ImageDigestType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("imageDigestType"))
+func (m_ MTROTAHeader) ImageDigestType() MTROTAImageDigestType {
+	rv := objc.Send[MTROTAImageDigestType](m_.ID, objc.Sel("imageDigestType"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROTAHeader) ImageDigestType() unsafe.Pointer {
 // SetImageDigestType sets the value of the imageDigestType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/imagedigesttype
-func (m_ MTROTAHeader) SetImageDigestType(value unsafe.Pointer) {
+func (m_ MTROTAHeader) SetImageDigestType(value MTROTAImageDigestType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageDigestType:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROTAHeader) MaxApplicableVersion() foundation.Number {
 // SetMaxApplicableVersion sets the value of the maxApplicableVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/maxapplicableversion
-func (m_ MTROTAHeader) SetMaxApplicableVersion(value foundation.Number) {
+func (m_ MTROTAHeader) SetMaxApplicableVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxApplicableVersion:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROTAHeader) MinApplicableVersion() foundation.Number {
 // SetMinApplicableVersion sets the value of the minApplicableVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/minapplicableversion
-func (m_ MTROTAHeader) SetMinApplicableVersion(value foundation.Number) {
+func (m_ MTROTAHeader) SetMinApplicableVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinApplicableVersion:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTROTAHeader) PayloadSize() foundation.Number {
 // SetPayloadSize sets the value of the payloadSize property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/payloadsize
-func (m_ MTROTAHeader) SetPayloadSize(value foundation.Number) {
+func (m_ MTROTAHeader) SetPayloadSize(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPayloadSize:"), value)
 }
 
@@ -162,14 +162,14 @@ func (m_ MTROTAHeader) ProductID() foundation.Number {
 // SetProductID sets the value of the productID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/productid
-func (m_ MTROTAHeader) SetProductID(value foundation.Number) {
+func (m_ MTROTAHeader) SetProductID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) ReleaseNotesURL() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("releaseNotesURL"))
+func (m_ MTROTAHeader) ReleaseNotesURL() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("releaseNotesURL"))
 	return rv
 }
 
@@ -177,8 +177,8 @@ func (m_ MTROTAHeader) ReleaseNotesURL() string {
 // SetReleaseNotesURL sets the value of the releaseNotesURL property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/releasenotesurl
-func (m_ MTROTAHeader) SetReleaseNotesURL(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), objc.String(value))
+func (m_ MTROTAHeader) SetReleaseNotesURL(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReleaseNotesURL:"), value)
 }
 
 //
@@ -192,14 +192,14 @@ func (m_ MTROTAHeader) SoftwareVersion() foundation.Number {
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversion
-func (m_ MTROTAHeader) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTROTAHeader) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SoftwareVersionString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("softwareVersionString"))
+func (m_ MTROTAHeader) SoftwareVersionString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("softwareVersionString"))
 	return rv
 }
 
@@ -207,8 +207,8 @@ func (m_ MTROTAHeader) SoftwareVersionString() string {
 // SetSoftwareVersionString sets the value of the softwareVersionString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/softwareversionstring
-func (m_ MTROTAHeader) SetSoftwareVersionString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), objc.String(value))
+func (m_ MTROTAHeader) SetSoftwareVersionString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersionString:"), value)
 }
 
 //
@@ -222,7 +222,7 @@ func (m_ MTROTAHeader) VendorID() foundation.Number {
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotaheader/vendorid
-func (m_ MTROTAHeader) SetVendorID(value foundation.Number) {
+func (m_ MTROTAHeader) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

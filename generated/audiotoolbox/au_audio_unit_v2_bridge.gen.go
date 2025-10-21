@@ -81,12 +81,5 @@ func NewAudioUnitV2Bridge() AudioUnitV2Bridge {
 }
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitV2Bridge/audioUnit
-func (a_ AudioUnitV2Bridge) AudioUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("audioUnit"))
-	return rv
-}
-
 
 

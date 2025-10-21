@@ -87,7 +87,7 @@ func (m_ MTRMediaPlaybackClusterSkipForwardParams) DeltaPositionMilliseconds() f
 // SetDeltaPositionMilliseconds sets the value of the deltaPositionMilliseconds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/deltapositionmilliseconds
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetDeltaPositionMilliseconds(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetDeltaPositionMilliseconds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeltaPositionMilliseconds:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRMediaPlaybackClusterSkipForwardParams) ServerSideProcessingTimeout()
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRMediaPlaybackClusterSkipForwardParams) TimedInvokeTimeoutMs() founda
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipforwardparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterSkipForwardParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

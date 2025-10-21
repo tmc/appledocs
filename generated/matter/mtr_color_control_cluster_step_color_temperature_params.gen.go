@@ -87,7 +87,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) ColorTemperatureMaxim
 // SetColorTemperatureMaximumMireds sets the value of the colorTemperatureMaximumMireds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/colortemperaturemaximummireds
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetColorTemperatureMaximumMireds(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetColorTemperatureMaximumMireds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMaximumMireds:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) ColorTemperatureMinim
 // SetColorTemperatureMinimumMireds sets the value of the colorTemperatureMinimumMireds property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/colortemperatureminimummireds
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetColorTemperatureMinimumMireds(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetColorTemperatureMinimumMireds(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColorTemperatureMinimumMireds:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) OptionsMask() foundat
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/optionsmask
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) OptionsOverride() fou
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/optionsoverride
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) ServerSideProcessingT
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) StepMode() foundation
 // SetStepMode sets the value of the stepMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/stepmode
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetStepMode(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetStepMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepMode:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) StepSize() foundation
 // SetStepSize sets the value of the stepSize property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/stepsize
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetStepSize(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetStepSize(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStepSize:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) TimedInvokeTimeoutMs(
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRColorControlClusterStepColorTemperatureParams) TransitionTime() foun
 // SetTransitionTime sets the value of the transitionTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterstepcolortemperatureparams/transitiontime
-func (m_ MTRColorControlClusterStepColorTemperatureParams) SetTransitionTime(value foundation.Number) {
+func (m_ MTRColorControlClusterStepColorTemperatureParams) SetTransitionTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
 }
 

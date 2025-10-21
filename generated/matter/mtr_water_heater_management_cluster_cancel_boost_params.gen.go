@@ -90,7 +90,7 @@ func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterCancelBoostParams/serverSideProcessingTimeout
-func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterCancelBoostParams/timedInvokeTimeoutMs
-func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterCancelBoostParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

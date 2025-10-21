@@ -100,8 +100,8 @@ func (c_ CSoftmaxLayer) SetDimension(value int) {
 // The softmax operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/operation
-func (c_ CSoftmaxLayer) Operation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operation"))
+func (c_ CSoftmaxLayer) Operation() CSoftmaxOperation {
+	rv := objc.Send[CSoftmaxOperation](c_.ID, objc.Sel("operation"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (c_ CSoftmaxLayer) Operation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcsoftmaxlayer/operation
-func (c_ CSoftmaxLayer) SetOperation(value unsafe.Pointer) {
+func (c_ CSoftmaxLayer) SetOperation(value ICSoftmaxOperation) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setOperation:"), value)
 }
 

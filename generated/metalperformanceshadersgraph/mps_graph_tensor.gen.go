@@ -100,8 +100,8 @@ func (g_ GraphTensor) Shape() unsafe.Pointer {
 // The operation responsible for creating this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
-func (g_ GraphTensor) Operation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("operation"))
+func (g_ GraphTensor) Operation() MPSGraphOperation {
+	rv := objc.Send[MPSGraphOperation](g_.ID, objc.Sel("operation"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (g_ GraphTensor) Operation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensor/operation
-func (g_ GraphTensor) SetOperation(value unsafe.Pointer) {
+func (g_ GraphTensor) SetOperation(value IMPSGraphOperation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOperation:"), value)
 }
 

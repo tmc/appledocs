@@ -96,7 +96,7 @@ func (s_ SkipIntervalCommand) PreferredIntervals() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpskipintervalcommand/preferredintervals
-func (s_ SkipIntervalCommand) SetPreferredIntervals(value foundation.Number) {
+func (s_ SkipIntervalCommand) SetPreferredIntervals(value foundation.INumber) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredIntervals:"), value)
 }
 

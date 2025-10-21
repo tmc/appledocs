@@ -87,7 +87,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) Duration() f
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/duration
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetDuration(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) EmergencyBoo
 // SetEmergencyBoost sets the value of the emergencyBoost property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/emergencyBoost
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetEmergencyBoost(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetEmergencyBoost(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEmergencyBoost:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) OneShot() fo
 // SetOneShot sets the value of the oneShot property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/oneShot
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetOneShot(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetOneShot(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOneShot:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetPercen
 // SetTargetPercentage sets the value of the targetPercentage property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetPercentage
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetPercentage(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetPercentage(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetPercentage:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TargetReheat
 // SetTargetReheat sets the value of the targetReheat property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/targetReheat
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetReheat(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTargetReheat(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetReheat:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) TemporarySet
 // SetTemporarySetpoint sets the value of the temporarySetpoint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct/temporarySetpoint
-func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTemporarySetpoint(value foundation.Number) {
+func (m_ MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) SetTemporarySetpoint(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTemporarySetpoint:"), value)
 }
 

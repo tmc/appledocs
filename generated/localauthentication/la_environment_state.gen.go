@@ -84,8 +84,8 @@ func (e_ EnvironmentState) AllMechanisms() []EnvironmentMechanism {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/biometry
-func (e_ EnvironmentState) Biometry() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("biometry"))
+func (e_ EnvironmentState) Biometry() LAEnvironmentMechanismBiometry {
+	rv := objc.Send[LAEnvironmentMechanismBiometry](e_.ID, objc.Sel("biometry"))
 	return rv
 }
 
@@ -98,8 +98,8 @@ func (e_ EnvironmentState) Companions() []EnvironmentMechanismCompanion {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/State-swift.class/userPassword
-func (e_ EnvironmentState) UserPassword() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userPassword"))
+func (e_ EnvironmentState) UserPassword() LAEnvironmentMechanismUserPassword {
+	rv := objc.Send[LAEnvironmentMechanismUserPassword](e_.ID, objc.Sel("userPassword"))
 	return rv
 }
 

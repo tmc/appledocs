@@ -83,8 +83,8 @@ func NewCBAttribute() CBAttribute {
 // The Bluetooth-specific UUID of the attribute.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBAttribute/uuid
-func (c_ CBAttribute) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("UUID"))
+func (c_ CBAttribute) UUID() CBUUID {
+	rv := objc.Send[CBUUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 

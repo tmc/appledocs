@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -30,7 +31,7 @@ type _ColorKernelClass struct {
 // An interface definition for the [ColorKernel] class.
 type IColorKernel interface {
 	IKernel
-	ApplyWithExtentArguments(extent coregraphics.CGRect, args unsafe.Pointer) unsafe.Pointer
+	ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID) Image
 }
 
 // A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
@@ -88,8 +89,8 @@ func NewColorKernel() ColorKernel {
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func NewColorKernelWithString(string_ string) ColorKernel {
-	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
+func NewColorKernelWithString(string_ appkit.string) ColorKernel {
+	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
@@ -97,16 +98,16 @@ func NewColorKernelWithString(string_ string) ColorKernel {
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func (cc _ColorKernelClass) KernelWithString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), objc.String(string_))
+func (cc _ColorKernelClass) KernelWithString(string_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
-func (c_ ColorKernel) ApplyWithExtentArguments(extent coregraphics.CGRect, args unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
+func (c_ ColorKernel) ApplyWithExtentArguments(extent coregraphics.CGRect, args []objc.ID) Image {
+	rv := objc.Send[Image](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
 	return rv
 }
 

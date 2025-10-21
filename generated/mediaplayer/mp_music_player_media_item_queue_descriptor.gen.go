@@ -30,8 +30,8 @@ type _MusicPlayerMediaItemQueueDescriptorClass struct {
 // An interface definition for the [MusicPlayerMediaItemQueueDescriptor] class.
 type IMusicPlayerMediaItemQueueDescriptor interface {
 	IMusicPlayerQueueDescriptor
-	SetEndTimeForItem(endTime foundation.TimeInterval, mediaItem unsafe.Pointer)
-	SetStartTimeForItem(startTime foundation.TimeInterval, mediaItem unsafe.Pointer)
+	SetEndTimeForItem(endTime foundation.ITimeInterval, mediaItem IMPMediaItem)
+	SetStartTimeForItem(startTime foundation.ITimeInterval, mediaItem IMPMediaItem)
 }
 
 // A set of properties and methods for modifying audio media items in the player’s media queue.
@@ -89,7 +89,7 @@ func NewMusicPlayerMediaItemQueueDescriptor() MusicPlayerMediaItemQueueDescripto
 // Creates a new queue descriptor using the designated collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/init(itemCollection:)
-func NewMusicPlayerMediaItemQueueDescriptorWithItemCollection(itemCollection unsafe.Pointer) MusicPlayerMediaItemQueueDescriptor {
+func NewMusicPlayerMediaItemQueueDescriptorWithItemCollection(itemCollection IMPMediaItemCollection) MusicPlayerMediaItemQueueDescriptor {
 	instance := getMusicPlayerMediaItemQueueDescriptorClass().Alloc()
 	rv := objc.Send[MusicPlayerMediaItemQueueDescriptor](instance.ID, objc.Sel("initWithItemCollection:"), itemCollection)
 	rv.Autorelease()
@@ -101,7 +101,7 @@ func NewMusicPlayerMediaItemQueueDescriptorWithItemCollection(itemCollection uns
 // Creates a new queue descriptor using the designated query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/init(query:)
-func NewMusicPlayerMediaItemQueueDescriptorWithQuery(query unsafe.Pointer) MusicPlayerMediaItemQueueDescriptor {
+func NewMusicPlayerMediaItemQueueDescriptorWithQuery(query IMPMediaQuery) MusicPlayerMediaItemQueueDescriptor {
 	instance := getMusicPlayerMediaItemQueueDescriptorClass().Alloc()
 	rv := objc.Send[MusicPlayerMediaItemQueueDescriptor](instance.ID, objc.Sel("initWithQuery:"), query)
 	rv.Autorelease()
@@ -112,38 +112,38 @@ func NewMusicPlayerMediaItemQueueDescriptorWithQuery(query unsafe.Pointer) Music
 // The time the designated media item is to stop playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/setEndTime(_:for:)
-func (m_ MusicPlayerMediaItemQueueDescriptor) SetEndTimeForItem(endTime foundation.TimeInterval, mediaItem unsafe.Pointer) {
+func (m_ MusicPlayerMediaItemQueueDescriptor) SetEndTimeForItem(endTime foundation.ITimeInterval, mediaItem IMPMediaItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:forItem:"), endTime, mediaItem)
 }
 
 // The time the designated media item is to start playing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/setStartTime(_:for:)
-func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartTimeForItem(startTime foundation.TimeInterval, mediaItem unsafe.Pointer) {
+func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartTimeForItem(startTime foundation.ITimeInterval, mediaItem IMPMediaItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:forItem:"), startTime, mediaItem)
 }
 
 // Contains the media item collection used to create the queue descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/itemCollection
-func (m_ MusicPlayerMediaItemQueueDescriptor) ItemCollection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("itemCollection"))
+func (m_ MusicPlayerMediaItemQueueDescriptor) ItemCollection() MPMediaItemCollection {
+	rv := objc.Send[MPMediaItemCollection](m_.ID, objc.Sel("itemCollection"))
 	return rv
 }
 
 // Contains the media items found by the query used to create the queue descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/query
-func (m_ MusicPlayerMediaItemQueueDescriptor) Query() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("query"))
+func (m_ MusicPlayerMediaItemQueueDescriptor) Query() MPMediaQuery {
+	rv := objc.Send[MPMediaQuery](m_.ID, objc.Sel("query"))
 	return rv
 }
 
 // Designates the media item to play first.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/startItem
-func (m_ MusicPlayerMediaItemQueueDescriptor) StartItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("startItem"))
+func (m_ MusicPlayerMediaItemQueueDescriptor) StartItem() MPMediaItem {
+	rv := objc.Send[MPMediaItem](m_.ID, objc.Sel("startItem"))
 	return rv
 }
 
@@ -153,7 +153,7 @@ func (m_ MusicPlayerMediaItemQueueDescriptor) StartItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerMediaItemQueueDescriptor/startItem
-func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartItem(value unsafe.Pointer) {
+func (m_ MusicPlayerMediaItemQueueDescriptor) SetStartItem(value IMPMediaItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartItem:"), value)
 }
 

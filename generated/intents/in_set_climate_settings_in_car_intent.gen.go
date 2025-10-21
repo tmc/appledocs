@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INSetClimateSettingsInCarIntent] class.
@@ -102,8 +103,8 @@ func (i_ INSetClimateSettingsInCarIntent) SetAirCirculationMode(value unsafe.Poi
 // A name that identifies the user’s car.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/carname
-func (i_ INSetClimateSettingsInCarIntent) CarName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+func (i_ INSetClimateSettingsInCarIntent) CarName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
 	return rv
 }
 
@@ -113,7 +114,7 @@ func (i_ INSetClimateSettingsInCarIntent) CarName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/carname
-func (i_ INSetClimateSettingsInCarIntent) SetCarName(value unsafe.Pointer) {
+func (i_ INSetClimateSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
@@ -282,8 +283,8 @@ func (i_ INSetClimateSettingsInCarIntent) SetRelativeTemperatureSetting(value un
 // The specific temperature to set for the climate control system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/temperature
-func (i_ INSetClimateSettingsInCarIntent) Temperature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("temperature"))
+func (i_ INSetClimateSettingsInCarIntent) Temperature() foundation.UnitTemperature {
+	rv := objc.Send[foundation.UnitTemperature](i_.ID, objc.Sel("temperature"))
 	return rv
 }
 
@@ -293,7 +294,7 @@ func (i_ INSetClimateSettingsInCarIntent) Temperature() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent/temperature
-func (i_ INSetClimateSettingsInCarIntent) SetTemperature(value unsafe.Pointer) {
+func (i_ INSetClimateSettingsInCarIntent) SetTemperature(value foundation.IUnitTemperature) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTemperature:"), value)
 }
 

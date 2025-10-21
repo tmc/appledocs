@@ -84,8 +84,8 @@ func NewAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest() Authorizat
 // An array of allowed credentials.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/allowedcredentials
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AllowedCredentials() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("allowedCredentials"))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AllowedCredentials() ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
+	rv := objc.Send[ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor](a_.ID, objc.Sel("allowedCredentials"))
 	return rv
 }
 
@@ -95,14 +95,14 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AllowedCre
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/allowedcredentials
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAllowedCredentials(value unsafe.Pointer) {
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAllowedCredentials(value IASAuthorizationSecurityKeyPublicKeyCredentialDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowedCredentials:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("appID"))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("appID"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() st
 // SetAppID sets the value of the appID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), objc.String(value))
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), value)
 }
 
 

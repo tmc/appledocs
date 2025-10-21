@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MKMarkerAnnotationView] class.
@@ -84,8 +85,8 @@ func NewMKMarkerAnnotationView() MKMarkerAnnotationView {
 // An image to display in the marker balloon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
-func (m_ MKMarkerAnnotationView) GlyphImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("glyphImage"))
+func (m_ MKMarkerAnnotationView) GlyphImage() appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("glyphImage"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (m_ MKMarkerAnnotationView) GlyphImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphImage
-func (m_ MKMarkerAnnotationView) SetGlyphImage(value unsafe.Pointer) {
+func (m_ MKMarkerAnnotationView) SetGlyphImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphImage:"), value)
 }
 
 // The color to apply to the glyph text or image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
-func (m_ MKMarkerAnnotationView) GlyphTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("glyphTintColor"))
+func (m_ MKMarkerAnnotationView) GlyphTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("glyphTintColor"))
 	return rv
 }
 
@@ -113,15 +114,15 @@ func (m_ MKMarkerAnnotationView) GlyphTintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/glyphTintColor
-func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value unsafe.Pointer) {
+func (m_ MKMarkerAnnotationView) SetGlyphTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphTintColor:"), value)
 }
 
 // The background color of the marker balloon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
-func (m_ MKMarkerAnnotationView) MarkerTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("markerTintColor"))
+func (m_ MKMarkerAnnotationView) MarkerTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("markerTintColor"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MKMarkerAnnotationView) MarkerTintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMarkerAnnotationView/markerTintColor
-func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value unsafe.Pointer) {
+func (m_ MKMarkerAnnotationView) SetMarkerTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMarkerTintColor:"), value)
 }
 
@@ -174,8 +175,8 @@ func (m_ MKMarkerAnnotationView) SetAnimatesWhenAdded(value bool) {
 // The text to display in the marker balloon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) GlyphText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("glyphText"))
+func (m_ MKMarkerAnnotationView) GlyphText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("glyphText"))
 	return rv
 }
 
@@ -185,15 +186,15 @@ func (m_ MKMarkerAnnotationView) GlyphText() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/glyphtext
-func (m_ MKMarkerAnnotationView) SetGlyphText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), objc.String(value))
+func (m_ MKMarkerAnnotationView) SetGlyphText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGlyphText:"), value)
 }
 
 // An image to display when the user selects the marker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SelectedGlyphImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectedGlyphImage"))
+func (m_ MKMarkerAnnotationView) SelectedGlyphImage() appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("selectedGlyphImage"))
 	return rv
 }
 
@@ -203,7 +204,7 @@ func (m_ MKMarkerAnnotationView) SelectedGlyphImage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmarkerannotationview/selectedglyphimage
-func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value unsafe.Pointer) {
+func (m_ MKMarkerAnnotationView) SetSelectedGlyphImage(value appkit.IImage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedGlyphImage:"), value)
 }
 

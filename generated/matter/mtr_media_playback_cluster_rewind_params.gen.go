@@ -87,7 +87,7 @@ func (m_ MTRMediaPlaybackClusterRewindParams) AudioAdvanceUnmuted() foundation.N
 // SetAudioAdvanceUnmuted sets the value of the audioAdvanceUnmuted property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/audioadvanceunmuted
-func (m_ MTRMediaPlaybackClusterRewindParams) SetAudioAdvanceUnmuted(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterRewindParams) SetAudioAdvanceUnmuted(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRMediaPlaybackClusterRewindParams) ServerSideProcessingTimeout() foun
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/serversideprocessingtimeout
-func (m_ MTRMediaPlaybackClusterRewindParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterRewindParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRMediaPlaybackClusterRewindParams) TimedInvokeTimeoutMs() foundation.
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterRewindParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterRewindParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

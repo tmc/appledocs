@@ -83,8 +83,8 @@ func NewPointerFunctions() PointerFunctions {
 // The pointer functions for the hash table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-func (p_ PointerFunctions) PointerFunctions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pointerFunctions"))
+func (p_ PointerFunctions) PointerFunctions() NSPointerFunctions {
+	rv := objc.Send[NSPointerFunctions](p_.ID, objc.Sel("pointerFunctions"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (p_ PointerFunctions) PointerFunctions() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nshashtable/pointerfunctions
-func (p_ PointerFunctions) SetPointerFunctions(value unsafe.Pointer) {
+func (p_ PointerFunctions) SetPointerFunctions(value IPointerFunctions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPointerFunctions:"), value)
 }
 
 // The function used to describe elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) DescriptionFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("descriptionFunction"))
+func (p_ PointerFunctions) DescriptionFunction() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("descriptionFunction"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (p_ PointerFunctions) DescriptionFunction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/descriptionfunction
-func (p_ PointerFunctions) SetDescriptionFunction(value unsafe.Pointer) {
+func (p_ PointerFunctions) SetDescriptionFunction(value appkit.string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDescriptionFunction:"), value)
 }
 
 // The hash function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/hashfunction
-func (p_ PointerFunctions) HashFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("hashFunction"))
+func (p_ PointerFunctions) HashFunction() int {
+	rv := objc.Send[int](p_.ID, objc.Sel("hashFunction"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (p_ PointerFunctions) HashFunction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nspointerfunctions/hashfunction
-func (p_ PointerFunctions) SetHashFunction(value unsafe.Pointer) {
+func (p_ PointerFunctions) SetHashFunction(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHashFunction:"), value)
 }
 

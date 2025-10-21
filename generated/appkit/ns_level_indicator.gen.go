@@ -31,7 +31,7 @@ type _LevelIndicatorClass struct {
 type ILevelIndicator interface {
 	IControl
 	RectOfTickMarkAtIndex(index int) coregraphics.CGRect
-	TickMarkValueAtIndex(index int) unsafe.Pointer
+	TickMarkValueAtIndex(index int) float64
 }
 
 // A visual representation of a level or quantity, using discrete values.
@@ -95,8 +95,8 @@ func (l_ LevelIndicator) RectOfTickMarkAtIndex(index int) coregraphics.CGRect {
 // Returns the receiver’s value represented by the tick mark at the specified index (the minimum-value tick mark has an index of 0).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/tickMarkValue(at:)
-func (l_ LevelIndicator) TickMarkValueAtIndex(index int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("tickMarkValueAtIndex:"), index)
+func (l_ LevelIndicator) TickMarkValueAtIndex(index int) float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("tickMarkValueAtIndex:"), index)
 	return rv
 }
 
@@ -118,8 +118,8 @@ func (l_ LevelIndicator) SetCriticalFillColor(value IColor) {
 // The receiver’s critical value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/criticalValue
-func (l_ LevelIndicator) CriticalValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("criticalValue"))
+func (l_ LevelIndicator) CriticalValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("criticalValue"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (l_ LevelIndicator) CriticalValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/criticalValue
-func (l_ LevelIndicator) SetCriticalValue(value unsafe.Pointer) {
+func (l_ LevelIndicator) SetCriticalValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setCriticalValue:"), value)
 }
 
@@ -199,8 +199,8 @@ func (l_ LevelIndicator) SetLevelIndicatorStyle(value LevelIndicatorStyle) {
 // The receiver’s maximum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/maxValue
-func (l_ LevelIndicator) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("maxValue"))
+func (l_ LevelIndicator) MaxValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
@@ -210,15 +210,15 @@ func (l_ LevelIndicator) MaxValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/maxValue
-func (l_ LevelIndicator) SetMaxValue(value unsafe.Pointer) {
+func (l_ LevelIndicator) SetMaxValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 // The receiver’s minimum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/minValue
-func (l_ LevelIndicator) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("minValue"))
+func (l_ LevelIndicator) MinValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("minValue"))
 	return rv
 }
 
@@ -228,7 +228,7 @@ func (l_ LevelIndicator) MinValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/minValue
-func (l_ LevelIndicator) SetMinValue(value unsafe.Pointer) {
+func (l_ LevelIndicator) SetMinValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMinValue:"), value)
 }
 
@@ -349,8 +349,8 @@ func (l_ LevelIndicator) SetWarningFillColor(value IColor) {
 // The receiver’s warning value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/warningValue
-func (l_ LevelIndicator) WarningValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("warningValue"))
+func (l_ LevelIndicator) WarningValue() float64 {
+	rv := objc.Send[float64](l_.ID, objc.Sel("warningValue"))
 	return rv
 }
 
@@ -360,7 +360,7 @@ func (l_ LevelIndicator) WarningValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/warningValue
-func (l_ LevelIndicator) SetWarningValue(value unsafe.Pointer) {
+func (l_ LevelIndicator) SetWarningValue(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWarningValue:"), value)
 }
 

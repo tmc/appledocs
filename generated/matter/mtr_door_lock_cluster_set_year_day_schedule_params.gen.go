@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterSetYearDayScheduleParams) LocalEndTime() foundation.N
 // SetLocalEndTime sets the value of the localEndTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetyeardayscheduleparams/localendtime
-func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetLocalEndTime(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetLocalEndTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalEndTime:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterSetYearDayScheduleParams) LocalStartTime() foundation
 // SetLocalStartTime sets the value of the localStartTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetyeardayscheduleparams/localstarttime
-func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetLocalStartTime(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetLocalStartTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalStartTime:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterSetYearDayScheduleParams) ServerSideProcessingTimeout
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetyeardayscheduleparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterSetYearDayScheduleParams) TimedInvokeTimeoutMs() foun
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetyeardayscheduleparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDoorLockClusterSetYearDayScheduleParams) UserIndex() foundation.Numb
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetyeardayscheduleparams/userindex
-func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRDoorLockClusterSetYearDayScheduleParams) YearDayIndex() foundation.N
 // SetYearDayIndex sets the value of the yearDayIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetyeardayscheduleparams/yeardayindex
-func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetYearDayIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetYearDayScheduleParams) SetYearDayIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setYearDayIndex:"), value)
 }
 

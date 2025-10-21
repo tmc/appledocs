@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +33,9 @@ type _STWebHistoryClass struct {
 type ISTWebHistory interface {
 	objectivec.IObject
 	DeleteAllHistory()
-	DeleteHistoryDuringInterval(interval unsafe.Pointer)
+	DeleteHistoryDuringInterval(interval foundation.IDateInterval)
 	FetchAllHistoryWithCompletionHandler(completionHandler unsafe.Pointer)
-	FetchHistoryDuringIntervalCompletionHandler(interval unsafe.Pointer, completionHandler unsafe.Pointer)
+	FetchHistoryDuringIntervalCompletionHandler(interval foundation.IDateInterval, completionHandler unsafe.Pointer)
 }
 
 // The object you use to delete web-usage data.
@@ -89,9 +91,9 @@ func NewSTWebHistory() STWebHistory {
 // Creates a web history instance to delete web-usage data associated to the bundle identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:)
-func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error_ unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier appkit.string, error_ unsafe.Pointer) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:error:"), objc.String(bundleIdentifier), error_)
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:error:"), bundleIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -101,9 +103,9 @@ func NewSTWebHistoryWithBundleIdentifierError(bundleIdentifier string, error_ un
 // Creates a web history instance to delete web-usage data associated to the bundle identifier and profile identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(bundleIdentifier:profileIdentifier:)
-func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier string, profileIdentifier unsafe.Pointer, error_ unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier appkit.string, profileIdentifier ISTWebHistoryProfileIdentifier, error_ unsafe.Pointer) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
-	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:profileIdentifier:error:"), objc.String(bundleIdentifier), profileIdentifier, error_)
+	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithBundleIdentifier:profileIdentifier:error:"), bundleIdentifier, profileIdentifier, error_)
 	rv.Autorelease()
 	return rv
 }
@@ -113,7 +115,7 @@ func NewSTWebHistoryWithBundleIdentifierProfileIdentifierError(bundleIdentifier 
 // Creates a web history instance to delete web-usage data associated to the profile identifier you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/init(profileIdentifier:)
-func NewSTWebHistoryWithProfileIdentifier(profileIdentifier unsafe.Pointer) STWebHistory {
+func NewSTWebHistoryWithProfileIdentifier(profileIdentifier ISTWebHistoryProfileIdentifier) STWebHistory {
 	instance := getSTWebHistoryClass().Alloc()
 	rv := objc.Send[STWebHistory](instance.ID, objc.Sel("initWithProfileIdentifier:"), profileIdentifier)
 	rv.Autorelease()
@@ -131,7 +133,7 @@ func (s_ STWebHistory) DeleteAllHistory() {
 // Deletes web history that occurred during the date interval you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/deleteHistory(during:)
-func (s_ STWebHistory) DeleteHistoryDuringInterval(interval unsafe.Pointer) {
+func (s_ STWebHistory) DeleteHistoryDuringInterval(interval foundation.IDateInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("deleteHistoryDuringInterval:"), interval)
 }
 
@@ -145,7 +147,7 @@ func (s_ STWebHistory) FetchAllHistoryWithCompletionHandler(completionHandler un
 // Fetches web history that occurred during the date interval you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebHistory/fetchHistory(during:completionHandler:)
-func (s_ STWebHistory) FetchHistoryDuringIntervalCompletionHandler(interval unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (s_ STWebHistory) FetchHistoryDuringIntervalCompletionHandler(interval foundation.IDateInterval, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fetchHistoryDuringInterval:completionHandler:"), interval, completionHandler)
 }
 

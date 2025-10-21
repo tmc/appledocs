@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,10 @@ type _ManagedObjectClass struct {
 type IManagedObject interface {
 	objectivec.IObject
 	ChangedValuesForCurrentEvent() unsafe.Pointer
-	ObjectIDsForRelationshipNamed(key string) []ManagedObjectID
-	PrimitiveValueForKey(key string) objc.ID
-	SetPrimitiveValueForKey(value objc.ID, key string)
+	ObjectIDsForRelationshipNamed(key appkit.string) []ManagedObjectID
+	PrimitiveValueForKey(key appkit.string) objc.ID
+	SetObservationInfo(inObservationInfo unsafe.Pointer)
+	SetPrimitiveValueForKey(value objectivec.IObject, key appkit.string)
 	WillSave()
 	WillTurnIntoFault()
 }
@@ -91,7 +93,7 @@ func NewManagedObject() ManagedObject {
 // Initializes a managed object from an entity description and inserts it into the specified managed object context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/init(entity:insertInto:)
-func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity unsafe.Pointer, context unsafe.Pointer) ManagedObject {
+func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity IEntityDescription, context IManagedObjectContext) ManagedObject {
 	instance := getManagedObjectClass().Alloc()
 	rv := objc.Send[ManagedObject](instance.ID, objc.Sel("initWithEntity:insertIntoManagedObjectContext:"), entity, context)
 	rv.Autorelease()
@@ -102,16 +104,16 @@ func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity unsafe.Poin
 // Returns the entity description that is associated with this subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity()
-func (mc _ManagedObjectClass) Entity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("entity"))
+func (mc _ManagedObjectClass) Entity() EntityDescription {
+	rv := objc.Send[EntityDescription](objc.ID(mc.class), objc.Sel("entity"))
 	return rv
 }
 
 // Returns an initialized fetch request with the entity this subclass represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/fetchRequest
-func (mc _ManagedObjectClass) FetchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("fetchRequest"))
+func (mc _ManagedObjectClass) FetchRequest() FetchRequest {
+	rv := objc.Send[FetchRequest](objc.ID(mc.class), objc.Sel("fetchRequest"))
 	return rv
 }
 
@@ -126,23 +128,23 @@ func (m_ ManagedObject) ChangedValuesForCurrentEvent() unsafe.Pointer {
 // Provides an opportunity to respond when a value of a given property has changed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/didChangeValue(forKey:)
-func (m_ ManagedObject) DidChangeValueForKey(key string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("didChangeValueForKey:"), objc.String(key))
+func (m_ ManagedObject) DidChangeValueForKey(key appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("didChangeValueForKey:"), key)
 }
 
 // Returns the object IDs for all of the managed objects that are in the named relationship.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectIDs(forRelationshipNamed:)
-func (m_ ManagedObject) ObjectIDsForRelationshipNamed(key string) []ManagedObjectID {
-	rv := objc.Send[[]ManagedObjectID](m_.ID, objc.Sel("objectIDsForRelationshipNamed:"), objc.String(key))
+func (m_ ManagedObject) ObjectIDsForRelationshipNamed(key appkit.string) []ManagedObjectID {
+	rv := objc.Send[[]ManagedObjectID](m_.ID, objc.Sel("objectIDsForRelationshipNamed:"), key)
 	return rv
 }
 
 // Returns the value for the specified property from the managed object’s private internal storage .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/primitiveValue(forKey:)
-func (m_ ManagedObject) PrimitiveValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("primitiveValueForKey:"), objc.String(key))
+func (m_ ManagedObject) PrimitiveValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("primitiveValueForKey:"), key)
 	return rv
 }
 
@@ -156,15 +158,15 @@ func (m_ ManagedObject) SetObservationInfo(inObservationInfo unsafe.Pointer) {
 // Sets the value of a given property in the managed object’s private internal storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/setPrimitiveValue(_:forKey:)
-func (m_ ManagedObject) SetPrimitiveValueForKey(value objc.ID, key string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveValue:forKey:"), value, objc.String(key))
+func (m_ ManagedObject) SetPrimitiveValueForKey(value objectivec.IObject, key appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveValue:forKey:"), value, key)
 }
 
 // Returns the value for the property specified by .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/value(forKey:)
-func (m_ ManagedObject) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForKey:"), objc.String(key))
+func (m_ ManagedObject) ValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueForKey:"), key)
 	return rv
 }
 
@@ -185,8 +187,8 @@ func (m_ ManagedObject) WillTurnIntoFault() {
 // The entity description of the managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/entity-swift.property
-func (m_ ManagedObject) Entity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("entity"))
+func (m_ ManagedObject) Entity() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](m_.ID, objc.Sel("entity"))
 	return rv
 }
 
@@ -249,16 +251,16 @@ func (m_ ManagedObject) Updated() bool {
 // The managed object context with which the managed object is registered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/managedObjectContext
-func (m_ ManagedObject) ManagedObjectContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("managedObjectContext"))
+func (m_ ManagedObject) ManagedObjectContext() NSManagedObjectContext {
+	rv := objc.Send[NSManagedObjectContext](m_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
 // The object ID of the managed object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSManagedObject/objectID
-func (m_ ManagedObject) ObjectID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("objectID"))
+func (m_ ManagedObject) ObjectID() NSManagedObjectID {
+	rv := objc.Send[NSManagedObjectID](m_.ID, objc.Sel("objectID"))
 	return rv
 }
 
@@ -337,40 +339,40 @@ func (m_ ManagedObject) SetIsUpdated(value bool) {
 // The error key for the attribute that failed to validate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationkeyerrorkey
-func (m_ ManagedObject) NSValidationKeyErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationKeyErrorKey"))
+func (m_ ManagedObject) NSValidationKeyErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSValidationKeyErrorKey"))
 	return rv
 }
 
 // The error key for the object that failed to validate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationobjecterrorkey
-func (m_ ManagedObject) NSValidationObjectErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
+func (m_ ManagedObject) NSValidationObjectErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
 	return rv
 }
 
 // The error key for the predicate that failed to validate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationpredicateerrorkey
-func (m_ ManagedObject) NSValidationPredicateErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationPredicateErrorKey"))
+func (m_ ManagedObject) NSValidationPredicateErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSValidationPredicateErrorKey"))
 	return rv
 }
 
 // The error key for the value that failed to validate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsvalidationvalueerrorkey
-func (m_ ManagedObject) NSValidationValueErrorKey() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("NSValidationValueErrorKey"))
+func (m_ ManagedObject) NSValidationValueErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("NSValidationValueErrorKey"))
 	return rv
 }
 
 // A textual representation of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (m_ ManagedObject) Description() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("description"))
+func (m_ ManagedObject) Description() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -380,8 +382,8 @@ func (m_ ManagedObject) Description() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (m_ ManagedObject) SetDescription(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), objc.String(value))
+func (m_ ManagedObject) SetDescription(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), value)
 }
 
 // Returns an integer that can be used as a table address in a hash table structure.

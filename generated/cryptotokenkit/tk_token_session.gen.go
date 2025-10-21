@@ -85,7 +85,7 @@ func NewTKTokenSession() TKTokenSession {
 // Initializes a token session with the specified token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/init(token:)
-func NewTKTokenSessionWithToken(token unsafe.Pointer) TKTokenSession {
+func NewTKTokenSessionWithToken(token ITKToken) TKTokenSession {
 	instance := getTKTokenSessionClass().Alloc()
 	rv := objc.Send[TKTokenSession](instance.ID, objc.Sel("initWithToken:"), token)
 	rv.Autorelease()
@@ -114,8 +114,8 @@ func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 // The token to which the session is bound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/token
-func (t_ TKTokenSession) Token() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("token"))
+func (t_ TKTokenSession) Token() TKToken {
+	rv := objc.Send[TKToken](t_.ID, objc.Sel("token"))
 	return rv
 }
 

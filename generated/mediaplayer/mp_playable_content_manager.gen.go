@@ -118,8 +118,8 @@ func (p_ PlayableContentManager) SetImageCropRect(value coregraphics.CGRect) {
 // The current state of the playable content endpoint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/context
-func (p_ PlayableContentManager) Context() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("context"))
+func (p_ PlayableContentManager) Context() MPPlayableContentManagerContext {
+	rv := objc.Send[MPPlayableContentManagerContext](p_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -129,7 +129,7 @@ func (p_ PlayableContentManager) Context() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/context
-func (p_ PlayableContentManager) SetContext(value unsafe.Pointer) {
+func (p_ PlayableContentManager) SetContext(value IMPPlayableContentManagerContext) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContext:"), value)
 }
 
@@ -172,8 +172,8 @@ func (p_ PlayableContentManager) SetDelegate(value unsafe.Pointer) {
 // The content items currently playing based on their identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/nowplayingidentifiers
-func (p_ PlayableContentManager) NowPlayingIdentifiers() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("nowPlayingIdentifiers"))
+func (p_ PlayableContentManager) NowPlayingIdentifiers() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("nowPlayingIdentifiers"))
 	return rv
 }
 
@@ -183,8 +183,8 @@ func (p_ PlayableContentManager) NowPlayingIdentifiers() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/nowplayingidentifiers
-func (p_ PlayableContentManager) SetNowPlayingIdentifiers(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingIdentifiers:"), objc.String(value))
+func (p_ PlayableContentManager) SetNowPlayingIdentifiers(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setNowPlayingIdentifiers:"), value)
 }
 
 // A Boolean value that indicates whether the route button is visible in the volume view.

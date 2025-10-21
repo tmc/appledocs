@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,16 +85,24 @@ func NewSpeechUtterance() SpeechUtterance {
 // Creates an utterance with the attributed text string that you specify for the speech synthesizer to speak.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechUtteranceWithAttributedString:
-func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ unsafe.Pointer) unsafe.Pointer {
+func (sc _SpeechUtteranceClass) SpeechUtteranceWithAttributedString(string_ foundation.IAttributedString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("speechUtteranceWithAttributedString:"), string_)
+	return rv
+}
+
+// Returns a new speech utterance with an Speech Synthesis Markup Language (SSML) string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechUtteranceWithSSMLRepresentation:
+func (sc _SpeechUtteranceClass) SpeechUtteranceWithSSMLRepresentation(string_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("speechUtteranceWithSSMLRepresentation:"), string_)
 	return rv
 }
 
 // An attributed string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/attributedSpeechString
-func (s_ SpeechUtterance) AttributedSpeechString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("attributedSpeechString"))
+func (s_ SpeechUtterance) AttributedSpeechString() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](s_.ID, objc.Sel("attributedSpeechString"))
 	return rv
 }
 
@@ -129,7 +138,7 @@ func (s_ SpeechUtterance) PostUtteranceDelay() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/postUtteranceDelay
-func (s_ SpeechUtterance) SetPostUtteranceDelay(value foundation.TimeInterval) {
+func (s_ SpeechUtterance) SetPostUtteranceDelay(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPostUtteranceDelay:"), value)
 }
 
@@ -147,7 +156,7 @@ func (s_ SpeechUtterance) PreUtteranceDelay() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/preUtteranceDelay
-func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.TimeInterval) {
+func (s_ SpeechUtterance) SetPreUtteranceDelay(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPreUtteranceDelay:"), value)
 }
 
@@ -172,16 +181,16 @@ func (s_ SpeechUtterance) SetRate(value unsafe.Pointer) {
 // A string that contains the text for speech synthesis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/speechString
-func (s_ SpeechUtterance) SpeechString() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("speechString"))
+func (s_ SpeechUtterance) SpeechString() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("speechString"))
 	return rv
 }
 
 // The voice the speech synthesizer uses when speaking the utterance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/voice
-func (s_ SpeechUtterance) Voice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voice"))
+func (s_ SpeechUtterance) Voice() AVSpeechSynthesisVoice {
+	rv := objc.Send[AVSpeechSynthesisVoice](s_.ID, objc.Sel("voice"))
 	return rv
 }
 
@@ -191,7 +200,7 @@ func (s_ SpeechUtterance) Voice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechUtterance/voice
-func (s_ SpeechUtterance) SetVoice(value unsafe.Pointer) {
+func (s_ SpeechUtterance) SetVoice(value IAVSpeechSynthesisVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoice:"), value)
 }
 
@@ -216,8 +225,8 @@ func (s_ SpeechUtterance) SetVolume(value unsafe.Pointer) {
 // A string that contains International Phonetic Alphabet (IPA) symbols the speech synthesizer uses to control pronunciation of certain words or phrases.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute
-func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
+func (s_ SpeechUtterance) AVSpeechSynthesisIPANotationAttribute() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("AVSpeechSynthesisIPANotationAttribute"))
 	return rv
 }
 

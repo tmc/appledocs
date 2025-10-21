@@ -88,14 +88,14 @@ func (m_ MTRNetworkCommissioningClusterNetworkInfo) Connected() foundation.Numbe
 // SetConnected sets the value of the connected property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/connected
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetConnected(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetConnected(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnected:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/networkid
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) NetworkID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkID"))
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) NetworkID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("networkID"))
 	return rv
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRNetworkCommissioningClusterNetworkInfo) NetworkID() unsafe.Pointer {
 // SetNetworkID sets the value of the networkID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/networkid
-func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetNetworkID(value unsafe.Pointer) {
+func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetNetworkID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
 

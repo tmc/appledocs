@@ -30,7 +30,7 @@ type _ResourceStatePassSampleBufferAttachmentDescriptorArrayClass struct {
 // An interface definition for the [ResourceStatePassSampleBufferAttachmentDescriptorArray] class.
 type IResourceStatePassSampleBufferAttachmentDescriptorArray interface {
 	objectivec.IObject
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	ObjectAtIndexedSubscript(attachmentIndex uint) ResourceStatePassSampleBufferAttachmentDescriptor
 }
 
 // An array of sample buffer attachments for a resource state pass.
@@ -82,8 +82,8 @@ func NewResourceStatePassSampleBufferAttachmentDescriptorArray() ResourceStatePa
 // Returns the descriptor object for the specified sample buffer attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResourceStatePassSampleBufferAttachmentDescriptorArray/subscript(_:)
-func (r_ ResourceStatePassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (r_ ResourceStatePassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) ResourceStatePassSampleBufferAttachmentDescriptor {
+	rv := objc.Send[ResourceStatePassSampleBufferAttachmentDescriptor](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

@@ -78,8 +78,8 @@ func NewMTRNetworkCommissioningClusterScanNetworksResponseParams() MTRNetworkCom
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() s
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) NetworkingSta
 // SetNetworkingStatus sets the value of the networkingStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/networkingstatus
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetNetworkingStatus(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetNetworkingStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkingStatus:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) TimedInvokeTi
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
-func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

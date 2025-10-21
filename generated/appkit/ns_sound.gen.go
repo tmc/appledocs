@@ -347,8 +347,8 @@ func (s_ Sound) SoundUnfilteredTypes() []string {
 // The volume of the sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound/volume
-func (s_ Sound) Volume() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("volume"))
+func (s_ Sound) Volume() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("volume"))
 	return rv
 }
 
@@ -358,7 +358,7 @@ func (s_ Sound) Volume() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSound/volume
-func (s_ Sound) SetVolume(value unsafe.Pointer) {
+func (s_ Sound) SetVolume(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVolume:"), value)
 }
 

@@ -228,8 +228,8 @@ func (m_ MTL4InstanceAccelerationStructureDescriptor) SetMotionTransformStride(v
 // Controls the type of motion transforms, either as a matrix or individual components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4instanceaccelerationstructuredescriptor/motiontransformtype
-func (m_ MTL4InstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("motionTransformType"))
+func (m_ MTL4InstanceAccelerationStructureDescriptor) MotionTransformType() TransformType {
+	rv := objc.Send[TransformType](m_.ID, objc.Sel("motionTransformType"))
 	return rv
 }
 
@@ -239,7 +239,7 @@ func (m_ MTL4InstanceAccelerationStructureDescriptor) MotionTransformType() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4instanceaccelerationstructuredescriptor/motiontransformtype
-func (m_ MTL4InstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
+func (m_ MTL4InstanceAccelerationStructureDescriptor) SetMotionTransformType(value TransformType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMotionTransformType:"), value)
 }
 

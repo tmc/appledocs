@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INCancelRideIntent] class.
@@ -86,9 +88,9 @@ func NewINCancelRideIntent() INCancelRideIntent {
 // Initializes the intent object with the specified ride identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/init(rideIdentifier:)
-func NewINCancelRideIntentWithRideIdentifier(rideIdentifier string) INCancelRideIntent {
+func NewINCancelRideIntentWithRideIdentifier(rideIdentifier appkit.string) INCancelRideIntent {
 	instance := getINCancelRideIntentClass().Alloc()
-	rv := objc.Send[INCancelRideIntent](instance.ID, objc.Sel("initWithRideIdentifier:"), objc.String(rideIdentifier))
+	rv := objc.Send[INCancelRideIntent](instance.ID, objc.Sel("initWithRideIdentifier:"), rideIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -97,16 +99,16 @@ func NewINCancelRideIntentWithRideIdentifier(rideIdentifier string) INCancelRide
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCancelRideIntent/rideIdentifier
-func (i_ INCancelRideIntent) RideIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
+func (i_ INCancelRideIntent) RideIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
 
 // A user activity object for canceling the ride request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication
-func (i_ INCancelRideIntent) UserActivityForCancelingInApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivityForCancelingInApplication"))
+func (i_ INCancelRideIntent) UserActivityForCancelingInApplication() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivityForCancelingInApplication"))
 	return rv
 }
 
@@ -116,7 +118,7 @@ func (i_ INCancelRideIntent) UserActivityForCancelingInApplication() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication
-func (i_ INCancelRideIntent) SetUserActivityForCancelingInApplication(value unsafe.Pointer) {
+func (i_ INCancelRideIntent) SetUserActivityForCancelingInApplication(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivityForCancelingInApplication:"), value)
 }
 

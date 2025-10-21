@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gameplaykit.NewCompositeBehavior
 
+// ExampleNewCompositeBehaviorWithBehaviors demonstrates how to create a CompositeBehavior instance using NewCompositeBehaviorWithBehaviors.
+// Creates a composite behavior from the specified individual behaviors.
+func ExampleNewCompositeBehaviorWithBehaviors() {
+	_ = gameplaykit.NewCompositeBehaviorWithBehaviors(
+		[]gameplaykit.Behavior{}, // behaviors []Behavior
+	)
+	// Output:
+}

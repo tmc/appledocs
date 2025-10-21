@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -95,6 +96,13 @@ func (u_ URLRequest) AllowsPersistentDNS() bool {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/cookiePartitionIdentifier
+func (u_ URLRequest) CookiePartitionIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
+	return rv
+}
+
 // A Boolean value that indicates whether the default cookie handling will be used for this request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/httpShouldHandleCookies
@@ -106,16 +114,16 @@ func (u_ URLRequest) HTTPShouldHandleCookies() bool {
 // The network service type of the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/networkServiceType-swift.property
-func (u_ URLRequest) NetworkServiceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("networkServiceType"))
+func (u_ URLRequest) NetworkServiceType() URLRequestNetworkServiceType {
+	rv := objc.Send[URLRequestNetworkServiceType](u_.ID, objc.Sel("networkServiceType"))
 	return rv
 }
 
 // A dictionary containing all of the HTTP header fields for a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-func (u_ URLRequest) AllHTTPHeaderFields() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("allHTTPHeaderFields"))
+func (u_ URLRequest) AllHTTPHeaderFields() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("allHTTPHeaderFields"))
 	return rv
 }
 
@@ -125,8 +133,8 @@ func (u_ URLRequest) AllHTTPHeaderFields() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/allhttpheaderfields
-func (u_ URLRequest) SetAllHTTPHeaderFields(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), objc.String(value))
+func (u_ URLRequest) SetAllHTTPHeaderFields(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAllHTTPHeaderFields:"), value)
 }
 
 // A Boolean value that indicates whether the request is allowed to use the cellular radio (if present).
@@ -231,26 +239,11 @@ func (u_ URLRequest) SetCachePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setCachePolicy:"), value)
 }
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
-func (u_ URLRequest) CookiePartitionIdentifier() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("cookiePartitionIdentifier"))
-	return rv
-}
-
-
-// SetCookiePartitionIdentifier sets the value of the cookiePartitionIdentifier property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/cookiepartitionidentifier
-func (u_ URLRequest) SetCookiePartitionIdentifier(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCookiePartitionIdentifier:"), objc.String(value))
-}
-
 // The request body.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbody
-func (u_ URLRequest) HttpBody() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpBody"))
+func (u_ URLRequest) HttpBody() Data {
+	rv := objc.Send[Data](u_.ID, objc.Sel("httpBody"))
 	return rv
 }
 
@@ -260,15 +253,15 @@ func (u_ URLRequest) HttpBody() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbody
-func (u_ URLRequest) SetHttpBody(value unsafe.Pointer) {
+func (u_ URLRequest) SetHttpBody(value IData) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBody:"), value)
 }
 
 // The request body as an input stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-func (u_ URLRequest) HttpBodyStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpBodyStream"))
+func (u_ URLRequest) HttpBodyStream() NSInputStream {
+	rv := objc.Send[NSInputStream](u_.ID, objc.Sel("httpBodyStream"))
 	return rv
 }
 
@@ -278,15 +271,15 @@ func (u_ URLRequest) HttpBodyStream() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpbodystream
-func (u_ URLRequest) SetHttpBodyStream(value unsafe.Pointer) {
+func (u_ URLRequest) SetHttpBodyStream(value IInputStream) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpBodyStream:"), value)
 }
 
 // The HTTP request method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) HttpMethod() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("httpMethod"))
+func (u_ URLRequest) HttpMethod() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("httpMethod"))
 	return rv
 }
 
@@ -296,8 +289,8 @@ func (u_ URLRequest) HttpMethod() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/httpmethod
-func (u_ URLRequest) SetHttpMethod(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), objc.String(value))
+func (u_ URLRequest) SetHttpMethod(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpMethod:"), value)
 }
 
 // A Boolean value that indicates whether the request should continue transmitting data before receiving a response from an earlier transmission.
@@ -332,7 +325,7 @@ func (u_ URLRequest) MainDocumentURL() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/maindocumenturl
-func (u_ URLRequest) SetMainDocumentURL(value URL) {
+func (u_ URLRequest) SetMainDocumentURL(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setMainDocumentURL:"), value)
 }
 
@@ -354,8 +347,8 @@ func (u_ URLRequest) SetRequiresDNSSECValidation(value bool) {
 // The request’s timeout interval, in seconds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) TimeoutInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("timeoutInterval"))
+func (u_ URLRequest) TimeoutInterval() TimeInterval {
+	rv := objc.Send[TimeInterval](u_.ID, objc.Sel("timeoutInterval"))
 	return rv
 }
 
@@ -365,7 +358,7 @@ func (u_ URLRequest) TimeoutInterval() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/timeoutinterval
-func (u_ URLRequest) SetTimeoutInterval(value unsafe.Pointer) {
+func (u_ URLRequest) SetTimeoutInterval(value ITimeInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTimeoutInterval:"), value)
 }
 
@@ -383,7 +376,7 @@ func (u_ URLRequest) Url() URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsurlrequest/url
-func (u_ URLRequest) SetUrl(value URL) {
+func (u_ URLRequest) SetUrl(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
 }
 

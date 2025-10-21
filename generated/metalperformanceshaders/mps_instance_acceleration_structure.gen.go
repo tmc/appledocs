@@ -96,8 +96,8 @@ func (i_ InstanceAccelerationStructure) SetTransformBuffer(value objc.ID) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/accelerationstructures
-func (i_ InstanceAccelerationStructure) AccelerationStructures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("accelerationStructures"))
+func (i_ InstanceAccelerationStructure) AccelerationStructures() MPSPolygonAccelerationStructure {
+	rv := objc.Send[MPSPolygonAccelerationStructure](i_.ID, objc.Sel("accelerationStructures"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (i_ InstanceAccelerationStructure) AccelerationStructures() unsafe.Pointer 
 // SetAccelerationStructures sets the value of the accelerationStructures property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure/accelerationstructures
-func (i_ InstanceAccelerationStructure) SetAccelerationStructures(value unsafe.Pointer) {
+func (i_ InstanceAccelerationStructure) SetAccelerationStructures(value IMPSPolygonAccelerationStructure) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAccelerationStructures:"), value)
 }
 

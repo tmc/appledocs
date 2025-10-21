@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewSFSpeechRecognitionTask() SFSpeechRecognitionTask {
 // An error object that specifies the error that occurred during a speech recognition task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/error
-func (s_ SFSpeechRecognitionTask) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("error"))
+func (s_ SFSpeechRecognitionTask) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](s_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (s_ SFSpeechRecognitionTask) Error() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/error
-func (s_ SFSpeechRecognitionTask) SetError(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionTask) SetError(value foundation.IError) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
 }
 
@@ -137,8 +138,8 @@ func (s_ SFSpeechRecognitionTask) SetIsFinishing(value bool) {
 // The current state of the speech recognition task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/state
-func (s_ SFSpeechRecognitionTask) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("state"))
+func (s_ SFSpeechRecognitionTask) State() SFSpeechRecognitionTaskState {
+	rv := objc.Send[SFSpeechRecognitionTaskState](s_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -148,7 +149,7 @@ func (s_ SFSpeechRecognitionTask) State() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitiontask/state
-func (s_ SFSpeechRecognitionTask) SetState(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionTask) SetState(value SFSpeechRecognitionTaskState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setState:"), value)
 }
 

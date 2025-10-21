@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [TKSmartCardToken] class.
@@ -84,9 +86,9 @@ func NewTKSmartCardToken() TKSmartCardToken {
 // Initializes a smart card token with the specified smart card, application identifier, and token driver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/init(smartCard:aid:instanceID:tokenDriver:)
-func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard unsafe.Pointer, AID unsafe.Pointer, instanceID string, tokenDriver unsafe.Pointer) TKSmartCardToken {
+func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard ITKSmartCard, AID foundation.IData, instanceID appkit.string, tokenDriver ITKSmartCardTokenDriver) TKSmartCardToken {
 	instance := getTKSmartCardTokenClass().Alloc()
-	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, objc.String(instanceID), tokenDriver)
+	rv := objc.Send[TKSmartCardToken](instance.ID, objc.Sel("initWithSmartCard:AID:instanceID:tokenDriver:"), smartCard, AID, instanceID, tokenDriver)
 	rv.Autorelease()
 	return rv
 }
@@ -95,8 +97,8 @@ func NewTKSmartCardTokenWithSmartCardAIDInstanceIDTokenDriver(smartCard unsafe.P
 // The ISO 7816-4 application identifiers of the Smart Card.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardToken/aid
-func (t_ TKSmartCardToken) AID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("AID"))
+func (t_ TKSmartCardToken) AID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](t_.ID, objc.Sel("AID"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewSubmesh() Submesh {
 // The index buffer used to render the submesh object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/indexBuffer
-func (s_ Submesh) IndexBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("indexBuffer"))
+func (s_ Submesh) IndexBuffer() MTKMeshBuffer {
+	rv := objc.Send[MTKMeshBuffer](s_.ID, objc.Sel("indexBuffer"))
 	return rv
 }
 
@@ -107,16 +108,16 @@ func (s_ Submesh) IndexType() unsafe.Pointer {
 // The parent mesh containing the vertex data of this submesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/mesh
-func (s_ Submesh) Mesh() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mesh"))
+func (s_ Submesh) Mesh() MTKMesh {
+	rv := objc.Send[MTKMesh](s_.ID, objc.Sel("mesh"))
 	return rv
 }
 
 // The name of the submesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) Name() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("name"))
+func (s_ Submesh) Name() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -126,8 +127,8 @@ func (s_ Submesh) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKSubmesh/name
-func (s_ Submesh) SetName(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), objc.String(value))
+func (s_ Submesh) SetName(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
 }
 
 // The primitive type with which to draw the submesh object.

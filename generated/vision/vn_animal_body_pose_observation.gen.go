@@ -29,8 +29,8 @@ type _AnimalBodyPoseObservationClass struct {
 // An interface definition for the [AnimalBodyPoseObservation] class.
 type IAnimalBodyPoseObservation interface {
 	IRecognizedPointsObservation
-	RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	RecognizedPointsForJointsGroupNameError(jointsGroupName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) RecognizedPoint
+	RecognizedPointsForJointsGroupNameError(jointsGroupName IAnimalBodyPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An observation that provides the animal body points the analysis recognizes.
@@ -84,35 +84,25 @@ func NewAnimalBodyPoseObservation() AnimalBodyPoseObservation {
 // Returns the point for a joint name the observation recognizes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNAnimalBodyPoseObservation/recognizedPoint(_:)
-func (a_ AnimalBodyPoseObservation) RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
+func (a_ AnimalBodyPoseObservation) RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) RecognizedPoint {
+	rv := objc.Send[RecognizedPoint](a_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
 }
 
 // Returns the points for a joint group name the observation recognizes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNAnimalBodyPoseObservation/recognizedPoints(_:)
-func (a_ AnimalBodyPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (a_ AnimalBodyPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName IAnimalBodyPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
 }
 
 // The available joint group names in the observation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/availablejointgroupnames
-func (a_ AnimalBodyPoseObservation) AvailableJointGroupNames() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("availableJointGroupNames"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNAnimalBodyPoseObservation/availableJointGroupNames
+func (a_ AnimalBodyPoseObservation) AvailableJointGroupNames() []string {
+	rv := objc.Send[[]string](a_.ID, objc.Sel("availableJointGroupNames"))
 	return rv
-}
-
-
-// SetAvailableJointGroupNames sets the value of the availableJointGroupNames property.
-// The available joint group names in the observation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/availablejointgroupnames
-func (a_ AnimalBodyPoseObservation) SetAvailableJointGroupNames(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableJointGroupNames:"), value)
 }
 
 // The names of the available joints in the observation.

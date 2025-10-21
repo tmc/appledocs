@@ -83,8 +83,8 @@ func NewNull() Null {
 // Returns the singleton instance of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNull/null
-func (nc _NullClass) Null() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("null"))
+func (nc _NullClass) Null() Null {
+	rv := objc.Send[Null](objc.ID(nc.class), objc.Sel("null"))
 	return rv
 }
 

@@ -83,8 +83,8 @@ func NewPHLivePhotoRequestOptions() PHLivePhotoRequestOptions {
 // The requested Live Photo quality and delivery priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/deliveryMode
-func (p_ PHLivePhotoRequestOptions) DeliveryMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("deliveryMode"))
+func (p_ PHLivePhotoRequestOptions) DeliveryMode() PHImageRequestOptionsDeliveryMode {
+	rv := objc.Send[PHImageRequestOptionsDeliveryMode](p_.ID, objc.Sel("deliveryMode"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (p_ PHLivePhotoRequestOptions) DeliveryMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/deliveryMode
-func (p_ PHLivePhotoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
+func (p_ PHLivePhotoRequestOptions) SetDeliveryMode(value PHImageRequestOptionsDeliveryMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
 
@@ -137,8 +137,8 @@ func (p_ PHLivePhotoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 // The version of the Live Photo to be requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/version
-func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("version"))
+func (p_ PHLivePhotoRequestOptions) Version() PHImageRequestOptionsVersion {
+	rv := objc.Send[PHImageRequestOptionsVersion](p_.ID, objc.Sel("version"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHLivePhotoRequestOptions/version
-func (p_ PHLivePhotoRequestOptions) SetVersion(value unsafe.Pointer) {
+func (p_ PHLivePhotoRequestOptions) SetVersion(value IPHImageRequestOptionsVersion) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
 

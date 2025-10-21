@@ -90,7 +90,7 @@ func (m_ MTRRVCOperationalStateClusterGoHomeParams) ServerSideProcessingTimeout(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterGoHomeParams/serverSideProcessingTimeout
-func (m_ MTRRVCOperationalStateClusterGoHomeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRRVCOperationalStateClusterGoHomeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRRVCOperationalStateClusterGoHomeParams) TimedInvokeTimeoutMs() found
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterGoHomeParams/timedInvokeTimeoutMs
-func (m_ MTRRVCOperationalStateClusterGoHomeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRRVCOperationalStateClusterGoHomeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

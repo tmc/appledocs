@@ -15,3 +15,11 @@ func ExampleNewCKFetchDatabaseChangesOperation() {
 	_ = cloudkit.NewCKFetchDatabaseChangesOperation()
 	// Output:
 }
+// ExampleNewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken demonstrates how to create a CKFetchDatabaseChangesOperation instance using NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken.
+// Creates an operation for fetching database changes.
+func ExampleNewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken() {
+	_ = cloudkit.NewCKFetchDatabaseChangesOperationWithPreviousServerChangeToken(
+		cloudkit.CKServerChangeToken{}, // previousServerChangeToken CKServerChangeToken
+	)
+	// Output:
+}

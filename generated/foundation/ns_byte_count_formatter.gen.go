@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [ByteCountFormatter] class.
@@ -136,8 +137,8 @@ func (b_ ByteCountFormatter) SetCountStyle(value unsafe.Pointer) {
 // Specify the formatting context for the formatted string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/formattingcontext
-func (b_ ByteCountFormatter) FormattingContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("formattingContext"))
+func (b_ ByteCountFormatter) FormattingContext() coreimage.Context {
+	rv := objc.Send[coreimage.Context](b_.ID, objc.Sel("formattingContext"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (b_ ByteCountFormatter) FormattingContext() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/bytecountformatter/formattingcontext
-func (b_ ByteCountFormatter) SetFormattingContext(value unsafe.Pointer) {
+func (b_ ByteCountFormatter) SetFormattingContext(value coreimage.IContext) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFormattingContext:"), value)
 }
 

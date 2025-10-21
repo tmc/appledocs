@@ -100,8 +100,8 @@ func (g_ GraphCompilationDescriptor) SetDispatchQueue(value unsafe.Pointer) {
 // The optimization profile for the graph optimization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
-func (g_ GraphCompilationDescriptor) OptimizationProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("optimizationProfile"))
+func (g_ GraphCompilationDescriptor) OptimizationProfile() GraphOptimizationProfile {
+	rv := objc.Send[GraphOptimizationProfile](g_.ID, objc.Sel("optimizationProfile"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (g_ GraphCompilationDescriptor) OptimizationProfile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphCompilationDescriptor/optimizationProfile
-func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value unsafe.Pointer) {
+func (g_ GraphCompilationDescriptor) SetOptimizationProfile(value IGraphOptimizationProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationProfile:"), value)
 }
 
 // The dictionary used during runtime to lookup the
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
-func (g_ GraphCompilationDescriptor) Callables() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("callables"))
+func (g_ GraphCompilationDescriptor) Callables() MPSGraphExecutable {
+	rv := objc.Send[MPSGraphExecutable](g_.ID, objc.Sel("callables"))
 	return rv
 }
 
@@ -129,8 +129,8 @@ func (g_ GraphCompilationDescriptor) Callables() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/callables
-func (g_ GraphCompilationDescriptor) SetCallables(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setCallables:"), objc.String(value))
+func (g_ GraphCompilationDescriptor) SetCallables(value IMPSGraphExecutable) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setCallables:"), value)
 }
 
 // The handler that the graph calls when the compilation completes.
@@ -154,8 +154,8 @@ func (g_ GraphCompilationDescriptor) SetCompilationCompletionHandler(value unsaf
 // The optimization level for the graph execution, default is MPSGraphOptimizationLevel1.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
-func (g_ GraphCompilationDescriptor) OptimizationLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("optimizationLevel"))
+func (g_ GraphCompilationDescriptor) OptimizationLevel() GraphOptimization {
+	rv := objc.Send[GraphOptimization](g_.ID, objc.Sel("optimizationLevel"))
 	return rv
 }
 
@@ -165,15 +165,15 @@ func (g_ GraphCompilationDescriptor) OptimizationLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/optimizationlevel
-func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value unsafe.Pointer) {
+func (g_ GraphCompilationDescriptor) SetOptimizationLevel(value IGraphOptimization) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOptimizationLevel:"), value)
 }
 
 // Across the executable allow reduced precision fast math optimizations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/reducedprecisionfastmath
-func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("reducedPrecisionFastMath"))
+func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() GraphReducedPrecisionFastMath {
+	rv := objc.Send[GraphReducedPrecisionFastMath](g_.ID, objc.Sel("reducedPrecisionFastMath"))
 	return rv
 }
 
@@ -183,7 +183,7 @@ func (g_ GraphCompilationDescriptor) ReducedPrecisionFastMath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcompilationdescriptor/reducedprecisionfastmath
-func (g_ GraphCompilationDescriptor) SetReducedPrecisionFastMath(value unsafe.Pointer) {
+func (g_ GraphCompilationDescriptor) SetReducedPrecisionFastMath(value IGraphReducedPrecisionFastMath) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReducedPrecisionFastMath:"), value)
 }
 

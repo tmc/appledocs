@@ -117,8 +117,8 @@ func (i_ IKSaveOptions) SetImageProperties(value unsafe.Pointer) {
 // Returns the uniform type identifier that reflects the user’s selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageuttype
-func (i_ IKSaveOptions) ImageUTType() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("imageUTType"))
+func (i_ IKSaveOptions) ImageUTType() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("imageUTType"))
 	return rv
 }
 
@@ -128,8 +128,8 @@ func (i_ IKSaveOptions) ImageUTType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/iksaveoptions/imageuttype
-func (i_ IKSaveOptions) SetImageUTType(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setImageUTType:"), objc.String(value))
+func (i_ IKSaveOptions) SetImageUTType(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setImageUTType:"), value)
 }
 
 //

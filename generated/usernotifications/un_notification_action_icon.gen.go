@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewUNNotificationActionIcon() UNNotificationActionIcon {
 // Creates an action icon by using a system symbol image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationActionIcon/init(systemImageName:)
-func NewUNNotificationActionIconWithSystemImageName(systemImageName string) UNNotificationActionIcon {
-	rv := objc.Send[UNNotificationActionIcon](objc.ID(getUNNotificationActionIconClass().class), objc.Sel("iconWithSystemImageName:"), objc.String(systemImageName))
+func NewUNNotificationActionIconWithSystemImageName(systemImageName appkit.string) UNNotificationActionIcon {
+	rv := objc.Send[UNNotificationActionIcon](objc.ID(getUNNotificationActionIconClass().class), objc.Sel("iconWithSystemImageName:"), systemImageName)
 	return rv
 }
 
@@ -93,8 +94,8 @@ func NewUNNotificationActionIconWithSystemImageName(systemImageName string) UNNo
 // Creates an action icon based on an image in your app’s bundle, preferably in an asset catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationActionIcon/init(templateImageName:)
-func NewUNNotificationActionIconWithTemplateImageName(templateImageName string) UNNotificationActionIcon {
-	rv := objc.Send[UNNotificationActionIcon](objc.ID(getUNNotificationActionIconClass().class), objc.Sel("iconWithTemplateImageName:"), objc.String(templateImageName))
+func NewUNNotificationActionIconWithTemplateImageName(templateImageName appkit.string) UNNotificationActionIcon {
+	rv := objc.Send[UNNotificationActionIcon](objc.ID(getUNNotificationActionIconClass().class), objc.Sel("iconWithTemplateImageName:"), templateImageName)
 	return rv
 }
 
@@ -102,16 +103,16 @@ func NewUNNotificationActionIconWithTemplateImageName(templateImageName string) 
 // Creates an action icon by using a system symbol image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationActionIcon/init(systemImageName:)
-func (uc _UNNotificationActionIconClass) IconWithSystemImageName(systemImageName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("iconWithSystemImageName:"), objc.String(systemImageName))
+func (uc _UNNotificationActionIconClass) IconWithSystemImageName(systemImageName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("iconWithSystemImageName:"), systemImageName)
 	return rv
 }
 
 // Creates an action icon based on an image in your app’s bundle, preferably in an asset catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationActionIcon/init(templateImageName:)
-func (uc _UNNotificationActionIconClass) IconWithTemplateImageName(templateImageName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("iconWithTemplateImageName:"), objc.String(templateImageName))
+func (uc _UNNotificationActionIconClass) IconWithTemplateImageName(templateImageName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("iconWithTemplateImageName:"), templateImageName)
 	return rv
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRBooleanStateClusterStateChangeEvent) StateValue() foundation.Number 
 // SetStateValue sets the value of the stateValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateclusterstatechangeevent/statevalue
-func (m_ MTRBooleanStateClusterStateChangeEvent) SetStateValue(value foundation.Number) {
+func (m_ MTRBooleanStateClusterStateChangeEvent) SetStateValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStateValue:"), value)
 }
 

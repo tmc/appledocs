@@ -138,8 +138,8 @@ func (i_ INAddTasksIntent) SetTargetTaskList(value unsafe.Pointer) {
 // An array of strings containing the titles of the new tasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/tasktitles
-func (i_ INAddTasksIntent) TaskTitles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("taskTitles"))
+func (i_ INAddTasksIntent) TaskTitles() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("taskTitles"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (i_ INAddTasksIntent) TaskTitles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inaddtasksintent/tasktitles
-func (i_ INAddTasksIntent) SetTaskTitles(value unsafe.Pointer) {
+func (i_ INAddTasksIntent) SetTaskTitles(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
 

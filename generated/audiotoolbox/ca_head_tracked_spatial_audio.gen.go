@@ -83,7 +83,7 @@ func NewHeadTrackedSpatialAudio() HeadTrackedSpatialAudio {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/initWithSoundStageSize:anchoringStrategy:
-func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSize unsafe.Pointer, anchoringStrategy unsafe.Pointer) HeadTrackedSpatialAudio {
+func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSize ISoundStageSize, anchoringStrategy CAAnchoringStrategy) HeadTrackedSpatialAudio {
 	instance := getHeadTrackedSpatialAudioClass().Alloc()
 	rv := objc.Send[HeadTrackedSpatialAudio](instance.ID, objc.Sel("initWithSoundStageSize:anchoringStrategy:"), soundStageSize, anchoringStrategy)
 	rv.Autorelease()
@@ -94,16 +94,16 @@ func NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(soundStageSiz
 // The experience’s anchoring strategy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/anchoringStrategy
-func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("anchoringStrategy"))
+func (h_ HeadTrackedSpatialAudio) AnchoringStrategy() CAAnchoringStrategy {
+	rv := objc.Send[CAAnchoringStrategy](h_.ID, objc.Sel("anchoringStrategy"))
 	return rv
 }
 
 // The experience’s sound stage size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAHeadTrackedSpatialAudio/soundStageSize
-func (h_ HeadTrackedSpatialAudio) SoundStageSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("soundStageSize"))
+func (h_ HeadTrackedSpatialAudio) SoundStageSize() SoundStageSize {
+	rv := objc.Send[SoundStageSize](h_.ID, objc.Sel("soundStageSize"))
 	return rv
 }
 

@@ -84,8 +84,8 @@ func NewAgent() Agent {
 // A weighted collection of goals that influence the agent’s movement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
-func (a_ Agent) Behavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("behavior"))
+func (a_ Agent) Behavior() GKBehavior {
+	rv := objc.Send[GKBehavior](a_.ID, objc.Sel("behavior"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (a_ Agent) Behavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKAgent/behavior
-func (a_ Agent) SetBehavior(value unsafe.Pointer) {
+func (a_ Agent) SetBehavior(value GKBehavior) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBehavior:"), value)
 }
 

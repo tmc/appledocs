@@ -83,8 +83,8 @@ func NewAuthorizationRequest() AuthorizationRequest {
 // The authorization requests that the controller manages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationRequest) AuthorizationRequests() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationRequests"))
+func (a_ AuthorizationRequest) AuthorizationRequests() ASAuthorizationRequest {
+	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (a_ AuthorizationRequest) AuthorizationRequests() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationRequest) SetAuthorizationRequests(value unsafe.Pointer) {
+func (a_ AuthorizationRequest) SetAuthorizationRequests(value IASAuthorizationRequest) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
 
 // An array of custom authorization methods for the user to choose.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/customauthorizationmethods
-func (a_ AuthorizationRequest) CustomAuthorizationMethods() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("customAuthorizationMethods"))
+func (a_ AuthorizationRequest) CustomAuthorizationMethods() AuthorizationCustomMethod {
+	rv := objc.Send[AuthorizationCustomMethod](a_.ID, objc.Sel("customAuthorizationMethods"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (a_ AuthorizationRequest) CustomAuthorizationMethods() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/customauthorizationmethods
-func (a_ AuthorizationRequest) SetCustomAuthorizationMethods(value unsafe.Pointer) {
+func (a_ AuthorizationRequest) SetCustomAuthorizationMethods(value IAuthorizationCustomMethod) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCustomAuthorizationMethods:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,13 +31,13 @@ type _BADownloadManagerClass struct {
 // An interface definition for the [BADownloadManager] class.
 type IBADownloadManager interface {
 	objectivec.IObject
-	CancelDownloadError(download unsafe.Pointer, error_ unsafe.Pointer) bool
+	CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool
 	FetchCurrentDownloads(error_ unsafe.Pointer) []BADownload
 	FetchCurrentDownloadsWithCompletionHandler(completionHandler unsafe.Pointer)
-	ScheduleDownloadError(download unsafe.Pointer, error_ unsafe.Pointer) bool
-	StartForegroundDownloadError(download unsafe.Pointer, error_ unsafe.Pointer) bool
+	ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool
+	StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool
 	PerformWithExclusiveControl(performHandler unsafe.Pointer)
-	PerformWithExclusiveControlBeforeDatePerformHandler(date unsafe.Pointer, performHandler unsafe.Pointer)
+	PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.IDate, performHandler unsafe.Pointer)
 }
 
 // An object that manages the queue of scheduled asset downloads.
@@ -90,14 +91,14 @@ func NewBADownloadManager() BADownloadManager {
 // The download manager that both the app and the extension share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/shared
-func (bc _BADownloadManagerClass) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("sharedManager"))
+func (bc _BADownloadManagerClass) SharedManager() BADownloadManager {
+	rv := objc.Send[BADownloadManager](objc.ID(bc.class), objc.Sel("sharedManager"))
 	return rv
 }
 // Cancels an asset download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/cancel(_:)
-func (b_ BADownloadManager) CancelDownloadError(download unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (b_ BADownloadManager) CancelDownloadError(download IBADownload, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("cancelDownload:error:"), download, error_)
 	return rv
 }
@@ -119,7 +120,7 @@ func (b_ BADownloadManager) FetchCurrentDownloadsWithCompletionHandler(completio
 // Schedules an asset download to execute in the background at a nonspecific time in the future.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/scheduleDownload(_:)
-func (b_ BADownloadManager) ScheduleDownloadError(download unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (b_ BADownloadManager) ScheduleDownloadError(download IBADownload, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("scheduleDownload:error:"), download, error_)
 	return rv
 }
@@ -127,7 +128,7 @@ func (b_ BADownloadManager) ScheduleDownloadError(download unsafe.Pointer, error
 // Schedules an asset download that executes immediately in the foreground.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/startForegroundDownload(_:)
-func (b_ BADownloadManager) StartForegroundDownloadError(download unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (b_ BADownloadManager) StartForegroundDownloadError(download IBADownload, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("startForegroundDownload:error:"), download, error_)
 	return rv
 }
@@ -141,7 +142,7 @@ func (b_ BADownloadManager) PerformWithExclusiveControl(performHandler unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/withExclusiveControl(beforeDate:perform:)
-func (b_ BADownloadManager) PerformWithExclusiveControlBeforeDatePerformHandler(date unsafe.Pointer, performHandler unsafe.Pointer) {
+func (b_ BADownloadManager) PerformWithExclusiveControlBeforeDatePerformHandler(date foundation.IDate, performHandler unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("performWithExclusiveControlBeforeDate:performHandler:"), date, performHandler)
 }
 
@@ -166,8 +167,8 @@ func (b_ BADownloadManager) SetDelegate(value objc.ID) {
 // The download manager that both the app and the extension share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownloadManager/shared
-func (b_ BADownloadManager) SharedManager() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedManager"))
+func (b_ BADownloadManager) SharedManager() BADownloadManager {
+	rv := objc.Send[BADownloadManager](b_.ID, objc.Sel("sharedManager"))
 	return rv
 }
 

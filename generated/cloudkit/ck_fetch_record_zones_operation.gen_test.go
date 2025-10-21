@@ -15,3 +15,11 @@ func ExampleNewCKFetchRecordZonesOperation() {
 	_ = cloudkit.NewCKFetchRecordZonesOperation()
 	// Output:
 }
+// ExampleNewCKFetchRecordZonesOperationWithRecordZoneIDs demonstrates how to create a CKFetchRecordZonesOperation instance using NewCKFetchRecordZonesOperationWithRecordZoneIDs.
+// Creates an operation for fetching the specified record zones.
+func ExampleNewCKFetchRecordZonesOperationWithRecordZoneIDs() {
+	_ = cloudkit.NewCKFetchRecordZonesOperationWithRecordZoneIDs(
+		[]cloudkit.CKRecordZoneID{}, // zoneIDs []CKRecordZoneID
+	)
+	// Output:
+}

@@ -84,8 +84,8 @@ func NewPHASENumberMetaParameterDefinition() PHASENumberMetaParameterDefinition 
 // A dictionary of metaparameters that all sound event assets share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASENumberMetaParameterDefinition) GlobalMetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("globalMetaParameters"))
+func (p_ PHASENumberMetaParameterDefinition) GlobalMetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (p_ PHASENumberMetaParameterDefinition) GlobalMetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters
-func (p_ PHASENumberMetaParameterDefinition) SetGlobalMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), objc.String(value))
+func (p_ PHASENumberMetaParameterDefinition) SetGlobalMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGlobalMetaParameters:"), value)
 }
 
 // A linear input value to plot on a curve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
-func (p_ PHASENumberMetaParameterDefinition) InputMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputMetaParameterDefinition"))
+func (p_ PHASENumberMetaParameterDefinition) InputMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("inputMetaParameterDefinition"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (p_ PHASENumberMetaParameterDefinition) InputMetaParameterDefinition() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
-func (p_ PHASENumberMetaParameterDefinition) SetInputMetaParameterDefinition(value unsafe.Pointer) {
+func (p_ PHASENumberMetaParameterDefinition) SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInputMetaParameterDefinition:"), value)
 }
 
@@ -156,8 +156,8 @@ func (p_ PHASENumberMetaParameterDefinition) SetMinimum(value unsafe.Pointer) {
 // The object’s meta parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASENumberMetaParameterDefinition) MetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+func (p_ PHASENumberMetaParameterDefinition) MetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
@@ -167,8 +167,8 @@ func (p_ PHASENumberMetaParameterDefinition) MetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASENumberMetaParameterDefinition) SetMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+func (p_ PHASENumberMetaParameterDefinition) SetMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
 

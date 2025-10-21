@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NSPredicateRule] class.
@@ -29,7 +30,7 @@ type _NSPredicateRuleClass struct {
 // An interface definition for the [NSPredicateRule] class.
 type INSPredicateRule interface {
 	IRule
-	EvaluatePredicateWithSystem(system unsafe.Pointer) bool
+	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
 }
 
 // A rule for use in a rule system that uses a Foundation object to evaluate itself.
@@ -87,7 +88,7 @@ func NewNSPredicateRule() NSPredicateRule {
 // Initializes a rule with the specified predicate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)
-func NewNSPredicateRuleWithPredicate(predicate unsafe.Pointer) NSPredicateRule {
+func NewNSPredicateRuleWithPredicate(predicate foundation.IPredicate) NSPredicateRule {
 	instance := getNSPredicateRuleClass().Alloc()
 	rv := objc.Send[NSPredicateRule](instance.ID, objc.Sel("initWithPredicate:"), predicate)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewNSPredicateRuleWithPredicate(predicate unsafe.Pointer) NSPredicateRule {
 // Returns a Boolean value indicating whether the rule’s predicate has been satisfied in the context of the specified rule system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/evaluatePredicate(in:)
-func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system unsafe.Pointer) bool {
+func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluatePredicateWithSystem:"), system)
 	return rv
 }
@@ -106,8 +107,8 @@ func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system unsafe.Pointer) boo
 // A predicate to be tested when evaluating the rule.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/predicate
-func (p_ NSPredicateRule) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicate"))
+func (p_ NSPredicateRule) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicate"))
 	return rv
 }
 

@@ -31,7 +31,7 @@ type _USBHostCIPortStateMachineClass struct {
 type IUSBHostCIPortStateMachine interface {
 	objectivec.IObject
 	RespondToCommandStatusError(command unsafe.Pointer, status unsafe.Pointer, error_ unsafe.Pointer) bool
-	UpdateLinkStateSpeedInhibitLinkStateChangeError(linkState unsafe.Pointer, speed unsafe.Pointer, inhibitLinkStateChange unsafe.Pointer, error_ unsafe.Pointer) bool
+	UpdateLinkStateSpeedInhibitLinkStateChangeError(linkState unsafe.Pointer, speed unsafe.Pointer, inhibitLinkStateChange bool, error_ unsafe.Pointer) bool
 }
 
 //
@@ -86,7 +86,7 @@ func (u_ USBHostCIPortStateMachine) RespondToCommandStatusError(command unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/updateLinkState(_:speed:inhibitLinkStateChange:)
-func (u_ USBHostCIPortStateMachine) UpdateLinkStateSpeedInhibitLinkStateChangeError(linkState unsafe.Pointer, speed unsafe.Pointer, inhibitLinkStateChange unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (u_ USBHostCIPortStateMachine) UpdateLinkStateSpeedInhibitLinkStateChangeError(linkState unsafe.Pointer, speed unsafe.Pointer, inhibitLinkStateChange bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("updateLinkState:speed:inhibitLinkStateChange:error:"), linkState, speed, inhibitLinkStateChange, error_)
 	return rv
 }
@@ -114,6 +114,21 @@ func (u_ USBHostCIPortStateMachine) PortStatus() unsafe.Pointer {
 }
 
 //
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/powered
+func (u_ USBHostCIPortStateMachine) Powered() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("powered"))
+	return rv
+}
+
+
+// SetPowered sets the value of the powered property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/powered
+func (u_ USBHostCIPortStateMachine) SetPowered(value bool) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPowered:"), value)
+}
+
+//
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStateMachine/speed
 func (u_ USBHostCIPortStateMachine) Speed() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("speed"))
@@ -137,8 +152,8 @@ func (u_ USBHostCIPortStateMachine) SetConnected(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/controllerinterface
-func (u_ USBHostCIPortStateMachine) ControllerInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerInterface"))
+func (u_ USBHostCIPortStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+	rv := objc.Send[IOUSBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
 	return rv
 }
 
@@ -146,7 +161,7 @@ func (u_ USBHostCIPortStateMachine) ControllerInterface() unsafe.Pointer {
 // SetControllerInterface sets the value of the controllerInterface property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/controllerinterface
-func (u_ USBHostCIPortStateMachine) SetControllerInterface(value unsafe.Pointer) {
+func (u_ USBHostCIPortStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
 }
 
@@ -193,21 +208,6 @@ func (u_ USBHostCIPortStateMachine) PortState() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/portstate
 func (u_ USBHostCIPortStateMachine) SetPortState(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setPortState:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/powered
-func (u_ USBHostCIPortStateMachine) Powered() bool {
-	rv := objc.Send[bool](u_.ID, objc.Sel("powered"))
-	return rv
-}
-
-
-// SetPowered sets the value of the powered property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostciportstatemachine/powered
-func (u_ USBHostCIPortStateMachine) SetPowered(value bool) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPowered:"), value)
 }
 
 

@@ -78,8 +78,8 @@ func NewMTRApplicationLauncherClusterStopAppParams() MTRApplicationLauncherClust
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/application
-func (m_ MTRApplicationLauncherClusterStopAppParams) Application() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("application"))
+func (m_ MTRApplicationLauncherClusterStopAppParams) Application() MTRApplicationLauncherClusterApplicationStruct {
+	rv := objc.Send[MTRApplicationLauncherClusterApplicationStruct](m_.ID, objc.Sel("application"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRApplicationLauncherClusterStopAppParams) Application() unsafe.Pointe
 // SetApplication sets the value of the application property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/application
-func (m_ MTRApplicationLauncherClusterStopAppParams) SetApplication(value unsafe.Pointer) {
+func (m_ MTRApplicationLauncherClusterStopAppParams) SetApplication(value IMTRApplicationLauncherClusterApplicationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setApplication:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRApplicationLauncherClusterStopAppParams) ServerSideProcessingTimeout
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/serversideprocessingtimeout
-func (m_ MTRApplicationLauncherClusterStopAppParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterStopAppParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRApplicationLauncherClusterStopAppParams) TimedInvokeTimeoutMs() foun
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterstopappparams/timedinvoketimeoutms
-func (m_ MTRApplicationLauncherClusterStopAppParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterStopAppParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

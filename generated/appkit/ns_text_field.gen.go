@@ -326,8 +326,8 @@ func (t_ TextField) SetPreferredMaxLayoutWidth(value float64) {
 // The value of the receiver’s cell as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-func (t_ TextField) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("doubleValue"))
+func (t_ TextField) DoubleValue() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -337,7 +337,7 @@ func (t_ TextField) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-func (t_ TextField) SetDoubleValue(value unsafe.Pointer) {
+func (t_ TextField) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

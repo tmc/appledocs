@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CNNGroupNormalizationNode] class.
@@ -78,7 +79,7 @@ func NewCNNGroupNormalizationNode() CNNGroupNormalizationNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/init(source:dataSource:)
-func NewCNNGroupNormalizationNodeWithSourceDataSource(source unsafe.Pointer, dataSource objc.ID) CNNGroupNormalizationNode {
+func NewCNNGroupNormalizationNodeWithSourceDataSource(source IMPSNNImageNode, dataSource objectivec.IObject) CNNGroupNormalizationNode {
 	instance := getCNNGroupNormalizationNodeClass().Alloc()
 	rv := objc.Send[CNNGroupNormalizationNode](instance.ID, objc.Sel("initWithSource:dataSource:"), source, dataSource)
 	rv.Autorelease()
@@ -88,7 +89,7 @@ func NewCNNGroupNormalizationNodeWithSourceDataSource(source unsafe.Pointer, dat
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNGroupNormalizationNode/nodeWithSource:dataSource:
-func (cc _CNNGroupNormalizationNodeClass) NodeWithSourceDataSource(source unsafe.Pointer, dataSource objc.ID) unsafe.Pointer {
+func (cc _CNNGroupNormalizationNodeClass) NodeWithSourceDataSource(source IMPSNNImageNode, dataSource objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nodeWithSource:dataSource:"), source, dataSource)
 	return rv
 }

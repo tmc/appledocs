@@ -31,7 +31,7 @@ type _DecisionTreeClass struct {
 // An interface definition for the [DecisionTree] class.
 type IDecisionTree interface {
 	objectivec.IObject
-	ExportToURLError(url foundation.URL, error_ unsafe.Pointer) bool
+	ExportToURLError(url foundation.IURL, error_ foundation.IError) bool
 	FindActionForAnswers(answers unsafe.Pointer) objc.ID
 }
 
@@ -88,7 +88,7 @@ func NewDecisionTree() DecisionTree {
 // Creates a decision tree starting with the specified initial attribute to test.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(attribute:)
-func NewDecisionTreeWithAttribute(attribute objc.ID) DecisionTree {
+func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithAttribute:"), attribute)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewDecisionTreeWithAttribute(attribute objc.ID) DecisionTree {
 // Creates an automatically learned decision tree using the specified attributes, example items, and actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
-func NewDecisionTreeWithExamplesActionsAttributes(examples unsafe.Pointer, actions unsafe.Pointer, attributes unsafe.Pointer) DecisionTree {
+func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.IArray, actions []objc.ID, attributes []objc.ID) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewDecisionTreeWithExamplesActionsAttributes(examples unsafe.Pointer, actio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
-func NewDecisionTreeWithURLError(url foundation.URL, error_ unsafe.Pointer) DecisionTree {
+func NewDecisionTreeWithURLError(url foundation.IURL, error_ foundation.IError) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
@@ -119,7 +119,7 @@ func NewDecisionTreeWithURLError(url foundation.URL, error_ unsafe.Pointer) Deci
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
-func (d_ DecisionTree) ExportToURLError(url foundation.URL, error_ unsafe.Pointer) bool {
+func (d_ DecisionTree) ExportToURLError(url foundation.IURL, error_ foundation.IError) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
 }
@@ -135,8 +135,8 @@ func (d_ DecisionTree) FindActionForAnswers(answers unsafe.Pointer) objc.ID {
 // The randomizer to be used when evaluating parts of the tree that branch randomly.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
-func (d_ DecisionTree) RandomSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("randomSource"))
+func (d_ DecisionTree) RandomSource() GKRandomSource {
+	rv := objc.Send[GKRandomSource](d_.ID, objc.Sel("randomSource"))
 	return rv
 }
 
@@ -146,23 +146,23 @@ func (d_ DecisionTree) RandomSource() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
-func (d_ DecisionTree) SetRandomSource(value unsafe.Pointer) {
+func (d_ DecisionTree) SetRandomSource(value IGKRandomSource) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRandomSource:"), value)
 }
 
 // The decision node at the root of the decision tree, representing the first attribute to test.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/rootNode
-func (d_ DecisionTree) RootNode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("rootNode"))
+func (d_ DecisionTree) RootNode() GKDecisionNode {
+	rv := objc.Send[GKDecisionNode](d_.ID, objc.Sel("rootNode"))
 	return rv
 }
 
 // A textual representation of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) Description() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("description"))
+func (d_ DecisionTree) Description() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -172,8 +172,8 @@ func (d_ DecisionTree) Description() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
-func (d_ DecisionTree) SetDescription(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), objc.String(value))
+func (d_ DecisionTree) SetDescription(value appkit.string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), value)
 }
 
 

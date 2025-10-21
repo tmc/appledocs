@@ -26,13 +26,13 @@ var (
 	_NSAccessibilityUnignoredAncestor func(unsafe.Pointer) unsafe.Pointer
 	_NSAccessibilityUnignoredChildren func(unsafe.Pointer) unsafe.Pointer
 	_NSAccessibilityUnignoredChildrenForOnlyChild func(unsafe.Pointer) unsafe.Pointer
-	_NSApplicationMain func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSApplicationMain func(int, unsafe.Pointer) int
 	_NSAvailableWindowDepths func() unsafe.Pointer
 	_NSBeep func() unsafe.Pointer
 	_NSBeginAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSBeginCriticalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSBeginInformationalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSBestDepth func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSBestDepth func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer) unsafe.Pointer
 	_NSNumberOfColorComponents func(unsafe.Pointer) unsafe.Pointer
 	_NSConvertGlyphsToPackedGlyphs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSCopyBits func(unsafe.Pointer, coregraphics.CGRect, coregraphics.CGPoint) unsafe.Pointer
@@ -46,8 +46,8 @@ var (
 	_NSDrawGrayBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
 	_NSDrawGroove func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
 	_NSDrawLightBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
-	_NSDrawNinePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_NSDrawThreePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
+	_NSDrawNinePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float64, bool) unsafe.Pointer
+	_NSDrawThreePartImage func(coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, unsafe.Pointer, float64, bool) unsafe.Pointer
 	_NSDrawTiledRects func(coregraphics.CGRect, coregraphics.CGRect, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) coregraphics.CGRect
 	_NSDrawWhiteBezel func(coregraphics.CGRect, coregraphics.CGRect) unsafe.Pointer
 	_NSDrawWindowBackground func(coregraphics.CGRect) unsafe.Pointer
@@ -63,7 +63,7 @@ var (
 	_NSGetWindowServerMemory func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSHighlightRect func(coregraphics.CGRect) unsafe.Pointer
 	_NSInterfaceStyleForKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSIsControllerMarker func(unsafe.Pointer) unsafe.Pointer
+	_NSIsControllerMarker func(unsafe.Pointer) bool
 	_NSOpenGLGetOption func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSOpenGLGetVersion func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSOpenGLSetOption func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -71,7 +71,7 @@ var (
 	_NSCreateFilenamePboardType func(unsafe.Pointer) unsafe.Pointer
 	_NSGetFileType func(unsafe.Pointer) unsafe.Pointer
 	_NSGetFileTypes func(unsafe.Pointer) unsafe.Pointer
-	_NSPerformService func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSPerformService func(unsafe.Pointer, unsafe.Pointer) bool
 	_NSReadPixel func(coregraphics.CGPoint) unsafe.Pointer
 	_NSRectClip func(coregraphics.CGRect) unsafe.Pointer
 	_NSRectClipList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -90,15 +90,15 @@ var (
 	_NSRunCriticalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSRunInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSRunInformationalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSSetShowsServicesMenuItem func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) unsafe.Pointer
 	_NSShowAnimationEffect func(unsafe.Pointer, coregraphics.CGPoint, coregraphics.CGSize, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSShowsServicesMenuItem func(unsafe.Pointer) unsafe.Pointer
+	_NSShowsServicesMenuItem func(unsafe.Pointer) bool
 	_NSUnregisterServicesProvider func(unsafe.Pointer) unsafe.Pointer
 	_NSUpdateDynamicServices func() unsafe.Pointer
 	_NSBitsPerPixelFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSBitsPerSampleFromDepth func(unsafe.Pointer) unsafe.Pointer
 	_NSColorSpaceFromDepth func(unsafe.Pointer) unsafe.Pointer
-	_NSPlanarFromDepth func(unsafe.Pointer) unsafe.Pointer
+	_NSPlanarFromDepth func(unsafe.Pointer) bool
 	_NSWindowList func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSWindowListForContext func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 )
@@ -302,7 +302,7 @@ func NSAccessibilityUnignoredChildrenForOnlyChild(originalChild unsafe.Pointer) 
 // Called by the main function to create and run the application. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplicationMain
-func NSApplicationMain(argc unsafe.Pointer, argv unsafe.Pointer) unsafe.Pointer {
+func NSApplicationMain(argc int, argv unsafe.Pointer) int {
 	return _NSApplicationMain(argc, argv)
 	}
 
@@ -362,7 +362,7 @@ func NSBeginInformationalAlertSheet(title unsafe.Pointer, defaultButton unsafe.P
 // Attempts to return a window depth adequate for the specified parameters. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBestDepth
-func NSBestDepth(colorSpace unsafe.Pointer, bps unsafe.Pointer, bpp unsafe.Pointer, planar unsafe.Pointer, exactMatch unsafe.Pointer) unsafe.Pointer {
+func NSBestDepth(colorSpace unsafe.Pointer, bps unsafe.Pointer, bpp unsafe.Pointer, planar bool, exactMatch unsafe.Pointer) unsafe.Pointer {
 	return _NSBestDepth(colorSpace, bps, bpp, planar, exactMatch)
 	}
 
@@ -496,7 +496,7 @@ func NSDrawLightBezel(rect coregraphics.CGRect, clipRect coregraphics.CGRect) {
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawNinePartImage(_:_:_:_:_:_:_:_:_:_:_:_:_:)
-func NSDrawNinePartImage(frame coregraphics.CGRect, topLeftCorner unsafe.Pointer, topEdgeFill unsafe.Pointer, topRightCorner unsafe.Pointer, leftEdgeFill unsafe.Pointer, centerFill unsafe.Pointer, rightEdgeFill unsafe.Pointer, bottomLeftCorner unsafe.Pointer, bottomEdgeFill unsafe.Pointer, bottomRightCorner unsafe.Pointer, op unsafe.Pointer, alphaFraction float64, flipped unsafe.Pointer) {
+func NSDrawNinePartImage(frame coregraphics.CGRect, topLeftCorner unsafe.Pointer, topEdgeFill unsafe.Pointer, topRightCorner unsafe.Pointer, leftEdgeFill unsafe.Pointer, centerFill unsafe.Pointer, rightEdgeFill unsafe.Pointer, bottomLeftCorner unsafe.Pointer, bottomEdgeFill unsafe.Pointer, bottomRightCorner unsafe.Pointer, op unsafe.Pointer, alphaFraction float64, flipped bool) {
 	_NSDrawNinePartImage(frame, topLeftCorner, topEdgeFill, topRightCorner, leftEdgeFill, centerFill, rightEdgeFill, bottomLeftCorner, bottomEdgeFill, bottomRightCorner, op, alphaFraction, flipped)
 	}
 
@@ -506,7 +506,7 @@ func NSDrawNinePartImage(frame coregraphics.CGRect, topLeftCorner unsafe.Pointer
 // Added in macOS 10.5.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawThreePartImage(_:_:_:_:_:_:_:_:)
-func NSDrawThreePartImage(frame coregraphics.CGRect, startCap unsafe.Pointer, centerFill unsafe.Pointer, endCap unsafe.Pointer, vertical unsafe.Pointer, op unsafe.Pointer, alphaFraction float64, flipped unsafe.Pointer) {
+func NSDrawThreePartImage(frame coregraphics.CGRect, startCap unsafe.Pointer, centerFill unsafe.Pointer, endCap unsafe.Pointer, vertical bool, op unsafe.Pointer, alphaFraction float64, flipped bool) {
 	_NSDrawThreePartImage(frame, startCap, centerFill, endCap, vertical, op, alphaFraction, flipped)
 	}
 
@@ -662,7 +662,7 @@ func NSInterfaceStyleForKey(key unsafe.Pointer, responder unsafe.Pointer) unsafe
 // Tests whether a given object is special marker object used for indicating the state of a selection in relation to a key. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSIsControllerMarker(_:)
-func NSIsControllerMarker(object unsafe.Pointer) unsafe.Pointer {
+func NSIsControllerMarker(object unsafe.Pointer) bool {
 	return _NSIsControllerMarker(object)
 	}
 
@@ -738,7 +738,7 @@ func NSGetFileTypes(pboardTypes unsafe.Pointer) unsafe.Pointer {
 // Programmatically invokes a Services menu service. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPerformService(_:_:)
-func NSPerformService(itemName unsafe.Pointer, pboard unsafe.Pointer) unsafe.Pointer {
+func NSPerformService(itemName unsafe.Pointer, pboard unsafe.Pointer) bool {
 	return _NSPerformService(itemName, pboard)
 	}
 
@@ -922,7 +922,7 @@ func NSRunInformationalAlertPanelRelativeToWindow(title unsafe.Pointer, msgForma
 // Specifies whether an item should be included in Services menus. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSetShowsServicesMenuItem(_:_:)
-func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled unsafe.Pointer) unsafe.Pointer {
+func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) unsafe.Pointer {
 	return _NSSetShowsServicesMenuItem(itemName, enabled)
 	}
 
@@ -942,7 +942,7 @@ func NSShowAnimationEffect(animationEffect unsafe.Pointer, centerLocation coregr
 // Specifies whether a Services menu item is currently enabled. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShowsServicesMenuItem(_:)
-func NSShowsServicesMenuItem(itemName unsafe.Pointer) unsafe.Pointer {
+func NSShowsServicesMenuItem(itemName unsafe.Pointer) bool {
 	return _NSShowsServicesMenuItem(itemName)
 	}
 
@@ -990,7 +990,7 @@ func NSColorSpaceFromDepth(depth unsafe.Pointer) unsafe.Pointer {
 // Returns whether the specified window depth is planar. [Full Topic]
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/isPlanar
-func NSPlanarFromDepth(depth unsafe.Pointer) unsafe.Pointer {
+func NSPlanarFromDepth(depth unsafe.Pointer) bool {
 	return _NSPlanarFromDepth(depth)
 	}
 

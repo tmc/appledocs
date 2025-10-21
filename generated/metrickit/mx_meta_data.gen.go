@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _MXMetaDataClass struct {
 // An interface definition for the [MXMetaData] class.
 type IMXMetaData interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An object containing system-level information about the device.
@@ -83,39 +85,39 @@ func NewMXMetaData() MXMetaData {
 // Returns the contents of the metadata as a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/DictionaryRepresentation-88u6f
-func (m_ MXMetaData) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("DictionaryRepresentation"))
+func (m_ MXMetaData) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("DictionaryRepresentation"))
 	return rv
 }
 
 // Returns the contents of the metadata in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/jsonRepresentation()
-func (m_ MXMetaData) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXMetaData) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
 // The value of the bundle version key in the app’s property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/applicationBuildVersion
-func (m_ MXMetaData) ApplicationBuildVersion() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationBuildVersion"))
+func (m_ MXMetaData) ApplicationBuildVersion() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationBuildVersion"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/bundleIdentifier
-func (m_ MXMetaData) BundleIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("bundleIdentifier"))
+func (m_ MXMetaData) BundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("bundleIdentifier"))
 	return rv
 }
 
 // The hardware identifier for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/deviceType
-func (m_ MXMetaData) DeviceType() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("deviceType"))
+func (m_ MXMetaData) DeviceType() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
@@ -138,8 +140,8 @@ func (m_ MXMetaData) LowPowerModeEnabled() unsafe.Pointer {
 // The version of the OS on the device including the type of OS, version number, and build number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/osVersion
-func (m_ MXMetaData) OsVersion() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("osVersion"))
+func (m_ MXMetaData) OsVersion() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("osVersion"))
 	return rv
 }
 
@@ -154,24 +156,24 @@ func (m_ MXMetaData) Pid() unsafe.Pointer {
 // The name of the processor architecture for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/platformArchitecture
-func (m_ MXMetaData) PlatformArchitecture() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("platformArchitecture"))
+func (m_ MXMetaData) PlatformArchitecture() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("platformArchitecture"))
 	return rv
 }
 
 // The short country code for the region format setting of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetaData/regionFormat
-func (m_ MXMetaData) RegionFormat() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("regionFormat"))
+func (m_ MXMetaData) RegionFormat() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("regionFormat"))
 	return rv
 }
 
 // Error domain for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxerrordomain
-func (m_ MXMetaData) MXErrorDomain() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MXErrorDomain"))
+func (m_ MXMetaData) MXErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MXErrorDomain"))
 	return rv
 }
 

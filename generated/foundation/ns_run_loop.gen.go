@@ -30,13 +30,13 @@ type _RunLoopClass struct {
 // An interface definition for the [RunLoop] class.
 type IRunLoop interface {
 	objectivec.IObject
-	AcceptInputForModeBeforeDate(mode unsafe.Pointer, limitDate unsafe.Pointer)
-	AddTimerForMode(timer unsafe.Pointer, mode unsafe.Pointer)
+	AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate)
+	AddTimerForMode(timer ITimer, mode RunLoopMode)
 	GetCFRunLoop() unsafe.Pointer
-	LimitDateForMode(mode unsafe.Pointer) unsafe.Pointer
+	LimitDateForMode(mode RunLoopMode) Date
 	Run()
-	RunModeBeforeDate(mode unsafe.Pointer, limitDate unsafe.Pointer) bool
-	RunUntilDate(limitDate unsafe.Pointer)
+	RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool
+	RunUntilDate(limitDate IDate)
 }
 
 // The programmatic interface to objects that manage input sources.
@@ -90,28 +90,28 @@ func NewRunLoop() RunLoop {
 // Returns the run loop for the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
-func (rc _RunLoopClass) CurrentRunLoop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("currentRunLoop"))
+func (rc _RunLoopClass) CurrentRunLoop() RunLoop {
+	rv := objc.Send[NSRunLoop](objc.ID(rc.class), objc.Sel("currentRunLoop"))
 	return rv
 }
 // Returns the run loop of the main thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
-func (rc _RunLoopClass) MainRunLoop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("mainRunLoop"))
+func (rc _RunLoopClass) MainRunLoop() RunLoop {
+	rv := objc.Send[NSRunLoop](objc.ID(rc.class), objc.Sel("mainRunLoop"))
 	return rv
 }
 // Runs the loop once or until the specified date, accepting input only for the specified mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/acceptInput(forMode:before:)
-func (r_ RunLoop) AcceptInputForModeBeforeDate(mode unsafe.Pointer, limitDate unsafe.Pointer) {
+func (r_ RunLoop) AcceptInputForModeBeforeDate(mode RunLoopMode, limitDate IDate) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("acceptInputForMode:beforeDate:"), mode, limitDate)
 }
 
 // Registers a given timer with a given input mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/add(_:forMode:)-392ag
-func (r_ RunLoop) AddTimerForMode(timer unsafe.Pointer, mode unsafe.Pointer) {
+func (r_ RunLoop) AddTimerForMode(timer ITimer, mode RunLoopMode) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addTimer:forMode:"), timer, mode)
 }
 
@@ -126,8 +126,8 @@ func (r_ RunLoop) GetCFRunLoop() unsafe.Pointer {
 // Performs one pass through the run loop in the specified mode and returns the date at which the next timer is scheduled to fire.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/limitDate(forMode:)
-func (r_ RunLoop) LimitDateForMode(mode unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("limitDateForMode:"), mode)
+func (r_ RunLoop) LimitDateForMode(mode RunLoopMode) Date {
+	rv := objc.Send[Date](r_.ID, objc.Sel("limitDateForMode:"), mode)
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (r_ RunLoop) Run() {
 // Runs the loop once, blocking for input in the specified mode until a given date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run(mode:before:)
-func (r_ RunLoop) RunModeBeforeDate(mode unsafe.Pointer, limitDate unsafe.Pointer) bool {
+func (r_ RunLoop) RunModeBeforeDate(mode RunLoopMode, limitDate IDate) bool {
 	rv := objc.Send[bool](r_.ID, objc.Sel("runMode:beforeDate:"), mode, limitDate)
 	return rv
 }
@@ -149,31 +149,31 @@ func (r_ RunLoop) RunModeBeforeDate(mode unsafe.Pointer, limitDate unsafe.Pointe
 // Runs the loop until the specified date, during which time it processes data from all attached input sources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/run(until:)
-func (r_ RunLoop) RunUntilDate(limitDate unsafe.Pointer) {
+func (r_ RunLoop) RunUntilDate(limitDate IDate) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("runUntilDate:"), limitDate)
 }
 
 // Returns the run loop for the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/current
-func (r_ RunLoop) CurrentRunLoop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("currentRunLoop"))
+func (r_ RunLoop) CurrentRunLoop() NSRunLoop {
+	rv := objc.Send[NSRunLoop](r_.ID, objc.Sel("currentRunLoop"))
 	return rv
 }
 
 // The receiver’s current input mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/currentMode
-func (r_ RunLoop) CurrentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("currentMode"))
+func (r_ RunLoop) CurrentMode() RunLoopMode {
+	rv := objc.Send[RunLoopMode](r_.ID, objc.Sel("currentMode"))
 	return rv
 }
 
 // Returns the run loop of the main thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/main
-func (r_ RunLoop) MainRunLoop() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("mainRunLoop"))
+func (r_ RunLoop) MainRunLoop() NSRunLoop {
+	rv := objc.Send[NSRunLoop](r_.ID, objc.Sel("mainRunLoop"))
 	return rv
 }
 

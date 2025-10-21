@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,8 +90,8 @@ func (a_ AuthorizationSingleSignOnCredential) AuthorizedScopes() []string {
 // An access token used to get an identity token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
-func (a_ AuthorizationSingleSignOnCredential) AccessToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("accessToken"))
+func (a_ AuthorizationSingleSignOnCredential) AccessToken() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("accessToken"))
 	return rv
 }
 
@@ -100,15 +101,15 @@ func (a_ AuthorizationSingleSignOnCredential) AccessToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/accesstoken
-func (a_ AuthorizationSingleSignOnCredential) SetAccessToken(value unsafe.Pointer) {
+func (a_ AuthorizationSingleSignOnCredential) SetAccessToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAccessToken:"), value)
 }
 
 // The complete response authentication, including technology-specific values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
-func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authenticatedResponse"))
+func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() foundation.HTTPURLResponse {
+	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("authenticatedResponse"))
 	return rv
 }
 
@@ -118,15 +119,15 @@ func (a_ AuthorizationSingleSignOnCredential) AuthenticatedResponse() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/authenticatedresponse
-func (a_ AuthorizationSingleSignOnCredential) SetAuthenticatedResponse(value unsafe.Pointer) {
+func (a_ AuthorizationSingleSignOnCredential) SetAuthenticatedResponse(value foundation.IHTTPURLResponse) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthenticatedResponse:"), value)
 }
 
 // A JSON Web Token (JWT) that securely communicates information about the user to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
-func (a_ AuthorizationSingleSignOnCredential) IdentityToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("identityToken"))
+func (a_ AuthorizationSingleSignOnCredential) IdentityToken() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
 	return rv
 }
 
@@ -136,15 +137,15 @@ func (a_ AuthorizationSingleSignOnCredential) IdentityToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/identitytoken
-func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value unsafe.Pointer) {
+func (a_ AuthorizationSingleSignOnCredential) SetIdentityToken(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
 }
 
 // An arbitrary string that your app provided to the request that generated this credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-func (a_ AuthorizationSingleSignOnCredential) State() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("state"))
+func (a_ AuthorizationSingleSignOnCredential) State() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -154,8 +155,8 @@ func (a_ AuthorizationSingleSignOnCredential) State() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignoncredential/state
-func (a_ AuthorizationSingleSignOnCredential) SetState(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), objc.String(value))
+func (a_ AuthorizationSingleSignOnCredential) SetState(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), value)
 }
 
 

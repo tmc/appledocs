@@ -83,8 +83,8 @@ func NewCKSubscription() CKSubscription {
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
-func (c_ CKSubscription) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKSubscription) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -94,8 +94,16 @@ func (c_ CKSubscription) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/notificationInfo-swift.property
-func (c_ CKSubscription) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
+}
+
+// The subscription’s unique identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/subscriptionID-12vxy
+func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionID"))
+	return rv
 }
 
 // The behavior that a subscription provides.
@@ -122,24 +130,6 @@ func (c_ CKSubscription) DesiredKeys() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/desiredkeys
 func (c_ CKSubscription) SetDesiredKeys(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDesiredKeys:"), value)
-}
-
-// The subscription’s unique identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptionid-6fp3j
-func (c_ CKSubscription) SubscriptionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("subscriptionID"))
-	return rv
-}
-
-
-// SetSubscriptionID sets the value of the subscriptionID property.
-// The subscription’s unique identifier.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptionid-6fp3j
-func (c_ CKSubscription) SetSubscriptionID(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubscriptionID:"), value)
 }
 
 

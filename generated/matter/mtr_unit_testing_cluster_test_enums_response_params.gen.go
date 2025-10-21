@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestEnumsResponseParams) Arg1() foundation.Number 
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/arg1
-func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetArg1(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetArg1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestEnumsResponseParams) Arg2() foundation.Number 
 // SetArg2 sets the value of the arg2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/arg2
-func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetArg2(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetArg2(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRUnitTestingClusterTestEnumsResponseParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

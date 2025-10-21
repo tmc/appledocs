@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = avfaudio.NewAudioPCMBuffer
 
+// ExampleNewAudioPCMBufferWithPCMFormatFrameCapacity demonstrates how to create a AudioPCMBuffer instance using NewAudioPCMBufferWithPCMFormatFrameCapacity.
+// Creates a PCM audio buffer instance for PCM audio data.
+func ExampleNewAudioPCMBufferWithPCMFormatFrameCapacity() {
+	_ = avfaudio.NewAudioPCMBufferWithPCMFormatFrameCapacity(
+		avfaudio.AVAudioFormat{}, // format AVAudioFormat
+		avfaudio.AudioFrameCount{}, // frameCapacity AudioFrameCount
+	)
+	// Output:
+}

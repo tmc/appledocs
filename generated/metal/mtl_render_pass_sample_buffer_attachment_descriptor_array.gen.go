@@ -30,8 +30,8 @@ type _RenderPassSampleBufferAttachmentDescriptorArrayClass struct {
 // An interface definition for the [RenderPassSampleBufferAttachmentDescriptorArray] class.
 type IRenderPassSampleBufferAttachmentDescriptorArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint)
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(attachment IMTLRenderPassSampleBufferAttachmentDescriptor, attachmentIndex uint)
+	ObjectAtIndexedSubscript(attachmentIndex uint) RenderPassSampleBufferAttachmentDescriptor
 }
 
 // An array of sample buffer attachments for a render pass.
@@ -83,15 +83,15 @@ func NewRenderPassSampleBufferAttachmentDescriptorArray() RenderPassSampleBuffer
 // Sets the descriptor object for the specified sample buffer attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray/setObject:atIndexedSubscript:
-func (r_ RenderPassSampleBufferAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint) {
+func (r_ RenderPassSampleBufferAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment IMTLRenderPassSampleBufferAttachmentDescriptor, attachmentIndex uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setObject:atIndexedSubscript:"), attachment, attachmentIndex)
 }
 
 // Returns the descriptor object for the specified sample buffer attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassSampleBufferAttachmentDescriptorArray/subscript(_:)
-func (r_ RenderPassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (r_ RenderPassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) RenderPassSampleBufferAttachmentDescriptor {
+	rv := objc.Send[RenderPassSampleBufferAttachmentDescriptor](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

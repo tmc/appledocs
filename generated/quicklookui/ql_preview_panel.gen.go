@@ -85,8 +85,8 @@ func NewPreviewPanel() PreviewPanel {
 // Returns the shared Quick Look preview panel instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLookUI/QLPreviewPanel/shared()
-func (pc _PreviewPanelClass) SharedPreviewPanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("sharedPreviewPanel"))
+func (pc _PreviewPanelClass) SharedPreviewPanel() PreviewPanel {
+	rv := objc.Send[PreviewPanel](objc.ID(pc.class), objc.Sel("sharedPreviewPanel"))
 	return rv
 }
 

@@ -84,8 +84,8 @@ func NewGCDirectionalGamepad() GCDirectionalGamepad {
 // The extended gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCDirectionalGamepad) ExtendedGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
+func (g_ GCDirectionalGamepad) ExtendedGamepad() GCExtendedGamepad {
+	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (g_ GCDirectionalGamepad) ExtendedGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
-func (g_ GCDirectionalGamepad) SetExtendedGamepad(value unsafe.Pointer) {
+func (g_ GCDirectionalGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
 }
 
@@ -120,8 +120,8 @@ func (g_ GCDirectionalGamepad) SetGamepad(value unsafe.Pointer) {
 // The micro gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCDirectionalGamepad) MicroGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
+func (g_ GCDirectionalGamepad) MicroGamepad() GCMicroGamepad {
+	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (g_ GCDirectionalGamepad) MicroGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCDirectionalGamepad) SetMicroGamepad(value unsafe.Pointer) {
+func (g_ GCDirectionalGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
 // The motion input profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCDirectionalGamepad) Motion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+func (g_ GCDirectionalGamepad) Motion() GCMotion {
+	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (g_ GCDirectionalGamepad) Motion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCDirectionalGamepad) SetMotion(value unsafe.Pointer) {
+func (g_ GCDirectionalGamepad) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
 
 // The physical input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCDirectionalGamepad) PhysicalInputProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
+func (g_ GCDirectionalGamepad) PhysicalInputProfile() GCPhysicalInputProfile {
+	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (g_ GCDirectionalGamepad) PhysicalInputProfile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCDirectionalGamepad) SetPhysicalInputProfile(value unsafe.Pointer) {
+func (g_ GCDirectionalGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
 

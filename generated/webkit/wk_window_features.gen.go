@@ -103,7 +103,7 @@ func (w_ WindowFeatures) AllowsResizing() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/allowsresizing
-func (w_ WindowFeatures) SetAllowsResizing(value foundation.Number) {
+func (w_ WindowFeatures) SetAllowsResizing(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAllowsResizing:"), value)
 }
 
@@ -121,7 +121,7 @@ func (w_ WindowFeatures) MenuBarVisibility() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/menubarvisibility
-func (w_ WindowFeatures) SetMenuBarVisibility(value foundation.Number) {
+func (w_ WindowFeatures) SetMenuBarVisibility(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setMenuBarVisibility:"), value)
 }
 
@@ -139,7 +139,7 @@ func (w_ WindowFeatures) StatusBarVisibility() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/statusbarvisibility
-func (w_ WindowFeatures) SetStatusBarVisibility(value foundation.Number) {
+func (w_ WindowFeatures) SetStatusBarVisibility(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setStatusBarVisibility:"), value)
 }
 
@@ -157,7 +157,7 @@ func (w_ WindowFeatures) ToolbarsVisibility() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/toolbarsvisibility
-func (w_ WindowFeatures) SetToolbarsVisibility(value foundation.Number) {
+func (w_ WindowFeatures) SetToolbarsVisibility(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolbarsVisibility:"), value)
 }
 
@@ -175,7 +175,7 @@ func (w_ WindowFeatures) Width() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/width
-func (w_ WindowFeatures) SetWidth(value foundation.Number) {
+func (w_ WindowFeatures) SetWidth(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setWidth:"), value)
 }
 
@@ -193,7 +193,7 @@ func (w_ WindowFeatures) X() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/x
-func (w_ WindowFeatures) SetX(value foundation.Number) {
+func (w_ WindowFeatures) SetX(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setX:"), value)
 }
 
@@ -211,7 +211,7 @@ func (w_ WindowFeatures) Y() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwindowfeatures/y
-func (w_ WindowFeatures) SetY(value foundation.Number) {
+func (w_ WindowFeatures) SetY(value foundation.INumber) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setY:"), value)
 }
 

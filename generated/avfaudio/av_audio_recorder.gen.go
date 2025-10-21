@@ -37,9 +37,9 @@ type IAudioRecorder interface {
 	PeakPowerForChannel(channelNumber uint) unsafe.Pointer
 	PrepareToRecord() bool
 	Record() bool
-	RecordAtTime(time foundation.TimeInterval) bool
-	RecordAtTimeForDuration(time foundation.TimeInterval, duration foundation.TimeInterval) bool
-	RecordForDuration(duration foundation.TimeInterval) bool
+	RecordAtTime(time foundation.ITimeInterval) bool
+	RecordAtTimeForDuration(time foundation.ITimeInterval, duration foundation.ITimeInterval) bool
+	RecordForDuration(duration foundation.ITimeInterval) bool
 	Stop()
 	UpdateMeters()
 }
@@ -97,7 +97,7 @@ func NewAudioRecorder() AudioRecorder {
 // Creates an audio recorder with an audio format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:format:)
-func NewAudioRecorderWithURLFormatError(url foundation.URL, format unsafe.Pointer, outError unsafe.Pointer) AudioRecorder {
+func NewAudioRecorderWithURLFormatError(url foundation.IURL, format AVAudioFormat, outError unsafe.Pointer) AudioRecorder {
 	instance := getAudioRecorderClass().Alloc()
 	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:format:error:"), url, format, outError)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewAudioRecorderWithURLFormatError(url foundation.URL, format unsafe.Pointe
 // Creates an audio recorder with settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/init(url:settings:)
-func NewAudioRecorderWithURLSettingsError(url foundation.URL, settings unsafe.Pointer, outError unsafe.Pointer) AudioRecorder {
+func NewAudioRecorderWithURLSettingsError(url foundation.IURL, settings unsafe.Pointer, outError unsafe.Pointer) AudioRecorder {
 	instance := getAudioRecorderClass().Alloc()
 	rv := objc.Send[AudioRecorder](instance.ID, objc.Sel("initWithURL:settings:error:"), url, settings, outError)
 	rv.Autorelease()
@@ -167,7 +167,7 @@ func (a_ AudioRecorder) Record() bool {
 // Records audio starting at a specific time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record(atTime:)
-func (a_ AudioRecorder) RecordAtTime(time foundation.TimeInterval) bool {
+func (a_ AudioRecorder) RecordAtTime(time foundation.ITimeInterval) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recordAtTime:"), time)
 	return rv
 }
@@ -175,7 +175,7 @@ func (a_ AudioRecorder) RecordAtTime(time foundation.TimeInterval) bool {
 // Records audio starting at a specific time for the indicated duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record(atTime:forDuration:)
-func (a_ AudioRecorder) RecordAtTimeForDuration(time foundation.TimeInterval, duration foundation.TimeInterval) bool {
+func (a_ AudioRecorder) RecordAtTimeForDuration(time foundation.ITimeInterval, duration foundation.ITimeInterval) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recordAtTime:forDuration:"), time, duration)
 	return rv
 }
@@ -183,7 +183,7 @@ func (a_ AudioRecorder) RecordAtTimeForDuration(time foundation.TimeInterval, du
 // Records audio for the indicated duration of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/record(forDuration:)
-func (a_ AudioRecorder) RecordForDuration(duration foundation.TimeInterval) bool {
+func (a_ AudioRecorder) RecordForDuration(duration foundation.ITimeInterval) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("recordForDuration:"), duration)
 	return rv
 }
@@ -216,7 +216,7 @@ func (a_ AudioRecorder) ChannelAssignments() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) SetChannelAssignments(value []unsafe.Pointer) {
+func (a_ AudioRecorder) SetChannelAssignments(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -267,8 +267,8 @@ func (a_ AudioRecorder) DeviceCurrentTime() foundation.TimeInterval {
 // The format of the recorded audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/format
-func (a_ AudioRecorder) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("format"))
+func (a_ AudioRecorder) Format() AVAudioFormat {
+	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 

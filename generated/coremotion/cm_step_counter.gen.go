@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _StepCounterClass struct {
 // An interface definition for the [StepCounter] class.
 type IStepCounter interface {
 	objectivec.IObject
-	QueryStepCountStartingFromToToQueueWithHandler(start unsafe.Pointer, end unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer)
-	StartStepCountingUpdatesToQueueUpdateOnWithHandler(queue unsafe.Pointer, stepCounts int, handler unsafe.Pointer)
+	QueryStepCountStartingFromToToQueueWithHandler(start foundation.IDate, end foundation.IDate, queue foundation.IOperationQueue, handler unsafe.Pointer)
+	StartStepCountingUpdatesToQueueUpdateOnWithHandler(queue foundation.IOperationQueue, stepCounts int, handler unsafe.Pointer)
 	StopStepCountingUpdates()
 }
 
@@ -94,14 +95,14 @@ func (sc _StepCounterClass) IsStepCountingAvailable() bool {
 // Gathers and returns historical step count data for the specified time period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/queryStepCountStarting(from:to:to:withHandler:)
-func (s_ StepCounter) QueryStepCountStartingFromToToQueueWithHandler(start unsafe.Pointer, end unsafe.Pointer, queue unsafe.Pointer, handler unsafe.Pointer) {
+func (s_ StepCounter) QueryStepCountStartingFromToToQueueWithHandler(start foundation.IDate, end foundation.IDate, queue foundation.IOperationQueue, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("queryStepCountStartingFrom:to:toQueue:withHandler:"), start, end, queue, handler)
 }
 
 // Starts the delivery of current step-counting data to your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMStepCounter/startStepCountingUpdates(to:updateOn:withHandler:)
-func (s_ StepCounter) StartStepCountingUpdatesToQueueUpdateOnWithHandler(queue unsafe.Pointer, stepCounts int, handler unsafe.Pointer) {
+func (s_ StepCounter) StartStepCountingUpdatesToQueueUpdateOnWithHandler(queue foundation.IOperationQueue, stepCounts int, handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startStepCountingUpdatesToQueue:updateOn:withHandler:"), queue, stepCounts, handler)
 }
 

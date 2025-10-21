@@ -31,7 +31,7 @@ type IVZVirtioSocketDevice interface {
 	IVZSocketDevice
 	ConnectToPortCompletionHandler(port unsafe.Pointer, completionHandler unsafe.Pointer)
 	RemoveSocketListenerForPort(port unsafe.Pointer)
-	SetSocketListenerForPort(listener unsafe.Pointer, port unsafe.Pointer)
+	SetSocketListenerForPort(listener IVZVirtioSocketListener, port unsafe.Pointer)
 }
 
 // A device that manages port-based connections between the guest system and the host computer.
@@ -101,15 +101,15 @@ func (v_ VZVirtioSocketDevice) RemoveSocketListenerForPort(port unsafe.Pointer) 
 // Configures an object to monitor the specified port for new connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSocketDevice/setSocketListener(_:forPort:)
-func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener unsafe.Pointer, port unsafe.Pointer) {
+func (v_ VZVirtioSocketDevice) SetSocketListenerForPort(listener IVZVirtioSocketListener, port unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketListener:forPort:"), listener, port)
 }
 
 // The array of socket devices that the VM configures for use ports in the guest VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
-func (v_ VZVirtioSocketDevice) SocketDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("socketDevices"))
+func (v_ VZVirtioSocketDevice) SocketDevices() VZSocketDevice {
+	rv := objc.Send[VZSocketDevice](v_.ID, objc.Sel("socketDevices"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (v_ VZVirtioSocketDevice) SocketDevices() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices
-func (v_ VZVirtioSocketDevice) SetSocketDevices(value unsafe.Pointer) {
+func (v_ VZVirtioSocketDevice) SetSocketDevices(value IVZSocketDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
 }
 

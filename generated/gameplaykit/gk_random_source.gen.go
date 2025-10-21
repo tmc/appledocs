@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _RandomSourceClass struct {
 // An interface definition for the [RandomSource] class.
 type IRandomSource interface {
 	objectivec.IObject
-	ArrayByShufflingObjectsInArray(array objc.ID) unsafe.Pointer
+	ArrayByShufflingObjectsInArray(array objectivec.IObject) foundation.Array
 }
 
 // The superclass for all basic randomization classes in GameplayKit.
@@ -83,7 +84,7 @@ func NewRandomSource() RandomSource {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/init(coder:)
-func NewRandomSourceWithCoder(aDecoder unsafe.Pointer) RandomSource {
+func NewRandomSourceWithCoder(aDecoder foundation.ICoder) RandomSource {
 	instance := getRandomSourceClass().Alloc()
 	rv := objc.Send[RandomSource](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -94,16 +95,16 @@ func NewRandomSourceWithCoder(aDecoder unsafe.Pointer) RandomSource {
 // Returns a shared instance that shares a system-wide random source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/sharedRandom()
-func (rc _RandomSourceClass) SharedRandom() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("sharedRandom"))
+func (rc _RandomSourceClass) SharedRandom() RandomSource {
+	rv := objc.Send[RandomSource](objc.ID(rc.class), objc.Sel("sharedRandom"))
 	return rv
 }
 
 // Returns an array whose contents are the same as those of the specified array, but in a random order determined by the random source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRandomSource/arrayByShufflingObjects(in:)
-func (r_ RandomSource) ArrayByShufflingObjectsInArray(array objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("arrayByShufflingObjectsInArray:"), array)
+func (r_ RandomSource) ArrayByShufflingObjectsInArray(array objectivec.IObject) foundation.Array {
+	rv := objc.Send[foundation.Array](r_.ID, objc.Sel("arrayByShufflingObjectsInArray:"), array)
 	return rv
 }
 

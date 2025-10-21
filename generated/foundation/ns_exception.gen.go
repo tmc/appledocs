@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -86,9 +87,9 @@ func NewException() Exception {
 // Initializes and returns a newly allocated exception object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)
-func NewExceptionWithNameReasonUserInfo(aName unsafe.Pointer, aReason string, aUserInfo objc.ID) Exception {
+func NewExceptionWithNameReasonUserInfo(aName IExceptionName, aReason appkit.string, aUserInfo objectivec.IObject) Exception {
 	instance := getExceptionClass().Alloc()
-	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, objc.String(aReason), aUserInfo)
+	rv := objc.Send[Exception](instance.ID, objc.Sel("initWithName:reason:userInfo:"), aName, aReason, aUserInfo)
 	rv.Autorelease()
 	return rv
 }
@@ -97,23 +98,23 @@ func NewExceptionWithNameReasonUserInfo(aName unsafe.Pointer, aReason string, aU
 // Creates and returns an exception object .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/exceptionWithName:reason:userInfo:
-func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name unsafe.Pointer, reason string, userInfo objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, objc.String(reason), userInfo)
+func (ec _ExceptionClass) ExceptionWithNameReasonUserInfo(name IExceptionName, reason appkit.string, userInfo objectivec.IObject) Exception {
+	rv := objc.Send[Exception](objc.ID(ec.class), objc.Sel("exceptionWithName:reason:userInfo:"), name, reason, userInfo)
 	return rv
 }
 
 // Creates and raises an exception with the specified name, reason, and arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise(_:format:arguments:)
-func (ec _ExceptionClass) RaiseFormatArguments(name unsafe.Pointer, format string, argList unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, objc.String(format), argList)
+func (ec _ExceptionClass) RaiseFormatArguments(name IExceptionName, format appkit.string, argList unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:arguments:"), name, format, argList)
 }
 
 // A convenience method that creates and raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/raise:format:
-func (ec _ExceptionClass) RaiseFormat(name unsafe.Pointer, format string) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, objc.String(format))
+func (ec _ExceptionClass) RaiseFormat(name IExceptionName, format appkit.string) {
+	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("raise:format:"), name, format)
 }
 
 // Raises the receiver, causing program flow to jump to the local exception handler.
@@ -142,24 +143,24 @@ func (e_ Exception) CallStackSymbols() []string {
 // A string used to uniquely identify the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/name-swift.property
-func (e_ Exception) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("name"))
+func (e_ Exception) Name() ExceptionName {
+	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
 	return rv
 }
 
 // A string containing a “human-readable” reason for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-swift.property
-func (e_ Exception) Reason() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
+func (e_ Exception) Reason() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("reason"))
 	return rv
 }
 
 // A dictionary containing application-specific data pertaining to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/userInfo-swift.property
-func (e_ Exception) UserInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
+func (e_ Exception) UserInfo() objc.ID {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
 

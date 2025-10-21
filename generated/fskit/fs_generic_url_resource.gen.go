@@ -82,7 +82,7 @@ func NewFSGenericURLResource() FSGenericURLResource {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSGenericURLResource/init(url:)
-func NewFSGenericURLResourceWithURL(url foundation.URL) FSGenericURLResource {
+func NewFSGenericURLResourceWithURL(url foundation.IURL) FSGenericURLResource {
 	instance := getFSGenericURLResourceClass().Alloc()
 	rv := objc.Send[FSGenericURLResource](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()

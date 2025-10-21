@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [EnvironmentMechanismBiometry] class.
@@ -78,8 +79,8 @@ func NewEnvironmentMechanismBiometry() EnvironmentMechanismBiometry {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/biometryType
-func (e_ EnvironmentMechanismBiometry) BiometryType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("biometryType"))
+func (e_ EnvironmentMechanismBiometry) BiometryType() BiometryType {
+	rv := objc.Send[BiometryType](e_.ID, objc.Sel("biometryType"))
 	return rv
 }
 
@@ -106,8 +107,8 @@ func (e_ EnvironmentMechanismBiometry) IsLockedOut() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/MechanismBiometry/stateHash
-func (e_ EnvironmentMechanismBiometry) StateHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("stateHash"))
+func (e_ EnvironmentMechanismBiometry) StateHash() foundation.NSData {
+	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("stateHash"))
 	return rv
 }
 

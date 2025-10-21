@@ -31,12 +31,12 @@ type _AudioNodeClass struct {
 // An interface definition for the [AudioNode] class.
 type IAudioNode interface {
 	objectivec.IObject
-	InputFormatForBus(bus unsafe.Pointer) unsafe.Pointer
-	InstallTapOnBusBufferSizeFormatBlock(bus unsafe.Pointer, bufferSize unsafe.Pointer, format unsafe.Pointer, tapBlock unsafe.Pointer)
-	NameForInputBus(bus unsafe.Pointer) string
-	NameForOutputBus(bus unsafe.Pointer) string
-	OutputFormatForBus(bus unsafe.Pointer) unsafe.Pointer
-	RemoveTapOnBus(bus unsafe.Pointer)
+	InputFormatForBus(bus IAudioNodeBus) AudioFormat
+	InstallTapOnBusBufferSizeFormatBlock(bus IAudioNodeBus, bufferSize IAudioFrameCount, format AVAudioFormat, tapBlock unsafe.Pointer)
+	NameForInputBus(bus IAudioNodeBus) foundation.String
+	NameForOutputBus(bus IAudioNodeBus) foundation.String
+	OutputFormatForBus(bus IAudioNodeBus) AudioFormat
+	RemoveTapOnBus(bus IAudioNodeBus)
 	Reset()
 }
 
@@ -91,46 +91,46 @@ func NewAudioNode() AudioNode {
 // Gets the input format for the bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/inputFormat(forBus:)
-func (a_ AudioNode) InputFormatForBus(bus unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("inputFormatForBus:"), bus)
+func (a_ AudioNode) InputFormatForBus(bus IAudioNodeBus) AudioFormat {
+	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("inputFormatForBus:"), bus)
 	return rv
 }
 
 // Installs an audio tap on a bus you specify to record, monitor, and observe the output of the node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/installTap(onBus:bufferSize:format:block:)
-func (a_ AudioNode) InstallTapOnBusBufferSizeFormatBlock(bus unsafe.Pointer, bufferSize unsafe.Pointer, format unsafe.Pointer, tapBlock unsafe.Pointer) {
+func (a_ AudioNode) InstallTapOnBusBufferSizeFormatBlock(bus IAudioNodeBus, bufferSize IAudioFrameCount, format AVAudioFormat, tapBlock unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("installTapOnBus:bufferSize:format:block:"), bus, bufferSize, format, tapBlock)
 }
 
 // Gets the name of the input bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/name(forInputBus:)
-func (a_ AudioNode) NameForInputBus(bus unsafe.Pointer) string {
-	rv := objc.Send[string](a_.ID, objc.Sel("nameForInputBus:"), bus)
+func (a_ AudioNode) NameForInputBus(bus IAudioNodeBus) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("nameForInputBus:"), bus)
 	return rv
 }
 
 // Retrieves the name of the output bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/name(forOutputBus:)
-func (a_ AudioNode) NameForOutputBus(bus unsafe.Pointer) string {
-	rv := objc.Send[string](a_.ID, objc.Sel("nameForOutputBus:"), bus)
+func (a_ AudioNode) NameForOutputBus(bus IAudioNodeBus) foundation.String {
+	rv := objc.Send[foundation.String](a_.ID, objc.Sel("nameForOutputBus:"), bus)
 	return rv
 }
 
 // Retrieves the output format for the bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/outputFormat(forBus:)
-func (a_ AudioNode) OutputFormatForBus(bus unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("outputFormatForBus:"), bus)
+func (a_ AudioNode) OutputFormatForBus(bus IAudioNodeBus) AudioFormat {
+	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("outputFormatForBus:"), bus)
 	return rv
 }
 
 // Removes an audio tap on a bus you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/removeTap(onBus:)
-func (a_ AudioNode) RemoveTapOnBus(bus unsafe.Pointer) {
+func (a_ AudioNode) RemoveTapOnBus(bus IAudioNodeBus) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeTapOnBus:"), bus)
 }
 
@@ -144,24 +144,24 @@ func (a_ AudioNode) Reset() {
 // An audio unit object that wraps or underlies the implementation’s audio unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/auAudioUnit
-func (a_ AudioNode) AUAudioUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("AUAudioUnit"))
+func (a_ AudioNode) AUAudioUnit() AudioUnit {
+	rv := objc.Send[AudioUnit](a_.ID, objc.Sel("AUAudioUnit"))
 	return rv
 }
 
 // The audio engine that manages the node, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/engine
-func (a_ AudioNode) Engine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("engine"))
+func (a_ AudioNode) Engine() AVAudioEngine {
+	rv := objc.Send[AVAudioEngine](a_.ID, objc.Sel("engine"))
 	return rv
 }
 
 // The most recent render time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioNode/lastRenderTime
-func (a_ AudioNode) LastRenderTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("lastRenderTime"))
+func (a_ AudioNode) LastRenderTime() AVAudioTime {
+	rv := objc.Send[AVAudioTime](a_.ID, objc.Sel("lastRenderTime"))
 	return rv
 }
 

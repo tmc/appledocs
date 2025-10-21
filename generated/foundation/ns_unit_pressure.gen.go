@@ -84,15 +84,15 @@ func NewUnitPressure() UnitPressure {
 // The newtons per square meter unit of pressure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
-func (uc _UnitPressureClass) NewtonsPerMetersSquared() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("newtonsPerMetersSquared"))
+func (uc _UnitPressureClass) NewtonsPerMetersSquared() UnitPressure {
+	rv := objc.Send[NSUnitPressure](objc.ID(uc.class), objc.Sel("newtonsPerMetersSquared"))
 	return rv
 }
 // The newtons per square meter unit of pressure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitPressure/newtonsPerMetersSquared
-func (u_ UnitPressure) NewtonsPerMetersSquared() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("newtonsPerMetersSquared"))
+func (u_ UnitPressure) NewtonsPerMetersSquared() NSUnitPressure {
+	rv := objc.Send[NSUnitPressure](u_.ID, objc.Sel("newtonsPerMetersSquared"))
 	return rv
 }
 

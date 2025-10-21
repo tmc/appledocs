@@ -111,8 +111,8 @@ func (u_ URLAsset) SetAssetCache(value unsafe.Pointer) {
 // A session identifier that the asset sends in HTTP requests that it makes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/httpsessionidentifier
-func (u_ URLAsset) HttpSessionIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpSessionIdentifier"))
+func (u_ URLAsset) HttpSessionIdentifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](u_.ID, objc.Sel("httpSessionIdentifier"))
 	return rv
 }
 
@@ -122,7 +122,7 @@ func (u_ URLAsset) HttpSessionIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/httpsessionidentifier
-func (u_ URLAsset) SetHttpSessionIdentifier(value unsafe.Pointer) {
+func (u_ URLAsset) SetHttpSessionIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpSessionIdentifier:"), value)
 }
 
@@ -147,8 +147,8 @@ func (u_ URLAsset) SetMayRequireContentKeysForMediaDataProcessing(value bool) {
 // The resource loader for the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-func (u_ URLAsset) ResourceLoader() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("resourceLoader"))
+func (u_ URLAsset) ResourceLoader() AVAssetResourceLoader {
+	rv := objc.Send[AVAssetResourceLoader](u_.ID, objc.Sel("resourceLoader"))
 	return rv
 }
 
@@ -158,7 +158,7 @@ func (u_ URLAsset) ResourceLoader() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader
-func (u_ URLAsset) SetResourceLoader(value unsafe.Pointer) {
+func (u_ URLAsset) SetResourceLoader(value IAVAssetResourceLoader) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResourceLoader:"), value)
 }
 
@@ -176,7 +176,7 @@ func (u_ URLAsset) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avurlasset/url
-func (u_ URLAsset) SetUrl(value foundation.URL) {
+func (u_ URLAsset) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
 }
 

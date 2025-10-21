@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewVisit() Visit {
 // The approximate time at which the user arrived at the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/arrivalDate
-func (v_ Visit) ArrivalDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("arrivalDate"))
+func (v_ Visit) ArrivalDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("arrivalDate"))
 	return rv
 }
 
@@ -99,8 +100,8 @@ func (v_ Visit) Coordinate() unsafe.Pointer {
 // The approximate time at which the user left the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLVisit/departureDate
-func (v_ Visit) DepartureDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("departureDate"))
+func (v_ Visit) DepartureDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("departureDate"))
 	return rv
 }
 

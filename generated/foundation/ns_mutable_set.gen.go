@@ -30,8 +30,8 @@ type _MutableSetClass struct {
 type IMutableSet interface {
 	ISet
 	AddObject(object unsafe.Pointer)
-	AddObjectsFromArray(array unsafe.Pointer)
-	FilterUsingPredicate(predicate unsafe.Pointer)
+	AddObjectsFromArray(array []objc.ID)
+	FilterUsingPredicate(predicate IPredicate)
 	IntersectSet(otherSet unsafe.Pointer)
 	MinusSet(otherSet unsafe.Pointer)
 	RemoveObject(object unsafe.Pointer)
@@ -104,7 +104,7 @@ func NewMutableSetWithCapacity(numItems uint) MutableSet {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(coder:)
-func NewMutableSetWithCoder(coder unsafe.Pointer) MutableSet {
+func NewMutableSetWithCoder(coder ICoder) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -130,14 +130,14 @@ func (m_ MutableSet) AddObject(object unsafe.Pointer) {
 // Adds to the set each object contained in a given array that is not already a member.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/addObjects(from:)
-func (m_ MutableSet) AddObjectsFromArray(array unsafe.Pointer) {
+func (m_ MutableSet) AddObjectsFromArray(array []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addObjectsFromArray:"), array)
 }
 
 // Evaluates a given predicate against the set’s content and removes from the set those objects for which the predicate returns false.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/filter(using:)
-func (m_ MutableSet) FilterUsingPredicate(predicate unsafe.Pointer) {
+func (m_ MutableSet) FilterUsingPredicate(predicate IPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("filterUsingPredicate:"), predicate)
 }
 

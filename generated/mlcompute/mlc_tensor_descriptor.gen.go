@@ -101,8 +101,8 @@ func (c_ CTensorDescriptor) SetBatchSizePerSequenceStep(value int) {
 // The tensor data type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/datatype
-func (c_ CTensorDescriptor) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dataType"))
+func (c_ CTensorDescriptor) DataType() CDataType {
+	rv := objc.Send[CDataType](c_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (c_ CTensorDescriptor) DataType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensordescriptor/datatype
-func (c_ CTensorDescriptor) SetDataType(value unsafe.Pointer) {
+func (c_ CTensorDescriptor) SetDataType(value CDataType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataType:"), value)
 }
 

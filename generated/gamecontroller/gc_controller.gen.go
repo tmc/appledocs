@@ -98,8 +98,8 @@ func (gc _GCControllerClass) StartWirelessControllerDiscoveryWithCompletionHandl
 // The extended gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCController/extendedGamepad
-func (g_ GCController) ExtendedGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("extendedGamepad"))
+func (g_ GCController) ExtendedGamepad() GCExtendedGamepad {
+	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
 }
 
@@ -132,8 +132,8 @@ func (g_ GCController) SetPlayerIndex(value unsafe.Pointer) {
 // The controller’s battery information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/battery
-func (g_ GCController) Battery() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("battery"))
+func (g_ GCController) Battery() GCDeviceBattery {
+	rv := objc.Send[GCDeviceBattery](g_.ID, objc.Sel("battery"))
 	return rv
 }
 
@@ -143,7 +143,7 @@ func (g_ GCController) Battery() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/battery
-func (g_ GCController) SetBattery(value unsafe.Pointer) {
+func (g_ GCController) SetBattery(value IGCDeviceBattery) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBattery:"), value)
 }
 
@@ -168,8 +168,8 @@ func (g_ GCController) SetControllerPausedHandler(value unsafe.Pointer) {
 // The controller’s haptics information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/haptics
-func (g_ GCController) Haptics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("haptics"))
+func (g_ GCController) Haptics() GCDeviceHaptics {
+	rv := objc.Send[GCDeviceHaptics](g_.ID, objc.Sel("haptics"))
 	return rv
 }
 
@@ -179,15 +179,15 @@ func (g_ GCController) Haptics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/haptics
-func (g_ GCController) SetHaptics(value unsafe.Pointer) {
+func (g_ GCController) SetHaptics(value IGCDeviceHaptics) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setHaptics:"), value)
 }
 
 // The input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCController) Input() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
+func (g_ GCController) Input() GCControllerLiveInput {
+	rv := objc.Send[GCControllerLiveInput](g_.ID, objc.Sel("input"))
 	return rv
 }
 
@@ -197,7 +197,7 @@ func (g_ GCController) Input() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/input
-func (g_ GCController) SetInput(value unsafe.Pointer) {
+func (g_ GCController) SetInput(value IGCControllerLiveInput) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInput:"), value)
 }
 
@@ -240,8 +240,8 @@ func (g_ GCController) SetIsSnapshot(value bool) {
 // The controller’s light settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/light
-func (g_ GCController) Light() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("light"))
+func (g_ GCController) Light() GCDeviceLight {
+	rv := objc.Send[GCDeviceLight](g_.ID, objc.Sel("light"))
 	return rv
 }
 
@@ -251,15 +251,15 @@ func (g_ GCController) Light() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/light
-func (g_ GCController) SetLight(value unsafe.Pointer) {
+func (g_ GCController) SetLight(value IGCDeviceLight) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLight:"), value)
 }
 
 // The micro gamepad profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCController) MicroGamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("microGamepad"))
+func (g_ GCController) MicroGamepad() GCMicroGamepad {
+	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
 }
 
@@ -269,15 +269,15 @@ func (g_ GCController) MicroGamepad() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCController) SetMicroGamepad(value unsafe.Pointer) {
+func (g_ GCController) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
 }
 
 // The motion input profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCController) Motion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("motion"))
+func (g_ GCController) Motion() GCMotion {
+	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
 }
 
@@ -287,15 +287,15 @@ func (g_ GCController) Motion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
-func (g_ GCController) SetMotion(value unsafe.Pointer) {
+func (g_ GCController) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
 }
 
 // The physical input profile for the controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCController) PhysicalInputProfile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("physicalInputProfile"))
+func (g_ GCController) PhysicalInputProfile() GCPhysicalInputProfile {
+	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
 }
 
@@ -305,15 +305,15 @@ func (g_ GCController) PhysicalInputProfile() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
-func (g_ GCController) SetPhysicalInputProfile(value unsafe.Pointer) {
+func (g_ GCController) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
 }
 
 // The controller’s left thumbstick element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCController) LeftThumbstick() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("leftThumbstick"))
+func (g_ GCController) LeftThumbstick() GCControllerDirectionPad {
+	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("leftThumbstick"))
 	return rv
 }
 
@@ -323,7 +323,7 @@ func (g_ GCController) LeftThumbstick() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftthumbstick
-func (g_ GCController) SetLeftThumbstick(value unsafe.Pointer) {
+func (g_ GCController) SetLeftThumbstick(value IGCControllerDirectionPad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftThumbstick:"), value)
 }
 

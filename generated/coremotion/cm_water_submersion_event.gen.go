@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewWaterSubmersionEvent() WaterSubmersionEvent {
 // The time and date of the event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionEvent/date
-func (w_ WaterSubmersionEvent) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("date"))
+func (w_ WaterSubmersionEvent) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](w_.ID, objc.Sel("date"))
 	return rv
 }
 
 // The new submersion state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionEvent/state-swift.property
-func (w_ WaterSubmersionEvent) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("state"))
+func (w_ WaterSubmersionEvent) State() WaterSubmersionState {
+	rv := objc.Send[WaterSubmersionState](w_.ID, objc.Sel("state"))
 	return rv
 }
 

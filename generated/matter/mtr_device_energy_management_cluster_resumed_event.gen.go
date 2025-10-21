@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterResumedEvent) Cause() foundation.Number
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterResumedEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterResumedEvent) SetCause(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 

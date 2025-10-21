@@ -78,8 +78,8 @@ func NewMTREventReport() MTREventReport {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/error
-func (m_ MTREventReport) Error() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("error"))
+func (m_ MTREventReport) Error() foundation.Error {
+	rv := objc.Send[foundation.Error](m_.ID, objc.Sel("error"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTREventReport) Error() unsafe.Pointer {
 // SetError sets the value of the error property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/error
-func (m_ MTREventReport) SetError(value unsafe.Pointer) {
+func (m_ MTREventReport) SetError(value foundation.IError) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTREventReport) EventNumber() foundation.Number {
 // SetEventNumber sets the value of the eventNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventnumber
-func (m_ MTREventReport) SetEventNumber(value foundation.Number) {
+func (m_ MTREventReport) SetEventNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEventNumber:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventtimetype
-func (m_ MTREventReport) EventTimeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("eventTimeType"))
+func (m_ MTREventReport) EventTimeType() MTREventTimeType {
+	rv := objc.Send[MTREventTimeType](m_.ID, objc.Sel("eventTimeType"))
 	return rv
 }
 
@@ -117,14 +117,14 @@ func (m_ MTREventReport) EventTimeType() unsafe.Pointer {
 // SetEventTimeType sets the value of the eventTimeType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventtimetype
-func (m_ MTREventReport) SetEventTimeType(value unsafe.Pointer) {
+func (m_ MTREventReport) SetEventTimeType(value MTREventTimeType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEventTimeType:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/path
-func (m_ MTREventReport) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("path"))
+func (m_ MTREventReport) Path() MTREventPath {
+	rv := objc.Send[MTREventPath](m_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTREventReport) Path() unsafe.Pointer {
 // SetPath sets the value of the path property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/path
-func (m_ MTREventReport) SetPath(value unsafe.Pointer) {
+func (m_ MTREventReport) SetPath(value IMTREventPath) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTREventReport) Priority() foundation.Number {
 // SetPriority sets the value of the priority property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/priority
-func (m_ MTREventReport) SetPriority(value foundation.Number) {
+func (m_ MTREventReport) SetPriority(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
 
@@ -177,14 +177,14 @@ func (m_ MTREventReport) Timestamp() foundation.Number {
 // SetTimestamp sets the value of the timestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestamp
-func (m_ MTREventReport) SetTimestamp(value foundation.Number) {
+func (m_ MTREventReport) SetTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimestamp:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestampdate
-func (m_ MTREventReport) TimestampDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timestampDate"))
+func (m_ MTREventReport) TimestampDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("timestampDate"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (m_ MTREventReport) TimestampDate() unsafe.Pointer {
 // SetTimestampDate sets the value of the timestampDate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestampdate
-func (m_ MTREventReport) SetTimestampDate(value unsafe.Pointer) {
+func (m_ MTREventReport) SetTimestampDate(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimestampDate:"), value)
 }
 

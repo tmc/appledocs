@@ -155,8 +155,8 @@ func (s_ SamplerDescriptor) SetCompareFunction(value unsafe.Pointer) {
 // A string that identifies the sampler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/label
-func (s_ SamplerDescriptor) Label() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("label"))
+func (s_ SamplerDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -166,8 +166,8 @@ func (s_ SamplerDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/label
-func (s_ SamplerDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (s_ SamplerDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
 }
 
 // A Boolean value that specifies whether the GPU can use an average level of detail (LOD) when sampling from a texture.
@@ -317,8 +317,8 @@ func (s_ SamplerDescriptor) SetRAddressMode(value unsafe.Pointer) {
 // Sets the reduction mode for filtering contributing samples.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/reductionmode
-func (s_ SamplerDescriptor) ReductionMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("reductionMode"))
+func (s_ SamplerDescriptor) ReductionMode() SamplerReductionMode {
+	rv := objc.Send[SamplerReductionMode](s_.ID, objc.Sel("reductionMode"))
 	return rv
 }
 
@@ -328,7 +328,7 @@ func (s_ SamplerDescriptor) ReductionMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/reductionmode
-func (s_ SamplerDescriptor) SetReductionMode(value unsafe.Pointer) {
+func (s_ SamplerDescriptor) SetReductionMode(value SamplerReductionMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReductionMode:"), value)
 }
 

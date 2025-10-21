@@ -83,79 +83,79 @@ func NewUNNotificationSettings() UNNotificationSettings {
 // The authorization status for displaying alerts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/alertSetting
-func (u_ UNNotificationSettings) AlertSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("alertSetting"))
+func (u_ UNNotificationSettings) AlertSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("alertSetting"))
 	return rv
 }
 
 // The type of alert that the app may display when the device is unlocked.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/alertStyle
-func (u_ UNNotificationSettings) AlertStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("alertStyle"))
+func (u_ UNNotificationSettings) AlertStyle() UNAlertStyle {
+	rv := objc.Send[UNAlertStyle](u_.ID, objc.Sel("alertStyle"))
 	return rv
 }
 
 // The setting that indicates whether Siri can announce your app’s notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/announcementSetting
-func (u_ UNNotificationSettings) AnnouncementSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("announcementSetting"))
+func (u_ UNNotificationSettings) AnnouncementSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("announcementSetting"))
 	return rv
 }
 
 // The app’s ability to schedule and receive local and remote notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/authorizationStatus
-func (u_ UNNotificationSettings) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("authorizationStatus"))
+func (u_ UNNotificationSettings) AuthorizationStatus() UNAuthorizationStatus {
+	rv := objc.Send[UNAuthorizationStatus](u_.ID, objc.Sel("authorizationStatus"))
 	return rv
 }
 
 // The setting that indicates whether badges appear on your app’s icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/badgeSetting
-func (u_ UNNotificationSettings) BadgeSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("badgeSetting"))
+func (u_ UNNotificationSettings) BadgeSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("badgeSetting"))
 	return rv
 }
 
 // The setting that indicates whether your app’s notifications appear in CarPlay.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/carPlaySetting
-func (u_ UNNotificationSettings) CarPlaySetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("carPlaySetting"))
+func (u_ UNNotificationSettings) CarPlaySetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("carPlaySetting"))
 	return rv
 }
 
 // The authorization status for playing sounds for critical alerts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/criticalAlertSetting
-func (u_ UNNotificationSettings) CriticalAlertSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("criticalAlertSetting"))
+func (u_ UNNotificationSettings) CriticalAlertSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("criticalAlertSetting"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/directMessagesSetting
-func (u_ UNNotificationSettings) DirectMessagesSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("directMessagesSetting"))
+func (u_ UNNotificationSettings) DirectMessagesSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("directMessagesSetting"))
 	return rv
 }
 
 // The setting that indicates whether your app’s notifications appear on a device’s Lock screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/lockScreenSetting
-func (u_ UNNotificationSettings) LockScreenSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("lockScreenSetting"))
+func (u_ UNNotificationSettings) LockScreenSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("lockScreenSetting"))
 	return rv
 }
 
 // The setting that indicates whether your app’s notifications appear in Notification Center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/notificationCenterSetting
-func (u_ UNNotificationSettings) NotificationCenterSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("notificationCenterSetting"))
+func (u_ UNNotificationSettings) NotificationCenterSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("notificationCenterSetting"))
 	return rv
 }
 
@@ -170,32 +170,32 @@ func (u_ UNNotificationSettings) ProvidesAppNotificationSettings() bool {
 // The setting that indicates the system schedules the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/scheduledDeliverySetting
-func (u_ UNNotificationSettings) ScheduledDeliverySetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scheduledDeliverySetting"))
+func (u_ UNNotificationSettings) ScheduledDeliverySetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("scheduledDeliverySetting"))
 	return rv
 }
 
 // The setting that indicates whether the app shows a preview of the notification’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/showPreviewsSetting
-func (u_ UNNotificationSettings) ShowPreviewsSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("showPreviewsSetting"))
+func (u_ UNNotificationSettings) ShowPreviewsSetting() UNShowPreviewsSetting {
+	rv := objc.Send[UNShowPreviewsSetting](u_.ID, objc.Sel("showPreviewsSetting"))
 	return rv
 }
 
 // The authorization status for playing sounds for incoming notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/soundSetting
-func (u_ UNNotificationSettings) SoundSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("soundSetting"))
+func (u_ UNNotificationSettings) SoundSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("soundSetting"))
 	return rv
 }
 
 // The setting that indicates the system treats the notification as time-sensitive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSettings/timeSensitiveSetting
-func (u_ UNNotificationSettings) TimeSensitiveSetting() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("timeSensitiveSetting"))
+func (u_ UNNotificationSettings) TimeSensitiveSetting() UNNotificationSetting {
+	rv := objc.Send[UNNotificationSetting](u_.ID, objc.Sel("timeSensitiveSetting"))
 	return rv
 }
 

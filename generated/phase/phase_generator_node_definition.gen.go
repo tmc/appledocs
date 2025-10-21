@@ -84,8 +84,8 @@ func NewPHASEGeneratorNodeDefinition() PHASEGeneratorNodeDefinition {
 // A meta parameter that dynamically changes the audio’s loudness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/gainMetaParameterDefinition
-func (p_ PHASEGeneratorNodeDefinition) GainMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("gainMetaParameterDefinition"))
+func (p_ PHASEGeneratorNodeDefinition) GainMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("gainMetaParameterDefinition"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (p_ PHASEGeneratorNodeDefinition) GainMetaParameterDefinition() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/gainMetaParameterDefinition
-func (p_ PHASEGeneratorNodeDefinition) SetGainMetaParameterDefinition(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetGainMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameterDefinition:"), value)
 }
 
@@ -120,8 +120,8 @@ func (p_ PHASEGeneratorNodeDefinition) SetRate(value unsafe.Pointer) {
 // A meta parameter that dynamically changes the audio’s rate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rateMetaParameterDefinition
-func (p_ PHASEGeneratorNodeDefinition) RateMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("rateMetaParameterDefinition"))
+func (p_ PHASEGeneratorNodeDefinition) RateMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("rateMetaParameterDefinition"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (p_ PHASEGeneratorNodeDefinition) RateMetaParameterDefinition() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEGeneratorNodeDefinition/rateMetaParameterDefinition
-func (p_ PHASEGeneratorNodeDefinition) SetRateMetaParameterDefinition(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetRateMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRateMetaParameterDefinition:"), value)
 }
 
 // A sound pressure level strategy for loudness correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/calibrationmode
-func (p_ PHASEGeneratorNodeDefinition) CalibrationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("calibrationMode"))
+func (p_ PHASEGeneratorNodeDefinition) CalibrationMode() PHASECalibrationMode {
+	rv := objc.Send[PHASECalibrationMode](p_.ID, objc.Sel("calibrationMode"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (p_ PHASEGeneratorNodeDefinition) CalibrationMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/calibrationmode
-func (p_ PHASEGeneratorNodeDefinition) SetCalibrationMode(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetCalibrationMode(value PHASECalibrationMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCalibrationMode:"), value)
 }
 
 // A group this node conforms to for gain and rate control.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/group
-func (p_ PHASEGeneratorNodeDefinition) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("group"))
+func (p_ PHASEGeneratorNodeDefinition) Group() PHASEGroup {
+	rv := objc.Send[PHASEGroup](p_.ID, objc.Sel("group"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (p_ PHASEGeneratorNodeDefinition) Group() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/group
-func (p_ PHASEGeneratorNodeDefinition) SetGroup(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetGroup(value IPHASEGroup) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setGroup:"), value)
 }
 
@@ -192,8 +192,8 @@ func (p_ PHASEGeneratorNodeDefinition) SetLevel(value unsafe.Pointer) {
 // An object that combines audio layers for the node’s output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/mixerdefinition
-func (p_ PHASEGeneratorNodeDefinition) MixerDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mixerDefinition"))
+func (p_ PHASEGeneratorNodeDefinition) MixerDefinition() PHASEMixerDefinition {
+	rv := objc.Send[PHASEMixerDefinition](p_.ID, objc.Sel("mixerDefinition"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (p_ PHASEGeneratorNodeDefinition) MixerDefinition() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasegeneratornodedefinition/mixerdefinition
-func (p_ PHASEGeneratorNodeDefinition) SetMixerDefinition(value unsafe.Pointer) {
+func (p_ PHASEGeneratorNodeDefinition) SetMixerDefinition(value IPHASEMixerDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMixerDefinition:"), value)
 }
 

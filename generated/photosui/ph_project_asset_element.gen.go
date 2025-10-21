@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/photos"
 )
 
 // The class instance for the [PHProjectAssetElement] class.
@@ -85,16 +87,16 @@ func NewPHProjectAssetElement() PHProjectAssetElement {
 // A string annotation attached to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectAssetElement/annotation
-func (p_ PHProjectAssetElement) Annotation() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("annotation"))
+func (p_ PHProjectAssetElement) Annotation() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("annotation"))
 	return rv
 }
 
 // The asset’s identifier in the cloud.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectAssetElement/cloudAssetIdentifier
-func (p_ PHProjectAssetElement) CloudAssetIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cloudAssetIdentifier"))
+func (p_ PHProjectAssetElement) CloudAssetIdentifier() photos.PHCloudIdentifier {
+	rv := objc.Send[photos.PHCloudIdentifier](p_.ID, objc.Sel("cloudAssetIdentifier"))
 	return rv
 }
 
@@ -133,8 +135,8 @@ func (p_ PHProjectAssetElement) VerticallyFlipped() bool {
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier
-func (p_ PHProjectAssetElement) AssetLocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("assetLocalIdentifier"))
+func (p_ PHProjectAssetElement) AssetLocalIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("assetLocalIdentifier"))
 	return rv
 }
 
@@ -144,15 +146,15 @@ func (p_ PHProjectAssetElement) AssetLocalIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetresource/assetlocalidentifier
-func (p_ PHProjectAssetElement) SetAssetLocalIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetLocalIdentifier:"), objc.String(value))
+func (p_ PHProjectAssetElement) SetAssetLocalIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetLocalIdentifier:"), value)
 }
 
 // An array containing all cloud asset identifiers referenced in the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsectioncontent/cloudassetidentifiers
-func (p_ PHProjectAssetElement) CloudAssetIdentifiers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cloudAssetIdentifiers"))
+func (p_ PHProjectAssetElement) CloudAssetIdentifiers() photos.PHCloudIdentifier {
+	rv := objc.Send[photos.PHCloudIdentifier](p_.ID, objc.Sel("cloudAssetIdentifiers"))
 	return rv
 }
 
@@ -162,7 +164,7 @@ func (p_ PHProjectAssetElement) CloudAssetIdentifiers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phprojectsectioncontent/cloudassetidentifiers
-func (p_ PHProjectAssetElement) SetCloudAssetIdentifiers(value unsafe.Pointer) {
+func (p_ PHProjectAssetElement) SetCloudAssetIdentifiers(value photos.IPHCloudIdentifier) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudAssetIdentifiers:"), value)
 }
 

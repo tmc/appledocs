@@ -8,6 +8,8 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/avrouting"
 )
 
 // The class instance for the [RoutePickerView] class.
@@ -30,8 +32,8 @@ type _RoutePickerViewClass struct {
 // An interface definition for the [RoutePickerView] class.
 type IRoutePickerView interface {
 	appkit.IView
-	RoutePickerButtonColorForState(state unsafe.Pointer) unsafe.Pointer
-	SetRoutePickerButtonColorForState(color unsafe.Pointer, state unsafe.Pointer)
+	RoutePickerButtonColorForState(state RoutePickerViewButtonState) appkit.Color
+	SetRoutePickerButtonColorForState(color appkit.IColor, state RoutePickerViewButtonState)
 }
 
 // A view that presents a list of nearby media receivers.
@@ -87,23 +89,23 @@ func NewRoutePickerView() RoutePickerView {
 // Returns the color of the picker button for the specified state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonColor(for:)
-func (r_ RoutePickerView) RoutePickerButtonColorForState(state unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("routePickerButtonColorForState:"), state)
+func (r_ RoutePickerView) RoutePickerButtonColorForState(state RoutePickerViewButtonState) appkit.Color {
+	rv := objc.Send[appkit.Color](r_.ID, objc.Sel("routePickerButtonColorForState:"), state)
 	return rv
 }
 
 // Sets the route picker button color for the specified state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/setRoutePickerButtonColor(_:for:)
-func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color unsafe.Pointer, state unsafe.Pointer) {
+func (r_ RoutePickerView) SetRoutePickerButtonColorForState(color appkit.IColor, state RoutePickerViewButtonState) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonColor:forState:"), color, state)
 }
 
 // The view’s tint color when AirPlay is active.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor
-func (r_ RoutePickerView) ActiveTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("activeTintColor"))
+func (r_ RoutePickerView) ActiveTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](r_.ID, objc.Sel("activeTintColor"))
 	return rv
 }
 
@@ -113,15 +115,15 @@ func (r_ RoutePickerView) ActiveTintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor
-func (r_ RoutePickerView) SetActiveTintColor(value unsafe.Pointer) {
+func (r_ RoutePickerView) SetActiveTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setActiveTintColor:"), value)
 }
 
 // A routing controller that enables connections to non-AirPlay devices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
-func (r_ RoutePickerView) CustomRoutingController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("customRoutingController"))
+func (r_ RoutePickerView) CustomRoutingController() avrouting.CustomRoutingController {
+	rv := objc.Send[avrouting.CustomRoutingController](r_.ID, objc.Sel("customRoutingController"))
 	return rv
 }
 
@@ -131,7 +133,7 @@ func (r_ RoutePickerView) CustomRoutingController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
-func (r_ RoutePickerView) SetCustomRoutingController(value unsafe.Pointer) {
+func (r_ RoutePickerView) SetCustomRoutingController(value avrouting.ICustomRoutingController) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setCustomRoutingController:"), value)
 }
 
@@ -174,8 +176,8 @@ func (r_ RoutePickerView) SetRoutePickerButtonBordered(value bool) {
 // The player object to perform routing operations for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/player
-func (r_ RoutePickerView) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("player"))
+func (r_ RoutePickerView) Player() avfoundation.Player {
+	rv := objc.Send[avfoundation.Player](r_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -185,7 +187,7 @@ func (r_ RoutePickerView) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/player
-func (r_ RoutePickerView) SetPlayer(value unsafe.Pointer) {
+func (r_ RoutePickerView) SetPlayer(value avfoundation.IPlayer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setPlayer:"), value)
 }
 
@@ -210,8 +212,8 @@ func (r_ RoutePickerView) SetPrioritizesVideoDevices(value bool) {
 // The button style for the route picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
-func (r_ RoutePickerView) RoutePickerButtonStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("routePickerButtonStyle"))
+func (r_ RoutePickerView) RoutePickerButtonStyle() RoutePickerViewButtonStyle {
+	rv := objc.Send[RoutePickerViewButtonStyle](r_.ID, objc.Sel("routePickerButtonStyle"))
 	return rv
 }
 
@@ -221,7 +223,7 @@ func (r_ RoutePickerView) RoutePickerButtonStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/routePickerButtonStyle
-func (r_ RoutePickerView) SetRoutePickerButtonStyle(value unsafe.Pointer) {
+func (r_ RoutePickerView) SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRoutePickerButtonStyle:"), value)
 }
 

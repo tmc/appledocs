@@ -30,9 +30,9 @@ type _NEFilterDataProviderClass struct {
 type INEFilterDataProvider interface {
 	INEFilterProvider
 	ApplySettingsCompletionHandler(settings unsafe.Pointer, completionHandler unsafe.Pointer)
-	HandleNewFlow(flow unsafe.Pointer) unsafe.Pointer
-	ResumeFlowWithVerdict(flow unsafe.Pointer, verdict unsafe.Pointer)
-	UpdateFlowUsingVerdictForDirection(flow unsafe.Pointer, verdict unsafe.Pointer, direction unsafe.Pointer)
+	HandleNewFlow(flow INEFilterFlow) NEFilterNewFlowVerdict
+	ResumeFlowWithVerdict(flow INEFilterFlow, verdict INEFilterVerdict)
+	UpdateFlowUsingVerdictForDirection(flow INEFilterSocketFlow, verdict INEFilterDataVerdict, direction NETrafficDirection)
 }
 
 // The principal class for a filter data provider extension.
@@ -95,22 +95,22 @@ func (n_ NEFilterDataProvider) ApplySettingsCompletionHandler(settings unsafe.Po
 // Make a filtering decision for a newly-created flow of network content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterDataProvider/handleNewFlow(_:)
-func (n_ NEFilterDataProvider) HandleNewFlow(flow unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("handleNewFlow:"), flow)
+func (n_ NEFilterDataProvider) HandleNewFlow(flow INEFilterFlow) NEFilterNewFlowVerdict {
+	rv := objc.Send[NEFilterNewFlowVerdict](n_.ID, objc.Sel("handleNewFlow:"), flow)
 	return rv
 }
 
 // Resumes a previously-paused flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterDataProvider/resumeFlow(_:with:)
-func (n_ NEFilterDataProvider) ResumeFlowWithVerdict(flow unsafe.Pointer, verdict unsafe.Pointer) {
+func (n_ NEFilterDataProvider) ResumeFlowWithVerdict(flow INEFilterFlow, verdict INEFilterVerdict) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("resumeFlow:withVerdict:"), flow, verdict)
 }
 
 // Updates the verdict for a flow outside the context of any filter data provider callback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterDataProvider/update(_:using:for:)
-func (n_ NEFilterDataProvider) UpdateFlowUsingVerdictForDirection(flow unsafe.Pointer, verdict unsafe.Pointer, direction unsafe.Pointer) {
+func (n_ NEFilterDataProvider) UpdateFlowUsingVerdictForDirection(flow INEFilterSocketFlow, verdict INEFilterDataVerdict, direction NETrafficDirection) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("updateFlow:usingVerdict:forDirection:"), flow, verdict, direction)
 }
 

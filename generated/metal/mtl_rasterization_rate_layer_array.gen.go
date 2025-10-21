@@ -30,8 +30,8 @@ type _RasterizationRateLayerArrayClass struct {
 // An interface definition for the [RasterizationRateLayerArray] class.
 type IRasterizationRateLayerArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(layer unsafe.Pointer, layerIndex uint)
-	ObjectAtIndexedSubscript(layerIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(layer IMTLRasterizationRateLayerDescriptor, layerIndex uint)
+	ObjectAtIndexedSubscript(layerIndex uint) RasterizationRateLayerDescriptor
 }
 
 // Descriptions for the rasterization rates to apply to the set of layers in a rate map.
@@ -83,15 +83,15 @@ func NewRasterizationRateLayerArray() RasterizationRateLayerArray {
 // Stores a sample value at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerArray/setObject:atIndexedSubscript:
-func (r_ RasterizationRateLayerArray) SetObjectAtIndexedSubscript(layer unsafe.Pointer, layerIndex uint) {
+func (r_ RasterizationRateLayerArray) SetObjectAtIndexedSubscript(layer IMTLRasterizationRateLayerDescriptor, layerIndex uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setObject:atIndexedSubscript:"), layer, layerIndex)
 }
 
 // Retrieves the sample value at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateLayerArray/subscript(_:)
-func (r_ RasterizationRateLayerArray) ObjectAtIndexedSubscript(layerIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("objectAtIndexedSubscript:"), layerIndex)
+func (r_ RasterizationRateLayerArray) ObjectAtIndexedSubscript(layerIndex uint) RasterizationRateLayerDescriptor {
+	rv := objc.Send[RasterizationRateLayerDescriptor](r_.ID, objc.Sel("objectAtIndexedSubscript:"), layerIndex)
 	return rv
 }
 
@@ -116,8 +116,8 @@ func (r_ RasterizationRateLayerArray) SetLayerCount(value int) {
 // The rasterization rates for one or more layers in the rate map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor/layers
-func (r_ RasterizationRateLayerArray) Layers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("layers"))
+func (r_ RasterizationRateLayerArray) Layers() MTLRasterizationRateLayerArray {
+	rv := objc.Send[MTLRasterizationRateLayerArray](r_.ID, objc.Sel("layers"))
 	return rv
 }
 
@@ -127,7 +127,7 @@ func (r_ RasterizationRateLayerArray) Layers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlrasterizationratemapdescriptor/layers
-func (r_ RasterizationRateLayerArray) SetLayers(value unsafe.Pointer) {
+func (r_ RasterizationRateLayerArray) SetLayers(value IMTLRasterizationRateLayerArray) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayers:"), value)
 }
 

@@ -78,8 +78,8 @@ func NewMTRDoorLockClusterUnlockDoorParams() MTRDoorLockClusterUnlockDoorParams 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockdoorparams/pincode
-func (m_ MTRDoorLockClusterUnlockDoorParams) PinCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinCode"))
+func (m_ MTRDoorLockClusterUnlockDoorParams) PinCode() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("pinCode"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterUnlockDoorParams) PinCode() unsafe.Pointer {
 // SetPinCode sets the value of the pinCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockdoorparams/pincode
-func (m_ MTRDoorLockClusterUnlockDoorParams) SetPinCode(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterUnlockDoorParams) SetPinCode(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterUnlockDoorParams) ServerSideProcessingTimeout() found
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockdoorparams/serversideprocessingtimeout
-func (m_ MTRDoorLockClusterUnlockDoorParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnlockDoorParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterUnlockDoorParams) TimedInvokeTimeoutMs() foundation.N
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterunlockdoorparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterUnlockDoorParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterUnlockDoorParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

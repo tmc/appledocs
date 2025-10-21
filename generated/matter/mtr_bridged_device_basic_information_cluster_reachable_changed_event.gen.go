@@ -87,7 +87,7 @@ func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) Reachable
 // SetReachableNewValue sets the value of the reachableNewValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterreachablechangedevent/reachablenewvalue
-func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value foundation.Number) {
+func (m_ MTRBridgedDeviceBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
 

@@ -83,16 +83,16 @@ func NewCKSyncEngineSendChangesContext() CKSyncEngineSendChangesContext {
 // The additional options for the send operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext/options
-func (c_ CKSyncEngineSendChangesContext) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("options"))
+func (c_ CKSyncEngineSendChangesContext) Options() CKSyncEngineSendChangesOptions {
+	rv := objc.Send[CKSyncEngineSendChangesOptions](c_.ID, objc.Sel("options"))
 	return rv
 }
 
 // The reason for the send operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesContext/reason
-func (c_ CKSyncEngineSendChangesContext) Reason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reason"))
+func (c_ CKSyncEngineSendChangesContext) Reason() CKSyncEngineSyncReason {
+	rv := objc.Send[CKSyncEngineSyncReason](c_.ID, objc.Sel("reason"))
 	return rv
 }
 

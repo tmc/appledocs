@@ -30,7 +30,7 @@ type _ComputePassSampleBufferAttachmentDescriptorArrayClass struct {
 // An interface definition for the [ComputePassSampleBufferAttachmentDescriptorArray] class.
 type IComputePassSampleBufferAttachmentDescriptorArray interface {
 	objectivec.IObject
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	ObjectAtIndexedSubscript(attachmentIndex uint) ComputePassSampleBufferAttachmentDescriptor
 }
 
 // A container that stores an array of sample buffer attachments for a compute pass.
@@ -84,8 +84,8 @@ func NewComputePassSampleBufferAttachmentDescriptorArray() ComputePassSampleBuff
 // Returns the descriptor object for the specified sample buffer attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePassSampleBufferAttachmentDescriptorArray/subscript(_:)
-func (c_ ComputePassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (c_ ComputePassSampleBufferAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) ComputePassSampleBufferAttachmentDescriptor {
+	rv := objc.Send[ComputePassSampleBufferAttachmentDescriptor](c_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

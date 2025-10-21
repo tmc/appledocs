@@ -83,8 +83,8 @@ func NewPreferences() Preferences {
 // A policy you set to specify how a web view that’s not in a window handles tasks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/inactiveSchedulingPolicy-swift.property
-func (p_ Preferences) InactiveSchedulingPolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inactiveSchedulingPolicy"))
+func (p_ Preferences) InactiveSchedulingPolicy() InactiveSchedulingPolicy {
+	rv := objc.Send[InactiveSchedulingPolicy](p_.ID, objc.Sel("inactiveSchedulingPolicy"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (p_ Preferences) InactiveSchedulingPolicy() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKPreferences/inactiveSchedulingPolicy-swift.property
-func (p_ Preferences) SetInactiveSchedulingPolicy(value unsafe.Pointer) {
+func (p_ Preferences) SetInactiveSchedulingPolicy(value InactiveSchedulingPolicy) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInactiveSchedulingPolicy:"), value)
 }
 
@@ -386,8 +386,8 @@ func (p_ Preferences) SetIsTextInteractionEnabled(value bool) {
 // The object that manages the preference-related settings for the web view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences
-func (p_ Preferences) Preferences() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("preferences"))
+func (p_ Preferences) Preferences() WKPreferences {
+	rv := objc.Send[WKPreferences](p_.ID, objc.Sel("preferences"))
 	return rv
 }
 
@@ -397,7 +397,7 @@ func (p_ Preferences) Preferences() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences
-func (p_ Preferences) SetPreferences(value unsafe.Pointer) {
+func (p_ Preferences) SetPreferences(value IWKPreferences) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferences:"), value)
 }
 

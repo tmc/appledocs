@@ -87,7 +87,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) EndSystim
 // SetEndSystime sets the value of the endSystime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/endsystime
-func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEndSystime(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEndSystime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndSystime:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) EndTimest
 // SetEndTimestamp sets the value of the endTimestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/endtimestamp
-func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEndTimestamp(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEndTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTimestamp:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) Energy() 
 // SetEnergy sets the value of the energy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/energy
-func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEnergy(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEnergy(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergy:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) StartSyst
 // SetStartSystime sets the value of the startSystime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/startsystime
-func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetStartSystime(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetStartSystime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSystime:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) StartTime
 // SetStartTimestamp sets the value of the startTimestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/starttimestamp
-func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetStartTimestamp(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetStartTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTimestamp:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRLevelControlClusterStopParams) OptionsMask() foundation.Number {
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopparams/optionsmask
-func (m_ MTRLevelControlClusterStopParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRLevelControlClusterStopParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRLevelControlClusterStopParams) OptionsOverride() foundation.Number {
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopparams/optionsoverride
-func (m_ MTRLevelControlClusterStopParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRLevelControlClusterStopParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRLevelControlClusterStopParams) ServerSideProcessingTimeout() foundat
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopparams/serversideprocessingtimeout
-func (m_ MTRLevelControlClusterStopParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRLevelControlClusterStopParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRLevelControlClusterStopParams) TimedInvokeTimeoutMs() foundation.Num
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlevelcontrolclusterstopparams/timedinvoketimeoutms
-func (m_ MTRLevelControlClusterStopParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRLevelControlClusterStopParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

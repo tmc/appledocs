@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -92,16 +93,16 @@ func (m_ MediaGroup) ChildGroups() []MediaGroup {
 // The media group’s icon.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/iconImage
-func (m_ MediaGroup) IconImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("iconImage"))
+func (m_ MediaGroup) IconImage() appkit.Image {
+	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("iconImage"))
 	return rv
 }
 
 // A pointer to the media library instance that loaded the media group’s source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/mediaLibrary
-func (m_ MediaGroup) MediaLibrary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaLibrary"))
+func (m_ MediaGroup) MediaLibrary() MLMediaLibrary {
+	rv := objc.Send[MLMediaLibrary](m_.ID, objc.Sel("mediaLibrary"))
 	return rv
 }
 
@@ -116,24 +117,24 @@ func (m_ MediaGroup) MediaObjects() []MediaObject {
 // The date and time when the media group was last altered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/modificationDate
-func (m_ MediaGroup) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modificationDate"))
+func (m_ MediaGroup) ModificationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
 // The media group’s parent group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/parent
-func (m_ MediaGroup) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parent"))
+func (m_ MediaGroup) Parent() MLMediaGroup {
+	rv := objc.Send[MLMediaGroup](m_.ID, objc.Sel("parent"))
 	return rv
 }
 
 // An identifier for the media group’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaLibrary/MLMediaGroup/typeIdentifier
-func (m_ MediaGroup) TypeIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("typeIdentifier"))
+func (m_ MediaGroup) TypeIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
 
@@ -148,8 +149,8 @@ func (m_ MediaGroup) URL() foundation.URL {
 // A dictionary of attributes describing the media group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/attributes
-func (m_ MediaGroup) Attributes() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("attributes"))
+func (m_ MediaGroup) Attributes() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("attributes"))
 	return rv
 }
 
@@ -159,15 +160,15 @@ func (m_ MediaGroup) Attributes() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/attributes
-func (m_ MediaGroup) SetAttributes(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), objc.String(value))
+func (m_ MediaGroup) SetAttributes(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
 }
 
 // An identifier for the media group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/identifier
-func (m_ MediaGroup) Identifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("identifier"))
+func (m_ MediaGroup) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -177,15 +178,15 @@ func (m_ MediaGroup) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/identifier
-func (m_ MediaGroup) SetIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (m_ MediaGroup) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // An identifier for the source that loaded the media group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediasourceidentifier
-func (m_ MediaGroup) MediaSourceIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("mediaSourceIdentifier"))
+func (m_ MediaGroup) MediaSourceIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("mediaSourceIdentifier"))
 	return rv
 }
 
@@ -195,15 +196,15 @@ func (m_ MediaGroup) MediaSourceIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/mediasourceidentifier
-func (m_ MediaGroup) SetMediaSourceIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), objc.String(value))
+func (m_ MediaGroup) SetMediaSourceIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaSourceIdentifier:"), value)
 }
 
 // The name of the media group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/name
-func (m_ MediaGroup) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MediaGroup) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -213,8 +214,8 @@ func (m_ MediaGroup) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/medialibrary/mlmediagroup/name
-func (m_ MediaGroup) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MediaGroup) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

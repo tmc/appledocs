@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -84,7 +85,7 @@ func NewVZMacOSRestoreImage() VZMacOSRestoreImage {
 // Load a restore image from a file on the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/image(from:)
-func (vc _VZMacOSRestoreImageClass) LoadFileURLCompletionHandler(fileURL foundation.URL, completionHandler unsafe.Pointer) {
+func (vc _VZMacOSRestoreImageClass) LoadFileURLCompletionHandler(fileURL foundation.IURL, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("loadFileURL:completionHandler:"), fileURL, completionHandler)
 }
 
@@ -98,8 +99,8 @@ func (vc _VZMacOSRestoreImageClass) FetchLatestSupportedWithCompletionHandler(co
 // The build version this restore image contains.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/buildVersion
-func (v_ VZMacOSRestoreImage) BuildVersion() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("buildVersion"))
+func (v_ VZMacOSRestoreImage) BuildVersion() appkit.string {
+	rv := objc.Send[appkit.string](v_.ID, objc.Sel("buildVersion"))
 	return rv
 }
 
@@ -114,8 +115,8 @@ func (v_ VZMacOSRestoreImage) Supported() bool {
 // This object represents the most fully featured configuration that’s supported by both the current host and by this restore image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSRestoreImage/mostFeaturefulSupportedConfiguration
-func (v_ VZMacOSRestoreImage) MostFeaturefulSupportedConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
+func (v_ VZMacOSRestoreImage) MostFeaturefulSupportedConfiguration() VZMacOSConfigurationRequirements {
+	rv := objc.Send[VZMacOSConfigurationRequirements](v_.ID, objc.Sel("mostFeaturefulSupportedConfiguration"))
 	return rv
 }
 
@@ -156,8 +157,8 @@ func (v_ VZMacOSRestoreImage) SetIsSupported(value bool) {
 // The Mac hardware model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacOSRestoreImage) HardwareModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
+func (v_ VZMacOSRestoreImage) HardwareModel() VZMacHardwareModel {
+	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
 }
 
@@ -167,7 +168,7 @@ func (v_ VZMacOSRestoreImage) HardwareModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel
-func (v_ VZMacOSRestoreImage) SetHardwareModel(value unsafe.Pointer) {
+func (v_ VZMacOSRestoreImage) SetHardwareModel(value IVZMacHardwareModel) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHardwareModel:"), value)
 }
 

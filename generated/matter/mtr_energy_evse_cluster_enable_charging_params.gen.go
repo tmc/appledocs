@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) ChargingEnabledUntil() founda
 // SetChargingEnabledUntil sets the value of the chargingEnabledUntil property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/chargingEnabledUntil
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetChargingEnabledUntil(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingEnabledUntil:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) MaximumChargeCurrent() founda
 // SetMaximumChargeCurrent sets the value of the maximumChargeCurrent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/maximumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMaximumChargeCurrent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumChargeCurrent:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) MinimumChargeCurrent() founda
 // SetMinimumChargeCurrent sets the value of the minimumChargeCurrent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/minimumChargeCurrent
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetMinimumChargeCurrent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumChargeCurrent:"), value)
 }
 
@@ -135,7 +135,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) ServerSideProcessingTimeout()
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -153,7 +153,7 @@ func (m_ MTREnergyEVSEClusterEnableChargingParams) TimedInvokeTimeoutMs() founda
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnableChargingParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnableChargingParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

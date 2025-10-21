@@ -131,7 +131,7 @@ func (p_ PDFActionRemoteGoTo) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionremotegoto/url
-func (p_ PDFActionRemoteGoTo) SetUrl(value foundation.URL) {
+func (p_ PDFActionRemoteGoTo) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) BytesDownloaded
 // SetBytesDownloaded sets the value of the bytesDownloaded property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/bytesdownloaded
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetBytesDownloaded(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBytesDownloaded:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) PlatformCode() 
 // SetPlatformCode sets the value of the platformCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/platformcode
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetPlatformCode(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetPlatformCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPlatformCode:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) ProgressPercent
 // SetProgressPercent sets the value of the progressPercent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/progresspercent
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetProgressPercent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProgressPercent:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SoftwareVersion
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdaterequestorclusterdownloaderrorevent-2w5rw/softwareversion
-func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 

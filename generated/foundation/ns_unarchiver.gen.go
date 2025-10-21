@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [Unarchiver] class.
@@ -86,7 +87,7 @@ func NewUnarchiver() Unarchiver {
 // Returns an object initialized to read an archive from a given data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/init(forReadingWith:)
-func NewUnarchiverForReadingWithData(data unsafe.Pointer) Unarchiver {
+func NewUnarchiverForReadingWithData(data IData) Unarchiver {
 	instance := getUnarchiverClass().Alloc()
 	rv := objc.Send[Unarchiver](instance.ID, objc.Sel("initForReadingWithData:"), data)
 	rv.Autorelease()
@@ -97,14 +98,14 @@ func NewUnarchiverForReadingWithData(data unsafe.Pointer) Unarchiver {
 // Instructs instances of to use the class with a given name when instantiating objects whose ostensible class, according to the archived data, is another given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/decodeClassName(_:asClassName:)-swift.type.method
-func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName string, trueName string) {
-	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("decodeClassName:asClassName:"), objc.String(inArchiveName), objc.String(trueName))
+func (uc _UnarchiverClass) DecodeClassNameAsClassName(inArchiveName appkit.string, trueName appkit.string) {
+	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("decodeClassName:asClassName:"), inArchiveName, trueName)
 }
 
 // Decodes and returns the object archived in a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnarchiver/unarchiveObject(with:)
-func (uc _UnarchiverClass) UnarchiveObjectWithData(data unsafe.Pointer) objc.ID {
+func (uc _UnarchiverClass) UnarchiveObjectWithData(data IData) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unarchiveObjectWithData:"), data)
 	return rv
 }

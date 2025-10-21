@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [MKPlacemark] class.
@@ -29,7 +29,7 @@ type _MKPlacemarkClass struct {
 
 // An interface definition for the [MKPlacemark] class.
 type IMKPlacemark interface {
-	objectivec.IObject
+	IPlacemark
 }
 
 // A user-friendly description of a location on the map.
@@ -38,14 +38,16 @@ type IMKPlacemark interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKPlacemark
 type MKPlacemark struct {
-	objectivec.Object
+	corelocation.Placemark
 }
 
 // MKPlacemarkFrom constructs a [MKPlacemark] from an unsafe.Pointer.
 //
 // A user-friendly description of a location on the map.
 func MKPlacemarkFrom(ptr unsafe.Pointer) MKPlacemark {
-	return MKPlacemark{objectivec.Object{objc.ID(ptr)}}
+	return MKPlacemark{
+		Placemark: corelocation.PlacemarkFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -96,8 +98,8 @@ func NewMKPlacemarkWithCoordinate(coordinate unsafe.Pointer) MKPlacemark {
 // The abbreviated country or region name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkplacemark/countrycode
-func (m_ MKPlacemark) CountryCode() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("countryCode"))
+func (m_ MKPlacemark) CountryCode() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("countryCode"))
 	return rv
 }
 
@@ -107,8 +109,8 @@ func (m_ MKPlacemark) CountryCode() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkplacemark/countrycode
-func (m_ MKPlacemark) SetCountryCode(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), objc.String(value))
+func (m_ MKPlacemark) SetCountryCode(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
 }
 
 

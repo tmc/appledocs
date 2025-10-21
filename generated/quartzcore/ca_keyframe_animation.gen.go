@@ -97,7 +97,7 @@ func (k_ KeyframeAnimation) BiasValues() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/biasValues
-func (k_ KeyframeAnimation) SetBiasValues(value []foundation.Number) {
+func (k_ KeyframeAnimation) SetBiasValues(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -114,8 +114,8 @@ func (k_ KeyframeAnimation) SetBiasValues(value []foundation.Number) {
 // Specifies how intermediate keyframe values are calculated by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/calculationMode
-func (k_ KeyframeAnimation) CalculationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("calculationMode"))
+func (k_ KeyframeAnimation) CalculationMode() AnimationCalculationMode {
+	rv := objc.Send[AnimationCalculationMode](k_.ID, objc.Sel("calculationMode"))
 	return rv
 }
 
@@ -125,7 +125,7 @@ func (k_ KeyframeAnimation) CalculationMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/calculationMode
-func (k_ KeyframeAnimation) SetCalculationMode(value unsafe.Pointer) {
+func (k_ KeyframeAnimation) SetCalculationMode(value AnimationCalculationMode) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setCalculationMode:"), value)
 }
 
@@ -143,7 +143,7 @@ func (k_ KeyframeAnimation) ContinuityValues() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/continuityValues
-func (k_ KeyframeAnimation) SetContinuityValues(value []foundation.Number) {
+func (k_ KeyframeAnimation) SetContinuityValues(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -171,7 +171,7 @@ func (k_ KeyframeAnimation) KeyTimes() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/keyTimes
-func (k_ KeyframeAnimation) SetKeyTimes(value []foundation.Number) {
+func (k_ KeyframeAnimation) SetKeyTimes(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -206,8 +206,8 @@ func (k_ KeyframeAnimation) SetPath(value coregraphics.CGPathRef) {
 // Determines whether objects animating along the path rotate to match the path tangent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/rotationMode
-func (k_ KeyframeAnimation) RotationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("rotationMode"))
+func (k_ KeyframeAnimation) RotationMode() AnimationRotationMode {
+	rv := objc.Send[AnimationRotationMode](k_.ID, objc.Sel("rotationMode"))
 	return rv
 }
 
@@ -217,7 +217,7 @@ func (k_ KeyframeAnimation) RotationMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/rotationMode
-func (k_ KeyframeAnimation) SetRotationMode(value unsafe.Pointer) {
+func (k_ KeyframeAnimation) SetRotationMode(value AnimationRotationMode) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setRotationMode:"), value)
 }
 
@@ -235,7 +235,7 @@ func (k_ KeyframeAnimation) TensionValues() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/tensionValues
-func (k_ KeyframeAnimation) SetTensionValues(value []foundation.Number) {
+func (k_ KeyframeAnimation) SetTensionValues(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -280,8 +280,8 @@ func (k_ KeyframeAnimation) SetTimingFunctions(value []MediaTimingFunction) {
 // An array of objects that specify the keyframe values to use for the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/values
-func (k_ KeyframeAnimation) Values() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](k_.ID, objc.Sel("values"))
+func (k_ KeyframeAnimation) Values() objc.ID {
+	rv := objc.Send[objc.ID](k_.ID, objc.Sel("values"))
 	return rv
 }
 
@@ -291,7 +291,7 @@ func (k_ KeyframeAnimation) Values() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAKeyframeAnimation/values
-func (k_ KeyframeAnimation) SetValues(value unsafe.Pointer) {
+func (k_ KeyframeAnimation) SetValues(value objc.ID) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setValues:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -109,16 +110,16 @@ func (q_ QRCodeFeature) Bounds() coregraphics.CGRect {
 // The string decoded from the detected barcode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/messageString
-func (q_ QRCodeFeature) MessageString() string {
-	rv := objc.Send[string](q_.ID, objc.Sel("messageString"))
+func (q_ QRCodeFeature) MessageString() appkit.string {
+	rv := objc.Send[appkit.string](q_.ID, objc.Sel("messageString"))
 	return rv
 }
 
 // An abstract representation of a QR Code symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIQRCodeFeature/symbolDescriptor-swift.property
-func (q_ QRCodeFeature) SymbolDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("symbolDescriptor"))
+func (q_ QRCodeFeature) SymbolDescriptor() CIQRCodeDescriptor {
+	rv := objc.Send[CIQRCodeDescriptor](q_.ID, objc.Sel("symbolDescriptor"))
 	return rv
 }
 
@@ -141,8 +142,8 @@ func (q_ QRCodeFeature) TopRight() coregraphics.CGPoint {
 // A detector that searches for Quick Response codes (a type of 2D barcode) in a still image or video, returning
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreimage/cidetectortypeqrcode
-func (q_ QRCodeFeature) CIDetectorTypeQRCode() string {
-	rv := objc.Send[string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
+func (q_ QRCodeFeature) CIDetectorTypeQRCode() appkit.string {
+	rv := objc.Send[appkit.string](q_.ID, objc.Sel("CIDetectorTypeQRCode"))
 	return rv
 }
 

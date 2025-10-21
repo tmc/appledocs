@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,32 +84,32 @@ func NewCNContactProperty() CNContactProperty {
 // The associated contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/contact
-func (c_ CNContactProperty) Contact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contact"))
+func (c_ CNContactProperty) Contact() CNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 
 // The identifier of the labeled value in the array of labeled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/identifier
-func (c_ CNContactProperty) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ CNContactProperty) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The key of the contact property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/key
-func (c_ CNContactProperty) Key() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("key"))
+func (c_ CNContactProperty) Key() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("key"))
 	return rv
 }
 
 // The label of the labeled value of the property array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactProperty/label
-func (c_ CNContactProperty) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ CNContactProperty) Label() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -123,8 +124,8 @@ func (c_ CNContactProperty) Value() objc.ID {
 // The given name of the contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/givenname
-func (c_ CNContactProperty) GivenName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("givenName"))
+func (c_ CNContactProperty) GivenName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("givenName"))
 	return rv
 }
 
@@ -134,15 +135,15 @@ func (c_ CNContactProperty) GivenName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/givenname
-func (c_ CNContactProperty) SetGivenName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGivenName:"), objc.String(value))
+func (c_ CNContactProperty) SetGivenName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGivenName:"), value)
 }
 
 // The contact’s job title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/jobtitle
-func (c_ CNContactProperty) JobTitle() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("jobTitle"))
+func (c_ CNContactProperty) JobTitle() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("jobTitle"))
 	return rv
 }
 
@@ -152,15 +153,15 @@ func (c_ CNContactProperty) JobTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/jobtitle
-func (c_ CNContactProperty) SetJobTitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setJobTitle:"), objc.String(value))
+func (c_ CNContactProperty) SetJobTitle(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setJobTitle:"), value)
 }
 
 // An array of labeled phone numbers for a contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/phonenumbers
-func (c_ CNContactProperty) PhoneNumbers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("phoneNumbers"))
+func (c_ CNContactProperty) PhoneNumbers() CNPhoneNumber {
+	rv := objc.Send[CNPhoneNumber](c_.ID, objc.Sel("phoneNumbers"))
 	return rv
 }
 
@@ -170,15 +171,15 @@ func (c_ CNContactProperty) PhoneNumbers() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontact/phonenumbers
-func (c_ CNContactProperty) SetPhoneNumbers(value unsafe.Pointer) {
+func (c_ CNContactProperty) SetPhoneNumbers(value ICNPhoneNumber) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPhoneNumbers:"), value)
 }
 
 // Exception thrown when an accessed property was not fetched.
 //
 // [Full Topic]: https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname
-func (c_ CNContactProperty) CNContactPropertyNotFetchedExceptionName() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
+func (c_ CNContactProperty) CNContactPropertyNotFetchedExceptionName() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("CNContactPropertyNotFetchedExceptionName"))
 	return rv
 }
 

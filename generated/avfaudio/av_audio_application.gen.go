@@ -99,8 +99,8 @@ func (ac _AudioApplicationClass) RequestRecordPermissionWithCompletionHandler(re
 // Accesses the shared audio application instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
-func (ac _AudioApplicationClass) SharedInstance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedInstance"))
+func (ac _AudioApplicationClass) SharedInstance() AudioApplication {
+	rv := objc.Send[AVAudioApplication](objc.ID(ac.class), objc.Sel("sharedInstance"))
 	return rv
 }
 // Sets a callback to handle changes to application-level audio muting states.
@@ -130,24 +130,24 @@ func (a_ AudioApplication) InputMuted() bool {
 // A value that indicates an app’s permission to add audio to calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/microphoneInjectionPermission-swift.property
-func (a_ AudioApplication) MicrophoneInjectionPermission() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("microphoneInjectionPermission"))
+func (a_ AudioApplication) MicrophoneInjectionPermission() AudioApplicationMicrophoneInjectionPermission {
+	rv := objc.Send[AudioApplicationMicrophoneInjectionPermission](a_.ID, objc.Sel("microphoneInjectionPermission"))
 	return rv
 }
 
 // The app’s permission to record audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/recordPermission-swift.property
-func (a_ AudioApplication) RecordPermission() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("recordPermission"))
+func (a_ AudioApplication) RecordPermission() AudioApplicationRecordPermission {
+	rv := objc.Send[AudioApplicationRecordPermission](a_.ID, objc.Sel("recordPermission"))
 	return rv
 }
 
 // Accesses the shared audio application instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioApplication/shared
-func (a_ AudioApplication) SharedInstance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("sharedInstance"))
+func (a_ AudioApplication) SharedInstance() AVAudioApplication {
+	rv := objc.Send[AVAudioApplication](a_.ID, objc.Sel("sharedInstance"))
 	return rv
 }
 

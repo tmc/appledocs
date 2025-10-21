@@ -83,8 +83,8 @@ func NewAggregateAssetDownloadTask() AggregateAssetDownloadTask {
 // The asset the parent task downloads.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask/urlasset
-func (a_ AggregateAssetDownloadTask) UrlAsset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("urlAsset"))
+func (a_ AggregateAssetDownloadTask) UrlAsset() AVURLAsset {
+	rv := objc.Send[AVURLAsset](a_.ID, objc.Sel("urlAsset"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (a_ AggregateAssetDownloadTask) UrlAsset() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avaggregateassetdownloadtask/urlasset
-func (a_ AggregateAssetDownloadTask) SetUrlAsset(value unsafe.Pointer) {
+func (a_ AggregateAssetDownloadTask) SetUrlAsset(value IAVURLAsset) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUrlAsset:"), value)
 }
 

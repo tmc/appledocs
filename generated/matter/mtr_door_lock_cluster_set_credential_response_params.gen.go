@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterSetCredentialResponseParams) NextCredentialIndex() fo
 // SetNextCredentialIndex sets the value of the nextCredentialIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/nextcredentialindex
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetNextCredentialIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetNextCredentialIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextCredentialIndex:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterSetCredentialResponseParams) Status() foundation.Numb
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/status
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterSetCredentialResponseParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterSetCredentialResponseParams) UserIndex() foundation.N
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetcredentialresponseparams/userindex
-func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetCredentialResponseParams) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 

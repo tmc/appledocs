@@ -84,16 +84,16 @@ func NewNEFilterProvider() NEFilterProvider {
 // The domain for errors resulting from calls to the filter manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterProvider) NEFilterErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+func (n_ NEFilterProvider) NEFilterErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEFilterErrorDomain"))
 	return rv
 }
 
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterprovider/filterconfiguration
-func (n_ NEFilterProvider) FilterConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("filterConfiguration"))
+func (n_ NEFilterProvider) FilterConfiguration() NEFilterProviderConfiguration {
+	rv := objc.Send[NEFilterProviderConfiguration](n_.ID, objc.Sel("filterConfiguration"))
 	return rv
 }
 
@@ -103,7 +103,7 @@ func (n_ NEFilterProvider) FilterConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterprovider/filterconfiguration
-func (n_ NEFilterProvider) SetFilterConfiguration(value unsafe.Pointer) {
+func (n_ NEFilterProvider) SetFilterConfiguration(value INEFilterProviderConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFilterConfiguration:"), value)
 }
 

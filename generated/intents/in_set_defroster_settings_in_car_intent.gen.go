@@ -93,8 +93,8 @@ func (i_ INSetDefrosterSettingsInCarIntent) Enable() foundation.Number {
 // The name of the car you applied the settings to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
-func (i_ INSetDefrosterSettingsInCarIntent) CarName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+func (i_ INSetDefrosterSettingsInCarIntent) CarName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
 	return rv
 }
 
@@ -104,7 +104,7 @@ func (i_ INSetDefrosterSettingsInCarIntent) CarName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent/carname
-func (i_ INSetDefrosterSettingsInCarIntent) SetCarName(value unsafe.Pointer) {
+func (i_ INSetDefrosterSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 

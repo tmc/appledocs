@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (h_ HKDeletedObject) Metadata() unsafe.Pointer {
 // The universally unique identifier (UUID) for the HealthKit object that was deleted from the store.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDeletedObject/uuid
-func (h_ HKDeletedObject) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("UUID"))
+func (h_ HKDeletedObject) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](h_.ID, objc.Sel("UUID"))
 	return rv
 }
 

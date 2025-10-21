@@ -87,7 +87,7 @@ func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) ServerSid
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/serversideprocessingtimeout
-func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SoftwareV
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/softwareversion
-func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) TimedInvo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/timedinvoketimeoutms
-func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/updatetoken
-func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) UpdateToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("updateToken"))
+func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) UpdateToken() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("updateToken"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) UpdateTok
 // SetUpdateToken sets the value of the updateToken property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusternotifyupdateappliedparams-5eau8/updatetoken
-func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetUpdateToken(value unsafe.Pointer) {
+func (m_ MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams) SetUpdateToken(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdateToken:"), value)
 }
 

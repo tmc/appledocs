@@ -80,8 +80,8 @@ func NewStateNode() StateNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (s_ StateNode) Label() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("label"))
+func (s_ StateNode) Label() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -89,8 +89,8 @@ func (s_ StateNode) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/label
-func (s_ StateNode) SetLabel(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (s_ StateNode) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -110,8 +110,8 @@ func (s_ StateNode) SetPaddingPolicy(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultimage
-func (s_ StateNode) ResultImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("resultImage"))
+func (s_ StateNode) ResultImage() MPSNNImageNode {
+	rv := objc.Send[MPSNNImageNode](s_.ID, objc.Sel("resultImage"))
 	return rv
 }
 
@@ -119,14 +119,14 @@ func (s_ StateNode) ResultImage() unsafe.Pointer {
 // SetResultImage sets the value of the resultImage property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultimage
-func (s_ StateNode) SetResultImage(value unsafe.Pointer) {
+func (s_ StateNode) SetResultImage(value IMPSNNImageNode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResultImage:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstate
-func (s_ StateNode) ResultState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("resultState"))
+func (s_ StateNode) ResultState() MPSNNStateNode {
+	rv := objc.Send[MPSNNStateNode](s_.ID, objc.Sel("resultState"))
 	return rv
 }
 
@@ -134,14 +134,14 @@ func (s_ StateNode) ResultState() unsafe.Pointer {
 // SetResultState sets the value of the resultState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstate
-func (s_ StateNode) SetResultState(value unsafe.Pointer) {
+func (s_ StateNode) SetResultState(value IMPSNNStateNode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResultState:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstates
-func (s_ StateNode) ResultStates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("resultStates"))
+func (s_ StateNode) ResultStates() MPSNNStateNode {
+	rv := objc.Send[MPSNNStateNode](s_.ID, objc.Sel("resultStates"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (s_ StateNode) ResultStates() unsafe.Pointer {
 // SetResultStates sets the value of the resultStates property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/resultstates
-func (s_ StateNode) SetResultStates(value unsafe.Pointer) {
+func (s_ StateNode) SetResultStates(value IMPSNNStateNode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResultStates:"), value)
 }
 

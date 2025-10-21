@@ -78,8 +78,8 @@ func NewMTROperationalCredentialsClusterAttestationResponseParams() MTROperation
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationElements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationElements"))
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationElements() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationElements"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationE
 // SetAttestationElements sets the value of the attestationElements property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationelements
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationElements(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationElements(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationElements:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationSignature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationSignature"))
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationSignature() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationSignature"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTROperationalCredentialsClusterAttestationResponseParams) AttestationS
 // SetAttestationSignature sets the value of the attestationSignature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationSignature(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetAttestationSignature(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signature"))
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("signature"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterAttestationResponseParams) Signature() 
 // SetSignature sets the value of the signature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/signature
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetSignature(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSignature:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROperationalCredentialsClusterAttestationResponseParams) TimedInvokeT
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterattestationresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAttestationResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

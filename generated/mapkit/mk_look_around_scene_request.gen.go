@@ -135,8 +135,8 @@ func (m_ MKLookAroundSceneRequest) SetIsLoading(value bool) {
 // A map item that describes the location of the LookAround scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/mapitem
-func (m_ MKLookAroundSceneRequest) MapItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapItem"))
+func (m_ MKLookAroundSceneRequest) MapItem() MKMapItem {
+	rv := objc.Send[MKMapItem](m_.ID, objc.Sel("mapItem"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (m_ MKLookAroundSceneRequest) MapItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest/mapitem
-func (m_ MKLookAroundSceneRequest) SetMapItem(value unsafe.Pointer) {
+func (m_ MKLookAroundSceneRequest) SetMapItem(value IMKMapItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapItem:"), value)
 }
 

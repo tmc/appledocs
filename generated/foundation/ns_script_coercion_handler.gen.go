@@ -30,7 +30,7 @@ type _ScriptCoercionHandlerClass struct {
 // An interface definition for the [ScriptCoercionHandler] class.
 type IScriptCoercionHandler interface {
 	objectivec.IObject
-	RegisterCoercerSelectorToConvertFromClassToClass(coercer objc.ID, selector objc.SEL, fromClass objc.Class, toClass objc.Class)
+	RegisterCoercerSelectorToConvertFromClassToClass(coercer objectivec.IObject, selector objc.SEL, fromClass objc.Class, toClass objc.Class)
 }
 
 // A mechanism for converting one kind of scripting data to another.
@@ -84,7 +84,7 @@ func NewScriptCoercionHandler() ScriptCoercionHandler {
 // Registers a given object (typically a class) to handle coercions (conversions) from one given class to another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCoercionHandler/registerCoercer(_:selector:toConvertFrom:to:)
-func (s_ ScriptCoercionHandler) RegisterCoercerSelectorToConvertFromClassToClass(coercer objc.ID, selector objc.SEL, fromClass objc.Class, toClass objc.Class) {
+func (s_ ScriptCoercionHandler) RegisterCoercerSelectorToConvertFromClassToClass(coercer objectivec.IObject, selector objc.SEL, fromClass objc.Class, toClass objc.Class) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("registerCoercer:selector:toConvertFromClass:toClass:"), coercer, selector, fromClass, toClass)
 }
 

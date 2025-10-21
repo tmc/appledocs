@@ -87,7 +87,7 @@ func (m_ MTRDishwasherModeClusterChangeToModeParams) NewMode() foundation.Number
 // SetNewMode sets the value of the newMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterChangeToModeParams/newMode
-func (m_ MTRDishwasherModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+func (m_ MTRDishwasherModeClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRDishwasherModeClusterChangeToModeParams) ServerSideProcessingTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTRDishwasherModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDishwasherModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRDishwasherModeClusterChangeToModeParams) TimedInvokeTimeoutMs() foun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTRDishwasherModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDishwasherModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

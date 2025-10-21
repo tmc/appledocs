@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -107,8 +108,8 @@ func (d_ Download) SetDelegate(value objc.ID) {
 // The web view where the download initiated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKDownload/webView
-func (d_ Download) WebView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("webView"))
+func (d_ Download) WebView() WKWebView {
+	rv := objc.Send[WKWebView](d_.ID, objc.Sel("webView"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (d_ Download) SetIsUserInitiated(value bool) {
 // An object that represents the request that initiated the download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
-func (d_ Download) OriginalRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originalRequest"))
+func (d_ Download) OriginalRequest() foundation.URLRequest {
+	rv := objc.Send[foundation.URLRequest](d_.ID, objc.Sel("originalRequest"))
 	return rv
 }
 
@@ -141,14 +142,14 @@ func (d_ Download) OriginalRequest() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originalrequest
-func (d_ Download) SetOriginalRequest(value unsafe.Pointer) {
+func (d_ Download) SetOriginalRequest(value foundation.IURLRequest) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginalRequest:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
-func (d_ Download) OriginatingFrame() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originatingFrame"))
+func (d_ Download) OriginatingFrame() WKFrameInfo {
+	rv := objc.Send[WKFrameInfo](d_.ID, objc.Sel("originatingFrame"))
 	return rv
 }
 
@@ -156,7 +157,7 @@ func (d_ Download) OriginatingFrame() unsafe.Pointer {
 // SetOriginatingFrame sets the value of the originatingFrame property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkdownload/originatingframe
-func (d_ Download) SetOriginatingFrame(value unsafe.Pointer) {
+func (d_ Download) SetOriginatingFrame(value IWKFrameInfo) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginatingFrame:"), value)
 }
 

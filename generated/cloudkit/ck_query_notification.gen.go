@@ -84,16 +84,16 @@ func NewCKQueryNotification() CKQueryNotification {
 // The type of database for the record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/databaseScope
-func (c_ CKQueryNotification) DatabaseScope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseScope"))
+func (c_ CKQueryNotification) DatabaseScope() CKDatabaseScope {
+	rv := objc.Send[CKDatabaseScope](c_.ID, objc.Sel("databaseScope"))
 	return rv
 }
 
 // The ID of the record that CloudKit creates, updates, or deletes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/recordID
-func (c_ CKQueryNotification) RecordID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordID"))
+func (c_ CKQueryNotification) RecordID() CKRecordID {
+	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
 }
 
@@ -208,8 +208,8 @@ func (c_ CKQueryNotification) SetShouldSendContentAvailable(value bool) {
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQueryNotification) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKQueryNotification) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -219,7 +219,7 @@ func (c_ CKQueryNotification) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKQueryNotification) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKQueryNotification) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

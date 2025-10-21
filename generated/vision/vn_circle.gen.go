@@ -81,8 +81,8 @@ func NewCircle() Circle {
 // The circle’s center point.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
-func (c_ Circle) Center() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("center"))
+func (c_ Circle) Center() VNPoint {
+	rv := objc.Send[VNPoint](c_.ID, objc.Sel("center"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (c_ Circle) Center() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncircle/center
-func (c_ Circle) SetCenter(value unsafe.Pointer) {
+func (c_ Circle) SetCenter(value IVNPoint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
 }
 

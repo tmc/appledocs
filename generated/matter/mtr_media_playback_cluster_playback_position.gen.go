@@ -88,7 +88,7 @@ func (m_ MTRMediaPlaybackClusterPlaybackPosition) Position() foundation.Number {
 // SetPosition sets the value of the position property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/position
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetPosition(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetPosition(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRMediaPlaybackClusterPlaybackPosition) UpdatedAt() foundation.Number 
 // SetUpdatedAt sets the value of the updatedAt property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackposition/updatedat
-func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetUpdatedAt(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterPlaybackPosition) SetUpdatedAt(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdatedAt:"), value)
 }
 

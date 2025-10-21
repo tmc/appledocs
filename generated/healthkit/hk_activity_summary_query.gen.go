@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [HKActivitySummaryQuery] class.
@@ -86,7 +87,7 @@ func NewHKActivitySummaryQuery() HKActivitySummaryQuery {
 // Initializes a new active summary query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryQuery/init(predicate:resultsHandler:)
-func NewHKActivitySummaryQueryWithPredicateResultsHandler(predicate unsafe.Pointer, handler unsafe.Pointer) HKActivitySummaryQuery {
+func NewHKActivitySummaryQueryWithPredicateResultsHandler(predicate foundation.IPredicate, handler unsafe.Pointer) HKActivitySummaryQuery {
 	instance := getHKActivitySummaryQueryClass().Alloc()
 	rv := objc.Send[HKActivitySummaryQuery](instance.ID, objc.Sel("initWithPredicate:resultsHandler:"), predicate, handler)
 	rv.Autorelease()

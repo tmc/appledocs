@@ -6,6 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
+	coregraphics "github.com/tmc/appledocs/generated/coregraphics"
 )
 
 
@@ -19,7 +20,7 @@ var (
 	_MACaptionAppearanceCopyFontDescriptorForStyle func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MACaptionAppearanceCopyProfileIDs func() unsafe.Pointer
 	_MACaptionAppearanceCopySelectedLanguages func(unsafe.Pointer) unsafe.Pointer
-	_MACaptionAppearanceCopyWindowColor func(unsafe.Pointer, unsafe.Pointer) CGColorRef
+	_MACaptionAppearanceCopyWindowColor func(unsafe.Pointer, unsafe.Pointer) coregraphics.CGColorRef
 	_MACaptionAppearanceDidDisplayCaptions func(unsafe.Pointer) unsafe.Pointer
 	_MACaptionAppearanceExecuteBlockForProfileID func(unsafe.Pointer) unsafe.Pointer
 	_MACaptionAppearanceGetDisplayType func(unsafe.Pointer) unsafe.Pointer
@@ -113,7 +114,7 @@ func MACaptionAppearanceCopySelectedLanguages(domain unsafe.Pointer) unsafe.Poin
 // Added in macOS 10.9.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MACaptionAppearanceCopyWindowColor(_:_:)
-func MACaptionAppearanceCopyWindowColor(domain unsafe.Pointer, behavior unsafe.Pointer) CGColorRef {
+func MACaptionAppearanceCopyWindowColor(domain unsafe.Pointer, behavior unsafe.Pointer) coregraphics.CGColorRef {
 	return _MACaptionAppearanceCopyWindowColor(domain, behavior)
 	}
 

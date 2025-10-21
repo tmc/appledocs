@@ -83,8 +83,8 @@ func NewVZNetworkDeviceConfiguration() VZNetworkDeviceConfiguration {
 // The object that defines how the virtual network device communicates with the host system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/attachment
-func (v_ VZNetworkDeviceConfiguration) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+func (v_ VZNetworkDeviceConfiguration) Attachment() VZNetworkDeviceAttachment {
+	rv := objc.Send[VZNetworkDeviceAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (v_ VZNetworkDeviceConfiguration) Attachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/attachment
-func (v_ VZNetworkDeviceConfiguration) SetAttachment(value unsafe.Pointer) {
+func (v_ VZNetworkDeviceConfiguration) SetAttachment(value IVZNetworkDeviceAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 
 // The media access control (MAC) address to assign to the network device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/macAddress
-func (v_ VZNetworkDeviceConfiguration) MACAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("MACAddress"))
+func (v_ VZNetworkDeviceConfiguration) MACAddress() VZMACAddress {
+	rv := objc.Send[VZMACAddress](v_.ID, objc.Sel("MACAddress"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (v_ VZNetworkDeviceConfiguration) MACAddress() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZNetworkDeviceConfiguration/macAddress
-func (v_ VZNetworkDeviceConfiguration) SetMACAddress(value unsafe.Pointer) {
+func (v_ VZNetworkDeviceConfiguration) SetMACAddress(value IVZMACAddress) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMACAddress:"), value)
 }
 

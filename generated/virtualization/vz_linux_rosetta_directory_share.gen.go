@@ -104,23 +104,23 @@ func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler
 // A value that indicates the current state of Rosetta’s availability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
-func (vc _VZLinuxRosettaDirectoryShareClass) Availability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("availability"))
+func (vc _VZLinuxRosettaDirectoryShareClass) Availability() VZLinuxRosettaAvailability {
+	rv := objc.Send[VZLinuxRosettaAvailability](objc.ID(vc.class), objc.Sel("availability"))
 	return rv
 }
 // A value that indicates the current state of Rosetta’s availability.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
-func (v_ VZLinuxRosettaDirectoryShare) Availability() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("availability"))
+func (v_ VZLinuxRosettaDirectoryShare) Availability() VZLinuxRosettaAvailability {
+	rv := objc.Send[VZLinuxRosettaAvailability](v_.ID, objc.Sel("availability"))
 	return rv
 }
 
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
-func (v_ VZLinuxRosettaDirectoryShare) Options() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("options"))
+func (v_ VZLinuxRosettaDirectoryShare) Options() VZLinuxRosettaCachingOptions {
+	rv := objc.Send[VZLinuxRosettaCachingOptions](v_.ID, objc.Sel("options"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (v_ VZLinuxRosettaDirectoryShare) Options() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options
-func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value unsafe.Pointer) {
+func (v_ VZLinuxRosettaDirectoryShare) SetOptions(value VZLinuxRosettaCachingOptions) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setOptions:"), value)
 }
 

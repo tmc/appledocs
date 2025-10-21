@@ -153,8 +153,8 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointStride(val
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvebasis
-func (a_ AccelerationStructureCurveGeometryDescriptor) CurveBasis() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveBasis"))
+func (a_ AccelerationStructureCurveGeometryDescriptor) CurveBasis() CurveBasis {
+	rv := objc.Send[CurveBasis](a_.ID, objc.Sel("curveBasis"))
 	return rv
 }
 
@@ -162,14 +162,14 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) CurveBasis() unsafe.Point
 // SetCurveBasis sets the value of the curveBasis property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvebasis
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveBasis(value unsafe.Pointer) {
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveBasis(value ICurveBasis) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveBasis:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curveendcaps
-func (a_ AccelerationStructureCurveGeometryDescriptor) CurveEndCaps() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveEndCaps"))
+func (a_ AccelerationStructureCurveGeometryDescriptor) CurveEndCaps() CurveEndCaps {
+	rv := objc.Send[CurveEndCaps](a_.ID, objc.Sel("curveEndCaps"))
 	return rv
 }
 
@@ -177,14 +177,14 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) CurveEndCaps() unsafe.Poi
 // SetCurveEndCaps sets the value of the curveEndCaps property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curveendcaps
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveEndCaps(value unsafe.Pointer) {
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveEndCaps(value ICurveEndCaps) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveEndCaps:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvetype
-func (a_ AccelerationStructureCurveGeometryDescriptor) CurveType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("curveType"))
+func (a_ AccelerationStructureCurveGeometryDescriptor) CurveType() CurveType {
+	rv := objc.Send[CurveType](a_.ID, objc.Sel("curveType"))
 	return rv
 }
 
@@ -192,7 +192,7 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) CurveType() unsafe.Pointe
 // SetCurveType sets the value of the curveType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvetype
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveType(value unsafe.Pointer) {
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveType(value CurveType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveType:"), value)
 }
 
@@ -228,8 +228,8 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexBufferOffset(valu
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indextype
-func (a_ AccelerationStructureCurveGeometryDescriptor) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexType"))
+func (a_ AccelerationStructureCurveGeometryDescriptor) IndexType() IndexType {
+	rv := objc.Send[IndexType](a_.ID, objc.Sel("indexType"))
 	return rv
 }
 
@@ -237,7 +237,7 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) IndexType() unsafe.Pointe
 // SetIndexType sets the value of the indexType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indextype
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexType(value unsafe.Pointer) {
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
 }
 

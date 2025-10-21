@@ -87,7 +87,7 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadParams) GroupKeySetID() foundatio
 // SetGroupKeySetID sets the value of the groupKeySetID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/groupkeysetid
-func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetGroupKeySetID(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetGroupKeySetID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadParams) ServerSideProcessingTimeo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/serversideprocessingtimeout
-func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

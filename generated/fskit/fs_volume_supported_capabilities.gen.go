@@ -81,8 +81,8 @@ func NewFSVolumeSupportedCapabilities() FSVolumeSupportedCapabilities {
 // A property that provides the supported capabilities of the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-func (f_ FSVolumeSupportedCapabilities) SupportedVolumeCapabilities() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("supportedVolumeCapabilities"))
+func (f_ FSVolumeSupportedCapabilities) SupportedVolumeCapabilities() FSVolumeSupportedCapabilities {
+	rv := objc.Send[FSVolumeSupportedCapabilities](f_.ID, objc.Sel("supportedVolumeCapabilities"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (f_ FSVolumeSupportedCapabilities) SupportedVolumeCapabilities() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-func (f_ FSVolumeSupportedCapabilities) SetSupportedVolumeCapabilities(value unsafe.Pointer) {
+func (f_ FSVolumeSupportedCapabilities) SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedVolumeCapabilities:"), value)
 }
 
 // A property that provides up-to-date statistics of the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-func (f_ FSVolumeSupportedCapabilities) VolumeStatistics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("volumeStatistics"))
+func (f_ FSVolumeSupportedCapabilities) VolumeStatistics() FSStatFSResult {
+	rv := objc.Send[FSStatFSResult](f_.ID, objc.Sel("volumeStatistics"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (f_ FSVolumeSupportedCapabilities) VolumeStatistics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-func (f_ FSVolumeSupportedCapabilities) SetVolumeStatistics(value unsafe.Pointer) {
+func (f_ FSVolumeSupportedCapabilities) SetVolumeStatistics(value IFSStatFSResult) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeStatistics:"), value)
 }
 

@@ -85,8 +85,8 @@ func NewVZMacOSBootLoader() VZMacOSBootLoader {
 // The hardware platform to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/platform
-func (v_ VZMacOSBootLoader) Platform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("platform"))
+func (v_ VZMacOSBootLoader) Platform() VZPlatformConfiguration {
+	rv := objc.Send[VZPlatformConfiguration](v_.ID, objc.Sel("platform"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (v_ VZMacOSBootLoader) Platform() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/platform
-func (v_ VZMacOSBootLoader) SetPlatform(value unsafe.Pointer) {
+func (v_ VZMacOSBootLoader) SetPlatform(value IVZPlatformConfiguration) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setPlatform:"), value)
 }
 

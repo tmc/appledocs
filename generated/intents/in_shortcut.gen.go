@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewINShortcut() INShortcut {
 // Creates a shortcut with the specified intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/init(intent:)
-func NewINShortcutWithIntent(intent unsafe.Pointer) INShortcut {
+func NewINShortcutWithIntent(intent INIntent) INShortcut {
 	instance := getINShortcutClass().Alloc()
 	rv := objc.Send[INShortcut](instance.ID, objc.Sel("initWithIntent:"), intent)
 	rv.Autorelease()
@@ -95,7 +96,7 @@ func NewINShortcutWithIntent(intent unsafe.Pointer) INShortcut {
 // Creates a shortcut with the specified user activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/init(userActivity:)
-func NewINShortcutWithUserActivity(userActivity unsafe.Pointer) INShortcut {
+func NewINShortcutWithUserActivity(userActivity foundation.IUserActivity) INShortcut {
 	instance := getINShortcutClass().Alloc()
 	rv := objc.Send[INShortcut](instance.ID, objc.Sel("initWithUserActivity:"), userActivity)
 	rv.Autorelease()
@@ -106,16 +107,16 @@ func NewINShortcutWithUserActivity(userActivity unsafe.Pointer) INShortcut {
 // The intent that performs the action when invoking the shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/intent
-func (i_ INShortcut) Intent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("intent"))
+func (i_ INShortcut) Intent() INIntent {
+	rv := objc.Send[INIntent](i_.ID, objc.Sel("intent"))
 	return rv
 }
 
 // The user activity that defines the action to perform when invoking the shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INShortcutReference/userActivity
-func (i_ INShortcut) UserActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivity"))
+func (i_ INShortcut) UserActivity() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
 	return rv
 }
 

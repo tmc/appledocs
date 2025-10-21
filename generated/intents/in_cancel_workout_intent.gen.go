@@ -84,8 +84,8 @@ func NewINCancelWorkoutIntent() INCancelWorkoutIntent {
 // The name of the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelworkoutintent/workoutname
-func (i_ INCancelWorkoutIntent) WorkoutName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+func (i_ INCancelWorkoutIntent) WorkoutName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (i_ INCancelWorkoutIntent) WorkoutName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/incancelworkoutintent/workoutname
-func (i_ INCancelWorkoutIntent) SetWorkoutName(value unsafe.Pointer) {
+func (i_ INCancelWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
 

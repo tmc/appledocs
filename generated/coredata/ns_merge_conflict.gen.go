@@ -85,7 +85,7 @@ func NewMergeConflict() MergeConflict {
 // Initializes a merge conflict.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/init(source:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:)
-func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapshot(srcObject unsafe.Pointer, newvers uint, oldvers uint, cachesnap unsafe.Pointer, persnap unsafe.Pointer) MergeConflict {
+func NewMergeConflictWithSourceNewVersionOldVersionCachedSnapshotPersistedSnapshot(srcObject IManagedObject, newvers uint, oldvers uint, cachesnap unsafe.Pointer, persnap unsafe.Pointer) MergeConflict {
 	instance := getMergeConflictClass().Alloc()
 	rv := objc.Send[MergeConflict](instance.ID, objc.Sel("initWithSource:newVersion:oldVersion:cachedSnapshot:persistedSnapshot:"), srcObject, newvers, oldvers, cachesnap, persnap)
 	rv.Autorelease()
@@ -136,8 +136,8 @@ func (m_ MergeConflict) PersistedSnapshot() unsafe.Pointer {
 // The source object for the conflict.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSMergeConflict/sourceObject
-func (m_ MergeConflict) SourceObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sourceObject"))
+func (m_ MergeConflict) SourceObject() NSManagedObject {
+	rv := objc.Send[NSManagedObject](m_.ID, objc.Sel("sourceObject"))
 	return rv
 }
 

@@ -112,8 +112,8 @@ func (r_ RemoteLayerClient) ClientId() unsafe.Pointer {
 // The layer associated with the remote client.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/layer
-func (r_ RemoteLayerClient) Layer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("layer"))
+func (r_ RemoteLayerClient) Layer() CALayer {
+	rv := objc.Send[CALayer](r_.ID, objc.Sel("layer"))
 	return rv
 }
 
@@ -123,7 +123,7 @@ func (r_ RemoteLayerClient) Layer() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CARemoteLayerClient/layer
-func (r_ RemoteLayerClient) SetLayer(value unsafe.Pointer) {
+func (r_ RemoteLayerClient) SetLayer(value ILayer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:"), value)
 }
 

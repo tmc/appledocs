@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +86,9 @@ func NewContentItem() ContentItem {
 // Sets the identifier for a media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/init(identifier:)
-func NewContentItemWithIdentifier(identifier string) ContentItem {
+func NewContentItemWithIdentifier(identifier appkit.string) ContentItem {
 	instance := getContentItemClass().Alloc()
-	rv := objc.Send[ContentItem](instance.ID, objc.Sel("initWithIdentifier:"), objc.String(identifier))
+	rv := objc.Send[ContentItem](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -96,8 +97,8 @@ func NewContentItemWithIdentifier(identifier string) ContentItem {
 // A single image that’s associated with the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/artwork
-func (c_ ContentItem) Artwork() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("artwork"))
+func (c_ ContentItem) Artwork() MPMediaItemArtwork {
+	rv := objc.Send[MPMediaItemArtwork](c_.ID, objc.Sel("artwork"))
 	return rv
 }
 
@@ -107,15 +108,15 @@ func (c_ ContentItem) Artwork() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/artwork
-func (c_ ContentItem) SetArtwork(value unsafe.Pointer) {
+func (c_ ContentItem) SetArtwork(value IMPMediaItemArtwork) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setArtwork:"), value)
 }
 
 // The unique identifier for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/identifier
-func (c_ ContentItem) Identifier() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("identifier"))
+func (c_ ContentItem) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -212,8 +213,8 @@ func (c_ ContentItem) SetPlaybackProgress(value unsafe.Pointer) {
 // A secondary designator for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) Subtitle() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("subtitle"))
+func (c_ ContentItem) Subtitle() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -223,15 +224,15 @@ func (c_ ContentItem) Subtitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/subtitle
-func (c_ ContentItem) SetSubtitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), objc.String(value))
+func (c_ ContentItem) SetSubtitle(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setSubtitle:"), value)
 }
 
 // The public name of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) Title() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("title"))
+func (c_ ContentItem) Title() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -241,8 +242,8 @@ func (c_ ContentItem) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPContentItem/title
-func (c_ ContentItem) SetTitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (c_ ContentItem) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
 }
 
 // A Boolean value that indicates whether a media item is container of other items.

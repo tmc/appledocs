@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [MTL4ComputePipelineDescriptor] class.
@@ -118,8 +119,8 @@ func (m_ MTL4ComputePipelineDescriptor) SetComputeFunctionDescriptor(value unsaf
 // The required number of threads per threadgroup for compute dispatches.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/requiredthreadsperthreadgroup
-func (m_ MTL4ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
+func (m_ MTL4ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](m_.ID, objc.Sel("requiredThreadsPerThreadgroup"))
 	return rv
 }
 
@@ -129,7 +130,7 @@ func (m_ MTL4ComputePipelineDescriptor) RequiredThreadsPerThreadgroup() unsafe.P
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl4computepipelinedescriptor/requiredthreadsperthreadgroup
-func (m_ MTL4ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value unsafe.Pointer) {
+func (m_ MTL4ComputePipelineDescriptor) SetRequiredThreadsPerThreadgroup(value coregraphics.ISize) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredThreadsPerThreadgroup:"), value)
 }
 

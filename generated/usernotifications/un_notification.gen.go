@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewUNNotification() UNNotification {
 // The delivery date of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotification/date
-func (u_ UNNotification) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("date"))
+func (u_ UNNotification) Date() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](u_.ID, objc.Sel("date"))
 	return rv
 }
 
 // The notification request containing the payload and trigger condition for the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotification/request
-func (u_ UNNotification) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("request"))
+func (u_ UNNotification) Request() UNNotificationRequest {
+	rv := objc.Send[UNNotificationRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 

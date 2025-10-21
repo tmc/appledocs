@@ -116,23 +116,5 @@ func (i_ ILClassificationUIExtensionContext) SetIsReadyForClassificationResponse
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReadyForClassificationResponse:"), value)
 }
 
-// The context for the current request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller/extensioncontext
-func (i_ ILClassificationUIExtensionContext) ExtensionContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("extensionContext"))
-	return rv
-}
-
-
-// SetExtensionContext sets the value of the extensionContext property.
-// The context for the current request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller/extensioncontext
-func (i_ ILClassificationUIExtensionContext) SetExtensionContext(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setExtensionContext:"), value)
-}
-
 
 

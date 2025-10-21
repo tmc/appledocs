@@ -83,8 +83,8 @@ func NewNIAlgorithmConvergence() NIAlgorithmConvergence {
 // The current state of the framework’s Camera Assistance feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergence/status-j61c
-func (n_ NIAlgorithmConvergence) Status() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("status"))
+func (n_ NIAlgorithmConvergence) Status() NIAlgorithmConvergenceStatus {
+	rv := objc.Send[NIAlgorithmConvergenceStatus](n_.ID, objc.Sel("status"))
 	return rv
 }
 

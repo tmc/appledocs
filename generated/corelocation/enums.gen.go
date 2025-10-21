@@ -142,6 +142,10 @@ const (
 type LiveUpdateConfiguration uint
 
 const (
+	// LiveUpdateConfigurationAirborne - A configuration for airborne use cases.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLiveUpdateConfiguration/CLLiveUpdateConfigurationAirborne
+	LiveUpdateConfigurationAirborne LiveUpdateConfiguration = 0
 	// LiveUpdateConfigurationDefault - The default configuration.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLiveUpdateConfiguration/CLLiveUpdateConfigurationDefault

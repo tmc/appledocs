@@ -30,16 +30,16 @@ type _UNUserNotificationCenterClass struct {
 // An interface definition for the [UNUserNotificationCenter] class.
 type IUNUserNotificationCenter interface {
 	objectivec.IObject
-	AddNotificationRequestWithCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer)
+	AddNotificationRequestWithCompletionHandler(request IUNNotificationRequest, completionHandler unsafe.Pointer)
 	GetDeliveredNotificationsWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetNotificationCategoriesWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetNotificationSettingsWithCompletionHandler(completionHandler unsafe.Pointer)
 	GetPendingNotificationRequestsWithCompletionHandler(completionHandler unsafe.Pointer)
 	RemoveAllDeliveredNotifications()
 	RemoveAllPendingNotificationRequests()
-	RemoveDeliveredNotificationsWithIdentifiers(identifiers unsafe.Pointer)
-	RemovePendingNotificationRequestsWithIdentifiers(identifiers unsafe.Pointer)
-	RequestAuthorizationWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
+	RemoveDeliveredNotificationsWithIdentifiers(identifiers []string)
+	RemovePendingNotificationRequestsWithIdentifiers(identifiers []string)
+	RequestAuthorizationWithOptionsCompletionHandler(options UNAuthorizationOptions, completionHandler unsafe.Pointer)
 	SetBadgeCountWithCompletionHandler(newBadgeCount int, completionHandler unsafe.Pointer)
 	SetNotificationCategories(categories unsafe.Pointer)
 }
@@ -95,15 +95,15 @@ func NewUNUserNotificationCenter() UNUserNotificationCenter {
 // Returns your app’s notification center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/current()
-func (uc _UNUserNotificationCenterClass) CurrentNotificationCenter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("currentNotificationCenter"))
+func (uc _UNUserNotificationCenterClass) CurrentNotificationCenter() UNUserNotificationCenter {
+	rv := objc.Send[UNUserNotificationCenter](objc.ID(uc.class), objc.Sel("currentNotificationCenter"))
 	return rv
 }
 
 // Schedules the delivery of a local notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/add(_:withCompletionHandler:)
-func (u_ UNUserNotificationCenter) AddNotificationRequestWithCompletionHandler(request unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (u_ UNUserNotificationCenter) AddNotificationRequestWithCompletionHandler(request IUNNotificationRequest, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("addNotificationRequest:withCompletionHandler:"), request, completionHandler)
 }
 
@@ -152,21 +152,21 @@ func (u_ UNUserNotificationCenter) RemoveAllPendingNotificationRequests() {
 // Removes your app’s notifications from Notification Center that match the specified identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/removeDeliveredNotifications(withIdentifiers:)
-func (u_ UNUserNotificationCenter) RemoveDeliveredNotificationsWithIdentifiers(identifiers unsafe.Pointer) {
+func (u_ UNUserNotificationCenter) RemoveDeliveredNotificationsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removeDeliveredNotificationsWithIdentifiers:"), identifiers)
 }
 
 // Removes your app’s local notifications that are pending and match the specified identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/removePendingNotificationRequests(withIdentifiers:)
-func (u_ UNUserNotificationCenter) RemovePendingNotificationRequestsWithIdentifiers(identifiers unsafe.Pointer) {
+func (u_ UNUserNotificationCenter) RemovePendingNotificationRequestsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("removePendingNotificationRequestsWithIdentifiers:"), identifiers)
 }
 
 // Requests a person’s authorization to allow local and remote notifications for your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNUserNotificationCenter/requestAuthorization(options:completionHandler:)
-func (u_ UNUserNotificationCenter) RequestAuthorizationWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (u_ UNUserNotificationCenter) RequestAuthorizationWithOptionsCompletionHandler(options UNAuthorizationOptions, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("requestAuthorizationWithOptions:completionHandler:"), options, completionHandler)
 }
 
@@ -213,8 +213,8 @@ func (u_ UNUserNotificationCenter) SupportsContentExtensions() bool {
 // The error domain for notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unerrordomain
-func (u_ UNUserNotificationCenter) UNErrorDomain() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("UNErrorDomain"))
+func (u_ UNUserNotificationCenter) UNErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("UNErrorDomain"))
 	return rv
 }
 

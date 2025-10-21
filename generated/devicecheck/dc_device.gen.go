@@ -84,8 +84,8 @@ func NewDCDevice() DCDevice {
 // A representation of the device for which you want to query the two bits of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
-func (dc _DCDeviceClass) CurrentDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("currentDevice"))
+func (dc _DCDeviceClass) CurrentDevice() DCDevice {
+	rv := objc.Send[DCDevice](objc.ID(dc.class), objc.Sel("currentDevice"))
 	return rv
 }
 // Generates a token that identifies the current device.
@@ -98,8 +98,8 @@ func (d_ DCDevice) GenerateTokenWithCompletionHandler(completion unsafe.Pointer)
 // A representation of the device for which you want to query the two bits of data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCDevice/current
-func (d_ DCDevice) CurrentDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("currentDevice"))
+func (d_ DCDevice) CurrentDevice() DCDevice {
+	rv := objc.Send[DCDevice](d_.ID, objc.Sel("currentDevice"))
 	return rv
 }
 

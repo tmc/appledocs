@@ -120,8 +120,8 @@ func (b_ BundleResourceRequest) EndAccessingResources() {
 // A reference to the progress object associated with the specified resource request. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/progress
-func (b_ BundleResourceRequest) Progress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("progress"))
+func (b_ BundleResourceRequest) Progress() NSProgress {
+	rv := objc.Send[NSProgress](b_.ID, objc.Sel("progress"))
 	return rv
 }
 
@@ -218,8 +218,8 @@ func (b_ BundleResourceRequest) SetNSBundleOnDemandResourceOutOfSpaceError(value
 // A reference to the bundle used for storing the downloaded resources. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
-func (b_ BundleResourceRequest) Bundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bundle"))
+func (b_ BundleResourceRequest) Bundle() NSBundle {
+	rv := objc.Send[NSBundle](b_.ID, objc.Sel("bundle"))
 	return rv
 }
 
@@ -229,7 +229,7 @@ func (b_ BundleResourceRequest) Bundle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/bundle
-func (b_ BundleResourceRequest) SetBundle(value unsafe.Pointer) {
+func (b_ BundleResourceRequest) SetBundle(value IBundle) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setBundle:"), value)
 }
 
@@ -254,8 +254,8 @@ func (b_ BundleResourceRequest) SetLoadingPriority(value unsafe.Pointer) {
 // A set of strings, with each string specifying a tag used to mark on-demand resources managed by the request. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
-func (b_ BundleResourceRequest) Tags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("tags"))
+func (b_ BundleResourceRequest) Tags() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("tags"))
 	return rv
 }
 
@@ -265,7 +265,7 @@ func (b_ BundleResourceRequest) Tags() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsbundleresourcerequest/tags
-func (b_ BundleResourceRequest) SetTags(value unsafe.Pointer) {
+func (b_ BundleResourceRequest) SetTags(value appkit.string) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setTags:"), value)
 }
 

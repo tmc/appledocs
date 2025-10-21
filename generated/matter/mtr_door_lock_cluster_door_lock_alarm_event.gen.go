@@ -87,7 +87,7 @@ func (m_ MTRDoorLockClusterDoorLockAlarmEvent) AlarmCode() foundation.Number {
 // SetAlarmCode sets the value of the alarmCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdoorlockalarmevent/alarmcode
-func (m_ MTRDoorLockClusterDoorLockAlarmEvent) SetAlarmCode(value foundation.Number) {
+func (m_ MTRDoorLockClusterDoorLockAlarmEvent) SetAlarmCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmCode:"), value)
 }
 

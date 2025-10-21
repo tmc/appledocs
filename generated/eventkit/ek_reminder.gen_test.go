@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = eventkit.NewEKReminder
 
+// ExampleNewEKReminderWithEventStore demonstrates how to create a EKReminder instance using NewEKReminderWithEventStore.
+// Creates and returns a new reminder in the given event store.
+func ExampleNewEKReminderWithEventStore() {
+	_ = eventkit.NewEKReminderWithEventStore(
+		eventkit.EKEventStore{}, // eventStore EKEventStore
+	)
+	// Output:
+}

@@ -81,7 +81,7 @@ func NewAccelerationStructure() AccelerationStructure {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSAccelerationStructure/init(group:)
-func NewAccelerationStructureWithGroup(group unsafe.Pointer) AccelerationStructure {
+func NewAccelerationStructureWithGroup(group IMPSAccelerationStructureGroup) AccelerationStructure {
 	instance := getAccelerationStructureClass().Alloc()
 	rv := objc.Send[AccelerationStructure](instance.ID, objc.Sel("initWithGroup:"), group)
 	rv.Autorelease()
@@ -106,8 +106,8 @@ func (a_ AccelerationStructure) SetBoundingBox(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
-func (a_ AccelerationStructure) Group() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("group"))
+func (a_ AccelerationStructure) Group() MPSAccelerationStructureGroup {
+	rv := objc.Send[MPSAccelerationStructureGroup](a_.ID, objc.Sel("group"))
 	return rv
 }
 
@@ -115,7 +115,7 @@ func (a_ AccelerationStructure) Group() unsafe.Pointer {
 // SetGroup sets the value of the group property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsaccelerationstructure/group
-func (a_ AccelerationStructure) SetGroup(value unsafe.Pointer) {
+func (a_ AccelerationStructure) SetGroup(value IMPSAccelerationStructureGroup) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGroup:"), value)
 }
 

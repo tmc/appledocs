@@ -91,8 +91,8 @@ func NewMTRThermostatClusterAtomicResponseParamsWithResponseValueError(responseV
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/attributeStatus
-func (m_ MTRThermostatClusterAtomicResponseParams) AttributeStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attributeStatus"))
+func (m_ MTRThermostatClusterAtomicResponseParams) AttributeStatus() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("attributeStatus"))
 	return rv
 }
 
@@ -100,7 +100,7 @@ func (m_ MTRThermostatClusterAtomicResponseParams) AttributeStatus() unsafe.Poin
 // SetAttributeStatus sets the value of the attributeStatus property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/attributeStatus
-func (m_ MTRThermostatClusterAtomicResponseParams) SetAttributeStatus(value unsafe.Pointer) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetAttributeStatus(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeStatus:"), value)
 }
 
@@ -115,7 +115,7 @@ func (m_ MTRThermostatClusterAtomicResponseParams) StatusCode() foundation.Numbe
 // SetStatusCode sets the value of the statusCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/statusCode
-func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value foundation.Number) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetStatusCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 
@@ -130,7 +130,7 @@ func (m_ MTRThermostatClusterAtomicResponseParams) Timeout() foundation.Number {
 // SetTimeout sets the value of the timeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterAtomicResponseParams/timeout
-func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value foundation.Number) {
+func (m_ MTRThermostatClusterAtomicResponseParams) SetTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeout:"), value)
 }
 

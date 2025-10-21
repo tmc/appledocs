@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/contacts"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,24 +79,24 @@ func NewCKShareAccessRequester() CKShareAccessRequester {
 // A displayable representing the requester.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/AccessRequester/contact
-func (c_ CKShareAccessRequester) Contact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contact"))
+func (c_ CKShareAccessRequester) Contact() contacts.CNContact {
+	rv := objc.Send[contacts.CNContact](c_.ID, objc.Sel("contact"))
 	return rv
 }
 
 // Lookup information for the requester.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/AccessRequester/participantLookupInfo
-func (c_ CKShareAccessRequester) ParticipantLookupInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("participantLookupInfo"))
+func (c_ CKShareAccessRequester) ParticipantLookupInfo() CKUserIdentityLookupInfo {
+	rv := objc.Send[CKUserIdentityLookupInfo](c_.ID, objc.Sel("participantLookupInfo"))
 	return rv
 }
 
 // The identity of the user requesting access to the share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/AccessRequester/userIdentity
-func (c_ CKShareAccessRequester) UserIdentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("userIdentity"))
+func (c_ CKShareAccessRequester) UserIdentity() CKUserIdentity {
+	rv := objc.Send[CKUserIdentity](c_.ID, objc.Sel("userIdentity"))
 	return rv
 }
 

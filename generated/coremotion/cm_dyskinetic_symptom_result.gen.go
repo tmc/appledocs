@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewDyskineticSymptomResult() DyskineticSymptomResult {
 // The result’s end time and date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/endDate
-func (d_ DyskineticSymptomResult) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("endDate"))
+func (d_ DyskineticSymptomResult) EndDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -107,8 +108,8 @@ func (d_ DyskineticSymptomResult) PercentUnlikely() unsafe.Pointer {
 // The result’s start time and date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDyskineticSymptomResult/startDate
-func (d_ DyskineticSymptomResult) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("startDate"))
+func (d_ DyskineticSymptomResult) StartDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
 }
 

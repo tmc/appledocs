@@ -87,14 +87,14 @@ func (m_ MTRUnitTestingClusterTestListStructOctet) Member1() foundation.Number {
 // SetMember1 sets the value of the member1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member1
-func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember1(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMember1:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member2
-func (m_ MTRUnitTestingClusterTestListStructOctet) Member2() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("member2"))
+func (m_ MTRUnitTestingClusterTestListStructOctet) Member2() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("member2"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestListStructOctet) Member2() unsafe.Pointer {
 // SetMember2 sets the value of the member2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestliststructoctet/member2
-func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember2(value unsafe.Pointer) {
+func (m_ MTRUnitTestingClusterTestListStructOctet) SetMember2(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMember2:"), value)
 }
 

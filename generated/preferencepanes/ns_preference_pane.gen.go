@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,10 +35,10 @@ type IPreferencePane interface {
 	AssignMainView()
 	DidSelect()
 	DidUnselect()
-	LoadMainView() unsafe.Pointer
+	LoadMainView() appkit.View
 	MainViewDidLoad()
 	ReplyToShouldUnselect(shouldUnselect bool)
-	UpdateHelpMenuWithArray(inArrayOfMenuItems unsafe.Pointer)
+	UpdateHelpMenuWithArray(inArrayOfMenuItems []foundation.IDictionary)
 	WillSelect()
 	WillUnselect()
 }
@@ -94,7 +96,7 @@ func NewPreferencePane() PreferencePane {
 // Initializes a preference pane with the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/init(bundle:)
-func NewPreferencePaneWithBundle(bundle unsafe.Pointer) PreferencePane {
+func NewPreferencePaneWithBundle(bundle foundation.IBundle) PreferencePane {
 	instance := getPreferencePaneClass().Alloc()
 	rv := objc.Send[PreferencePane](instance.ID, objc.Sel("initWithBundle:"), bundle)
 	rv.Autorelease()
@@ -126,8 +128,8 @@ func (p_ PreferencePane) DidUnselect() {
 // Loads the preference pane’s user interface into its main view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/loadMainView()
-func (p_ PreferencePane) LoadMainView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("loadMainView"))
+func (p_ PreferencePane) LoadMainView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("loadMainView"))
 	return rv
 }
 
@@ -148,7 +150,7 @@ func (p_ PreferencePane) ReplyToShouldUnselect(shouldUnselect bool) {
 // Updates the help menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/updateHelpMenu(with:)
-func (p_ PreferencePane) UpdateHelpMenuWithArray(inArrayOfMenuItems unsafe.Pointer) {
+func (p_ PreferencePane) UpdateHelpMenuWithArray(inArrayOfMenuItems []foundation.IDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("updateHelpMenuWithArray:"), inArrayOfMenuItems)
 }
 
@@ -177,16 +179,16 @@ func (p_ PreferencePane) AutoSaveTextFields() bool {
 // The preference pane’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/bundle
-func (p_ PreferencePane) Bundle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("bundle"))
+func (p_ PreferencePane) Bundle() foundation.Bundle {
+	rv := objc.Send[foundation.Bundle](p_.ID, objc.Sel("bundle"))
 	return rv
 }
 
 // The first view in the keyboard focus chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/firstKeyView
-func (p_ PreferencePane) FirstKeyView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("firstKeyView"))
+func (p_ PreferencePane) FirstKeyView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("firstKeyView"))
 	return rv
 }
 
@@ -196,15 +198,15 @@ func (p_ PreferencePane) FirstKeyView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/firstKeyView
-func (p_ PreferencePane) SetFirstKeyView(value unsafe.Pointer) {
+func (p_ PreferencePane) SetFirstKeyView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFirstKeyView:"), value)
 }
 
 // The view that should have keyboard focus when the pane is selected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/initialKeyView
-func (p_ PreferencePane) InitialKeyView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("initialKeyView"))
+func (p_ PreferencePane) InitialKeyView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("initialKeyView"))
 	return rv
 }
 
@@ -214,7 +216,7 @@ func (p_ PreferencePane) InitialKeyView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/initialKeyView
-func (p_ PreferencePane) SetInitialKeyView(value unsafe.Pointer) {
+func (p_ PreferencePane) SetInitialKeyView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInitialKeyView:"), value)
 }
 
@@ -229,8 +231,8 @@ func (p_ PreferencePane) Selected() bool {
 // The last view in the keyboard focus chain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/lastKeyView
-func (p_ PreferencePane) LastKeyView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("lastKeyView"))
+func (p_ PreferencePane) LastKeyView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("lastKeyView"))
 	return rv
 }
 
@@ -240,23 +242,23 @@ func (p_ PreferencePane) LastKeyView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/lastKeyView
-func (p_ PreferencePane) SetLastKeyView(value unsafe.Pointer) {
+func (p_ PreferencePane) SetLastKeyView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLastKeyView:"), value)
 }
 
 // The name of the preference pane’s nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/mainNibName
-func (p_ PreferencePane) MainNibName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("mainNibName"))
+func (p_ PreferencePane) MainNibName() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("mainNibName"))
 	return rv
 }
 
 // The main view of the preference pane.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/mainView
-func (p_ PreferencePane) MainView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mainView"))
+func (p_ PreferencePane) MainView() appkit.View {
+	rv := objc.Send[appkit.View](p_.ID, objc.Sel("mainView"))
 	return rv
 }
 
@@ -266,15 +268,15 @@ func (p_ PreferencePane) MainView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/mainView
-func (p_ PreferencePane) SetMainView(value unsafe.Pointer) {
+func (p_ PreferencePane) SetMainView(value appkit.IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMainView:"), value)
 }
 
 // A Boolean value that indicates whether the preference pane is able to be deselected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PreferencePanes/NSPreferencePane/shouldUnselect
-func (p_ PreferencePane) ShouldUnselect() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("shouldUnselect"))
+func (p_ PreferencePane) ShouldUnselect() PreferencePaneUnselectReply {
+	rv := objc.Send[PreferencePaneUnselectReply](p_.ID, objc.Sel("shouldUnselect"))
 	return rv
 }
 

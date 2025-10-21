@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _WebAuthenticationSessionCallbackClass struct {
 // An interface definition for the [WebAuthenticationSessionCallback] class.
 type IWebAuthenticationSessionCallback interface {
 	objectivec.IObject
-	MatchesURL(url foundation.URL) bool
+	MatchesURL(url foundation.IURL) bool
 }
 
 //
@@ -79,21 +80,21 @@ func NewWebAuthenticationSessionCallback() WebAuthenticationSessionCallback {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/customScheme(_:)
-func (wc _WebAuthenticationSessionCallbackClass) CallbackWithCustomScheme(customScheme string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithCustomScheme:"), objc.String(customScheme))
+func (wc _WebAuthenticationSessionCallbackClass) CallbackWithCustomScheme(customScheme appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithCustomScheme:"), customScheme)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/https(host:path:)
-func (wc _WebAuthenticationSessionCallbackClass) CallbackWithHTTPSHostPath(host string, path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithHTTPSHost:path:"), objc.String(host), objc.String(path))
+func (wc _WebAuthenticationSessionCallbackClass) CallbackWithHTTPSHostPath(host appkit.string, path appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("callbackWithHTTPSHost:path:"), host, path)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASWebAuthenticationSession/Callback/matchesURL(_:)
-func (w_ WebAuthenticationSessionCallback) MatchesURL(url foundation.URL) bool {
+func (w_ WebAuthenticationSessionCallback) MatchesURL(url foundation.IURL) bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("matchesURL:"), url)
 	return rv
 }

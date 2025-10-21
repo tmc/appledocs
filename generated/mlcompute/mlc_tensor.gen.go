@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,13 +32,13 @@ type _CTensorClass struct {
 // An interface definition for the [CTensor] class.
 type ICTensor interface {
 	objectivec.IObject
-	BindAndWriteDataToDevice(data unsafe.Pointer, device unsafe.Pointer) bool
-	BindOptimizerDataDeviceData(data unsafe.Pointer, deviceData unsafe.Pointer) bool
+	BindAndWriteDataToDevice(data IMLCTensorData, device IMLCDevice) bool
+	BindOptimizerDataDeviceData(data []CTensorData, deviceData []CTensorOptimizerDeviceData) bool
 	CopyDataFromDeviceMemoryToBytesLengthSynchronizeWithDevice(bytes unsafe.Pointer, length uint, synchronizeWithDevice bool) bool
-	TensorByDequantizingToTypeScaleBiasAxis(type_ unsafe.Pointer, scale unsafe.Pointer, bias unsafe.Pointer, axis int) unsafe.Pointer
-	TensorByDequantizingToTypeScaleBias(type_ unsafe.Pointer, scale unsafe.Pointer, bias unsafe.Pointer) unsafe.Pointer
-	TensorByQuantizingToTypeScaleBias(type_ unsafe.Pointer, scale unsafe.Pointer, bias int) unsafe.Pointer
-	TensorByQuantizingToTypeScaleBiasAxis(type_ unsafe.Pointer, scale unsafe.Pointer, bias unsafe.Pointer, axis int) unsafe.Pointer
+	TensorByDequantizingToTypeScaleBiasAxis(type_ CDataType, scale IMLCTensor, bias IMLCTensor, axis int) CTensor
+	TensorByDequantizingToTypeScaleBias(type_ CDataType, scale IMLCTensor, bias IMLCTensor) CTensor
+	TensorByQuantizingToTypeScaleBias(type_ CDataType, scale unsafe.Pointer, bias int) CTensor
+	TensorByQuantizingToTypeScaleBiasAxis(type_ CDataType, scale IMLCTensor, bias IMLCTensor, axis int) CTensor
 	SynchronizeData() bool
 	SynchronizeOptimizerData() bool
 }
@@ -95,7 +96,7 @@ func NewCTensor() CTensor {
 // Creates a tensor without data, using the descriptor you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:)
-func NewCTensorWithDescriptor(tensorDescriptor unsafe.Pointer) CTensor {
+func NewCTensorWithDescriptor(tensorDescriptor IMLCTensorDescriptor) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:"), tensorDescriptor)
 	return rv
 }
@@ -105,7 +106,7 @@ func NewCTensorWithDescriptor(tensorDescriptor unsafe.Pointer) CTensor {
 // Creates a tensor with the descriptor and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:data:)
-func NewCTensorWithDescriptorData(tensorDescriptor unsafe.Pointer, data unsafe.Pointer) CTensor {
+func NewCTensorWithDescriptorData(tensorDescriptor IMLCTensorDescriptor, data IMLCTensorData) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:data:"), tensorDescriptor, data)
 	return rv
 }
@@ -115,7 +116,7 @@ func NewCTensorWithDescriptorData(tensorDescriptor unsafe.Pointer, data unsafe.P
 // Creates a tensor with the descriptor and scalar value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:fillWithData:)
-func NewCTensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData foundation.Number) CTensor {
+func NewCTensorWithDescriptorFillWithData(tensorDescriptor IMLCTensorDescriptor, fillData foundation.INumber) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:fillWithData:"), tensorDescriptor, fillData)
 	return rv
 }
@@ -125,7 +126,7 @@ func NewCTensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillD
 // Creates a tensor with the descriptor and random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:randomInitializerType:)
-func NewCTensorWithDescriptorRandomInitializerType(tensorDescriptor unsafe.Pointer, randomInitializerType unsafe.Pointer) CTensor {
+func NewCTensorWithDescriptorRandomInitializerType(tensorDescriptor IMLCTensorDescriptor, randomInitializerType CRandomInitializerType) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithDescriptor:randomInitializerType:"), tensorDescriptor, randomInitializerType)
 	return rv
 }
@@ -145,7 +146,7 @@ func NewCTensorWithSequenceLengthFeatureChannelCountBatchSize(sequenceLength uin
 // Creates a tensor with the sequence length, number of feature channels, batch size, and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:data:)
-func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer) CTensor {
+func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength uint, featureChannelCount uint, batchSize uint, data IMLCTensorData) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:data:"), sequenceLength, featureChannelCount, batchSize, data)
 	return rv
 }
@@ -155,7 +156,7 @@ func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength
 // Creates a tensor with the sequence length, number of feature channels, batch size, and random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:randomInitializerType:)
-func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(sequenceLength uint, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) CTensor {
+func NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(sequenceLength uint, featureChannelCount uint, batchSize uint, randomInitializerType CRandomInitializerType) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:"), sequenceLength, featureChannelCount, batchSize, randomInitializerType)
 	return rv
 }
@@ -175,7 +176,7 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSize(width uint, height ui
 // Creates a tensor with the sizes, number of feature channels, and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:data:)
-func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeData(width uint, height uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer) CTensor {
+func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeData(width uint, height uint, featureChannelCount uint, batchSize uint, data IMLCTensorData) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:data:"), width, height, featureChannelCount, batchSize, data)
 	return rv
 }
@@ -185,7 +186,7 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeData(width uint, heigh
 // Creates a tensor with the sizes, number of feature channels, data, and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:data:dataType:)
-func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer, dataType unsafe.Pointer) CTensor {
+func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, data IMLCTensorData, dataType CDataType) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:"), width, height, featureChannelCount, batchSize, data, dataType)
 	return rv
 }
@@ -195,7 +196,7 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uin
 // Creates a tensor with the sizes and number of feature channels, and filled with the data and type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:fillWithData:dataType:)
-func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData unsafe.Pointer, dataType unsafe.Pointer) CTensor {
+func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData unsafe.Pointer, dataType CDataType) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:"), width, height, featureChannelCount, batchSize, fillData, dataType)
 	return rv
 }
@@ -205,7 +206,7 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(w
 // Creates a tensor with the sizes, number of feature channels, and random data using the random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:randomInitializerType:)
-func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(width uint, height uint, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) CTensor {
+func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(width uint, height uint, featureChannelCount uint, batchSize uint, randomInitializerType CRandomInitializerType) CTensor {
 	rv := objc.Send[CTensor](objc.ID(getCTensorClass().class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:randomInitializerType:"), width, height, featureChannelCount, batchSize, randomInitializerType)
 	return rv
 }
@@ -214,7 +215,7 @@ func NewCTensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(
 // Creates a tensor without data, using the descriptor you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:)
-func (cc _CTensorClass) TensorWithDescriptor(tensorDescriptor unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithDescriptor(tensorDescriptor IMLCTensorDescriptor) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithDescriptor:"), tensorDescriptor)
 	return rv
 }
@@ -222,7 +223,7 @@ func (cc _CTensorClass) TensorWithDescriptor(tensorDescriptor unsafe.Pointer) un
 // Creates a tensor with the descriptor and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:data:)
-func (cc _CTensorClass) TensorWithDescriptorData(tensorDescriptor unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithDescriptorData(tensorDescriptor IMLCTensorDescriptor, data IMLCTensorData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithDescriptor:data:"), tensorDescriptor, data)
 	return rv
 }
@@ -230,7 +231,7 @@ func (cc _CTensorClass) TensorWithDescriptorData(tensorDescriptor unsafe.Pointer
 // Creates a tensor with the descriptor and scalar value you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:fillWithData:)
-func (cc _CTensorClass) TensorWithDescriptorFillWithData(tensorDescriptor unsafe.Pointer, fillData foundation.Number) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithDescriptorFillWithData(tensorDescriptor IMLCTensorDescriptor, fillData foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithDescriptor:fillWithData:"), tensorDescriptor, fillData)
 	return rv
 }
@@ -238,7 +239,7 @@ func (cc _CTensorClass) TensorWithDescriptorFillWithData(tensorDescriptor unsafe
 // Creates a tensor with the descriptor and random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(descriptor:randomInitializerType:)
-func (cc _CTensorClass) TensorWithDescriptorRandomInitializerType(tensorDescriptor unsafe.Pointer, randomInitializerType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithDescriptorRandomInitializerType(tensorDescriptor IMLCTensorDescriptor, randomInitializerType CRandomInitializerType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithDescriptor:randomInitializerType:"), tensorDescriptor, randomInitializerType)
 	return rv
 }
@@ -254,7 +255,7 @@ func (cc _CTensorClass) TensorWithSequenceLengthFeatureChannelCountBatchSize(seq
 // Creates a tensor with the sequence length, number of feature channels, batch size, and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:data:)
-func (cc _CTensorClass) TensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithSequenceLengthFeatureChannelCountBatchSizeData(sequenceLength uint, featureChannelCount uint, batchSize uint, data IMLCTensorData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:data:"), sequenceLength, featureChannelCount, batchSize, data)
 	return rv
 }
@@ -262,7 +263,7 @@ func (cc _CTensorClass) TensorWithSequenceLengthFeatureChannelCountBatchSizeData
 // Creates a tensor with the sequence length, number of feature channels, batch size, and random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(sequenceLength:featureChannelCount:batchSize:randomInitializerType:)
-func (cc _CTensorClass) TensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(sequenceLength uint, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(sequenceLength uint, featureChannelCount uint, batchSize uint, randomInitializerType CRandomInitializerType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithSequenceLength:featureChannelCount:batchSize:randomInitializerType:"), sequenceLength, featureChannelCount, batchSize, randomInitializerType)
 	return rv
 }
@@ -278,7 +279,7 @@ func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSize(width 
 // Creates a tensor with the sizes, number of feature channels, and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:data:)
-func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeData(width uint, height uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeData(width uint, height uint, featureChannelCount uint, batchSize uint, data IMLCTensorData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:data:"), width, height, featureChannelCount, batchSize, data)
 	return rv
 }
@@ -286,7 +287,7 @@ func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeData(wi
 // Creates a tensor with the sizes, number of feature channels, data, and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:data:dataType:)
-func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, data unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, data IMLCTensorData, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:data:dataType:"), width, height, featureChannelCount, batchSize, data, dataType)
 	return rv
 }
@@ -294,7 +295,7 @@ func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeDataDat
 // Creates a tensor with the sizes and number of feature channels, and filled with the data and type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:fillWithData:dataType:)
-func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(width uint, height uint, featureChannelCount uint, batchSize uint, fillData unsafe.Pointer, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:fillWithData:dataType:"), width, height, featureChannelCount, batchSize, fillData, dataType)
 	return rv
 }
@@ -302,7 +303,7 @@ func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeFillWit
 // Creates a tensor with the sizes, number of feature channels, and random data using the random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/init(width:height:featureChannelCount:batchSize:randomInitializerType:)
-func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(width uint, height uint, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(width uint, height uint, featureChannelCount uint, batchSize uint, randomInitializerType CRandomInitializerType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithWidth:height:featureChannelCount:batchSize:randomInitializerType:"), width, height, featureChannelCount, batchSize, randomInitializerType)
 	return rv
 }
@@ -310,7 +311,7 @@ func (cc _CTensorClass) TensorWithWidthHeightFeatureChannelCountBatchSizeRandomI
 // Creates a tensor with the sequence lengths, sorting indicator, number of feature channels, batch size, and data you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:data:
-func (cc _CTensorClass) TensorWithSequenceLengthsSortedSequencesFeatureChannelCountBatchSizeData(sequenceLengths unsafe.Pointer, sortedSequences bool, featureChannelCount uint, batchSize uint, data unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithSequenceLengthsSortedSequencesFeatureChannelCountBatchSizeData(sequenceLengths []foundation.INumber, sortedSequences bool, featureChannelCount uint, batchSize uint, data IMLCTensorData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:data:"), sequenceLengths, sortedSequences, featureChannelCount, batchSize, data)
 	return rv
 }
@@ -318,7 +319,7 @@ func (cc _CTensorClass) TensorWithSequenceLengthsSortedSequencesFeatureChannelCo
 // Creates a tensor with the sequence lengths, sorting indicator, number of feature channels, batch size, and random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:randomInitializerType:
-func (cc _CTensorClass) TensorWithSequenceLengthsSortedSequencesFeatureChannelCountBatchSizeRandomInitializerType(sequenceLengths unsafe.Pointer, sortedSequences bool, featureChannelCount uint, batchSize uint, randomInitializerType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithSequenceLengthsSortedSequencesFeatureChannelCountBatchSizeRandomInitializerType(sequenceLengths []foundation.INumber, sortedSequences bool, featureChannelCount uint, batchSize uint, randomInitializerType CRandomInitializerType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithSequenceLengths:sortedSequences:featureChannelCount:batchSize:randomInitializerType:"), sequenceLengths, sortedSequences, featureChannelCount, batchSize, randomInitializerType)
 	return rv
 }
@@ -326,7 +327,7 @@ func (cc _CTensorClass) TensorWithSequenceLengthsSortedSequencesFeatureChannelCo
 // Creates a tensor without data, with the shape you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:
-func (cc _CTensorClass) TensorWithShape(shape unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShape(shape []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:"), shape)
 	return rv
 }
@@ -334,7 +335,7 @@ func (cc _CTensorClass) TensorWithShape(shape unsafe.Pointer) unsafe.Pointer {
 // Creates a tensor with the shape, data, and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:data:dataType:
-func (cc _CTensorClass) TensorWithShapeDataDataType(shape unsafe.Pointer, data unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShapeDataDataType(shape []foundation.INumber, data IMLCTensorData, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:data:dataType:"), shape, data, dataType)
 	return rv
 }
@@ -342,7 +343,7 @@ func (cc _CTensorClass) TensorWithShapeDataDataType(shape unsafe.Pointer, data u
 // Creates a tensor without data, with the shape and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:dataType:
-func (cc _CTensorClass) TensorWithShapeDataType(shape unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShapeDataType(shape []foundation.INumber, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:dataType:"), shape, dataType)
 	return rv
 }
@@ -350,7 +351,7 @@ func (cc _CTensorClass) TensorWithShapeDataType(shape unsafe.Pointer, dataType u
 // Creates a tensor with the shape, scalar value, and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:fillWithData:dataType:
-func (cc _CTensorClass) TensorWithShapeFillWithDataDataType(shape unsafe.Pointer, fillData foundation.Number, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShapeFillWithDataDataType(shape []foundation.INumber, fillData foundation.INumber, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:fillWithData:dataType:"), shape, fillData, dataType)
 	return rv
 }
@@ -358,7 +359,7 @@ func (cc _CTensorClass) TensorWithShapeFillWithDataDataType(shape unsafe.Pointer
 // Creates a tensor with the shape and random initializer type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:randomInitializerType:
-func (cc _CTensorClass) TensorWithShapeRandomInitializerType(shape unsafe.Pointer, randomInitializerType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShapeRandomInitializerType(shape []foundation.INumber, randomInitializerType CRandomInitializerType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:randomInitializerType:"), shape, randomInitializerType)
 	return rv
 }
@@ -366,7 +367,7 @@ func (cc _CTensorClass) TensorWithShapeRandomInitializerType(shape unsafe.Pointe
 // Creates a tensor with the shape, random initializer, and data type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/tensorWithShape:randomInitializerType:dataType:
-func (cc _CTensorClass) TensorWithShapeRandomInitializerTypeDataType(shape unsafe.Pointer, randomInitializerType unsafe.Pointer, dataType unsafe.Pointer) unsafe.Pointer {
+func (cc _CTensorClass) TensorWithShapeRandomInitializerTypeDataType(shape []foundation.INumber, randomInitializerType CRandomInitializerType, dataType CDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("tensorWithShape:randomInitializerType:dataType:"), shape, randomInitializerType, dataType)
 	return rv
 }
@@ -374,7 +375,7 @@ func (cc _CTensorClass) TensorWithShapeRandomInitializerTypeDataType(shape unsaf
 // Associates the given data to the tensor, and if the device is a GPU, also copies the data to the device memory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/bindAndWriteData(_:to:)
-func (c_ CTensor) BindAndWriteDataToDevice(data unsafe.Pointer, device unsafe.Pointer) bool {
+func (c_ CTensor) BindAndWriteDataToDevice(data IMLCTensorData, device IMLCDevice) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bindAndWriteData:toDevice:"), data, device)
 	return rv
 }
@@ -382,7 +383,7 @@ func (c_ CTensor) BindAndWriteDataToDevice(data unsafe.Pointer, device unsafe.Po
 // Associates the optimizer and device data buffers you specify to the tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/bindOptimizerData(_:deviceData:)
-func (c_ CTensor) BindOptimizerDataDeviceData(data unsafe.Pointer, deviceData unsafe.Pointer) bool {
+func (c_ CTensor) BindOptimizerDataDeviceData(data []CTensorData, deviceData []CTensorOptimizerDeviceData) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("bindOptimizerData:deviceData:"), data, deviceData)
 	return rv
 }
@@ -398,32 +399,32 @@ func (c_ CTensor) CopyDataFromDeviceMemoryToBytesLengthSynchronizeWithDevice(byt
 // Converts a tensor you quantize to a 32-bit floating-point tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/dequantized(to:scale:bias:axis:)
-func (c_ CTensor) TensorByDequantizingToTypeScaleBiasAxis(type_ unsafe.Pointer, scale unsafe.Pointer, bias unsafe.Pointer, axis int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tensorByDequantizingToType:scale:bias:axis:"), type_, scale, bias, axis)
+func (c_ CTensor) TensorByDequantizingToTypeScaleBiasAxis(type_ CDataType, scale IMLCTensor, bias IMLCTensor, axis int) CTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("tensorByDequantizingToType:scale:bias:axis:"), type_, scale, bias, axis)
 	return rv
 }
 
 // Converts a tensor you quantize to a 32-bit floating-point tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/dequantized(to:scale:zeroPoint:)
-func (c_ CTensor) TensorByDequantizingToTypeScaleBias(type_ unsafe.Pointer, scale unsafe.Pointer, bias unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tensorByDequantizingToType:scale:bias:"), type_, scale, bias)
+func (c_ CTensor) TensorByDequantizingToTypeScaleBias(type_ CDataType, scale IMLCTensor, bias IMLCTensor) CTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("tensorByDequantizingToType:scale:bias:"), type_, scale, bias)
 	return rv
 }
 
 // Converts a 32-bit floating-point tensor with the scale and bias you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/quantized(to:scale:bias:)
-func (c_ CTensor) TensorByQuantizingToTypeScaleBias(type_ unsafe.Pointer, scale unsafe.Pointer, bias int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tensorByQuantizingToType:scale:bias:"), type_, scale, bias)
+func (c_ CTensor) TensorByQuantizingToTypeScaleBias(type_ CDataType, scale unsafe.Pointer, bias int) CTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("tensorByQuantizingToType:scale:bias:"), type_, scale, bias)
 	return rv
 }
 
 // Converts a 32-bit floating-point tensor with the scale and bias you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/quantized(to:scale:bias:axis:)
-func (c_ CTensor) TensorByQuantizingToTypeScaleBiasAxis(type_ unsafe.Pointer, scale unsafe.Pointer, bias unsafe.Pointer, axis int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tensorByQuantizingToType:scale:bias:axis:"), type_, scale, bias, axis)
+func (c_ CTensor) TensorByQuantizingToTypeScaleBiasAxis(type_ CDataType, scale IMLCTensor, bias IMLCTensor, axis int) CTensor {
+	rv := objc.Send[CTensor](c_.ID, objc.Sel("tensorByQuantizingToType:scale:bias:axis:"), type_, scale, bias, axis)
 	return rv
 }
 
@@ -446,24 +447,24 @@ func (c_ CTensor) SynchronizeOptimizerData() bool {
 // The tensor data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/data
-func (c_ CTensor) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("data"))
+func (c_ CTensor) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("data"))
 	return rv
 }
 
 // The configuration object you use to create a tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/descriptor
-func (c_ CTensor) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptor"))
+func (c_ CTensor) Descriptor() MLCTensorDescriptor {
+	rv := objc.Send[MLCTensorDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
 // The device associated with this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/device
-func (c_ CTensor) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("device"))
+func (c_ CTensor) Device() MLCDevice {
+	rv := objc.Send[MLCDevice](c_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -478,8 +479,8 @@ func (c_ CTensor) HasValidNumerics() bool {
 // A string that identifes this tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/label
-func (c_ CTensor) Label() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("label"))
+func (c_ CTensor) Label() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -489,8 +490,8 @@ func (c_ CTensor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCTensor/label
-func (c_ CTensor) SetLabel(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (c_ CTensor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setLabel:"), value)
 }
 
 // An array that contains optimizer buffers you specify when you create a tensor parameter.

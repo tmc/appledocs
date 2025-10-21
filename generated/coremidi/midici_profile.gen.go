@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewMIDICIProfile() MIDICIProfile {
 // A string that describes the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-func (m_ MIDICIProfile) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDICIProfile) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (m_ MIDICIProfile) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/name
-func (m_ MIDICIProfile) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MIDICIProfile) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 // The unique five-byte profile identifier that represents the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-func (m_ MIDICIProfile) ProfileID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileID"))
+func (m_ MIDICIProfile) ProfileID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("profileID"))
 	return rv
 }
 
@@ -110,7 +111,7 @@ func (m_ MIDICIProfile) ProfileID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciprofile/profileid
-func (m_ MIDICIProfile) SetProfileID(value unsafe.Pointer) {
+func (m_ MIDICIProfile) SetProfileID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileID:"), value)
 }
 

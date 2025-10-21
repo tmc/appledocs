@@ -83,8 +83,8 @@ func NewCaptureOutput() CaptureOutput {
 // The capture output object’s connections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
-func (c_ CaptureOutput) Connections() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("connections"))
+func (c_ CaptureOutput) Connections() AVCaptureConnection {
+	rv := objc.Send[AVCaptureConnection](c_.ID, objc.Sel("connections"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (c_ CaptureOutput) Connections() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureoutput/connections
-func (c_ CaptureOutput) SetConnections(value unsafe.Pointer) {
+func (c_ CaptureOutput) SetConnections(value IAVCaptureConnection) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConnections:"), value)
 }
 

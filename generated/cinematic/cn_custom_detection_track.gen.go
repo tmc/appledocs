@@ -84,7 +84,7 @@ func NewCNCustomDetectionTrack() CNCustomDetectionTrack {
 // Initializes a custom detection track with an array of detections, optionally applying smoothing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNCustomDetectionTrack-891hc/initWithDetections:smooth:
-func NewCNCustomDetectionTrackWithDetectionsSmooth(detections unsafe.Pointer, applySmoothing bool) CNCustomDetectionTrack {
+func NewCNCustomDetectionTrackWithDetectionsSmooth(detections []CNDetection, applySmoothing bool) CNCustomDetectionTrack {
 	instance := getCNCustomDetectionTrackClass().Alloc()
 	rv := objc.Send[CNCustomDetectionTrack](instance.ID, objc.Sel("initWithDetections:smooth:"), detections, applySmoothing)
 	rv.Autorelease()

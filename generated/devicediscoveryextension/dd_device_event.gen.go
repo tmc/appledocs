@@ -85,7 +85,7 @@ func NewDDDeviceEvent() DDDeviceEvent {
 // Creates an event object that conveys status for a discovered device of interest.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/init(eventType:device:)
-func NewDDDeviceEventWithEventTypeDevice(type_ unsafe.Pointer, device unsafe.Pointer) DDDeviceEvent {
+func NewDDDeviceEventWithEventTypeDevice(type_ DDEventType, device IDDDevice) DDDeviceEvent {
 	instance := getDDDeviceEventClass().Alloc()
 	rv := objc.Send[DDDeviceEvent](instance.ID, objc.Sel("initWithEventType:device:"), type_, device)
 	rv.Autorelease()
@@ -96,16 +96,16 @@ func NewDDDeviceEventWithEventTypeDevice(type_ unsafe.Pointer, device unsafe.Poi
 // An object that describes a third-party media receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/device
-func (d_ DDDeviceEvent) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("device"))
+func (d_ DDDeviceEvent) Device() DDDevice {
+	rv := objc.Send[DDDevice](d_.ID, objc.Sel("device"))
 	return rv
 }
 
 // A type for the event that describes the discovery status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/eventType-swift.property
-func (d_ DDDeviceEvent) EventType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("eventType"))
+func (d_ DDDeviceEvent) EventType() DDEventType {
+	rv := objc.Send[DDEventType](d_.ID, objc.Sel("eventType"))
 	return rv
 }
 

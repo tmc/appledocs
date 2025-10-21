@@ -84,8 +84,8 @@ func NewMXCPUExceptionDiagnostic() MXCPUExceptionDiagnostic {
 // The app call stack associated with the CPU exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCPUExceptionDiagnostic/callStackTree
-func (m_ MXCPUExceptionDiagnostic) CallStackTree() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("callStackTree"))
+func (m_ MXCPUExceptionDiagnostic) CallStackTree() MXCallStackTree {
+	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 

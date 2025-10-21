@@ -29,8 +29,8 @@ type _MusicPlayerControllerMutableQueueClass struct {
 // An interface definition for the [MusicPlayerControllerMutableQueue] class.
 type IMusicPlayerControllerMutableQueue interface {
 	IMusicPlayerControllerQueue
-	InsertQueueDescriptorAfterItem(queueDescriptor unsafe.Pointer, afterItem unsafe.Pointer)
-	RemoveItem(item unsafe.Pointer)
+	InsertQueueDescriptorAfterItem(queueDescriptor IMPMusicPlayerQueueDescriptor, afterItem IMPMediaItem)
+	RemoveItem(item IMPMediaItem)
 }
 
 // A mutable queue containing the media items to play.
@@ -84,14 +84,14 @@ func NewMusicPlayerControllerMutableQueue() MusicPlayerControllerMutableQueue {
 // Inserts a modified queue after the designated media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerControllerMutableQueue/insert(_:after:)
-func (m_ MusicPlayerControllerMutableQueue) InsertQueueDescriptorAfterItem(queueDescriptor unsafe.Pointer, afterItem unsafe.Pointer) {
+func (m_ MusicPlayerControllerMutableQueue) InsertQueueDescriptorAfterItem(queueDescriptor IMPMusicPlayerQueueDescriptor, afterItem IMPMediaItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertQueueDescriptor:afterItem:"), queueDescriptor, afterItem)
 }
 
 // Removes a media item from the music player’s queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerControllerMutableQueue/remove(_:)
-func (m_ MusicPlayerControllerMutableQueue) RemoveItem(item unsafe.Pointer) {
+func (m_ MusicPlayerControllerMutableQueue) RemoveItem(item IMPMediaItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeItem:"), item)
 }
 

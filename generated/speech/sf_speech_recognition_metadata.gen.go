@@ -153,8 +153,8 @@ func (s_ SFSpeechRecognitionMetadata) SetSpeechStartTimestamp(value unsafe.Point
 // An analysis of the transcription segment’s vocal properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
-func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceAnalytics"))
+func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() SFVoiceAnalytics {
+	rv := objc.Send[SFVoiceAnalytics](s_.ID, objc.Sel("voiceAnalytics"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
-func (s_ SFSpeechRecognitionMetadata) SetVoiceAnalytics(value unsafe.Pointer) {
+func (s_ SFSpeechRecognitionMetadata) SetVoiceAnalytics(value ISFVoiceAnalytics) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)
 }
 

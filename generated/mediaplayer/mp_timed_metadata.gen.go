@@ -102,8 +102,8 @@ func (t_ TimedMetadata) SetImageCropRect(value coregraphics.CGRect) {
 // An NSDictionary object containing the most recent
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayertimedmetadatauserinfokey
-func (t_ TimedMetadata) MPMoviePlayerTimedMetadataUserInfoKey() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("MPMoviePlayerTimedMetadataUserInfoKey"))
+func (t_ TimedMetadata) MPMoviePlayerTimedMetadataUserInfoKey() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("MPMoviePlayerTimedMetadataUserInfoKey"))
 	return rv
 }
 
@@ -128,8 +128,8 @@ func (t_ TimedMetadata) SetAllMetadata(value unsafe.Pointer) {
 // A key that identifies a piece of timed metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/key
-func (t_ TimedMetadata) Key() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("key"))
+func (t_ TimedMetadata) Key() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -139,15 +139,15 @@ func (t_ TimedMetadata) Key() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/key
-func (t_ TimedMetadata) SetKey(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setKey:"), objc.String(value))
+func (t_ TimedMetadata) SetKey(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKey:"), value)
 }
 
 // The namespace of the identifying key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/keyspace
-func (t_ TimedMetadata) Keyspace() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("keyspace"))
+func (t_ TimedMetadata) Keyspace() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("keyspace"))
 	return rv
 }
 
@@ -157,8 +157,8 @@ func (t_ TimedMetadata) Keyspace() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mptimedmetadata/keyspace
-func (t_ TimedMetadata) SetKeyspace(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setKeyspace:"), objc.String(value))
+func (t_ TimedMetadata) SetKeyspace(value appkit.string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setKeyspace:"), value)
 }
 
 // The timestamp of the metadata, in the timebase of the media stream.

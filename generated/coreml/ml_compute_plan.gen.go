@@ -31,9 +31,9 @@ type _ComputePlanClass struct {
 // An interface definition for the [ComputePlan] class.
 type IComputePlan interface {
 	objectivec.IObject
-	ComputeDeviceUsageForMLProgramOperation(operation unsafe.Pointer) unsafe.Pointer
-	ComputeDeviceUsageForNeuralNetworkLayer(layer unsafe.Pointer) unsafe.Pointer
-	EstimatedCostOfMLProgramOperation(operation unsafe.Pointer) unsafe.Pointer
+	ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanDeviceUsage
+	ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) ComputePlanDeviceUsage
+	EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanCost
 }
 
 // A class describing the plan for executing a model.
@@ -87,46 +87,46 @@ func NewComputePlan() ComputePlan {
 // Construct the compute plan of a model asynchronously given the location of its on-disk representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadContentsOfURL:configuration:completionHandler:
-func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.URL, configuration unsafe.Pointer, handler unsafe.Pointer) {
+func (cc _ComputePlanClass) LoadContentsOfURLConfigurationCompletionHandler(url foundation.IURL, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadContentsOfURL:configuration:completionHandler:"), url, configuration, handler)
 }
 
 // Construct the compute plan of a model asynchronously given the model asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/loadModelAsset:configuration:completionHandler:
-func (cc _ComputePlanClass) LoadModelAssetConfigurationCompletionHandler(asset unsafe.Pointer, configuration unsafe.Pointer, handler unsafe.Pointer) {
+func (cc _ComputePlanClass) LoadModelAssetConfigurationCompletionHandler(asset IMLModelAsset, configuration IMLModelConfiguration, handler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadModelAsset:configuration:completionHandler:"), asset, configuration, handler)
 }
 
 // Returns The anticipated compute devices that would be used for executing an ML Program operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForMLProgramOperation:
-func (c_ ComputePlan) ComputeDeviceUsageForMLProgramOperation(operation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("computeDeviceUsageForMLProgramOperation:"), operation)
+func (c_ ComputePlan) ComputeDeviceUsageForMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanDeviceUsage {
+	rv := objc.Send[ComputePlanDeviceUsage](c_.ID, objc.Sel("computeDeviceUsageForMLProgramOperation:"), operation)
 	return rv
 }
 
 // Returns the anticipated compute devices that would be used for executing a NeuralNetwork layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/computeDeviceUsageForNeuralNetworkLayer:
-func (c_ ComputePlan) ComputeDeviceUsageForNeuralNetworkLayer(layer unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("computeDeviceUsageForNeuralNetworkLayer:"), layer)
+func (c_ ComputePlan) ComputeDeviceUsageForNeuralNetworkLayer(layer IMLModelStructureNeuralNetworkLayer) ComputePlanDeviceUsage {
+	rv := objc.Send[ComputePlanDeviceUsage](c_.ID, objc.Sel("computeDeviceUsageForNeuralNetworkLayer:"), layer)
 	return rv
 }
 
 // Returns the estimated cost of executing an ML Program operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/estimatedCostOfMLProgramOperation:
-func (c_ ComputePlan) EstimatedCostOfMLProgramOperation(operation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("estimatedCostOfMLProgramOperation:"), operation)
+func (c_ ComputePlan) EstimatedCostOfMLProgramOperation(operation IMLModelStructureProgramOperation) ComputePlanCost {
+	rv := objc.Send[ComputePlanCost](c_.ID, objc.Sel("estimatedCostOfMLProgramOperation:"), operation)
 	return rv
 }
 
 // The model structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLComputePlan-85vdw/modelStructure
-func (c_ ComputePlan) ModelStructure() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("modelStructure"))
+func (c_ ComputePlan) ModelStructure() MLModelStructure {
+	rv := objc.Send[MLModelStructure](c_.ID, objc.Sel("modelStructure"))
 	return rv
 }
 

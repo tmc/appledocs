@@ -104,8 +104,8 @@ func (s_ ShapeLayer) SetFillColor(value coregraphics.CGColorRef) {
 // The fill rule used when filling the shape’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/fillRule
-func (s_ ShapeLayer) FillRule() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("fillRule"))
+func (s_ ShapeLayer) FillRule() ShapeLayerFillRule {
+	rv := objc.Send[ShapeLayerFillRule](s_.ID, objc.Sel("fillRule"))
 	return rv
 }
 
@@ -115,15 +115,15 @@ func (s_ ShapeLayer) FillRule() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/fillRule
-func (s_ ShapeLayer) SetFillRule(value unsafe.Pointer) {
+func (s_ ShapeLayer) SetFillRule(value IShapeLayerFillRule) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setFillRule:"), value)
 }
 
 // Specifies the line cap style for the shape’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineCap
-func (s_ ShapeLayer) LineCap() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lineCap"))
+func (s_ ShapeLayer) LineCap() ShapeLayerLineCap {
+	rv := objc.Send[ShapeLayerLineCap](s_.ID, objc.Sel("lineCap"))
 	return rv
 }
 
@@ -133,7 +133,7 @@ func (s_ ShapeLayer) LineCap() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineCap
-func (s_ ShapeLayer) SetLineCap(value unsafe.Pointer) {
+func (s_ ShapeLayer) SetLineCap(value IShapeLayerLineCap) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineCap:"), value)
 }
 
@@ -151,7 +151,7 @@ func (s_ ShapeLayer) LineDashPattern() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineDashPattern
-func (s_ ShapeLayer) SetLineDashPattern(value []foundation.Number) {
+func (s_ ShapeLayer) SetLineDashPattern(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -186,8 +186,8 @@ func (s_ ShapeLayer) SetLineDashPhase(value float64) {
 // Specifies the line join style for the shape’s path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineJoin
-func (s_ ShapeLayer) LineJoin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("lineJoin"))
+func (s_ ShapeLayer) LineJoin() ShapeLayerLineJoin {
+	rv := objc.Send[ShapeLayerLineJoin](s_.ID, objc.Sel("lineJoin"))
 	return rv
 }
 
@@ -197,7 +197,7 @@ func (s_ ShapeLayer) LineJoin() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAShapeLayer/lineJoin
-func (s_ ShapeLayer) SetLineJoin(value unsafe.Pointer) {
+func (s_ ShapeLayer) SetLineJoin(value IShapeLayerLineJoin) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLineJoin:"), value)
 }
 

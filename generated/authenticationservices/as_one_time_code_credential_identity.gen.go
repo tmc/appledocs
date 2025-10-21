@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewOneTimeCodeCredentialIdentity() OneTimeCodeCredentialIdentity {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASOneTimeCodeCredentialIdentity/label
-func (o_ OneTimeCodeCredentialIdentity) Label() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("label"))
+func (o_ OneTimeCodeCredentialIdentity) Label() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("label"))
 	return rv
 }
 

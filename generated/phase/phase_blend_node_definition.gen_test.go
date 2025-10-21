@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = phase.NewPHASEBlendNodeDefinition
 
+// ExampleNewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition demonstrates how to create a PHASEBlendNodeDefinition instance using NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition.
+// Creates a blend node with a maxiumum blend range value.
+func ExampleNewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition() {
+	_ = phase.NewPHASEBlendNodeDefinitionWithBlendMetaParameterDefinition(
+		phase.PHASENumberMetaParameterDefinition{}, // blendMetaParameterDefinition PHASENumberMetaParameterDefinition
+	)
+	// Output:
+}

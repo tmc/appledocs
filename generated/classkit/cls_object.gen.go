@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewSObject() SObject {
 // The date on which the object was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject/dateCreated
-func (s_ SObject) DateCreated() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dateCreated"))
+func (s_ SObject) DateCreated() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("dateCreated"))
 	return rv
 }
 
 // The date on which the object was last modified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSObject/dateLastModified
-func (s_ SObject) DateLastModified() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("dateLastModified"))
+func (s_ SObject) DateLastModified() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](s_.ID, objc.Sel("dateLastModified"))
 	return rv
 }
 

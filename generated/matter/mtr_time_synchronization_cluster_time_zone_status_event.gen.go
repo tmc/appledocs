@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRTimeSynchronizationClusterTimeZoneStatusEvent() MTRTimeSynchronizatio
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/name
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
@@ -102,7 +103,7 @@ func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) Offset() foundation.N
 // SetOffset sets the value of the offset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterTimeZoneStatusEvent/offset
-func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterTimeZoneStatusEvent) SetOffset(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffset:"), value)
 }
 

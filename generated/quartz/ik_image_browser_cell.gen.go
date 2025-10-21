@@ -31,7 +31,7 @@ type _IKImageBrowserCellClass struct {
 type IIKImageBrowserCell interface {
 	objectivec.IObject
 	CellState() unsafe.Pointer
-	ImageBrowserView() unsafe.Pointer
+	ImageBrowserView() IKImageBrowserView
 }
 
 // A class used to display a cell.
@@ -93,8 +93,8 @@ func (i_ IKImageBrowserCell) CellState() unsafe.Pointer {
 // Returns the view the receiver uses to display the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/IKImageBrowserCell/imageBrowserView()
-func (i_ IKImageBrowserCell) ImageBrowserView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("imageBrowserView"))
+func (i_ IKImageBrowserCell) ImageBrowserView() IKImageBrowserView {
+	rv := objc.Send[IKImageBrowserView](i_.ID, objc.Sel("imageBrowserView"))
 	return rv
 }
 

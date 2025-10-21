@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHASEMappedMetaParameterDefinition] class.
@@ -86,9 +87,9 @@ func NewPHASEMappedMetaParameterDefinition() PHASEMappedMetaParameterDefinition 
 // Creates a specification for a named metaparameter that the app plots on a graph defined by the given set of curves.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMappedMetaParameterDefinition/init(inputMetaParameterDefinition:envelope:identifier:)
-func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition unsafe.Pointer, envelope unsafe.Pointer, identifier string) PHASEMappedMetaParameterDefinition {
+func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelopeIdentifier(inputMetaParameterDefinition IPHASENumberMetaParameterDefinition, envelope IPHASEEnvelope, identifier appkit.string) PHASEMappedMetaParameterDefinition {
 	instance := getPHASEMappedMetaParameterDefinitionClass().Alloc()
-	rv := objc.Send[PHASEMappedMetaParameterDefinition](instance.ID, objc.Sel("initWithInputMetaParameterDefinition:envelope:identifier:"), inputMetaParameterDefinition, envelope, objc.String(identifier))
+	rv := objc.Send[PHASEMappedMetaParameterDefinition](instance.ID, objc.Sel("initWithInputMetaParameterDefinition:envelope:identifier:"), inputMetaParameterDefinition, envelope, identifier)
 	rv.Autorelease()
 	return rv
 }
@@ -97,8 +98,8 @@ func NewPHASEMappedMetaParameterDefinitionWithInputMetaParameterDefinitionEnvelo
 // A collection of line segments that curve and connect to form a graph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope
-func (p_ PHASEMappedMetaParameterDefinition) Envelope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("envelope"))
+func (p_ PHASEMappedMetaParameterDefinition) Envelope() PHASEEnvelope {
+	rv := objc.Send[PHASEEnvelope](p_.ID, objc.Sel("envelope"))
 	return rv
 }
 
@@ -108,15 +109,15 @@ func (p_ PHASEMappedMetaParameterDefinition) Envelope() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/envelope
-func (p_ PHASEMappedMetaParameterDefinition) SetEnvelope(value unsafe.Pointer) {
+func (p_ PHASEMappedMetaParameterDefinition) SetEnvelope(value IPHASEEnvelope) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEnvelope:"), value)
 }
 
 // A linear input value to plot on a curve.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
-func (p_ PHASEMappedMetaParameterDefinition) InputMetaParameterDefinition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("inputMetaParameterDefinition"))
+func (p_ PHASEMappedMetaParameterDefinition) InputMetaParameterDefinition() PHASENumberMetaParameterDefinition {
+	rv := objc.Send[PHASENumberMetaParameterDefinition](p_.ID, objc.Sel("inputMetaParameterDefinition"))
 	return rv
 }
 
@@ -126,7 +127,7 @@ func (p_ PHASEMappedMetaParameterDefinition) InputMetaParameterDefinition() unsa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasemappedmetaparameterdefinition/inputmetaparameterdefinition
-func (p_ PHASEMappedMetaParameterDefinition) SetInputMetaParameterDefinition(value unsafe.Pointer) {
+func (p_ PHASEMappedMetaParameterDefinition) SetInputMetaParameterDefinition(value IPHASENumberMetaParameterDefinition) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInputMetaParameterDefinition:"), value)
 }
 

@@ -30,8 +30,8 @@ type _RenderPassColorAttachmentDescriptorArrayClass struct {
 // An interface definition for the [RenderPassColorAttachmentDescriptorArray] class.
 type IRenderPassColorAttachmentDescriptorArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint)
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(attachment IMTLRenderPassColorAttachmentDescriptor, attachmentIndex uint)
+	ObjectAtIndexedSubscript(attachmentIndex uint) RenderPassColorAttachmentDescriptor
 }
 
 // An array of render pass color attachment descriptor objects.
@@ -83,15 +83,15 @@ func NewRenderPassColorAttachmentDescriptorArray() RenderPassColorAttachmentDesc
 // Sets the descriptor for the specified color attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray/setObject:atIndexedSubscript:
-func (r_ RenderPassColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint) {
+func (r_ RenderPassColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment IMTLRenderPassColorAttachmentDescriptor, attachmentIndex uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setObject:atIndexedSubscript:"), attachment, attachmentIndex)
 }
 
 // Returns the descriptor object for the specified color attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPassColorAttachmentDescriptorArray/subscript(_:)
-func (r_ RenderPassColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (r_ RenderPassColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) RenderPassColorAttachmentDescriptor {
+	rv := objc.Send[RenderPassColorAttachmentDescriptor](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

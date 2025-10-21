@@ -83,8 +83,8 @@ func NewVZConsolePortConfiguration() VZConsolePortConfiguration {
 // The serial port attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsolePortConfiguration/attachment
-func (v_ VZConsolePortConfiguration) Attachment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attachment"))
+func (v_ VZConsolePortConfiguration) Attachment() VZSerialPortAttachment {
+	rv := objc.Send[VZSerialPortAttachment](v_.ID, objc.Sel("attachment"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (v_ VZConsolePortConfiguration) Attachment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZConsolePortConfiguration/attachment
-func (v_ VZConsolePortConfiguration) SetAttachment(value unsafe.Pointer) {
+func (v_ VZConsolePortConfiguration) SetAttachment(value IVZSerialPortAttachment) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setAttachment:"), value)
 }
 

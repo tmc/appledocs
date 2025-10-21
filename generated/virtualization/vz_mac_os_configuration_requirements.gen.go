@@ -81,8 +81,8 @@ func NewVZMacOSConfigurationRequirements() VZMacOSConfigurationRequirements {
 // The hardware model for this configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements/hardwareModel
-func (v_ VZMacOSConfigurationRequirements) HardwareModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("hardwareModel"))
+func (v_ VZMacOSConfigurationRequirements) HardwareModel() VZMacHardwareModel {
+	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
 }
 

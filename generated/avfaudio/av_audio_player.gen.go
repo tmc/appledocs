@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/audiotoolbox"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -35,9 +37,9 @@ type IAudioPlayer interface {
 	Pause()
 	PeakPowerForChannel(channelNumber uint) unsafe.Pointer
 	Play() bool
-	PlayAtTime(time foundation.TimeInterval) bool
+	PlayAtTime(time foundation.ITimeInterval) bool
 	PrepareToPlay() bool
-	SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.TimeInterval)
+	SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.ITimeInterval)
 	Stop()
 	UpdateMeters()
 }
@@ -95,7 +97,7 @@ func NewAudioPlayer() AudioPlayer {
 // Creates a player to play audio from a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:)
-func NewAudioPlayerWithContentsOfURLError(url foundation.URL, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLError(url foundation.IURL, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, outError)
 	rv.Autorelease()
@@ -107,9 +109,9 @@ func NewAudioPlayerWithContentsOfURLError(url foundation.URL, outError unsafe.Po
 // Creates a player to play audio from a file of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(contentsOf:fileTypeHint:)
-func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.URL, utiString string, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.IURL, utiString appkit.string, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, objc.String(utiString), outError)
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithContentsOfURL:fileTypeHint:error:"), url, utiString, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -119,7 +121,7 @@ func NewAudioPlayerWithContentsOfURLFileTypeHintError(url foundation.URL, utiStr
 // Creates a player to play in-memory audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(data:)
-func NewAudioPlayerWithDataError(data unsafe.Pointer, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithDataError(data foundation.IData, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
 	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:error:"), data, outError)
 	rv.Autorelease()
@@ -131,9 +133,9 @@ func NewAudioPlayerWithDataError(data unsafe.Pointer, outError unsafe.Pointer) A
 // Creates a player to play in-memory audio data of a particular type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/init(data:fileTypeHint:)
-func NewAudioPlayerWithDataFileTypeHintError(data unsafe.Pointer, utiString string, outError unsafe.Pointer) AudioPlayer {
+func NewAudioPlayerWithDataFileTypeHintError(data foundation.IData, utiString appkit.string, outError unsafe.Pointer) AudioPlayer {
 	instance := getAudioPlayerClass().Alloc()
-	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, objc.String(utiString), outError)
+	rv := objc.Send[AudioPlayer](instance.ID, objc.Sel("initWithData:fileTypeHint:error:"), data, utiString, outError)
 	rv.Autorelease()
 	return rv
 }
@@ -173,7 +175,7 @@ func (a_ AudioPlayer) Play() bool {
 // Plays audio asynchronously, starting at a specified point in the audio output device’s timeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/play(atTime:)
-func (a_ AudioPlayer) PlayAtTime(time foundation.TimeInterval) bool {
+func (a_ AudioPlayer) PlayAtTime(time foundation.ITimeInterval) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("playAtTime:"), time)
 	return rv
 }
@@ -189,7 +191,7 @@ func (a_ AudioPlayer) PrepareToPlay() bool {
 // Changes the audio player’s volume over a duration of time.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/setVolume(_:fadeDuration:)
-func (a_ AudioPlayer) SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.TimeInterval) {
+func (a_ AudioPlayer) SetVolumeFadeDuration(volume unsafe.Pointer, duration foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVolume:fadeDuration:"), volume, duration)
 }
 
@@ -221,7 +223,7 @@ func (a_ AudioPlayer) ChannelAssignments() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) SetChannelAssignments(value []unsafe.Pointer) {
+func (a_ AudioPlayer) SetChannelAssignments(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -238,8 +240,8 @@ func (a_ AudioPlayer) SetChannelAssignments(value []unsafe.Pointer) {
 // The unique identifier of the current audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) CurrentDevice() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("currentDevice"))
+func (a_ AudioPlayer) CurrentDevice() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("currentDevice"))
 	return rv
 }
 
@@ -249,8 +251,8 @@ func (a_ AudioPlayer) CurrentDevice() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentDevice
-func (a_ AudioPlayer) SetCurrentDevice(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), objc.String(value))
+func (a_ AudioPlayer) SetCurrentDevice(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentDevice:"), value)
 }
 
 // The current playback time, in seconds, within the audio timeline.
@@ -267,15 +269,15 @@ func (a_ AudioPlayer) CurrentTime() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/currentTime
-func (a_ AudioPlayer) SetCurrentTime(value foundation.TimeInterval) {
+func (a_ AudioPlayer) SetCurrentTime(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentTime:"), value)
 }
 
 // The audio data associated with the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/data
-func (a_ AudioPlayer) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("data"))
+func (a_ AudioPlayer) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -334,15 +336,15 @@ func (a_ AudioPlayer) SetEnableRate(value bool) {
 // The format of the player’s audio data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/format
-func (a_ AudioPlayer) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("format"))
+func (a_ AudioPlayer) Format() AVAudioFormat {
+	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/intendedSpatialExperience-6py9z
-func (a_ AudioPlayer) IntendedSpatialExperience() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("intendedSpatialExperience"))
+func (a_ AudioPlayer) IntendedSpatialExperience() audiotoolbox.SpatialAudioExperience {
+	rv := objc.Send[audiotoolbox.SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
 	return rv
 }
 
@@ -350,7 +352,7 @@ func (a_ AudioPlayer) IntendedSpatialExperience() unsafe.Pointer {
 // SetIntendedSpatialExperience sets the value of the intendedSpatialExperience property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/intendedSpatialExperience-6py9z
-func (a_ AudioPlayer) SetIntendedSpatialExperience(value unsafe.Pointer) {
+func (a_ AudioPlayer) SetIntendedSpatialExperience(value audiotoolbox.ISpatialAudioExperience) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
 }
 

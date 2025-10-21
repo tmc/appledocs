@@ -120,8 +120,8 @@ func (s_ Stepper) SetAutorepeat(value bool) {
 // The amount by which the receiver changes with each increment or decrement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/increment
-func (s_ Stepper) Increment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("increment"))
+func (s_ Stepper) Increment() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("increment"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (s_ Stepper) Increment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/increment
-func (s_ Stepper) SetIncrement(value unsafe.Pointer) {
+func (s_ Stepper) SetIncrement(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
 }
 
 // The stepper’s maximum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/maxvalue
-func (s_ Stepper) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
+func (s_ Stepper) MaxValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (s_ Stepper) MaxValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/maxvalue
-func (s_ Stepper) SetMaxValue(value unsafe.Pointer) {
+func (s_ Stepper) SetMaxValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 // The stepper’s minimum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
-func (s_ Stepper) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+func (s_ Stepper) MinValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (s_ Stepper) MinValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
-func (s_ Stepper) SetMinValue(value unsafe.Pointer) {
+func (s_ Stepper) SetMinValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
 

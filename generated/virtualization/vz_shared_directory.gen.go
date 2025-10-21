@@ -86,7 +86,7 @@ func NewVZSharedDirectory() VZSharedDirectory {
 // Initialize with a host directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZSharedDirectory/init(url:readOnly:)
-func NewVZSharedDirectoryWithURLReadOnly(url foundation.URL, readOnly bool) VZSharedDirectory {
+func NewVZSharedDirectoryWithURLReadOnly(url foundation.IURL, readOnly bool) VZSharedDirectory {
 	instance := getVZSharedDirectoryClass().Alloc()
 	rv := objc.Send[VZSharedDirectory](instance.ID, objc.Sel("initWithURL:readOnly:"), url, readOnly)
 	rv.Autorelease()

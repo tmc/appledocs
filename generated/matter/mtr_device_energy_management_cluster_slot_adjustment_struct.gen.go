@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) Duration() founda
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) NominalPower() fo
 // SetNominalPower sets the value of the nominalPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetNominalPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetNominalPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SlotIndex() found
 // SetSlotIndex sets the value of the slotIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterSlotAdjustmentStruct/slotIndex
-func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetSlotIndex(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterSlotAdjustmentStruct) SetSlotIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSlotIndex:"), value)
 }
 

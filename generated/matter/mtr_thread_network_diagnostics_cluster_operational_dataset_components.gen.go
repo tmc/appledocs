@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) ActiveT
 // SetActiveTimestampPresent sets the value of the activeTimestampPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/activetimestamppresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetActiveTimestampPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetActiveTimestampPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveTimestampPresent:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) Channel
 // SetChannelMaskPresent sets the value of the channelMaskPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/channelmaskpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelMaskPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelMaskPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelMaskPresent:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) Channel
 // SetChannelPresent sets the value of the channelPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/channelpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetChannelPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelPresent:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) DelayPr
 // SetDelayPresent sets the value of the delayPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/delaypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetDelayPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetDelayPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelayPresent:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) Extende
 // SetExtendedPanIdPresent sets the value of the extendedPanIdPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/extendedpanidpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetExtendedPanIdPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetExtendedPanIdPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanIdPresent:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) MasterK
 // SetMasterKeyPresent sets the value of the masterKeyPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/masterkeypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMasterKeyPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMasterKeyPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMasterKeyPresent:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) MeshLoc
 // SetMeshLocalPrefixPresent sets the value of the meshLocalPrefixPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/meshlocalprefixpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMeshLocalPrefixPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetMeshLocalPrefixPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeshLocalPrefixPresent:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) Network
 // SetNetworkNamePresent sets the value of the networkNamePresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/networknamepresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetNetworkNamePresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetNetworkNamePresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkNamePresent:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PanIdPr
 // SetPanIdPresent sets the value of the panIdPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/panidpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPanIdPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPanIdPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPanIdPresent:"), value)
 }
 
@@ -222,7 +222,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) Pending
 // SetPendingTimestampPresent sets the value of the pendingTimestampPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/pendingtimestamppresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPendingTimestampPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPendingTimestampPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPendingTimestampPresent:"), value)
 }
 
@@ -237,7 +237,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) PskcPre
 // SetPskcPresent sets the value of the pskcPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/pskcpresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPskcPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetPskcPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPskcPresent:"), value)
 }
 
@@ -252,7 +252,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) Securit
 // SetSecurityPolicyPresent sets the value of the securityPolicyPresent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusteroperationaldatasetcomponents/securitypolicypresent
-func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetSecurityPolicyPresent(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents) SetSecurityPolicyPresent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurityPolicyPresent:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _AnimationClass struct {
 // An interface definition for the [Animation] class.
 type IAnimation interface {
 	objectivec.IObject
-	ShouldArchiveValueForKey(key string) bool
+	ShouldArchiveValueForKey(key appkit.string) bool
 }
 
 // The abstract superclass for animations in Core Animation.
@@ -103,24 +104,24 @@ func (ac _AnimationClass) Animation() unsafe.Pointer {
 // Specifies the default value of the property with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/defaultValue(forKey:)
-func (ac _AnimationClass) DefaultValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("defaultValueForKey:"), objc.String(key))
+func (ac _AnimationClass) DefaultValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("defaultValueForKey:"), key)
 	return rv
 }
 
 // Creates an animation from a SceneKit animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/init(SCNAnimation:)
-func (ac _AnimationClass) AnimationWithSCNAnimation(animation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("animationWithSCNAnimation:"), animation)
+func (ac _AnimationClass) AnimationWithSCNAnimation(animation unsafe.Pointer) Animation {
+	rv := objc.Send[Animation](objc.ID(ac.class), objc.Sel("animationWithSCNAnimation:"), animation)
 	return rv
 }
 
 // Specifies whether the value of the property for a given key is archived.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/shouldArchiveValue(forKey:)
-func (a_ Animation) ShouldArchiveValueForKey(key string) bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("shouldArchiveValueForKey:"), objc.String(key))
+func (a_ Animation) ShouldArchiveValueForKey(key appkit.string) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("shouldArchiveValueForKey:"), key)
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (a_ Animation) AnimationEvents() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/animationEvents
-func (a_ Animation) SetAnimationEvents(value []unsafe.Pointer) {
+func (a_ Animation) SetAnimationEvents(value []unsafe.IPointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -242,8 +243,8 @@ func (a_ Animation) SetPreferredFrameRateRange(value unsafe.Pointer) {
 // An optional timing function defining the pacing of the animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/timingFunction
-func (a_ Animation) TimingFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("timingFunction"))
+func (a_ Animation) TimingFunction() CAMediaTimingFunction {
+	rv := objc.Send[CAMediaTimingFunction](a_.ID, objc.Sel("timingFunction"))
 	return rv
 }
 
@@ -253,7 +254,7 @@ func (a_ Animation) TimingFunction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAnimation/timingFunction
-func (a_ Animation) SetTimingFunction(value unsafe.Pointer) {
+func (a_ Animation) SetTimingFunction(value IMediaTimingFunction) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTimingFunction:"), value)
 }
 

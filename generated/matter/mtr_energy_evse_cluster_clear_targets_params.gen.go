@@ -90,7 +90,7 @@ func (m_ MTREnergyEVSEClusterClearTargetsParams) ServerSideProcessingTimeout() f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterClearTargetsParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterClearTargetsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterClearTargetsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTREnergyEVSEClusterClearTargetsParams) TimedInvokeTimeoutMs() foundati
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterClearTargetsParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterClearTargetsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterClearTargetsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

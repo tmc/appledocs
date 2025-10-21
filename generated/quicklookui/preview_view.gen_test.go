@@ -4,6 +4,7 @@ package quicklookui_test
 
 import (
 	"github.com/tmc/appledocs/generated/quicklookui"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // Suppress unused import errors
@@ -13,7 +14,7 @@ var _ = quicklookui.NewPreviewView
 // Creates a preview view with the provided frame.
 func ExampleNewPreviewViewWithFrame() {
 	_ = quicklookui.NewPreviewViewWithFrame(
-		quicklookui.Rect{}, // frame Rect
+		foundation.Rect{}, // frame foundation.Rect
 	)
 	// Output:
 }

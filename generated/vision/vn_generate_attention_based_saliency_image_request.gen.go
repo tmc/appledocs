@@ -82,8 +82,8 @@ func NewGenerateAttentionBasedSaliencyImageRequest() GenerateAttentionBasedSalie
 // The results of the image saliency request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest/results
-func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() VNSaliencyImageObservation {
+	rv := objc.Send[VNSaliencyImageObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (g_ GenerateAttentionBasedSaliencyImageRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateattentionbasedsaliencyimagerequest/results
-func (g_ GenerateAttentionBasedSaliencyImageRequest) SetResults(value unsafe.Pointer) {
+func (g_ GenerateAttentionBasedSaliencyImageRequest) SetResults(value IVNSaliencyImageObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 

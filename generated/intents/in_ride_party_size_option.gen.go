@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewINRidePartySizeOption() INRidePartySizeOption {
 // The number of people in the party, specified as a minimum and maximum value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) PartySizeRange() Range {
-	rv := objc.Send[Range](i_.ID, objc.Sel("partySizeRange"))
+func (i_ INRidePartySizeOption) PartySizeRange() foundation.Range {
+	rv := objc.Send[foundation.Range](i_.ID, objc.Sel("partySizeRange"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (i_ INRidePartySizeOption) PartySizeRange() Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/partysizerange
-func (i_ INRidePartySizeOption) SetPartySizeRange(value Range) {
+func (i_ INRidePartySizeOption) SetPartySizeRange(value foundation.IRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySizeRange:"), value)
 }
 
@@ -119,8 +120,8 @@ func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
 // The user-visible description of the party size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SizeDescription() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("sizeDescription"))
+func (i_ INRidePartySizeOption) SizeDescription() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("sizeDescription"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (i_ INRidePartySizeOption) SizeDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inridepartysizeoption/sizedescription
-func (i_ INRidePartySizeOption) SetSizeDescription(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), objc.String(value))
+func (i_ INRidePartySizeOption) SetSizeDescription(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), value)
 }
 
 

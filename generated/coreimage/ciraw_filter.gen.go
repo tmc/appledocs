@@ -7,8 +7,10 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [RAWFilter] class.
@@ -88,7 +90,7 @@ func NewRAWFilter() RAWFilter {
 // Creates a RAW filter from the pixel buffer and its properties that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
-func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties objc.ID) RAWFilter {
+func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties objectivec.IObject) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
@@ -98,8 +100,8 @@ func NewRAWFilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties o
 // Creates a RAW filter from the image data and type hint that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) RAWFilter {
-	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
+func NewRAWFilterWithImageDataIdentifierHint(data foundation.IData, identifierHint appkit.string) RAWFilter {
+	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
 	return rv
 }
 
@@ -108,7 +110,7 @@ func NewRAWFilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint
 // Creates a RAW filter from the image at the URL location that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func NewRAWFilterWithImageURL(url foundation.URL) RAWFilter {
+func NewRAWFilterWithImageURL(url foundation.IURL) RAWFilter {
 	rv := objc.Send[RAWFilter](objc.ID(getRAWFilterClass().class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
@@ -117,7 +119,7 @@ func NewRAWFilterWithImageURL(url foundation.URL) RAWFilter {
 // Creates a RAW filter from the pixel buffer and its properties that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(cvPixelBuffer:properties:)
-func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties objc.ID) unsafe.Pointer {
+func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointer, properties objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithCVPixelBuffer:properties:"), buffer, properties)
 	return rv
 }
@@ -125,15 +127,15 @@ func (rc _RAWFilterClass) FilterWithCVPixelBufferProperties(buffer unsafe.Pointe
 // Creates a RAW filter from the image data and type hint that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageData:identifierHint:)
-func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data unsafe.Pointer, identifierHint string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, objc.String(identifierHint))
+func (rc _RAWFilterClass) FilterWithImageDataIdentifierHint(data foundation.IData, identifierHint appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageData:identifierHint:"), data, identifierHint)
 	return rv
 }
 
 // Creates a RAW filter from the image at the URL location that you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/init(imageURL:)
-func (rc _RAWFilterClass) FilterWithImageURL(url foundation.URL) unsafe.Pointer {
+func (rc _RAWFilterClass) FilterWithImageURL(url foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("filterWithImageURL:"), url)
 	return rv
 }
@@ -238,8 +240,8 @@ func (r_ RAWFilter) SetContrastAmount(value unsafe.Pointer) {
 // A value that indicates the decoder version to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/decoderVersion
-func (r_ RAWFilter) DecoderVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("decoderVersion"))
+func (r_ RAWFilter) DecoderVersion() RAWDecoderVersion {
+	rv := objc.Send[RAWDecoderVersion](r_.ID, objc.Sel("decoderVersion"))
 	return rv
 }
 
@@ -249,7 +251,7 @@ func (r_ RAWFilter) DecoderVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/decoderVersion
-func (r_ RAWFilter) SetDecoderVersion(value unsafe.Pointer) {
+func (r_ RAWFilter) SetDecoderVersion(value IRAWDecoderVersion) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDecoderVersion:"), value)
 }
 
@@ -450,8 +452,8 @@ func (r_ RAWFilter) SharpnessSupported() bool {
 // An optional filter you can apply to the RAW image while it’s in linear space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/linearSpaceFilter
-func (r_ RAWFilter) LinearSpaceFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("linearSpaceFilter"))
+func (r_ RAWFilter) LinearSpaceFilter() CIFilter {
+	rv := objc.Send[CIFilter](r_.ID, objc.Sel("linearSpaceFilter"))
 	return rv
 }
 
@@ -461,7 +463,7 @@ func (r_ RAWFilter) LinearSpaceFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/linearSpaceFilter
-func (r_ RAWFilter) SetLinearSpaceFilter(value unsafe.Pointer) {
+func (r_ RAWFilter) SetLinearSpaceFilter(value ICIFilter) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLinearSpaceFilter:"), value)
 }
 
@@ -620,24 +622,24 @@ func (r_ RAWFilter) SetOrientation(value unsafe.Pointer) {
 // An optional auxiliary image that represents the portrait effects matte of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/portraitEffectsMatte
-func (r_ RAWFilter) PortraitEffectsMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("portraitEffectsMatte"))
+func (r_ RAWFilter) PortraitEffectsMatte() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
 }
 
 // An optional auxiliary image that represents a preview of the original image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/previewImage
-func (r_ RAWFilter) PreviewImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("previewImage"))
+func (r_ RAWFilter) PreviewImage() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("previewImage"))
 	return rv
 }
 
 // A dictionary that contains properties of the image source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/properties
-func (r_ RAWFilter) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("properties"))
+func (r_ RAWFilter) Properties() objc.ID {
+	rv := objc.Send[objc.ID](r_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -662,40 +664,40 @@ func (r_ RAWFilter) SetScaleFactor(value unsafe.Pointer) {
 // An optional auxiliary image that represents the semantic segmentation glasses matte of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationGlassesMatte
-func (r_ RAWFilter) SemanticSegmentationGlassesMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("semanticSegmentationGlassesMatte"))
+func (r_ RAWFilter) SemanticSegmentationGlassesMatte() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationGlassesMatte"))
 	return rv
 }
 
 // An optional auxiliary image that represents the semantic segmentation hair matte of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationHairMatte
-func (r_ RAWFilter) SemanticSegmentationHairMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("semanticSegmentationHairMatte"))
+func (r_ RAWFilter) SemanticSegmentationHairMatte() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationHairMatte"))
 	return rv
 }
 
 // An optional auxiliary image that represents the semantic segmentation skin matte of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationSkinMatte
-func (r_ RAWFilter) SemanticSegmentationSkinMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("semanticSegmentationSkinMatte"))
+func (r_ RAWFilter) SemanticSegmentationSkinMatte() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationSkinMatte"))
 	return rv
 }
 
 // An optional auxiliary image that represents the semantic segmentation sky matte of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationSkyMatte
-func (r_ RAWFilter) SemanticSegmentationSkyMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("semanticSegmentationSkyMatte"))
+func (r_ RAWFilter) SemanticSegmentationSkyMatte() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationSkyMatte"))
 	return rv
 }
 
 // An optional auxiliary image that represents the semantic segmentation teeth matte of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilter/semanticSegmentationTeethMatte
-func (r_ RAWFilter) SemanticSegmentationTeethMatte() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("semanticSegmentationTeethMatte"))
+func (r_ RAWFilter) SemanticSegmentationTeethMatte() CIImage {
+	rv := objc.Send[CIImage](r_.ID, objc.Sel("semanticSegmentationTeethMatte"))
 	return rv
 }
 

@@ -89,16 +89,16 @@ func (m_ MTRCommissioneeInfo) EndpointsById() unsafe.Pointer {
 // The product identity (VID / PID) of the commissionee.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioneeInfo/productIdentity
-func (m_ MTRCommissioneeInfo) ProductIdentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productIdentity"))
+func (m_ MTRCommissioneeInfo) ProductIdentity() MTRProductIdentity {
+	rv := objc.Send[MTRProductIdentity](m_.ID, objc.Sel("productIdentity"))
 	return rv
 }
 
 // Endpoint information for the root endpoint of the commissionee. Will be present only if readEndpointInformation is set to YES on MTRCommissioningParameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissioneeInfo/rootEndpoint
-func (m_ MTRCommissioneeInfo) RootEndpoint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootEndpoint"))
+func (m_ MTRCommissioneeInfo) RootEndpoint() MTREndpointInfo {
+	rv := objc.Send[MTREndpointInfo](m_.ID, objc.Sel("rootEndpoint"))
 	return rv
 }
 

@@ -88,7 +88,7 @@ func NewLPLinkView() LPLinkView {
 // Initializes a link view with specified metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(metadata:)
-func NewLPLinkViewWithMetadata(metadata unsafe.Pointer) LPLinkView {
+func NewLPLinkViewWithMetadata(metadata ILPLinkMetadata) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
 	rv := objc.Send[LPLinkView](instance.ID, objc.Sel("initWithMetadata:"), metadata)
 	rv.Autorelease()
@@ -100,7 +100,7 @@ func NewLPLinkViewWithMetadata(metadata unsafe.Pointer) LPLinkView {
 // Initializes a placeholder link view without metadata for a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/init(url:)
-func NewLPLinkViewWithURL(URL foundation.URL) LPLinkView {
+func NewLPLinkViewWithURL(URL foundation.IURL) LPLinkView {
 	instance := getLPLinkViewClass().Alloc()
 	rv := objc.Send[LPLinkView](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
@@ -111,8 +111,8 @@ func NewLPLinkViewWithURL(URL foundation.URL) LPLinkView {
 // The metadata from which to generate a rich presentation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/metadata
-func (l_ LPLinkView) Metadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("metadata"))
+func (l_ LPLinkView) Metadata() LPLinkMetadata {
+	rv := objc.Send[LPLinkMetadata](l_.ID, objc.Sel("metadata"))
 	return rv
 }
 
@@ -122,7 +122,7 @@ func (l_ LPLinkView) Metadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPLinkView/metadata
-func (l_ LPLinkView) SetMetadata(value unsafe.Pointer) {
+func (l_ LPLinkView) SetMetadata(value ILPLinkMetadata) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setMetadata:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MKPinAnnotationView] class.
@@ -120,8 +121,8 @@ func (m_ MKPinAnnotationView) SetPinColor(value unsafe.Pointer) {
 // The color of the pin head.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) PinTintColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pinTintColor"))
+func (m_ MKPinAnnotationView) PinTintColor() appkit.Color {
+	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("pinTintColor"))
 	return rv
 }
 
@@ -131,7 +132,7 @@ func (m_ MKPinAnnotationView) PinTintColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkpinannotationview/pintintcolor
-func (m_ MKPinAnnotationView) SetPinTintColor(value unsafe.Pointer) {
+func (m_ MKPinAnnotationView) SetPinTintColor(value appkit.IColor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPinTintColor:"), value)
 }
 

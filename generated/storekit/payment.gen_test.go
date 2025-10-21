@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = storekit.NewPayment
 
+// ExampleNewPaymentWithProduct demonstrates how to create a Payment instance using NewPaymentWithProduct.
+// Returns a new payment for the specified product.
+func ExampleNewPaymentWithProduct() {
+	_ = storekit.NewPaymentWithProduct(
+		storekit.SKProduct{}, // product SKProduct
+	)
+	// Output:
+}

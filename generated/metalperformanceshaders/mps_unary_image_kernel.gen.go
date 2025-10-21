@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [UnaryImageKernel] class.
@@ -30,7 +32,7 @@ type _UnaryImageKernelClass struct {
 type IUnaryImageKernel interface {
 	IKernel
 	Encode()
-	SourceRegionForDestinationSize(destinationSize unsafe.Pointer) unsafe.Pointer
+	SourceRegionForDestinationSize(destinationSize coregraphics.ISize) corelocation.Region
 }
 
 // A kernel that consumes one texture and produces one texture.
@@ -93,16 +95,16 @@ func (u_ UnaryImageKernel) Encode() {
 // Determines the region of the source texture that will be read for an encode operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSUnaryImageKernel/sourceRegion(destinationSize:)
-func (u_ UnaryImageKernel) SourceRegionForDestinationSize(destinationSize unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sourceRegionForDestinationSize:"), destinationSize)
+func (u_ UnaryImageKernel) SourceRegionForDestinationSize(destinationSize coregraphics.ISize) corelocation.Region {
+	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("sourceRegionForDestinationSize:"), destinationSize)
 	return rv
 }
 
 // An optional clip rectangle to use when writing data. Only the pixels in the rectangle will be overwritten.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect
-func (u_ UnaryImageKernel) ClipRect() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("clipRect"))
+func (u_ UnaryImageKernel) ClipRect() corelocation.Region {
+	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("clipRect"))
 	return rv
 }
 
@@ -112,7 +114,7 @@ func (u_ UnaryImageKernel) ClipRect() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect
-func (u_ UnaryImageKernel) SetClipRect(value unsafe.Pointer) {
+func (u_ UnaryImageKernel) SetClipRect(value corelocation.IRegion) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setClipRect:"), value)
 }
 

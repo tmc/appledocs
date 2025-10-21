@@ -84,8 +84,8 @@ func NewNEDNSProxyProvider() NEDNSProxyProvider {
 // The current system DNS settings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyprovider/systemdnssettings
-func (n_ NEDNSProxyProvider) SystemDNSSettings() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("systemDNSSettings"))
+func (n_ NEDNSProxyProvider) SystemDNSSettings() NEDNSSettings {
+	rv := objc.Send[NEDNSSettings](n_.ID, objc.Sel("systemDNSSettings"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (n_ NEDNSProxyProvider) SystemDNSSettings() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nednsproxyprovider/systemdnssettings
-func (n_ NEDNSProxyProvider) SetSystemDNSSettings(value unsafe.Pointer) {
+func (n_ NEDNSProxyProvider) SetSystemDNSSettings(value INEDNSSettings) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSystemDNSSettings:"), value)
 }
 

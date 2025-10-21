@@ -78,8 +78,8 @@ func NewMTREnergyEVSEClusterSetTargetsParams() MTREnergyEVSEClusterSetTargetsPar
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterSetTargetsParams/chargingTargetSchedules
-func (m_ MTREnergyEVSEClusterSetTargetsParams) ChargingTargetSchedules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("chargingTargetSchedules"))
+func (m_ MTREnergyEVSEClusterSetTargetsParams) ChargingTargetSchedules() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("chargingTargetSchedules"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterSetTargetsParams) ChargingTargetSchedules() unsafe.
 // SetChargingTargetSchedules sets the value of the chargingTargetSchedules property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterSetTargetsParams/chargingTargetSchedules
-func (m_ MTREnergyEVSEClusterSetTargetsParams) SetChargingTargetSchedules(value unsafe.Pointer) {
+func (m_ MTREnergyEVSEClusterSetTargetsParams) SetChargingTargetSchedules(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChargingTargetSchedules:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTREnergyEVSEClusterSetTargetsParams) ServerSideProcessingTimeout() fou
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterSetTargetsParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterSetTargetsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterSetTargetsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTREnergyEVSEClusterSetTargetsParams) TimedInvokeTimeoutMs() foundation
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterSetTargetsParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterSetTargetsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterSetTargetsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

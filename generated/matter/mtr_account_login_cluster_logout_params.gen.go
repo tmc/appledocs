@@ -87,7 +87,7 @@ func (m_ MTRAccountLoginClusterLogoutParams) Node() foundation.Number {
 // SetNode sets the value of the node property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/node
-func (m_ MTRAccountLoginClusterLogoutParams) SetNode(value foundation.Number) {
+func (m_ MTRAccountLoginClusterLogoutParams) SetNode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAccountLoginClusterLogoutParams) ServerSideProcessingTimeout() found
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/serversideprocessingtimeout
-func (m_ MTRAccountLoginClusterLogoutParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRAccountLoginClusterLogoutParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRAccountLoginClusterLogoutParams) TimedInvokeTimeoutMs() foundation.N
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterlogoutparams/timedinvoketimeoutms
-func (m_ MTRAccountLoginClusterLogoutParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRAccountLoginClusterLogoutParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

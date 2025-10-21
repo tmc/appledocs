@@ -130,8 +130,8 @@ func (s_ SliderCell) SetAllowsTickMarkValuesOnly(value bool) {
 // The amount by which the slider changes its value when the user Option-drags the knob.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/altincrementvalue
-func (s_ SliderCell) AltIncrementValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("altIncrementValue"))
+func (s_ SliderCell) AltIncrementValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("altIncrementValue"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (s_ SliderCell) AltIncrementValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/altincrementvalue
-func (s_ SliderCell) SetAltIncrementValue(value unsafe.Pointer) {
+func (s_ SliderCell) SetAltIncrementValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
 }
 
@@ -184,8 +184,8 @@ func (s_ SliderCell) SetKnobThickness(value float64) {
 // The maximum value the slider can send to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/maxvalue
-func (s_ SliderCell) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
+func (s_ SliderCell) MaxValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
@@ -195,15 +195,15 @@ func (s_ SliderCell) MaxValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/maxvalue
-func (s_ SliderCell) SetMaxValue(value unsafe.Pointer) {
+func (s_ SliderCell) SetMaxValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 // The minimum value the slider can send to its target.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/minvalue
-func (s_ SliderCell) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+func (s_ SliderCell) MinValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
 	return rv
 }
 
@@ -213,7 +213,7 @@ func (s_ SliderCell) MinValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/minvalue
-func (s_ SliderCell) SetMinValue(value unsafe.Pointer) {
+func (s_ SliderCell) SetMinValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
 

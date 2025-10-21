@@ -82,8 +82,8 @@ func NewCaptureSynchronizedSampleBufferData() CaptureSynchronizedSampleBufferDat
 // A value indicating why the capture output failed to deliver sample buffers, if applicable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData/droppedReason
-func (c_ CaptureSynchronizedSampleBufferData) DroppedReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("droppedReason"))
+func (c_ CaptureSynchronizedSampleBufferData) DroppedReason() CaptureOutputDataDroppedReason {
+	rv := objc.Send[CaptureOutputDataDroppedReason](c_.ID, objc.Sel("droppedReason"))
 	return rv
 }
 

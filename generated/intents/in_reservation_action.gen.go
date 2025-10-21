@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (i_ INReservationAction) SetType(value unsafe.Pointer) {
 // The user activity object used when launching your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/useractivity
-func (i_ INReservationAction) UserActivity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("userActivity"))
+func (i_ INReservationAction) UserActivity() foundation.UserActivity {
+	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (i_ INReservationAction) UserActivity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/useractivity
-func (i_ INReservationAction) SetUserActivity(value unsafe.Pointer) {
+func (i_ INReservationAction) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)
 }
 
 // The date and time range that the action is valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/validduration
-func (i_ INReservationAction) ValidDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("validDuration"))
+func (i_ INReservationAction) ValidDuration() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("validDuration"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (i_ INReservationAction) ValidDuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inreservationaction/validduration
-func (i_ INReservationAction) SetValidDuration(value unsafe.Pointer) {
+func (i_ INReservationAction) SetValidDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValidDuration:"), value)
 }
 

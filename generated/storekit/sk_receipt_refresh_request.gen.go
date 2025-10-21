@@ -117,31 +117,31 @@ func (r_ ReceiptRefreshRequest) AppStoreReceiptURL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/appStoreReceiptURL
-func (r_ ReceiptRefreshRequest) SetAppStoreReceiptURL(value foundation.URL) {
+func (r_ ReceiptRefreshRequest) SetAppStoreReceiptURL(value foundation.IURL) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setAppStoreReceiptURL:"), value)
 }
 
 // A key with a value that indicates whether the receipt is in an expired state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired
-func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsExpired() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsExpired"))
+func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsExpired() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("SKReceiptPropertyIsExpired"))
 	return rv
 }
 
 // A key with a value that indicates whether the receipt is in a revoked state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisrevoked
-func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsRevoked() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsRevoked"))
+func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsRevoked() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("SKReceiptPropertyIsRevoked"))
 	return rv
 }
 
 // A key with a value that indicates whether the receipt is a Volume Purchase Plan receipt.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase
-func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsVolumePurchase() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("SKReceiptPropertyIsVolumePurchase"))
+func (r_ ReceiptRefreshRequest) SKReceiptPropertyIsVolumePurchase() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("SKReceiptPropertyIsVolumePurchase"))
 	return rv
 }
 

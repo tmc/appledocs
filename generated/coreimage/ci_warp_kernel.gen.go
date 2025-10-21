@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -30,7 +31,7 @@ type _WarpKernelClass struct {
 // An interface definition for the [WarpKernel] class.
 type IWarpKernel interface {
 	IKernel
-	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer
+	ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) Image
 }
 
 // A GPU-based image-processing routine that processes only the geometry information in an image, used to create custom Core Image filters.
@@ -88,8 +89,8 @@ func NewWarpKernel() WarpKernel {
 // Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func NewWarpKernelWithString(string_ string) WarpKernel {
-	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), objc.String(string_))
+func NewWarpKernelWithString(string_ appkit.string) WarpKernel {
+	rv := objc.Send[WarpKernel](objc.ID(getWarpKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
@@ -97,16 +98,16 @@ func NewWarpKernelWithString(string_ string) WarpKernel {
 // Creates a warp kernel object from the specified kernel source code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/init(source:)
-func (wc _WarpKernelClass) KernelWithString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), objc.String(string_))
+func (wc _WarpKernelClass) KernelWithString(string_ appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(wc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
 }
 
 // Creates a new image using the kernel and the specified input image and arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIWarpKernel/apply(extent:roiCallback:image:arguments:)
-func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image unsafe.Pointer, args unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
+func (w_ WarpKernel) ApplyWithExtentRoiCallbackInputImageArguments(extent coregraphics.CGRect, callback unsafe.Pointer, image ICIImage, args []objc.ID) Image {
+	rv := objc.Send[Image](w_.ID, objc.Sel("applyWithExtent:roiCallback:inputImage:arguments:"), extent, callback, image, args)
 	return rv
 }
 

@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) EnergyTransferred() fou
 // SetEnergyTransferred sets the value of the energyTransferred property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/energyTransferred
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetEnergyTransferred(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetEnergyTransferred(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyTransferred:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) Reason() foundation.Num
 // SetReason sets the value of the reason property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/reason
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetReason(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetReason(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReason:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SessionID() foundation.
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetSessionID(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetSessionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) State() foundation.Numb
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStoppedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetState(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStoppedEvent) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

@@ -15,3 +15,11 @@ func ExampleNewNoiseMap() {
 	_ = gameplaykit.NewNoiseMap()
 	// Output:
 }
+// ExampleNewNoiseMapWithNoise demonstrates how to create a NoiseMap instance using NewNoiseMapWithNoise.
+// Initializes a noise map by sampling from the specified noise object.
+func ExampleNewNoiseMapWithNoise() {
+	_ = gameplaykit.NewNoiseMapWithNoise(
+		gameplaykit.GKNoise{}, // noise GKNoise
+	)
+	// Output:
+}

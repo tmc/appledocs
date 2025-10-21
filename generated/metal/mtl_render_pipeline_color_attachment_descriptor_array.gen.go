@@ -30,8 +30,8 @@ type _RenderPipelineColorAttachmentDescriptorArrayClass struct {
 // An interface definition for the [RenderPipelineColorAttachmentDescriptorArray] class.
 type IRenderPipelineColorAttachmentDescriptorArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint)
-	ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(attachment IMTLRenderPipelineColorAttachmentDescriptor, attachmentIndex uint)
+	ObjectAtIndexedSubscript(attachmentIndex uint) RenderPipelineColorAttachmentDescriptor
 }
 
 // An array of render pipeline color attachment descriptor objects.
@@ -83,15 +83,15 @@ func NewRenderPipelineColorAttachmentDescriptorArray() RenderPipelineColorAttach
 // Sets the render pipeline state for a specified color attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray/setObject:atIndexedSubscript:
-func (r_ RenderPipelineColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment unsafe.Pointer, attachmentIndex uint) {
+func (r_ RenderPipelineColorAttachmentDescriptorArray) SetObjectAtIndexedSubscript(attachment IMTLRenderPipelineColorAttachmentDescriptor, attachmentIndex uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setObject:atIndexedSubscript:"), attachment, attachmentIndex)
 }
 
 // Returns the render pipeline state for the specified color attachment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRenderPipelineColorAttachmentDescriptorArray/subscript(_:)
-func (r_ RenderPipelineColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
+func (r_ RenderPipelineColorAttachmentDescriptorArray) ObjectAtIndexedSubscript(attachmentIndex uint) RenderPipelineColorAttachmentDescriptor {
+	rv := objc.Send[RenderPipelineColorAttachmentDescriptor](r_.ID, objc.Sel("objectAtIndexedSubscript:"), attachmentIndex)
 	return rv
 }
 

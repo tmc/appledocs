@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _RasterizationRateMapDescriptorClass struct {
 // An interface definition for the [RasterizationRateMapDescriptor] class.
 type IRasterizationRateMapDescriptor interface {
 	objectivec.IObject
-	LayerAtIndex(layerIndex uint) unsafe.Pointer
-	SetLayerAtIndex(layer unsafe.Pointer, layerIndex uint)
+	LayerAtIndex(layerIndex uint) RasterizationRateLayerDescriptor
+	SetLayerAtIndex(layer IMTLRasterizationRateLayerDescriptor, layerIndex uint)
 }
 
 // An object that you use to configure new rasterization rate maps.
@@ -85,47 +87,47 @@ func NewRasterizationRateMapDescriptor() RasterizationRateMapDescriptor {
 // Creates a rate map descriptor with a given size and identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/rasterizationRateMapDescriptorWithScreenSize:
-func (rc _RasterizationRateMapDescriptorClass) RasterizationRateMapDescriptorWithScreenSize(screenSize unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("rasterizationRateMapDescriptorWithScreenSize:"), screenSize)
+func (rc _RasterizationRateMapDescriptorClass) RasterizationRateMapDescriptorWithScreenSize(screenSize coregraphics.ISize) RasterizationRateMapDescriptor {
+	rv := objc.Send[RasterizationRateMapDescriptor](objc.ID(rc.class), objc.Sel("rasterizationRateMapDescriptorWithScreenSize:"), screenSize)
 	return rv
 }
 
 // Creates a rate map descriptor with a single rate layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/rasterizationRateMapDescriptorWithScreenSize:layer:
-func (rc _RasterizationRateMapDescriptorClass) RasterizationRateMapDescriptorWithScreenSizeLayer(screenSize unsafe.Pointer, layer unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("rasterizationRateMapDescriptorWithScreenSize:layer:"), screenSize, layer)
+func (rc _RasterizationRateMapDescriptorClass) RasterizationRateMapDescriptorWithScreenSizeLayer(screenSize coregraphics.ISize, layer IMTLRasterizationRateLayerDescriptor) RasterizationRateMapDescriptor {
+	rv := objc.Send[RasterizationRateMapDescriptor](objc.ID(rc.class), objc.Sel("rasterizationRateMapDescriptorWithScreenSize:layer:"), screenSize, layer)
 	return rv
 }
 
 // Creates a rate map descriptor with a set of layer descriptors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:
-func (rc _RasterizationRateMapDescriptorClass) RasterizationRateMapDescriptorWithScreenSizeLayerCountLayers(screenSize unsafe.Pointer, layerCount uint, layers unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(rc.class), objc.Sel("rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:"), screenSize, layerCount, layers)
+func (rc _RasterizationRateMapDescriptorClass) RasterizationRateMapDescriptorWithScreenSizeLayerCountLayers(screenSize coregraphics.ISize, layerCount uint, layers unsafe.Pointer) RasterizationRateMapDescriptor {
+	rv := objc.Send[RasterizationRateMapDescriptor](objc.ID(rc.class), objc.Sel("rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:"), screenSize, layerCount, layers)
 	return rv
 }
 
 // Returns the layer description for a layer in the rate map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/layer(at:)
-func (r_ RasterizationRateMapDescriptor) LayerAtIndex(layerIndex uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("layerAtIndex:"), layerIndex)
+func (r_ RasterizationRateMapDescriptor) LayerAtIndex(layerIndex uint) RasterizationRateLayerDescriptor {
+	rv := objc.Send[RasterizationRateLayerDescriptor](r_.ID, objc.Sel("layerAtIndex:"), layerIndex)
 	return rv
 }
 
 // Sets a configuration for a layer rate map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/setLayer(_:at:)
-func (r_ RasterizationRateMapDescriptor) SetLayerAtIndex(layer unsafe.Pointer, layerIndex uint) {
+func (r_ RasterizationRateMapDescriptor) SetLayerAtIndex(layer IMTLRasterizationRateLayerDescriptor, layerIndex uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setLayer:atIndex:"), layer, layerIndex)
 }
 
 // A string used to identify the rate map you create with the descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/label
-func (r_ RasterizationRateMapDescriptor) Label() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("label"))
+func (r_ RasterizationRateMapDescriptor) Label() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -135,8 +137,8 @@ func (r_ RasterizationRateMapDescriptor) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/label
-func (r_ RasterizationRateMapDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (r_ RasterizationRateMapDescriptor) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The number of layers in the rate map.
@@ -150,16 +152,16 @@ func (r_ RasterizationRateMapDescriptor) LayerCount() uint {
 // The rasterization rates for one or more layers in the rate map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/layers
-func (r_ RasterizationRateMapDescriptor) Layers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("layers"))
+func (r_ RasterizationRateMapDescriptor) Layers() MTLRasterizationRateLayerArray {
+	rv := objc.Send[MTLRasterizationRateLayerArray](r_.ID, objc.Sel("layers"))
 	return rv
 }
 
 // The size of the viewport coordinate system, in logical pixels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/screenSize
-func (r_ RasterizationRateMapDescriptor) ScreenSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("screenSize"))
+func (r_ RasterizationRateMapDescriptor) ScreenSize() coregraphics.Size {
+	rv := objc.Send[coregraphics.Size](r_.ID, objc.Sel("screenSize"))
 	return rv
 }
 
@@ -169,7 +171,7 @@ func (r_ RasterizationRateMapDescriptor) ScreenSize() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLRasterizationRateMapDescriptor/screenSize
-func (r_ RasterizationRateMapDescriptor) SetScreenSize(value unsafe.Pointer) {
+func (r_ RasterizationRateMapDescriptor) SetScreenSize(value coregraphics.ISize) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setScreenSize:"), value)
 }
 

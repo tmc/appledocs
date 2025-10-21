@@ -77,7 +77,7 @@ func NewMIDI2DeviceInfo() MIDI2DeviceInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/init(manufacturerID:family:modelNumber:revisionLevel:)
-func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family unsafe.Pointer, modelNumber unsafe.Pointer, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
+func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufacturerID unsafe.Pointer, family IMIDIUInteger14, modelNumber IMIDIUInteger14, revisionLevel unsafe.Pointer) MIDI2DeviceInfo {
 	instance := getMIDI2DeviceInfoClass().Alloc()
 	rv := objc.Send[MIDI2DeviceInfo](instance.ID, objc.Sel("initWithManufacturerID:family:modelNumber:revisionLevel:"), manufacturerID, family, modelNumber, revisionLevel)
 	rv.Autorelease()
@@ -87,8 +87,8 @@ func NewMIDI2DeviceInfoWithManufacturerIDFamilyModelNumberRevisionLevel(manufact
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/family
-func (m_ MIDI2DeviceInfo) Family() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("family"))
+func (m_ MIDI2DeviceInfo) Family() MIDIUInteger14 {
+	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("family"))
 	return rv
 }
 
@@ -101,8 +101,8 @@ func (m_ MIDI2DeviceInfo) ManufacturerID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDI2DeviceInfo/modelNumber
-func (m_ MIDI2DeviceInfo) ModelNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelNumber"))
+func (m_ MIDI2DeviceInfo) ModelNumber() MIDIUInteger14 {
+	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("modelNumber"))
 	return rv
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NEAppPushProvider] class.
@@ -29,7 +30,7 @@ type _NEAppPushProviderClass struct {
 // An interface definition for the [NEAppPushProvider] class.
 type INEAppPushProvider interface {
 	INEProvider
-	ReportIncomingCallWithUserInfo(userInfo objc.ID)
+	ReportIncomingCallWithUserInfo(userInfo objectivec.IObject)
 	StartWithCompletionHandler(completionHandler unsafe.Pointer)
 }
 
@@ -86,7 +87,7 @@ func NewNEAppPushProvider() NEAppPushProvider {
 // Informs the manager about an incoming call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppPushProvider/reportIncomingCall(userInfo:)
-func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo objc.ID) {
+func (n_ NEAppPushProvider) ReportIncomingCallWithUserInfo(userInfo objectivec.IObject) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("reportIncomingCallWithUserInfo:"), userInfo)
 }
 
@@ -118,8 +119,8 @@ func (n_ NEAppPushProvider) SetDelegate(value unsafe.Pointer) {
 // A string that contains the bundle identifier of the push provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
-func (n_ NEAppPushProvider) ProviderBundleIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerBundleIdentifier"))
+func (n_ NEAppPushProvider) ProviderBundleIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerBundleIdentifier"))
 	return rv
 }
 
@@ -129,15 +130,15 @@ func (n_ NEAppPushProvider) ProviderBundleIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushmanager/providerbundleidentifier
-func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), objc.String(value))
+func (n_ NEAppPushProvider) SetProviderBundleIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderBundleIdentifier:"), value)
 }
 
 // A dictionary that contains current vendor-specific configuration parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
-func (n_ NEAppPushProvider) ProviderConfiguration() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("providerConfiguration"))
+func (n_ NEAppPushProvider) ProviderConfiguration() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
@@ -147,8 +148,8 @@ func (n_ NEAppPushProvider) ProviderConfiguration() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/neapppushprovider/providerconfiguration
-func (n_ NEAppPushProvider) SetProviderConfiguration(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), objc.String(value))
+func (n_ NEAppPushProvider) SetProviderConfiguration(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
 }
 
 

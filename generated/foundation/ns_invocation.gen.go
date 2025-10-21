@@ -84,8 +84,8 @@ func NewInvocation() Invocation {
 // Returns an object able to construct messages using a given method signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/invocationWithMethodSignature:
-func (ic _InvocationClass) InvocationWithMethodSignature(sig unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("invocationWithMethodSignature:"), sig)
+func (ic _InvocationClass) InvocationWithMethodSignature(sig IMethodSignature) Invocation {
+	rv := objc.Send[Invocation](objc.ID(ic.class), objc.Sel("invocationWithMethodSignature:"), sig)
 	return rv
 }
 

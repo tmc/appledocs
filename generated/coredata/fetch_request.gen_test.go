@@ -15,11 +15,3 @@ func ExampleNewFetchRequest() {
 	_ = coredata.NewFetchRequest()
 	// Output:
 }
-// ExampleNewFetchRequestWithEntityName demonstrates how to create a FetchRequest instance using NewFetchRequestWithEntityName.
-// Initializes a fetch request configured with a given entity name.
-func ExampleNewFetchRequestWithEntityName() {
-	_ = coredata.NewFetchRequestWithEntityName(
-		"entityName", // entityName string
-	)
-	// Output:
-}

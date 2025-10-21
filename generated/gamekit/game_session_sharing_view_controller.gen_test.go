@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = gamekit.NewGameSessionSharingViewController
 
+// ExampleNewGameSessionSharingViewControllerWithSession demonstrates how to create a GameSessionSharingViewController instance using NewGameSessionSharingViewControllerWithSession.
+// Creates a new sharing view controller for a specified session.
+func ExampleNewGameSessionSharingViewControllerWithSession() {
+	_ = gamekit.NewGameSessionSharingViewControllerWithSession(
+		gamekit.GKGameSession{}, // session GKGameSession
+	)
+	// Output:
+}

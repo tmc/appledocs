@@ -87,7 +87,7 @@ func (sc _ScreenshotManagerClass) CaptureImageInRectCompletionHandler(rect coreg
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCScreenshotManager/captureScreenshot(contentFilter:configuration:completionHandler:)
-func (sc _ScreenshotManagerClass) CaptureScreenshotWithFilterConfigurationCompletionHandler(contentFilter unsafe.Pointer, config unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (sc _ScreenshotManagerClass) CaptureScreenshotWithFilterConfigurationCompletionHandler(contentFilter ISCContentFilter, config ISCScreenshotConfiguration, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("captureScreenshotWithFilter:configuration:completionHandler:"), contentFilter, config, completionHandler)
 }
 

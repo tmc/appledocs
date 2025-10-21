@@ -87,7 +87,7 @@ func (m_ MTRDishwasherModeClusterModeTagStruct) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/mfgCode
-func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
+func (m_ MTRDishwasherModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDishwasherModeClusterModeTagStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDishwasherModeClusterModeTagStruct/value
-func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value foundation.Number) {
+func (m_ MTRDishwasherModeClusterModeTagStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

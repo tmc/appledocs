@@ -77,8 +77,8 @@ func NewMTRWaterHeaterManagementClusterBoostStartedEvent() MTRWaterHeaterManagem
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostStartedEvent/boostInfo
-func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) BoostInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boostInfo"))
+func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) BoostInfo() MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct {
+	rv := objc.Send[MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct](m_.ID, objc.Sel("boostInfo"))
 	return rv
 }
 
@@ -86,7 +86,7 @@ func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) BoostInfo() unsafe.Po
 // SetBoostInfo sets the value of the boostInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterManagementClusterBoostStartedEvent/boostInfo
-func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) SetBoostInfo(value unsafe.Pointer) {
+func (m_ MTRWaterHeaterManagementClusterBoostStartedEvent) SetBoostInfo(value IMTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoostInfo:"), value)
 }
 

@@ -87,14 +87,14 @@ func (m_ MTRServiceAreaClusterAreaStruct) AreaID() foundation.Number {
 // SetAreaID sets the value of the areaID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaID
-func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value foundation.Number) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetAreaID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaInfo
-func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("areaInfo"))
+func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() MTRServiceAreaClusterAreaInfoStruct {
+	rv := objc.Send[MTRServiceAreaClusterAreaInfoStruct](m_.ID, objc.Sel("areaInfo"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRServiceAreaClusterAreaStruct) AreaInfo() unsafe.Pointer {
 // SetAreaInfo sets the value of the areaInfo property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/areaInfo
-func (m_ MTRServiceAreaClusterAreaStruct) SetAreaInfo(value unsafe.Pointer) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetAreaInfo(value IMTRServiceAreaClusterAreaInfoStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaInfo:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRServiceAreaClusterAreaStruct) MapID() foundation.Number {
 // SetMapID sets the value of the mapID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterAreaStruct/mapID
-func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value foundation.Number) {
+func (m_ MTRServiceAreaClusterAreaStruct) SetMapID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapID:"), value)
 }
 

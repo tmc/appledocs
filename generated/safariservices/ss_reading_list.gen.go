@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +32,7 @@ type _SSReadingListClass struct {
 // An interface definition for the [SSReadingList] class.
 type ISSReadingList interface {
 	objectivec.IObject
-	AddReadingListItemWithURLTitlePreviewTextError(URL foundation.URL, title string, previewText string, error_ unsafe.Pointer) bool
+	AddReadingListItemWithURLTitlePreviewTextError(URL foundation.IURL, title appkit.string, previewText appkit.string, error_ unsafe.Pointer) bool
 }
 
 // An object for adding items to a user’s Safari Reading List.
@@ -83,15 +84,15 @@ func NewSSReadingList() SSReadingList {
 // Returns the Safari Reading List singleton object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SSReadingList/default()
-func (sc _SSReadingListClass) DefaultReadingList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultReadingList"))
+func (sc _SSReadingListClass) DefaultReadingList() SSReadingList {
+	rv := objc.Send[SSReadingList](objc.ID(sc.class), objc.Sel("defaultReadingList"))
 	return rv
 }
 
 // Determines whether a URL can be added to the Reading List.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SSReadingList/supportsURL(_:)
-func (sc _SSReadingListClass) SupportsURL(URL foundation.URL) bool {
+func (sc _SSReadingListClass) SupportsURL(URL foundation.IURL) bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("supportsURL:"), URL)
 	return rv
 }
@@ -99,16 +100,16 @@ func (sc _SSReadingListClass) SupportsURL(URL foundation.URL) bool {
 // Adds an item to the Reading List.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SSReadingList/addItem(with:title:previewText:)
-func (s_ SSReadingList) AddReadingListItemWithURLTitlePreviewTextError(URL foundation.URL, title string, previewText string, error_ unsafe.Pointer) bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("addReadingListItemWithURL:title:previewText:error:"), URL, objc.String(title), objc.String(previewText), error_)
+func (s_ SSReadingList) AddReadingListItemWithURLTitlePreviewTextError(URL foundation.IURL, title appkit.string, previewText appkit.string, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("addReadingListItemWithURL:title:previewText:error:"), URL, title, previewText, error_)
 	return rv
 }
 
 // The domain for Safari Reading List errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/safariservices/ssreadinglisterrordomain
-func (s_ SSReadingList) SSReadingListErrorDomain() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("SSReadingListErrorDomain"))
+func (s_ SSReadingList) SSReadingListErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("SSReadingListErrorDomain"))
 	return rv
 }
 

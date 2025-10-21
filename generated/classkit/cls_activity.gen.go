@@ -30,7 +30,7 @@ type _SActivityClass struct {
 // An interface definition for the [SActivity] class.
 type ISActivity interface {
 	ISObject
-	AddAdditionalActivityItem(activityItem unsafe.Pointer)
+	AddAdditionalActivityItem(activityItem ICLSActivityItem)
 	AddProgressRangeFromStartToEnd(start unsafe.Pointer, end unsafe.Pointer)
 	RemoveAllActivityItems()
 	Start()
@@ -90,7 +90,7 @@ func NewSActivity() SActivity {
 // Adds an activity item to an activity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/addAdditionalActivityItem(_:)
-func (s_ SActivity) AddAdditionalActivityItem(activityItem unsafe.Pointer) {
+func (s_ SActivity) AddAdditionalActivityItem(activityItem ICLSActivityItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addAdditionalActivityItem:"), activityItem)
 }
 
@@ -149,8 +149,8 @@ func (s_ SActivity) Started() bool {
 // Adds an activity item to an activity and sets it as the primary activity item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
-func (s_ SActivity) PrimaryActivityItem() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("primaryActivityItem"))
+func (s_ SActivity) PrimaryActivityItem() CLSActivityItem {
+	rv := objc.Send[CLSActivityItem](s_.ID, objc.Sel("primaryActivityItem"))
 	return rv
 }
 
@@ -160,7 +160,7 @@ func (s_ SActivity) PrimaryActivityItem() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSActivity/primaryActivityItem
-func (s_ SActivity) SetPrimaryActivityItem(value unsafe.Pointer) {
+func (s_ SActivity) SetPrimaryActivityItem(value ICLSActivityItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryActivityItem:"), value)
 }
 

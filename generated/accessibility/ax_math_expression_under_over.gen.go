@@ -78,7 +78,7 @@ func NewAXMathExpressionUnderOver() AXMathExpressionUnderOver {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionUnderOver/init(baseExpression:underExpression:overExpression:)
-func NewAXMathExpressionUnderOverWithBaseExpressionUnderExpressionOverExpression(baseExpression unsafe.Pointer, underExpression unsafe.Pointer, overExpression unsafe.Pointer) AXMathExpressionUnderOver {
+func NewAXMathExpressionUnderOverWithBaseExpressionUnderExpressionOverExpression(baseExpression IAXMathExpression, underExpression IAXMathExpression, overExpression IAXMathExpression) AXMathExpressionUnderOver {
 	instance := getAXMathExpressionUnderOverClass().Alloc()
 	rv := objc.Send[AXMathExpressionUnderOver](instance.ID, objc.Sel("initWithBaseExpression:underExpression:overExpression:"), baseExpression, underExpression, overExpression)
 	rv.Autorelease()
@@ -88,15 +88,15 @@ func NewAXMathExpressionUnderOverWithBaseExpressionUnderExpressionOverExpression
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionUnderOver/underExpression
-func (a_ AXMathExpressionUnderOver) UnderExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("underExpression"))
+func (a_ AXMathExpressionUnderOver) UnderExpression() AXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("underExpression"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/baseexpression
-func (a_ AXMathExpressionUnderOver) BaseExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("baseExpression"))
+func (a_ AXMathExpressionUnderOver) BaseExpression() AXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("baseExpression"))
 	return rv
 }
 
@@ -104,14 +104,14 @@ func (a_ AXMathExpressionUnderOver) BaseExpression() unsafe.Pointer {
 // SetBaseExpression sets the value of the baseExpression property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/baseexpression
-func (a_ AXMathExpressionUnderOver) SetBaseExpression(value unsafe.Pointer) {
+func (a_ AXMathExpressionUnderOver) SetBaseExpression(value IAXMathExpression) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setBaseExpression:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/overexpression
-func (a_ AXMathExpressionUnderOver) OverExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("overExpression"))
+func (a_ AXMathExpressionUnderOver) OverExpression() AXMathExpression {
+	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("overExpression"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (a_ AXMathExpressionUnderOver) OverExpression() unsafe.Pointer {
 // SetOverExpression sets the value of the overExpression property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionunderover/overexpression
-func (a_ AXMathExpressionUnderOver) SetOverExpression(value unsafe.Pointer) {
+func (a_ AXMathExpressionUnderOver) SetOverExpression(value IAXMathExpression) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setOverExpression:"), value)
 }
 

@@ -90,8 +90,8 @@ func NewMTROvenCavityOperationalStateClusterOperationalCommandResponseParamsWith
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams/commandResponseState
-func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("commandResponseState"))
+func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) CommandResponseState() MTROvenCavityOperationalStateClusterErrorStateStruct {
+	rv := objc.Send[MTROvenCavityOperationalStateClusterErrorStateStruct](m_.ID, objc.Sel("commandResponseState"))
 	return rv
 }
 
@@ -99,7 +99,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) C
 // SetCommandResponseState sets the value of the commandResponseState property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationalCommandResponseParams/commandResponseState
-func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value unsafe.Pointer) {
+func (m_ MTROvenCavityOperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value IMTROvenCavityOperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)
 }
 

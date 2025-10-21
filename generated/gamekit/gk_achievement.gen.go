@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +32,7 @@ type _AchievementClass struct {
 // An interface definition for the [Achievement] class.
 type IAchievement interface {
 	objectivec.IObject
-	ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs unsafe.Pointer, message string, completionHandler unsafe.Pointer) unsafe.Pointer
+	ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message appkit.string, completionHandler unsafe.Pointer) appkit.ViewController
 }
 
 // An achievement you can award a player as they make progress toward and reach a goal in your game.
@@ -84,16 +86,16 @@ func NewAchievement() Achievement {
 // Provides a challenge compose view controller with preselected player identifiers and a message.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKAchievement/challengeComposeController(withPlayers:message:completionHandler:)
-func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs unsafe.Pointer, message string, completionHandler unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("challengeComposeControllerWithPlayers:message:completionHandler:"), playerIDs, objc.String(message), completionHandler)
+func (a_ Achievement) ChallengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs []string, message appkit.string, completionHandler unsafe.Pointer) appkit.ViewController {
+	rv := objc.Send[appkit.ViewController](a_.ID, objc.Sel("challengeComposeControllerWithPlayers:message:completionHandler:"), playerIDs, message, completionHandler)
 	return rv
 }
 
 // The identifier for the achievement that you enter in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-func (a_ Achievement) Identifier() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("identifier"))
+func (a_ Achievement) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -103,8 +105,8 @@ func (a_ Achievement) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/identifier
-func (a_ Achievement) SetIdentifier(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (a_ Achievement) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // A Boolean value that states whether the player has completed the achievement.
@@ -128,8 +130,8 @@ func (a_ Achievement) SetIsCompleted(value bool) {
 // The last time your game reported progress on the achievement for the player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-func (a_ Achievement) LastReportedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("lastReportedDate"))
+func (a_ Achievement) LastReportedDate() foundation.Date {
+	rv := objc.Send[foundation.Date](a_.ID, objc.Sel("lastReportedDate"))
 	return rv
 }
 
@@ -139,7 +141,7 @@ func (a_ Achievement) LastReportedDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/lastreporteddate
-func (a_ Achievement) SetLastReportedDate(value unsafe.Pointer) {
+func (a_ Achievement) SetLastReportedDate(value foundation.IDate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLastReportedDate:"), value)
 }
 
@@ -164,8 +166,8 @@ func (a_ Achievement) SetPercentComplete(value unsafe.Pointer) {
 // The player who earned the achievement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/player
-func (a_ Achievement) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("player"))
+func (a_ Achievement) Player() GKPlayer {
+	rv := objc.Send[GKPlayer](a_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -175,7 +177,7 @@ func (a_ Achievement) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkachievement/player
-func (a_ Achievement) SetPlayer(value unsafe.Pointer) {
+func (a_ Achievement) SetPlayer(value IGKPlayer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPlayer:"), value)
 }
 

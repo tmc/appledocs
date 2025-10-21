@@ -83,7 +83,7 @@ func NewMeshBufferAllocator() MeshBufferAllocator {
 // Initializes a new allocator object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMeshBufferAllocator/init(device:)
-func NewMeshBufferAllocatorWithDevice(device objc.ID) MeshBufferAllocator {
+func NewMeshBufferAllocatorWithDevice(device objectivec.IObject) MeshBufferAllocator {
 	instance := getMeshBufferAllocatorClass().Alloc()
 	rv := objc.Send[MeshBufferAllocator](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

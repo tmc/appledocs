@@ -128,8 +128,8 @@ func (g_ GCColor) SetRed(value unsafe.Pointer) {
 // The color of a device’s light.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
-func (g_ GCColor) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("color"))
+func (g_ GCColor) Color() GCColor {
+	rv := objc.Send[GCColor](g_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (g_ GCColor) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
-func (g_ GCColor) SetColor(value unsafe.Pointer) {
+func (g_ GCColor) SetColor(value IGCColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
 }
 

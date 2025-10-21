@@ -78,8 +78,8 @@ func NewMTRApplicationLauncherClusterApplicationStruct() MTRApplicationLauncherC
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t05a
-func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationID"))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationID() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationID"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationID() string 
 // SetApplicationID sets the value of the applicationID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t05a
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationID(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), objc.String(value))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationID(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t04e
-func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationId() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("applicationId"))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationId() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("applicationId"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRApplicationLauncherClusterApplicationStruct) ApplicationId() string 
 // SetApplicationId sets the value of the applicationId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/applicationid-6t04e
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationId(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationId:"), objc.String(value))
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetApplicationId(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setApplicationId:"), value)
 }
 
 //
@@ -117,7 +117,7 @@ func (m_ MTRApplicationLauncherClusterApplicationStruct) CatalogVendorID() found
 // SetCatalogVendorID sets the value of the catalogVendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/catalogvendorid-rb5w
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorID(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCatalogVendorID:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRApplicationLauncherClusterApplicationStruct) CatalogVendorId() found
 // SetCatalogVendorId sets the value of the catalogVendorId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrapplicationlauncherclusterapplicationstruct/catalogvendorid-rb6s
-func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorId(value foundation.Number) {
+func (m_ MTRApplicationLauncherClusterApplicationStruct) SetCatalogVendorId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCatalogVendorId:"), value)
 }
 

@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/coreimage"
 )
 
 // The class instance for the [MetadataMachineReadableCodeObject] class.
@@ -103,8 +104,8 @@ func (m_ MetadataMachineReadableCodeObject) SetCorners(value coregraphics.CGPoin
 // A barcode description for use in Core Image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
-func (m_ MetadataMachineReadableCodeObject) Descriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("descriptor"))
+func (m_ MetadataMachineReadableCodeObject) Descriptor() coreimage.BarcodeDescriptor {
+	rv := objc.Send[coreimage.BarcodeDescriptor](m_.ID, objc.Sel("descriptor"))
 	return rv
 }
 
@@ -114,15 +115,15 @@ func (m_ MetadataMachineReadableCodeObject) Descriptor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/descriptor
-func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value unsafe.Pointer) {
+func (m_ MetadataMachineReadableCodeObject) SetDescriptor(value coreimage.IBarcodeDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptor:"), value)
 }
 
 // Returns the error-corrected data decoded into a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
-func (m_ MetadataMachineReadableCodeObject) StringValue() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("stringValue"))
+func (m_ MetadataMachineReadableCodeObject) StringValue() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (m_ MetadataMachineReadableCodeObject) StringValue() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadatamachinereadablecodeobject/stringvalue
-func (m_ MetadataMachineReadableCodeObject) SetStringValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (m_ MetadataMachineReadableCodeObject) SetStringValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
 }
 
 

@@ -30,9 +30,9 @@ type _MTRDeviceControllerFactoryClass struct {
 // An interface definition for the [MTRDeviceControllerFactory] class.
 type IMTRDeviceControllerFactory interface {
 	objectivec.IObject
-	CreateControllerOnExistingFabricError(startupParams unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	CreateControllerOnNewFabricError(startupParams unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	StartControllerFactoryError(startupParams unsafe.Pointer, error_ unsafe.Pointer) bool
+	CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController
+	CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController
+	StartControllerFactoryError(startupParams IMTRDeviceControllerFactoryParams, error_ unsafe.Pointer) bool
 }
 
 //
@@ -80,21 +80,21 @@ func NewMTRDeviceControllerFactory() MTRDeviceControllerFactory {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory/createController(onExistingFabric:)
-func (m_ MTRDeviceControllerFactory) CreateControllerOnExistingFabricError(startupParams unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("createControllerOnExistingFabric:error:"), startupParams, error_)
+func (m_ MTRDeviceControllerFactory) CreateControllerOnExistingFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController {
+	rv := objc.Send[MTRDeviceController](m_.ID, objc.Sel("createControllerOnExistingFabric:error:"), startupParams, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory/createController(onNewFabric:)
-func (m_ MTRDeviceControllerFactory) CreateControllerOnNewFabricError(startupParams unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("createControllerOnNewFabric:error:"), startupParams, error_)
+func (m_ MTRDeviceControllerFactory) CreateControllerOnNewFabricError(startupParams IMTRDeviceControllerStartupParams, error_ unsafe.Pointer) MTRDeviceController {
+	rv := objc.Send[MTRDeviceController](m_.ID, objc.Sel("createControllerOnNewFabric:error:"), startupParams, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactory/start(_:)
-func (m_ MTRDeviceControllerFactory) StartControllerFactoryError(startupParams unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (m_ MTRDeviceControllerFactory) StartControllerFactoryError(startupParams IMTRDeviceControllerFactoryParams, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("startControllerFactory:error:"), startupParams, error_)
 	return rv
 }
@@ -116,8 +116,8 @@ func (m_ MTRDeviceControllerFactory) SetIsRunning(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/knownfabrics
-func (m_ MTRDeviceControllerFactory) KnownFabrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("knownFabrics"))
+func (m_ MTRDeviceControllerFactory) KnownFabrics() MTRFabricInfo {
+	rv := objc.Send[MTRFabricInfo](m_.ID, objc.Sel("knownFabrics"))
 	return rv
 }
 
@@ -125,7 +125,7 @@ func (m_ MTRDeviceControllerFactory) KnownFabrics() unsafe.Pointer {
 // SetKnownFabrics sets the value of the knownFabrics property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactory/knownfabrics
-func (m_ MTRDeviceControllerFactory) SetKnownFabrics(value unsafe.Pointer) {
+func (m_ MTRDeviceControllerFactory) SetKnownFabrics(value IMTRFabricInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKnownFabrics:"), value)
 }
 

@@ -84,8 +84,8 @@ func NewQuitCommand() QuitCommand {
 // Returns a constant indicating how to deal with closing any modified documents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSQuitCommand/saveOptions
-func (q_ QuitCommand) SaveOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("saveOptions"))
+func (q_ QuitCommand) SaveOptions() SaveOptions {
+	rv := objc.Send[SaveOptions](q_.ID, objc.Sel("saveOptions"))
 	return rv
 }
 

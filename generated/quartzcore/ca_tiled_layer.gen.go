@@ -85,8 +85,8 @@ func NewTiledLayer() TiledLayer {
 // The time, in seconds, that newly added images take to “fade-in” to the rendered representation of the tiled layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATiledLayer/fadeDuration()
-func (tc _TiledLayerClass) FadeDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("fadeDuration"))
+func (tc _TiledLayerClass) FadeDuration() TimeInterval {
+	rv := objc.Send[TimeInterval](objc.ID(tc.class), objc.Sel("fadeDuration"))
 	return rv
 }
 

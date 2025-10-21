@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) AdminVendorId() foundatio
 // SetAdminVendorId sets the value of the adminVendorId property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/adminvendorid
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetAdminVendorId(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetAdminVendorId(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminVendorId:"), value)
 }
 
@@ -102,14 +102,14 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) CaseAdminSubject() founda
 // SetCaseAdminSubject sets the value of the caseAdminSubject property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/caseadminsubject
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetCaseAdminSubject(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetCaseAdminSubject(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseAdminSubject:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/icacvalue
-func (m_ MTROperationalCredentialsClusterAddNOCParams) IcacValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("icacValue"))
+func (m_ MTROperationalCredentialsClusterAddNOCParams) IcacValue() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("icacValue"))
 	return rv
 }
 
@@ -117,14 +117,14 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) IcacValue() unsafe.Pointe
 // SetIcacValue sets the value of the icacValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/icacvalue
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetIcacValue(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetIcacValue(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIcacValue:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/ipkvalue
-func (m_ MTROperationalCredentialsClusterAddNOCParams) IpkValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("ipkValue"))
+func (m_ MTROperationalCredentialsClusterAddNOCParams) IpkValue() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("ipkValue"))
 	return rv
 }
 
@@ -132,14 +132,14 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) IpkValue() unsafe.Pointer
 // SetIpkValue sets the value of the ipkValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/ipkvalue
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetIpkValue(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetIpkValue(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIpkValue:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/nocvalue
-func (m_ MTROperationalCredentialsClusterAddNOCParams) NocValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocValue"))
+func (m_ MTROperationalCredentialsClusterAddNOCParams) NocValue() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("nocValue"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) NocValue() unsafe.Pointer
 // SetNocValue sets the value of the nocValue property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/nocvalue
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetNocValue(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetNocValue(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNocValue:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) ServerSideProcessingTimeo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTROperationalCredentialsClusterAddNOCParams) TimedInvokeTimeoutMs() fo
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusteraddnocparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterAddNOCParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterAddNOCParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

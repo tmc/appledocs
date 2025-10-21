@@ -89,7 +89,7 @@ func NewPlayerLayer() PlayerLayer {
 // Creates a layer object to present the visual contents of a player’s current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/init(player:)
-func NewPlayerLayerWithPlayer(player unsafe.Pointer) PlayerLayer {
+func NewPlayerLayerWithPlayer(player IAVPlayer) PlayerLayer {
 	rv := objc.Send[PlayerLayer](objc.ID(getPlayerLayerClass().class), objc.Sel("playerLayerWithPlayer:"), player)
 	return rv
 }
@@ -98,8 +98,8 @@ func NewPlayerLayerWithPlayer(player unsafe.Pointer) PlayerLayer {
 // Creates a layer object to present the visual contents of a player’s current item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/init(player:)
-func (pc _PlayerLayerClass) PlayerLayerWithPlayer(player unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerLayerWithPlayer:"), player)
+func (pc _PlayerLayerClass) PlayerLayerWithPlayer(player IAVPlayer) PlayerLayer {
+	rv := objc.Send[PlayerLayer](objc.ID(pc.class), objc.Sel("playerLayerWithPlayer:"), player)
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (p_ PlayerLayer) SetPixelBufferAttributes(value unsafe.Pointer) {
 // The player whose visual content the layer displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/player
-func (p_ PlayerLayer) Player() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("player"))
+func (p_ PlayerLayer) Player() AVPlayer {
+	rv := objc.Send[AVPlayer](p_.ID, objc.Sel("player"))
 	return rv
 }
 
@@ -151,15 +151,15 @@ func (p_ PlayerLayer) Player() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/player
-func (p_ PlayerLayer) SetPlayer(value unsafe.Pointer) {
+func (p_ PlayerLayer) SetPlayer(value IAVPlayer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayer:"), value)
 }
 
 // A value that specifies how the layer displays the player’s visual content within the layer’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/videoGravity
-func (p_ PlayerLayer) VideoGravity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoGravity"))
+func (p_ PlayerLayer) VideoGravity() LayerVideoGravity {
+	rv := objc.Send[LayerVideoGravity](p_.ID, objc.Sel("videoGravity"))
 	return rv
 }
 
@@ -169,7 +169,7 @@ func (p_ PlayerLayer) VideoGravity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerLayer/videoGravity
-func (p_ PlayerLayer) SetVideoGravity(value unsafe.Pointer) {
+func (p_ PlayerLayer) SetVideoGravity(value ILayerVideoGravity) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoGravity:"), value)
 }
 

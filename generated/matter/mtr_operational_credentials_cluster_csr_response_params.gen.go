@@ -78,8 +78,8 @@ func NewMTROperationalCredentialsClusterCSRResponseParams() MTROperationalCreden
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("attestationSignature"))
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationSignature"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTROperationalCredentialsClusterCSRResponseParams) AttestationSignature
 // SetAttestationSignature sets the value of the attestationSignature property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/attestationsignature
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetAttestationSignature(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetAttestationSignature(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nocsrElements"))
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("nocsrElements"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterCSRResponseParams) NocsrElements() unsa
 // SetNocsrElements sets the value of the nocsrElements property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/nocsrelements
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetNocsrElements(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNocsrElements:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterCSRResponseParams) TimedInvokeTimeoutMs
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrresponseparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCSRResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

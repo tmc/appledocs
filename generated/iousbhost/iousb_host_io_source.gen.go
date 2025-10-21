@@ -99,8 +99,8 @@ func (u_ USBHostIOSource) EndpointAddress() uint {
 // The interface for the input/output source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/hostInterface
-func (u_ USBHostIOSource) HostInterface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("hostInterface"))
+func (u_ USBHostIOSource) HostInterface() IOUSBHostInterface {
+	rv := objc.Send[IOUSBHostInterface](u_.ID, objc.Sel("hostInterface"))
 	return rv
 }
 

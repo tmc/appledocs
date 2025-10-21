@@ -90,14 +90,14 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) ServerSideProcessingTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timeZone
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeZone"))
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimeZone() unsafe.Point
 // SetTimeZone sets the value of the timeZone property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timeZone
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimeZone(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimeZone(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeZone:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) TimedInvokeTimeoutMs() 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTimeZoneParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetTimeZoneParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

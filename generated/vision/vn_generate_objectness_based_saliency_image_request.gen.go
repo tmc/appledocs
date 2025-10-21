@@ -84,8 +84,8 @@ func NewGenerateObjectnessBasedSaliencyImageRequest() GenerateObjectnessBasedSal
 // The results of the image saliency request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequest/results
-func (g_ GenerateObjectnessBasedSaliencyImageRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+func (g_ GenerateObjectnessBasedSaliencyImageRequest) Results() VNSaliencyImageObservation {
+	rv := objc.Send[VNSaliencyImageObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (g_ GenerateObjectnessBasedSaliencyImageRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateobjectnessbasedsaliencyimagerequest/results
-func (g_ GenerateObjectnessBasedSaliencyImageRequest) SetResults(value unsafe.Pointer) {
+func (g_ GenerateObjectnessBasedSaliencyImageRequest) SetResults(value IVNSaliencyImageObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 

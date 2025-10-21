@@ -100,8 +100,8 @@ func (c_ ChangeShuffleModeCommandEvent) SetPreservesShuffleMode(value bool) {
 // The shuffle type used when fulfilling the event request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/shuffletype
-func (c_ ChangeShuffleModeCommandEvent) ShuffleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("shuffleType"))
+func (c_ ChangeShuffleModeCommandEvent) ShuffleType() ShuffleType {
+	rv := objc.Send[ShuffleType](c_.ID, objc.Sel("shuffleType"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (c_ ChangeShuffleModeCommandEvent) ShuffleType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeshufflemodecommandevent/shuffletype
-func (c_ ChangeShuffleModeCommandEvent) SetShuffleType(value unsafe.Pointer) {
+func (c_ ChangeShuffleModeCommandEvent) SetShuffleType(value ShuffleType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShuffleType:"), value)
 }
 

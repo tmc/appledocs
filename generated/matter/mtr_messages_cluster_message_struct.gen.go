@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,7 +88,7 @@ func (m_ MTRMessagesClusterMessageStruct) Duration() foundation.Number {
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
-func (m_ MTRMessagesClusterMessageStruct) SetDuration(value foundation.Number) {
+func (m_ MTRMessagesClusterMessageStruct) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -102,14 +103,14 @@ func (m_ MTRMessagesClusterMessageStruct) MessageControl() foundation.Number {
 // SetMessageControl sets the value of the messageControl property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
-func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value foundation.Number) {
+func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
-func (m_ MTRMessagesClusterMessageStruct) MessageID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("messageID"))
+func (m_ MTRMessagesClusterMessageStruct) MessageID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
 	return rv
 }
 
@@ -117,14 +118,14 @@ func (m_ MTRMessagesClusterMessageStruct) MessageID() unsafe.Pointer {
 // SetMessageID sets the value of the messageID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
-func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
-func (m_ MTRMessagesClusterMessageStruct) MessageText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("messageText"))
+func (m_ MTRMessagesClusterMessageStruct) MessageText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("messageText"))
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (m_ MTRMessagesClusterMessageStruct) MessageText() string {
 // SetMessageText sets the value of the messageText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
-func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), objc.String(value))
+func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), value)
 }
 
 //
@@ -147,14 +148,14 @@ func (m_ MTRMessagesClusterMessageStruct) Priority() foundation.Number {
 // SetPriority sets the value of the priority property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
-func (m_ MTRMessagesClusterMessageStruct) SetPriority(value foundation.Number) {
+func (m_ MTRMessagesClusterMessageStruct) SetPriority(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
-func (m_ MTRMessagesClusterMessageStruct) Responses() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("responses"))
+func (m_ MTRMessagesClusterMessageStruct) Responses() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("responses"))
 	return rv
 }
 
@@ -162,7 +163,7 @@ func (m_ MTRMessagesClusterMessageStruct) Responses() unsafe.Pointer {
 // SetResponses sets the value of the responses property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
-func (m_ MTRMessagesClusterMessageStruct) SetResponses(value unsafe.Pointer) {
+func (m_ MTRMessagesClusterMessageStruct) SetResponses(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponses:"), value)
 }
 
@@ -177,7 +178,7 @@ func (m_ MTRMessagesClusterMessageStruct) StartTime() foundation.Number {
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
-func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value foundation.Number) {
+func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

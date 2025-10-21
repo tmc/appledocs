@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) Duration() foundatio
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/duration
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) LoadControl() founda
 // SetLoadControl sets the value of the loadControl property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/loadControl
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetLoadControl(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLoadControl:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) MaximumEnergy() foun
 // SetMaximumEnergy sets the value of the maximumEnergy property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/maximumEnergy
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetMaximumEnergy(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumEnergy:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) NominalPower() found
 // SetNominalPower sets the value of the nominalPower property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/nominalPower
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetNominalPower(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalPower:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) StartTime() foundati
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterConstraintsStruct/startTime
-func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterConstraintsStruct) SetStartTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 

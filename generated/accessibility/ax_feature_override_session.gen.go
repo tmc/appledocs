@@ -80,8 +80,8 @@ func NewAXFeatureOverrideSession() AXFeatureOverrideSession {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axfeatureoverridesessionerrordomain
-func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
+func (a_ AXFeatureOverrideSession) AXFeatureOverrideSessionErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("AXFeatureOverrideSessionErrorDomain"))
 	return rv
 }
 

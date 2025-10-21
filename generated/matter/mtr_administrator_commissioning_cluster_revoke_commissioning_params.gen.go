@@ -87,7 +87,7 @@ func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) ServerSi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusterrevokecommissioningparams/serversideprocessingtimeout
-func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) TimedInv
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusterrevokecommissioningparams/timedinvoketimeoutms
-func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = photos.NewPHLivePhotoEditingContext
 
+// ExampleNewPHLivePhotoEditingContextWithLivePhotoEditingInput demonstrates how to create a PHLivePhotoEditingContext instance using NewPHLivePhotoEditingContextWithLivePhotoEditingInput.
+// Creates a Live Photo editing context for the specified editing input.
+func ExampleNewPHLivePhotoEditingContextWithLivePhotoEditingInput() {
+	_ = photos.NewPHLivePhotoEditingContextWithLivePhotoEditingInput(
+		photos.PHContentEditingInput{}, // livePhotoInput PHContentEditingInput
+	)
+	// Output:
+}

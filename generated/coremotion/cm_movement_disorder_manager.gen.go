@@ -31,11 +31,11 @@ type _MovementDisorderManagerClass struct {
 // An interface definition for the [MovementDisorderManager] class.
 type IMovementDisorderManager interface {
 	objectivec.IObject
-	LastProcessedDate() unsafe.Pointer
-	MonitorKinesiasForDuration(duration foundation.TimeInterval)
-	MonitorKinesiasExpirationDate() unsafe.Pointer
-	QueryDyskineticSymptomFromDateToDateWithHandler(fromDate unsafe.Pointer, toDate unsafe.Pointer, handler unsafe.Pointer)
-	QueryTremorFromDateToDateWithHandler(fromDate unsafe.Pointer, toDate unsafe.Pointer, handler unsafe.Pointer)
+	LastProcessedDate() foundation.Date
+	MonitorKinesiasForDuration(duration foundation.ITimeInterval)
+	MonitorKinesiasExpirationDate() foundation.Date
+	QueryDyskineticSymptomFromDateToDateWithHandler(fromDate foundation.IDate, toDate foundation.IDate, handler unsafe.Pointer)
+	QueryTremorFromDateToDateWithHandler(fromDate foundation.IDate, toDate foundation.IDate, handler unsafe.Pointer)
 }
 
 // A manager for recording and querying movement disorder data.
@@ -89,8 +89,8 @@ func NewMovementDisorderManager() MovementDisorderManager {
 // A value indicating whether the user has authorized the app to monitor and query for movement disorder data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/authorizationStatus()
-func (mc _MovementDisorderManagerClass) AuthorizationStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("authorizationStatus"))
+func (mc _MovementDisorderManagerClass) AuthorizationStatus() AuthorizationStatus {
+	rv := objc.Send[AuthorizationStatus](objc.ID(mc.class), objc.Sel("authorizationStatus"))
 	return rv
 }
 
@@ -105,45 +105,45 @@ func (mc _MovementDisorderManagerClass) IsAvailable() bool {
 // Returns a string that describes the movement disorder algorithm’s current version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/version()
-func (mc _MovementDisorderManagerClass) Version() string {
-	rv := objc.Send[string](objc.ID(mc.class), objc.Sel("version"))
+func (mc _MovementDisorderManagerClass) Version() foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(mc.class), objc.Sel("version"))
 	return rv
 }
 
 // Returns the date of the most recently calculated results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/lastProcessedDate()
-func (m_ MovementDisorderManager) LastProcessedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lastProcessedDate"))
+func (m_ MovementDisorderManager) LastProcessedDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("lastProcessedDate"))
 	return rv
 }
 
 // Calculate and store tremor and dyskinetic symptom results for the duration of the specified time interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesias(forDuration:)
-func (m_ MovementDisorderManager) MonitorKinesiasForDuration(duration foundation.TimeInterval) {
+func (m_ MovementDisorderManager) MonitorKinesiasForDuration(duration foundation.ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("monitorKinesiasForDuration:"), duration)
 }
 
 // Returns the expiration date for the most recent monitoring period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesiasExpirationDate()
-func (m_ MovementDisorderManager) MonitorKinesiasExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("monitorKinesiasExpirationDate"))
+func (m_ MovementDisorderManager) MonitorKinesiasExpirationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("monitorKinesiasExpirationDate"))
 	return rv
 }
 
 // Query for dyskinetic symptoms from the provided time interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/queryDyskineticSymptom(from:to:withHandler:)
-func (m_ MovementDisorderManager) QueryDyskineticSymptomFromDateToDateWithHandler(fromDate unsafe.Pointer, toDate unsafe.Pointer, handler unsafe.Pointer) {
+func (m_ MovementDisorderManager) QueryDyskineticSymptomFromDateToDateWithHandler(fromDate foundation.IDate, toDate foundation.IDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("queryDyskineticSymptomFromDate:toDate:withHandler:"), fromDate, toDate, handler)
 }
 
 // Query for tremor results from the provided time interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/queryTremor(from:to:withHandler:)
-func (m_ MovementDisorderManager) QueryTremorFromDateToDateWithHandler(fromDate unsafe.Pointer, toDate unsafe.Pointer, handler unsafe.Pointer) {
+func (m_ MovementDisorderManager) QueryTremorFromDateToDateWithHandler(fromDate foundation.IDate, toDate foundation.IDate, handler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("queryTremorFromDate:toDate:withHandler:"), fromDate, toDate, handler)
 }
 

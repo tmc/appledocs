@@ -88,7 +88,7 @@ func NewMKMapSnapshotter() MKMapSnapshotter {
 // Creates and returns a snapshotter object based on the specified options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/init(options:)
-func NewMKMapSnapshotterWithOptions(options unsafe.Pointer) MKMapSnapshotter {
+func NewMKMapSnapshotterWithOptions(options MKMapSnapshotOptions) MKMapSnapshotter {
 	instance := getMKMapSnapshotterClass().Alloc()
 	rv := objc.Send[MKMapSnapshotter](instance.ID, objc.Sel("initWithOptions:"), options)
 	rv.Autorelease()

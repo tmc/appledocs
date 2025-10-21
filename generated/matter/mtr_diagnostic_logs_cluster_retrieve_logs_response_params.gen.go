@@ -78,8 +78,8 @@ func NewMTRDiagnosticLogsClusterRetrieveLogsResponseParams() MTRDiagnosticLogsCl
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/content
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("content"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() unsafe.Po
 // SetContent sets the value of the content property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/content
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetContent(value unsafe.Pointer) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetContent(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContent:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/logcontent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) LogContent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("logContent"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) LogContent() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("logContent"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) LogContent() unsafe
 // SetLogContent sets the value of the logContent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/logcontent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetLogContent(value unsafe.Pointer) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetLogContent(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLogContent:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Status() foundation
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/status
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeSinceBoot() fou
 // SetTimeSinceBoot sets the value of the timeSinceBoot property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timesinceboot
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeSinceBoot(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeSinceBoot(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeSinceBoot:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeStamp() foundat
 // SetTimeStamp sets the value of the timeStamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timestamp
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeStamp(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeStamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeStamp:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timedinvoketimeoutms
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) UtcTimeStamp() foun
 // SetUtcTimeStamp sets the value of the utcTimeStamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/utctimestamp
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetUtcTimeStamp(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetUtcTimeStamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUtcTimeStamp:"), value)
 }
 

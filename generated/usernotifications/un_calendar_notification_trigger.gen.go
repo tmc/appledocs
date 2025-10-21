@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [UNCalendarNotificationTrigger] class.
@@ -29,7 +30,7 @@ type _UNCalendarNotificationTriggerClass struct {
 // An interface definition for the [UNCalendarNotificationTrigger] class.
 type IUNCalendarNotificationTrigger interface {
 	IUNNotificationTrigger
-	NextTriggerDate() unsafe.Pointer
+	NextTriggerDate() foundation.Date
 }
 
 // A trigger condition that causes a notification the system delivers at a specific date and time.
@@ -87,7 +88,7 @@ func NewUNCalendarNotificationTrigger() UNCalendarNotificationTrigger {
 // Creates a calendar trigger using the date components parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/init(dateMatching:repeats:)
-func NewUNCalendarNotificationTriggerWithDateMatchingComponentsRepeats(dateComponents unsafe.Pointer, repeats bool) UNCalendarNotificationTrigger {
+func NewUNCalendarNotificationTriggerWithDateMatchingComponentsRepeats(dateComponents foundation.IDateComponents, repeats bool) UNCalendarNotificationTrigger {
 	rv := objc.Send[UNCalendarNotificationTrigger](objc.ID(getUNCalendarNotificationTriggerClass().class), objc.Sel("triggerWithDateMatchingComponents:repeats:"), dateComponents, repeats)
 	return rv
 }
@@ -96,7 +97,7 @@ func NewUNCalendarNotificationTriggerWithDateMatchingComponentsRepeats(dateCompo
 // Creates a calendar trigger using the date components parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/init(dateMatching:repeats:)
-func (uc _UNCalendarNotificationTriggerClass) TriggerWithDateMatchingComponentsRepeats(dateComponents unsafe.Pointer, repeats bool) unsafe.Pointer {
+func (uc _UNCalendarNotificationTriggerClass) TriggerWithDateMatchingComponentsRepeats(dateComponents foundation.IDateComponents, repeats bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("triggerWithDateMatchingComponents:repeats:"), dateComponents, repeats)
 	return rv
 }
@@ -104,16 +105,16 @@ func (uc _UNCalendarNotificationTriggerClass) TriggerWithDateMatchingComponentsR
 // The next date at which the trigger conditions are met.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/nextTriggerDate()
-func (u_ UNCalendarNotificationTrigger) NextTriggerDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("nextTriggerDate"))
+func (u_ UNCalendarNotificationTrigger) NextTriggerDate() foundation.Date {
+	rv := objc.Send[foundation.Date](u_.ID, objc.Sel("nextTriggerDate"))
 	return rv
 }
 
 // The date components to construct this object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNCalendarNotificationTrigger/dateComponents
-func (u_ UNCalendarNotificationTrigger) DateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("dateComponents"))
+func (u_ UNCalendarNotificationTrigger) DateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](u_.ID, objc.Sel("dateComponents"))
 	return rv
 }
 

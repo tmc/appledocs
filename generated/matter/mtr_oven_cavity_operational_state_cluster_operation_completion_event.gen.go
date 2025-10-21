@@ -87,7 +87,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) Completio
 // SetCompletionErrorCode sets the value of the completionErrorCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationCompletionEvent/completionErrorCode
-func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.Number) {
+func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) PausedTim
 // SetPausedTime sets the value of the pausedTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationCompletionEvent/pausedTime
-func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.Number) {
+func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetPausedTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) TotalOper
 // SetTotalOperationalTime sets the value of the totalOperationalTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROvenCavityOperationalStateClusterOperationCompletionEvent/totalOperationalTime
-func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value foundation.Number) {
+func (m_ MTROvenCavityOperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
 

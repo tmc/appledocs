@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INRentalCarReservation] class.
@@ -82,8 +83,8 @@ func NewINRentalCarReservation() INRentalCarReservation {
 // The name and location where the user can drop off the car.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/dropofflocation
-func (i_ INRentalCarReservation) DropOffLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dropOffLocation"))
+func (i_ INRentalCarReservation) DropOffLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("dropOffLocation"))
 	return rv
 }
 
@@ -93,15 +94,15 @@ func (i_ INRentalCarReservation) DropOffLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/dropofflocation
-func (i_ INRentalCarReservation) SetDropOffLocation(value unsafe.Pointer) {
+func (i_ INRentalCarReservation) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
 
 // The name and location where the user can pick up the car.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/pickuplocation
-func (i_ INRentalCarReservation) PickupLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("pickupLocation"))
+func (i_ INRentalCarReservation) PickupLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
 	return rv
 }
 
@@ -111,7 +112,7 @@ func (i_ INRentalCarReservation) PickupLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/pickuplocation
-func (i_ INRentalCarReservation) SetPickupLocation(value unsafe.Pointer) {
+func (i_ INRentalCarReservation) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
 
@@ -136,8 +137,8 @@ func (i_ INRentalCarReservation) SetRentalCar(value unsafe.Pointer) {
 // The date and time range that indicates the pickup and drop off times for the rental.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/rentalduration
-func (i_ INRentalCarReservation) RentalDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("rentalDuration"))
+func (i_ INRentalCarReservation) RentalDuration() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("rentalDuration"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (i_ INRentalCarReservation) RentalDuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inrentalcarreservation/rentalduration
-func (i_ INRentalCarReservation) SetRentalDuration(value unsafe.Pointer) {
+func (i_ INRentalCarReservation) SetRentalDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRentalDuration:"), value)
 }
 

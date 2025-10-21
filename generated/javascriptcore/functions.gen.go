@@ -9,7 +9,7 @@ import (
 )
 
 
-// JavaScriptCore Functions (112 total)
+// JavaScriptCore Functions (114 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -105,10 +105,12 @@ var (
 	_JSValueIsBigInt func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsBoolean func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsDate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSValueIsEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsInstanceOfConstructor func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsNull func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsNumber func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsObject func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_JSValueIsObjectOfClass func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsStrictEqual func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueIsString func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_JSValueMakeBoolean func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
@@ -224,10 +226,12 @@ func init() {
 	tryRegister(&_JSValueIsBigInt, lib, "JSValueIsBigInt")
 	tryRegister(&_JSValueIsBoolean, lib, "JSValueIsBoolean")
 	tryRegister(&_JSValueIsDate, lib, "JSValueIsDate")
+	tryRegister(&_JSValueIsEqual, lib, "JSValueIsEqual")
 	tryRegister(&_JSValueIsInstanceOfConstructor, lib, "JSValueIsInstanceOfConstructor")
 	tryRegister(&_JSValueIsNull, lib, "JSValueIsNull")
 	tryRegister(&_JSValueIsNumber, lib, "JSValueIsNumber")
 	tryRegister(&_JSValueIsObject, lib, "JSValueIsObject")
+	tryRegister(&_JSValueIsObjectOfClass, lib, "JSValueIsObjectOfClass")
 	tryRegister(&_JSValueIsStrictEqual, lib, "JSValueIsStrictEqual")
 	tryRegister(&_JSValueIsString, lib, "JSValueIsString")
 	tryRegister(&_JSValueMakeBoolean, lib, "JSValueMakeBoolean")
@@ -1162,6 +1166,16 @@ func JSValueIsDate(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	}
 
 
+// Tests whether two JavaScript values are equal. [Full Topic]
+//
+// Added in macOS 10.5.
+//
+// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsEqual(_:_:_:_:)
+func JSValueIsEqual(ctx unsafe.Pointer, a unsafe.Pointer, b unsafe.Pointer, exception unsafe.Pointer) unsafe.Pointer {
+	return _JSValueIsEqual(ctx, a, b, exception)
+	}
+
+
 // Tests whether a JavaScript value is an object that the specified constructor creates. [Full Topic]
 //
 // Added in macOS 10.5.
@@ -1199,6 +1213,16 @@ func JSValueIsNumber(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsObject(_:_:)
 func JSValueIsObject(ctx unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _JSValueIsObject(ctx, value)
+	}
+
+
+// Tests whether a JavaScript value is an object with a specified class in its class chain. [Full Topic]
+//
+// Added in macOS 10.5.
+//
+// [Full Topic]: https://developer.apple.com/documentation/JavaScriptCore/JSValueIsObjectOfClass(_:_:_:)
+func JSValueIsObjectOfClass(ctx unsafe.Pointer, value unsafe.Pointer, jsClass unsafe.Pointer) unsafe.Pointer {
+	return _JSValueIsObjectOfClass(ctx, value, jsClass)
 	}
 
 

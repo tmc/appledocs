@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PHCollection] class.
@@ -29,7 +30,7 @@ type _PHCollectionClass struct {
 // An interface definition for the [PHCollection] class.
 type IPHCollection interface {
 	IPHObject
-	CanPerformEditOperation(anOperation unsafe.Pointer) bool
+	CanPerformEditOperation(anOperation IPHCollectionEditOperation) bool
 }
 
 // The abstract superclass for Photos asset collections and collection lists.
@@ -85,7 +86,7 @@ func NewPHCollection() PHCollection {
 // Retrieves collections from the specified collection list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/fetchCollections(in:options:)
-func (pc _PHCollectionClass) FetchCollectionsInCollectionListOptions(collectionList unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionClass) FetchCollectionsInCollectionListOptions(collectionList IPHCollectionList, options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionsInCollectionList:options:"), collectionList, options)
 	return rv
 }
@@ -93,7 +94,7 @@ func (pc _PHCollectionClass) FetchCollectionsInCollectionListOptions(collectionL
 // Retrieves collections from the root of the photo library’s hierarchy of user-created albums and folders.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/fetchTopLevelUserCollections(with:)
-func (pc _PHCollectionClass) FetchTopLevelUserCollectionsWithOptions(options unsafe.Pointer) unsafe.Pointer {
+func (pc _PHCollectionClass) FetchTopLevelUserCollectionsWithOptions(options PHFetchOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchTopLevelUserCollectionsWithOptions:"), options)
 	return rv
 }
@@ -101,7 +102,7 @@ func (pc _PHCollectionClass) FetchTopLevelUserCollectionsWithOptions(options uns
 // Returns whether the collection supports the specified editing operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/canPerform(_:)
-func (p_ PHCollection) CanPerformEditOperation(anOperation unsafe.Pointer) bool {
+func (p_ PHCollection) CanPerformEditOperation(anOperation IPHCollectionEditOperation) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPerformEditOperation:"), anOperation)
 	return rv
 }
@@ -125,8 +126,8 @@ func (p_ PHCollection) CanContainCollections() bool {
 // The localized name of the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollection/localizedTitle
-func (p_ PHCollection) LocalizedTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
+func (p_ PHCollection) LocalizedTitle() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 

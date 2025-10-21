@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -83,27 +84,27 @@ func NewSFSpeechLanguageModel() SFSpeechLanguageModel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:completion:)
-func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIdentifierConfigurationCompletion(asset foundation.URL, clientIdentifier string, configuration unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:"), asset, objc.String(clientIdentifier), configuration, completion)
+func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIdentifierConfigurationCompletion(asset foundation.IURL, clientIdentifier appkit.string, configuration ISFSpeechLanguageModelConfiguration, completion unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:clientIdentifier:configuration:completion:"), asset, clientIdentifier, configuration, completion)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:clientIdentifier:configuration:ignoresCache:completion:)
-func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIdentifierConfigurationIgnoresCacheCompletion(asset foundation.URL, clientIdentifier string, configuration unsafe.Pointer, ignoresCache bool, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:"), asset, objc.String(clientIdentifier), configuration, ignoresCache, completion)
+func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlClientIdentifierConfigurationIgnoresCacheCompletion(asset foundation.IURL, clientIdentifier appkit.string, configuration ISFSpeechLanguageModelConfiguration, ignoresCache bool, completion unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:clientIdentifier:configuration:ignoresCache:completion:"), asset, clientIdentifier, configuration, ignoresCache, completion)
 }
 
 // Creates a language model from custom training data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:configuration:completion:)
-func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurationCompletion(asset foundation.URL, configuration unsafe.Pointer, completion unsafe.Pointer) {
+func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurationCompletion(asset foundation.IURL, configuration ISFSpeechLanguageModelConfiguration, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:configuration:completion:"), asset, configuration, completion)
 }
 
 // Creates a language model from custom training data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechLanguageModel/prepareCustomLanguageModel(for:configuration:ignoresCache:completion:)
-func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurationIgnoresCacheCompletion(asset foundation.URL, configuration unsafe.Pointer, ignoresCache bool, completion unsafe.Pointer) {
+func (sc _SFSpeechLanguageModelClass) PrepareCustomLanguageModelForUrlConfigurationIgnoresCacheCompletion(asset foundation.IURL, configuration ISFSpeechLanguageModelConfiguration, ignoresCache bool, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("prepareCustomLanguageModelForUrl:configuration:ignoresCache:completion:"), asset, configuration, ignoresCache, completion)
 }
 

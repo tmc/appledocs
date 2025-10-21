@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _MIDIUMPCIProfileClass struct {
 // An interface definition for the [MIDIUMPCIProfile] class.
 type IMIDIUMPCIProfile interface {
 	objectivec.IObject
-	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount unsafe.Pointer, error_ unsafe.Pointer) bool
+	SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount IMIDIUInteger14, error_ unsafe.Pointer) bool
 }
 
 //
@@ -78,29 +79,29 @@ func NewMIDIUMPCIProfile() MIDIUMPCIProfile {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/setProfileState(_:enabledChannelCount:)
-func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (m_ MIDIUMPCIProfile) SetProfileStateEnabledChannelCountError(isEnabled bool, enabledChannelCount IMIDIUInteger14, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("setProfileState:enabledChannelCount:error:"), isEnabled, enabledChannelCount, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/enabledChannelCount
-func (m_ MIDIUMPCIProfile) EnabledChannelCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("enabledChannelCount"))
+func (m_ MIDIUMPCIProfile) EnabledChannelCount() MIDIUInteger14 {
+	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("enabledChannelCount"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/firstChannel
-func (m_ MIDIUMPCIProfile) FirstChannel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("firstChannel"))
+func (m_ MIDIUMPCIProfile) FirstChannel() MIDIChannelNumber {
+	rv := objc.Send[MIDIChannelNumber](m_.ID, objc.Sel("firstChannel"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/groupOffset
-func (m_ MIDIUMPCIProfile) GroupOffset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupOffset"))
+func (m_ MIDIUMPCIProfile) GroupOffset() MIDIUMPGroupNumber {
+	rv := objc.Send[MIDIUMPGroupNumber](m_.ID, objc.Sel("groupOffset"))
 	return rv
 }
 
@@ -113,8 +114,8 @@ func (m_ MIDIUMPCIProfile) IsEnabled() bool {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/name
-func (m_ MIDIUMPCIProfile) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MIDIUMPCIProfile) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -127,15 +128,15 @@ func (m_ MIDIUMPCIProfile) ProfileID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/profileType
-func (m_ MIDIUMPCIProfile) ProfileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("profileType"))
+func (m_ MIDIUMPCIProfile) ProfileType() MIDICIProfileType {
+	rv := objc.Send[MIDICIProfileType](m_.ID, objc.Sel("profileType"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDIUMPCIProfile/totalChannelCount
-func (m_ MIDIUMPCIProfile) TotalChannelCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("totalChannelCount"))
+func (m_ MIDIUMPCIProfile) TotalChannelCount() MIDIUInteger14 {
+	rv := objc.Send[MIDIUInteger14](m_.ID, objc.Sel("totalChannelCount"))
 	return rv
 }
 

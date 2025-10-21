@@ -80,6 +80,19 @@ func NewTimedMetadataGroup() TimedMetadataGroup {
 }
 
 
+
+
+// Creates a timed metadata group initialized with the given metadata items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/init(items:timeRange:)
+func NewTimedMetadataGroupWithItemsTimeRange(items []MetadataItem, timeRange unsafe.Pointer) TimedMetadataGroup {
+	instance := getTimedMetadataGroupClass().Alloc()
+	rv := objc.Send[TimedMetadataGroup](instance.ID, objc.Sel("initWithItems:timeRange:"), items, timeRange)
+	rv.Autorelease()
+	return rv
+}
+
+
 // The time range for the timed metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTimedMetadataGroup/timeRange
@@ -91,8 +104,8 @@ func (t_ TimedMetadataGroup) TimeRange() unsafe.Pointer {
 // An array of metadata items in the timed metadata group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
-func (t_ TimedMetadataGroup) Items() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("items"))
+func (t_ TimedMetadataGroup) Items() AVMetadataItem {
+	rv := objc.Send[AVMetadataItem](t_.ID, objc.Sel("items"))
 	return rv
 }
 
@@ -102,9 +115,8 @@ func (t_ TimedMetadataGroup) Items() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup/items
-func (t_ TimedMetadataGroup) SetItems(value unsafe.Pointer) {
+func (t_ TimedMetadataGroup) SetItems(value IAVMetadataItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItems:"), value)
 }
-
 
 

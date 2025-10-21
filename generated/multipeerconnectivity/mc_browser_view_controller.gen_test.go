@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = multipeerconnectivity.NewMCBrowserViewController
 
+// ExampleNewMCBrowserViewControllerWithBrowserSession demonstrates how to create a MCBrowserViewController instance using NewMCBrowserViewControllerWithBrowserSession.
+// Initializes a browser view controller with the provided browser and session.
+func ExampleNewMCBrowserViewControllerWithBrowserSession() {
+	_ = multipeerconnectivity.NewMCBrowserViewControllerWithBrowserSession(
+		multipeerconnectivity.MCNearbyServiceBrowser{}, // browser MCNearbyServiceBrowser
+		multipeerconnectivity.MCSession{}, // session MCSession
+	)
+	// Output:
+}

@@ -87,7 +87,7 @@ func (m_ MTRSoftwareDiagnosticsClusterResetWatermarksParams) ServerSideProcessin
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterresetwatermarksparams/serversideprocessingtimeout
-func (m_ MTRSoftwareDiagnosticsClusterResetWatermarksParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRSoftwareDiagnosticsClusterResetWatermarksParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRSoftwareDiagnosticsClusterResetWatermarksParams) TimedInvokeTimeoutM
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsoftwarediagnosticsclusterresetwatermarksparams/timedinvoketimeoutms
-func (m_ MTRSoftwareDiagnosticsClusterResetWatermarksParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRSoftwareDiagnosticsClusterResetWatermarksParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

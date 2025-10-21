@@ -87,7 +87,7 @@ func (m_ MTRMediaInputClusterShowInputStatusParams) ServerSideProcessingTimeout(
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclustershowinputstatusparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterShowInputStatusParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaInputClusterShowInputStatusParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRMediaInputClusterShowInputStatusParams) TimedInvokeTimeoutMs() found
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclustershowinputstatusparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterShowInputStatusParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaInputClusterShowInputStatusParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

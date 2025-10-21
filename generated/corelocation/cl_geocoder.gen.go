@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/contacts"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,15 +34,15 @@ type _GeocoderClass struct {
 type IGeocoder interface {
 	objectivec.IObject
 	CancelGeocode()
-	GeocodeAddressDictionaryCompletionHandler(addressDictionary objc.ID, completionHandler unsafe.Pointer)
-	GeocodeAddressStringCompletionHandler(addressString string, completionHandler unsafe.Pointer)
-	GeocodeAddressStringInRegionCompletionHandler(addressString string, region unsafe.Pointer, completionHandler unsafe.Pointer)
-	GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString string, region unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
-	GeocodeAddressStringInRegionCenteredAtInRegionRadiusPreferredLocaleCompletionHandler(addressString string, centroid unsafe.Pointer, radius unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
-	GeocodePostalAddressCompletionHandler(postalAddress unsafe.Pointer, completionHandler unsafe.Pointer)
-	GeocodePostalAddressPreferredLocaleCompletionHandler(postalAddress unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
-	ReverseGeocodeLocationCompletionHandler(location unsafe.Pointer, completionHandler unsafe.Pointer)
-	ReverseGeocodeLocationPreferredLocaleCompletionHandler(location unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer)
+	GeocodeAddressDictionaryCompletionHandler(addressDictionary objectivec.IObject, completionHandler unsafe.Pointer)
+	GeocodeAddressStringCompletionHandler(addressString appkit.string, completionHandler unsafe.Pointer)
+	GeocodeAddressStringInRegionCompletionHandler(addressString appkit.string, region ICLRegion, completionHandler unsafe.Pointer)
+	GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString appkit.string, region ICLRegion, locale foundation.ILocale, completionHandler unsafe.Pointer)
+	GeocodeAddressStringInRegionCenteredAtInRegionRadiusPreferredLocaleCompletionHandler(addressString appkit.string, centroid unsafe.Pointer, radius unsafe.Pointer, locale foundation.ILocale, completionHandler unsafe.Pointer)
+	GeocodePostalAddressCompletionHandler(postalAddress contacts.ICNPostalAddress, completionHandler unsafe.Pointer)
+	GeocodePostalAddressPreferredLocaleCompletionHandler(postalAddress contacts.ICNPostalAddress, locale foundation.ILocale, completionHandler unsafe.Pointer)
+	ReverseGeocodeLocationCompletionHandler(location ICLLocation, completionHandler unsafe.Pointer)
+	ReverseGeocodeLocationPreferredLocaleCompletionHandler(location ICLLocation, locale foundation.ILocale, completionHandler unsafe.Pointer)
 }
 
 // An interface for converting between geographic coordinates and place names.
@@ -100,62 +103,62 @@ func (g_ Geocoder) CancelGeocode() {
 // Submits a forward-geocoding request using the specified address dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressDictionary(_:completionHandler:)
-func (g_ Geocoder) GeocodeAddressDictionaryCompletionHandler(addressDictionary objc.ID, completionHandler unsafe.Pointer) {
+func (g_ Geocoder) GeocodeAddressDictionaryCompletionHandler(addressDictionary objectivec.IObject, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressDictionary:completionHandler:"), addressDictionary, completionHandler)
 }
 
 // Submits a forward-geocoding request using the specified string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:completionHandler:)
-func (g_ Geocoder) GeocodeAddressStringCompletionHandler(addressString string, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:completionHandler:"), objc.String(addressString), completionHandler)
+func (g_ Geocoder) GeocodeAddressStringCompletionHandler(addressString appkit.string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:completionHandler:"), addressString, completionHandler)
 }
 
 // Submits a forward-geocoding request using the specified string and region information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:in:completionHandler:)
-func (g_ Geocoder) GeocodeAddressStringInRegionCompletionHandler(addressString string, region unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:completionHandler:"), objc.String(addressString), region, completionHandler)
+func (g_ Geocoder) GeocodeAddressStringInRegionCompletionHandler(addressString appkit.string, region ICLRegion, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:completionHandler:"), addressString, region, completionHandler)
 }
 
 // Submits a forward-geocoding requesting using the specified address string and locale information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:in:preferredLocale:completionHandler:)
-func (g_ Geocoder) GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString string, region unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:preferredLocale:completionHandler:"), objc.String(addressString), region, locale, completionHandler)
+func (g_ Geocoder) GeocodeAddressStringInRegionPreferredLocaleCompletionHandler(addressString appkit.string, region ICLRegion, locale foundation.ILocale, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegion:preferredLocale:completionHandler:"), addressString, region, locale, completionHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodeAddressString(_:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:)
-func (g_ Geocoder) GeocodeAddressStringInRegionCenteredAtInRegionRadiusPreferredLocaleCompletionHandler(addressString string, centroid unsafe.Pointer, radius unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:"), objc.String(addressString), centroid, radius, locale, completionHandler)
+func (g_ Geocoder) GeocodeAddressStringInRegionCenteredAtInRegionRadiusPreferredLocaleCompletionHandler(addressString appkit.string, centroid unsafe.Pointer, radius unsafe.Pointer, locale foundation.ILocale, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("geocodeAddressString:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:"), addressString, centroid, radius, locale, completionHandler)
 }
 
 // Submits a forward-geocoding requesting using the specified Contacts framework information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodePostalAddress(_:completionHandler:)
-func (g_ Geocoder) GeocodePostalAddressCompletionHandler(postalAddress unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (g_ Geocoder) GeocodePostalAddressCompletionHandler(postalAddress contacts.ICNPostalAddress, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("geocodePostalAddress:completionHandler:"), postalAddress, completionHandler)
 }
 
 // Submits a forward-geocoding requesting using the specified locale and Contacts framework information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/geocodePostalAddress(_:preferredLocale:completionHandler:)
-func (g_ Geocoder) GeocodePostalAddressPreferredLocaleCompletionHandler(postalAddress unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (g_ Geocoder) GeocodePostalAddressPreferredLocaleCompletionHandler(postalAddress contacts.ICNPostalAddress, locale foundation.ILocale, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("geocodePostalAddress:preferredLocale:completionHandler:"), postalAddress, locale, completionHandler)
 }
 
 // Submits a reverse-geocoding request for the specified location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/reverseGeocodeLocation(_:completionHandler:)
-func (g_ Geocoder) ReverseGeocodeLocationCompletionHandler(location unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (g_ Geocoder) ReverseGeocodeLocationCompletionHandler(location ICLLocation, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("reverseGeocodeLocation:completionHandler:"), location, completionHandler)
 }
 
 // Submits a reverse-geocoding request for the specified location and locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLGeocoder/reverseGeocodeLocation(_:preferredLocale:completionHandler:)
-func (g_ Geocoder) ReverseGeocodeLocationPreferredLocaleCompletionHandler(location unsafe.Pointer, locale unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (g_ Geocoder) ReverseGeocodeLocationPreferredLocaleCompletionHandler(location ICLLocation, locale foundation.ILocale, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("reverseGeocodeLocation:preferredLocale:completionHandler:"), location, locale, completionHandler)
 }
 

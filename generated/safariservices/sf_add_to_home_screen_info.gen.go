@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -100,8 +101,8 @@ func (s_ SFAddToHomeScreenInfo) Manifest() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFAddToHomeScreenInfo/websiteCookies
-func (s_ SFAddToHomeScreenInfo) WebsiteCookies() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](s_.ID, objc.Sel("websiteCookies"))
+func (s_ SFAddToHomeScreenInfo) WebsiteCookies() []foundation.HTTPCookie {
+	rv := objc.Send[[]foundation.HTTPCookie](s_.ID, objc.Sel("websiteCookies"))
 	return rv
 }
 
@@ -109,7 +110,7 @@ func (s_ SFAddToHomeScreenInfo) WebsiteCookies() []unsafe.Pointer {
 // SetWebsiteCookies sets the value of the websiteCookies property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFAddToHomeScreenInfo/websiteCookies
-func (s_ SFAddToHomeScreenInfo) SetWebsiteCookies(value []unsafe.Pointer) {
+func (s_ SFAddToHomeScreenInfo) SetWebsiteCookies(value []foundation.IHTTPCookie) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

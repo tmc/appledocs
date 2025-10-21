@@ -83,8 +83,8 @@ func NewDelegatingPlaybackCoordinatorPlaybackControlCommand() DelegatingPlayback
 // An item identifier the coordinator issues the command for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/expectedcurrentitemidentifier
-func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) ExpectedCurrentItemIdentifier() string {
-	rv := objc.Send[string](d_.ID, objc.Sel("expectedCurrentItemIdentifier"))
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) ExpectedCurrentItemIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](d_.ID, objc.Sel("expectedCurrentItemIdentifier"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) ExpectedCurrentIte
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/expectedcurrentitemidentifier
-func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetExpectedCurrentItemIdentifier(value string) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setExpectedCurrentItemIdentifier:"), objc.String(value))
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetExpectedCurrentItemIdentifier(value appkit.string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setExpectedCurrentItemIdentifier:"), value)
 }
 
 // The participant that causes the coordinator to issue the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/originator
-func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) Originator() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("originator"))
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) Originator() AVCoordinatedPlaybackParticipant {
+	rv := objc.Send[AVCoordinatedPlaybackParticipant](d_.ID, objc.Sel("originator"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) Originator() unsaf
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand/originator
-func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetOriginator(value unsafe.Pointer) {
+func (d_ DelegatingPlaybackCoordinatorPlaybackControlCommand) SetOriginator(value IAVCoordinatedPlaybackParticipant) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setOriginator:"), value)
 }
 

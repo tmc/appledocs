@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,8 +78,8 @@ func NewGLKSubmesh() GLKSubmesh {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/elementBuffer
-func (g_ GLKSubmesh) ElementBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("elementBuffer"))
+func (g_ GLKSubmesh) ElementBuffer() GLKMeshBuffer {
+	rv := objc.Send[GLKMeshBuffer](g_.ID, objc.Sel("elementBuffer"))
 	return rv
 }
 
@@ -91,8 +92,8 @@ func (g_ GLKSubmesh) ElementCount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/mesh
-func (g_ GLKSubmesh) Mesh() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mesh"))
+func (g_ GLKSubmesh) Mesh() GLKMesh {
+	rv := objc.Send[GLKMesh](g_.ID, objc.Sel("mesh"))
 	return rv
 }
 
@@ -105,8 +106,8 @@ func (g_ GLKSubmesh) Mode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSubmesh/name
-func (g_ GLKSubmesh) Name() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+func (g_ GLKSubmesh) Name() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

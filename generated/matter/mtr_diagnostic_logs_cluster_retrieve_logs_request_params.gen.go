@@ -87,7 +87,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) Intent() foundation.
 // SetIntent sets the value of the intent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/intent
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetIntent(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetIntent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntent:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) RequestedProtocol() 
 // SetRequestedProtocol sets the value of the requestedProtocol property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/requestedprotocol
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetRequestedProtocol(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetRequestedProtocol(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestedProtocol:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) ServerSideProcessing
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/serversideprocessingtimeout
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,14 +132,14 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TimedInvokeTimeoutMs
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/timedinvoketimeoutms
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignator() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("transferFileDesignator"))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignator() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("transferFileDesignator"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignat
 // SetTransferFileDesignator sets the value of the transferFileDesignator property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
-func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), objc.String(value))
+func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), value)
 }
 
 

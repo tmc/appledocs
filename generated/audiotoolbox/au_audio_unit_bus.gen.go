@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,7 +33,7 @@ type _AudioUnitBusClass struct {
 // An interface definition for the [AudioUnitBus] class.
 type IAudioUnitBus interface {
 	objectivec.IObject
-	SetFormatError(format unsafe.Pointer, outError unsafe.Pointer) bool
+	SetFormatError(format avfaudio.AudioFormat, outError unsafe.Pointer) bool
 }
 
 // A class that defines an input or output connection point on an audio unit.
@@ -85,7 +87,7 @@ func NewAudioUnitBus() AudioUnitBus {
 // Initializes a bus object with a specific format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/init(format:)
-func NewAudioUnitBusWithFormatError(format unsafe.Pointer, outError unsafe.Pointer) AudioUnitBus {
+func NewAudioUnitBusWithFormatError(format avfaudio.AudioFormat, outError unsafe.Pointer) AudioUnitBus {
 	instance := getAudioUnitBusClass().Alloc()
 	rv := objc.Send[AudioUnitBus](instance.ID, objc.Sel("initWithFormat:error:"), format, outError)
 	rv.Autorelease()
@@ -96,7 +98,7 @@ func NewAudioUnitBusWithFormatError(format unsafe.Pointer, outError unsafe.Point
 // Sets the bus’s audio format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/setFormat(_:)
-func (a_ AudioUnitBus) SetFormatError(format unsafe.Pointer, outError unsafe.Pointer) bool {
+func (a_ AudioUnitBus) SetFormatError(format avfaudio.AudioFormat, outError unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setFormat:error:"), format, outError)
 	return rv
 }
@@ -104,8 +106,8 @@ func (a_ AudioUnitBus) SetFormatError(format unsafe.Pointer, outError unsafe.Poi
 // The bus type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/busType
-func (a_ AudioUnitBus) BusType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("busType"))
+func (a_ AudioUnitBus) BusType() AudioUnitBusType {
+	rv := objc.Send[AudioUnitBusType](a_.ID, objc.Sel("busType"))
 	return rv
 }
 
@@ -123,15 +125,15 @@ func (a_ AudioUnitBus) ContextPresentationLatency() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/contextPresentationLatency
-func (a_ AudioUnitBus) SetContextPresentationLatency(value foundation.TimeInterval) {
+func (a_ AudioUnitBus) SetContextPresentationLatency(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setContextPresentationLatency:"), value)
 }
 
 // The audio format and channel layout of audio being transferred on the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/format
-func (a_ AudioUnitBus) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("format"))
+func (a_ AudioUnitBus) Format() avfaudio.AudioFormat {
+	rv := objc.Send[avfaudio.AudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 
@@ -164,8 +166,8 @@ func (a_ AudioUnitBus) SetEnabled(value bool) {
 // The maximum number of channels supported for this bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/maximumChannelCount
-func (a_ AudioUnitBus) MaximumChannelCount() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("maximumChannelCount"))
+func (a_ AudioUnitBus) MaximumChannelCount() AudioChannelCount {
+	rv := objc.Send[AudioChannelCount](a_.ID, objc.Sel("maximumChannelCount"))
 	return rv
 }
 
@@ -175,15 +177,15 @@ func (a_ AudioUnitBus) MaximumChannelCount() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/maximumChannelCount
-func (a_ AudioUnitBus) SetMaximumChannelCount(value unsafe.Pointer) {
+func (a_ AudioUnitBus) SetMaximumChannelCount(value IAudioChannelCount) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMaximumChannelCount:"), value)
 }
 
 // A name for the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
-func (a_ AudioUnitBus) Name() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+func (a_ AudioUnitBus) Name() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -193,15 +195,15 @@ func (a_ AudioUnitBus) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/name
-func (a_ AudioUnitBus) SetName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
+func (a_ AudioUnitBus) SetName(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
 }
 
 // The audio unit that owns the bus.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/ownerAudioUnit
-func (a_ AudioUnitBus) OwnerAudioUnit() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("ownerAudioUnit"))
+func (a_ AudioUnitBus) OwnerAudioUnit() AUAudioUnit {
+	rv := objc.Send[AUAudioUnit](a_.ID, objc.Sel("ownerAudioUnit"))
 	return rv
 }
 
@@ -234,7 +236,7 @@ func (a_ AudioUnitBus) SupportedChannelCounts() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitBus/supportedChannelCounts
-func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.Number) {
+func (a_ AudioUnitBus) SetSupportedChannelCounts(value []foundation.INumber) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

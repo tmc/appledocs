@@ -90,7 +90,7 @@ func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) ServerSideProcessingTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterStartDiagnosticsParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) TimedInvokeTimeoutMs() foun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterStartDiagnosticsParams/timedInvokeTimeoutMs
-func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterStartDiagnosticsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

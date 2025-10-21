@@ -120,8 +120,8 @@ func (g_ GraphImToColOpDescriptor) SetStrideInY(value uint) {
 // The property that defines the layout of source or output tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/datalayout
-func (g_ GraphImToColOpDescriptor) DataLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("dataLayout"))
+func (g_ GraphImToColOpDescriptor) DataLayout() GraphTensorNamedDataLayout {
+	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("dataLayout"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (g_ GraphImToColOpDescriptor) DataLayout() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphimtocolopdescriptor/datalayout
-func (g_ GraphImToColOpDescriptor) SetDataLayout(value unsafe.Pointer) {
+func (g_ GraphImToColOpDescriptor) SetDataLayout(value IGraphTensorNamedDataLayout) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
 }
 

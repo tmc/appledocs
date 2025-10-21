@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -91,8 +92,8 @@ func (p_ PlayerItemIntegratedTimeline) CurrentTime() unsafe.Pointer {
 // The current date of playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-func (p_ PlayerItemIntegratedTimeline) CurrentDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentDate"))
+func (p_ PlayerItemIntegratedTimeline) CurrentDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
 	return rv
 }
 
@@ -102,15 +103,15 @@ func (p_ PlayerItemIntegratedTimeline) CurrentDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentdate
-func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value unsafe.Pointer) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
 }
 
 // An immutable representation of the timeline state at time of request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("currentSnapshot"))
+func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() AVPlayerItemIntegratedTimelineSnapshot {
+	rv := objc.Send[AVPlayerItemIntegratedTimelineSnapshot](p_.ID, objc.Sel("currentSnapshot"))
 	return rv
 }
 
@@ -120,7 +121,7 @@ func (p_ PlayerItemIntegratedTimeline) CurrentSnapshot() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/currentsnapshot
-func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value unsafe.Pointer) {
+func (p_ PlayerItemIntegratedTimeline) SetCurrentSnapshot(value IAVPlayerItemIntegratedTimelineSnapshot) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSnapshot:"), value)
 }
 

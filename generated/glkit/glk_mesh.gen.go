@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -87,15 +88,15 @@ func NewGLKMeshWithMeshError(mesh unsafe.Pointer, error_ unsafe.Pointer) GLKMesh
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/newMeshes(from:sourceMeshes:)
-func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer, sourceMeshes unsafe.Pointer, error_ unsafe.Pointer) []GLKMesh {
+func (gc _GLKMeshClass) NewMeshesFromAssetSourceMeshesError(asset unsafe.Pointer, sourceMeshes []MDLMesh, error_ unsafe.Pointer) []GLKMesh {
 	rv := objc.Send[[]GLKMesh](objc.ID(gc.class), objc.Sel("newMeshesFromAsset:sourceMeshes:error:"), asset, sourceMeshes, error_)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMesh/name
-func (g_ GLKMesh) Name() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+func (g_ GLKMesh) Name() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("name"))
 	return rv
 }
 

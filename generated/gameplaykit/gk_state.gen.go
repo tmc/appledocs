@@ -31,10 +31,10 @@ type _StateClass struct {
 // An interface definition for the [State] class.
 type IState interface {
 	objectivec.IObject
-	DidEnterWithPreviousState(previousState unsafe.Pointer)
+	DidEnterWithPreviousState(previousState GKState)
 	IsValidNextState(stateClass objc.Class) bool
-	UpdateWithDeltaTime(seconds foundation.TimeInterval)
-	WillExitWithNextState(nextState unsafe.Pointer)
+	UpdateWithDeltaTime(seconds foundation.ITimeInterval)
+	WillExitWithNextState(nextState GKState)
 }
 
 // The abstract superclass for defining state-specific logic as part of a state machine.
@@ -97,7 +97,7 @@ func (sc _StateClass) State() unsafe.Pointer {
 // Performs custom actions when a state machine transitions into this state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/didEnter(from:)
-func (s_ State) DidEnterWithPreviousState(previousState unsafe.Pointer) {
+func (s_ State) DidEnterWithPreviousState(previousState GKState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("didEnterWithPreviousState:"), previousState)
 }
 
@@ -112,22 +112,22 @@ func (s_ State) IsValidNextState(stateClass objc.Class) bool {
 // Performs custom actions when a state machine updates while in this state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/update(deltaTime:)
-func (s_ State) UpdateWithDeltaTime(seconds foundation.TimeInterval) {
+func (s_ State) UpdateWithDeltaTime(seconds foundation.ITimeInterval) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
 }
 
 // Performs custom actions when a state machine transitions out of this state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/willExit(to:)
-func (s_ State) WillExitWithNextState(nextState unsafe.Pointer) {
+func (s_ State) WillExitWithNextState(nextState GKState) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("willExitWithNextState:"), nextState)
 }
 
 // The state machine that owns this state object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKState/stateMachine
-func (s_ State) StateMachine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("stateMachine"))
+func (s_ State) StateMachine() GKStateMachine {
+	rv := objc.Send[GKStateMachine](s_.ID, objc.Sel("stateMachine"))
 	return rv
 }
 

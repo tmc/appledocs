@@ -78,8 +78,8 @@ func NewMTRChannelClusterGetProgramGuideParams() MTRChannelClusterGetProgramGuid
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/channelList
-func (m_ MTRChannelClusterGetProgramGuideParams) ChannelList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("channelList"))
+func (m_ MTRChannelClusterGetProgramGuideParams) ChannelList() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("channelList"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRChannelClusterGetProgramGuideParams) ChannelList() unsafe.Pointer {
 // SetChannelList sets the value of the channelList property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/channelList
-func (m_ MTRChannelClusterGetProgramGuideParams) SetChannelList(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetChannelList(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannelList:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/data
-func (m_ MTRChannelClusterGetProgramGuideParams) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRChannelClusterGetProgramGuideParams) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) Data() unsafe.Pointer {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/data
-func (m_ MTRChannelClusterGetProgramGuideParams) SetData(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
@@ -117,14 +117,14 @@ func (m_ MTRChannelClusterGetProgramGuideParams) EndTime() foundation.Number {
 // SetEndTime sets the value of the endTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/endTime
-func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value foundation.Number) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetEndTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTime:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/pageToken
-func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pageToken"))
+func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() MTRChannelClusterPageTokenStruct {
+	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("pageToken"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) PageToken() unsafe.Pointer {
 // SetPageToken sets the value of the pageToken property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/pageToken
-func (m_ MTRChannelClusterGetProgramGuideParams) SetPageToken(value unsafe.Pointer) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetPageToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPageToken:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) RecordingFlag() foundation.Numb
 // SetRecordingFlag sets the value of the recordingFlag property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/recordingFlag
-func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value foundation.Number) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetRecordingFlag(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecordingFlag:"), value)
 }
 
@@ -165,7 +165,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) ServerSideProcessingTimeout() f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -180,7 +180,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) StartTime() foundation.Number {
 // SetStartTime sets the value of the startTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/startTime
-func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value foundation.Number) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetStartTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
 
@@ -198,7 +198,7 @@ func (m_ MTRChannelClusterGetProgramGuideParams) TimedInvokeTimeoutMs() foundati
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterGetProgramGuideParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRChannelClusterGetProgramGuideParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

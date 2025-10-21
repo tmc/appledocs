@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/mlcompute"
 )
 
 // The class instance for the [ICCameraDevice] class.
@@ -29,7 +29,7 @@ type _ICCameraDeviceClass struct {
 
 // An interface definition for the [ICCameraDevice] class.
 type IICCameraDevice interface {
-	objectivec.IObject
+	IICDevice
 	CancelDelete()
 	RequestSyncClock()
 }
@@ -38,14 +38,16 @@ type IICCameraDevice interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/ImageCaptureCore/ICCameraDevice
 type ICCameraDevice struct {
-	objectivec.Object
+	mlcompute.ICDevice
 }
 
 // ICCameraDeviceFrom constructs a [ICCameraDevice] from an unsafe.Pointer.
 //
 // An object that represents a camera.
 func ICCameraDeviceFrom(ptr unsafe.Pointer) ICCameraDevice {
-	return ICCameraDevice{objectivec.Object{objc.ID(ptr)}}
+	return ICCameraDevice{
+		ICDevice: mlcompute.ICDeviceFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -151,8 +153,8 @@ func (i_ ICCameraDevice) SetContentCatalogPercentCompleted(value int) {
 // All image, movie, and audio files stored on the camera, in an order that reflects the camera’s storage folder structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contents
-func (i_ ICCameraDevice) Contents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("contents"))
+func (i_ ICCameraDevice) Contents() ICCameraItem {
+	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("contents"))
 	return rv
 }
 
@@ -162,7 +164,7 @@ func (i_ ICCameraDevice) Contents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/contents
-func (i_ ICCameraDevice) SetContents(value unsafe.Pointer) {
+func (i_ ICCameraDevice) SetContents(value ICCameraItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContents:"), value)
 }
 
@@ -241,8 +243,8 @@ func (i_ ICCameraDevice) SetIsLocked(value bool) {
 // All image, movie and audio files stored on the camera, without regard to the camera’s storage folder structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediafiles
-func (i_ ICCameraDevice) MediaFiles() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("mediaFiles"))
+func (i_ ICCameraDevice) MediaFiles() ICCameraItem {
+	rv := objc.Send[ICCameraItem](i_.ID, objc.Sel("mediaFiles"))
 	return rv
 }
 
@@ -252,7 +254,7 @@ func (i_ ICCameraDevice) MediaFiles() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mediafiles
-func (i_ ICCameraDevice) SetMediaFiles(value unsafe.Pointer) {
+func (i_ ICCameraDevice) SetMediaFiles(value ICCameraItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaFiles:"), value)
 }
 
@@ -274,8 +276,8 @@ func (i_ ICCameraDevice) SetMediaPresentation(value unsafe.Pointer) {
 // The file system mount point for a camera using the mass storage transport type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
-func (i_ ICCameraDevice) MountPoint() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("mountPoint"))
+func (i_ ICCameraDevice) MountPoint() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("mountPoint"))
 	return rv
 }
 
@@ -285,8 +287,8 @@ func (i_ ICCameraDevice) MountPoint() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/imagecapturecore/iccameradevice/mountpoint
-func (i_ ICCameraDevice) SetMountPoint(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setMountPoint:"), objc.String(value))
+func (i_ ICCameraDevice) SetMountPoint(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setMountPoint:"), value)
 }
 
 // A closure for handling PTP event packets.

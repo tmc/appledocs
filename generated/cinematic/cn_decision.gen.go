@@ -83,7 +83,7 @@ func NewCNDecision() CNDecision {
 // Makes a decision to focus on the detection with the given unique detection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNDecision-c.class/initWithTime:detectionGroupID:strong:
-func NewCNDecisionWithTimeDetectionGroupIDStrong(time unsafe.Pointer, detectionGroupID unsafe.Pointer, isStrong bool) CNDecision {
+func NewCNDecisionWithTimeDetectionGroupIDStrong(time unsafe.Pointer, detectionGroupID ICNDetectionGroupID, isStrong bool) CNDecision {
 	instance := getCNDecisionClass().Alloc()
 	rv := objc.Send[CNDecision](instance.ID, objc.Sel("initWithTime:detectionGroupID:strong:"), time, detectionGroupID, isStrong)
 	rv.Autorelease()

@@ -30,8 +30,8 @@ type _VertexBufferLayoutDescriptorArrayClass struct {
 // An interface definition for the [VertexBufferLayoutDescriptorArray] class.
 type IVertexBufferLayoutDescriptorArray interface {
 	objectivec.IObject
-	SetObjectAtIndexedSubscript(bufferDesc unsafe.Pointer, index uint)
-	ObjectAtIndexedSubscript(index uint) unsafe.Pointer
+	SetObjectAtIndexedSubscript(bufferDesc IMTLVertexBufferLayoutDescriptor, index uint)
+	ObjectAtIndexedSubscript(index uint) VertexBufferLayoutDescriptor
 }
 
 // An array of vertex buffer layout descriptor instances.
@@ -85,15 +85,15 @@ func NewVertexBufferLayoutDescriptorArray() VertexBufferLayoutDescriptorArray {
 // Sets the state of the specified vertex buffer layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptorArray/setObject:atIndexedSubscript:
-func (v_ VertexBufferLayoutDescriptorArray) SetObjectAtIndexedSubscript(bufferDesc unsafe.Pointer, index uint) {
+func (v_ VertexBufferLayoutDescriptorArray) SetObjectAtIndexedSubscript(bufferDesc IMTLVertexBufferLayoutDescriptor, index uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setObject:atIndexedSubscript:"), bufferDesc, index)
 }
 
 // Returns the state of the specified vertex buffer layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptorArray/subscript(_:)
-func (v_ VertexBufferLayoutDescriptorArray) ObjectAtIndexedSubscript(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
+func (v_ VertexBufferLayoutDescriptorArray) ObjectAtIndexedSubscript(index uint) VertexBufferLayoutDescriptor {
+	rv := objc.Send[VertexBufferLayoutDescriptor](v_.ID, objc.Sel("objectAtIndexedSubscript:"), index)
 	return rv
 }
 

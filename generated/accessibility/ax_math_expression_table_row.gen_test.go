@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = accessibility.NewAXMathExpressionTableRow
 
+// ExampleNewAXMathExpressionTableRowWithExpressions demonstrates how to create a AXMathExpressionTableRow instance using NewAXMathExpressionTableRowWithExpressions.
+func ExampleNewAXMathExpressionTableRowWithExpressions() {
+	_ = accessibility.NewAXMathExpressionTableRowWithExpressions(
+		[]accessibility.AXMathExpression{}, // expressions []AXMathExpression
+	)
+	// Output:
+}

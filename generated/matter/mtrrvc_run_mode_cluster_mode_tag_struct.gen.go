@@ -87,7 +87,7 @@ func (m_ MTRRVCRunModeClusterModeTagStruct) MfgCode() foundation.Number {
 // SetMfgCode sets the value of the mfgCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodetagstruct/mfgcode
-func (m_ MTRRVCRunModeClusterModeTagStruct) SetMfgCode(value foundation.Number) {
+func (m_ MTRRVCRunModeClusterModeTagStruct) SetMfgCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRRVCRunModeClusterModeTagStruct) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodetagstruct/value
-func (m_ MTRRVCRunModeClusterModeTagStruct) SetValue(value foundation.Number) {
+func (m_ MTRRVCRunModeClusterModeTagStruct) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

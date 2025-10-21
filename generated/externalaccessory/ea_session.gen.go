@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,9 +87,9 @@ func NewEASession() EASession {
 // Initializes the session for the specified accessory and protocol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/init(accessory:forProtocol:)
-func NewEASessionWithAccessoryForProtocol(accessory unsafe.Pointer, protocolString string) EASession {
+func NewEASessionWithAccessoryForProtocol(accessory IEAAccessory, protocolString appkit.string) EASession {
 	instance := getEASessionClass().Alloc()
-	rv := objc.Send[EASession](instance.ID, objc.Sel("initWithAccessory:forProtocol:"), accessory, objc.String(protocolString))
+	rv := objc.Send[EASession](instance.ID, objc.Sel("initWithAccessory:forProtocol:"), accessory, protocolString)
 	rv.Autorelease()
 	return rv
 }
@@ -96,32 +98,32 @@ func NewEASessionWithAccessoryForProtocol(accessory unsafe.Pointer, protocolStri
 // The accessory attached to the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/accessory
-func (e_ EASession) Accessory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("accessory"))
+func (e_ EASession) Accessory() EAAccessory {
+	rv := objc.Send[EAAccessory](e_.ID, objc.Sel("accessory"))
 	return rv
 }
 
 // The stream to use for receiving data from the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/inputStream
-func (e_ EASession) InputStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("inputStream"))
+func (e_ EASession) InputStream() foundation.InputStream {
+	rv := objc.Send[foundation.InputStream](e_.ID, objc.Sel("inputStream"))
 	return rv
 }
 
 // The stream to use for sending data to the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/outputStream
-func (e_ EASession) OutputStream() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("outputStream"))
+func (e_ EASession) OutputStream() foundation.OutputStream {
+	rv := objc.Send[foundation.OutputStream](e_.ID, objc.Sel("outputStream"))
 	return rv
 }
 
 // The protocol being used for communication with the accessory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/protocolString
-func (e_ EASession) ProtocolString() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("protocolString"))
+func (e_ EASession) ProtocolString() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("protocolString"))
 	return rv
 }
 

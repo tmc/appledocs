@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INBookRestaurantReservationIntent] class.
@@ -84,8 +85,8 @@ func NewINBookRestaurantReservationIntent() INBookRestaurantReservationIntent {
 // The date and time of the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingdatecomponents
-func (i_ INBookRestaurantReservationIntent) BookingDateComponents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("bookingDateComponents"))
+func (i_ INBookRestaurantReservationIntent) BookingDateComponents() foundation.DateComponents {
+	rv := objc.Send[foundation.DateComponents](i_.ID, objc.Sel("bookingDateComponents"))
 	return rv
 }
 
@@ -95,15 +96,15 @@ func (i_ INBookRestaurantReservationIntent) BookingDateComponents() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingdatecomponents
-func (i_ INBookRestaurantReservationIntent) SetBookingDateComponents(value unsafe.Pointer) {
+func (i_ INBookRestaurantReservationIntent) SetBookingDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingDateComponents:"), value)
 }
 
 // The unique identifier associated with the initial reservation data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingidentifier
-func (i_ INBookRestaurantReservationIntent) BookingIdentifier() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("bookingIdentifier"))
+func (i_ INBookRestaurantReservationIntent) BookingIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("bookingIdentifier"))
 	return rv
 }
 
@@ -113,8 +114,8 @@ func (i_ INBookRestaurantReservationIntent) BookingIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/bookingidentifier
-func (i_ INBookRestaurantReservationIntent) SetBookingIdentifier(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingIdentifier:"), objc.String(value))
+func (i_ INBookRestaurantReservationIntent) SetBookingIdentifier(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setBookingIdentifier:"), value)
 }
 
 // The identity of the guest associated with the reservation.
@@ -138,8 +139,8 @@ func (i_ INBookRestaurantReservationIntent) SetGuest(value unsafe.Pointer) {
 // Information about any special requests made by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
-func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
+func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("guestProvidedSpecialRequestText"))
 	return rv
 }
 
@@ -149,8 +150,8 @@ func (i_ INBookRestaurantReservationIntent) GuestProvidedSpecialRequestText() st
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent/guestprovidedspecialrequesttext
-func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), objc.String(value))
+func (i_ INBookRestaurantReservationIntent) SetGuestProvidedSpecialRequestText(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setGuestProvidedSpecialRequestText:"), value)
 }
 
 // The total number of people in the user’s party.

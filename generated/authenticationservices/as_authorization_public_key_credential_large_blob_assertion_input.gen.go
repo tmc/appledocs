@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,7 +78,7 @@ func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInput() AuthorizationP
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/initWithOperation:
-func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(operation unsafe.Pointer) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
+func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(operation IAuthorizationPublicKeyCredentialLargeBlobAssertionOperation) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	instance := getAuthorizationPublicKeyCredentialLargeBlobAssertionInputClass().Alloc()
 	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionInput](instance.ID, objc.Sel("initWithOperation:"), operation)
 	rv.Autorelease()
@@ -87,8 +88,8 @@ func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(ope
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
-func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("dataToWrite"))
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() foundation.NSData {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("dataToWrite"))
 	return rv
 }
 
@@ -96,14 +97,14 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() 
 // SetDataToWrite sets the value of the dataToWrite property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
-func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value unsafe.Pointer) {
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataToWrite:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/operation
-func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) Operation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("operation"))
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) Operation() AuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
+	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionOperation](a_.ID, objc.Sel("operation"))
 	return rv
 }
 

@@ -30,13 +30,13 @@ type _CompositeBehaviorClass struct {
 // An interface definition for the [CompositeBehavior] class.
 type ICompositeBehavior interface {
 	IBehavior
-	RemoveBehavior(behavior unsafe.Pointer)
+	RemoveBehavior(behavior GKBehavior)
 	RemoveAllBehaviors()
-	SetObjectForKeyedSubscript(weight foundation.Number, behavior unsafe.Pointer)
-	SetWeightForBehavior(weight unsafe.Pointer, behavior unsafe.Pointer)
-	ObjectForKeyedSubscript(behavior unsafe.Pointer) foundation.Number
-	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
-	WeightForBehavior(behavior unsafe.Pointer) unsafe.Pointer
+	SetObjectForKeyedSubscript(weight foundation.INumber, behavior GKBehavior)
+	SetWeightForBehavior(weight unsafe.Pointer, behavior GKBehavior)
+	ObjectForKeyedSubscript(behavior GKBehavior) foundation.Number
+	ObjectAtIndexedSubscript(idx uint) Behavior
+	WeightForBehavior(behavior GKBehavior) unsafe.Pointer
 }
 
 // A set of behaviors, each of which is a set of goals, that together influence the movement of an agent.
@@ -94,7 +94,7 @@ func NewCompositeBehavior() CompositeBehavior {
 // Creates a composite behavior from the specified individual behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:)
-func NewCompositeBehaviorWithBehaviors(behaviors unsafe.Pointer) CompositeBehavior {
+func NewCompositeBehaviorWithBehaviors(behaviors []Behavior) CompositeBehavior {
 	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:"), behaviors)
 	return rv
 }
@@ -104,7 +104,7 @@ func NewCompositeBehaviorWithBehaviors(behaviors unsafe.Pointer) CompositeBehavi
 // Creates a behavior with the specified behaviors and weights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:andWeights:)
-func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors unsafe.Pointer, weights unsafe.Pointer) CompositeBehavior {
+func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors []Behavior, weights []foundation.INumber) CompositeBehavior {
 	rv := objc.Send[CompositeBehavior](objc.ID(getCompositeBehaviorClass().class), objc.Sel("behaviorWithBehaviors:andWeights:"), behaviors, weights)
 	return rv
 }
@@ -113,7 +113,7 @@ func NewCompositeBehaviorWithBehaviorsAndWeights(behaviors unsafe.Pointer, weigh
 // Creates a composite behavior from the specified individual behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:)
-func (cc _CompositeBehaviorClass) BehaviorWithBehaviors(behaviors unsafe.Pointer) unsafe.Pointer {
+func (cc _CompositeBehaviorClass) BehaviorWithBehaviors(behaviors []Behavior) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("behaviorWithBehaviors:"), behaviors)
 	return rv
 }
@@ -121,7 +121,7 @@ func (cc _CompositeBehaviorClass) BehaviorWithBehaviors(behaviors unsafe.Pointer
 // Creates a behavior with the specified behaviors and weights.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/init(behaviors:andWeights:)
-func (cc _CompositeBehaviorClass) BehaviorWithBehaviorsAndWeights(behaviors unsafe.Pointer, weights unsafe.Pointer) unsafe.Pointer {
+func (cc _CompositeBehaviorClass) BehaviorWithBehaviorsAndWeights(behaviors []Behavior, weights []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("behaviorWithBehaviors:andWeights:"), behaviors, weights)
 	return rv
 }
@@ -129,7 +129,7 @@ func (cc _CompositeBehaviorClass) BehaviorWithBehaviorsAndWeights(behaviors unsa
 // Removes the specified individual behavior from the composite behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/remove(_:)
-func (c_ CompositeBehavior) RemoveBehavior(behavior unsafe.Pointer) {
+func (c_ CompositeBehavior) RemoveBehavior(behavior GKBehavior) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeBehavior:"), behavior)
 }
 
@@ -143,21 +143,21 @@ func (c_ CompositeBehavior) RemoveAllBehaviors() {
 // Sets the weight for the behavior specified by subscript syntax.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/setObject:forKeyedSubscript:
-func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight foundation.Number, behavior unsafe.Pointer) {
+func (c_ CompositeBehavior) SetObjectForKeyedSubscript(weight foundation.INumber, behavior GKBehavior) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setObject:forKeyedSubscript:"), weight, behavior)
 }
 
 // Sets the weight for the specified individual behavior’s influence on agents, adding that behavior to the composite behavior if it is not already present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/setWeight(_:for:)
-func (c_ CompositeBehavior) SetWeightForBehavior(weight unsafe.Pointer, behavior unsafe.Pointer) {
+func (c_ CompositeBehavior) SetWeightForBehavior(weight unsafe.Pointer, behavior GKBehavior) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeight:forBehavior:"), weight, behavior)
 }
 
 // Returns the weight associated with the behavior specified by subscript syntax.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/subscript(_:)-6jng9
-func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior unsafe.Pointer) foundation.Number {
+func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior GKBehavior) foundation.Number {
 	rv := objc.Send[foundation.Number](c_.ID, objc.Sel("objectForKeyedSubscript:"), behavior)
 	return rv
 }
@@ -165,15 +165,15 @@ func (c_ CompositeBehavior) ObjectForKeyedSubscript(behavior unsafe.Pointer) fou
 // Returns the individual behavior at the specified index in the composite behavior’s list of behaviors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/subscript(_:)-6krdg
-func (c_ CompositeBehavior) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
+func (c_ CompositeBehavior) ObjectAtIndexedSubscript(idx uint) Behavior {
+	rv := objc.Send[Behavior](c_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
 }
 
 // Returns the weight for the specified individual behavior’s influence on agents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKCompositeBehavior/weight(for:)
-func (c_ CompositeBehavior) WeightForBehavior(behavior unsafe.Pointer) unsafe.Pointer {
+func (c_ CompositeBehavior) WeightForBehavior(behavior GKBehavior) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightForBehavior:"), behavior)
 	return rv
 }
@@ -184,24 +184,6 @@ func (c_ CompositeBehavior) WeightForBehavior(behavior unsafe.Pointer) unsafe.Po
 func (c_ CompositeBehavior) BehaviorCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("behaviorCount"))
 	return rv
-}
-
-// A weighted collection of goals that influence the agent’s movement.
-//
-// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
-func (c_ CompositeBehavior) Behavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("behavior"))
-	return rv
-}
-
-
-// SetBehavior sets the value of the behavior property.
-// A weighted collection of goals that influence the agent’s movement.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkagent/behavior
-func (c_ CompositeBehavior) SetBehavior(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBehavior:"), value)
 }
 
 

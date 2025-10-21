@@ -30,12 +30,12 @@ type _GraphNodeClass struct {
 // An interface definition for the [GraphNode] class.
 type IGraphNode interface {
 	objectivec.IObject
-	AddConnectionsToNodesBidirectional(nodes unsafe.Pointer, bidirectional bool)
-	CostToNode(node unsafe.Pointer) unsafe.Pointer
-	EstimatedCostToNode(node unsafe.Pointer) unsafe.Pointer
-	FindPathFromNode(startNode unsafe.Pointer) []GraphNode
-	FindPathToNode(goalNode unsafe.Pointer) []GraphNode
-	RemoveConnectionsToNodesBidirectional(nodes unsafe.Pointer, bidirectional bool)
+	AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
+	CostToNode(node IGKGraphNode) unsafe.Pointer
+	EstimatedCostToNode(node IGKGraphNode) unsafe.Pointer
+	FindPathFromNode(startNode IGKGraphNode) []GraphNode
+	FindPathToNode(goalNode IGKGraphNode) []GraphNode
+	RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool)
 }
 
 // A single node in a navigation graph for use in pathfinding.
@@ -89,14 +89,14 @@ func NewGraphNode() GraphNode {
 // Connects this node to all nodes in the specified list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/addConnections(to:bidirectional:)
-func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes unsafe.Pointer, bidirectional bool) {
+func (g_ GraphNode) AddConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("addConnectionsToNodes:bidirectional:"), nodes, bidirectional)
 }
 
 // Returns the cost to travel from this node to the specified, directly connected, node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/cost(to:)
-func (g_ GraphNode) CostToNode(node unsafe.Pointer) unsafe.Pointer {
+func (g_ GraphNode) CostToNode(node IGKGraphNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("costToNode:"), node)
 	return rv
 }
@@ -104,7 +104,7 @@ func (g_ GraphNode) CostToNode(node unsafe.Pointer) unsafe.Pointer {
 // Returns an underestimate of the cost of travel from this node to the specified node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/estimatedCost(to:)
-func (g_ GraphNode) EstimatedCostToNode(node unsafe.Pointer) unsafe.Pointer {
+func (g_ GraphNode) EstimatedCostToNode(node IGKGraphNode) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("estimatedCostToNode:"), node)
 	return rv
 }
@@ -112,7 +112,7 @@ func (g_ GraphNode) EstimatedCostToNode(node unsafe.Pointer) unsafe.Pointer {
 // Computes and returns a sequence of nodes that represents the lowest-cost graph traversal from the specified node to this node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/findPath(from:)
-func (g_ GraphNode) FindPathFromNode(startNode unsafe.Pointer) []GraphNode {
+func (g_ GraphNode) FindPathFromNode(startNode IGKGraphNode) []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathFromNode:"), startNode)
 	return rv
 }
@@ -120,7 +120,7 @@ func (g_ GraphNode) FindPathFromNode(startNode unsafe.Pointer) []GraphNode {
 // Computes and returns a sequence of nodes that represents the lowest-cost graph traversal from this node to the specified node.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/findPath(to:)
-func (g_ GraphNode) FindPathToNode(goalNode unsafe.Pointer) []GraphNode {
+func (g_ GraphNode) FindPathToNode(goalNode IGKGraphNode) []GraphNode {
 	rv := objc.Send[[]GraphNode](g_.ID, objc.Sel("findPathToNode:"), goalNode)
 	return rv
 }
@@ -128,7 +128,7 @@ func (g_ GraphNode) FindPathToNode(goalNode unsafe.Pointer) []GraphNode {
 // Removes the connections from this node to the specified nodes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKGraphNode/removeConnections(to:bidirectional:)
-func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes unsafe.Pointer, bidirectional bool) {
+func (g_ GraphNode) RemoveConnectionsToNodesBidirectional(nodes []GraphNode, bidirectional bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("removeConnectionsToNodes:bidirectional:"), nodes, bidirectional)
 }
 

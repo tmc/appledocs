@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +32,7 @@ type _CWNetworkProfileClass struct {
 // An interface definition for the [CWNetworkProfile] class.
 type ICWNetworkProfile interface {
 	objectivec.IObject
-	IsEqualToNetworkProfile(networkProfile unsafe.Pointer) bool
+	IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool
 }
 
 // Encapsulates an immutable network profile entry.
@@ -84,7 +86,7 @@ func NewCWNetworkProfile() CWNetworkProfile {
 // Creates and returns a CWNetworkProfile object initialized with the given CWNetworkProfile object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/init(networkProfile:)
-func NewCWNetworkProfileWithNetworkProfile(networkProfile unsafe.Pointer) CWNetworkProfile {
+func NewCWNetworkProfileWithNetworkProfile(networkProfile ICWNetworkProfile) CWNetworkProfile {
 	instance := getCWNetworkProfileClass().Alloc()
 	rv := objc.Send[CWNetworkProfile](instance.ID, objc.Sel("initWithNetworkProfile:"), networkProfile)
 	rv.Autorelease()
@@ -103,7 +105,7 @@ func (cc _CWNetworkProfileClass) NetworkProfile() unsafe.Pointer {
 // Convenience method for getting a CWNetworkProfile object initialized with the given CWNetworkProfile object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/networkProfileWithNetworkProfile:
-func (cc _CWNetworkProfileClass) NetworkProfileWithNetworkProfile(networkProfile unsafe.Pointer) unsafe.Pointer {
+func (cc _CWNetworkProfileClass) NetworkProfileWithNetworkProfile(networkProfile ICWNetworkProfile) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("networkProfileWithNetworkProfile:"), networkProfile)
 	return rv
 }
@@ -111,7 +113,7 @@ func (cc _CWNetworkProfileClass) NetworkProfileWithNetworkProfile(networkProfile
 // Determine CWNetworkProfile object equality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/isEqual(to:)
-func (c_ CWNetworkProfile) IsEqualToNetworkProfile(networkProfile unsafe.Pointer) bool {
+func (c_ CWNetworkProfile) IsEqualToNetworkProfile(networkProfile ICWNetworkProfile) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToNetworkProfile:"), networkProfile)
 	return rv
 }
@@ -119,24 +121,24 @@ func (c_ CWNetworkProfile) IsEqualToNetworkProfile(networkProfile unsafe.Pointer
 // The security mode for the network profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/security
-func (c_ CWNetworkProfile) Security() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("security"))
+func (c_ CWNetworkProfile) Security() CWSecurity {
+	rv := objc.Send[CWSecurity](c_.ID, objc.Sel("security"))
 	return rv
 }
 
 // The service set identifier (SSID) for the network profile, encoded as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/ssid
-func (c_ CWNetworkProfile) Ssid() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("ssid"))
+func (c_ CWNetworkProfile) Ssid() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("ssid"))
 	return rv
 }
 
 // The service set identifier (SSID) for the network profile, returned as data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWNetworkProfile/ssidData
-func (c_ CWNetworkProfile) SsidData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("ssidData"))
+func (c_ CWNetworkProfile) SsidData() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("ssidData"))
 	return rv
 }
 

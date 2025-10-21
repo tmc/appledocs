@@ -77,21 +77,21 @@ func NewAXRequest() AXRequest {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/current
-func (ac _AXRequestClass) CurrentRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("currentRequest"))
+func (ac _AXRequestClass) CurrentRequest() AXRequest {
+	rv := objc.Send[AXRequest](objc.ID(ac.class), objc.Sel("currentRequest"))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/current
-func (a_ AXRequest) CurrentRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentRequest"))
+func (a_ AXRequest) CurrentRequest() AXRequest {
+	rv := objc.Send[AXRequest](a_.ID, objc.Sel("currentRequest"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilityRequest/technology
-func (a_ AXRequest) Technology() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("technology"))
+func (a_ AXRequest) Technology() AXTechnology {
+	rv := objc.Send[AXTechnology](a_.ID, objc.Sel("technology"))
 	return rv
 }
 

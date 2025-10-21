@@ -276,8 +276,8 @@ func (n_ NETunnelProviderManager) SetMailDomains(value []string) {
 // The method that the system uses to route network traffic to the tunnel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NETunnelProviderManager/routingMethod
-func (n_ NETunnelProviderManager) RoutingMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("routingMethod"))
+func (n_ NETunnelProviderManager) RoutingMethod() NETunnelProviderRoutingMethod {
+	rv := objc.Send[NETunnelProviderRoutingMethod](n_.ID, objc.Sel("routingMethod"))
 	return rv
 }
 
@@ -312,8 +312,8 @@ func (n_ NETunnelProviderManager) SetSafariDomains(value []string) {
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/connection
-func (n_ NETunnelProviderManager) Connection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("connection"))
+func (n_ NETunnelProviderManager) Connection() NEVPNConnection {
+	rv := objc.Send[NEVPNConnection](n_.ID, objc.Sel("connection"))
 	return rv
 }
 
@@ -323,15 +323,15 @@ func (n_ NETunnelProviderManager) Connection() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/connection
-func (n_ NETunnelProviderManager) SetConnection(value unsafe.Pointer) {
+func (n_ NETunnelProviderManager) SetConnection(value INEVPNConnection) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setConnection:"), value)
 }
 
 // An ordered list of Connect On Demand rules.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules
-func (n_ NETunnelProviderManager) OnDemandRules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("onDemandRules"))
+func (n_ NETunnelProviderManager) OnDemandRules() NEOnDemandRule {
+	rv := objc.Send[NEOnDemandRule](n_.ID, objc.Sel("onDemandRules"))
 	return rv
 }
 
@@ -341,15 +341,15 @@ func (n_ NETunnelProviderManager) OnDemandRules() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/ondemandrules
-func (n_ NETunnelProviderManager) SetOnDemandRules(value unsafe.Pointer) {
+func (n_ NETunnelProviderManager) SetOnDemandRules(value INEOnDemandRule) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setOnDemandRules:"), value)
 }
 
 // An
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration
-func (n_ NETunnelProviderManager) ProtocolConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("protocolConfiguration"))
+func (n_ NETunnelProviderManager) ProtocolConfiguration() NEVPNProtocol {
+	rv := objc.Send[NEVPNProtocol](n_.ID, objc.Sel("protocolConfiguration"))
 	return rv
 }
 
@@ -359,7 +359,7 @@ func (n_ NETunnelProviderManager) ProtocolConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nevpnmanager/protocolconfiguration
-func (n_ NETunnelProviderManager) SetProtocolConfiguration(value unsafe.Pointer) {
+func (n_ NETunnelProviderManager) SetProtocolConfiguration(value INEVPNProtocol) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolConfiguration:"), value)
 }
 

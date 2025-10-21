@@ -84,8 +84,8 @@ func NewFSContainerIdentifier() FSContainerIdentifier {
 // The volume identifier associated with the container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier/volumeIdentifier
-func (f_ FSContainerIdentifier) VolumeIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("volumeIdentifier"))
+func (f_ FSContainerIdentifier) VolumeIdentifier() FSVolumeIdentifier {
+	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeIdentifier"))
 	return rv
 }
 

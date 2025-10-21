@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewCall() Call {
 // A unique identifier for the cellular call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callID
-func (c_ Call) CallID() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("callID"))
+func (c_ Call) CallID() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("callID"))
 	return rv
 }
 
 // The state of the cellular call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCall/callState
-func (c_ Call) CallState() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("callState"))
+func (c_ Call) CallState() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("callState"))
 	return rv
 }
 

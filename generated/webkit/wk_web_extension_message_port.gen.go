@@ -83,8 +83,8 @@ func NewWebExtensionMessagePort() WebExtensionMessagePort {
 // The unique identifier for the app to which this port should be connected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/applicationidentifier
-func (w_ WebExtensionMessagePort) ApplicationIdentifier() string {
-	rv := objc.Send[string](w_.ID, objc.Sel("applicationIdentifier"))
+func (w_ WebExtensionMessagePort) ApplicationIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](w_.ID, objc.Sel("applicationIdentifier"))
 	return rv
 }
 
@@ -94,8 +94,8 @@ func (w_ WebExtensionMessagePort) ApplicationIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/messageport/applicationidentifier
-func (w_ WebExtensionMessagePort) SetApplicationIdentifier(value string) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationIdentifier:"), objc.String(value))
+func (w_ WebExtensionMessagePort) SetApplicationIdentifier(value appkit.string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setApplicationIdentifier:"), value)
 }
 
 // The block to be executed when the port disconnects.

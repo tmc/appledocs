@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [OverlayAppClipConfiguration] class.
@@ -29,8 +31,8 @@ type _OverlayAppClipConfigurationClass struct {
 // An interface definition for the [OverlayAppClipConfiguration] class.
 type IOverlayAppClipConfiguration interface {
 	IOverlayConfiguration
-	AdditionalValueForKey(key string) objc.ID
-	SetAdditionalValueForKey(value objc.ID, key string)
+	AdditionalValueForKey(key appkit.string) objc.ID
+	SetAdditionalValueForKey(value objectivec.IObject, key appkit.string)
 }
 
 // An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
@@ -86,7 +88,7 @@ func NewOverlayAppClipConfiguration() OverlayAppClipConfiguration {
 // Creates an object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/init(position:)
-func NewOverlayAppClipConfigurationWithPosition(position unsafe.Pointer) OverlayAppClipConfiguration {
+func NewOverlayAppClipConfigurationWithPosition(position OverlayPosition) OverlayAppClipConfiguration {
 	instance := getOverlayAppClipConfigurationClass().Alloc()
 	rv := objc.Send[OverlayAppClipConfiguration](instance.ID, objc.Sel("initWithPosition:"), position)
 	rv.Autorelease()
@@ -97,23 +99,23 @@ func NewOverlayAppClipConfigurationWithPosition(position unsafe.Pointer) Overlay
 // Returns the object associated with the key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/additionalValue(forKey:)
-func (o_ OverlayAppClipConfiguration) AdditionalValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("additionalValueForKey:"), objc.String(key))
+func (o_ OverlayAppClipConfiguration) AdditionalValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("additionalValueForKey:"), key)
 	return rv
 }
 
 // Sets an additional value for a key, such as a value for measuring the effectiveness of an ad campaign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/setAdditionalValue(_:forKey:)
-func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objc.ID, key string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, objc.String(key))
+func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objectivec.IObject, key appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, key)
 }
 
 // A token you use to represent an ad campaign and measure its effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/campaignToken
-func (o_ OverlayAppClipConfiguration) CampaignToken() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("campaignToken"))
+func (o_ OverlayAppClipConfiguration) CampaignToken() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("campaignToken"))
 	return rv
 }
 
@@ -123,15 +125,15 @@ func (o_ OverlayAppClipConfiguration) CampaignToken() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/campaignToken
-func (o_ OverlayAppClipConfiguration) SetCampaignToken(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), objc.String(value))
+func (o_ OverlayAppClipConfiguration) SetCampaignToken(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), value)
 }
 
 // An identifier for a parent app’s custom product page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/customProductPageIdentifier
-func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("customProductPageIdentifier"))
+func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("customProductPageIdentifier"))
 	return rv
 }
 
@@ -141,15 +143,15 @@ func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/customProductPageIdentifier
-func (o_ OverlayAppClipConfiguration) SetCustomProductPageIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), objc.String(value))
+func (o_ OverlayAppClipConfiguration) SetCustomProductPageIdentifier(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), value)
 }
 
 // The release ID of the latest version of your parent app as displayed in App Store Connect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/latestReleaseID
-func (o_ OverlayAppClipConfiguration) LatestReleaseID() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("latestReleaseID"))
+func (o_ OverlayAppClipConfiguration) LatestReleaseID() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("latestReleaseID"))
 	return rv
 }
 
@@ -159,15 +161,15 @@ func (o_ OverlayAppClipConfiguration) LatestReleaseID() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/latestReleaseID
-func (o_ OverlayAppClipConfiguration) SetLatestReleaseID(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), objc.String(value))
+func (o_ OverlayAppClipConfiguration) SetLatestReleaseID(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), value)
 }
 
 // The position of the overlay on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/position
-func (o_ OverlayAppClipConfiguration) Position() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("position"))
+func (o_ OverlayAppClipConfiguration) Position() OverlayPosition {
+	rv := objc.Send[OverlayPosition](o_.ID, objc.Sel("position"))
 	return rv
 }
 
@@ -177,15 +179,15 @@ func (o_ OverlayAppClipConfiguration) Position() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/position
-func (o_ OverlayAppClipConfiguration) SetPosition(value unsafe.Pointer) {
+func (o_ OverlayAppClipConfiguration) SetPosition(value OverlayPosition) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPosition:"), value)
 }
 
 // A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/providerToken
-func (o_ OverlayAppClipConfiguration) ProviderToken() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("providerToken"))
+func (o_ OverlayAppClipConfiguration) ProviderToken() appkit.string {
+	rv := objc.Send[appkit.string](o_.ID, objc.Sel("providerToken"))
 	return rv
 }
 
@@ -195,15 +197,15 @@ func (o_ OverlayAppClipConfiguration) ProviderToken() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/providerToken
-func (o_ OverlayAppClipConfiguration) SetProviderToken(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), objc.String(value))
+func (o_ OverlayAppClipConfiguration) SetProviderToken(value appkit.string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), value)
 }
 
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppClipConfiguration) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("configuration"))
+func (o_ OverlayAppClipConfiguration) Configuration() SKOverlayConfiguration {
+	rv := objc.Send[SKOverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
 }
 
@@ -213,7 +215,7 @@ func (o_ OverlayAppClipConfiguration) Configuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppClipConfiguration) SetConfiguration(value unsafe.Pointer) {
+func (o_ OverlayAppClipConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
 }
 

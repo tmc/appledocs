@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BatchUpdateRequest] class.
@@ -84,7 +86,7 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 // Creates a batch-update request for a managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entity:)
-func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
+func NewBatchUpdateRequestWithEntity(entity IEntityDescription) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
 	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntity:"), entity)
 	rv.Autorelease()
@@ -96,9 +98,9 @@ func NewBatchUpdateRequestWithEntity(entity unsafe.Pointer) BatchUpdateRequest {
 // Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/init(entityName:)
-func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
+func NewBatchUpdateRequestWithEntityName(entityName appkit.string) BatchUpdateRequest {
 	instance := getBatchUpdateRequestClass().Alloc()
-	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), objc.String(entityName))
+	rv := objc.Send[BatchUpdateRequest](instance.ID, objc.Sel("initWithEntityName:"), entityName)
 	rv.Autorelease()
 	return rv
 }
@@ -107,24 +109,24 @@ func NewBatchUpdateRequestWithEntityName(entityName string) BatchUpdateRequest {
 // Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/batchUpdateRequestWithEntityName:
-func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), objc.String(entityName))
+func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), entityName)
 	return rv
 }
 
 // The managed entity to update data for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entity
-func (b_ BatchUpdateRequest) Entity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("entity"))
+func (b_ BatchUpdateRequest) Entity() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](b_.ID, objc.Sel("entity"))
 	return rv
 }
 
 // The name of the managed entity to update data for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/entityName
-func (b_ BatchUpdateRequest) EntityName() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("entityName"))
+func (b_ BatchUpdateRequest) EntityName() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("entityName"))
 	return rv
 }
 
@@ -149,8 +151,8 @@ func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
 // A predicate that identifies the objects to update.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-func (b_ BatchUpdateRequest) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("predicate"))
+func (b_ BatchUpdateRequest) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](b_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -160,15 +162,15 @@ func (b_ BatchUpdateRequest) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/predicate
-func (b_ BatchUpdateRequest) SetPredicate(value unsafe.Pointer) {
+func (b_ BatchUpdateRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // A dictionary of property description pairs that describe the updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/propertiesToUpdate
-func (b_ BatchUpdateRequest) PropertiesToUpdate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("propertiesToUpdate"))
+func (b_ BatchUpdateRequest) PropertiesToUpdate() objc.ID {
+	rv := objc.Send[objc.ID](b_.ID, objc.Sel("propertiesToUpdate"))
 	return rv
 }
 
@@ -178,7 +180,7 @@ func (b_ BatchUpdateRequest) PropertiesToUpdate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSBatchUpdateRequest/propertiesToUpdate
-func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value unsafe.Pointer) {
+func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value objc.ID) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPropertiesToUpdate:"), value)
 }
 

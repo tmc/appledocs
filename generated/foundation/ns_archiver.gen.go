@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Archiver] class.
@@ -29,7 +31,7 @@ type _ArchiverClass struct {
 // An interface definition for the [Archiver] class.
 type IArchiver interface {
 	ICoder
-	EncodeRootObject(rootObject objc.ID)
+	EncodeRootObject(rootObject objectivec.IObject)
 }
 
 // A coder that stores an object’s data to an archive.
@@ -85,23 +87,23 @@ func NewArchiver() Archiver {
 // Creates a temporary instance of and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiveRootObject(_:toFile:)
-func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objc.ID, path string) bool {
-	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, objc.String(path))
+func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objectivec.IObject, path appkit.string) bool {
+	rv := objc.Send[bool](objc.ID(ac.class), objc.Sel("archiveRootObject:toFile:"), rootObject, path)
 	return rv
 }
 
 // Archives a given object along with all the objects to which it is connected.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/encodeRootObject(_:)
-func (a_ Archiver) EncodeRootObject(rootObject objc.ID) {
+func (a_ Archiver) EncodeRootObject(rootObject objectivec.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("encodeRootObject:"), rootObject)
 }
 
 // The receiver’s archive data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
-func (a_ Archiver) ArchiverData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("archiverData"))
+func (a_ Archiver) ArchiverData() NSMutableData {
+	rv := objc.Send[NSMutableData](a_.ID, objc.Sel("archiverData"))
 	return rv
 }
 
@@ -111,7 +113,7 @@ func (a_ Archiver) ArchiverData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsarchiver/archiverdata
-func (a_ Archiver) SetArchiverData(value unsafe.Pointer) {
+func (a_ Archiver) SetArchiverData(value IMutableData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArchiverData:"), value)
 }
 

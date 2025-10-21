@@ -31,7 +31,7 @@ type _TKTokenKeychainContentsClass struct {
 type ITKTokenKeychainContents interface {
 	objectivec.IObject
 	CertificateForObjectIDError(objectID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	FillWithItems(items unsafe.Pointer)
+	FillWithItems(items []TKTokenKeychainItem)
 	KeyForObjectIDError(objectID unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
 }
 
@@ -92,7 +92,7 @@ func (t_ TKTokenKeychainContents) CertificateForObjectIDError(objectID unsafe.Po
 // Fills the keychain with the specified items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenKeychainContents/fill(with:)
-func (t_ TKTokenKeychainContents) FillWithItems(items unsafe.Pointer) {
+func (t_ TKTokenKeychainContents) FillWithItems(items []TKTokenKeychainItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("fillWithItems:"), items)
 }
 
@@ -115,8 +115,8 @@ func (t_ TKTokenKeychainContents) Items() []TKTokenKeychainItem {
 // The contents of the keychain for this token.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-func (t_ TKTokenKeychainContents) KeychainContents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("keychainContents"))
+func (t_ TKTokenKeychainContents) KeychainContents() TKTokenKeychainContents {
+	rv := objc.Send[TKTokenKeychainContents](t_.ID, objc.Sel("keychainContents"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (t_ TKTokenKeychainContents) KeychainContents() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-func (t_ TKTokenKeychainContents) SetKeychainContents(value unsafe.Pointer) {
+func (t_ TKTokenKeychainContents) SetKeychainContents(value ITKTokenKeychainContents) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainContents:"), value)
 }
 

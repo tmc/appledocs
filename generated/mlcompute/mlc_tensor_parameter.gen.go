@@ -101,8 +101,8 @@ func (c_ CTensorParameter) SetIsUpdatable(value bool) {
 // The underlying tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensorparameter/tensor
-func (c_ CTensorParameter) Tensor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("tensor"))
+func (c_ CTensorParameter) Tensor() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("tensor"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (c_ CTensorParameter) Tensor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlctensorparameter/tensor
-func (c_ CTensorParameter) SetTensor(value unsafe.Pointer) {
+func (c_ CTensorParameter) SetTensor(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTensor:"), value)
 }
 

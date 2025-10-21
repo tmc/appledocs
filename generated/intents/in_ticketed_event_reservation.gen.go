@@ -90,8 +90,8 @@ func (i_ INTicketedEventReservation) Event() unsafe.Pointer {
 // The user’s assigned seat for the ticketed event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inticketedeventreservation/reservedseat
-func (i_ INTicketedEventReservation) ReservedSeat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservedSeat"))
+func (i_ INTicketedEventReservation) ReservedSeat() INSeat {
+	rv := objc.Send[INSeat](i_.ID, objc.Sel("reservedSeat"))
 	return rv
 }
 
@@ -101,7 +101,7 @@ func (i_ INTicketedEventReservation) ReservedSeat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inticketedeventreservation/reservedseat
-func (i_ INTicketedEventReservation) SetReservedSeat(value unsafe.Pointer) {
+func (i_ INTicketedEventReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
 }
 

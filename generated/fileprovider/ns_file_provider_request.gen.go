@@ -82,8 +82,8 @@ func NewFileProviderRequest() FileProviderRequest {
 // The version of the domain for the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/domainVersion
-func (f_ FileProviderRequest) DomainVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domainVersion"))
+func (f_ FileProviderRequest) DomainVersion() NSFileProviderDomainVersion {
+	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
 }
 

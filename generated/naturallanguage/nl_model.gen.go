@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -31,10 +32,10 @@ type _ModelClass struct {
 // An interface definition for the [Model] class.
 type IModel interface {
 	objectivec.IObject
-	PredictedLabelForString(string_ string) string
-	PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer
-	PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []unsafe.Pointer
-	PredictedLabelsForTokens(tokens unsafe.Pointer) []string
+	PredictedLabelForString(string_ appkit.string) foundation.String
+	PredictedLabelHypothesesForStringMaximumCount(string_ appkit.string, maximumCount uint) unsafe.Pointer
+	PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) []foundation.Dictionary
+	PredictedLabelsForTokens(tokens []string) []string
 }
 
 // A custom model trained to classify or tag natural language text.
@@ -90,7 +91,7 @@ func NewModel() Model {
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
-func NewModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) Model {
+func NewModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -100,7 +101,7 @@ func NewModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) M
 // Creates a new natural language model based on the given Core ML model instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(mlModel:)
-func NewModelWithMLModelError(mlModel unsafe.Pointer, error_ unsafe.Pointer) Model {
+func NewModelWithMLModelError(mlModel IModel, error_ unsafe.Pointer) Model {
 	rv := objc.Send[Model](objc.ID(getModelClass().class), objc.Sel("modelWithMLModel:error:"), mlModel, error_)
 	return rv
 }
@@ -109,7 +110,7 @@ func NewModelWithMLModelError(mlModel unsafe.Pointer, error_ unsafe.Pointer) Mod
 // Creates a new natural language model based on a compiled Core ML model at the given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(contentsOf:)
-func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.URL, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.IURL, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithContentsOfURL:error:"), url, error_)
 	return rv
 }
@@ -117,7 +118,7 @@ func (mc _ModelClass) ModelWithContentsOfURLError(url foundation.URL, error_ uns
 // Creates a new natural language model based on the given Core ML model instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/init(mlModel:)
-func (mc _ModelClass) ModelWithMLModelError(mlModel unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (mc _ModelClass) ModelWithMLModelError(mlModel IModel, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("modelWithMLModel:error:"), mlModel, error_)
 	return rv
 }
@@ -125,31 +126,31 @@ func (mc _ModelClass) ModelWithMLModelError(mlModel unsafe.Pointer, error_ unsaf
 // Predicts a label for the given input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabel(for:)
-func (m_ Model) PredictedLabelForString(string_ string) string {
-	rv := objc.Send[string](m_.ID, objc.Sel("predictedLabelForString:"), objc.String(string_))
+func (m_ Model) PredictedLabelForString(string_ appkit.string) foundation.String {
+	rv := objc.Send[foundation.String](m_.ID, objc.Sel("predictedLabelForString:"), string_)
 	return rv
 }
 
 // Predicts multiple possible labels for the given input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForString:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ string, maximumCount uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForString:maximumCount:"), objc.String(string_), maximumCount)
+func (m_ Model) PredictedLabelHypothesesForStringMaximumCount(string_ appkit.string, maximumCount uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForString:maximumCount:"), string_, maximumCount)
 	return rv
 }
 
 // Predicts multiple possible labels for each string in the given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabelHypothesesForTokens:maximumCount:
-func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens unsafe.Pointer, maximumCount uint) []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
+func (m_ Model) PredictedLabelHypothesesForTokensMaximumCount(tokens []string, maximumCount uint) []foundation.Dictionary {
+	rv := objc.Send[[]foundation.Dictionary](m_.ID, objc.Sel("predictedLabelHypothesesForTokens:maximumCount:"), tokens, maximumCount)
 	return rv
 }
 
 // Predicts a label for each string in the given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/predictedLabels(forTokens:)
-func (m_ Model) PredictedLabelsForTokens(tokens unsafe.Pointer) []string {
+func (m_ Model) PredictedLabelsForTokens(tokens []string) []string {
 	rv := objc.Send[[]string](m_.ID, objc.Sel("predictedLabelsForTokens:"), tokens)
 	return rv
 }
@@ -157,8 +158,8 @@ func (m_ Model) PredictedLabelsForTokens(tokens unsafe.Pointer) []string {
 // A configuration describing the natural language model.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLModel/configuration
-func (m_ Model) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("configuration"))
+func (m_ Model) Configuration() NLModelConfiguration {
+	rv := objc.Send[NLModelConfiguration](m_.ID, objc.Sel("configuration"))
 	return rv
 }
 

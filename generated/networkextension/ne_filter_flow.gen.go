@@ -82,8 +82,8 @@ func NewNEFilterFlow() NEFilterFlow {
 // The initial direction of the flow: incoming or outgoing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
-func (n_ NEFilterFlow) Direction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
+func (n_ NEFilterFlow) Direction() NETrafficDirection {
+	rv := objc.Send[NETrafficDirection](n_.ID, objc.Sel("direction"))
 	return rv
 }
 
@@ -93,15 +93,15 @@ func (n_ NEFilterFlow) Direction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/direction
-func (n_ NEFilterFlow) SetDirection(value unsafe.Pointer) {
+func (n_ NEFilterFlow) SetDirection(value NETrafficDirection) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
 }
 
 // The unique identifier of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
-func (n_ NEFilterFlow) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("identifier"))
+func (n_ NEFilterFlow) Identifier() foundation.UUID {
+	rv := objc.Send[foundation.UUID](n_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (n_ NEFilterFlow) Identifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/identifier
-func (n_ NEFilterFlow) SetIdentifier(value unsafe.Pointer) {
+func (n_ NEFilterFlow) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The audit token of the source application of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappaudittoken
-func (n_ NEFilterFlow) SourceAppAuditToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppAuditToken"))
+func (n_ NEFilterFlow) SourceAppAuditToken() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("sourceAppAuditToken"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (n_ NEFilterFlow) SourceAppAuditToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappaudittoken
-func (n_ NEFilterFlow) SetSourceAppAuditToken(value unsafe.Pointer) {
+func (n_ NEFilterFlow) SetSourceAppAuditToken(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppAuditToken:"), value)
 }
 
 // A string containing the identifier of the source app of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
-func (n_ NEFilterFlow) SourceAppIdentifier() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppIdentifier"))
+func (n_ NEFilterFlow) SourceAppIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sourceAppIdentifier"))
 	return rv
 }
 
@@ -147,15 +147,15 @@ func (n_ NEFilterFlow) SourceAppIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappidentifier
-func (n_ NEFilterFlow) SetSourceAppIdentifier(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), objc.String(value))
+func (n_ NEFilterFlow) SetSourceAppIdentifier(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppIdentifier:"), value)
 }
 
 // A byte string that uniquely identifies the binary for each build of the app that is the source of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
-func (n_ NEFilterFlow) SourceAppUniqueIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
+func (n_ NEFilterFlow) SourceAppUniqueIdentifier() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("sourceAppUniqueIdentifier"))
 	return rv
 }
 
@@ -165,15 +165,15 @@ func (n_ NEFilterFlow) SourceAppUniqueIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappuniqueidentifier
-func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value unsafe.Pointer) {
+func (n_ NEFilterFlow) SetSourceAppUniqueIdentifier(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppUniqueIdentifier:"), value)
 }
 
 // The short version string of the app that is the source of the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappversion
-func (n_ NEFilterFlow) SourceAppVersion() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("sourceAppVersion"))
+func (n_ NEFilterFlow) SourceAppVersion() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("sourceAppVersion"))
 	return rv
 }
 
@@ -183,15 +183,15 @@ func (n_ NEFilterFlow) SourceAppVersion() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceappversion
-func (n_ NEFilterFlow) SetSourceAppVersion(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppVersion:"), objc.String(value))
+func (n_ NEFilterFlow) SetSourceAppVersion(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceAppVersion:"), value)
 }
 
 // The audit token of the process that created the flow.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceprocessaudittoken
-func (n_ NEFilterFlow) SourceProcessAuditToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("sourceProcessAuditToken"))
+func (n_ NEFilterFlow) SourceProcessAuditToken() foundation.Data {
+	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("sourceProcessAuditToken"))
 	return rv
 }
 
@@ -201,7 +201,7 @@ func (n_ NEFilterFlow) SourceProcessAuditToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/sourceprocessaudittoken
-func (n_ NEFilterFlow) SetSourceProcessAuditToken(value unsafe.Pointer) {
+func (n_ NEFilterFlow) SetSourceProcessAuditToken(value foundation.IData) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSourceProcessAuditToken:"), value)
 }
 
@@ -219,7 +219,7 @@ func (n_ NEFilterFlow) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterflow/url
-func (n_ NEFilterFlow) SetUrl(value foundation.URL) {
+func (n_ NEFilterFlow) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUrl:"), value)
 }
 

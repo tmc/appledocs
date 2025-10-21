@@ -78,8 +78,8 @@ func NewMTRContentLauncherClusterLaunchURLParams() MTRContentLauncherClusterLaun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/brandinginformation
-func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("brandingInformation"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() MTRContentLauncherClusterBrandingInformationStruct {
+	rv := objc.Send[MTRContentLauncherClusterBrandingInformationStruct](m_.ID, objc.Sel("brandingInformation"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() unsafe.
 // SetBrandingInformation sets the value of the brandingInformation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/brandinginformation
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetBrandingInformation(value unsafe.Pointer) {
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetBrandingInformation(value IMTRContentLauncherClusterBrandingInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBrandingInformation:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
-func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("contentURL"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("contentURL"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() string {
 // SetContentURL sets the value of the contentURL property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), objc.String(value))
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
-func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("displayString"))
+func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("displayString"))
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() string {
 // SetDisplayString sets the value of the displayString property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), objc.String(value))
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), value)
 }
 
 //
@@ -132,7 +132,7 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) ServerSideProcessingTimeout()
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/serversideprocessingtimeout
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) TimedInvokeTimeoutMs() founda
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/timedinvoketimeoutms
-func (m_ MTRContentLauncherClusterLaunchURLParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRContentLauncherClusterLaunchURLParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -130,8 +130,8 @@ func (m_ MetalLayer) SetColorspace(value coregraphics.CGColorSpaceRef) {
 // The properties of the Metal performance heads-up display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/developerHUDProperties
-func (m_ MetalLayer) DeveloperHUDProperties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("developerHUDProperties"))
+func (m_ MetalLayer) DeveloperHUDProperties() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("developerHUDProperties"))
 	return rv
 }
 
@@ -141,7 +141,7 @@ func (m_ MetalLayer) DeveloperHUDProperties() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/developerHUDProperties
-func (m_ MetalLayer) SetDeveloperHUDProperties(value unsafe.Pointer) {
+func (m_ MetalLayer) SetDeveloperHUDProperties(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeveloperHUDProperties:"), value)
 }
 
@@ -202,8 +202,8 @@ func (m_ MetalLayer) SetDrawableSize(value coregraphics.CGSize) {
 // Metadata describing the tone mapping to apply to the extended dynamic range (EDR) values in the layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/edrMetadata
-func (m_ MetalLayer) EDRMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("EDRMetadata"))
+func (m_ MetalLayer) EDRMetadata() CAEDRMetadata {
+	rv := objc.Send[CAEDRMetadata](m_.ID, objc.Sel("EDRMetadata"))
 	return rv
 }
 
@@ -213,7 +213,7 @@ func (m_ MetalLayer) EDRMetadata() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAMetalLayer/edrMetadata
-func (m_ MetalLayer) SetEDRMetadata(value unsafe.Pointer) {
+func (m_ MetalLayer) SetEDRMetadata(value IEDRMetadata) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEDRMetadata:"), value)
 }
 
@@ -343,8 +343,8 @@ func (m_ MetalLayer) SetDrawableID(value int) {
 // The host time, in seconds, when the drawable was displayed onscreen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/presentedTime
-func (m_ MetalLayer) PresentedTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("presentedTime"))
+func (m_ MetalLayer) PresentedTime() TimeInterval {
+	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("presentedTime"))
 	return rv
 }
 
@@ -354,7 +354,7 @@ func (m_ MetalLayer) PresentedTime() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLDrawable/presentedTime
-func (m_ MetalLayer) SetPresentedTime(value unsafe.Pointer) {
+func (m_ MetalLayer) SetPresentedTime(value ITimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresentedTime:"), value)
 }
 

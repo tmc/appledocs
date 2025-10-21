@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/contacts"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,8 +85,8 @@ func NewPlacemark() Placemark {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func NewPlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name string, postalAddress unsafe.Pointer) Placemark {
-	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
+func NewPlacemarkWithLocationNamePostalAddress(location ICLLocation, name appkit.string, postalAddress contacts.ICNPostalAddress) Placemark {
+	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, name, postalAddress)
 	return rv
 }
 
@@ -92,7 +95,7 @@ func NewPlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name str
 // Initializes and returns a placemark object from another placemark object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(placemark:)
-func NewPlacemarkWithPlacemark(placemark unsafe.Pointer) Placemark {
+func NewPlacemarkWithPlacemark(placemark ICLPlacemark) Placemark {
 	instance := getPlacemarkClass().Alloc()
 	rv := objc.Send[Placemark](instance.ID, objc.Sel("initWithPlacemark:"), placemark)
 	rv.Autorelease()
@@ -102,24 +105,24 @@ func NewPlacemarkWithPlacemark(placemark unsafe.Pointer) Placemark {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
-func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location unsafe.Pointer, name string, postalAddress unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, objc.String(name), postalAddress)
+func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location ICLLocation, name appkit.string, postalAddress contacts.ICNPostalAddress) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, name, postalAddress)
 	return rv
 }
 
 // A dictionary containing the Address Book keys and values for the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/addressDictionary
-func (p_ Placemark) AddressDictionary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("addressDictionary"))
+func (p_ Placemark) AddressDictionary() objc.ID {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("addressDictionary"))
 	return rv
 }
 
 // The state or province associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/administrativeArea
-func (p_ Placemark) AdministrativeArea() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("administrativeArea"))
+func (p_ Placemark) AdministrativeArea() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("administrativeArea"))
 	return rv
 }
 
@@ -134,120 +137,120 @@ func (p_ Placemark) AreasOfInterest() []string {
 // The name of the country or region associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/country
-func (p_ Placemark) Country() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("country"))
+func (p_ Placemark) Country() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("country"))
 	return rv
 }
 
 // The name of the inland water body associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/inlandWater
-func (p_ Placemark) InlandWater() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("inlandWater"))
+func (p_ Placemark) InlandWater() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("inlandWater"))
 	return rv
 }
 
 // The abbreviated country or region name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/isoCountryCode
-func (p_ Placemark) ISOcountryCode() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("ISOcountryCode"))
+func (p_ Placemark) ISOcountryCode() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("ISOcountryCode"))
 	return rv
 }
 
 // The city associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/locality
-func (p_ Placemark) Locality() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("locality"))
+func (p_ Placemark) Locality() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("locality"))
 	return rv
 }
 
 // The location object containing latitude and longitude information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/location
-func (p_ Placemark) Location() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("location"))
+func (p_ Placemark) Location() CLLocation {
+	rv := objc.Send[CLLocation](p_.ID, objc.Sel("location"))
 	return rv
 }
 
 // The name of the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/name
-func (p_ Placemark) Name() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("name"))
+func (p_ Placemark) Name() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The name of the ocean associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/ocean
-func (p_ Placemark) Ocean() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("ocean"))
+func (p_ Placemark) Ocean() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("ocean"))
 	return rv
 }
 
 // The postal address associated with the location, formatted for use with the Contacts framework.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/postalAddress
-func (p_ Placemark) PostalAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("postalAddress"))
+func (p_ Placemark) PostalAddress() contacts.CNPostalAddress {
+	rv := objc.Send[contacts.CNPostalAddress](p_.ID, objc.Sel("postalAddress"))
 	return rv
 }
 
 // The postal code associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/postalCode
-func (p_ Placemark) PostalCode() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("postalCode"))
+func (p_ Placemark) PostalCode() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("postalCode"))
 	return rv
 }
 
 // The geographic region associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/region
-func (p_ Placemark) Region() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("region"))
+func (p_ Placemark) Region() CLRegion {
+	rv := objc.Send[CLRegion](p_.ID, objc.Sel("region"))
 	return rv
 }
 
 // Additional administrative area information for the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/subAdministrativeArea
-func (p_ Placemark) SubAdministrativeArea() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("subAdministrativeArea"))
+func (p_ Placemark) SubAdministrativeArea() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("subAdministrativeArea"))
 	return rv
 }
 
 // Additional city-level information for the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/subLocality
-func (p_ Placemark) SubLocality() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("subLocality"))
+func (p_ Placemark) SubLocality() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("subLocality"))
 	return rv
 }
 
 // Additional street-level information for the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/subThoroughfare
-func (p_ Placemark) SubThoroughfare() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("subThoroughfare"))
+func (p_ Placemark) SubThoroughfare() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("subThoroughfare"))
 	return rv
 }
 
 // The street address associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/thoroughfare
-func (p_ Placemark) Thoroughfare() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("thoroughfare"))
+func (p_ Placemark) Thoroughfare() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("thoroughfare"))
 	return rv
 }
 
 // The time zone associated with the placemark.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/timeZone
-func (p_ Placemark) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("timeZone"))
+func (p_ Placemark) TimeZone() foundation.TimeZone {
+	rv := objc.Send[foundation.TimeZone](p_.ID, objc.Sel("timeZone"))
 	return rv
 }
 

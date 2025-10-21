@@ -87,7 +87,7 @@ func (m_ MTRWiFiNetworkDiagnosticsClusterResetCountsParams) ServerSideProcessing
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterresetcountsparams/serversideprocessingtimeout
-func (m_ MTRWiFiNetworkDiagnosticsClusterResetCountsParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterResetCountsParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRWiFiNetworkDiagnosticsClusterResetCountsParams) TimedInvokeTimeoutMs
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrwifinetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
-func (m_ MTRWiFiNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRWiFiNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

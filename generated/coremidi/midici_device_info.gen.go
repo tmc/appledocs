@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewMIDICIDeviceInfo() MIDICIDeviceInfo {
 // The family to which the device belongs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/family
-func (m_ MIDICIDeviceInfo) Family() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("family"))
+func (m_ MIDICIDeviceInfo) Family() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("family"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (m_ MIDICIDeviceInfo) Family() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/family
-func (m_ MIDICIDeviceInfo) SetFamily(value unsafe.Pointer) {
+func (m_ MIDICIDeviceInfo) SetFamily(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFamily:"), value)
 }
 
 // The MIDI System Exclusive (SysEx) ID of the device manufacturer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
-func (m_ MIDICIDeviceInfo) ManufacturerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("manufacturerID"))
+func (m_ MIDICIDeviceInfo) ManufacturerID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("manufacturerID"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (m_ MIDICIDeviceInfo) ManufacturerID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/manufacturerid
-func (m_ MIDICIDeviceInfo) SetManufacturerID(value unsafe.Pointer) {
+func (m_ MIDICIDeviceInfo) SetManufacturerID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setManufacturerID:"), value)
 }
 
 // The MIDI destination the device’s MIDI entity uses for capability inquiries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
-func (m_ MIDICIDeviceInfo) MidiDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("midiDestination"))
+func (m_ MIDICIDeviceInfo) MidiDestination() MIDIEndpointRef {
+	rv := objc.Send[MIDIEndpointRef](m_.ID, objc.Sel("midiDestination"))
 	return rv
 }
 
@@ -128,15 +129,15 @@ func (m_ MIDICIDeviceInfo) MidiDestination() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/mididestination
-func (m_ MIDICIDeviceInfo) SetMidiDestination(value unsafe.Pointer) {
+func (m_ MIDICIDeviceInfo) SetMidiDestination(value IMIDIEndpointRef) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMidiDestination:"), value)
 }
 
 // The model number of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
-func (m_ MIDICIDeviceInfo) ModelNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelNumber"))
+func (m_ MIDICIDeviceInfo) ModelNumber() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("modelNumber"))
 	return rv
 }
 
@@ -146,15 +147,15 @@ func (m_ MIDICIDeviceInfo) ModelNumber() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/modelnumber
-func (m_ MIDICIDeviceInfo) SetModelNumber(value unsafe.Pointer) {
+func (m_ MIDICIDeviceInfo) SetModelNumber(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelNumber:"), value)
 }
 
 // The revision number of the device model number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/revisionlevel
-func (m_ MIDICIDeviceInfo) RevisionLevel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("revisionLevel"))
+func (m_ MIDICIDeviceInfo) RevisionLevel() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("revisionLevel"))
 	return rv
 }
 
@@ -164,15 +165,15 @@ func (m_ MIDICIDeviceInfo) RevisionLevel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midicideviceinfo/revisionlevel
-func (m_ MIDICIDeviceInfo) SetRevisionLevel(value unsafe.Pointer) {
+func (m_ MIDICIDeviceInfo) SetRevisionLevel(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevisionLevel:"), value)
 }
 
 // The MIDI-CI device’s information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIDeviceInfo) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+func (m_ MIDICIDeviceInfo) DeviceInfo() MIDICIDeviceInfo {
+	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
@@ -182,7 +183,7 @@ func (m_ MIDICIDeviceInfo) DeviceInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coremidi/midiciresponder/deviceinfo
-func (m_ MIDICIDeviceInfo) SetDeviceInfo(value unsafe.Pointer) {
+func (m_ MIDICIDeviceInfo) SetDeviceInfo(value IMIDICIDeviceInfo) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceInfo:"), value)
 }
 

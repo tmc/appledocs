@@ -81,8 +81,8 @@ func NewINSeat() INSeat {
 // The seat’s number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatnumber
-func (i_ INSeat) SeatNumber() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("seatNumber"))
+func (i_ INSeat) SeatNumber() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("seatNumber"))
 	return rv
 }
 
@@ -92,15 +92,15 @@ func (i_ INSeat) SeatNumber() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatnumber
-func (i_ INSeat) SetSeatNumber(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatNumber:"), objc.String(value))
+func (i_ INSeat) SetSeatNumber(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatNumber:"), value)
 }
 
 // The seat’s row.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatrow
-func (i_ INSeat) SeatRow() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("seatRow"))
+func (i_ INSeat) SeatRow() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("seatRow"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (i_ INSeat) SeatRow() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatrow
-func (i_ INSeat) SetSeatRow(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatRow:"), objc.String(value))
+func (i_ INSeat) SetSeatRow(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatRow:"), value)
 }
 
 // The seat’s section.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatsection
-func (i_ INSeat) SeatSection() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("seatSection"))
+func (i_ INSeat) SeatSection() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("seatSection"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (i_ INSeat) SeatSection() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatsection
-func (i_ INSeat) SetSeatSection(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatSection:"), objc.String(value))
+func (i_ INSeat) SetSeatSection(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatSection:"), value)
 }
 
 // The seat’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatingtype
-func (i_ INSeat) SeatingType() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("seatingType"))
+func (i_ INSeat) SeatingType() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("seatingType"))
 	return rv
 }
 
@@ -146,8 +146,8 @@ func (i_ INSeat) SeatingType() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inseat/seatingtype
-func (i_ INSeat) SetSeatingType(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatingType:"), objc.String(value))
+func (i_ INSeat) SetSeatingType(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatingType:"), value)
 }
 
 

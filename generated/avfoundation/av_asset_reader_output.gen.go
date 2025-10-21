@@ -101,8 +101,8 @@ func (a_ AssetReaderOutput) SetAlwaysCopiesSampleData(value bool) {
 // The media type of samples that the output reads.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
-func (a_ AssetReaderOutput) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mediaType"))
+func (a_ AssetReaderOutput) MediaType() MediaType {
+	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (a_ AssetReaderOutput) MediaType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/mediatype
-func (a_ AssetReaderOutput) SetMediaType(value unsafe.Pointer) {
+func (a_ AssetReaderOutput) SetMediaType(value MediaType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
 }
 

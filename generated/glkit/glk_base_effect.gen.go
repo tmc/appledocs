@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -109,8 +110,8 @@ func (g_ GLKBaseEffect) SetColorMaterialEnabled(value unsafe.Pointer) {
 // A constant color, used when per-vertex color data is not provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/constantColor
-func (g_ GLKBaseEffect) ConstantColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("constantColor"))
+func (g_ GLKBaseEffect) ConstantColor() GLKVector4 {
+	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("constantColor"))
 	return rv
 }
 
@@ -120,23 +121,23 @@ func (g_ GLKBaseEffect) ConstantColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/constantColor
-func (g_ GLKBaseEffect) SetConstantColor(value unsafe.Pointer) {
+func (g_ GLKBaseEffect) SetConstantColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setConstantColor:"), value)
 }
 
 // The fog properties to apply to the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/fog
-func (g_ GLKBaseEffect) Fog() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("fog"))
+func (g_ GLKBaseEffect) Fog() GLKEffectPropertyFog {
+	rv := objc.Send[GLKEffectPropertyFog](g_.ID, objc.Sel("fog"))
 	return rv
 }
 
 // A string used to name your effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) Label() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("label"))
+func (g_ GLKBaseEffect) Label() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -146,39 +147,39 @@ func (g_ GLKBaseEffect) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
-func (g_ GLKBaseEffect) SetLabel(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (g_ GLKBaseEffect) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
 }
 
 // The lighting properties for the first light in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light0
-func (g_ GLKBaseEffect) Light0() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("light0"))
+func (g_ GLKBaseEffect) Light0() GLKEffectPropertyLight {
+	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light0"))
 	return rv
 }
 
 // The lighting properties for the second light in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light1
-func (g_ GLKBaseEffect) Light1() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("light1"))
+func (g_ GLKBaseEffect) Light1() GLKEffectPropertyLight {
+	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light1"))
 	return rv
 }
 
 // The lighting properties for the third light in the scene.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/light2
-func (g_ GLKBaseEffect) Light2() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("light2"))
+func (g_ GLKBaseEffect) Light2() GLKEffectPropertyLight {
+	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light2"))
 	return rv
 }
 
 // The ambient color applied to all primitives rendered by the effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
-func (g_ GLKBaseEffect) LightModelAmbientColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("lightModelAmbientColor"))
+func (g_ GLKBaseEffect) LightModelAmbientColor() GLKVector4 {
+	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("lightModelAmbientColor"))
 	return rv
 }
 
@@ -188,7 +189,7 @@ func (g_ GLKBaseEffect) LightModelAmbientColor() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
-func (g_ GLKBaseEffect) SetLightModelAmbientColor(value unsafe.Pointer) {
+func (g_ GLKBaseEffect) SetLightModelAmbientColor(value IGLKVector4) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelAmbientColor:"), value)
 }
 
@@ -213,8 +214,8 @@ func (g_ GLKBaseEffect) SetLightModelTwoSided(value unsafe.Pointer) {
 // The strategy the effect uses to calculate light values at each fragment. See .
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightingType
-func (g_ GLKBaseEffect) LightingType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("lightingType"))
+func (g_ GLKBaseEffect) LightingType() GLKLightingType {
+	rv := objc.Send[GLKLightingType](g_.ID, objc.Sel("lightingType"))
 	return rv
 }
 
@@ -224,31 +225,31 @@ func (g_ GLKBaseEffect) LightingType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightingType
-func (g_ GLKBaseEffect) SetLightingType(value unsafe.Pointer) {
+func (g_ GLKBaseEffect) SetLightingType(value GLKLightingType) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightingType:"), value)
 }
 
 // The material properties used when calculating the light values for a rendered primitive.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/material
-func (g_ GLKBaseEffect) Material() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("material"))
+func (g_ GLKBaseEffect) Material() GLKEffectPropertyMaterial {
+	rv := objc.Send[GLKEffectPropertyMaterial](g_.ID, objc.Sel("material"))
 	return rv
 }
 
 // The properties for the first texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/texture2d0
-func (g_ GLKBaseEffect) Texture2d0() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("texture2d0"))
+func (g_ GLKBaseEffect) Texture2d0() GLKEffectPropertyTexture {
+	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("texture2d0"))
 	return rv
 }
 
 // The properties for the second texture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/texture2d1
-func (g_ GLKBaseEffect) Texture2d1() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("texture2d1"))
+func (g_ GLKBaseEffect) Texture2d1() GLKEffectPropertyTexture {
+	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("texture2d1"))
 	return rv
 }
 
@@ -283,8 +284,8 @@ func (g_ GLKBaseEffect) SetTextureOrder(value []GLKEffectPropertyTexture) {
 // The modelview, projection and texture transformations applied to the vertex data when the effect is bound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/transform
-func (g_ GLKBaseEffect) Transform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("transform"))
+func (g_ GLKBaseEffect) Transform() GLKEffectPropertyTransform {
+	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
 }
 

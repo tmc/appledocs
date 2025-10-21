@@ -81,8 +81,8 @@ func NewUpdateContext() UpdateContext {
 // The event type that triggered an update task to notify your app’s completion and update progress handlers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/event
-func (u_ UpdateContext) Event() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("event"))
+func (u_ UpdateContext) Event() UpdateProgressEvent {
+	rv := objc.Send[UpdateProgressEvent](u_.ID, objc.Sel("event"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (u_ UpdateContext) Parameters() unsafe.Pointer {
 // The update task that generated the update context.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLUpdateContext/task
-func (u_ UpdateContext) Task() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("task"))
+func (u_ UpdateContext) Task() MLUpdateTask {
+	rv := objc.Send[MLUpdateTask](u_.ID, objc.Sel("task"))
 	return rv
 }
 

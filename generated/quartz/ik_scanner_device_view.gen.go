@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/imagecapturecore"
 )
 
 // The class instance for the [IKScannerDeviceView] class.
@@ -138,8 +139,8 @@ func (i_ IKScannerDeviceView) SetDisplaysPostProcessApplicationControl(value boo
 // Returns the document name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/documentname
-func (i_ IKScannerDeviceView) DocumentName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("documentName"))
+func (i_ IKScannerDeviceView) DocumentName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("documentName"))
 	return rv
 }
 
@@ -149,8 +150,8 @@ func (i_ IKScannerDeviceView) DocumentName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/documentname
-func (i_ IKScannerDeviceView) SetDocumentName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), objc.String(value))
+func (i_ IKScannerDeviceView) SetDocumentName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDocumentName:"), value)
 }
 
 // The directory where scans are saved.
@@ -167,7 +168,7 @@ func (i_ IKScannerDeviceView) DownloadsDirectory() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/downloadsdirectory
-func (i_ IKScannerDeviceView) SetDownloadsDirectory(value foundation.URL) {
+func (i_ IKScannerDeviceView) SetDownloadsDirectory(value foundation.IURL) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDownloadsDirectory:"), value)
 }
 
@@ -228,8 +229,8 @@ func (i_ IKScannerDeviceView) SetMode(value unsafe.Pointer) {
 // Allows customization of the “Overview” label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/overviewcontrollabel
-func (i_ IKScannerDeviceView) OverviewControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("overviewControlLabel"))
+func (i_ IKScannerDeviceView) OverviewControlLabel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("overviewControlLabel"))
 	return rv
 }
 
@@ -239,8 +240,8 @@ func (i_ IKScannerDeviceView) OverviewControlLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/overviewcontrollabel
-func (i_ IKScannerDeviceView) SetOverviewControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setOverviewControlLabel:"), objc.String(value))
+func (i_ IKScannerDeviceView) SetOverviewControlLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setOverviewControlLabel:"), value)
 }
 
 // The URL of the application to use for post processing of the scan.
@@ -257,15 +258,15 @@ func (i_ IKScannerDeviceView) PostProcessApplication() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/postprocessapplication
-func (i_ IKScannerDeviceView) SetPostProcessApplication(value foundation.URL) {
+func (i_ IKScannerDeviceView) SetPostProcessApplication(value foundation.IURL) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPostProcessApplication:"), value)
 }
 
 // Allows customization of the “Scan” label.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scancontrollabel
-func (i_ IKScannerDeviceView) ScanControlLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("scanControlLabel"))
+func (i_ IKScannerDeviceView) ScanControlLabel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("scanControlLabel"))
 	return rv
 }
 
@@ -275,15 +276,15 @@ func (i_ IKScannerDeviceView) ScanControlLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scancontrollabel
-func (i_ IKScannerDeviceView) SetScanControlLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setScanControlLabel:"), objc.String(value))
+func (i_ IKScannerDeviceView) SetScanControlLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setScanControlLabel:"), value)
 }
 
 // The device used for scanning
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scannerdevice
-func (i_ IKScannerDeviceView) ScannerDevice() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("scannerDevice"))
+func (i_ IKScannerDeviceView) ScannerDevice() imagecapturecore.ICScannerDevice {
+	rv := objc.Send[imagecapturecore.ICScannerDevice](i_.ID, objc.Sel("scannerDevice"))
 	return rv
 }
 
@@ -293,7 +294,7 @@ func (i_ IKScannerDeviceView) ScannerDevice() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quartz/ikscannerdeviceview/scannerdevice
-func (i_ IKScannerDeviceView) SetScannerDevice(value unsafe.Pointer) {
+func (i_ IKScannerDeviceView) SetScannerDevice(value imagecapturecore.ICScannerDevice) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setScannerDevice:"), value)
 }
 

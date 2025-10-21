@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterEVConnectedEvent) SessionID() foundation.Number {
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEVConnectedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEVConnectedEvent) SetSessionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 

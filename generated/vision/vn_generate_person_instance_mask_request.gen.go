@@ -82,8 +82,8 @@ func NewGeneratePersonInstanceMaskRequest() GeneratePersonInstanceMaskRequest {
 // The results of the instance mask request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest/results
-func (g_ GeneratePersonInstanceMaskRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
+func (g_ GeneratePersonInstanceMaskRequest) Results() VNInstanceMaskObservation {
+	rv := objc.Send[VNInstanceMaskObservation](g_.ID, objc.Sel("results"))
 	return rv
 }
 
@@ -93,7 +93,7 @@ func (g_ GeneratePersonInstanceMaskRequest) Results() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest/results
-func (g_ GeneratePersonInstanceMaskRequest) SetResults(value unsafe.Pointer) {
+func (g_ GeneratePersonInstanceMaskRequest) SetResults(value IVNInstanceMaskObservation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 

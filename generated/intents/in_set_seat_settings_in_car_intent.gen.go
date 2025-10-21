@@ -93,8 +93,8 @@ func (i_ INSetSeatSettingsInCarIntent) EnableCooling() foundation.Number {
 // The name of the car you applied the settings to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
-func (i_ INSetSeatSettingsInCarIntent) CarName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("carName"))
+func (i_ INSetSeatSettingsInCarIntent) CarName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("carName"))
 	return rv
 }
 
@@ -104,7 +104,7 @@ func (i_ INSetSeatSettingsInCarIntent) CarName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetseatsettingsincarintent/carname
-func (i_ INSetSeatSettingsInCarIntent) SetCarName(value unsafe.Pointer) {
+func (i_ INSetSeatSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 

@@ -100,8 +100,8 @@ func (s_ StepperCell) SetAutorepeat(value bool) {
 // The amount by which the receiver will change per increment or decrement.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/increment
-func (s_ StepperCell) Increment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("increment"))
+func (s_ StepperCell) Increment() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("increment"))
 	return rv
 }
 
@@ -111,15 +111,15 @@ func (s_ StepperCell) Increment() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/increment
-func (s_ StepperCell) SetIncrement(value unsafe.Pointer) {
+func (s_ StepperCell) SetIncrement(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
 }
 
 // The maximum value for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/maxvalue
-func (s_ StepperCell) MaxValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("maxValue"))
+func (s_ StepperCell) MaxValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
 	return rv
 }
 
@@ -129,15 +129,15 @@ func (s_ StepperCell) MaxValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/maxvalue
-func (s_ StepperCell) SetMaxValue(value unsafe.Pointer) {
+func (s_ StepperCell) SetMaxValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
 
 // The minimum value for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/minvalue
-func (s_ StepperCell) MinValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minValue"))
+func (s_ StepperCell) MinValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
 	return rv
 }
 
@@ -147,7 +147,7 @@ func (s_ StepperCell) MinValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/minvalue
-func (s_ StepperCell) SetMinValue(value unsafe.Pointer) {
+func (s_ StepperCell) SetMinValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
 

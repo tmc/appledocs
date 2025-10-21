@@ -95,7 +95,7 @@ func (s_ STWebpageController) URL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/url
-func (s_ STWebpageController) SetURL(value foundation.URL) {
+func (s_ STWebpageController) SetURL(value foundation.IURL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setURL:"), value)
 }
 
@@ -105,6 +105,24 @@ func (s_ STWebpageController) SetURL(value foundation.URL) {
 func (s_ STWebpageController) URLIsBlocked() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsBlocked"))
 	return rv
+}
+
+// A Boolean that indicates whether there are one or more videos currently playing in the webpage.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsPlayingVideo
+func (s_ STWebpageController) URLIsPlayingVideo() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("URLIsPlayingVideo"))
+	return rv
+}
+
+
+// SetURLIsPlayingVideo sets the value of the URLIsPlayingVideo property.
+// A Boolean that indicates whether there are one or more videos currently playing in the webpage.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STWebpageController/urlIsPlayingVideo
+func (s_ STWebpageController) SetURLIsPlayingVideo(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setURLIsPlayingVideo:"), value)
 }
 
 // An optional identifier for the current browsing profile.
@@ -159,24 +177,6 @@ func (s_ STWebpageController) UrlIsPictureInPicture() bool {
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlispictureinpicture
 func (s_ STWebpageController) SetUrlIsPictureInPicture(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPictureInPicture:"), value)
-}
-
-// A Boolean that indicates whether there are one or more videos currently
-//
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
-func (s_ STWebpageController) UrlIsPlayingVideo() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("urlIsPlayingVideo"))
-	return rv
-}
-
-
-// SetUrlIsPlayingVideo sets the value of the urlIsPlayingVideo property.
-// A Boolean that indicates whether there are one or more videos currently
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stwebpagecontroller/urlisplayingvideo
-func (s_ STWebpageController) SetUrlIsPlayingVideo(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUrlIsPlayingVideo:"), value)
 }
 
 

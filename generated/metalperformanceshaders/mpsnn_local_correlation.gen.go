@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,7 +78,7 @@ func NewLocalCorrelation() LocalCorrelation {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLocalCorrelation/init(coder:device:)
-func NewLocalCorrelationWithCoderDevice(aDecoder unsafe.Pointer, device objc.ID) LocalCorrelation {
+func NewLocalCorrelationWithCoderDevice(aDecoder foundation.ICoder, device objectivec.IObject) LocalCorrelation {
 	instance := getLocalCorrelationClass().Alloc()
 	rv := objc.Send[LocalCorrelation](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()

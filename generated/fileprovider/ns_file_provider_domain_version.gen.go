@@ -83,8 +83,8 @@ func NewFileProviderDomainVersion() FileProviderDomainVersion {
 // An opaque object that uniquely identifies the domain’s version.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
-func (f_ FileProviderDomainVersion) DomainVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("domainVersion"))
+func (f_ FileProviderDomainVersion) DomainVersion() NSFileProviderDomainVersion {
+	rv := objc.Send[NSFileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (f_ FileProviderDomainVersion) DomainVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate/domainversion
-func (f_ FileProviderDomainVersion) SetDomainVersion(value unsafe.Pointer) {
+func (f_ FileProviderDomainVersion) SetDomainVersion(value IFileProviderDomainVersion) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDomainVersion:"), value)
 }
 

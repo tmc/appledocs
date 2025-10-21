@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,9 +84,9 @@ func NewPasswordCredentialIdentity() PasswordCredentialIdentity {
 // Initializes a password credential identity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/init(serviceIdentifier:user:recordIdentifier:)
-func NewPasswordCredentialIdentityWithServiceIdentifierUserRecordIdentifier(serviceIdentifier unsafe.Pointer, user string, recordIdentifier string) PasswordCredentialIdentity {
+func NewPasswordCredentialIdentityWithServiceIdentifierUserRecordIdentifier(serviceIdentifier unsafe.Pointer, user appkit.string, recordIdentifier appkit.string) PasswordCredentialIdentity {
 	instance := getPasswordCredentialIdentityClass().Alloc()
-	rv := objc.Send[PasswordCredentialIdentity](instance.ID, objc.Sel("initWithServiceIdentifier:user:recordIdentifier:"), serviceIdentifier, objc.String(user), objc.String(recordIdentifier))
+	rv := objc.Send[PasswordCredentialIdentity](instance.ID, objc.Sel("initWithServiceIdentifier:user:recordIdentifier:"), serviceIdentifier, user, recordIdentifier)
 	rv.Autorelease()
 	return rv
 }
@@ -94,8 +95,8 @@ func NewPasswordCredentialIdentityWithServiceIdentifierUserRecordIdentifier(serv
 // Creates and returns a password credential identity object with a service identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/identityWithServiceIdentifier:user:recordIdentifier:
-func (pc _PasswordCredentialIdentityClass) IdentityWithServiceIdentifierUserRecordIdentifier(serviceIdentifier unsafe.Pointer, user string, recordIdentifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("identityWithServiceIdentifier:user:recordIdentifier:"), serviceIdentifier, objc.String(user), objc.String(recordIdentifier))
+func (pc _PasswordCredentialIdentityClass) IdentityWithServiceIdentifierUserRecordIdentifier(serviceIdentifier unsafe.Pointer, user appkit.string, recordIdentifier appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("identityWithServiceIdentifier:user:recordIdentifier:"), serviceIdentifier, user, recordIdentifier)
 	return rv
 }
 
@@ -120,8 +121,8 @@ func (p_ PasswordCredentialIdentity) SetRank(value int) {
 // A string used to correlate this identity to a record in your app’s own database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/recordIdentifier
-func (p_ PasswordCredentialIdentity) RecordIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("recordIdentifier"))
+func (p_ PasswordCredentialIdentity) RecordIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("recordIdentifier"))
 	return rv
 }
 
@@ -136,8 +137,8 @@ func (p_ PasswordCredentialIdentity) ServiceIdentifier() unsafe.Pointer {
 // The username associated with the credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasswordCredentialIdentity/user
-func (p_ PasswordCredentialIdentity) User() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("user"))
+func (p_ PasswordCredentialIdentity) User() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("user"))
 	return rv
 }
 

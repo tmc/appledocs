@@ -84,8 +84,8 @@ func NewCFullyConnectedLayer() CFullyConnectedLayer {
 // The biases tensor you use for the fully connected layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biases
-func (c_ CFullyConnectedLayer) Biases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("biases"))
+func (c_ CFullyConnectedLayer) Biases() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("biases"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (c_ CFullyConnectedLayer) Biases() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biases
-func (c_ CFullyConnectedLayer) SetBiases(value unsafe.Pointer) {
+func (c_ CFullyConnectedLayer) SetBiases(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
 }
 
 // The biases tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biasesparameter
-func (c_ CFullyConnectedLayer) BiasesParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("biasesParameter"))
+func (c_ CFullyConnectedLayer) BiasesParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("biasesParameter"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (c_ CFullyConnectedLayer) BiasesParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biasesparameter
-func (c_ CFullyConnectedLayer) SetBiasesParameter(value unsafe.Pointer) {
+func (c_ CFullyConnectedLayer) SetBiasesParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameter:"), value)
 }
 
@@ -138,8 +138,8 @@ func (c_ CFullyConnectedLayer) SetDescriptor(value unsafe.Pointer) {
 // The weights tensor you use for the fully connected layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weights
-func (c_ CFullyConnectedLayer) Weights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+func (c_ CFullyConnectedLayer) Weights() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
@@ -149,15 +149,15 @@ func (c_ CFullyConnectedLayer) Weights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weights
-func (c_ CFullyConnectedLayer) SetWeights(value unsafe.Pointer) {
+func (c_ CFullyConnectedLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
 }
 
 // The weights tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weightsparameter
-func (c_ CFullyConnectedLayer) WeightsParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightsParameter"))
+func (c_ CFullyConnectedLayer) WeightsParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("weightsParameter"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (c_ CFullyConnectedLayer) WeightsParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weightsparameter
-func (c_ CFullyConnectedLayer) SetWeightsParameter(value unsafe.Pointer) {
+func (c_ CFullyConnectedLayer) SetWeightsParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
 }
 

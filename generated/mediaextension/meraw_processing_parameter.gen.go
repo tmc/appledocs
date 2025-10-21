@@ -99,8 +99,8 @@ func (m_ MERAWProcessingParameter) SetEnabled(value bool) {
 // A unique key string identifying the parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/key
-func (m_ MERAWProcessingParameter) Key() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("key"))
+func (m_ MERAWProcessingParameter) Key() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -110,15 +110,15 @@ func (m_ MERAWProcessingParameter) Key() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/key
-func (m_ MERAWProcessingParameter) SetKey(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), objc.String(value))
+func (m_ MERAWProcessingParameter) SetKey(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), value)
 }
 
 // A localized description of the parameter, suitable for displaying in a tool tip or similar explanatory UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/longdescription
-func (m_ MERAWProcessingParameter) LongDescription() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("longDescription"))
+func (m_ MERAWProcessingParameter) LongDescription() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("longDescription"))
 	return rv
 }
 
@@ -128,15 +128,15 @@ func (m_ MERAWProcessingParameter) LongDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/longdescription
-func (m_ MERAWProcessingParameter) SetLongDescription(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLongDescription:"), objc.String(value))
+func (m_ MERAWProcessingParameter) SetLongDescription(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLongDescription:"), value)
 }
 
 // A localized human-readable name for the parameter, suitable for displaying in application UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/name
-func (m_ MERAWProcessingParameter) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MERAWProcessingParameter) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -146,15 +146,15 @@ func (m_ MERAWProcessingParameter) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/name
-func (m_ MERAWProcessingParameter) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MERAWProcessingParameter) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 // Provides a list of processing parameters that can be changed by the client of Video Toolbox session to influence processing behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessor/processingparameters
-func (m_ MERAWProcessingParameter) ProcessingParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("processingParameters"))
+func (m_ MERAWProcessingParameter) ProcessingParameters() MERAWProcessingParameter {
+	rv := objc.Send[MERAWProcessingParameter](m_.ID, objc.Sel("processingParameters"))
 	return rv
 }
 
@@ -164,7 +164,7 @@ func (m_ MERAWProcessingParameter) ProcessingParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/merawprocessor/processingparameters
-func (m_ MERAWProcessingParameter) SetProcessingParameters(value unsafe.Pointer) {
+func (m_ MERAWProcessingParameter) SetProcessingParameters(value IMERAWProcessingParameter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProcessingParameters:"), value)
 }
 

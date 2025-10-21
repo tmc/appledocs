@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _CXCallClass struct {
 // An interface definition for the [CXCall] class.
 type ICXCall interface {
 	objectivec.IObject
-	IsEqualToCall(call unsafe.Pointer) bool
+	IsEqualToCall(call ICXCall) bool
 }
 
 // A telephony call.
@@ -84,7 +85,7 @@ func NewCXCall() CXCall {
 // Returns a Boolean value that indicates whether a given call is equal to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/isEqualToCall:
-func (c_ CXCall) IsEqualToCall(call unsafe.Pointer) bool {
+func (c_ CXCall) IsEqualToCall(call ICXCall) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToCall:"), call)
 	return rv
 }
@@ -124,8 +125,8 @@ func (c_ CXCall) Outgoing() bool {
 // The unique identifier for the call.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/uuid
-func (c_ CXCall) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("UUID"))
+func (c_ CXCall) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 
@@ -168,8 +169,8 @@ func (c_ CXCall) SetIsOutgoing(value bool) {
 // Returns the active calls of the telephony provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
-func (c_ CXCall) Calls() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calls"))
+func (c_ CXCall) Calls() CXCall {
+	rv := objc.Send[CXCall](c_.ID, objc.Sel("calls"))
 	return rv
 }
 
@@ -179,7 +180,7 @@ func (c_ CXCall) Calls() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/callkit/cxcallobserver/calls
-func (c_ CXCall) SetCalls(value unsafe.Pointer) {
+func (c_ CXCall) SetCalls(value ICXCall) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCalls:"), value)
 }
 

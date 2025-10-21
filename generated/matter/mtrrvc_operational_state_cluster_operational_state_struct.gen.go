@@ -87,14 +87,14 @@ func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateID
 // SetOperationalStateID sets the value of the operationalStateID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstateid
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.Number) {
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstatelabel
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateLabel() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("operationalStateLabel"))
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateLabel() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("operationalStateLabel"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) OperationalStateLa
 // SetOperationalStateLabel sets the value of the operationalStateLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalstatestruct/operationalstatelabel
-func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), objc.String(value))
+func (m_ MTRRVCOperationalStateClusterOperationalStateStruct) SetOperationalStateLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalStateLabel:"), value)
 }
 
 

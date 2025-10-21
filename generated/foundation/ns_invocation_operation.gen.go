@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [InvocationOperation] class.
@@ -86,7 +87,7 @@ func NewInvocationOperation() InvocationOperation {
 // Returns an object initialized with the specified invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
-func NewInvocationOperationWithInvocation(inv unsafe.Pointer) InvocationOperation {
+func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithInvocation:"), inv)
 	rv.Autorelease()
@@ -98,7 +99,7 @@ func NewInvocationOperationWithInvocation(inv unsafe.Pointer) InvocationOperatio
 // Returns an object initialized with the specified target and selector.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithTarget:selector:object:
-func NewInvocationOperationWithTargetSelectorObject(target objc.ID, sel objc.SEL, arg objc.ID) InvocationOperation {
+func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, sel objc.SEL, arg objectivec.IObject) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, sel, arg)
 	rv.Autorelease()
@@ -109,8 +110,8 @@ func NewInvocationOperationWithTargetSelectorObject(target objc.ID, sel objc.SEL
 // The receiver’s invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/invocation
-func (i_ InvocationOperation) Invocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("invocation"))
+func (i_ InvocationOperation) Invocation() NSInvocation {
+	rv := objc.Send[NSInvocation](i_.ID, objc.Sel("invocation"))
 	return rv
 }
 

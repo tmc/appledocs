@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRDeviceEnergyManagementModeClusterModeOptionStruct() MTRDeviceEnergyMa
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/label
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/label
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,14 +103,14 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) Mode() foundation
 // SetMode sets the value of the mode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/mode
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetMode(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/modeTags
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modeTags"))
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) ModeTags() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("modeTags"))
 	return rv
 }
 
@@ -117,7 +118,7 @@ func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) ModeTags() unsafe
 // SetModeTags sets the value of the modeTags property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementModeClusterModeOptionStruct/modeTags
-func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
+func (m_ MTRDeviceEnergyManagementModeClusterModeOptionStruct) SetModeTags(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
 

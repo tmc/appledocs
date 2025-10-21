@@ -87,7 +87,7 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) MoveMode() foundation.Numb
 // SetMoveMode sets the value of the moveMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/movemode
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetMoveMode(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetMoveMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMoveMode:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) OptionsMask() foundation.N
 // SetOptionsMask sets the value of the optionsMask property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/optionsmask
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetOptionsMask(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetOptionsMask(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) OptionsOverride() foundati
 // SetOptionsOverride sets the value of the optionsOverride property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/optionsoverride
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetOptionsOverride(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetOptionsOverride(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) Rate() foundation.Number {
 // SetRate sets the value of the rate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/rate
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetRate(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetRate(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRate:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) ServerSideProcessingTimeou
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/serversideprocessingtimeout
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRColorControlClusterEnhancedMoveHueParams) TimedInvokeTimeoutMs() fou
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclusterenhancedmovehueparams/timedinvoketimeoutms
-func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRColorControlClusterEnhancedMoveHueParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

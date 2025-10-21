@@ -87,7 +87,7 @@ func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) CaseSessionsPerFabric
 // SetCaseSessionsPerFabric sets the value of the caseSessionsPerFabric property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclustercapabilityminimastruct/casesessionsperfabric
-func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value foundation.Number) {
+func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseSessionsPerFabric:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SubscriptionsPerFabri
 // SetSubscriptionsPerFabric sets the value of the subscriptionsPerFabric property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclustercapabilityminimastruct/subscriptionsperfabric
-func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value foundation.Number) {
+func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubscriptionsPerFabric:"), value)
 }
 

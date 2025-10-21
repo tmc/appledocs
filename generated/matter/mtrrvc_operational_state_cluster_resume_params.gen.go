@@ -87,7 +87,7 @@ func (m_ MTRRVCOperationalStateClusterResumeParams) ServerSideProcessingTimeout(
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/serversideprocessingtimeout
-func (m_ MTRRVCOperationalStateClusterResumeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRRVCOperationalStateClusterResumeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRRVCOperationalStateClusterResumeParams) TimedInvokeTimeoutMs() found
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusterresumeparams/timedinvoketimeoutms
-func (m_ MTRRVCOperationalStateClusterResumeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRRVCOperationalStateClusterResumeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

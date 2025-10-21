@@ -87,7 +87,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Age() foundation
 // SetAge sets the value of the age property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/age
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetAge(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetAge(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAge:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) AverageRssi() fo
 // SetAverageRssi sets the value of the averageRssi property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/averagerssi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetAverageRssi(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetAverageRssi(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAverageRssi:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) ExtAddress() fou
 // SetExtAddress sets the value of the extAddress property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/extaddress
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetExtAddress(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetExtAddress(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtAddress:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) FrameErrorRate()
 // SetFrameErrorRate sets the value of the frameErrorRate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/frameerrorrate
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFrameErrorRate(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFrameErrorRate(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFrameErrorRate:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) FullNetworkData(
 // SetFullNetworkData sets the value of the fullNetworkData property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/fullnetworkdata
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFullNetworkData(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFullNetworkData(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFullNetworkData:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) FullThreadDevice
 // SetFullThreadDevice sets the value of the fullThreadDevice property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/fullthreaddevice
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFullThreadDevice(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFullThreadDevice(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFullThreadDevice:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) IsChild() founda
 // SetIsChild sets the value of the isChild property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/ischild
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetIsChild(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetIsChild(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsChild:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) LastRssi() found
 // SetLastRssi sets the value of the lastRssi property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/lastrssi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLastRssi(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLastRssi(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLastRssi:"), value)
 }
 
@@ -207,7 +207,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) LinkFrameCounter
 // SetLinkFrameCounter sets the value of the linkFrameCounter property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/linkframecounter
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLinkFrameCounter(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLinkFrameCounter(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLinkFrameCounter:"), value)
 }
 
@@ -222,7 +222,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Lqi() foundation
 // SetLqi sets the value of the lqi property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/lqi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLqi(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLqi(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLqi:"), value)
 }
 
@@ -237,7 +237,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) MessageErrorRate
 // SetMessageErrorRate sets the value of the messageErrorRate property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/messageerrorrate
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetMessageErrorRate(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetMessageErrorRate(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageErrorRate:"), value)
 }
 
@@ -252,7 +252,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) MleFrameCounter(
 // SetMleFrameCounter sets the value of the mleFrameCounter property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/mleframecounter
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetMleFrameCounter(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetMleFrameCounter(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMleFrameCounter:"), value)
 }
 
@@ -267,7 +267,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Rloc16() foundat
 // SetRloc16 sets the value of the rloc16 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/rloc16
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetRloc16(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetRloc16(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRloc16:"), value)
 }
 
@@ -282,7 +282,7 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) RxOnWhenIdle() f
 // SetRxOnWhenIdle sets the value of the rxOnWhenIdle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/rxonwhenidle
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetRxOnWhenIdle(value foundation.Number) {
+func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetRxOnWhenIdle(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRxOnWhenIdle:"), value)
 }
 

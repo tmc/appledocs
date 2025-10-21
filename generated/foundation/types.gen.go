@@ -50,6 +50,8 @@ type CFRunLoopRef unsafe.Pointer
 
 type Class unsafe.Pointer
 
+type FileAttributeKey unsafe.Pointer
+
 type NSAffineTransformStruct unsafe.Pointer
 
 type NSCacheDelegate unsafe.Pointer
@@ -90,8 +92,6 @@ type NSHelpManagerContextHelpKey unsafe.Pointer
 
 type NSISO8601DateFormatOptions unsafe.Pointer
 
-type NSImage unsafe.Pointer
-
 type NSImageName unsafe.Pointer
 
 type NSInsertionPosition unsafe.Pointer
@@ -104,6 +104,8 @@ type NSLocaleKey unsafe.Pointer
 
 type NSLocaleLanguageDirection unsafe.Pointer
 
+type NSMetadataQueryAttributeValueTuple unsafe.Pointer
+
 type NSMetadataQueryResultGroup unsafe.Pointer
 
 type NSNibName unsafe.Pointer
@@ -113,8 +115,6 @@ type NSObject unsafe.Pointer
 type NSOperatingSystemVersion unsafe.Pointer
 
 type NSOrderedCollectionChange unsafe.Pointer
-
-type NSPasteboard unsafe.Pointer
 
 type NSPostingStyle unsafe.Pointer
 
@@ -128,23 +128,13 @@ type NSSoundName unsafe.Pointer
 
 type NSStreamPropertyKey unsafe.Pointer
 
-type NSStringDrawingContext unsafe.Pointer
-
 type NSStringEncoding unsafe.Pointer
 
 type NSTestComparisonOperation unsafe.Pointer
 
 type NSTextAlignment unsafe.Pointer
 
-type NSTextBlock unsafe.Pointer
-
-type NSTextCheckingKey unsafe.Pointer
-
 type NSTextCheckingTypes unsafe.Pointer
-
-type NSTextList unsafe.Pointer
-
-type NSTextTable unsafe.Pointer
 
 type NSURLHandle unsafe.Pointer
 
@@ -161,8 +151,6 @@ type NSUserUnixTaskCompletionHandler unsafe.Pointer
 type NSWorkspaceAuthorization unsafe.Pointer
 
 type NSZone unsafe.Pointer
-
-type UNNotificationAction unsafe.Pointer
 
 
 

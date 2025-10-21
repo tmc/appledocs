@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _PDFOutlineClass struct {
 // An interface definition for the [PDFOutline] class.
 type IPDFOutline interface {
 	objectivec.IObject
-	ChildAtIndex(index uint) unsafe.Pointer
-	InsertChildAtIndex(child unsafe.Pointer, index uint)
+	ChildAtIndex(index uint) PDFOutline
+	InsertChildAtIndex(child IPDFOutline, index uint)
 	RemoveFromParent()
 }
 
@@ -87,15 +88,15 @@ func NewPDFOutline() PDFOutline {
 // Returns the child outline object at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/child(at:)
-func (p_ PDFOutline) ChildAtIndex(index uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("childAtIndex:"), index)
+func (p_ PDFOutline) ChildAtIndex(index uint) PDFOutline {
+	rv := objc.Send[PDFOutline](p_.ID, objc.Sel("childAtIndex:"), index)
 	return rv
 }
 
 // Inserts the specified outline object at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/insertChild(_:at:)
-func (p_ PDFOutline) InsertChildAtIndex(child unsafe.Pointer, index uint) {
+func (p_ PDFOutline) InsertChildAtIndex(child IPDFOutline, index uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("insertChild:atIndex:"), child, index)
 }
 
@@ -109,8 +110,8 @@ func (p_ PDFOutline) RemoveFromParent() {
 // Returns the action performed when users click the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/action
-func (p_ PDFOutline) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("action"))
+func (p_ PDFOutline) Action() PDFAction {
+	rv := objc.Send[PDFAction](p_.ID, objc.Sel("action"))
 	return rv
 }
 
@@ -120,15 +121,15 @@ func (p_ PDFOutline) Action() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/action
-func (p_ PDFOutline) SetAction(value unsafe.Pointer) {
+func (p_ PDFOutline) SetAction(value IPDFAction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAction:"), value)
 }
 
 // Returns the destination associated with the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/destination
-func (p_ PDFOutline) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("destination"))
+func (p_ PDFOutline) Destination() PDFDestination {
+	rv := objc.Send[PDFDestination](p_.ID, objc.Sel("destination"))
 	return rv
 }
 
@@ -138,15 +139,15 @@ func (p_ PDFOutline) Destination() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/destination
-func (p_ PDFOutline) SetDestination(value unsafe.Pointer) {
+func (p_ PDFOutline) SetDestination(value IPDFDestination) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDestination:"), value)
 }
 
 // Returns the document with which the outline is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/document
-func (p_ PDFOutline) Document() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("document"))
+func (p_ PDFOutline) Document() PDFDocument {
+	rv := objc.Send[PDFDocument](p_.ID, objc.Sel("document"))
 	return rv
 }
 
@@ -179,8 +180,8 @@ func (p_ PDFOutline) SetIsOpen(value bool) {
 // Returns the label for the outline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
-func (p_ PDFOutline) Label() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("label"))
+func (p_ PDFOutline) Label() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -190,8 +191,8 @@ func (p_ PDFOutline) Label() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/label
-func (p_ PDFOutline) SetLabel(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (p_ PDFOutline) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLabel:"), value)
 }
 
 // Returns the number of child outline objects in the outline.
@@ -205,8 +206,8 @@ func (p_ PDFOutline) NumberOfChildren() uint {
 // Returns the parent outline object of the outline (returns if called on the root outline object).
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFOutline/parent
-func (p_ PDFOutline) Parent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("parent"))
+func (p_ PDFOutline) Parent() PDFOutline {
+	rv := objc.Send[PDFOutline](p_.ID, objc.Sel("parent"))
 	return rv
 }
 

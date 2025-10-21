@@ -87,7 +87,7 @@ func (m_ MTRServiceAreaClusterProgressStruct) AreaID() foundation.Number {
 // SetAreaID sets the value of the areaID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/areaID
-func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value foundation.Number) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetAreaID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAreaID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRServiceAreaClusterProgressStruct) Status() foundation.Number {
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/status
-func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value foundation.Number) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRServiceAreaClusterProgressStruct) TotalOperationalTime() foundation.
 // SetTotalOperationalTime sets the value of the totalOperationalTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServiceAreaClusterProgressStruct/totalOperationalTime
-func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value foundation.Number) {
+func (m_ MTRServiceAreaClusterProgressStruct) SetTotalOperationalTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
 

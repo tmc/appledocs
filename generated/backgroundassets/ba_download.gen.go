@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -89,8 +90,8 @@ func (b_ BADownload) CopyAsNonEssential() unsafe.Pointer {
 // The app-specific string that uniquely identifies the downloadable asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/identifier
-func (b_ BADownload) Identifier() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("identifier"))
+func (b_ BADownload) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -104,24 +105,24 @@ func (b_ BADownload) IsEssential() bool {
 // The download’s execution priority.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/priority-swift.property
-func (b_ BADownload) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("priority"))
+func (b_ BADownload) Priority() BADownloaderPriority {
+	rv := objc.Send[BADownloaderPriority](b_.ID, objc.Sel("priority"))
 	return rv
 }
 
 // The current state of the download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/state-swift.property
-func (b_ BADownload) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("state"))
+func (b_ BADownload) State() BADownloadState {
+	rv := objc.Send[BADownloadState](b_.ID, objc.Sel("state"))
 	return rv
 }
 
 // The system-provided string that uniquely identifies the download object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/uniqueIdentifier
-func (b_ BADownload) UniqueIdentifier() string {
-	rv := objc.Send[string](b_.ID, objc.Sel("uniqueIdentifier"))
+func (b_ BADownload) UniqueIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](b_.ID, objc.Sel("uniqueIdentifier"))
 	return rv
 }
 

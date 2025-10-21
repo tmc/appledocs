@@ -87,7 +87,7 @@ func (m_ MTROnOffClusterToggleParams) ServerSideProcessingTimeout() foundation.N
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclustertoggleparams/serversideprocessingtimeout
-func (m_ MTROnOffClusterToggleParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROnOffClusterToggleParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROnOffClusterToggleParams) TimedInvokeTimeoutMs() foundation.Number {
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtronoffclustertoggleparams/timedinvoketimeoutms
-func (m_ MTROnOffClusterToggleParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROnOffClusterToggleParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

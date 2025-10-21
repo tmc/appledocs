@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKDatabaseSubscription] class.
@@ -86,7 +87,7 @@ func NewCKDatabaseSubscription() CKDatabaseSubscription {
 // Creates a database subscription from a serialized instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseSubscription/init(coder:)
-func NewCKDatabaseSubscriptionWithCoder(aDecoder unsafe.Pointer) CKDatabaseSubscription {
+func NewCKDatabaseSubscriptionWithCoder(aDecoder foundation.ICoder) CKDatabaseSubscription {
 	instance := getCKDatabaseSubscriptionClass().Alloc()
 	rv := objc.Send[CKDatabaseSubscription](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
 	rv.Autorelease()
@@ -127,8 +128,8 @@ func (c_ CKDatabaseSubscription) SetRecordType(value unsafe.Pointer) {
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseSubscription) NotificationInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationInfo"))
+func (c_ CKDatabaseSubscription) NotificationInfo() CKNotificationInfo {
+	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
 }
 
@@ -138,7 +139,7 @@ func (c_ CKDatabaseSubscription) NotificationInfo() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseSubscription) SetNotificationInfo(value unsafe.Pointer) {
+func (c_ CKDatabaseSubscription) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
 }
 

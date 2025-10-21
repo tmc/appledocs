@@ -45,7 +45,7 @@ type IButtonCell interface {
 	SetAlternateTitleWithMnemonic(stringWithAmpersand string)
 	SetButtonType(type_ ButtonType)
 	SetKeyEquivalentFontSize(fontName string, fontSize float64)
-	SetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer)
+	SetPeriodicDelayInterval(delay float32, interval float32)
 	SetTitleWithMnemonic(stringWithAmpersand string)
 }
 
@@ -224,7 +224,7 @@ func (b_ ButtonCell) SetKeyEquivalentFontSize(fontName string, fontSize float64)
 // Sets the message delay and interval for the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/setPeriodicDelay(_:interval:)
-func (b_ ButtonCell) SetPeriodicDelayInterval(delay unsafe.Pointer, interval unsafe.Pointer) {
+func (b_ ButtonCell) SetPeriodicDelayInterval(delay float32, interval float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPeriodicDelay:interval:"), delay, interval)
 }
 
@@ -696,8 +696,8 @@ func (b_ ButtonCell) SetState(value unsafe.Pointer) {
 // The value of the receiver’s cell as a double-precision floating-point number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-func (b_ ButtonCell) DoubleValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("doubleValue"))
+func (b_ ButtonCell) DoubleValue() float64 {
+	rv := objc.Send[float64](b_.ID, objc.Sel("doubleValue"))
 	return rv
 }
 
@@ -707,7 +707,7 @@ func (b_ ButtonCell) DoubleValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/doublevalue
-func (b_ ButtonCell) SetDoubleValue(value unsafe.Pointer) {
+func (b_ ButtonCell) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDoubleValue:"), value)
 }
 

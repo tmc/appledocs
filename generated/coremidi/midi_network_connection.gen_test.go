@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = coremidi.NewMIDINetworkConnection
 
+// ExampleNewMIDINetworkConnectionWithHost demonstrates how to create a MIDINetworkConnection instance using NewMIDINetworkConnectionWithHost.
+// Creates a connection to the specified host.
+func ExampleNewMIDINetworkConnectionWithHost() {
+	_ = coremidi.NewMIDINetworkConnectionWithHost(
+		coremidi.MIDINetworkHost{}, // host MIDINetworkHost
+	)
+	// Output:
+}

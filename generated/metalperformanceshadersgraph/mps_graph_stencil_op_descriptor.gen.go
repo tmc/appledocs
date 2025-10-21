@@ -85,8 +85,8 @@ func NewGraphStencilOpDescriptor() GraphStencilOpDescriptor {
 // The property that determines which values to use for padding the input tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/boundaryMode
-func (g_ GraphStencilOpDescriptor) BoundaryMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("boundaryMode"))
+func (g_ GraphStencilOpDescriptor) BoundaryMode() GraphPaddingMode {
+	rv := objc.Send[GraphPaddingMode](g_.ID, objc.Sel("boundaryMode"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (g_ GraphStencilOpDescriptor) BoundaryMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphStencilOpDescriptor/boundaryMode
-func (g_ GraphStencilOpDescriptor) SetBoundaryMode(value unsafe.Pointer) {
+func (g_ GraphStencilOpDescriptor) SetBoundaryMode(value GraphPaddingMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBoundaryMode:"), value)
 }
 
@@ -150,7 +150,7 @@ func (g_ GraphStencilOpDescriptor) DilationRates() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/dilationrates
-func (g_ GraphStencilOpDescriptor) SetDilationRates(value foundation.Number) {
+func (g_ GraphStencilOpDescriptor) SetDilationRates(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRates:"), value)
 }
 
@@ -168,7 +168,7 @@ func (g_ GraphStencilOpDescriptor) ExplicitPadding() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/explicitpadding
-func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value foundation.Number) {
+func (g_ GraphStencilOpDescriptor) SetExplicitPadding(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExplicitPadding:"), value)
 }
 
@@ -186,15 +186,15 @@ func (g_ GraphStencilOpDescriptor) Offsets() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/offsets
-func (g_ GraphStencilOpDescriptor) SetOffsets(value foundation.Number) {
+func (g_ GraphStencilOpDescriptor) SetOffsets(value foundation.INumber) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOffsets:"), value)
 }
 
 // The property that defines what kind of padding to apply to the stencil operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
-func (g_ GraphStencilOpDescriptor) PaddingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("paddingStyle"))
+func (g_ GraphStencilOpDescriptor) PaddingStyle() GraphPaddingStyle {
+	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
 }
 
@@ -204,15 +204,15 @@ func (g_ GraphStencilOpDescriptor) PaddingStyle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/paddingstyle
-func (g_ GraphStencilOpDescriptor) SetPaddingStyle(value unsafe.Pointer) {
+func (g_ GraphStencilOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
 }
 
 // The reduction mode to use within the stencil window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
-func (g_ GraphStencilOpDescriptor) ReductionMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("reductionMode"))
+func (g_ GraphStencilOpDescriptor) ReductionMode() GraphReductionMode {
+	rv := objc.Send[GraphReductionMode](g_.ID, objc.Sel("reductionMode"))
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (g_ GraphStencilOpDescriptor) ReductionMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphstencilopdescriptor/reductionmode
-func (g_ GraphStencilOpDescriptor) SetReductionMode(value unsafe.Pointer) {
+func (g_ GraphStencilOpDescriptor) SetReductionMode(value GraphReductionMode) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReductionMode:"), value)
 }
 

@@ -102,7 +102,7 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) TimedIn
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

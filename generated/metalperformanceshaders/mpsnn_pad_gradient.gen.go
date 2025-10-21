@@ -77,7 +77,7 @@ func NewPadGradient() PadGradient {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient/init(device:)
-func NewPadGradientWithDevice(device objc.ID) PadGradient {
+func NewPadGradientWithDevice(device objectivec.IObject) PadGradient {
 	instance := getPadGradientClass().Alloc()
 	rv := objc.Send[PadGradient](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

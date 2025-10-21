@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,9 +83,9 @@ func NewMorphologyPronoun() MorphologyPronoun {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/initWithPronoun:morphology:dependentMorphology:
-func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string, morphology unsafe.Pointer, dependentMorphology unsafe.Pointer) MorphologyPronoun {
+func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun appkit.string, morphology IMorphology, dependentMorphology IMorphology) MorphologyPronoun {
 	instance := getMorphologyPronounClass().Alloc()
-	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), objc.String(pronoun), morphology, dependentMorphology)
+	rv := objc.Send[MorphologyPronoun](instance.ID, objc.Sel("initWithPronoun:morphology:dependentMorphology:"), pronoun, morphology, dependentMorphology)
 	rv.Autorelease()
 	return rv
 }
@@ -92,8 +93,8 @@ func NewMorphologyPronounWithPronounMorphologyDependentMorphology(pronoun string
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyPronoun/morphology
-func (m_ MorphologyPronoun) Morphology() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("morphology"))
+func (m_ MorphologyPronoun) Morphology() NSMorphology {
+	rv := objc.Send[NSMorphology](m_.ID, objc.Sel("morphology"))
 	return rv
 }
 

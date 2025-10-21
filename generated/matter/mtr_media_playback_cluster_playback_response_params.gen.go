@@ -78,8 +78,8 @@ func NewMTRMediaPlaybackClusterPlaybackResponseParams() MTRMediaPlaybackClusterP
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() foundation.Numb
 // SetStatus sets the value of the status property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
-func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

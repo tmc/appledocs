@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SQuantityItem] class.
@@ -86,9 +87,9 @@ func NewSQuantityItem() SQuantityItem {
 // Initializes an activity item that records a discrete quantity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSQuantityItem/init(identifier:title:)
-func NewSQuantityItemWithIdentifierTitle(identifier string, title string) SQuantityItem {
+func NewSQuantityItemWithIdentifierTitle(identifier appkit.string, title appkit.string) SQuantityItem {
 	instance := getSQuantityItemClass().Alloc()
-	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), objc.String(identifier), objc.String(title))
+	rv := objc.Send[SQuantityItem](instance.ID, objc.Sel("initWithIdentifier:title:"), identifier, title)
 	rv.Autorelease()
 	return rv
 }

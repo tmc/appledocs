@@ -90,7 +90,7 @@ func (m_ MTRDeviceEnergyManagementClusterCancelRequestParams) ServerSideProcessi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelRequestParams/serverSideProcessingTimeout
-func (m_ MTRDeviceEnergyManagementClusterCancelRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterCancelRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRDeviceEnergyManagementClusterCancelRequestParams) TimedInvokeTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterCancelRequestParams/timedInvokeTimeoutMs
-func (m_ MTRDeviceEnergyManagementClusterCancelRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterCancelRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

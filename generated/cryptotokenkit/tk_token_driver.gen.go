@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -101,8 +102,8 @@ func (t_ TKTokenDriver) SetDelegate(value objc.ID) {
 // Additional configuration information for the token instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-func (t_ TKTokenDriver) ConfigurationData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("configurationData"))
+func (t_ TKTokenDriver) ConfigurationData() foundation.Data {
+	rv := objc.Send[foundation.Data](t_.ID, objc.Sel("configurationData"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (t_ TKTokenDriver) ConfigurationData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata
-func (t_ TKTokenDriver) SetConfigurationData(value unsafe.Pointer) {
+func (t_ TKTokenDriver) SetConfigurationData(value foundation.IData) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setConfigurationData:"), value)
 }
 

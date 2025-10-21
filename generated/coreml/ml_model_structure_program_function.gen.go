@@ -81,8 +81,8 @@ func NewModelStructureProgramFunction() ModelStructureProgramFunction {
 // The active block in the function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelStructureProgramFunction/block
-func (m_ ModelStructureProgramFunction) Block() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("block"))
+func (m_ ModelStructureProgramFunction) Block() MLModelStructureProgramBlock {
+	rv := objc.Send[MLModelStructureProgramBlock](m_.ID, objc.Sel("block"))
 	return rv
 }
 

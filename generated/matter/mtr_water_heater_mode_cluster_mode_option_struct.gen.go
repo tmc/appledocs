@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRWaterHeaterModeClusterModeOptionStruct() MTRWaterHeaterModeClusterMod
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/label
-func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/label
-func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,14 +103,14 @@ func (m_ MTRWaterHeaterModeClusterModeOptionStruct) Mode() foundation.Number {
 // SetMode sets the value of the mode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/mode
-func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetMode(value foundation.Number) {
+func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/modeTags
-func (m_ MTRWaterHeaterModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modeTags"))
+func (m_ MTRWaterHeaterModeClusterModeOptionStruct) ModeTags() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("modeTags"))
 	return rv
 }
 
@@ -117,7 +118,7 @@ func (m_ MTRWaterHeaterModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 // SetModeTags sets the value of the modeTags property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRWaterHeaterModeClusterModeOptionStruct/modeTags
-func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
+func (m_ MTRWaterHeaterModeClusterModeOptionStruct) SetModeTags(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
 

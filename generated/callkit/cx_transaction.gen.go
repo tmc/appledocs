@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _CXTransactionClass struct {
 // An interface definition for the [CXTransaction] class.
 type ICXTransaction interface {
 	objectivec.IObject
-	AddAction(action unsafe.Pointer)
+	AddAction(action ICXAction)
 }
 
 // An object that contains zero or more action objects for a call controller to perform.
@@ -84,7 +85,7 @@ func NewCXTransaction() CXTransaction {
 // Initializes a new transaction with the specified action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(action:)
-func NewCXTransactionWithAction(action unsafe.Pointer) CXTransaction {
+func NewCXTransactionWithAction(action ICXAction) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithAction:"), action)
 	rv.Autorelease()
@@ -96,7 +97,7 @@ func NewCXTransactionWithAction(action unsafe.Pointer) CXTransaction {
 // Initializes a new transaction with the specified actions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/init(actions:)
-func NewCXTransactionWithActions(actions unsafe.Pointer) CXTransaction {
+func NewCXTransactionWithActions(actions []CXAction) CXTransaction {
 	instance := getCXTransactionClass().Alloc()
 	rv := objc.Send[CXTransaction](instance.ID, objc.Sel("initWithActions:"), actions)
 	rv.Autorelease()
@@ -107,7 +108,7 @@ func NewCXTransactionWithActions(actions unsafe.Pointer) CXTransaction {
 // Adds the specified action to the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/addAction(_:)
-func (c_ CXTransaction) AddAction(action unsafe.Pointer) {
+func (c_ CXTransaction) AddAction(action ICXAction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addAction:"), action)
 }
 
@@ -130,8 +131,8 @@ func (c_ CXTransaction) Complete() bool {
 // The unique identifier of the transaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/uuid
-func (c_ CXTransaction) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("UUID"))
+func (c_ CXTransaction) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }
 

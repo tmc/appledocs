@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,8 +81,8 @@ func NewPublicKeyCredentialClientData() PublicKeyCredentialClientData {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/crossOrigin
-func (p_ PublicKeyCredentialClientData) CrossOrigin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("crossOrigin"))
+func (p_ PublicKeyCredentialClientData) CrossOrigin() PublicKeyCredentialClientDataCrossOriginValue {
+	rv := objc.Send[PublicKeyCredentialClientDataCrossOriginValue](p_.ID, objc.Sel("crossOrigin"))
 	return rv
 }
 
@@ -89,14 +90,14 @@ func (p_ PublicKeyCredentialClientData) CrossOrigin() unsafe.Pointer {
 // SetCrossOrigin sets the value of the crossOrigin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/crossOrigin
-func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value unsafe.Pointer) {
+func (p_ PublicKeyCredentialClientData) SetCrossOrigin(value IPublicKeyCredentialClientDataCrossOriginValue) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCrossOrigin:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) Origin() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("origin"))
+func (p_ PublicKeyCredentialClientData) Origin() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("origin"))
 	return rv
 }
 
@@ -104,8 +105,8 @@ func (p_ PublicKeyCredentialClientData) Origin() string {
 // SetOrigin sets the value of the origin property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPublicKeyCredentialClientData-c.class/origin
-func (p_ PublicKeyCredentialClientData) SetOrigin(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), objc.String(value))
+func (p_ PublicKeyCredentialClientData) SetOrigin(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOrigin:"), value)
 }
 
 

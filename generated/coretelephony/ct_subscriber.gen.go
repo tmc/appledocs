@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -99,8 +100,8 @@ func (s_ Subscriber) SetDelegate(value objc.ID) {
 // A data object containing authorization information about the subscriber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) CarrierToken() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("carrierToken"))
+func (s_ Subscriber) CarrierToken() foundation.Data {
+	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (s_ Subscriber) CarrierToken() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) SetCarrierToken(value unsafe.Pointer) {
+func (s_ Subscriber) SetCarrierToken(value foundation.IData) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
 }
 
 // An implementation-defined identifier used to correlate this subscriber with information vended by other APIs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ Subscriber) Identifier() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("identifier"))
+func (s_ Subscriber) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -128,8 +129,8 @@ func (s_ Subscriber) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier
-func (s_ Subscriber) SetIdentifier(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (s_ Subscriber) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // A Boolean property that indicates whether a SIM is present.
@@ -153,8 +154,8 @@ func (s_ Subscriber) SetIsSIMInserted(value bool) {
 // The name of the notification indicating that the carrier token is available.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscribertokenrefreshed
-func (s_ Subscriber) CTSubscriberTokenRefreshed() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
+func (s_ Subscriber) CTSubscriberTokenRefreshed() appkit.string {
+	rv := objc.Send[appkit.string](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv
 }
 

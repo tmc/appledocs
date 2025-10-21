@@ -29,8 +29,8 @@ type _HumanBodyPoseObservationClass struct {
 // An interface definition for the [HumanBodyPoseObservation] class.
 type IHumanBodyPoseObservation interface {
 	IRecognizedPointsObservation
-	RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
-	RecognizedPointsForJointsGroupNameError(jointsGroupName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer
+	RecognizedPointForJointNameError(jointName IHumanBodyPoseObservationJointName, error_ unsafe.Pointer) RecognizedPoint
+	RecognizedPointsForJointsGroupNameError(jointsGroupName IHumanBodyPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer
 }
 
 // An observation that provides the body points the analysis recognized.
@@ -84,15 +84,15 @@ func NewHumanBodyPoseObservation() HumanBodyPoseObservation {
 // Retrieves the recognized point for a joint name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPoseObservation/recognizedPoint(_:)
-func (h_ HumanBodyPoseObservation) RecognizedPointForJointNameError(jointName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
+func (h_ HumanBodyPoseObservation) RecognizedPointForJointNameError(jointName IHumanBodyPoseObservationJointName, error_ unsafe.Pointer) RecognizedPoint {
+	rv := objc.Send[RecognizedPoint](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
 	return rv
 }
 
 // Retrieves the recognized points associated with the joint group name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPoseObservation/recognizedPoints(_:)
-func (h_ HumanBodyPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName unsafe.Pointer, error_ unsafe.Pointer) unsafe.Pointer {
+func (h_ HumanBodyPoseObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName IHumanBodyPoseObservationJointsGroupName, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
 	return rv
 }

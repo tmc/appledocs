@@ -90,7 +90,7 @@ func (m_ MTRMediaPlaybackClusterDeactivateTextTrackParams) ServerSideProcessingT
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterDeactivateTextTrackParams/serverSideProcessingTimeout
-func (m_ MTRMediaPlaybackClusterDeactivateTextTrackParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterDeactivateTextTrackParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,7 +108,7 @@ func (m_ MTRMediaPlaybackClusterDeactivateTextTrackParams) TimedInvokeTimeoutMs(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterDeactivateTextTrackParams/timedInvokeTimeoutMs
-func (m_ MTRMediaPlaybackClusterDeactivateTextTrackParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaPlaybackClusterDeactivateTextTrackParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +84,16 @@ func NewTransaction() Transaction {
 // Returns the animation duration used by all animations within this transaction group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/animationDuration()
-func (tc _TransactionClass) AnimationDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("animationDuration"))
+func (tc _TransactionClass) AnimationDuration() TimeInterval {
+	rv := objc.Send[TimeInterval](objc.ID(tc.class), objc.Sel("animationDuration"))
 	return rv
 }
 
 // Returns the timing function used for all animations within this transaction group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/animationTimingFunction()
-func (tc _TransactionClass) AnimationTimingFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("animationTimingFunction"))
+func (tc _TransactionClass) AnimationTimingFunction() MediaTimingFunction {
+	rv := objc.Send[MediaTimingFunction](objc.ID(tc.class), objc.Sel("animationTimingFunction"))
 	return rv
 }
 
@@ -142,14 +143,14 @@ func (tc _TransactionClass) Lock() {
 // Sets the animation duration used by all animations within this transaction group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/setAnimationDuration(_:)
-func (tc _TransactionClass) SetAnimationDuration(dur unsafe.Pointer) {
+func (tc _TransactionClass) SetAnimationDuration(dur ITimeInterval) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setAnimationDuration:"), dur)
 }
 
 // Sets the timing function used for all animations within this transaction group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/setAnimationTimingFunction(_:)
-func (tc _TransactionClass) SetAnimationTimingFunction(function unsafe.Pointer) {
+func (tc _TransactionClass) SetAnimationTimingFunction(function IMediaTimingFunction) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setAnimationTimingFunction:"), function)
 }
 
@@ -170,8 +171,8 @@ func (tc _TransactionClass) SetDisableActions(flag bool) {
 // Sets the arbitrary keyed-data for the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/setValue(_:forKey:)
-func (tc _TransactionClass) SetValueForKey(anObject objc.ID, key string) {
-	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, objc.String(key))
+func (tc _TransactionClass) SetValueForKey(anObject objectivec.IObject, key appkit.string) {
+	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("setValue:forKey:"), anObject, key)
 }
 
 // Relinquishes a previously acquired transaction lock.
@@ -184,8 +185,8 @@ func (tc _TransactionClass) Unlock() {
 // Returns the arbitrary keyed-data specified by the given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATransaction/value(forKey:)
-func (tc _TransactionClass) ValueForKey(key string) objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("valueForKey:"), objc.String(key))
+func (tc _TransactionClass) ValueForKey(key appkit.string) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("valueForKey:"), key)
 	return rv
 }
 

@@ -18,8 +18,6 @@ type VNElementType unsafe.Pointer
 
 type VNFaceLandmarks2D unsafe.Pointer
 
-type VNRectangleObservation unsafe.Pointer
-
 type VNRequestCompletionHandler unsafe.Pointer
 
 type VNRequestFaceLandmarksConstellation unsafe.Pointer

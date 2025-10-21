@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayLUTDequantize] class.
@@ -78,7 +79,7 @@ func NewNDArrayLUTDequantize() NDArrayLUTDequantize {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayLUTDequantize/init(device:)
-func NewNDArrayLUTDequantizeWithDevice(device objc.ID) NDArrayLUTDequantize {
+func NewNDArrayLUTDequantizeWithDevice(device objectivec.IObject) NDArrayLUTDequantize {
 	instance := getNDArrayLUTDequantizeClass().Alloc()
 	rv := objc.Send[NDArrayLUTDequantize](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()

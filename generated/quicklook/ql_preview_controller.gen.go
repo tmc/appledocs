@@ -31,6 +31,7 @@ type _PreviewControllerClass struct {
 type IPreviewController interface {
 	appkit.IViewController
 	RefreshCurrentPreviewItem()
+	ReloadData()
 }
 
 // A specialized view controller for previewing an item.
@@ -88,6 +89,13 @@ func NewPreviewController() PreviewController {
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController/refreshCurrentPreviewItem()
 func (p_ PreviewController) RefreshCurrentPreviewItem() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("refreshCurrentPreviewItem"))
+}
+
+// Asks the preview controller to reload its data from its data source.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController/reloadData()
+func (p_ PreviewController) ReloadData() {
+	objc.Send[objc.ID](p_.ID, objc.Sel("reloadData"))
 }
 
 // The item displaying in the Quick Look preview controller.
@@ -154,8 +162,8 @@ func (p_ PreviewController) SetDelegate(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
-func (p_ PreviewController) PreviewItemTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("previewItemTitle"))
+func (p_ PreviewController) PreviewItemTitle() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("previewItemTitle"))
 	return rv
 }
 
@@ -163,8 +171,8 @@ func (p_ PreviewController) PreviewItemTitle() string {
 // SetPreviewItemTitle sets the value of the previewItemTitle property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
-func (p_ PreviewController) SetPreviewItemTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItemTitle:"), objc.String(value))
+func (p_ PreviewController) SetPreviewItemTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItemTitle:"), value)
 }
 
 

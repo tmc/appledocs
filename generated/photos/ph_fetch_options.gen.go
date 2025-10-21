@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -119,8 +120,8 @@ func (p_ PHFetchOptions) SetIncludeAllBurstAssets(value bool) {
 // The set of source types for which to include assets in the fetch result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/includeAssetSourceTypes
-func (p_ PHFetchOptions) IncludeAssetSourceTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("includeAssetSourceTypes"))
+func (p_ PHFetchOptions) IncludeAssetSourceTypes() PHAssetSourceType {
+	rv := objc.Send[PHAssetSourceType](p_.ID, objc.Sel("includeAssetSourceTypes"))
 	return rv
 }
 
@@ -130,7 +131,7 @@ func (p_ PHFetchOptions) IncludeAssetSourceTypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/includeAssetSourceTypes
-func (p_ PHFetchOptions) SetIncludeAssetSourceTypes(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetIncludeAssetSourceTypes(value PHAssetSourceType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIncludeAssetSourceTypes:"), value)
 }
 
@@ -155,8 +156,8 @@ func (p_ PHFetchOptions) SetIncludeHiddenAssets(value bool) {
 // A predicate that specifies which properties to select results by and that also specifies any constraints on selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/predicate
-func (p_ PHFetchOptions) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("predicate"))
+func (p_ PHFetchOptions) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -166,15 +167,15 @@ func (p_ PHFetchOptions) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/predicate
-func (p_ PHFetchOptions) SetPredicate(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // A list of sort descriptors, specifying an order for the fetched objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
-func (p_ PHFetchOptions) SortDescriptors() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("sortDescriptors"))
+func (p_ PHFetchOptions) SortDescriptors() []foundation.SortDescriptor {
+	rv := objc.Send[[]foundation.SortDescriptor](p_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -184,7 +185,7 @@ func (p_ PHFetchOptions) SortDescriptors() []unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
-func (p_ PHFetchOptions) SetSortDescriptors(value []unsafe.Pointer) {
+func (p_ PHFetchOptions) SetSortDescriptors(value []foundation.ISortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -219,8 +220,8 @@ func (p_ PHFetchOptions) SetWantsIncrementalChangeDetails(value bool) {
 // The unique identifier shared by photo assets from the same burst sequence.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
-func (p_ PHFetchOptions) BurstIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("burstIdentifier"))
+func (p_ PHFetchOptions) BurstIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("burstIdentifier"))
 	return rv
 }
 
@@ -230,15 +231,15 @@ func (p_ PHFetchOptions) BurstIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/burstidentifier
-func (p_ PHFetchOptions) SetBurstIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBurstIdentifier:"), objc.String(value))
+func (p_ PHFetchOptions) SetBurstIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setBurstIdentifier:"), value)
 }
 
 // The date and time of the asset’s creation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/creationdate
-func (p_ PHFetchOptions) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("creationDate"))
+func (p_ PHFetchOptions) CreationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -248,7 +249,7 @@ func (p_ PHFetchOptions) CreationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/creationdate
-func (p_ PHFetchOptions) SetCreationDate(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetCreationDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
 }
 
@@ -309,8 +310,8 @@ func (p_ PHFetchOptions) SetIsHidden(value bool) {
 // The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediasubtypes
-func (p_ PHFetchOptions) MediaSubtypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaSubtypes"))
+func (p_ PHFetchOptions) MediaSubtypes() PHAssetMediaSubtype {
+	rv := objc.Send[PHAssetMediaSubtype](p_.ID, objc.Sel("mediaSubtypes"))
 	return rv
 }
 
@@ -320,15 +321,15 @@ func (p_ PHFetchOptions) MediaSubtypes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediasubtypes
-func (p_ PHFetchOptions) SetMediaSubtypes(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetMediaSubtypes(value IPHAssetMediaSubtype) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaSubtypes:"), value)
 }
 
 // The type of the asset, such as video or audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediatype
-func (p_ PHFetchOptions) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("mediaType"))
+func (p_ PHFetchOptions) MediaType() PHAssetMediaType {
+	rv := objc.Send[PHAssetMediaType](p_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
@@ -338,15 +339,15 @@ func (p_ PHFetchOptions) MediaType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/mediatype
-func (p_ PHFetchOptions) SetMediaType(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetMediaType(value PHAssetMediaType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaType:"), value)
 }
 
 // The date and time of the asset’s last modification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/modificationdate
-func (p_ PHFetchOptions) ModificationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modificationDate"))
+func (p_ PHFetchOptions) ModificationDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("modificationDate"))
 	return rv
 }
 
@@ -356,7 +357,7 @@ func (p_ PHFetchOptions) ModificationDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phasset/modificationdate
-func (p_ PHFetchOptions) SetModificationDate(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetModificationDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setModificationDate:"), value)
 }
 
@@ -399,8 +400,8 @@ func (p_ PHFetchOptions) SetPixelWidth(value int) {
 // The latest creation date among all assets in the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/enddate
-func (p_ PHFetchOptions) EndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endDate"))
+func (p_ PHFetchOptions) EndDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("endDate"))
 	return rv
 }
 
@@ -410,7 +411,7 @@ func (p_ PHFetchOptions) EndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/enddate
-func (p_ PHFetchOptions) SetEndDate(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
 
@@ -435,8 +436,8 @@ func (p_ PHFetchOptions) SetEstimatedAssetCount(value int) {
 // The earliest creation date among all assets in the asset collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/startdate
-func (p_ PHFetchOptions) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("startDate"))
+func (p_ PHFetchOptions) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -446,15 +447,15 @@ func (p_ PHFetchOptions) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phassetcollection/startdate
-func (p_ PHFetchOptions) SetStartDate(value unsafe.Pointer) {
+func (p_ PHFetchOptions) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
 
 // The localized name of the collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
-func (p_ PHFetchOptions) LocalizedTitle() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localizedTitle"))
+func (p_ PHFetchOptions) LocalizedTitle() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
 
@@ -464,15 +465,15 @@ func (p_ PHFetchOptions) LocalizedTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcollection/localizedtitle
-func (p_ PHFetchOptions) SetLocalizedTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), objc.String(value))
+func (p_ PHFetchOptions) SetLocalizedTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedTitle:"), value)
 }
 
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchOptions) LocalIdentifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("localIdentifier"))
+func (p_ PHFetchOptions) LocalIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
 
@@ -482,8 +483,8 @@ func (p_ PHFetchOptions) LocalIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phobject/localidentifier
-func (p_ PHFetchOptions) SetLocalIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), objc.String(value))
+func (p_ PHFetchOptions) SetLocalIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
 }
 
 

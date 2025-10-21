@@ -88,7 +88,7 @@ func (m_ MTRAttributePath) Attribute() foundation.Number {
 // SetAttribute sets the value of the attribute property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrattributepath/attribute
-func (m_ MTRAttributePath) SetAttribute(value foundation.Number) {
+func (m_ MTRAttributePath) SetAttribute(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttribute:"), value)
 }
 

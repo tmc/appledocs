@@ -87,7 +87,7 @@ func (m_ MTRDataTypeAtomicAttributeStatusStruct) AttributeID() foundation.Number
 // SetAttributeID sets the value of the attributeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/attributeID
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value foundation.Number) {
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetAttributeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDataTypeAtomicAttributeStatusStruct) StatusCode() foundation.Number 
 // SetStatusCode sets the value of the statusCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDataTypeAtomicAttributeStatusStruct/statusCode
-func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value foundation.Number) {
+func (m_ MTRDataTypeAtomicAttributeStatusStruct) SetStatusCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusCode:"), value)
 }
 

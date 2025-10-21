@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -88,8 +89,8 @@ func NewINImage() INImage {
 // Creates an image object from an image file in the extension’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
-func NewINImageNamed(name string) INImage {
-	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageNamed:"), objc.String(name))
+func NewINImageNamed(name appkit.string) INImage {
+	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageNamed:"), name)
 	return rv
 }
 
@@ -98,7 +99,7 @@ func NewINImageNamed(name string) INImage {
 // Creates an image object from the specified Core Graphics image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(CGImage:)
-func NewINImageWithCGImage(imageRef CGImageRef) INImage {
+func NewINImageWithCGImage(imageRef coregraphics.CGImageRef) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithCGImage:"), imageRef)
 	return rv
 }
@@ -108,14 +109,14 @@ func NewINImageWithCGImage(imageRef CGImageRef) INImage {
 // Creates an image object from the specified data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(imageData:)
-func NewINImageWithImageData(imageData unsafe.Pointer) INImage {
+func NewINImageWithImageData(imageData foundation.IData) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithImageData:"), imageData)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(NSImage:)
-func NewINImageWithNSImage(image unsafe.Pointer) INImage {
+func NewINImageWithNSImage(image appkit.IImage) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithNSImage:"), image)
 	return rv
 }
@@ -125,7 +126,7 @@ func NewINImageWithNSImage(image unsafe.Pointer) INImage {
 // Creates an image object from the specified UIKit image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
-func NewINImageWithUIImage(image unsafe.Pointer) INImage {
+func NewINImageWithUIImage(image appkit.IImage) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithUIImage:"), image)
 	return rv
 }
@@ -135,7 +136,7 @@ func NewINImageWithUIImage(image unsafe.Pointer) INImage {
 // Creates an image object from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
-func NewINImageWithURL(URL foundation.URL) INImage {
+func NewINImageWithURL(URL foundation.IURL) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:"), URL)
 	return rv
 }
@@ -145,7 +146,7 @@ func NewINImageWithURL(URL foundation.URL) INImage {
 // Creates an image object, of the specified size, from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
-func NewINImageWithURLWidthHeight(URL foundation.URL, width unsafe.Pointer, height unsafe.Pointer) INImage {
+func NewINImageWithURLWidthHeight(URL foundation.IURL, width unsafe.Pointer, height unsafe.Pointer) INImage {
 	rv := objc.Send[INImage](objc.ID(getINImageClass().class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
 	return rv
 }
@@ -154,7 +155,7 @@ func NewINImageWithURLWidthHeight(URL foundation.URL, width unsafe.Pointer, heig
 // Returns the preferred image size for the specified response object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/imageSize(for:)
-func (ic _INImageClass) ImageSizeForIntentResponse(response unsafe.Pointer) coregraphics.CGSize {
+func (ic _INImageClass) ImageSizeForIntentResponse(response INIntentResponse) coregraphics.CGSize {
 	rv := objc.Send[coregraphics.CGSize](objc.ID(ic.class), objc.Sel("imageSizeForIntentResponse:"), response)
 	return rv
 }
@@ -162,14 +163,14 @@ func (ic _INImageClass) ImageSizeForIntentResponse(response unsafe.Pointer) core
 // Creates an image object from the specified Core Graphics image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(CGImage:)
-func (ic _INImageClass) ImageWithCGImage(imageRef CGImageRef) unsafe.Pointer {
+func (ic _INImageClass) ImageWithCGImage(imageRef coregraphics.CGImageRef) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithCGImage:"), imageRef)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(NSImage:)
-func (ic _INImageClass) ImageWithNSImage(image unsafe.Pointer) unsafe.Pointer {
+func (ic _INImageClass) ImageWithNSImage(image appkit.IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithNSImage:"), image)
 	return rv
 }
@@ -177,7 +178,7 @@ func (ic _INImageClass) ImageWithNSImage(image unsafe.Pointer) unsafe.Pointer {
 // Creates an image object from the specified UIKit image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(UIImage:)
-func (ic _INImageClass) ImageWithUIImage(image unsafe.Pointer) unsafe.Pointer {
+func (ic _INImageClass) ImageWithUIImage(image appkit.IImage) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithUIImage:"), image)
 	return rv
 }
@@ -185,7 +186,7 @@ func (ic _INImageClass) ImageWithUIImage(image unsafe.Pointer) unsafe.Pointer {
 // Creates an image object from the specified data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(imageData:)
-func (ic _INImageClass) ImageWithImageData(imageData unsafe.Pointer) unsafe.Pointer {
+func (ic _INImageClass) ImageWithImageData(imageData foundation.IData) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithImageData:"), imageData)
 	return rv
 }
@@ -193,15 +194,15 @@ func (ic _INImageClass) ImageWithImageData(imageData unsafe.Pointer) unsafe.Poin
 // Creates an image object from an image file in the extension’s bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(named:)
-func (ic _INImageClass) ImageNamed(name string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageNamed:"), objc.String(name))
+func (ic _INImageClass) ImageNamed(name appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageNamed:"), name)
 	return rv
 }
 
 // Creates an image object from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:)
-func (ic _INImageClass) ImageWithURL(URL foundation.URL) unsafe.Pointer {
+func (ic _INImageClass) ImageWithURL(URL foundation.IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithURL:"), URL)
 	return rv
 }
@@ -209,7 +210,7 @@ func (ic _INImageClass) ImageWithURL(URL foundation.URL) unsafe.Pointer {
 // Creates an image object, of the specified size, from an image file in the local file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/init(url:width:height:)
-func (ic _INImageClass) ImageWithURLWidthHeight(URL foundation.URL, width unsafe.Pointer, height unsafe.Pointer) unsafe.Pointer {
+func (ic _INImageClass) ImageWithURLWidthHeight(URL foundation.IURL, width unsafe.Pointer, height unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("imageWithURL:width:height:"), URL, width, height)
 	return rv
 }
@@ -217,8 +218,8 @@ func (ic _INImageClass) ImageWithURLWidthHeight(URL foundation.URL, width unsafe
 // Returns an image object that contains the specified system symbol image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INImage/systemImageNamed(_:)
-func (ic _INImageClass) SystemImageNamed(systemImageName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("systemImageNamed:"), objc.String(systemImageName))
+func (ic _INImageClass) SystemImageNamed(systemImageName appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("systemImageNamed:"), systemImageName)
 	return rv
 }
 

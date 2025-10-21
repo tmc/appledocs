@@ -85,7 +85,7 @@ func NewFSVolume() FSVolume {
 // Creates a volume with the given identifier and name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/init(volumeID:volumeName:)
-func NewFSVolumeWithVolumeIDVolumeName(volumeID unsafe.Pointer, volumeName unsafe.Pointer) FSVolume {
+func NewFSVolumeWithVolumeIDVolumeName(volumeID IFSVolumeIdentifier, volumeName IFSFileName) FSVolume {
 	instance := getFSVolumeClass().Alloc()
 	rv := objc.Send[FSVolume](instance.ID, objc.Sel("initWithVolumeID:volumeName:"), volumeID, volumeName)
 	rv.Autorelease()
@@ -96,8 +96,8 @@ func NewFSVolumeWithVolumeIDVolumeName(volumeID unsafe.Pointer, volumeName unsaf
 // The name of the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/name
-func (f_ FSVolume) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("name"))
+func (f_ FSVolume) Name() FSFileName {
+	rv := objc.Send[FSFileName](f_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -107,15 +107,15 @@ func (f_ FSVolume) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/name
-func (f_ FSVolume) SetName(value unsafe.Pointer) {
+func (f_ FSVolume) SetName(value IFSFileName) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
 
 // An identifier that uniquely identifies the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSVolume/volumeID
-func (f_ FSVolume) VolumeID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("volumeID"))
+func (f_ FSVolume) VolumeID() FSVolumeIdentifier {
+	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeID"))
 	return rv
 }
 

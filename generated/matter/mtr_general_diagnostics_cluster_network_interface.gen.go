@@ -78,8 +78,8 @@ func NewMTRGeneralDiagnosticsClusterNetworkInterface() MTRGeneralDiagnosticsClus
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/hardwareaddress
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) HardwareAddress() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("hardwareAddress"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) HardwareAddress() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("hardwareAddress"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) HardwareAddress() unsafe.
 // SetHardwareAddress sets the value of the hardwareAddress property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/hardwareaddress
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetHardwareAddress(value unsafe.Pointer) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetHardwareAddress(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHardwareAddress:"), value)
 }
 
@@ -132,14 +132,14 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) IsOperational() foundatio
 // SetIsOperational sets the value of the isOperational property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/isoperational
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetIsOperational(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetIsOperational(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsOperational:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/name
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/name
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
@@ -162,7 +162,7 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) OffPremiseServicesReachab
 // SetOffPremiseServicesReachableIPv4 sets the value of the offPremiseServicesReachableIPv4 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/offpremiseservicesreachableipv4
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetOffPremiseServicesReachableIPv4(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetOffPremiseServicesReachableIPv4(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv4:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) OffPremiseServicesReachab
 // SetOffPremiseServicesReachableIPv6 sets the value of the offPremiseServicesReachableIPv6 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/offpremiseservicesreachableipv6
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetOffPremiseServicesReachableIPv6(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetOffPremiseServicesReachableIPv6(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv6:"), value)
 }
 
@@ -192,7 +192,7 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) Type() foundation.Number 
 // SetType sets the value of the type property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterface/type
-func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetType(value foundation.Number) {
+func (m_ MTRGeneralDiagnosticsClusterNetworkInterface) SetType(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
 

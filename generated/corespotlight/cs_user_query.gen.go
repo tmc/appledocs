@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [CSUserQuery] class.
@@ -31,8 +32,8 @@ type ICSUserQuery interface {
 	ICSSearchQuery
 	Cancel()
 	Start()
-	UserEngagedWithItemVisibleItemsUserInteractionType(item unsafe.Pointer, visibleItems unsafe.Pointer, userInteractionType unsafe.Pointer)
-	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion unsafe.Pointer, visibleSuggestions unsafe.Pointer, userInteractionType unsafe.Pointer)
+	UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem, userInteractionType ICSUserInteraction)
+	UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion, userInteractionType ICSUserInteraction)
 }
 
 // A type you use to initiate searches from your interface and offer suggested text completions.
@@ -90,9 +91,9 @@ func NewCSUserQuery() CSUserQuery {
 // Creates a new user query that searches for the specified term.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/init(userQueryString:userQueryContext:)
-func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString string, userQueryContext unsafe.Pointer) CSUserQuery {
+func NewCSUserQueryWithUserQueryStringUserQueryContext(userQueryString appkit.string, userQueryContext ICSUserQueryContext) CSUserQuery {
 	instance := getCSUserQueryClass().Alloc()
-	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), objc.String(userQueryString), userQueryContext)
+	rv := objc.Send[CSUserQuery](instance.ID, objc.Sel("initWithUserQueryString:userQueryContext:"), userQueryString, userQueryContext)
 	rv.Autorelease()
 	return rv
 }
@@ -108,7 +109,7 @@ func (cc _CSUserQueryClass) Prepare() {
 // Performs one-time tasks that prepare Spotlight to search for content in one or more protected search indexes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/prepareProtectionClasses(_:)
-func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses unsafe.Pointer) {
+func (cc _CSUserQueryClass) PrepareProtectionClasses(protectionClasses []string) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("prepareProtectionClasses:"), protectionClasses)
 }
 
@@ -128,13 +129,13 @@ func (c_ CSUserQuery) Start() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithItem:visibleItems:userInteractionType:
-func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item unsafe.Pointer, visibleItems unsafe.Pointer, userInteractionType unsafe.Pointer) {
+func (c_ CSUserQuery) UserEngagedWithItemVisibleItemsUserInteractionType(item ICSSearchableItem, visibleItems []CSSearchableItem, userInteractionType ICSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithItem:visibleItems:userInteractionType:"), item, visibleItems, userInteractionType)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/userEngagedWithSuggestion:visibleSuggestions:userInteractionType:
-func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion unsafe.Pointer, visibleSuggestions unsafe.Pointer, userInteractionType unsafe.Pointer) {
+func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteractionType(suggestion ICSSuggestion, visibleSuggestions []CSSuggestion, userInteractionType ICSUserInteraction) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("userEngagedWithSuggestion:visibleSuggestions:userInteractionType:"), suggestion, visibleSuggestions, userInteractionType)
 }
 
@@ -144,6 +145,24 @@ func (c_ CSUserQuery) UserEngagedWithSuggestionVisibleSuggestionsUserInteraction
 func (c_ CSUserQuery) FoundSuggestionCount() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("foundSuggestionCount"))
 	return rv
+}
+
+// The block to execute when the query delivers a new batch of suggested items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler
+func (c_ CSUserQuery) FoundSuggestionsHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("foundSuggestionsHandler"))
+	return rv
+}
+
+
+// SetFoundSuggestionsHandler sets the value of the foundSuggestionsHandler property.
+// The block to execute when the query delivers a new batch of suggested items.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQuery/foundSuggestionsHandler
+func (c_ CSUserQuery) SetFoundSuggestionsHandler(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFoundSuggestionsHandler:"), value)
 }
 
 // The block to execute when the query delivers a new batch of matching items.

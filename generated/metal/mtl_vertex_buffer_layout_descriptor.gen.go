@@ -81,8 +81,8 @@ func NewVertexBufferLayoutDescriptor() VertexBufferLayoutDescriptor {
 // The circumstances under which the vertex and its attributes are presented to the vertex function.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor/stepFunction
-func (v_ VertexBufferLayoutDescriptor) StepFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("stepFunction"))
+func (v_ VertexBufferLayoutDescriptor) StepFunction() VertexStepFunction {
+	rv := objc.Send[VertexStepFunction](v_.ID, objc.Sel("stepFunction"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (v_ VertexBufferLayoutDescriptor) StepFunction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexBufferLayoutDescriptor/stepFunction
-func (v_ VertexBufferLayoutDescriptor) SetStepFunction(value unsafe.Pointer) {
+func (v_ VertexBufferLayoutDescriptor) SetStepFunction(value IVertexStepFunction) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setStepFunction:"), value)
 }
 

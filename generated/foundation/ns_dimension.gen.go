@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [Dimension] class.
@@ -86,9 +87,9 @@ func NewDimension() Dimension {
 // Initializes a dimensional unit with the symbol and unit converter you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/init(symbol:converter:)
-func NewDimensionWithSymbolConverter(symbol string, converter unsafe.Pointer) Dimension {
+func NewDimensionWithSymbolConverter(symbol appkit.string, converter IUnitConverter) Dimension {
 	instance := getDimensionClass().Alloc()
-	rv := objc.Send[Dimension](instance.ID, objc.Sel("initWithSymbol:converter:"), objc.String(symbol), converter)
+	rv := objc.Send[Dimension](instance.ID, objc.Sel("initWithSymbol:converter:"), symbol, converter)
 	rv.Autorelease()
 	return rv
 }
@@ -105,8 +106,8 @@ func (dc _DimensionClass) BaseUnit() unsafe.Pointer {
 // The unit converter that represents the unit in terms of the dimension’s base unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/converter
-func (d_ Dimension) Converter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("converter"))
+func (d_ Dimension) Converter() NSUnitConverter {
+	rv := objc.Send[NSUnitConverter](d_.ID, objc.Sel("converter"))
 	return rv
 }
 

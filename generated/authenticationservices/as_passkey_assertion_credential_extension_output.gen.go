@@ -81,8 +81,8 @@ func NewPasskeyAssertionCredentialExtensionOutput() PasskeyAssertionCredentialEx
 // Output for operation during passkey assertion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASPasskeyAssertionCredentialExtensionOutput-c.class/largeBlobAssertionOutput
-func (p_ PasskeyAssertionCredentialExtensionOutput) LargeBlobAssertionOutput() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("largeBlobAssertionOutput"))
+func (p_ PasskeyAssertionCredentialExtensionOutput) LargeBlobAssertionOutput() ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput {
+	rv := objc.Send[ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput](p_.ID, objc.Sel("largeBlobAssertionOutput"))
 	return rv
 }
 

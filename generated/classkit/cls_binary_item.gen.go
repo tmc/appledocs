@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SBinaryItem] class.
@@ -86,9 +87,9 @@ func NewSBinaryItem() SBinaryItem {
 // Initializes a new binary activity item of the given type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/init(identifier:title:type:)
-func NewSBinaryItemWithIdentifierTitleType(identifier string, title string, valueType unsafe.Pointer) SBinaryItem {
+func NewSBinaryItemWithIdentifierTitleType(identifier appkit.string, title appkit.string, valueType SBinaryValueType) SBinaryItem {
 	instance := getSBinaryItemClass().Alloc()
-	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), objc.String(identifier), objc.String(title), valueType)
+	rv := objc.Send[SBinaryItem](instance.ID, objc.Sel("initWithIdentifier:title:type:"), identifier, title, valueType)
 	rv.Autorelease()
 	return rv
 }
@@ -115,8 +116,8 @@ func (s_ SBinaryItem) SetValue(value bool) {
 // The kind of outcome that the binary activity item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSBinaryItem/valueType
-func (s_ SBinaryItem) ValueType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueType"))
+func (s_ SBinaryItem) ValueType() SBinaryValueType {
+	rv := objc.Send[SBinaryValueType](s_.ID, objc.Sel("valueType"))
 	return rv
 }
 

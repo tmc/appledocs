@@ -33,11 +33,11 @@ type IMultiArray interface {
 	objectivec.IObject
 	GetBytesWithHandler(handler unsafe.Pointer)
 	GetMutableBytesWithHandler(handler unsafe.Pointer)
-	SetObjectAtIndexedSubscript(obj foundation.Number, idx int)
-	SetObjectForKeyedSubscript(obj foundation.Number, key unsafe.Pointer)
+	SetObjectAtIndexedSubscript(obj foundation.INumber, idx int)
+	SetObjectForKeyedSubscript(obj foundation.INumber, key []foundation.INumber)
 	ObjectAtIndexedSubscript(idx int) foundation.Number
-	ObjectForKeyedSubscript(key unsafe.Pointer) foundation.Number
-	TransferToMultiArray(destinationMultiArray unsafe.Pointer)
+	ObjectForKeyedSubscript(key []foundation.INumber) foundation.Number
+	TransferToMultiArray(destinationMultiArray IMLMultiArray)
 }
 
 // A machine learning collection type that stores numeric values in an array with multiple dimensions.
@@ -93,7 +93,7 @@ func NewMultiArray() MultiArray {
 // Merges an array of multiarrays into one multiarray along an axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
-func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) MultiArray {
+func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []MultiArray, axis int, dataType MultiArrayDataType) MultiArray {
 	rv := objc.Send[MultiArray](objc.ID(getMultiArrayClass().class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
@@ -103,7 +103,7 @@ func NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe
 // Creates a multiarray from a data pointer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(dataPointer:shape:dataType:strides:deallocator:)
-func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape unsafe.Pointer, dataType unsafe.Pointer, strides unsafe.Pointer, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
+func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointer unsafe.Pointer, shape []foundation.INumber, dataType MultiArrayDataType, strides []foundation.INumber, deallocator unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithDataPointer:shape:dataType:strides:deallocator:error:"), dataPointer, shape, dataType, strides, deallocator, error_)
 	rv.Autorelease()
@@ -115,7 +115,7 @@ func NewMultiArrayWithDataPointerShapeDataTypeStridesDeallocatorError(dataPointe
 // Creates a multiarray sharing the surface of a pixel buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(pixelBuffer:shape:)
-func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape unsafe.Pointer) MultiArray {
+func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape []foundation.INumber) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithPixelBuffer:shape:"), pixelBuffer, shape)
 	rv.Autorelease()
@@ -127,7 +127,7 @@ func NewMultiArrayWithPixelBufferShape(pixelBuffer unsafe.Pointer, shape unsafe.
 // Creates a multidimensional array with a shape and type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(shape:dataType:)
-func NewMultiArrayWithShapeDataTypeError(shape unsafe.Pointer, dataType unsafe.Pointer, error_ unsafe.Pointer) MultiArray {
+func NewMultiArrayWithShapeDataTypeError(shape []foundation.INumber, dataType MultiArrayDataType, error_ unsafe.Pointer) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:error:"), shape, dataType, error_)
 	rv.Autorelease()
@@ -139,7 +139,7 @@ func NewMultiArrayWithShapeDataTypeError(shape unsafe.Pointer, dataType unsafe.P
 // Creates the object with specified strides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/initWithShape:dataType:strides:
-func NewMultiArrayWithShapeDataTypeStrides(shape unsafe.Pointer, dataType unsafe.Pointer, strides unsafe.Pointer) MultiArray {
+func NewMultiArrayWithShapeDataTypeStrides(shape []foundation.INumber, dataType MultiArrayDataType, strides []foundation.INumber) MultiArray {
 	instance := getMultiArrayClass().Alloc()
 	rv := objc.Send[MultiArray](instance.ID, objc.Sel("initWithShape:dataType:strides:"), shape, dataType, strides)
 	rv.Autorelease()
@@ -150,7 +150,7 @@ func NewMultiArrayWithShapeDataTypeStrides(shape unsafe.Pointer, dataType unsafe
 // Merges an array of multiarrays into one multiarray along an axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/init(byConcatenatingMultiArrays:alongAxis:dataType:)
-func (mc _MultiArrayClass) MultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays unsafe.Pointer, axis int, dataType unsafe.Pointer) unsafe.Pointer {
+func (mc _MultiArrayClass) MultiArrayByConcatenatingMultiArraysAlongAxisDataType(multiArrays []MultiArray, axis int, dataType MultiArrayDataType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("multiArrayByConcatenatingMultiArrays:alongAxis:dataType:"), multiArrays, axis, dataType)
 	return rv
 }
@@ -172,14 +172,14 @@ func (m_ MultiArray) GetMutableBytesWithHandler(handler unsafe.Pointer) {
 // Assigns a number to the multiarray’s element at the location that the linear offset defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/setObject:atIndexedSubscript:
-func (m_ MultiArray) SetObjectAtIndexedSubscript(obj foundation.Number, idx int) {
+func (m_ MultiArray) SetObjectAtIndexedSubscript(obj foundation.INumber, idx int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:atIndexedSubscript:"), obj, idx)
 }
 
 // Assigns a number to the multiarray’s element at the location that the number array defines.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/setObject:forKeyedSubscript:
-func (m_ MultiArray) SetObjectForKeyedSubscript(obj foundation.Number, key unsafe.Pointer) {
+func (m_ MultiArray) SetObjectForKeyedSubscript(obj foundation.INumber, key []foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKeyedSubscript:"), obj, key)
 }
 
@@ -194,7 +194,7 @@ func (m_ MultiArray) ObjectAtIndexedSubscript(idx int) foundation.Number {
 // Accesses the multiarray by using a number array that has an element for each dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/subscript(_:)-3d9el
-func (m_ MultiArray) ObjectForKeyedSubscript(key unsafe.Pointer) foundation.Number {
+func (m_ MultiArray) ObjectForKeyedSubscript(key []foundation.INumber) foundation.Number {
 	rv := objc.Send[foundation.Number](m_.ID, objc.Sel("objectForKeyedSubscript:"), key)
 	return rv
 }
@@ -202,7 +202,7 @@ func (m_ MultiArray) ObjectForKeyedSubscript(key unsafe.Pointer) foundation.Numb
 // Transfer the contents to the destination multi-array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/transfer(to:)
-func (m_ MultiArray) TransferToMultiArray(destinationMultiArray unsafe.Pointer) {
+func (m_ MultiArray) TransferToMultiArray(destinationMultiArray IMLMultiArray) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("transferToMultiArray:"), destinationMultiArray)
 }
 
@@ -214,11 +214,19 @@ func (m_ MultiArray) Count() int {
 	return rv
 }
 
+// A pointer to the multiarray’s underlying memory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/dataPointer
+func (m_ MultiArray) DataPointer() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataPointer"))
+	return rv
+}
+
 // The underlying type of the multiarray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLMultiArray/dataType
-func (m_ MultiArray) DataType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataType"))
+func (m_ MultiArray) DataType() MultiArrayDataType {
+	rv := objc.Send[MultiArrayDataType](m_.ID, objc.Sel("dataType"))
 	return rv
 }
 
@@ -249,8 +257,8 @@ func (m_ MultiArray) Strides() []foundation.Number {
 // The constraints on a multidimensional array feature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (m_ MultiArray) MultiArrayConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("multiArrayConstraint"))
+func (m_ MultiArray) MultiArrayConstraint() MLMultiArrayConstraint {
+	rv := objc.Send[MLMultiArrayConstraint](m_.ID, objc.Sel("multiArrayConstraint"))
 	return rv
 }
 
@@ -260,15 +268,15 @@ func (m_ MultiArray) MultiArrayConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlfeaturedescription/multiarrayconstraint
-func (m_ MultiArray) SetMultiArrayConstraint(value unsafe.Pointer) {
+func (m_ MultiArray) SetMultiArrayConstraint(value IMLMultiArrayConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMultiArrayConstraint:"), value)
 }
 
 // Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (m_ MultiArray) ModelDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modelDescription"))
+func (m_ MultiArray) ModelDescription() MLModelDescription {
+	rv := objc.Send[MLModelDescription](m_.ID, objc.Sel("modelDescription"))
 	return rv
 }
 
@@ -278,15 +286,15 @@ func (m_ MultiArray) ModelDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodel/modeldescription
-func (m_ MultiArray) SetModelDescription(value unsafe.Pointer) {
+func (m_ MultiArray) SetModelDescription(value IMLModelDescription) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModelDescription:"), value)
 }
 
 // A dictionary of input feature descriptions, which the model keys by the input’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (m_ MultiArray) InputDescriptionsByName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("inputDescriptionsByName"))
+func (m_ MultiArray) InputDescriptionsByName() MLFeatureDescription {
+	rv := objc.Send[MLFeatureDescription](m_.ID, objc.Sel("inputDescriptionsByName"))
 	return rv
 }
 
@@ -296,15 +304,15 @@ func (m_ MultiArray) InputDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/inputdescriptionsbyname
-func (m_ MultiArray) SetInputDescriptionsByName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInputDescriptionsByName:"), objc.String(value))
+func (m_ MultiArray) SetInputDescriptionsByName(value IMLFeatureDescription) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setInputDescriptionsByName:"), value)
 }
 
 // A dictionary of output feature descriptions, which the model keys by the output’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (m_ MultiArray) OutputDescriptionsByName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("outputDescriptionsByName"))
+func (m_ MultiArray) OutputDescriptionsByName() MLFeatureDescription {
+	rv := objc.Send[MLFeatureDescription](m_.ID, objc.Sel("outputDescriptionsByName"))
 	return rv
 }
 
@@ -314,15 +322,15 @@ func (m_ MultiArray) OutputDescriptionsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodeldescription/outputdescriptionsbyname
-func (m_ MultiArray) SetOutputDescriptionsByName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputDescriptionsByName:"), objc.String(value))
+func (m_ MultiArray) SetOutputDescriptionsByName(value IMLFeatureDescription) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
 }
 
 // The constraint on the shape of the multiarray.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArray) ShapeConstraint() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("shapeConstraint"))
+func (m_ MultiArray) ShapeConstraint() MLMultiArrayShapeConstraint {
+	rv := objc.Send[MLMultiArrayShapeConstraint](m_.ID, objc.Sel("shapeConstraint"))
 	return rv
 }
 
@@ -332,7 +340,7 @@ func (m_ MultiArray) ShapeConstraint() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmultiarrayconstraint/shapeconstraint
-func (m_ MultiArray) SetShapeConstraint(value unsafe.Pointer) {
+func (m_ MultiArray) SetShapeConstraint(value IMLMultiArrayShapeConstraint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShapeConstraint:"), value)
 }
 

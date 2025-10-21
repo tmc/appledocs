@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/intents"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,7 +79,7 @@ func NewUNNotificationAttributedMessageContext() UNNotificationAttributedMessage
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttributedMessageContext/init(sendMessageIntent:attributedContent:)
-func NewUNNotificationAttributedMessageContextWithSendMessageIntentAttributedContent(sendMessageIntent unsafe.Pointer, attributedContent unsafe.Pointer) UNNotificationAttributedMessageContext {
+func NewUNNotificationAttributedMessageContextWithSendMessageIntentAttributedContent(sendMessageIntent intents.INSendMessageIntent, attributedContent foundation.IAttributedString) UNNotificationAttributedMessageContext {
 	rv := objc.Send[UNNotificationAttributedMessageContext](objc.ID(getUNNotificationAttributedMessageContextClass().class), objc.Sel("contextWithSendMessageIntent:attributedContent:"), sendMessageIntent, attributedContent)
 	return rv
 }
@@ -85,7 +87,7 @@ func NewUNNotificationAttributedMessageContextWithSendMessageIntentAttributedCon
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationAttributedMessageContext/init(sendMessageIntent:attributedContent:)
-func (uc _UNNotificationAttributedMessageContextClass) ContextWithSendMessageIntentAttributedContent(sendMessageIntent unsafe.Pointer, attributedContent unsafe.Pointer) unsafe.Pointer {
+func (uc _UNNotificationAttributedMessageContextClass) ContextWithSendMessageIntentAttributedContent(sendMessageIntent intents.INSendMessageIntent, attributedContent foundation.IAttributedString) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("contextWithSendMessageIntent:attributedContent:"), sendMessageIntent, attributedContent)
 	return rv
 }

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfaudio"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewInputPickerInteraction() InputPickerInteraction {
 // Creates a new instance of AVInputPickerInteraction using a specific .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/init(audioSession:)
-func NewInputPickerInteractionWithAudioSession(audioSession unsafe.Pointer) InputPickerInteraction {
+func NewInputPickerInteractionWithAudioSession(audioSession avfaudio.IAudioSession) InputPickerInteraction {
 	instance := getInputPickerInteractionClass().Alloc()
 	rv := objc.Send[InputPickerInteraction](instance.ID, objc.Sel("initWithAudioSession:"), audioSession)
 	rv.Autorelease()
@@ -110,8 +111,8 @@ func (i_ InputPickerInteraction) Present() {
 // The audio session for the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) AudioSession() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioSession"))
+func (i_ InputPickerInteraction) AudioSession() avfaudio.AudioSession {
+	rv := objc.Send[avfaudio.AudioSession](i_.ID, objc.Sel("audioSession"))
 	return rv
 }
 
@@ -121,7 +122,7 @@ func (i_ InputPickerInteraction) AudioSession() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) SetAudioSession(value unsafe.Pointer) {
+func (i_ InputPickerInteraction) SetAudioSession(value avfaudio.IAudioSession) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSession:"), value)
 }
 

@@ -15,3 +15,12 @@ func ExampleNewCKModifyRecordZonesOperation() {
 	_ = cloudkit.NewCKModifyRecordZonesOperation()
 	// Output:
 }
+// ExampleNewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete demonstrates how to create a CKModifyRecordZonesOperation instance using NewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete.
+// Creates an operation for modifying the specified record zones.
+func ExampleNewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete() {
+	_ = cloudkit.NewCKModifyRecordZonesOperationWithRecordZonesToSaveRecordZoneIDsToDelete(
+		[]cloudkit.CKRecordZone{}, // recordZonesToSave []CKRecordZone
+		[]cloudkit.CKRecordZoneID{}, // recordZoneIDsToDelete []CKRecordZoneID
+	)
+	// Output:
+}

@@ -78,7 +78,7 @@ func NewAXMathExpressionTableRow() AXMathExpressionTableRow {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionTableRow/init(expressions:)
-func NewAXMathExpressionTableRowWithExpressions(expressions unsafe.Pointer) AXMathExpressionTableRow {
+func NewAXMathExpressionTableRowWithExpressions(expressions []AXMathExpression) AXMathExpressionTableRow {
 	instance := getAXMathExpressionTableRowClass().Alloc()
 	rv := objc.Send[AXMathExpressionTableRow](instance.ID, objc.Sel("initWithExpressions:"), expressions)
 	rv.Autorelease()

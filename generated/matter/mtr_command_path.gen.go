@@ -88,7 +88,7 @@ func (m_ MTRCommandPath) Command() foundation.Number {
 // SetCommand sets the value of the command property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommandpath/command
-func (m_ MTRCommandPath) SetCommand(value foundation.Number) {
+func (m_ MTRCommandPath) SetCommand(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommand:"), value)
 }
 

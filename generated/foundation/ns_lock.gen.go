@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _LockClass struct {
 // An interface definition for the [Lock] class.
 type ILock interface {
 	objectivec.IObject
-	LockBeforeDate(limit unsafe.Pointer) bool
+	LockBeforeDate(limit IDate) bool
 	TryLock() bool
 }
 
@@ -85,7 +86,7 @@ func NewLock() Lock {
 // Attempts to acquire a lock before a given time and returns a Boolean value indicating whether the attempt was successful.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/lock(before:)
-func (l_ Lock) LockBeforeDate(limit unsafe.Pointer) bool {
+func (l_ Lock) LockBeforeDate(limit IDate) bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
 }
@@ -101,8 +102,8 @@ func (l_ Lock) TryLock() bool {
 // The name associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-func (l_ Lock) Name() string {
-	rv := objc.Send[string](l_.ID, objc.Sel("name"))
+func (l_ Lock) Name() appkit.string {
+	rv := objc.Send[appkit.string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -112,8 +113,8 @@ func (l_ Lock) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-func (l_ Lock) SetName(value string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
+func (l_ Lock) SetName(value appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
 }
 
 

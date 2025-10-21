@@ -102,7 +102,7 @@ func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) Max
 // SetMaxNumberOfIntervals sets the value of the maxNumberOfIntervals property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/maxnumberofintervals
-func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetMaxNumberOfIntervals(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetMaxNumberOfIntervals(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxNumberOfIntervals:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) Pro
 // SetProfileCount sets the value of the profileCount property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/profilecount
-func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetProfileCount(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetProfileCount(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileCount:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) Pro
 // SetProfileIntervalPeriod sets the value of the profileIntervalPeriod property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/profileintervalperiod
-func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetProfileIntervalPeriod(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetProfileIntervalPeriod(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileIntervalPeriod:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) Tim
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinforesponsecommandparams/timedinvoketimeoutms
-func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

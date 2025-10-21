@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _MAFlashingLightsProcessorClass struct {
 type IMAFlashingLightsProcessor interface {
 	objectivec.IObject
 	CanProcessSurface(surface unsafe.Pointer) bool
-	ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
+	ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) MAFlashingLightsProcessorResult
 }
 
 // A class that processes a framebuffer object to detect and dim sequences of flashing lights.
@@ -93,16 +94,16 @@ func (m_ MAFlashingLightsProcessor) CanProcessSurface(surface unsafe.Pointer) bo
 // Processes a surface by analyzing pixels for sequences of flashing lights and mitigates them by dimming the content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAFlashingLightsProcessor/processSurface:outSurface:timestamp:options:
-func (m_ MAFlashingLightsProcessor) ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("processSurface:outSurface:timestamp:options:"), inSurface, outSurface, timestamp, options)
+func (m_ MAFlashingLightsProcessor) ProcessSurfaceOutSurfaceTimestampOptions(inSurface unsafe.Pointer, outSurface unsafe.Pointer, timestamp unsafe.Pointer, options unsafe.Pointer) MAFlashingLightsProcessorResult {
+	rv := objc.Send[MAFlashingLightsProcessorResult](m_.ID, objc.Sel("processSurface:outSurface:timestamp:options:"), inSurface, outSurface, timestamp, options)
 	return rv
 }
 
 // A notification that posts when a person changes the flashing lights setting on the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaaccessibility/kmadimflashinglightschangednotification
-func (m_ MAFlashingLightsProcessor) KMADimFlashingLightsChangedNotification() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("kMADimFlashingLightsChangedNotification"))
+func (m_ MAFlashingLightsProcessor) KMADimFlashingLightsChangedNotification() foundation.String {
+	rv := objc.Send[foundation.String](m_.ID, objc.Sel("kMADimFlashingLightsChangedNotification"))
 	return rv
 }
 

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = iobluetooth.NewBluetoothDevicePair
 
+// ExampleNewBluetoothDevicePairWithDevice demonstrates how to create a BluetoothDevicePair instance using NewBluetoothDevicePairWithDevice.
+// Creates an autorelease IOBluetoothDevicePair object with a device as the pairing target.
+func ExampleNewBluetoothDevicePairWithDevice() {
+	_ = iobluetooth.NewBluetoothDevicePairWithDevice(
+		iobluetooth.IOBluetoothDevice{}, // device IOBluetoothDevice
+	)
+	// Output:
+}

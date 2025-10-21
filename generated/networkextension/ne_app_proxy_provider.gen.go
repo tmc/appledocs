@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NEAppProxyProvider] class.
@@ -29,12 +30,12 @@ type _NEAppProxyProviderClass struct {
 // An interface definition for the [NEAppProxyProvider] class.
 type INEAppProxyProvider interface {
 	INETunnelProvider
-	CancelProxyWithError(error_ unsafe.Pointer)
-	HandleNewFlow(flow unsafe.Pointer) bool
-	HandleNewUDPFlowInitialRemoteEndpoint(flow unsafe.Pointer, remoteEndpoint unsafe.Pointer) bool
-	HandleNewUDPFlowInitialRemoteFlowEndpoint(flow unsafe.Pointer, remoteEndpoint unsafe.Pointer) bool
+	CancelProxyWithError(error_ foundation.IError)
+	HandleNewFlow(flow INEAppProxyFlow) bool
+	HandleNewUDPFlowInitialRemoteEndpoint(flow INEAppProxyUDPFlow, remoteEndpoint INWEndpoint) bool
+	HandleNewUDPFlowInitialRemoteFlowEndpoint(flow INEAppProxyUDPFlow, remoteEndpoint unsafe.Pointer) bool
 	StartProxyWithOptionsCompletionHandler(options unsafe.Pointer, completionHandler unsafe.Pointer)
-	StopProxyWithReasonCompletionHandler(reason unsafe.Pointer, completionHandler unsafe.Pointer)
+	StopProxyWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer)
 }
 
 // The principal class for an app proxy provider app extension.
@@ -90,14 +91,14 @@ func NewNEAppProxyProvider() NEAppProxyProvider {
 // Stop the network proxy from the App Proxy Provider.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyProvider/cancelProxyWithError(_:)
-func (n_ NEAppProxyProvider) CancelProxyWithError(error_ unsafe.Pointer) {
+func (n_ NEAppProxyProvider) CancelProxyWithError(error_ foundation.IError) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("cancelProxyWithError:"), error_)
 }
 
 // Handle a new flow of network data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyProvider/handleNewFlow(_:)
-func (n_ NEAppProxyProvider) HandleNewFlow(flow unsafe.Pointer) bool {
+func (n_ NEAppProxyProvider) HandleNewFlow(flow INEAppProxyFlow) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("handleNewFlow:"), flow)
 	return rv
 }
@@ -105,14 +106,14 @@ func (n_ NEAppProxyProvider) HandleNewFlow(flow unsafe.Pointer) bool {
 // Handle a new UDP flow of network data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow(_:initialRemoteEndpoint:)
-func (n_ NEAppProxyProvider) HandleNewUDPFlowInitialRemoteEndpoint(flow unsafe.Pointer, remoteEndpoint unsafe.Pointer) bool {
+func (n_ NEAppProxyProvider) HandleNewUDPFlowInitialRemoteEndpoint(flow INEAppProxyUDPFlow, remoteEndpoint INWEndpoint) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("handleNewUDPFlow:initialRemoteEndpoint:"), flow, remoteEndpoint)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyProvider/handleNewUDPFlow:initialRemoteFlowEndpoint:
-func (n_ NEAppProxyProvider) HandleNewUDPFlowInitialRemoteFlowEndpoint(flow unsafe.Pointer, remoteEndpoint unsafe.Pointer) bool {
+func (n_ NEAppProxyProvider) HandleNewUDPFlowInitialRemoteFlowEndpoint(flow INEAppProxyUDPFlow, remoteEndpoint unsafe.Pointer) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("handleNewUDPFlow:initialRemoteFlowEndpoint:"), flow, remoteEndpoint)
 	return rv
 }
@@ -127,7 +128,7 @@ func (n_ NEAppProxyProvider) StartProxyWithOptionsCompletionHandler(options unsa
 // Stop the network proxy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEAppProxyProvider/stopProxy(with:completionHandler:)
-func (n_ NEAppProxyProvider) StopProxyWithReasonCompletionHandler(reason unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (n_ NEAppProxyProvider) StopProxyWithReasonCompletionHandler(reason INEProviderStopReason, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("stopProxyWithReason:completionHandler:"), reason, completionHandler)
 }
 

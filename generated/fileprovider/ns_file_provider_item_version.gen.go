@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,7 +86,7 @@ func NewFileProviderItemVersion() FileProviderItemVersion {
 // Creates a new version object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/init(contentVersion:metadataVersion:)
-func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion unsafe.Pointer, metadataVersion unsafe.Pointer) FileProviderItemVersion {
+func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion foundation.IData, metadataVersion foundation.IData) FileProviderItemVersion {
 	instance := getFileProviderItemVersionClass().Alloc()
 	rv := objc.Send[FileProviderItemVersion](instance.ID, objc.Sel("initWithContentVersion:metadataVersion:"), contentVersion, metadataVersion)
 	rv.Autorelease()
@@ -96,31 +97,31 @@ func NewFileProviderItemVersionWithContentVersionMetadataVersion(contentVersion 
 // A Boolean value indicating that this version predates the version returned by the file provider extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
-func (fc _FileProviderItemVersionClass) BeforeFirstSyncComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("beforeFirstSyncComponent"))
+func (fc _FileProviderItemVersionClass) BeforeFirstSyncComponent() foundation.NSData {
+	rv := objc.Send[foundation.NSData](objc.ID(fc.class), objc.Sel("beforeFirstSyncComponent"))
 	return rv
 }
 // A Boolean value indicating that this version predates the version returned by the file provider extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/beforeFirstSyncComponent
-func (f_ FileProviderItemVersion) BeforeFirstSyncComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("beforeFirstSyncComponent"))
+func (f_ FileProviderItemVersion) BeforeFirstSyncComponent() foundation.NSData {
+	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("beforeFirstSyncComponent"))
 	return rv
 }
 
 // An opaque object used to track versions of the item’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/contentVersion
-func (f_ FileProviderItemVersion) ContentVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("contentVersion"))
+func (f_ FileProviderItemVersion) ContentVersion() foundation.NSData {
+	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("contentVersion"))
 	return rv
 }
 
 // An opaque object used to track versions of the item’s metadata.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderItemVersion/metadataVersion
-func (f_ FileProviderItemVersion) MetadataVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("metadataVersion"))
+func (f_ FileProviderItemVersion) MetadataVersion() foundation.NSData {
+	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("metadataVersion"))
 	return rv
 }
 

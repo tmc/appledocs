@@ -81,6 +81,24 @@ func NewGraphGRUDescriptor() GraphGRUDescriptor {
 }
 
 
+// A parameter that chooses between two variants for the final output computation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/flipZ
+func (g_ GraphGRUDescriptor) FlipZ() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("flipZ"))
+	return rv
+}
+
+
+// SetFlipZ sets the value of the flipZ property.
+// A parameter that chooses between two variants for the final output computation.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/flipZ
+func (g_ GraphGRUDescriptor) SetFlipZ(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setFlipZ:"), value)
+}
+
 // A parameter that enables the GRU layer to support training.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/training
@@ -102,8 +120,8 @@ func (g_ GraphGRUDescriptor) SetTraining(value bool) {
 // A parameter that defines the activation function to use with the update-gate of the GRU operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
-func (g_ GraphGRUDescriptor) UpdateGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("updateGateActivation"))
+func (g_ GraphGRUDescriptor) UpdateGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("updateGateActivation"))
 	return rv
 }
 
@@ -113,7 +131,7 @@ func (g_ GraphGRUDescriptor) UpdateGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphGRUDescriptor/updateGateActivation
-func (g_ GraphGRUDescriptor) SetUpdateGateActivation(value unsafe.Pointer) {
+func (g_ GraphGRUDescriptor) SetUpdateGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUpdateGateActivation:"), value)
 }
 
@@ -135,29 +153,11 @@ func (g_ GraphGRUDescriptor) SetBidirectional(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBidirectional:"), value)
 }
 
-// A parameter that chooses between two variants for the final output computation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/flipz
-func (g_ GraphGRUDescriptor) FlipZ() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("flipZ"))
-	return rv
-}
-
-
-// SetFlipZ sets the value of the flipZ property.
-// A parameter that chooses between two variants for the final output computation.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/flipz
-func (g_ GraphGRUDescriptor) SetFlipZ(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setFlipZ:"), value)
-}
-
 // A parameter that defines the activation function to use with the output-gate of the GRU operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/outputgateactivation
-func (g_ GraphGRUDescriptor) OutputGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputGateActivation"))
+func (g_ GraphGRUDescriptor) OutputGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("outputGateActivation"))
 	return rv
 }
 
@@ -167,7 +167,7 @@ func (g_ GraphGRUDescriptor) OutputGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/outputgateactivation
-func (g_ GraphGRUDescriptor) SetOutputGateActivation(value unsafe.Pointer) {
+func (g_ GraphGRUDescriptor) SetOutputGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputGateActivation:"), value)
 }
 
@@ -192,8 +192,8 @@ func (g_ GraphGRUDescriptor) SetResetAfter(value bool) {
 // A parameter that defines the activation function to use with the reset-gate of the GRU operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/resetgateactivation
-func (g_ GraphGRUDescriptor) ResetGateActivation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("resetGateActivation"))
+func (g_ GraphGRUDescriptor) ResetGateActivation() GraphRNNActivation {
+	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("resetGateActivation"))
 	return rv
 }
 
@@ -203,7 +203,7 @@ func (g_ GraphGRUDescriptor) ResetGateActivation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphgrudescriptor/resetgateactivation
-func (g_ GraphGRUDescriptor) SetResetGateActivation(value unsafe.Pointer) {
+func (g_ GraphGRUDescriptor) SetResetGateActivation(value IGraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setResetGateActivation:"), value)
 }
 

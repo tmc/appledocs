@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -30,10 +31,10 @@ type _EKCalendarItemClass struct {
 // An interface definition for the [EKCalendarItem] class.
 type IEKCalendarItem interface {
 	IEKObject
-	AddAlarm(alarm unsafe.Pointer)
-	AddRecurrenceRule(rule unsafe.Pointer)
-	RemoveAlarm(alarm unsafe.Pointer)
-	RemoveRecurrenceRule(rule unsafe.Pointer)
+	AddAlarm(alarm IEKAlarm)
+	AddRecurrenceRule(rule IEKRecurrenceRule)
+	RemoveAlarm(alarm IEKAlarm)
+	RemoveRecurrenceRule(rule IEKRecurrenceRule)
 }
 
 // An abstract superclass for calendar events and reminders.
@@ -89,28 +90,28 @@ func NewEKCalendarItem() EKCalendarItem {
 // Adds an alarm to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/addAlarm(_:)
-func (e_ EKCalendarItem) AddAlarm(alarm unsafe.Pointer) {
+func (e_ EKCalendarItem) AddAlarm(alarm IEKAlarm) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("addAlarm:"), alarm)
 }
 
 // Adds a recurrence rule to the recurrence rule array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/addRecurrenceRule(_:)
-func (e_ EKCalendarItem) AddRecurrenceRule(rule unsafe.Pointer) {
+func (e_ EKCalendarItem) AddRecurrenceRule(rule IEKRecurrenceRule) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("addRecurrenceRule:"), rule)
 }
 
 // Removes an alarm from the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/removeAlarm(_:)
-func (e_ EKCalendarItem) RemoveAlarm(alarm unsafe.Pointer) {
+func (e_ EKCalendarItem) RemoveAlarm(alarm IEKAlarm) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("removeAlarm:"), alarm)
 }
 
 // Removes a recurrence rule from the recurrence rule array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/removeRecurrenceRule(_:)
-func (e_ EKCalendarItem) RemoveRecurrenceRule(rule unsafe.Pointer) {
+func (e_ EKCalendarItem) RemoveRecurrenceRule(rule IEKRecurrenceRule) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("removeRecurrenceRule:"), rule)
 }
 
@@ -153,8 +154,8 @@ func (e_ EKCalendarItem) Attendees() []EKParticipant {
 // The calendar for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendar
-func (e_ EKCalendarItem) Calendar() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("calendar"))
+func (e_ EKCalendarItem) Calendar() EKCalendar {
+	rv := objc.Send[EKCalendar](e_.ID, objc.Sel("calendar"))
 	return rv
 }
 
@@ -164,31 +165,31 @@ func (e_ EKCalendarItem) Calendar() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendar
-func (e_ EKCalendarItem) SetCalendar(value unsafe.Pointer) {
+func (e_ EKCalendarItem) SetCalendar(value IEKCalendar) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCalendar:"), value)
 }
 
 // The calendar item’s external identifier as provided by the calendar server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemExternalIdentifier
-func (e_ EKCalendarItem) CalendarItemExternalIdentifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
+func (e_ EKCalendarItem) CalendarItemExternalIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarItemExternalIdentifier"))
 	return rv
 }
 
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/calendarItemIdentifier
-func (e_ EKCalendarItem) CalendarItemIdentifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("calendarItemIdentifier"))
+func (e_ EKCalendarItem) CalendarItemIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("calendarItemIdentifier"))
 	return rv
 }
 
 // The date that this calendar item was created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/creationDate
-func (e_ EKCalendarItem) CreationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("creationDate"))
+func (e_ EKCalendarItem) CreationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("creationDate"))
 	return rv
 }
 
@@ -227,16 +228,16 @@ func (e_ EKCalendarItem) HasRecurrenceRules() bool {
 // The date that the calendar item was last modified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/lastModifiedDate
-func (e_ EKCalendarItem) LastModifiedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("lastModifiedDate"))
+func (e_ EKCalendarItem) LastModifiedDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](e_.ID, objc.Sel("lastModifiedDate"))
 	return rv
 }
 
 // The location associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) Location() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("location"))
+func (e_ EKCalendarItem) Location() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -246,15 +247,15 @@ func (e_ EKCalendarItem) Location() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/location
-func (e_ EKCalendarItem) SetLocation(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), objc.String(value))
+func (e_ EKCalendarItem) SetLocation(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setLocation:"), value)
 }
 
 // The notes associated with the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) Notes() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("notes"))
+func (e_ EKCalendarItem) Notes() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("notes"))
 	return rv
 }
 
@@ -264,8 +265,8 @@ func (e_ EKCalendarItem) Notes() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/notes
-func (e_ EKCalendarItem) SetNotes(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), objc.String(value))
+func (e_ EKCalendarItem) SetNotes(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNotes:"), value)
 }
 
 // The recurrence rules for the calendar item.
@@ -299,8 +300,8 @@ func (e_ EKCalendarItem) SetRecurrenceRules(value []EKRecurrenceRule) {
 // The time zone for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/timeZone
-func (e_ EKCalendarItem) TimeZone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("timeZone"))
+func (e_ EKCalendarItem) TimeZone() foundation.TimeZone {
+	rv := objc.Send[foundation.TimeZone](e_.ID, objc.Sel("timeZone"))
 	return rv
 }
 
@@ -310,15 +311,15 @@ func (e_ EKCalendarItem) TimeZone() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/timeZone
-func (e_ EKCalendarItem) SetTimeZone(value unsafe.Pointer) {
+func (e_ EKCalendarItem) SetTimeZone(value foundation.ITimeZone) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTimeZone:"), value)
 }
 
 // The title for the calendar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) Title() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("title"))
+func (e_ EKCalendarItem) Title() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -328,8 +329,8 @@ func (e_ EKCalendarItem) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/title
-func (e_ EKCalendarItem) SetTitle(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (e_ EKCalendarItem) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTitle:"), value)
 }
 
 // The URL for the calendar item.
@@ -346,15 +347,15 @@ func (e_ EKCalendarItem) URL() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/url
-func (e_ EKCalendarItem) SetURL(value foundation.URL) {
+func (e_ EKCalendarItem) SetURL(value foundation.IURL) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setURL:"), value)
 }
 
 // The calendar item’s unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKCalendarItem/uuid
-func (e_ EKCalendarItem) UUID() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("UUID"))
+func (e_ EKCalendarItem) UUID() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("UUID"))
 	return rv
 }
 

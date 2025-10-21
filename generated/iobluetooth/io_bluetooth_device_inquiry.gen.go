@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,8 +32,8 @@ type _BluetoothDeviceInquiryClass struct {
 type IBluetoothDeviceInquiry interface {
 	objectivec.IObject
 	ClearFoundDevices()
-	FoundDevices() unsafe.Pointer
-	SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor unsafe.Pointer, inMajorDeviceClass unsafe.Pointer, inMinorDeviceClass unsafe.Pointer)
+	FoundDevices() foundation.Array
+	SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor IBluetoothServiceClassMajor, inMajorDeviceClass IBluetoothDeviceClassMajor, inMinorDeviceClass IBluetoothDeviceClassMinor)
 	Start() unsafe.Pointer
 	Stop() unsafe.Pointer
 }
@@ -90,7 +91,7 @@ func NewBluetoothDeviceInquiry() BluetoothDeviceInquiry {
 // Initializes an alloc’d inquiry object, and sets the delegate object, as if -setDelegate: were called on it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/init(delegate:)
-func NewBluetoothDeviceInquiryWithDelegate(delegate objc.ID) BluetoothDeviceInquiry {
+func NewBluetoothDeviceInquiryWithDelegate(delegate objectivec.IObject) BluetoothDeviceInquiry {
 	instance := getBluetoothDeviceInquiryClass().Alloc()
 	rv := objc.Send[BluetoothDeviceInquiry](instance.ID, objc.Sel("initWithDelegate:"), delegate)
 	rv.Autorelease()
@@ -101,7 +102,7 @@ func NewBluetoothDeviceInquiryWithDelegate(delegate objc.ID) BluetoothDeviceInqu
 // Class method to create an inquiry object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/inquiryWithDelegate:
-func (bc _BluetoothDeviceInquiryClass) InquiryWithDelegate(delegate objc.ID) unsafe.Pointer {
+func (bc _BluetoothDeviceInquiryClass) InquiryWithDelegate(delegate objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("inquiryWithDelegate:"), delegate)
 	return rv
 }
@@ -116,15 +117,15 @@ func (b_ BluetoothDeviceInquiry) ClearFoundDevices() {
 // Returns found IOBluetoothDevice objects as an array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/foundDevices()
-func (b_ BluetoothDeviceInquiry) FoundDevices() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("foundDevices"))
+func (b_ BluetoothDeviceInquiry) FoundDevices() foundation.Array {
+	rv := objc.Send[foundation.Array](b_.ID, objc.Sel("foundDevices"))
 	return rv
 }
 
 // Use this method to set the criteria for the device search.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/setSearchCriteria(_:majorDeviceClass:minorDeviceClass:)
-func (b_ BluetoothDeviceInquiry) SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor unsafe.Pointer, inMajorDeviceClass unsafe.Pointer, inMinorDeviceClass unsafe.Pointer) {
+func (b_ BluetoothDeviceInquiry) SetSearchCriteriaMajorDeviceClassMinorDeviceClass(inServiceClassMajor IBluetoothServiceClassMajor, inMajorDeviceClass IBluetoothDeviceClassMajor, inMinorDeviceClass IBluetoothDeviceClassMinor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchCriteria:majorDeviceClass:minorDeviceClass:"), inServiceClassMajor, inMajorDeviceClass, inMinorDeviceClass)
 }
 
@@ -180,8 +181,8 @@ func (b_ BluetoothDeviceInquiry) SetInquiryLength(value unsafe.Pointer) {
 // Set the devices that are found.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/searchType
-func (b_ BluetoothDeviceInquiry) SearchType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("searchType"))
+func (b_ BluetoothDeviceInquiry) SearchType() BluetoothDeviceSearchTypes {
+	rv := objc.Send[BluetoothDeviceSearchTypes](b_.ID, objc.Sel("searchType"))
 	return rv
 }
 
@@ -191,7 +192,7 @@ func (b_ BluetoothDeviceInquiry) SearchType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceInquiry/searchType
-func (b_ BluetoothDeviceInquiry) SetSearchType(value unsafe.Pointer) {
+func (b_ BluetoothDeviceInquiry) SetSearchType(value IBluetoothDeviceSearchTypes) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setSearchType:"), value)
 }
 

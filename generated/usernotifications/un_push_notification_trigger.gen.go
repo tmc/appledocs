@@ -84,8 +84,8 @@ func NewUNPushNotificationTrigger() UNPushNotificationTrigger {
 // The conditions that trigger the delivery of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationrequest/trigger
-func (u_ UNPushNotificationTrigger) Trigger() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("trigger"))
+func (u_ UNPushNotificationTrigger) Trigger() UNNotificationTrigger {
+	rv := objc.Send[UNNotificationTrigger](u_.ID, objc.Sel("trigger"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (u_ UNPushNotificationTrigger) Trigger() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/usernotifications/unnotificationrequest/trigger
-func (u_ UNPushNotificationTrigger) SetTrigger(value unsafe.Pointer) {
+func (u_ UNPushNotificationTrigger) SetTrigger(value IUNNotificationTrigger) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTrigger:"), value)
 }
 

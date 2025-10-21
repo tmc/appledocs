@@ -30,8 +30,8 @@ type _FXSpatialScalerDescriptorClass struct {
 // An interface definition for the [FXSpatialScalerDescriptor] class.
 type IFXSpatialScalerDescriptor interface {
 	objectivec.IObject
-	NewSpatialScalerWithDevice(device objc.ID) objc.ID
-	NewSpatialScalerWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID
+	NewSpatialScalerWithDevice(device objectivec.IObject) objc.ID
+	NewSpatialScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID
 }
 
 // A set of properties that configure a spatial scaling effect, and a factory method that creates the effect.
@@ -83,7 +83,7 @@ func NewFXSpatialScalerDescriptor() FXSpatialScalerDescriptor {
 // Returns a Boolean value that indicates whether the spatial scaler works with a GPU.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/supportsDevice(_:)
-func (fc _FXSpatialScalerDescriptorClass) SupportsDevice(device objc.ID) bool {
+func (fc _FXSpatialScalerDescriptorClass) SupportsDevice(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsDevice:"), device)
 	return rv
 }
@@ -91,7 +91,7 @@ func (fc _FXSpatialScalerDescriptorClass) SupportsDevice(device objc.ID) bool {
 // Queries whether a Metal device supports spatial scaling compatible with Metal 4.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/supportsMetal4FX(_:)
-func (fc _FXSpatialScalerDescriptorClass) SupportsMetal4FX(device objc.ID) bool {
+func (fc _FXSpatialScalerDescriptorClass) SupportsMetal4FX(device objectivec.IObject) bool {
 	rv := objc.Send[bool](objc.ID(fc.class), objc.Sel("supportsMetal4FX:"), device)
 	return rv
 }
@@ -99,7 +99,7 @@ func (fc _FXSpatialScalerDescriptorClass) SupportsMetal4FX(device objc.ID) bool 
 // Creates a spatial scaler instance from this descriptor’s current property values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/makeSpatialScaler(device:)
-func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDevice(device objc.ID) objc.ID {
+func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDevice(device objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newSpatialScalerWithDevice:"), device)
 	return rv
 }
@@ -107,7 +107,7 @@ func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDevice(device objc.ID) o
 // Creates a spatial scaler instance for a Metal device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/makeSpatialScaler(device:compiler:)
-func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDeviceCompiler(device objc.ID, compiler objc.ID) objc.ID {
+func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDeviceCompiler(device objectivec.IObject, compiler objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("newSpatialScalerWithDevice:compiler:"), device, compiler)
 	return rv
 }
@@ -115,8 +115,8 @@ func (f_ FXSpatialScalerDescriptor) NewSpatialScalerWithDeviceCompiler(device ob
 // The color space of the input color texture for the spatial scaler you create with this descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorProcessingMode
-func (f_ FXSpatialScalerDescriptor) ColorProcessingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("colorProcessingMode"))
+func (f_ FXSpatialScalerDescriptor) ColorProcessingMode() FXSpatialScalerColorProcessingMode {
+	rv := objc.Send[FXSpatialScalerColorProcessingMode](f_.ID, objc.Sel("colorProcessingMode"))
 	return rv
 }
 
@@ -126,7 +126,7 @@ func (f_ FXSpatialScalerDescriptor) ColorProcessingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerDescriptor/colorProcessingMode
-func (f_ FXSpatialScalerDescriptor) SetColorProcessingMode(value unsafe.Pointer) {
+func (f_ FXSpatialScalerDescriptor) SetColorProcessingMode(value FXSpatialScalerColorProcessingMode) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setColorProcessingMode:"), value)
 }
 

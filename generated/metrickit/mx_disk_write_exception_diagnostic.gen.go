@@ -84,8 +84,8 @@ func NewMXDiskWriteExceptionDiagnostic() MXDiskWriteExceptionDiagnostic {
 // The call stack for the disk write exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiskWriteExceptionDiagnostic/callStackTree
-func (m_ MXDiskWriteExceptionDiagnostic) CallStackTree() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("callStackTree"))
+func (m_ MXDiskWriteExceptionDiagnostic) CallStackTree() MXCallStackTree {
+	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
 }
 

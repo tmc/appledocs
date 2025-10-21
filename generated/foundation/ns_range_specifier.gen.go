@@ -84,8 +84,8 @@ func NewRangeSpecifier() RangeSpecifier {
 // Returns the object specifier representing the first object of the range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
-func (r_ RangeSpecifier) StartSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("startSpecifier"))
+func (r_ RangeSpecifier) StartSpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("startSpecifier"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (r_ RangeSpecifier) StartSpecifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeSpecifier/startSpecifier
-func (r_ RangeSpecifier) SetStartSpecifier(value unsafe.Pointer) {
+func (r_ RangeSpecifier) SetStartSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setStartSpecifier:"), value)
 }
 
 // Sets the object specifier representing the last object of the range to a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
-func (r_ RangeSpecifier) EndSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("endSpecifier"))
+func (r_ RangeSpecifier) EndSpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](r_.ID, objc.Sel("endSpecifier"))
 	return rv
 }
 
@@ -113,7 +113,7 @@ func (r_ RangeSpecifier) EndSpecifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsrangespecifier/endspecifier
-func (r_ RangeSpecifier) SetEndSpecifier(value unsafe.Pointer) {
+func (r_ RangeSpecifier) SetEndSpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setEndSpecifier:"), value)
 }
 

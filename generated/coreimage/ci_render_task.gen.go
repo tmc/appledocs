@@ -30,7 +30,7 @@ type _RenderTaskClass struct {
 // An interface definition for the [RenderTask] class.
 type IRenderTask interface {
 	objectivec.IObject
-	WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
+	WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) RenderInfo
 }
 
 // A single render task.
@@ -84,8 +84,8 @@ func NewRenderTask() RenderTask {
 // Waits until the finishes and returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask/waitUntilCompleted()
-func (r_ RenderTask) WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("waitUntilCompletedAndReturnError:"), error_)
+func (r_ RenderTask) WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) RenderInfo {
+	rv := objc.Send[RenderInfo](r_.ID, objc.Sel("waitUntilCompletedAndReturnError:"), error_)
 	return rv
 }
 

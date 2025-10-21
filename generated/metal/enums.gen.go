@@ -459,6 +459,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFeatureSet/iOS_GPUFamily2_v2
 	FeatureSet_iOS_GPUFamily2_v2 FeatureSet = 0
+	// FeatureSet_iOS_GPUFamily2_v3 - The GPU family 2, version 3 feature set for iOS.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFeatureSet/iOS_GPUFamily2_v3
+	FeatureSet_iOS_GPUFamily2_v3 FeatureSet = 0
 	// FeatureSet_iOS_GPUFamily2_v5 - The GPU family 2, version 5 feature set for iOS.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLFeatureSet/iOS_GPUFamily2_v5
@@ -577,6 +581,26 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHazardTrackingMode/untracked
 	HazardTrackingModeUntracked HazardTrackingMode = 0
+)
+
+// MTLHeapType - The options you use to choose the heap type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHeapType
+type HeapType uint
+
+const (
+	// HeapTypeAutomatic - A heap that automatically places new resource allocations.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHeapType/automatic
+	HeapTypeAutomatic HeapType = 0
+	// HeapTypePlacement - The app controls placement of resources on the heap.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHeapType/placement
+	HeapTypePlacement HeapType = 0
+	// HeapTypeSparse - The heap contains sparse texture tiles.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLHeapType/sparse
+	HeapTypeSparse HeapType = 0
 )
 
 // MTLIOCommandQueueType - Designates the queue type for a new input/output command queue.

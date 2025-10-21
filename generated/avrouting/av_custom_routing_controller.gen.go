@@ -30,8 +30,8 @@ type _CustomRoutingControllerClass struct {
 // An interface definition for the [CustomRoutingController] class.
 type ICustomRoutingController interface {
 	objectivec.IObject
-	InvalidateAuthorizationForRoute(route unsafe.Pointer)
-	SetActiveForRoute(active bool, route unsafe.Pointer)
+	InvalidateAuthorizationForRoute(route IAVCustomDeviceRoute)
+	SetActiveForRoute(active bool, route IAVCustomDeviceRoute)
 }
 
 // An object that manages the connection from a device to a destination.
@@ -85,14 +85,14 @@ func NewCustomRoutingController() CustomRoutingController {
 // Revokes an app’s authorization to connect to a route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/invalidateAuthorization(for:)
-func (c_ CustomRoutingController) InvalidateAuthorizationForRoute(route unsafe.Pointer) {
+func (c_ CustomRoutingController) InvalidateAuthorizationForRoute(route IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateAuthorizationForRoute:"), route)
 }
 
 // Sets the active state of a route.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController/setActive(_:for:)
-func (c_ CustomRoutingController) SetActiveForRoute(active bool, route unsafe.Pointer) {
+func (c_ CustomRoutingController) SetActiveForRoute(active bool, route IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActive:forRoute:"), active, route)
 }
 
@@ -145,8 +145,8 @@ func (c_ CustomRoutingController) SetDelegate(value objc.ID) {
 // A list of authorized routes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-func (c_ CustomRoutingController) AuthorizedRoutes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("authorizedRoutes"))
+func (c_ CustomRoutingController) AuthorizedRoutes() AVCustomDeviceRoute {
+	rv := objc.Send[AVCustomDeviceRoute](c_.ID, objc.Sel("authorizedRoutes"))
 	return rv
 }
 
@@ -156,15 +156,15 @@ func (c_ CustomRoutingController) AuthorizedRoutes() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-func (c_ CustomRoutingController) SetAuthorizedRoutes(value unsafe.Pointer) {
+func (c_ CustomRoutingController) SetAuthorizedRoutes(value IAVCustomDeviceRoute) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAuthorizedRoutes:"), value)
 }
 
 // An array of route addresses known to be on the local network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-func (c_ CustomRoutingController) KnownRouteIPs() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("knownRouteIPs"))
+func (c_ CustomRoutingController) KnownRouteIPs() AVCustomRoutingPartialIP {
+	rv := objc.Send[AVCustomRoutingPartialIP](c_.ID, objc.Sel("knownRouteIPs"))
 	return rv
 }
 
@@ -174,7 +174,7 @@ func (c_ CustomRoutingController) KnownRouteIPs() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-func (c_ CustomRoutingController) SetKnownRouteIPs(value unsafe.Pointer) {
+func (c_ CustomRoutingController) SetKnownRouteIPs(value IAVCustomRoutingPartialIP) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
 }
 

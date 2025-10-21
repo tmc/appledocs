@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,7 +33,7 @@ type IUSBHostObject interface {
 	objectivec.IObject
 	Destroy()
 	ReferenceMicroframeWithTimeError(time unsafe.Pointer, error_ unsafe.Pointer) uint64
-	SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data unsafe.Pointer, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool
+	SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.IMutableData, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool
 }
 
 // This class provides basic functionality for sending device requests and retrieving descriptors.
@@ -86,7 +87,7 @@ func NewUSBHostObject() USBHostObject {
 // Creates a USB host object and sets up a communication channel to the kernel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/initWithIOService:options:queue:error:interestHandler:
-func NewUSBHostObjectWithIOServiceOptionsQueueErrorInterestHandler(ioService unsafe.Pointer, options unsafe.Pointer, queue unsafe.Pointer, error_ unsafe.Pointer, interestHandler unsafe.Pointer) USBHostObject {
+func NewUSBHostObjectWithIOServiceOptionsQueueErrorInterestHandler(ioService unsafe.Pointer, options USBHostObjectInitOptions, queue unsafe.Pointer, error_ unsafe.Pointer, interestHandler unsafe.Pointer) USBHostObject {
 	instance := getUSBHostObjectClass().Alloc()
 	rv := objc.Send[USBHostObject](instance.ID, objc.Sel("initWithIOService:options:queue:error:interestHandler:"), ioService, options, queue, error_, interestHandler)
 	rv.Autorelease()
@@ -123,7 +124,7 @@ func (u_ USBHostObject) ReferenceMicroframeWithTimeError(time unsafe.Pointer, er
 // Sends a request on the default control endpoint with a default completion timeout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostObject/sendDeviceRequest:data:bytesTransferred:error:
-func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data unsafe.Pointer, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (u_ USBHostObject) SendDeviceRequestDataBytesTransferredError(request unsafe.Pointer, data foundation.IMutableData, bytesTransferred unsafe.Pointer, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("sendDeviceRequest:data:bytesTransferred:error:"), request, data, bytesTransferred, error_)
 	return rv
 }

@@ -84,8 +84,8 @@ func NewPDFActionNamed() PDFActionNamed {
 // Returns the name of the named action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionnamed/name
-func (p_ PDFActionNamed) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("name"))
+func (p_ PDFActionNamed) Name() PDFActionNamedName {
+	rv := objc.Send[PDFActionNamedName](p_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (p_ PDFActionNamed) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactionnamed/name
-func (p_ PDFActionNamed) SetName(value unsafe.Pointer) {
+func (p_ PDFActionNamed) SetName(value IPDFActionNamedName) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
 

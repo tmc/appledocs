@@ -84,8 +84,8 @@ func NewHKGlassesLensSpecification() HKGlassesLensSpecification {
 // The distance between the pupil and the center of the nose when looking at an object far away, measured in mm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/farpupillarydistance
-func (h_ HKGlassesLensSpecification) FarPupillaryDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("farPupillaryDistance"))
+func (h_ HKGlassesLensSpecification) FarPupillaryDistance() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("farPupillaryDistance"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (h_ HKGlassesLensSpecification) FarPupillaryDistance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/farpupillarydistance
-func (h_ HKGlassesLensSpecification) SetFarPupillaryDistance(value unsafe.Pointer) {
+func (h_ HKGlassesLensSpecification) SetFarPupillaryDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setFarPupillaryDistance:"), value)
 }
 
 // The distance between the pupil and the center of the nose when looking at a nearby object, measured in mm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/nearpupillarydistance
-func (h_ HKGlassesLensSpecification) NearPupillaryDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("nearPupillaryDistance"))
+func (h_ HKGlassesLensSpecification) NearPupillaryDistance() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("nearPupillaryDistance"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (h_ HKGlassesLensSpecification) NearPupillaryDistance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/nearpupillarydistance
-func (h_ HKGlassesLensSpecification) SetNearPupillaryDistance(value unsafe.Pointer) {
+func (h_ HKGlassesLensSpecification) SetNearPupillaryDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setNearPupillaryDistance:"), value)
 }
 
 // An object that contains information about the eye alignment correction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/prism
-func (h_ HKGlassesLensSpecification) Prism() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("prism"))
+func (h_ HKGlassesLensSpecification) Prism() HKVisionPrism {
+	rv := objc.Send[HKVisionPrism](h_.ID, objc.Sel("prism"))
 	return rv
 }
 
@@ -131,15 +131,15 @@ func (h_ HKGlassesLensSpecification) Prism() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/prism
-func (h_ HKGlassesLensSpecification) SetPrism(value unsafe.Pointer) {
+func (h_ HKGlassesLensSpecification) SetPrism(value IHKVisionPrism) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPrism:"), value)
 }
 
 // The distance between the back of the lens and the eye, measured in mm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/vertexdistance
-func (h_ HKGlassesLensSpecification) VertexDistance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("vertexDistance"))
+func (h_ HKGlassesLensSpecification) VertexDistance() HKQuantity {
+	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("vertexDistance"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (h_ HKGlassesLensSpecification) VertexDistance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkglasseslensspecification/vertexdistance
-func (h_ HKGlassesLensSpecification) SetVertexDistance(value unsafe.Pointer) {
+func (h_ HKGlassesLensSpecification) SetVertexDistance(value IHKQuantity) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVertexDistance:"), value)
 }
 

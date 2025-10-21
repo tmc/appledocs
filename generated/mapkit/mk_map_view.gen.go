@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MKMapView] class.
@@ -31,48 +32,48 @@ type _MKMapViewClass struct {
 // An interface definition for the [MKMapView] class.
 type IMKMapView interface {
 	appkit.IView
-	AddAnnotation(annotation objc.ID)
-	AddAnnotations(annotations unsafe.Pointer)
-	AddOverlay(overlay objc.ID)
-	AddOverlayLevel(overlay objc.ID, level unsafe.Pointer)
-	AddOverlays(overlays unsafe.Pointer)
-	AddOverlaysLevel(overlays unsafe.Pointer, level unsafe.Pointer)
+	AddAnnotation(annotation objectivec.IObject)
+	AddAnnotations(annotations []objc.ID)
+	AddOverlay(overlay objectivec.IObject)
+	AddOverlayLevel(overlay objectivec.IObject, level MKOverlayLevel)
+	AddOverlays(overlays []objc.ID)
+	AddOverlaysLevel(overlays []objc.ID, level MKOverlayLevel)
 	AnnotationsInMapRect(mapRect unsafe.Pointer) unsafe.Pointer
-	ConvertPointToCoordinateFromView(point coregraphics.CGPoint, view unsafe.Pointer) unsafe.Pointer
-	ConvertCoordinateToPointToView(coordinate unsafe.Pointer, view unsafe.Pointer) coregraphics.CGPoint
-	ConvertRegionToRectToView(region unsafe.Pointer, view unsafe.Pointer) coregraphics.CGRect
-	ConvertRectToRegionFromView(rect coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer
-	DequeueReusableAnnotationViewWithIdentifier(identifier string) unsafe.Pointer
-	DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier string, annotation objc.ID) unsafe.Pointer
-	DeselectAnnotationAnimated(annotation objc.ID, animated bool)
-	ExchangeOverlayWithOverlay(overlay1 objc.ID, overlay2 objc.ID)
+	ConvertPointToCoordinateFromView(point coregraphics.CGPoint, view appkit.IView) unsafe.Pointer
+	ConvertCoordinateToPointToView(coordinate unsafe.Pointer, view appkit.IView) coregraphics.CGPoint
+	ConvertRegionToRectToView(region unsafe.Pointer, view appkit.IView) coregraphics.CGRect
+	ConvertRectToRegionFromView(rect coregraphics.CGRect, view appkit.IView) unsafe.Pointer
+	DequeueReusableAnnotationViewWithIdentifier(identifier appkit.string) MKAnnotationView
+	DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier appkit.string, annotation objectivec.IObject) MKAnnotationView
+	DeselectAnnotationAnimated(annotation objectivec.IObject, animated bool)
+	ExchangeOverlayWithOverlay(overlay1 objectivec.IObject, overlay2 objectivec.IObject)
 	ExchangeOverlayAtIndexWithOverlayAtIndex(index1 uint, index2 uint)
-	InsertOverlayAboveOverlay(overlay objc.ID, sibling objc.ID)
-	InsertOverlayAtIndex(overlay objc.ID, index uint)
-	InsertOverlayAtIndexLevel(overlay objc.ID, index uint, level unsafe.Pointer)
-	InsertOverlayBelowOverlay(overlay objc.ID, sibling objc.ID)
+	InsertOverlayAboveOverlay(overlay objectivec.IObject, sibling objectivec.IObject)
+	InsertOverlayAtIndex(overlay objectivec.IObject, index uint)
+	InsertOverlayAtIndexLevel(overlay objectivec.IObject, index uint, level MKOverlayLevel)
+	InsertOverlayBelowOverlay(overlay objectivec.IObject, sibling objectivec.IObject)
 	MapRectThatFits(mapRect unsafe.Pointer) unsafe.Pointer
 	MapRectThatFitsEdgePadding(mapRect unsafe.Pointer, insets unsafe.Pointer) unsafe.Pointer
-	OverlaysInLevel(level unsafe.Pointer) []objc.ID
+	OverlaysInLevel(level MKOverlayLevel) []objc.ID
 	RegionThatFits(region unsafe.Pointer) unsafe.Pointer
-	RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier string)
-	RemoveAnnotation(annotation objc.ID)
-	RemoveAnnotations(annotations unsafe.Pointer)
-	RemoveOverlay(overlay objc.ID)
-	RemoveOverlays(overlays unsafe.Pointer)
-	RendererForOverlay(overlay objc.ID) unsafe.Pointer
-	SelectAnnotationAnimated(annotation objc.ID, animated bool)
+	RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier appkit.string)
+	RemoveAnnotation(annotation objectivec.IObject)
+	RemoveAnnotations(annotations []objc.ID)
+	RemoveOverlay(overlay objectivec.IObject)
+	RemoveOverlays(overlays []objc.ID)
+	RendererForOverlay(overlay objectivec.IObject) MKOverlayRenderer
+	SelectAnnotationAnimated(annotation objectivec.IObject, animated bool)
 	SetCameraAnimated(camera unsafe.Pointer, animated bool)
-	SetCameraBoundaryAnimated(cameraBoundary unsafe.Pointer, animated bool)
-	SetCameraZoomRangeAnimated(cameraZoomRange unsafe.Pointer, animated bool)
+	SetCameraBoundaryAnimated(cameraBoundary IMKMapCameraBoundary, animated bool)
+	SetCameraZoomRangeAnimated(cameraZoomRange IMKMapCameraZoomRange, animated bool)
 	SetCenterCoordinateAnimated(coordinate unsafe.Pointer, animated bool)
 	SetRegionAnimated(region unsafe.Pointer, animated bool)
-	SetUserTrackingModeAnimated(mode unsafe.Pointer, animated bool)
+	SetUserTrackingModeAnimated(mode MKUserTrackingMode, animated bool)
 	SetVisibleMapRectAnimated(mapRect unsafe.Pointer, animate bool)
 	SetVisibleMapRectEdgePaddingAnimated(mapRect unsafe.Pointer, insets unsafe.Pointer, animate bool)
-	ShowAnnotationsAnimated(annotations unsafe.Pointer, animated bool)
-	ViewForAnnotation(annotation objc.ID) unsafe.Pointer
-	ViewForOverlay(overlay objc.ID) unsafe.Pointer
+	ShowAnnotationsAnimated(annotations []objc.ID, animated bool)
+	ViewForAnnotation(annotation objectivec.IObject) MKAnnotationView
+	ViewForOverlay(overlay objectivec.IObject) MKOverlayView
 }
 
 // An embeddable map interface, similar to the one that the Maps app provides.
@@ -128,42 +129,42 @@ func NewMKMapView() MKMapView {
 // Adds the specified annotation to the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/addAnnotation(_:)
-func (m_ MKMapView) AddAnnotation(annotation objc.ID) {
+func (m_ MKMapView) AddAnnotation(annotation objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addAnnotation:"), annotation)
 }
 
 // Adds an array of annotation objects to the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/addAnnotations(_:)
-func (m_ MKMapView) AddAnnotations(annotations unsafe.Pointer) {
+func (m_ MKMapView) AddAnnotations(annotations []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addAnnotations:"), annotations)
 }
 
 // Adds a single overlay object to the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/addOverlay(_:)
-func (m_ MKMapView) AddOverlay(overlay objc.ID) {
+func (m_ MKMapView) AddOverlay(overlay objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addOverlay:"), overlay)
 }
 
 // Adds the overlay object to the map at the specified level.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/addOverlay(_:level:)
-func (m_ MKMapView) AddOverlayLevel(overlay objc.ID, level unsafe.Pointer) {
+func (m_ MKMapView) AddOverlayLevel(overlay objectivec.IObject, level MKOverlayLevel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addOverlay:level:"), overlay, level)
 }
 
 // Adds an array of overlay objects to the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/addOverlays(_:)
-func (m_ MKMapView) AddOverlays(overlays unsafe.Pointer) {
+func (m_ MKMapView) AddOverlays(overlays []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addOverlays:"), overlays)
 }
 
 // Adds an array of overlay objects to the map at the specified level.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/addOverlays(_:level:)
-func (m_ MKMapView) AddOverlaysLevel(overlays unsafe.Pointer, level unsafe.Pointer) {
+func (m_ MKMapView) AddOverlaysLevel(overlays []objc.ID, level MKOverlayLevel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addOverlays:level:"), overlays, level)
 }
 
@@ -178,7 +179,7 @@ func (m_ MKMapView) AnnotationsInMapRect(mapRect unsafe.Pointer) unsafe.Pointer 
 // Converts a point in the specified view’s coordinate system to a map coordinate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/convert(_:toCoordinateFrom:)
-func (m_ MKMapView) ConvertPointToCoordinateFromView(point coregraphics.CGPoint, view unsafe.Pointer) unsafe.Pointer {
+func (m_ MKMapView) ConvertPointToCoordinateFromView(point coregraphics.CGPoint, view appkit.IView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("convertPoint:toCoordinateFromView:"), point, view)
 	return rv
 }
@@ -186,7 +187,7 @@ func (m_ MKMapView) ConvertPointToCoordinateFromView(point coregraphics.CGPoint,
 // Converts a map coordinate to a point in the specified view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/convert(_:toPointTo:)
-func (m_ MKMapView) ConvertCoordinateToPointToView(coordinate unsafe.Pointer, view unsafe.Pointer) coregraphics.CGPoint {
+func (m_ MKMapView) ConvertCoordinateToPointToView(coordinate unsafe.Pointer, view appkit.IView) coregraphics.CGPoint {
 	rv := objc.Send[coregraphics.CGPoint](m_.ID, objc.Sel("convertCoordinate:toPointToView:"), coordinate, view)
 	return rv
 }
@@ -194,7 +195,7 @@ func (m_ MKMapView) ConvertCoordinateToPointToView(coordinate unsafe.Pointer, vi
 // Converts a map region to a rectangle in the specified view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/convert(_:toRectTo:)
-func (m_ MKMapView) ConvertRegionToRectToView(region unsafe.Pointer, view unsafe.Pointer) coregraphics.CGRect {
+func (m_ MKMapView) ConvertRegionToRectToView(region unsafe.Pointer, view appkit.IView) coregraphics.CGRect {
 	rv := objc.Send[coregraphics.CGRect](m_.ID, objc.Sel("convertRegion:toRectToView:"), region, view)
 	return rv
 }
@@ -202,7 +203,7 @@ func (m_ MKMapView) ConvertRegionToRectToView(region unsafe.Pointer, view unsafe
 // Converts a rectangle in the specified view’s coordinate system to a map region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/convert(_:toRegionFrom:)
-func (m_ MKMapView) ConvertRectToRegionFromView(rect coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer {
+func (m_ MKMapView) ConvertRectToRegionFromView(rect coregraphics.CGRect, view appkit.IView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("convertRect:toRegionFromView:"), rect, view)
 	return rv
 }
@@ -210,30 +211,30 @@ func (m_ MKMapView) ConvertRectToRegionFromView(rect coregraphics.CGRect, view u
 // Returns a reusable annotation view using its identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/dequeueReusableAnnotationView(withIdentifier:)
-func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifier(identifier string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:"), objc.String(identifier))
+func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifier(identifier appkit.string) MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:"), identifier)
 	return rv
 }
 
 // Returns a reusable annotation view using the specified identifier with a specified existing annotation view, if possible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/dequeueReusableAnnotationView(withIdentifier:for:)
-func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier string, annotation objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:forAnnotation:"), objc.String(identifier), annotation)
+func (m_ MKMapView) DequeueReusableAnnotationViewWithIdentifierForAnnotation(identifier appkit.string, annotation objectivec.IObject) MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("dequeueReusableAnnotationViewWithIdentifier:forAnnotation:"), identifier, annotation)
 	return rv
 }
 
 // Deselects the specified annotation and hides its callout view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/deselectAnnotation(_:animated:)
-func (m_ MKMapView) DeselectAnnotationAnimated(annotation objc.ID, animated bool) {
+func (m_ MKMapView) DeselectAnnotationAnimated(annotation objectivec.IObject, animated bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deselectAnnotation:animated:"), annotation, animated)
 }
 
 // Exchanges the positions of two overlay objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/exchangeOverlay(_:with:)
-func (m_ MKMapView) ExchangeOverlayWithOverlay(overlay1 objc.ID, overlay2 objc.ID) {
+func (m_ MKMapView) ExchangeOverlayWithOverlay(overlay1 objectivec.IObject, overlay2 objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("exchangeOverlay:withOverlay:"), overlay1, overlay2)
 }
 
@@ -247,28 +248,28 @@ func (m_ MKMapView) ExchangeOverlayAtIndexWithOverlayAtIndex(index1 uint, index2
 // Inserts one overlay object above another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/insertOverlay(_:above:)
-func (m_ MKMapView) InsertOverlayAboveOverlay(overlay objc.ID, sibling objc.ID) {
+func (m_ MKMapView) InsertOverlayAboveOverlay(overlay objectivec.IObject, sibling objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertOverlay:aboveOverlay:"), overlay, sibling)
 }
 
 // Inserts an overlay object into the list associated with the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/insertOverlay(_:at:)
-func (m_ MKMapView) InsertOverlayAtIndex(overlay objc.ID, index uint) {
+func (m_ MKMapView) InsertOverlayAtIndex(overlay objectivec.IObject, index uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertOverlay:atIndex:"), overlay, index)
 }
 
 // Inserts an overlay object into the level at the specified index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/insertOverlay(_:at:level:)
-func (m_ MKMapView) InsertOverlayAtIndexLevel(overlay objc.ID, index uint, level unsafe.Pointer) {
+func (m_ MKMapView) InsertOverlayAtIndexLevel(overlay objectivec.IObject, index uint, level MKOverlayLevel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertOverlay:atIndex:level:"), overlay, index, level)
 }
 
 // Inserts one overlay object below another.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/insertOverlay(_:below:)
-func (m_ MKMapView) InsertOverlayBelowOverlay(overlay objc.ID, sibling objc.ID) {
+func (m_ MKMapView) InsertOverlayBelowOverlay(overlay objectivec.IObject, sibling objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertOverlay:belowOverlay:"), overlay, sibling)
 }
 
@@ -291,7 +292,7 @@ func (m_ MKMapView) MapRectThatFitsEdgePadding(mapRect unsafe.Pointer, insets un
 // Returns overlay objects in the specified level of the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/overlays(in:)
-func (m_ MKMapView) OverlaysInLevel(level unsafe.Pointer) []objc.ID {
+func (m_ MKMapView) OverlaysInLevel(level MKOverlayLevel) []objc.ID {
 	rv := objc.Send[[]objc.ID](m_.ID, objc.Sel("overlaysInLevel:"), level)
 	return rv
 }
@@ -307,50 +308,50 @@ func (m_ MKMapView) RegionThatFits(region unsafe.Pointer) unsafe.Pointer {
 // Registers an annotation view class that the map can create automatically.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/register(_:forAnnotationViewWithReuseIdentifier:)
-func (m_ MKMapView) RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("registerClass:forAnnotationViewWithReuseIdentifier:"), viewClass, objc.String(identifier))
+func (m_ MKMapView) RegisterClassForAnnotationViewWithReuseIdentifier(viewClass objc.Class, identifier appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("registerClass:forAnnotationViewWithReuseIdentifier:"), viewClass, identifier)
 }
 
 // Removes the specified annotation object from the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/removeAnnotation(_:)
-func (m_ MKMapView) RemoveAnnotation(annotation objc.ID) {
+func (m_ MKMapView) RemoveAnnotation(annotation objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAnnotation:"), annotation)
 }
 
 // Removes an array of annotation objects from the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/removeAnnotations(_:)
-func (m_ MKMapView) RemoveAnnotations(annotations unsafe.Pointer) {
+func (m_ MKMapView) RemoveAnnotations(annotations []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeAnnotations:"), annotations)
 }
 
 // Removes a single overlay object from the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/removeOverlay(_:)
-func (m_ MKMapView) RemoveOverlay(overlay objc.ID) {
+func (m_ MKMapView) RemoveOverlay(overlay objectivec.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeOverlay:"), overlay)
 }
 
 // Removes one or more overlay objects from the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/removeOverlays(_:)
-func (m_ MKMapView) RemoveOverlays(overlays unsafe.Pointer) {
+func (m_ MKMapView) RemoveOverlays(overlays []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeOverlays:"), overlays)
 }
 
 // Returns the renderer object for drawing the contents of the specified overlay object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/renderer(for:)
-func (m_ MKMapView) RendererForOverlay(overlay objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rendererForOverlay:"), overlay)
+func (m_ MKMapView) RendererForOverlay(overlay objectivec.IObject) MKOverlayRenderer {
+	rv := objc.Send[MKOverlayRenderer](m_.ID, objc.Sel("rendererForOverlay:"), overlay)
 	return rv
 }
 
 // Selects the specified annotation and displays a callout view for it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/selectAnnotation(_:animated:)
-func (m_ MKMapView) SelectAnnotationAnimated(annotation objc.ID, animated bool) {
+func (m_ MKMapView) SelectAnnotationAnimated(annotation objectivec.IObject, animated bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("selectAnnotation:animated:"), annotation, animated)
 }
 
@@ -364,14 +365,14 @@ func (m_ MKMapView) SetCameraAnimated(camera unsafe.Pointer, animated bool) {
 // Sets the camera boundary for the map view, specifying whether to use animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/setCameraBoundary(_:animated:)
-func (m_ MKMapView) SetCameraBoundaryAnimated(cameraBoundary unsafe.Pointer, animated bool) {
+func (m_ MKMapView) SetCameraBoundaryAnimated(cameraBoundary IMKMapCameraBoundary, animated bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraBoundary:animated:"), cameraBoundary, animated)
 }
 
 // Sets the camera zoom range for the map view, specifying whether to use animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/setCameraZoomRange(_:animated:)
-func (m_ MKMapView) SetCameraZoomRangeAnimated(cameraZoomRange unsafe.Pointer, animated bool) {
+func (m_ MKMapView) SetCameraZoomRangeAnimated(cameraZoomRange IMKMapCameraZoomRange, animated bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraZoomRange:animated:"), cameraZoomRange, animated)
 }
 
@@ -392,7 +393,7 @@ func (m_ MKMapView) SetRegionAnimated(region unsafe.Pointer, animated bool) {
 // Sets the mode to use for tracking the user’s location, with optional animation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/setUserTrackingMode(_:animated:)
-func (m_ MKMapView) SetUserTrackingModeAnimated(mode unsafe.Pointer, animated bool) {
+func (m_ MKMapView) SetUserTrackingModeAnimated(mode MKUserTrackingMode, animated bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserTrackingMode:animated:"), mode, animated)
 }
 
@@ -413,23 +414,23 @@ func (m_ MKMapView) SetVisibleMapRectEdgePaddingAnimated(mapRect unsafe.Pointer,
 // Sets the visible region so that the map displays the specified annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/showAnnotations(_:animated:)
-func (m_ MKMapView) ShowAnnotationsAnimated(annotations unsafe.Pointer, animated bool) {
+func (m_ MKMapView) ShowAnnotationsAnimated(annotations []objc.ID, animated bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("showAnnotations:animated:"), annotations, animated)
 }
 
 // Returns the annotation view associated with the specified annotation object, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/view(for:)-33w8k
-func (m_ MKMapView) ViewForAnnotation(annotation objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("viewForAnnotation:"), annotation)
+func (m_ MKMapView) ViewForAnnotation(annotation objectivec.IObject) MKAnnotationView {
+	rv := objc.Send[MKAnnotationView](m_.ID, objc.Sel("viewForAnnotation:"), annotation)
 	return rv
 }
 
 // Returns the view associated with the overlay object, if any.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/view(for:)-38z60
-func (m_ MKMapView) ViewForOverlay(overlay objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("viewForOverlay:"), overlay)
+func (m_ MKMapView) ViewForOverlay(overlay objectivec.IObject) MKOverlayView {
+	rv := objc.Send[MKOverlayView](m_.ID, objc.Sel("viewForOverlay:"), overlay)
 	return rv
 }
 
@@ -470,8 +471,8 @@ func (m_ MKMapView) SetCamera(value unsafe.Pointer) {
 // The boundary of the area within which the map view’s center needs to remain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/cameraBoundary-swift.property
-func (m_ MKMapView) CameraBoundary() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cameraBoundary"))
+func (m_ MKMapView) CameraBoundary() MKMapCameraBoundary {
+	rv := objc.Send[MKMapCameraBoundary](m_.ID, objc.Sel("cameraBoundary"))
 	return rv
 }
 
@@ -481,15 +482,15 @@ func (m_ MKMapView) CameraBoundary() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/cameraBoundary-swift.property
-func (m_ MKMapView) SetCameraBoundary(value unsafe.Pointer) {
+func (m_ MKMapView) SetCameraBoundary(value IMKMapCameraBoundary) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraBoundary:"), value)
 }
 
 // The zoom range to apply to the map view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/cameraZoomRange-swift.property
-func (m_ MKMapView) CameraZoomRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cameraZoomRange"))
+func (m_ MKMapView) CameraZoomRange() MKMapCameraZoomRange {
+	rv := objc.Send[MKMapCameraZoomRange](m_.ID, objc.Sel("cameraZoomRange"))
 	return rv
 }
 
@@ -499,7 +500,7 @@ func (m_ MKMapView) CameraZoomRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/cameraZoomRange-swift.property
-func (m_ MKMapView) SetCameraZoomRange(value unsafe.Pointer) {
+func (m_ MKMapView) SetCameraZoomRange(value IMKMapCameraZoomRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCameraZoomRange:"), value)
 }
 
@@ -622,8 +623,8 @@ func (m_ MKMapView) SetZoomEnabled(value bool) {
 // The type of data the map view displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/mapType
-func (m_ MKMapView) MapType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mapType"))
+func (m_ MKMapView) MapType() MKMapType {
+	rv := objc.Send[MKMapType](m_.ID, objc.Sel("mapType"))
 	return rv
 }
 
@@ -633,7 +634,7 @@ func (m_ MKMapView) MapType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/mapType
-func (m_ MKMapView) SetMapType(value unsafe.Pointer) {
+func (m_ MKMapView) SetMapType(value MKMapType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMapType:"), value)
 }
 
@@ -666,8 +667,8 @@ func (m_ MKMapView) SetPitchButtonVisibility(value unsafe.Pointer) {
 // The filter to use for determining the points of interest that appear on the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/pointOfInterestFilter
-func (m_ MKMapView) PointOfInterestFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("pointOfInterestFilter"))
+func (m_ MKMapView) PointOfInterestFilter() MKPointOfInterestFilter {
+	rv := objc.Send[MKPointOfInterestFilter](m_.ID, objc.Sel("pointOfInterestFilter"))
 	return rv
 }
 
@@ -677,15 +678,15 @@ func (m_ MKMapView) PointOfInterestFilter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/pointOfInterestFilter
-func (m_ MKMapView) SetPointOfInterestFilter(value unsafe.Pointer) {
+func (m_ MKMapView) SetPointOfInterestFilter(value IMKPointOfInterestFilter) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPointOfInterestFilter:"), value)
 }
 
 // The characteristics of the map view, including the map type and features the map displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/preferredConfiguration
-func (m_ MKMapView) PreferredConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("preferredConfiguration"))
+func (m_ MKMapView) PreferredConfiguration() MKMapConfiguration {
+	rv := objc.Send[MKMapConfiguration](m_.ID, objc.Sel("preferredConfiguration"))
 	return rv
 }
 
@@ -695,7 +696,7 @@ func (m_ MKMapView) PreferredConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/preferredConfiguration
-func (m_ MKMapView) SetPreferredConfiguration(value unsafe.Pointer) {
+func (m_ MKMapView) SetPreferredConfiguration(value IMKMapConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredConfiguration:"), value)
 }
 
@@ -720,8 +721,8 @@ func (m_ MKMapView) SetRegion(value unsafe.Pointer) {
 // The property that describes which selectable features the map responds to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/selectableMapFeatures
-func (m_ MKMapView) SelectableMapFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("selectableMapFeatures"))
+func (m_ MKMapView) SelectableMapFeatures() MKMapFeatureOptions {
+	rv := objc.Send[MKMapFeatureOptions](m_.ID, objc.Sel("selectableMapFeatures"))
 	return rv
 }
 
@@ -731,7 +732,7 @@ func (m_ MKMapView) SelectableMapFeatures() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/selectableMapFeatures
-func (m_ MKMapView) SetSelectableMapFeatures(value unsafe.Pointer) {
+func (m_ MKMapView) SetSelectableMapFeatures(value MKMapFeatureOptions) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectableMapFeatures:"), value)
 }
 
@@ -928,16 +929,16 @@ func (m_ MKMapView) SetShowsZoomControls(value bool) {
 // The annotation object that represents the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/userLocation
-func (m_ MKMapView) UserLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userLocation"))
+func (m_ MKMapView) UserLocation() MKUserLocation {
+	rv := objc.Send[MKUserLocation](m_.ID, objc.Sel("userLocation"))
 	return rv
 }
 
 // The mode to use for tracking the user’s location.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/userTrackingMode
-func (m_ MKMapView) UserTrackingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("userTrackingMode"))
+func (m_ MKMapView) UserTrackingMode() MKUserTrackingMode {
+	rv := objc.Send[MKUserTrackingMode](m_.ID, objc.Sel("userTrackingMode"))
 	return rv
 }
 
@@ -947,7 +948,7 @@ func (m_ MKMapView) UserTrackingMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapView/userTrackingMode
-func (m_ MKMapView) SetUserTrackingMode(value unsafe.Pointer) {
+func (m_ MKMapView) SetUserTrackingMode(value MKUserTrackingMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserTrackingMode:"), value)
 }
 
@@ -972,8 +973,8 @@ func (m_ MKMapView) SetVisibleMapRect(value unsafe.Pointer) {
 // The appearance of the receiver, in an `NSAppearance` object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
-func (m_ MKMapView) Appearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("appearance"))
+func (m_ MKMapView) Appearance() appkit.Appearance {
+	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -983,15 +984,15 @@ func (m_ MKMapView) Appearance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/appearance
-func (m_ MKMapView) SetAppearance(value unsafe.Pointer) {
+func (m_ MKMapView) SetAppearance(value appkit.IAppearance) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
 }
 
 // The appearance that will be used when the receiver is drawn onscreen, in an `NSAppearance` object. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
-func (m_ MKMapView) EffectiveAppearance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("effectiveAppearance"))
+func (m_ MKMapView) EffectiveAppearance() appkit.Appearance {
+	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("effectiveAppearance"))
 	return rv
 }
 
@@ -1001,7 +1002,7 @@ func (m_ MKMapView) EffectiveAppearance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAppearanceCustomization/effectiveAppearance
-func (m_ MKMapView) SetEffectiveAppearance(value unsafe.Pointer) {
+func (m_ MKMapView) SetEffectiveAppearance(value appkit.IAppearance) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectiveAppearance:"), value)
 }
 
@@ -1098,16 +1099,16 @@ func (m_ MKMapView) SetIsZoomEnabled(value bool) {
 // The default reuse identifier for your map’s annotation views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
+func (m_ MKMapView) MKMapViewDefaultAnnotationViewReuseIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MKMapViewDefaultAnnotationViewReuseIdentifier"))
 	return rv
 }
 
 // The default reuse identifier for the annotation view representing a cluster of annotations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier
-func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
+func (m_ MKMapView) MKMapViewDefaultClusterAnnotationViewReuseIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MKMapViewDefaultClusterAnnotationViewReuseIdentifier"))
 	return rv
 }
 

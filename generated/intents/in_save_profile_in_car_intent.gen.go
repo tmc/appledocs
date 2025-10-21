@@ -84,8 +84,8 @@ func NewINSaveProfileInCarIntent() INSaveProfileInCarIntent {
 // The name to assign to the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilelabel
-func (i_ INSaveProfileInCarIntent) ProfileLabel() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("profileLabel"))
+func (i_ INSaveProfileInCarIntent) ProfileLabel() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("profileLabel"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (i_ INSaveProfileInCarIntent) ProfileLabel() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilelabel
-func (i_ INSaveProfileInCarIntent) SetProfileLabel(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
+func (i_ INSaveProfileInCarIntent) SetProfileLabel(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), value)
 }
 
 // The name to assign to the profile.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilename
-func (i_ INSaveProfileInCarIntent) ProfileName() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("profileName"))
+func (i_ INSaveProfileInCarIntent) ProfileName() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("profileName"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (i_ INSaveProfileInCarIntent) ProfileName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insaveprofileincarintent/profilename
-func (i_ INSaveProfileInCarIntent) SetProfileName(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
+func (i_ INSaveProfileInCarIntent) SetProfileName(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), value)
 }
 
 // The profile index in which to save the settings.

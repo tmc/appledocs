@@ -78,8 +78,8 @@ func NewMTRGeneralCommissioningClusterArmFailSafeResponseParams() MTRGeneralComm
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) DebugText() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("debugText"))
+func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) DebugText() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("debugText"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) DebugText() st
 // SetDebugText sets the value of the debugText property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/debugtext
-func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetDebugText(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), objc.String(value))
+func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetDebugText(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) ErrorCode() fo
 // SetErrorCode sets the value of the errorCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/errorcode
-func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetErrorCode(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetErrorCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) TimedInvokeTim
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/timedinvoketimeoutms
-func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

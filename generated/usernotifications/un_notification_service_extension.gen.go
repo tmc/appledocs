@@ -30,7 +30,7 @@ type _UNNotificationServiceExtensionClass struct {
 // An interface definition for the [UNNotificationServiceExtension] class.
 type IUNNotificationServiceExtension interface {
 	objectivec.IObject
-	DidReceiveNotificationRequestWithContentHandler(request unsafe.Pointer, contentHandler unsafe.Pointer)
+	DidReceiveNotificationRequestWithContentHandler(request IUNNotificationRequest, contentHandler unsafe.Pointer)
 	ServiceExtensionTimeWillExpire()
 }
 
@@ -85,7 +85,7 @@ func NewUNNotificationServiceExtension() UNNotificationServiceExtension {
 // Asks you to make any needed changes to the notification and notify the system when you’re done.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationServiceExtension/didReceive(_:withContentHandler:)
-func (u_ UNNotificationServiceExtension) DidReceiveNotificationRequestWithContentHandler(request unsafe.Pointer, contentHandler unsafe.Pointer) {
+func (u_ UNNotificationServiceExtension) DidReceiveNotificationRequestWithContentHandler(request IUNNotificationRequest, contentHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("didReceiveNotificationRequest:withContentHandler:"), request, contentHandler)
 }
 

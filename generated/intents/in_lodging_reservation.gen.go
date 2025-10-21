@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INLodgingReservation] class.
@@ -82,8 +83,8 @@ func NewINLodgingReservation() INLodgingReservation {
 // The name and location of the lodging establishment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
-func (i_ INLodgingReservation) LodgingBusinessLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("lodgingBusinessLocation"))
+func (i_ INLodgingReservation) LodgingBusinessLocation() corelocation.Placemark {
+	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("lodgingBusinessLocation"))
 	return rv
 }
 
@@ -93,7 +94,7 @@ func (i_ INLodgingReservation) LodgingBusinessLocation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/lodgingbusinesslocation
-func (i_ INLodgingReservation) SetLodgingBusinessLocation(value unsafe.Pointer) {
+func (i_ INLodgingReservation) SetLodgingBusinessLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
 }
 
@@ -136,8 +137,8 @@ func (i_ INLodgingReservation) SetNumberOfChildren(value int) {
 // The date and time range that indicates the beginning and end of the reservation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
-func (i_ INLodgingReservation) ReservationDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("reservationDuration"))
+func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("reservationDuration"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (i_ INLodgingReservation) ReservationDuration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inlodgingreservation/reservationduration
-func (i_ INLodgingReservation) SetReservationDuration(value unsafe.Pointer) {
+func (i_ INLodgingReservation) SetReservationDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
 

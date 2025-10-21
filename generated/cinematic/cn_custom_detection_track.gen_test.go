@@ -9,3 +9,12 @@ import (
 // Suppress unused import errors
 var _ = cinematic.NewCNCustomDetectionTrack
 
+// ExampleNewCNCustomDetectionTrackWithDetectionsSmooth demonstrates how to create a CNCustomDetectionTrack instance using NewCNCustomDetectionTrackWithDetectionsSmooth.
+// Initializes a custom detection track with an array of detections, optionally applying smoothing.
+func ExampleNewCNCustomDetectionTrackWithDetectionsSmooth() {
+	_ = cinematic.NewCNCustomDetectionTrackWithDetectionsSmooth(
+		[]cinematic.CNDetection{}, // detections []CNDetection
+		false, // applySmoothing bool
+	)
+	// Output:
+}

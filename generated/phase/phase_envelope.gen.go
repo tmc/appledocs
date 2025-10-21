@@ -86,7 +86,7 @@ func NewPHASEEnvelope() PHASEEnvelope {
 // Creates an envelope with a start point and segments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/init(startPoint:segments:)
-func NewPHASEEnvelopeWithStartPointSegments(startPoint unsafe.Pointer, segments unsafe.Pointer) PHASEEnvelope {
+func NewPHASEEnvelopeWithStartPointSegments(startPoint unsafe.Pointer, segments []PHASEEnvelopeSegment) PHASEEnvelope {
 	instance := getPHASEEnvelopeClass().Alloc()
 	rv := objc.Send[PHASEEnvelope](instance.ID, objc.Sel("initWithStartPoint:segments:"), startPoint, segments)
 	rv.Autorelease()
@@ -105,16 +105,16 @@ func (p_ PHASEEnvelope) EvaluateForValue(x unsafe.Pointer) unsafe.Pointer {
 // The range of the envelope’s possible input values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/domain
-func (p_ PHASEEnvelope) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("domain"))
+func (p_ PHASEEnvelope) Domain() PHASENumericPair {
+	rv := objc.Send[PHASENumericPair](p_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // The bounds of the output value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelope/range
-func (p_ PHASEEnvelope) Range() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("range"))
+func (p_ PHASEEnvelope) Range() PHASENumericPair {
+	rv := objc.Send[PHASENumericPair](p_.ID, objc.Sel("range"))
 	return rv
 }
 

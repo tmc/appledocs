@@ -30,9 +30,9 @@ type _MutableIndexSetClass struct {
 type IMutableIndexSet interface {
 	IIndexSet
 	AddIndex(value uint)
-	RemoveIndexes(indexSet unsafe.Pointer)
+	RemoveIndexes(indexSet IIndexSet)
 	RemoveIndex(value uint)
-	RemoveIndexesInRange(range_ Range)
+	RemoveIndexesInRange(range_ IRange)
 }
 
 // A mutable collection of unique integer values that represent indexes in another collection.
@@ -95,7 +95,7 @@ func (m_ MutableIndexSet) AddIndex(value uint) {
 // Removes the indexes in an index set from the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(_:)-196u2
-func (m_ MutableIndexSet) RemoveIndexes(indexSet unsafe.Pointer) {
+func (m_ MutableIndexSet) RemoveIndexes(indexSet IIndexSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexes:"), indexSet)
 }
 
@@ -109,7 +109,7 @@ func (m_ MutableIndexSet) RemoveIndex(value uint) {
 // Removes the indexes in an index range from the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableIndexSet/remove(in:)
-func (m_ MutableIndexSet) RemoveIndexesInRange(range_ Range) {
+func (m_ MutableIndexSet) RemoveIndexesInRange(range_ IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeIndexesInRange:"), range_)
 }
 

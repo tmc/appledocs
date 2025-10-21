@@ -87,7 +87,7 @@ func (m_ MTROperationalStateClusterPauseParams) ServerSideProcessingTimeout() fo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterpauseparams/serversideprocessingtimeout
-func (m_ MTROperationalStateClusterPauseParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalStateClusterPauseParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalStateClusterPauseParams) TimedInvokeTimeoutMs() foundatio
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusterpauseparams/timedinvoketimeoutms
-func (m_ MTROperationalStateClusterPauseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalStateClusterPauseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

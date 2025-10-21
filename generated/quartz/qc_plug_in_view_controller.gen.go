@@ -30,7 +30,7 @@ type _QCPlugInViewControllerClass struct {
 // An interface definition for the [QCPlugInViewController] class.
 type IQCPlugInViewController interface {
 	appkit.IViewController
-	PlugIn() unsafe.Pointer
+	PlugIn() QCPlugIn
 }
 
 // The class communicates (through Cocoa bindings) between a custom patch and the view used for the internal settings of the custom patch. Only custom patches that use internal settings exposed to the user need to use the class.
@@ -88,9 +88,9 @@ func NewQCPlugInViewController() QCPlugInViewController {
 // Creates and initializes a controller for the specified object and nib file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPlugInViewController/init(plugIn:viewNibName:)
-func NewQCPlugInViewControllerWithPlugInViewNibName(plugIn unsafe.Pointer, name string) QCPlugInViewController {
+func NewQCPlugInViewControllerWithPlugInViewNibName(plugIn IQCPlugIn, name appkit.string) QCPlugInViewController {
 	instance := getQCPlugInViewControllerClass().Alloc()
-	rv := objc.Send[QCPlugInViewController](instance.ID, objc.Sel("initWithPlugIn:viewNibName:"), plugIn, objc.String(name))
+	rv := objc.Send[QCPlugInViewController](instance.ID, objc.Sel("initWithPlugIn:viewNibName:"), plugIn, name)
 	rv.Autorelease()
 	return rv
 }
@@ -99,8 +99,8 @@ func NewQCPlugInViewControllerWithPlugInViewNibName(plugIn unsafe.Pointer, name 
 // Returns the object associated with the view controller for the custom patch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Quartz/QCPlugInViewController/plugIn()
-func (q_ QCPlugInViewController) PlugIn() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](q_.ID, objc.Sel("plugIn"))
+func (q_ QCPlugInViewController) PlugIn() QCPlugIn {
+	rv := objc.Send[QCPlugIn](q_.ID, objc.Sel("plugIn"))
 	return rv
 }
 

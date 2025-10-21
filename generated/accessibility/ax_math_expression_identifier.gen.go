@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [AXMathExpressionIdentifier] class.
@@ -78,9 +79,9 @@ func NewAXMathExpressionIdentifier() AXMathExpressionIdentifier {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionIdentifier/init(content:)
-func NewAXMathExpressionIdentifierWithContent(content string) AXMathExpressionIdentifier {
+func NewAXMathExpressionIdentifierWithContent(content appkit.string) AXMathExpressionIdentifier {
 	instance := getAXMathExpressionIdentifierClass().Alloc()
-	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), objc.String(content))
+	rv := objc.Send[AXMathExpressionIdentifier](instance.ID, objc.Sel("initWithContent:"), content)
 	rv.Autorelease()
 	return rv
 }
@@ -88,8 +89,8 @@ func NewAXMathExpressionIdentifierWithContent(content string) AXMathExpressionId
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) Content() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("content"))
+func (a_ AXMathExpressionIdentifier) Content() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -97,8 +98,8 @@ func (a_ AXMathExpressionIdentifier) Content() string {
 // SetContent sets the value of the content property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axmathexpressionidentifier/content
-func (a_ AXMathExpressionIdentifier) SetContent(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), objc.String(value))
+func (a_ AXMathExpressionIdentifier) SetContent(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setContent:"), value)
 }
 
 

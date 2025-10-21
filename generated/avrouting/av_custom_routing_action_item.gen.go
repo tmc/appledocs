@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCustomRoutingActionItem() CustomRoutingActionItem {
 // A string to use to override the title of the item’s type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) OverrideTitle() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("overrideTitle"))
+func (c_ CustomRoutingActionItem) OverrideTitle() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("overrideTitle"))
 	return rv
 }
 
@@ -94,15 +95,15 @@ func (c_ CustomRoutingActionItem) OverrideTitle() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/overrideTitle
-func (c_ CustomRoutingActionItem) SetOverrideTitle(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), objc.String(value))
+func (c_ CustomRoutingActionItem) SetOverrideTitle(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setOverrideTitle:"), value)
 }
 
 // A type with an identifier that matches a value in the app’s configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) Type() UTType {
-	rv := objc.Send[UTType](c_.ID, objc.Sel("type"))
+func (c_ CustomRoutingActionItem) Type() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("type"))
 	return rv
 }
 
@@ -112,7 +113,7 @@ func (c_ CustomRoutingActionItem) Type() UTType {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) SetType(value UTType) {
+func (c_ CustomRoutingActionItem) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
 }
 

@@ -86,7 +86,7 @@ func NewINSearchForBillsIntent() INSearchForBillsIntent {
 // Initializes an intent object that describes a search for bill details with the specified search parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/init(billPayee:paymentDateRange:billType:status:dueDateRange:)
-func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDateRange(billPayee unsafe.Pointer, paymentDateRange unsafe.Pointer, billType unsafe.Pointer, status unsafe.Pointer, dueDateRange unsafe.Pointer) INSearchForBillsIntent {
+func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDateRange(billPayee unsafe.Pointer, paymentDateRange INDateComponentsRange, billType unsafe.Pointer, status unsafe.Pointer, dueDateRange INDateComponentsRange) INSearchForBillsIntent {
 	instance := getINSearchForBillsIntentClass().Alloc()
 	rv := objc.Send[INSearchForBillsIntent](instance.ID, objc.Sel("initWithBillPayee:paymentDateRange:billType:status:dueDateRange:"), billPayee, paymentDateRange, billType, status, dueDateRange)
 	rv.Autorelease()
@@ -105,8 +105,8 @@ func (i_ INSearchForBillsIntent) BillType() unsafe.Pointer {
 // The range of due dates in which to search for bills.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INSearchForBillsIntent/dueDateRange
-func (i_ INSearchForBillsIntent) DueDateRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("dueDateRange"))
+func (i_ INSearchForBillsIntent) DueDateRange() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("dueDateRange"))
 	return rv
 }
 
@@ -131,8 +131,8 @@ func (i_ INSearchForBillsIntent) SetBillPayee(value unsafe.Pointer) {
 // The range of payment dates in which to search for bills.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/paymentdaterange
-func (i_ INSearchForBillsIntent) PaymentDateRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("paymentDateRange"))
+func (i_ INSearchForBillsIntent) PaymentDateRange() INDateComponentsRange {
+	rv := objc.Send[INDateComponentsRange](i_.ID, objc.Sel("paymentDateRange"))
 	return rv
 }
 
@@ -142,7 +142,7 @@ func (i_ INSearchForBillsIntent) PaymentDateRange() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchforbillsintent/paymentdaterange
-func (i_ INSearchForBillsIntent) SetPaymentDateRange(value unsafe.Pointer) {
+func (i_ INSearchForBillsIntent) SetPaymentDateRange(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentDateRange:"), value)
 }
 

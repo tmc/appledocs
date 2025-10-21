@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [NDArrayUnaryGradientKernel] class.
@@ -29,7 +30,7 @@ type _NDArrayUnaryGradientKernelClass struct {
 // An interface definition for the [NDArrayUnaryGradientKernel] class.
 type INDArrayUnaryGradientKernel interface {
 	INDArrayMultiaryGradientKernel
-	EncodeToCommandBufferSourceArraySourceGradientGradientStateDestinationArray(cmdBuf objc.ID, sourceArray unsafe.Pointer, gradient unsafe.Pointer, state unsafe.Pointer, destination unsafe.Pointer)
+	EncodeToCommandBufferSourceArraySourceGradientGradientStateDestinationArray(cmdBuf objectivec.IObject, sourceArray IMPSNDArray, gradient IMPSNDArray, state MPSState, destination IMPSNDArray)
 }
 
 //
@@ -79,7 +80,7 @@ func NewNDArrayUnaryGradientKernel() NDArrayUnaryGradientKernel {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryGradientKernel/init(device:)
-func NewNDArrayUnaryGradientKernelWithDevice(device objc.ID) NDArrayUnaryGradientKernel {
+func NewNDArrayUnaryGradientKernelWithDevice(device objectivec.IObject) NDArrayUnaryGradientKernel {
 	instance := getNDArrayUnaryGradientKernelClass().Alloc()
 	rv := objc.Send[NDArrayUnaryGradientKernel](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
@@ -89,7 +90,7 @@ func NewNDArrayUnaryGradientKernelWithDevice(device objc.ID) NDArrayUnaryGradien
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayUnaryGradientKernel/encode(to:sourceArray:sourceGradient:gradientState:destinationArray:)
-func (n_ NDArrayUnaryGradientKernel) EncodeToCommandBufferSourceArraySourceGradientGradientStateDestinationArray(cmdBuf objc.ID, sourceArray unsafe.Pointer, gradient unsafe.Pointer, state unsafe.Pointer, destination unsafe.Pointer) {
+func (n_ NDArrayUnaryGradientKernel) EncodeToCommandBufferSourceArraySourceGradientGradientStateDestinationArray(cmdBuf objectivec.IObject, sourceArray IMPSNDArray, gradient IMPSNDArray, state MPSState, destination IMPSNDArray) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("encodeToCommandBuffer:sourceArray:sourceGradient:gradientState:destinationArray:"), cmdBuf, sourceArray, gradient, state, destination)
 }
 

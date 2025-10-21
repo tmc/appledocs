@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -88,7 +90,7 @@ func NewPictureInPictureController() PictureInPictureController {
 // Creates a Picture in Picture controller with a content source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/init(contentSource:)
-func NewPictureInPictureControllerWithContentSource(contentSource unsafe.Pointer) PictureInPictureController {
+func NewPictureInPictureControllerWithContentSource(contentSource IAVPictureInPictureControllerContentSource) PictureInPictureController {
 	instance := getPictureInPictureControllerClass().Alloc()
 	rv := objc.Send[PictureInPictureController](instance.ID, objc.Sel("initWithContentSource:"), contentSource)
 	rv.Autorelease()
@@ -100,7 +102,7 @@ func NewPictureInPictureControllerWithContentSource(contentSource unsafe.Pointer
 // Creates a Picture in Picture controller with a player layer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/init(playerLayer:)
-func NewPictureInPictureControllerWithPlayerLayer(playerLayer unsafe.Pointer) PictureInPictureController {
+func NewPictureInPictureControllerWithPlayerLayer(playerLayer avfoundation.IPlayerLayer) PictureInPictureController {
 	instance := getPictureInPictureControllerClass().Alloc()
 	rv := objc.Send[PictureInPictureController](instance.ID, objc.Sel("initWithPlayerLayer:"), playerLayer)
 	rv.Autorelease()
@@ -119,31 +121,31 @@ func (pc _PictureInPictureControllerClass) IsPictureInPictureSupported() bool {
 // Returns a system-default template image that’s compatible with a trait collection for the button that starts Picture in Picture in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage(compatibleWith:)
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompatibleWithTraitCollection(traitCollection unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImageCompatibleWithTraitCollection:"), traitCollection)
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImageCompatibleWithTraitCollection(traitCollection unsafe.Pointer) appkit.Image {
+	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImageCompatibleWithTraitCollection:"), traitCollection)
 	return rv
 }
 
 // Returns a system-default template image that’s compatible with a trait collection for the button that stops Picture in Picture in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage(compatibleWith:)
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompatibleWithTraitCollection(traitCollection unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImageCompatibleWithTraitCollection:"), traitCollection)
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImageCompatibleWithTraitCollection(traitCollection unsafe.Pointer) appkit.Image {
+	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImageCompatibleWithTraitCollection:"), traitCollection)
 	return rv
 }
 
 // A system-default template image for the button that starts Picture in Picture in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImage"))
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStartImage() appkit.Image {
+	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStartImage"))
 	return rv
 }
 // A system-default template image for the button that stops Picture in Picture in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage
-func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImage"))
+func (pc _PictureInPictureControllerClass) PictureInPictureButtonStopImage() appkit.Image {
+	rv := objc.Send[appkit.Image](objc.ID(pc.class), objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
 }
 // Invalidates the controller’s current playback state and fetches the updated state from the sample buffer playback delegate object.
@@ -196,8 +198,8 @@ func (p_ PictureInPictureController) CanStopPictureInPicture() bool {
 // The source of the controller’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/contentSource-swift.property
-func (p_ PictureInPictureController) ContentSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("contentSource"))
+func (p_ PictureInPictureController) ContentSource() AVPictureInPictureControllerContentSource {
+	rv := objc.Send[AVPictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
 	return rv
 }
 
@@ -207,7 +209,7 @@ func (p_ PictureInPictureController) ContentSource() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/contentSource-swift.property
-func (p_ PictureInPictureController) SetContentSource(value unsafe.Pointer) {
+func (p_ PictureInPictureController) SetContentSource(value IAVPictureInPictureControllerContentSource) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSource:"), value)
 }
 
@@ -256,24 +258,24 @@ func (p_ PictureInPictureController) PictureInPictureSuspended() bool {
 // A system-default template image for the button that starts Picture in Picture in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStartImage
-func (p_ PictureInPictureController) PictureInPictureButtonStartImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pictureInPictureButtonStartImage"))
+func (p_ PictureInPictureController) PictureInPictureButtonStartImage() appkit.Image {
+	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("pictureInPictureButtonStartImage"))
 	return rv
 }
 
 // A system-default template image for the button that stops Picture in Picture in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/pictureInPictureButtonStopImage
-func (p_ PictureInPictureController) PictureInPictureButtonStopImage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("pictureInPictureButtonStopImage"))
+func (p_ PictureInPictureController) PictureInPictureButtonStopImage() appkit.Image {
+	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("pictureInPictureButtonStopImage"))
 	return rv
 }
 
 // The layer that displays the video content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/playerLayer
-func (p_ PictureInPictureController) PlayerLayer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("playerLayer"))
+func (p_ PictureInPictureController) PlayerLayer() avfoundation.PlayerLayer {
+	rv := objc.Send[avfoundation.PlayerLayer](p_.ID, objc.Sel("playerLayer"))
 	return rv
 }
 

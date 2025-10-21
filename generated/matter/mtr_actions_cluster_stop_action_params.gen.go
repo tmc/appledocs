@@ -87,7 +87,7 @@ func (m_ MTRActionsClusterStopActionParams) ActionID() foundation.Number {
 // SetActionID sets the value of the actionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/actionid
-func (m_ MTRActionsClusterStopActionParams) SetActionID(value foundation.Number) {
+func (m_ MTRActionsClusterStopActionParams) SetActionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActionID:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRActionsClusterStopActionParams) InvokeID() foundation.Number {
 // SetInvokeID sets the value of the invokeID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/invokeid
-func (m_ MTRActionsClusterStopActionParams) SetInvokeID(value foundation.Number) {
+func (m_ MTRActionsClusterStopActionParams) SetInvokeID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInvokeID:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRActionsClusterStopActionParams) ServerSideProcessingTimeout() founda
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/serversideprocessingtimeout
-func (m_ MTRActionsClusterStopActionParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRActionsClusterStopActionParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRActionsClusterStopActionParams) TimedInvokeTimeoutMs() foundation.Nu
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractionsclusterstopactionparams/timedinvoketimeoutms
-func (m_ MTRActionsClusterStopActionParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRActionsClusterStopActionParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PropertyAnimation] class.
@@ -86,8 +87,8 @@ func NewPropertyAnimation() PropertyAnimation {
 // Creates and returns an instance for the specified key path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
-func NewPropertyAnimationWithKeyPath(path string) PropertyAnimation {
-	rv := objc.Send[PropertyAnimation](objc.ID(getPropertyAnimationClass().class), objc.Sel("animationWithKeyPath:"), objc.String(path))
+func NewPropertyAnimationWithKeyPath(path appkit.string) PropertyAnimation {
+	rv := objc.Send[PropertyAnimation](objc.ID(getPropertyAnimationClass().class), objc.Sel("animationWithKeyPath:"), path)
 	return rv
 }
 
@@ -95,8 +96,8 @@ func NewPropertyAnimationWithKeyPath(path string) PropertyAnimation {
 // Creates and returns an instance for the specified key path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/init(keyPath:)
-func (pc _PropertyAnimationClass) AnimationWithKeyPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("animationWithKeyPath:"), objc.String(path))
+func (pc _PropertyAnimationClass) AnimationWithKeyPath(path appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("animationWithKeyPath:"), path)
 	return rv
 }
 
@@ -139,8 +140,8 @@ func (p_ PropertyAnimation) SetCumulative(value bool) {
 // Specifies the key path the receiver animates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/keyPath
-func (p_ PropertyAnimation) KeyPath() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("keyPath"))
+func (p_ PropertyAnimation) KeyPath() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("keyPath"))
 	return rv
 }
 
@@ -150,15 +151,15 @@ func (p_ PropertyAnimation) KeyPath() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/keyPath
-func (p_ PropertyAnimation) SetKeyPath(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setKeyPath:"), objc.String(value))
+func (p_ PropertyAnimation) SetKeyPath(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setKeyPath:"), value)
 }
 
 // An optional value function that is applied to interpolated values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/valueFunction
-func (p_ PropertyAnimation) ValueFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("valueFunction"))
+func (p_ PropertyAnimation) ValueFunction() CAValueFunction {
+	rv := objc.Send[CAValueFunction](p_.ID, objc.Sel("valueFunction"))
 	return rv
 }
 
@@ -168,7 +169,7 @@ func (p_ PropertyAnimation) ValueFunction() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAPropertyAnimation/valueFunction
-func (p_ PropertyAnimation) SetValueFunction(value unsafe.Pointer) {
+func (p_ PropertyAnimation) SetValueFunction(value IValueFunction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueFunction:"), value)
 }
 

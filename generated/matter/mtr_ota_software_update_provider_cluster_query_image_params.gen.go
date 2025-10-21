@@ -88,14 +88,14 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) HardwareVersion() 
 // SetHardwareVersion sets the value of the hardwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/hardwareversion
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetHardwareVersion(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetHardwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHardwareVersion:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/location
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) Location() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("location"))
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) Location() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("location"))
 	return rv
 }
 
@@ -103,14 +103,14 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) Location() string 
 // SetLocation sets the value of the location property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/location
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetLocation(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), objc.String(value))
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetLocation(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLocation:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/metadataforprovider
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) MetadataForProvider() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metadataForProvider"))
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) MetadataForProvider() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("metadataForProvider"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) MetadataForProvide
 // SetMetadataForProvider sets the value of the metadataForProvider property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/metadataforprovider
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetMetadataForProvider(value unsafe.Pointer) {
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetMetadataForProvider(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadataForProvider:"), value)
 }
 
@@ -148,7 +148,7 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) RequestorCanConsen
 // SetRequestorCanConsent sets the value of the requestorCanConsent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/requestorcanconsent
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetRequestorCanConsent(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetRequestorCanConsent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestorCanConsent:"), value)
 }
 
@@ -163,7 +163,7 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) ServerSideProcessi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/serversideprocessingtimeout
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -178,7 +178,7 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SoftwareVersion() 
 // SetSoftwareVersion sets the value of the softwareVersion property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/softwareversion
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetSoftwareVersion(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetSoftwareVersion(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
 
@@ -196,7 +196,7 @@ func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) TimedInvokeTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrotasoftwareupdateproviderclusterqueryimageparams-zidv/timedinvoketimeoutms
-func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROtaSoftwareUpdateProviderClusterQueryImageParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

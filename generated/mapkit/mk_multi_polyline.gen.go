@@ -84,8 +84,8 @@ func NewMKMultiPolyline() MKMultiPolyline {
 // An array containing the polyline objects that make up the multipolyline object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolyline/polylines
-func (m_ MKMultiPolyline) Polylines() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("polylines"))
+func (m_ MKMultiPolyline) Polylines() MKPolyline {
+	rv := objc.Send[MKPolyline](m_.ID, objc.Sel("polylines"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (m_ MKMultiPolyline) Polylines() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmultipolyline/polylines
-func (m_ MKMultiPolyline) SetPolylines(value unsafe.Pointer) {
+func (m_ MKMultiPolyline) SetPolylines(value IMKPolyline) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPolylines:"), value)
 }
 

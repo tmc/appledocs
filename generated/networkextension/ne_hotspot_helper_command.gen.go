@@ -116,8 +116,8 @@ func (n_ NEHotspotHelperCommand) SetInterface(value unsafe.Pointer) {
 // The network associated with the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
-func (n_ NEHotspotHelperCommand) Network() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("network"))
+func (n_ NEHotspotHelperCommand) Network() NEHotspotNetwork {
+	rv := objc.Send[NEHotspotNetwork](n_.ID, objc.Sel("network"))
 	return rv
 }
 
@@ -127,15 +127,15 @@ func (n_ NEHotspotHelperCommand) Network() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
-func (n_ NEHotspotHelperCommand) SetNetwork(value unsafe.Pointer) {
+func (n_ NEHotspotHelperCommand) SetNetwork(value INEHotspotNetwork) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNetwork:"), value)
 }
 
 // The list of networks associated with the command.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/networklist
-func (n_ NEHotspotHelperCommand) NetworkList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("networkList"))
+func (n_ NEHotspotHelperCommand) NetworkList() NEHotspotNetwork {
+	rv := objc.Send[NEHotspotNetwork](n_.ID, objc.Sel("networkList"))
 	return rv
 }
 
@@ -145,7 +145,7 @@ func (n_ NEHotspotHelperCommand) NetworkList() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/networklist
-func (n_ NEHotspotHelperCommand) SetNetworkList(value unsafe.Pointer) {
+func (n_ NEHotspotHelperCommand) SetNetworkList(value INEHotspotNetwork) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkList:"), value)
 }
 

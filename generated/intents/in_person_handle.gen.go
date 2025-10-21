@@ -119,8 +119,8 @@ func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 // The data for the handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) Value() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("value"))
+func (i_ INPersonHandle) Value() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (i_ INPersonHandle) Value() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inpersonhandle/value
-func (i_ INPersonHandle) SetValue(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), objc.String(value))
+func (i_ INPersonHandle) SetValue(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), value)
 }
 
 

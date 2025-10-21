@@ -79,14 +79,14 @@ func NewHKStateOfMind() HKStateOfMind {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/stateOfMindWithDate:kind:valence:labels:associations:
-func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociations(date unsafe.Pointer, kind unsafe.Pointer, valence unsafe.Pointer, labels unsafe.Pointer, associations unsafe.Pointer) unsafe.Pointer {
+func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociations(date foundation.IDate, kind HKStateOfMindKind, valence unsafe.Pointer, labels []foundation.INumber, associations []foundation.INumber) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("stateOfMindWithDate:kind:valence:labels:associations:"), date, kind, valence, labels, associations)
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/stateOfMindWithDate:kind:valence:labels:associations:metadata:
-func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociationsMetadata(date unsafe.Pointer, kind unsafe.Pointer, valence unsafe.Pointer, labels unsafe.Pointer, associations unsafe.Pointer, metadata unsafe.Pointer) unsafe.Pointer {
+func (hc _HKStateOfMindClass) StateOfMindWithDateKindValenceLabelsAssociationsMetadata(date foundation.IDate, kind HKStateOfMindKind, valence unsafe.Pointer, labels []foundation.INumber, associations []foundation.INumber, metadata unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("stateOfMindWithDate:kind:valence:labels:associations:metadata:"), date, kind, valence, labels, associations, metadata)
 	return rv
 }
@@ -100,8 +100,8 @@ func (h_ HKStateOfMind) Associations() []foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/kind-swift.property
-func (h_ HKStateOfMind) Kind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("kind"))
+func (h_ HKStateOfMind) Kind() HKStateOfMindKind {
+	rv := objc.Send[HKStateOfMindKind](h_.ID, objc.Sel("kind"))
 	return rv
 }
 
@@ -121,8 +121,8 @@ func (h_ HKStateOfMind) Valence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMind/valenceClassification-swift.property
-func (h_ HKStateOfMind) ValenceClassification() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("valenceClassification"))
+func (h_ HKStateOfMind) ValenceClassification() HKStateOfMindValenceClassification {
+	rv := objc.Send[HKStateOfMindValenceClassification](h_.ID, objc.Sel("valenceClassification"))
 	return rv
 }
 

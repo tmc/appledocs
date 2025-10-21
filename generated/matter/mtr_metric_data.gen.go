@@ -87,7 +87,7 @@ func (m_ MTRMetricData) Duration() foundation.Number {
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/duration
-func (m_ MTRMetricData) SetDuration(value foundation.Number) {
+func (m_ MTRMetricData) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRMetricData) ErrorCode() foundation.Number {
 // SetErrorCode sets the value of the errorCode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/errorcode
-func (m_ MTRMetricData) SetErrorCode(value foundation.Number) {
+func (m_ MTRMetricData) SetErrorCode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRMetricData) Value() foundation.Number {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetricdata/value
-func (m_ MTRMetricData) SetValue(value foundation.Number) {
+func (m_ MTRMetricData) SetValue(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 

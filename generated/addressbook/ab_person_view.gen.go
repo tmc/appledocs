@@ -101,8 +101,8 @@ func (a_ ABPersonView) SetEditing(value bool) {
 // The contact record being displayed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
-func (a_ ABPersonView) Person() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("person"))
+func (a_ ABPersonView) Person() ABPerson {
+	rv := objc.Send[ABPerson](a_.ID, objc.Sel("person"))
 	return rv
 }
 
@@ -112,7 +112,7 @@ func (a_ ABPersonView) Person() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPersonView/person
-func (a_ ABPersonView) SetPerson(value unsafe.Pointer) {
+func (a_ ABPersonView) SetPerson(value IABPerson) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPerson:"), value)
 }
 

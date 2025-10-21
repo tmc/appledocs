@@ -101,8 +101,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetRedirectCount(value int) {
 // The time interval between when a task is instantiated and when the task is completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/taskinterval
-func (u_ URLSessionTaskTransactionMetrics) TaskInterval() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("taskInterval"))
+func (u_ URLSessionTaskTransactionMetrics) TaskInterval() DateInterval {
+	rv := objc.Send[DateInterval](u_.ID, objc.Sel("taskInterval"))
 	return rv
 }
 
@@ -112,15 +112,15 @@ func (u_ URLSessionTaskTransactionMetrics) TaskInterval() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/taskinterval
-func (u_ URLSessionTaskTransactionMetrics) SetTaskInterval(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetTaskInterval(value IDateInterval) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskInterval:"), value)
 }
 
 // An array of metrics for each individual request-response transaction made during the execution of the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/transactionmetrics
-func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("transactionMetrics"))
+func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() NSURLSessionTaskTransactionMetrics {
+	rv := objc.Send[NSURLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (u_ URLSessionTaskTransactionMetrics) TransactionMetrics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/transactionmetrics
-func (u_ URLSessionTaskTransactionMetrics) SetTransactionMetrics(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetTransactionMetrics(value IURLSessionTaskTransactionMetrics) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTransactionMetrics:"), value)
 }
 
 // The time immediately after the task finished establishing the connection to the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectenddate
-func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("connectEndDate"))
+func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("connectEndDate"))
 	return rv
 }
 
@@ -148,15 +148,15 @@ func (u_ URLSessionTaskTransactionMetrics) ConnectEndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectenddate
-func (u_ URLSessionTaskTransactionMetrics) SetConnectEndDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetConnectEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnectEndDate:"), value)
 }
 
 // The time immediately before the task started establishing a TCP connection to the server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectstartdate
-func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("connectStartDate"))
+func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("connectStartDate"))
 	return rv
 }
 
@@ -166,7 +166,7 @@ func (u_ URLSessionTaskTransactionMetrics) ConnectStartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/connectstartdate
-func (u_ URLSessionTaskTransactionMetrics) SetConnectStartDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetConnectStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnectStartDate:"), value)
 }
 
@@ -281,8 +281,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetCountOfResponseHeaderBytesReceived
 // The time after the name lookup was completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupenddate
-func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("domainLookupEndDate"))
+func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("domainLookupEndDate"))
 	return rv
 }
 
@@ -292,15 +292,15 @@ func (u_ URLSessionTaskTransactionMetrics) DomainLookupEndDate() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupenddate
-func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupEndDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDomainLookupEndDate:"), value)
 }
 
 // The time immediately before the task started the name lookup for the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupstartdate
-func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("domainLookupStartDate"))
+func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("domainLookupStartDate"))
 	return rv
 }
 
@@ -310,7 +310,7 @@ func (u_ URLSessionTaskTransactionMetrics) DomainLookupStartDate() unsafe.Pointe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/domainlookupstartdate
-func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupStartDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetDomainLookupStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDomainLookupStartDate:"), value)
 }
 
@@ -332,8 +332,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetDomainResolutionProtocol(value uns
 // The time when the task started fetching the resource, from the server or locally.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/fetchstartdate
-func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("fetchStartDate"))
+func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("fetchStartDate"))
 	return rv
 }
 
@@ -343,7 +343,7 @@ func (u_ URLSessionTaskTransactionMetrics) FetchStartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/fetchstartdate
-func (u_ URLSessionTaskTransactionMetrics) SetFetchStartDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetFetchStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setFetchStartDate:"), value)
 }
 
@@ -458,8 +458,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetIsReusedConnection(value bool) {
 // The IP address string of the local interface for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("localAddress"))
+func (u_ URLSessionTaskTransactionMetrics) LocalAddress() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("localAddress"))
 	return rv
 }
 
@@ -469,8 +469,8 @@ func (u_ URLSessionTaskTransactionMetrics) LocalAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/localaddress
-func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalAddress:"), objc.String(value))
+func (u_ URLSessionTaskTransactionMetrics) SetLocalAddress(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setLocalAddress:"), value)
 }
 
 // The port number of the local interface for the connection.
@@ -530,8 +530,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetNegotiatedTLSProtocolVersion(value
 // The network protocol used to fetch the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("networkProtocolName"))
+func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("networkProtocolName"))
 	return rv
 }
 
@@ -541,15 +541,15 @@ func (u_ URLSessionTaskTransactionMetrics) NetworkProtocolName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/networkprotocolname
-func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkProtocolName:"), objc.String(value))
+func (u_ URLSessionTaskTransactionMetrics) SetNetworkProtocolName(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setNetworkProtocolName:"), value)
 }
 
 // The IP address string of the remote interface for the connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
-	rv := objc.Send[string](u_.ID, objc.Sel("remoteAddress"))
+func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() appkit.string {
+	rv := objc.Send[appkit.string](u_.ID, objc.Sel("remoteAddress"))
 	return rv
 }
 
@@ -559,8 +559,8 @@ func (u_ URLSessionTaskTransactionMetrics) RemoteAddress() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/remoteaddress
-func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRemoteAddress:"), objc.String(value))
+func (u_ URLSessionTaskTransactionMetrics) SetRemoteAddress(value appkit.string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRemoteAddress:"), value)
 }
 
 // The port number of the remote interface for the connection.
@@ -584,8 +584,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetRemotePort(value int) {
 // The transaction request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/request
-func (u_ URLSessionTaskTransactionMetrics) Request() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("request"))
+func (u_ URLSessionTaskTransactionMetrics) Request() URLRequest {
+	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
 }
 
@@ -595,15 +595,15 @@ func (u_ URLSessionTaskTransactionMetrics) Request() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/request
-func (u_ URLSessionTaskTransactionMetrics) SetRequest(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetRequest(value IURLRequest) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequest:"), value)
 }
 
 // The time immediately after the task finished requesting the resource, regardless of whether it was retrieved from the server or local resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requestenddate
-func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("requestEndDate"))
+func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("requestEndDate"))
 	return rv
 }
 
@@ -613,15 +613,15 @@ func (u_ URLSessionTaskTransactionMetrics) RequestEndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requestenddate
-func (u_ URLSessionTaskTransactionMetrics) SetRequestEndDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetRequestEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequestEndDate:"), value)
 }
 
 // The time immediately before the task started requesting the resource, regardless of whether it is retrieved from the server or local resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requeststartdate
-func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("requestStartDate"))
+func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("requestStartDate"))
 	return rv
 }
 
@@ -631,7 +631,7 @@ func (u_ URLSessionTaskTransactionMetrics) RequestStartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/requeststartdate
-func (u_ URLSessionTaskTransactionMetrics) SetRequestStartDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetRequestStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRequestStartDate:"), value)
 }
 
@@ -656,8 +656,8 @@ func (u_ URLSessionTaskTransactionMetrics) SetResourceFetchType(value unsafe.Poi
 // The transaction response.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
-func (u_ URLSessionTaskTransactionMetrics) Response() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("response"))
+func (u_ URLSessionTaskTransactionMetrics) Response() NSURLResponse {
+	rv := objc.Send[NSURLResponse](u_.ID, objc.Sel("response"))
 	return rv
 }
 
@@ -667,15 +667,15 @@ func (u_ URLSessionTaskTransactionMetrics) Response() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/response
-func (u_ URLSessionTaskTransactionMetrics) SetResponse(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
 }
 
 // The time immediately after the task received the last byte of the resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responseenddate
-func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("responseEndDate"))
+func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("responseEndDate"))
 	return rv
 }
 
@@ -685,15 +685,15 @@ func (u_ URLSessionTaskTransactionMetrics) ResponseEndDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responseenddate
-func (u_ URLSessionTaskTransactionMetrics) SetResponseEndDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetResponseEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponseEndDate:"), value)
 }
 
 // The time immediately after the task received the first byte of the response from the server or from local resources.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responsestartdate
-func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("responseStartDate"))
+func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("responseStartDate"))
 	return rv
 }
 
@@ -703,15 +703,15 @@ func (u_ URLSessionTaskTransactionMetrics) ResponseStartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/responsestartdate
-func (u_ URLSessionTaskTransactionMetrics) SetResponseStartDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetResponseStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponseStartDate:"), value)
 }
 
 // The time immediately after the security handshake completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionenddate
-func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("secureConnectionEndDate"))
+func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("secureConnectionEndDate"))
 	return rv
 }
 
@@ -721,15 +721,15 @@ func (u_ URLSessionTaskTransactionMetrics) SecureConnectionEndDate() unsafe.Poin
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionenddate
-func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionEndDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionEndDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSecureConnectionEndDate:"), value)
 }
 
 // The time immediately before the task started the TLS security handshake to secure the current connection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionstartdate
-func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("secureConnectionStartDate"))
+func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() Date {
+	rv := objc.Send[Date](u_.ID, objc.Sel("secureConnectionStartDate"))
 	return rv
 }
 
@@ -739,7 +739,7 @@ func (u_ URLSessionTaskTransactionMetrics) SecureConnectionStartDate() unsafe.Po
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics/secureconnectionstartdate
-func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionStartDate(value unsafe.Pointer) {
+func (u_ URLSessionTaskTransactionMetrics) SetSecureConnectionStartDate(value IDate) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSecureConnectionStartDate:"), value)
 }
 

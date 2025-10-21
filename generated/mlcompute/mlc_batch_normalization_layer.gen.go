@@ -82,8 +82,8 @@ func NewCBatchNormalizationLayer() CBatchNormalizationLayer {
 // The beta tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
-func (c_ CBatchNormalizationLayer) Beta() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("beta"))
+func (c_ CBatchNormalizationLayer) Beta() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("beta"))
 	return rv
 }
 
@@ -93,15 +93,15 @@ func (c_ CBatchNormalizationLayer) Beta() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/beta
-func (c_ CBatchNormalizationLayer) SetBeta(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetBeta(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
 }
 
 // The beta tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/betaparameter
-func (c_ CBatchNormalizationLayer) BetaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("betaParameter"))
+func (c_ CBatchNormalizationLayer) BetaParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("betaParameter"))
 	return rv
 }
 
@@ -111,7 +111,7 @@ func (c_ CBatchNormalizationLayer) BetaParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/betaparameter
-func (c_ CBatchNormalizationLayer) SetBetaParameter(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetBetaParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
 }
 
@@ -136,8 +136,8 @@ func (c_ CBatchNormalizationLayer) SetFeatureChannelCount(value int) {
 // The gamma tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gamma
-func (c_ CBatchNormalizationLayer) Gamma() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gamma"))
+func (c_ CBatchNormalizationLayer) Gamma() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("gamma"))
 	return rv
 }
 
@@ -147,15 +147,15 @@ func (c_ CBatchNormalizationLayer) Gamma() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gamma
-func (c_ CBatchNormalizationLayer) SetGamma(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetGamma(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
 }
 
 // The gamma tensor parameter you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gammaparameter
-func (c_ CBatchNormalizationLayer) GammaParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("gammaParameter"))
+func (c_ CBatchNormalizationLayer) GammaParameter() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("gammaParameter"))
 	return rv
 }
 
@@ -165,15 +165,15 @@ func (c_ CBatchNormalizationLayer) GammaParameter() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/gammaparameter
-func (c_ CBatchNormalizationLayer) SetGammaParameter(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetGammaParameter(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
 }
 
 // The mean tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
-func (c_ CBatchNormalizationLayer) Mean() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mean"))
+func (c_ CBatchNormalizationLayer) Mean() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("mean"))
 	return rv
 }
 
@@ -183,7 +183,7 @@ func (c_ CBatchNormalizationLayer) Mean() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/mean
-func (c_ CBatchNormalizationLayer) SetMean(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetMean(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
 }
 
@@ -208,8 +208,8 @@ func (c_ CBatchNormalizationLayer) SetMomentum(value unsafe.Pointer) {
 // The variance tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/variance
-func (c_ CBatchNormalizationLayer) Variance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("variance"))
+func (c_ CBatchNormalizationLayer) Variance() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("variance"))
 	return rv
 }
 
@@ -219,7 +219,7 @@ func (c_ CBatchNormalizationLayer) Variance() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcbatchnormalizationlayer/variance
-func (c_ CBatchNormalizationLayer) SetVariance(value unsafe.Pointer) {
+func (c_ CBatchNormalizationLayer) SetVariance(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
 }
 

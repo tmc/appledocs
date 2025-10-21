@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PDFAnnotationInk] class.
@@ -29,9 +31,9 @@ type _PDFAnnotationInkClass struct {
 // An interface definition for the [PDFAnnotationInk] class.
 type IPDFAnnotationInk interface {
 	IPDFAnnotation
-	AddBezierPath(path unsafe.Pointer)
-	Paths() unsafe.Pointer
-	RemoveBezierPath(path unsafe.Pointer)
+	AddBezierPath(path appkit.IBezierPath)
+	Paths() foundation.Array
+	RemoveBezierPath(path appkit.IBezierPath)
 }
 
 //
@@ -82,30 +84,30 @@ func NewPDFAnnotationInk() PDFAnnotationInk {
 // Adds a Bezier path to an annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationInk/add(_:)
-func (p_ PDFAnnotationInk) AddBezierPath(path unsafe.Pointer) {
+func (p_ PDFAnnotationInk) AddBezierPath(path appkit.IBezierPath) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("addBezierPath:"), path)
 }
 
 // Returns an array containing the Bezier paths that make up an annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationInk/paths()
-func (p_ PDFAnnotationInk) Paths() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("paths"))
+func (p_ PDFAnnotationInk) Paths() foundation.Array {
+	rv := objc.Send[foundation.Array](p_.ID, objc.Sel("paths"))
 	return rv
 }
 
 // Removes a Bezier path from an annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotationInk/remove(_:)
-func (p_ PDFAnnotationInk) RemoveBezierPath(path unsafe.Pointer) {
+func (p_ PDFAnnotationInk) RemoveBezierPath(path appkit.IBezierPath) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeBezierPath:"), path)
 }
 
 // Sets the stroke color for the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationInk) Color() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("color"))
+func (p_ PDFAnnotationInk) Color() appkit.Color {
+	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -115,7 +117,7 @@ func (p_ PDFAnnotationInk) Color() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfannotation/color
-func (p_ PDFAnnotationInk) SetColor(value unsafe.Pointer) {
+func (p_ PDFAnnotationInk) SetColor(value appkit.IColor) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setColor:"), value)
 }
 
@@ -140,8 +142,8 @@ func (p_ PDFAnnotationInk) SetLineWidth(value float64) {
 // Sets the border style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationInk) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("style"))
+func (p_ PDFAnnotationInk) Style() PDFBorderStyle {
+	rv := objc.Send[PDFBorderStyle](p_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -151,7 +153,7 @@ func (p_ PDFAnnotationInk) Style() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfborder/style
-func (p_ PDFAnnotationInk) SetStyle(value unsafe.Pointer) {
+func (p_ PDFAnnotationInk) SetStyle(value PDFBorderStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStyle:"), value)
 }
 

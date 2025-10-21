@@ -83,8 +83,8 @@ func NewFileProviderService() FileProviderService {
 // The File Provider service’s name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileproviderservice/name
-func (f_ FileProviderService) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("name"))
+func (f_ FileProviderService) Name() FileProviderServiceName {
+	rv := objc.Send[FileProviderServiceName](f_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (f_ FileProviderService) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsfileproviderservice/name
-func (f_ FileProviderService) SetName(value unsafe.Pointer) {
+func (f_ FileProviderService) SetName(value IFileProviderServiceName) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setName:"), value)
 }
 

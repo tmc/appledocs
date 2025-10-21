@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRLaundryWasherModeClusterModeOptionStruct() MTRLaundryWasherModeCluste
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeOptionStruct/label
-func (m_ MTRLaundryWasherModeClusterModeOptionStruct) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRLaundryWasherModeClusterModeOptionStruct) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRLaundryWasherModeClusterModeOptionStruct) Label() string {
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeOptionStruct/label
-func (m_ MTRLaundryWasherModeClusterModeOptionStruct) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRLaundryWasherModeClusterModeOptionStruct) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,14 +103,14 @@ func (m_ MTRLaundryWasherModeClusterModeOptionStruct) Mode() foundation.Number {
 // SetMode sets the value of the mode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeOptionStruct/mode
-func (m_ MTRLaundryWasherModeClusterModeOptionStruct) SetMode(value foundation.Number) {
+func (m_ MTRLaundryWasherModeClusterModeOptionStruct) SetMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeOptionStruct/modeTags
-func (m_ MTRLaundryWasherModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("modeTags"))
+func (m_ MTRLaundryWasherModeClusterModeOptionStruct) ModeTags() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("modeTags"))
 	return rv
 }
 
@@ -117,7 +118,7 @@ func (m_ MTRLaundryWasherModeClusterModeOptionStruct) ModeTags() unsafe.Pointer 
 // SetModeTags sets the value of the modeTags property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterModeOptionStruct/modeTags
-func (m_ MTRLaundryWasherModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
+func (m_ MTRLaundryWasherModeClusterModeOptionStruct) SetModeTags(value objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
 

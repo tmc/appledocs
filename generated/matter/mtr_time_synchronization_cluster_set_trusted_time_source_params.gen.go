@@ -90,7 +90,7 @@ func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) ServerSideProc
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/serverSideProcessingTimeout
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -108,14 +108,14 @@ func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TimedInvokeTim
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/timedInvokeTimeoutMs
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/trustedTimeSource
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("trustedTimeSource"))
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSource() MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct {
+	rv := objc.Send[MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct](m_.ID, objc.Sel("trustedTimeSource"))
 	return rv
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) TrustedTimeSou
 // SetTrustedTimeSource sets the value of the trustedTimeSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTimeSynchronizationClusterSetTrustedTimeSourceParams/trustedTimeSource
-func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTrustedTimeSource(value unsafe.Pointer) {
+func (m_ MTRTimeSynchronizationClusterSetTrustedTimeSourceParams) SetTrustedTimeSource(value IMTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrustedTimeSource:"), value)
 }
 

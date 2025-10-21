@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewAssetDownloadStorageManagementPolicy() AssetDownloadStorageManagementPol
 // The expiration date for an asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/expirationDate
-func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("expirationDate"))
+func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](a_.ID, objc.Sel("expirationDate"))
 	return rv
 }
 

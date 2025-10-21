@@ -78,8 +78,8 @@ func NewMTRContentLauncherClusterAdditionalInfo() MTRContentLauncherClusterAddit
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfo/name
-func (m_ MTRContentLauncherClusterAdditionalInfo) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRContentLauncherClusterAdditionalInfo) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRContentLauncherClusterAdditionalInfo) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfo/name
-func (m_ MTRContentLauncherClusterAdditionalInfo) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRContentLauncherClusterAdditionalInfo) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfo/value
-func (m_ MTRContentLauncherClusterAdditionalInfo) Value() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("value"))
+func (m_ MTRContentLauncherClusterAdditionalInfo) Value() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("value"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRContentLauncherClusterAdditionalInfo) Value() string {
 // SetValue sets the value of the value property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusteradditionalinfo/value
-func (m_ MTRContentLauncherClusterAdditionalInfo) SetValue(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), objc.String(value))
+func (m_ MTRContentLauncherClusterAdditionalInfo) SetValue(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
 
 

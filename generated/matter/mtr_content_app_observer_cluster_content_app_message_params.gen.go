@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRContentAppObserverClusterContentAppMessageParams() MTRContentAppObser
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("data"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,14 +88,14 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) Data() string {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/data
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), objc.String(value))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetData(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("encodingHint"))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("encodingHint"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) EncodingHint() str
 // SetEncodingHint sets the value of the encodingHint property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/encodingHint
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), objc.String(value))
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetEncodingHint(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEncodingHint:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
@@ -120,7 +121,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) ServerSideProcessi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/serverSideProcessingTimeout
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -138,7 +139,7 @@ func (m_ MTRContentAppObserverClusterContentAppMessageParams) TimedInvokeTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentAppObserverClusterContentAppMessageParams/timedInvokeTimeoutMs
-func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRContentAppObserverClusterContentAppMessageParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

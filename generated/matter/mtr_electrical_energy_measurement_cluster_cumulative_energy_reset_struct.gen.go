@@ -87,7 +87,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) Expor
 // SetExportedResetSystime sets the value of the exportedResetSystime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergyresetstruct/exportedresetsystime
-func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetExportedResetSystime(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetExportedResetSystime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExportedResetSystime:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) Expor
 // SetExportedResetTimestamp sets the value of the exportedResetTimestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergyresetstruct/exportedresettimestamp
-func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetExportedResetTimestamp(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetExportedResetTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExportedResetTimestamp:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) Impor
 // SetImportedResetSystime sets the value of the importedResetSystime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergyresetstruct/importedresetsystime
-func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetImportedResetSystime(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetImportedResetSystime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImportedResetSystime:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) Impor
 // SetImportedResetTimestamp sets the value of the importedResetTimestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergyresetstruct/importedresettimestamp
-func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetImportedResetTimestamp(value foundation.Number) {
+func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct) SetImportedResetTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImportedResetTimestamp:"), value)
 }
 

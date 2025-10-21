@@ -85,7 +85,7 @@ func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 // Creates a discovery session that finds devices that match the specified criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes unsafe.Pointer, mediaType unsafe.Pointer, position unsafe.Pointer) CaptureDeviceDiscoverySession {
+func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType, position CaptureDevicePosition) CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(getCaptureDeviceDiscoverySessionClass().class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
@@ -94,7 +94,7 @@ func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceType
 // Creates a discovery session that finds devices that match the specified criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes unsafe.Pointer, mediaType unsafe.Pointer, position unsafe.Pointer) unsafe.Pointer {
+func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType, position CaptureDevicePosition) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
 }
@@ -110,8 +110,8 @@ func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice {
 // Sets of capture devices that you can use simultaneously in a multi-camera session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
-func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
+func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() AVCaptureDevice {
+	rv := objc.Send[AVCaptureDevice](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
 	return rv
 }
 
@@ -121,7 +121,7 @@ func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession/supportedmulticamdevicesets
-func (c_ CaptureDeviceDiscoverySession) SetSupportedMultiCamDeviceSets(value unsafe.Pointer) {
+func (c_ CaptureDeviceDiscoverySession) SetSupportedMultiCamDeviceSets(value IAVCaptureDevice) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedMultiCamDeviceSets:"), value)
 }
 

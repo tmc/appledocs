@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,7 @@ type _LanguageRecognizerClass struct {
 type ILanguageRecognizer interface {
 	objectivec.IObject
 	LanguageHypothesesWithMaximum(maxHypotheses uint) unsafe.Pointer
-	ProcessString(string_ string)
+	ProcessString(string_ appkit.string)
 	Reset()
 }
 
@@ -87,8 +88,8 @@ func NewLanguageRecognizer() LanguageRecognizer {
 // Finds the most likely language of a piece of text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage(for:)
-func (lc _LanguageRecognizerClass) DominantLanguageForString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("dominantLanguageForString:"), objc.String(string_))
+func (lc _LanguageRecognizerClass) DominantLanguageForString(string_ appkit.string) Language {
+	rv := objc.Send[Language](objc.ID(lc.class), objc.Sel("dominantLanguageForString:"), string_)
 	return rv
 }
 
@@ -103,8 +104,8 @@ func (l_ LanguageRecognizer) LanguageHypothesesWithMaximum(maxHypotheses uint) u
 // Analyzes the piece of text to determine its dominant language.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguageRecognizer/processString(_:)
-func (l_ LanguageRecognizer) ProcessString(string_ string) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("processString:"), objc.String(string_))
+func (l_ LanguageRecognizer) ProcessString(string_ appkit.string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("processString:"), string_)
 }
 
 // Resets the recognizer to its initial state.
@@ -117,8 +118,8 @@ func (l_ LanguageRecognizer) Reset() {
 // The most likely language for the processed text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLLanguageRecognizer/dominantLanguage
-func (l_ LanguageRecognizer) DominantLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("dominantLanguage"))
+func (l_ LanguageRecognizer) DominantLanguage() Language {
+	rv := objc.Send[Language](l_.ID, objc.Sel("dominantLanguage"))
 	return rv
 }
 

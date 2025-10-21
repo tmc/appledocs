@@ -155,8 +155,8 @@ func (f_ FSStatFSResult) SetFileSystemSubType(value int) {
 // A property for the file system type name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename
-func (f_ FSStatFSResult) FileSystemTypeName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("fileSystemTypeName"))
+func (f_ FSStatFSResult) FileSystemTypeName() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("fileSystemTypeName"))
 	return rv
 }
 
@@ -166,8 +166,8 @@ func (f_ FSStatFSResult) FileSystemTypeName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename
-func (f_ FSStatFSResult) SetFileSystemTypeName(value string) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemTypeName:"), objc.String(value))
+func (f_ FSStatFSResult) SetFileSystemTypeName(value appkit.string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFileSystemTypeName:"), value)
 }
 
 // A property for the number of free blocks in the volume.
@@ -335,8 +335,8 @@ func (f_ FSStatFSResult) SetUsedBytes(value uint64) {
 // A property that provides the supported capabilities of the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-func (f_ FSStatFSResult) SupportedVolumeCapabilities() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("supportedVolumeCapabilities"))
+func (f_ FSStatFSResult) SupportedVolumeCapabilities() FSVolumeSupportedCapabilities {
+	rv := objc.Send[FSVolumeSupportedCapabilities](f_.ID, objc.Sel("supportedVolumeCapabilities"))
 	return rv
 }
 
@@ -346,15 +346,15 @@ func (f_ FSStatFSResult) SupportedVolumeCapabilities() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/supportedvolumecapabilities
-func (f_ FSStatFSResult) SetSupportedVolumeCapabilities(value unsafe.Pointer) {
+func (f_ FSStatFSResult) SetSupportedVolumeCapabilities(value IFSVolumeSupportedCapabilities) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedVolumeCapabilities:"), value)
 }
 
 // A property that provides up-to-date statistics of the volume.
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-func (f_ FSStatFSResult) VolumeStatistics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("volumeStatistics"))
+func (f_ FSStatFSResult) VolumeStatistics() FSStatFSResult {
+	rv := objc.Send[FSStatFSResult](f_.ID, objc.Sel("volumeStatistics"))
 	return rv
 }
 
@@ -364,7 +364,7 @@ func (f_ FSStatFSResult) VolumeStatistics() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/fskit/fsvolume/operations/volumestatistics
-func (f_ FSStatFSResult) SetVolumeStatistics(value unsafe.Pointer) {
+func (f_ FSStatFSResult) SetVolumeStatistics(value IFSStatFSResult) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setVolumeStatistics:"), value)
 }
 

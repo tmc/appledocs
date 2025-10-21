@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -95,7 +96,7 @@ func NewColorWithCGColor(color coregraphics.CGColorRef) Color {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(color:)
-func NewColorWithColor(color unsafe.Pointer) Color {
+func NewColorWithColor(color IColor) Color {
 	instance := getColorClass().Alloc()
 	rv := objc.Send[Color](instance.ID, objc.Sel("initWithColor:"), color)
 	rv.Autorelease()
@@ -155,8 +156,8 @@ func NewColorWithRedGreenBlueColorSpace(red float64, green float64, blue float64
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func NewColorWithString(representation string) Color {
-	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), objc.String(representation))
+func NewColorWithString(representation appkit.string) Color {
+	rv := objc.Send[Color](objc.ID(getColorClass().class), objc.Sel("colorWithString:"), representation)
 	return rv
 }
 
@@ -204,79 +205,79 @@ func (cc _ColorClass) ColorWithRedGreenBlue(red float64, green float64, blue flo
 // Create a Core Image color object in the sRGB color space using a string containing the RGBA color component values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/init(string:)
-func (cc _ColorClass) ColorWithString(representation string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), objc.String(representation))
+func (cc _ColorClass) ColorWithString(representation appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("colorWithString:"), representation)
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/black
-func (cc _ColorClass) BlackColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("blackColor"))
+func (cc _ColorClass) BlackColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("blackColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.type.property
-func (cc _ColorClass) BlueColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("blueColor"))
+func (cc _ColorClass) BlueColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("blueColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/clear
-func (cc _ColorClass) ClearColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("clearColor"))
+func (cc _ColorClass) ClearColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("clearColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/cyan
-func (cc _ColorClass) CyanColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("cyanColor"))
+func (cc _ColorClass) CyanColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("cyanColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/gray
-func (cc _ColorClass) GrayColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("grayColor"))
+func (cc _ColorClass) GrayColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("grayColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.type.property
-func (cc _ColorClass) GreenColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("greenColor"))
+func (cc _ColorClass) GreenColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("greenColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/magenta
-func (cc _ColorClass) MagentaColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("magentaColor"))
+func (cc _ColorClass) MagentaColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("magentaColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.type.property
-func (cc _ColorClass) RedColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("redColor"))
+func (cc _ColorClass) RedColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("redColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/white
-func (cc _ColorClass) WhiteColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("whiteColor"))
+func (cc _ColorClass) WhiteColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("whiteColor"))
 	return rv
 }
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/yellow
-func (cc _ColorClass) YellowColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("yellowColor"))
+func (cc _ColorClass) YellowColor() Color {
+	rv := objc.Send[CIColor](objc.ID(cc.class), objc.Sel("yellowColor"))
 	return rv
 }
 // Returns the alpha value of the color.
@@ -290,8 +291,8 @@ func (c_ Color) Alpha() float64 {
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/black
-func (c_ Color) BlackColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("blackColor"))
+func (c_ Color) BlackColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("blackColor"))
 	return rv
 }
 
@@ -306,16 +307,16 @@ func (c_ Color) Blue() float64 {
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/blue-swift.type.property
-func (c_ Color) BlueColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("blueColor"))
+func (c_ Color) BlueColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("blueColor"))
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/clear
-func (c_ Color) ClearColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("clearColor"))
+func (c_ Color) ClearColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("clearColor"))
 	return rv
 }
 
@@ -330,24 +331,24 @@ func (c_ Color) ColorSpace() coregraphics.CGColorSpaceRef {
 // Return a pointer to an array of values including alpha.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/components
-func (c_ Color) Components() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("components"))
+func (c_ Color) Components() coregraphics.float64 {
+	rv := objc.Send[coregraphics.float64](c_.ID, objc.Sel("components"))
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/cyan
-func (c_ Color) CyanColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cyanColor"))
+func (c_ Color) CyanColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("cyanColor"))
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/gray
-func (c_ Color) GrayColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("grayColor"))
+func (c_ Color) GrayColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("grayColor"))
 	return rv
 }
 
@@ -362,16 +363,16 @@ func (c_ Color) Green() float64 {
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/green-swift.type.property
-func (c_ Color) GreenColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("greenColor"))
+func (c_ Color) GreenColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("greenColor"))
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/magenta
-func (c_ Color) MagentaColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("magentaColor"))
+func (c_ Color) MagentaColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("magentaColor"))
 	return rv
 }
 
@@ -394,32 +395,32 @@ func (c_ Color) Red() float64 {
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/red-swift.type.property
-func (c_ Color) RedColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("redColor"))
+func (c_ Color) RedColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("redColor"))
 	return rv
 }
 
 // Returns a formatted string with the unpremultiplied color and alpha components of the color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/stringRepresentation
-func (c_ Color) StringRepresentation() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("stringRepresentation"))
+func (c_ Color) StringRepresentation() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("stringRepresentation"))
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/white
-func (c_ Color) WhiteColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("whiteColor"))
+func (c_ Color) WhiteColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("whiteColor"))
 	return rv
 }
 
 // Returns a singleton Core Image color instance in the sRGB color space with RGB values and alpha value .
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColor/yellow
-func (c_ Color) YellowColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("yellowColor"))
+func (c_ Color) YellowColor() CIColor {
+	rv := objc.Send[CIColor](c_.ID, objc.Sel("yellowColor"))
 	return rv
 }
 

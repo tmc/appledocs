@@ -87,14 +87,14 @@ func (m_ MTRMediaInputClusterRenameInputParams) Index() foundation.Number {
 // SetIndex sets the value of the index property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/index
-func (m_ MTRMediaInputClusterRenameInputParams) SetIndex(value foundation.Number) {
+func (m_ MTRMediaInputClusterRenameInputParams) SetIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
-func (m_ MTRMediaInputClusterRenameInputParams) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRMediaInputClusterRenameInputParams) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (m_ MTRMediaInputClusterRenameInputParams) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
-func (m_ MTRMediaInputClusterRenameInputParams) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRMediaInputClusterRenameInputParams) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 //
@@ -117,7 +117,7 @@ func (m_ MTRMediaInputClusterRenameInputParams) ServerSideProcessingTimeout() fo
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
-func (m_ MTRMediaInputClusterRenameInputParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRMediaInputClusterRenameInputParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRMediaInputClusterRenameInputParams) TimedInvokeTimeoutMs() foundatio
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
-func (m_ MTRMediaInputClusterRenameInputParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRMediaInputClusterRenameInputParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRThreadBorderRouterManagementClusterDatasetResponseParamsWithResponseV
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams/dataset
-func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) Dataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dataset"))
+func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) Dataset() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("dataset"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) Dataset() 
 // SetDataset sets the value of the dataset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadBorderRouterManagementClusterDatasetResponseParams/dataset
-func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) SetDataset(value unsafe.Pointer) {
+func (m_ MTRThreadBorderRouterManagementClusterDatasetResponseParams) SetDataset(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDataset:"), value)
 }
 

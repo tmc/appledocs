@@ -99,6 +99,14 @@ func (g_ GeneratePersonSegmentationRequest) SetOutputPixelFormat(value unsafe.Po
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputPixelFormat:"), value)
 }
 
+// The results of the segmentation request.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeneratePersonSegmentationRequest/results
+func (g_ GeneratePersonSegmentationRequest) Results() []PixelBufferObservation {
+	rv := objc.Send[[]PixelBufferObservation](g_.ID, objc.Sel("results"))
+	return rv
+}
+
 // A value that indicates how the request balances accuracy and performance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
@@ -115,24 +123,6 @@ func (g_ GeneratePersonSegmentationRequest) QualityLevel() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.property
 func (g_ GeneratePersonSegmentationRequest) SetQualityLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setQualityLevel:"), value)
-}
-
-// The results of the segmentation request.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/results
-func (g_ GeneratePersonSegmentationRequest) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// SetResults sets the value of the results property.
-// The results of the segmentation request.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/results
-func (g_ GeneratePersonSegmentationRequest) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
 }
 
 // A constant for specifying revision 1 of the person segmentation generation request.

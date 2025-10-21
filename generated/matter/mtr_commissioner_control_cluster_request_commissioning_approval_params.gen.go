@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRCommissionerControlClusterRequestCommissioningApprovalParams() MTRCom
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +88,8 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Label(
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/label
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,7 +103,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Produc
 // SetProductID sets the value of the productID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/productID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetProductID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
@@ -117,7 +118,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Reques
 // SetRequestID sets the value of the requestID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/requestID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetRequestID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestID:"), value)
 }
 
@@ -135,7 +136,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Server
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/serverSideProcessingTimeout
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -153,7 +154,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) TimedI
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/timedInvokeTimeoutMs
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -168,7 +169,7 @@ func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) Vendor
 // SetVendorID sets the value of the vendorID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionerControlClusterRequestCommissioningApprovalParams/vendorID
-func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value foundation.Number) {
+func (m_ MTRCommissionerControlClusterRequestCommissioningApprovalParams) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

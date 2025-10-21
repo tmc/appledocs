@@ -86,7 +86,7 @@ func NewINEndWorkoutIntent() INEndWorkoutIntent {
 // Initializes an intent object with the specified workout name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INEndWorkoutIntent/init(workoutName:)
-func NewINEndWorkoutIntentWithWorkoutName(workoutName unsafe.Pointer) INEndWorkoutIntent {
+func NewINEndWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INEndWorkoutIntent {
 	instance := getINEndWorkoutIntentClass().Alloc()
 	rv := objc.Send[INEndWorkoutIntent](instance.ID, objc.Sel("initWithWorkoutName:"), workoutName)
 	rv.Autorelease()
@@ -97,8 +97,8 @@ func NewINEndWorkoutIntentWithWorkoutName(workoutName unsafe.Pointer) INEndWorko
 // The name of the workout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inendworkoutintent/workoutname
-func (i_ INEndWorkoutIntent) WorkoutName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutName"))
+func (i_ INEndWorkoutIntent) WorkoutName() INSpeakableString {
+	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("workoutName"))
 	return rv
 }
 
@@ -108,7 +108,7 @@ func (i_ INEndWorkoutIntent) WorkoutName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/intents/inendworkoutintent/workoutname
-func (i_ INEndWorkoutIntent) SetWorkoutName(value unsafe.Pointer) {
+func (i_ INEndWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
 

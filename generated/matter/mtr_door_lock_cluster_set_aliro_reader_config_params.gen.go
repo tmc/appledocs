@@ -78,8 +78,8 @@ func NewMTRDoorLockClusterSetAliroReaderConfigParams() MTRDoorLockClusterSetAlir
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupIdentifier
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupIdentifier"))
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupIdentifier() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("groupIdentifier"))
 	return rv
 }
 
@@ -87,14 +87,14 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupIdentifier() unsafe.
 // SetGroupIdentifier sets the value of the groupIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupIdentifier
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupIdentifier(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupIdentifier(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupIdentifier:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupResolvingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("groupResolvingKey"))
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("groupResolvingKey"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() unsaf
 // SetGroupResolvingKey sets the value of the groupResolvingKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupResolvingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupResolvingKey(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupResolvingKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupResolvingKey:"), value)
 }
 
@@ -120,14 +120,14 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/signingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("signingKey"))
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("signingKey"))
 	return rv
 }
 
@@ -135,7 +135,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() unsafe.Point
 // SetSigningKey sets the value of the signingKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/signingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSigningKey:"), value)
 }
 
@@ -153,14 +153,14 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() fo
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/timedInvokeTimeoutMs
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/verificationKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("verificationKey"))
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("verificationKey"))
 	return rv
 }
 
@@ -168,7 +168,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() unsafe.
 // SetVerificationKey sets the value of the verificationKey property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/verificationKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetVerificationKey(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetVerificationKey(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
 }
 

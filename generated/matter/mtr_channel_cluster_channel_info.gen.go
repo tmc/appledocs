@@ -79,8 +79,8 @@ func NewMTRChannelClusterChannelInfo() MTRChannelClusterChannelInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("affiliateCallSign"))
+func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("affiliateCallSign"))
 	return rv
 }
 
@@ -88,14 +88,14 @@ func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() string {
 // SetAffiliateCallSign sets the value of the affiliateCallSign property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
-func (m_ MTRChannelClusterChannelInfo) SetAffiliateCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfo) SetAffiliateCallSign(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
-func (m_ MTRChannelClusterChannelInfo) CallSign() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("callSign"))
+func (m_ MTRChannelClusterChannelInfo) CallSign() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("callSign"))
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (m_ MTRChannelClusterChannelInfo) CallSign() string {
 // SetCallSign sets the value of the callSign property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
-func (m_ MTRChannelClusterChannelInfo) SetCallSign(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfo) SetCallSign(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), value)
 }
 
 //
@@ -118,7 +118,7 @@ func (m_ MTRChannelClusterChannelInfo) MajorNumber() foundation.Number {
 // SetMajorNumber sets the value of the majorNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
-func (m_ MTRChannelClusterChannelInfo) SetMajorNumber(value foundation.Number) {
+func (m_ MTRChannelClusterChannelInfo) SetMajorNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
 
@@ -133,14 +133,14 @@ func (m_ MTRChannelClusterChannelInfo) MinorNumber() foundation.Number {
 // SetMinorNumber sets the value of the minorNumber property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
-func (m_ MTRChannelClusterChannelInfo) SetMinorNumber(value foundation.Number) {
+func (m_ MTRChannelClusterChannelInfo) SetMinorNumber(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
-func (m_ MTRChannelClusterChannelInfo) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ MTRChannelClusterChannelInfo) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -148,8 +148,8 @@ func (m_ MTRChannelClusterChannelInfo) Name() string {
 // SetName sets the value of the name property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
-func (m_ MTRChannelClusterChannelInfo) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ MTRChannelClusterChannelInfo) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 

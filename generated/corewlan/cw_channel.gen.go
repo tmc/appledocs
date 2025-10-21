@@ -30,7 +30,7 @@ type _CWChannelClass struct {
 // An interface definition for the [CWChannel] class.
 type ICWChannel interface {
 	objectivec.IObject
-	IsEqualToChannel(channel unsafe.Pointer) bool
+	IsEqualToChannel(channel ICWChannel) bool
 }
 
 // Encapsulates an IEEE 802.11 channel.
@@ -82,7 +82,7 @@ func NewCWChannel() CWChannel {
 // Determine CWChannel object equality.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/isEqual(to:)
-func (c_ CWChannel) IsEqualToChannel(channel unsafe.Pointer) bool {
+func (c_ CWChannel) IsEqualToChannel(channel ICWChannel) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEqualToChannel:"), channel)
 	return rv
 }
@@ -90,8 +90,8 @@ func (c_ CWChannel) IsEqualToChannel(channel unsafe.Pointer) bool {
 // The channel band.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/channelBand
-func (c_ CWChannel) ChannelBand() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("channelBand"))
+func (c_ CWChannel) ChannelBand() CWChannelBand {
+	rv := objc.Send[CWChannelBand](c_.ID, objc.Sel("channelBand"))
 	return rv
 }
 
@@ -106,8 +106,8 @@ func (c_ CWChannel) ChannelNumber() int {
 // The channel width.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWChannel/channelWidth
-func (c_ CWChannel) ChannelWidth() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("channelWidth"))
+func (c_ CWChannel) ChannelWidth() CWChannelWidth {
+	rv := objc.Send[CWChannelWidth](c_.ID, objc.Sel("channelWidth"))
 	return rv
 }
 

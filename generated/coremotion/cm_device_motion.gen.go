@@ -84,8 +84,8 @@ func NewDeviceMotion() DeviceMotion {
 // The attitude of the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/attitude
-func (d_ DeviceMotion) Attitude() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("attitude"))
+func (d_ DeviceMotion) Attitude() CMAttitude {
+	rv := objc.Send[CMAttitude](d_.ID, objc.Sel("attitude"))
 	return rv
 }
 
@@ -124,8 +124,8 @@ func (d_ DeviceMotion) RotationRate() unsafe.Pointer {
 // The location of the sensors that compute the device-motion data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMDeviceMotion/sensorLocation-swift.property
-func (d_ DeviceMotion) SensorLocation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("sensorLocation"))
+func (d_ DeviceMotion) SensorLocation() DeviceMotionSensorLocation {
+	rv := objc.Send[DeviceMotionSensorLocation](d_.ID, objc.Sel("sensorLocation"))
 	return rv
 }
 

@@ -77,15 +77,15 @@ func NewMIDICIDevice() MIDICIDevice {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/deviceInfo
-func (m_ MIDICIDevice) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+func (m_ MIDICIDevice) DeviceInfo() MIDI2DeviceInfo {
+	rv := objc.Send[MIDI2DeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/deviceType
-func (m_ MIDICIDevice) DeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceType"))
+func (m_ MIDICIDevice) DeviceType() MIDICIDeviceType {
+	rv := objc.Send[MIDICIDeviceType](m_.ID, objc.Sel("deviceType"))
 	return rv
 }
 
@@ -105,8 +105,8 @@ func (m_ MIDICIDevice) MaxSysExSize() uint {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDevice/muid
-func (m_ MIDICIDevice) MUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("MUID"))
+func (m_ MIDICIDevice) MUID() MIDICIMUID {
+	rv := objc.Send[MIDICIMUID](m_.ID, objc.Sel("MUID"))
 	return rv
 }
 

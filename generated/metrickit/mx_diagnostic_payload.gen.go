@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +31,8 @@ type _MXDiagnosticPayloadClass struct {
 // An interface definition for the [MXDiagnosticPayload] class.
 type IMXDiagnosticPayload interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An object that encapsulates a diagnostic report.
@@ -85,16 +86,16 @@ func NewMXDiagnosticPayload() MXDiagnosticPayload {
 // Returns the results of the payload as a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/dictionaryRepresentation()
-func (m_ MXDiagnosticPayload) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dictionaryRepresentation"))
+func (m_ MXDiagnosticPayload) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
 }
 
 // Returns the contents of the payload in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/jsonRepresentation()
-func (m_ MXDiagnosticPayload) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXDiagnosticPayload) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
@@ -141,16 +142,16 @@ func (m_ MXDiagnosticPayload) HangDiagnostics() []MXHangDiagnostic {
 // The starting time of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/timeStampBegin
-func (m_ MXDiagnosticPayload) TimeStampBegin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeStampBegin"))
+func (m_ MXDiagnosticPayload) TimeStampBegin() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampBegin"))
 	return rv
 }
 
 // The ending time of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/timeStampEnd
-func (m_ MXDiagnosticPayload) TimeStampEnd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeStampEnd"))
+func (m_ MXDiagnosticPayload) TimeStampEnd() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampEnd"))
 	return rv
 }
 

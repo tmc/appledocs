@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,16 +85,16 @@ func NewEntityDescription() EntityDescription {
 // Creates, configures, and returns an instance of the class for the entity with a given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/insertNewObject(forEntityName:into:)
-func (ec _EntityDescriptionClass) InsertNewObjectForEntityForNameInManagedObjectContext(entityName string, context unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("insertNewObjectForEntityForName:inManagedObjectContext:"), objc.String(entityName), context)
+func (ec _EntityDescriptionClass) InsertNewObjectForEntityForNameInManagedObjectContext(entityName appkit.string, context IManagedObjectContext) ManagedObject {
+	rv := objc.Send[ManagedObject](objc.ID(ec.class), objc.Sel("insertNewObjectForEntityForName:inManagedObjectContext:"), entityName, context)
 	return rv
 }
 
 // The entity name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
-func (e_ EntityDescription) Name() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("name"))
+func (e_ EntityDescription) Name() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -102,23 +104,23 @@ func (e_ EntityDescription) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/name
-func (e_ EntityDescription) SetName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), objc.String(value))
+func (e_ EntityDescription) SetName(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 
 // The version hash for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSEntityDescription/versionHash
-func (e_ EntityDescription) VersionHash() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("versionHash"))
+func (e_ EntityDescription) VersionHash() foundation.NSData {
+	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("versionHash"))
 	return rv
 }
 
 // The attributes of the receiver in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/attributesbyname
-func (e_ EntityDescription) AttributesByName() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("attributesByName"))
+func (e_ EntityDescription) AttributesByName() NSAttributeDescription {
+	rv := objc.Send[NSAttributeDescription](e_.ID, objc.Sel("attributesByName"))
 	return rv
 }
 
@@ -128,8 +130,8 @@ func (e_ EntityDescription) AttributesByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/attributesbyname
-func (e_ EntityDescription) SetAttributesByName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributesByName:"), objc.String(value))
+func (e_ EntityDescription) SetAttributesByName(value IAttributeDescription) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributesByName:"), value)
 }
 
 // The compound indexes for the entity as an array of arrays.
@@ -153,8 +155,8 @@ func (e_ EntityDescription) SetCompoundIndexes(value unsafe.Pointer) {
 // The expression that computes the CoreSpotlight display name for instances of the entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("coreSpotlightDisplayNameExpression"))
+func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() Expression {
+	rv := objc.Send[Expression](e_.ID, objc.Sel("coreSpotlightDisplayNameExpression"))
 	return rv
 }
 
@@ -164,7 +166,7 @@ func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() unsafe.Pointer 
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/corespotlightdisplaynameexpression
-func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value unsafe.Pointer) {
+func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value IExpression) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCoreSpotlightDisplayNameExpression:"), value)
 }
 
@@ -207,8 +209,8 @@ func (e_ EntityDescription) SetIsAbstract(value bool) {
 // The name of the class that represents the receiver’s entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectclassname
-func (e_ EntityDescription) ManagedObjectClassName() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("managedObjectClassName"))
+func (e_ EntityDescription) ManagedObjectClassName() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("managedObjectClassName"))
 	return rv
 }
 
@@ -218,15 +220,15 @@ func (e_ EntityDescription) ManagedObjectClassName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectclassname
-func (e_ EntityDescription) SetManagedObjectClassName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectClassName:"), objc.String(value))
+func (e_ EntityDescription) SetManagedObjectClassName(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectClassName:"), value)
 }
 
 // The managed object model with which the receiver is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectmodel
-func (e_ EntityDescription) ManagedObjectModel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("managedObjectModel"))
+func (e_ EntityDescription) ManagedObjectModel() NSManagedObjectModel {
+	rv := objc.Send[NSManagedObjectModel](e_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
 
@@ -236,15 +238,15 @@ func (e_ EntityDescription) ManagedObjectModel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/managedobjectmodel
-func (e_ EntityDescription) SetManagedObjectModel(value unsafe.Pointer) {
+func (e_ EntityDescription) SetManagedObjectModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectModel:"), value)
 }
 
 // An array containing the properties of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/properties
-func (e_ EntityDescription) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("properties"))
+func (e_ EntityDescription) Properties() NSPropertyDescription {
+	rv := objc.Send[NSPropertyDescription](e_.ID, objc.Sel("properties"))
 	return rv
 }
 
@@ -254,15 +256,15 @@ func (e_ EntityDescription) Properties() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/properties
-func (e_ EntityDescription) SetProperties(value unsafe.Pointer) {
+func (e_ EntityDescription) SetProperties(value IPropertyDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setProperties:"), value)
 }
 
 // A dictionary containing the properties of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/propertiesbyname
-func (e_ EntityDescription) PropertiesByName() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("propertiesByName"))
+func (e_ EntityDescription) PropertiesByName() NSPropertyDescription {
+	rv := objc.Send[NSPropertyDescription](e_.ID, objc.Sel("propertiesByName"))
 	return rv
 }
 
@@ -272,15 +274,15 @@ func (e_ EntityDescription) PropertiesByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/propertiesbyname
-func (e_ EntityDescription) SetPropertiesByName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setPropertiesByName:"), objc.String(value))
+func (e_ EntityDescription) SetPropertiesByName(value IPropertyDescription) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPropertiesByName:"), value)
 }
 
 // The relationships of the receiver in a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/relationshipsbyname
-func (e_ EntityDescription) RelationshipsByName() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("relationshipsByName"))
+func (e_ EntityDescription) RelationshipsByName() NSRelationshipDescription {
+	rv := objc.Send[NSRelationshipDescription](e_.ID, objc.Sel("relationshipsByName"))
 	return rv
 }
 
@@ -290,15 +292,15 @@ func (e_ EntityDescription) RelationshipsByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/relationshipsbyname
-func (e_ EntityDescription) SetRelationshipsByName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipsByName:"), objc.String(value))
+func (e_ EntityDescription) SetRelationshipsByName(value IRelationshipDescription) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipsByName:"), value)
 }
 
 // The renaming identifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/renamingidentifier
-func (e_ EntityDescription) RenamingIdentifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("renamingIdentifier"))
+func (e_ EntityDescription) RenamingIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("renamingIdentifier"))
 	return rv
 }
 
@@ -308,15 +310,15 @@ func (e_ EntityDescription) RenamingIdentifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/renamingidentifier
-func (e_ EntityDescription) SetRenamingIdentifier(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRenamingIdentifier:"), objc.String(value))
+func (e_ EntityDescription) SetRenamingIdentifier(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setRenamingIdentifier:"), value)
 }
 
 // An array containing the sub-entities of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/subentities
-func (e_ EntityDescription) Subentities() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("subentities"))
+func (e_ EntityDescription) Subentities() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](e_.ID, objc.Sel("subentities"))
 	return rv
 }
 
@@ -326,15 +328,15 @@ func (e_ EntityDescription) Subentities() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/subentities
-func (e_ EntityDescription) SetSubentities(value unsafe.Pointer) {
+func (e_ EntityDescription) SetSubentities(value IEntityDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSubentities:"), value)
 }
 
 // A dictionary containing the receiver’s sub-entities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/subentitiesbyname
-func (e_ EntityDescription) SubentitiesByName() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("subentitiesByName"))
+func (e_ EntityDescription) SubentitiesByName() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](e_.ID, objc.Sel("subentitiesByName"))
 	return rv
 }
 
@@ -344,15 +346,15 @@ func (e_ EntityDescription) SubentitiesByName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/subentitiesbyname
-func (e_ EntityDescription) SetSubentitiesByName(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSubentitiesByName:"), objc.String(value))
+func (e_ EntityDescription) SetSubentitiesByName(value IEntityDescription) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSubentitiesByName:"), value)
 }
 
 // The super-entity of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/superentity
-func (e_ EntityDescription) Superentity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("superentity"))
+func (e_ EntityDescription) Superentity() NSEntityDescription {
+	rv := objc.Send[NSEntityDescription](e_.ID, objc.Sel("superentity"))
 	return rv
 }
 
@@ -362,7 +364,7 @@ func (e_ EntityDescription) Superentity() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/superentity
-func (e_ EntityDescription) SetSuperentity(value unsafe.Pointer) {
+func (e_ EntityDescription) SetSuperentity(value IEntityDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSuperentity:"), value)
 }
 
@@ -405,8 +407,8 @@ func (e_ EntityDescription) SetUserInfo(value unsafe.Pointer) {
 // The version hash modifier for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/versionhashmodifier
-func (e_ EntityDescription) VersionHashModifier() string {
-	rv := objc.Send[string](e_.ID, objc.Sel("versionHashModifier"))
+func (e_ EntityDescription) VersionHashModifier() appkit.string {
+	rv := objc.Send[appkit.string](e_.ID, objc.Sel("versionHashModifier"))
 	return rv
 }
 
@@ -416,8 +418,8 @@ func (e_ EntityDescription) VersionHashModifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/coredata/nsentitydescription/versionhashmodifier
-func (e_ EntityDescription) SetVersionHashModifier(value string) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setVersionHashModifier:"), objc.String(value))
+func (e_ EntityDescription) SetVersionHashModifier(value appkit.string) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setVersionHashModifier:"), value)
 }
 
 

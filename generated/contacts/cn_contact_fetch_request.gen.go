@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactFetchRequest] class.
@@ -86,7 +87,7 @@ func NewCNContactFetchRequest() CNContactFetchRequest {
 // Creates a fetch request for the specified keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/init(keysToFetch:)
-func NewCNContactFetchRequestWithKeysToFetch(keysToFetch unsafe.Pointer) CNContactFetchRequest {
+func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFetchRequest {
 	instance := getCNContactFetchRequestClass().Alloc()
 	rv := objc.Send[CNContactFetchRequest](instance.ID, objc.Sel("initWithKeysToFetch:"), keysToFetch)
 	rv.Autorelease()
@@ -143,8 +144,8 @@ func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 // The predicate to match contacts against.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-func (c_ CNContactFetchRequest) Predicate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicate"))
+func (c_ CNContactFetchRequest) Predicate() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
 }
 
@@ -154,15 +155,15 @@ func (c_ CNContactFetchRequest) Predicate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-func (c_ CNContactFetchRequest) SetPredicate(value unsafe.Pointer) {
+func (c_ CNContactFetchRequest) SetPredicate(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
 
 // The sort order for contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
-func (c_ CNContactFetchRequest) SortOrder() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sortOrder"))
+func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
+	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv
 }
 
@@ -172,7 +173,7 @@ func (c_ CNContactFetchRequest) SortOrder() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
-func (c_ CNContactFetchRequest) SetSortOrder(value unsafe.Pointer) {
+func (c_ CNContactFetchRequest) SetSortOrder(value ICNContactSortOrder) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortOrder:"), value)
 }
 

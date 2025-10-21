@@ -78,7 +78,7 @@ func NewReshapeNode() ReshapeNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReshapeNode/init(source:resultWidth:resultHeight:resultFeatureChannels:)
-func NewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels(source unsafe.Pointer, resultWidth uint, resultHeight uint, resultFeatureChannels uint) ReshapeNode {
+func NewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels(source IMPSNNImageNode, resultWidth uint, resultHeight uint, resultFeatureChannels uint) ReshapeNode {
 	instance := getReshapeNodeClass().Alloc()
 	rv := objc.Send[ReshapeNode](instance.ID, objc.Sel("initWithSource:resultWidth:resultHeight:resultFeatureChannels:"), source, resultWidth, resultHeight, resultFeatureChannels)
 	rv.Autorelease()

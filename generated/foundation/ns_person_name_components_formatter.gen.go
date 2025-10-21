@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [PersonNameComponentsFormatter] class.
@@ -29,7 +30,7 @@ type _PersonNameComponentsFormatterClass struct {
 // An interface definition for the [PersonNameComponentsFormatter] class.
 type IPersonNameComponentsFormatter interface {
 	IFormatter
-	PersonNameComponentsFromString(string_ string) unsafe.Pointer
+	PersonNameComponentsFromString(string_ appkit.string) PersonNameComponents
 }
 
 // A formatter that provides localized representations of the components of a person’s name.
@@ -85,8 +86,8 @@ func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
 // Returns a person name components object from a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
-func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("personNameComponentsFromString:"), objc.String(string_))
+func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ appkit.string) PersonNameComponents {
+	rv := objc.Send[PersonNameComponents](p_.ID, objc.Sel("personNameComponentsFromString:"), string_)
 	return rv
 }
 
@@ -110,8 +111,8 @@ func (p_ PersonNameComponentsFormatter) SetIsPhonetic(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/locale
-func (p_ PersonNameComponentsFormatter) Locale() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("locale"))
+func (p_ PersonNameComponentsFormatter) Locale() Locale {
+	rv := objc.Send[Locale](p_.ID, objc.Sel("locale"))
 	return rv
 }
 
@@ -119,7 +120,7 @@ func (p_ PersonNameComponentsFormatter) Locale() unsafe.Pointer {
 // SetLocale sets the value of the locale property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/locale
-func (p_ PersonNameComponentsFormatter) SetLocale(value unsafe.Pointer) {
+func (p_ PersonNameComponentsFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocale:"), value)
 }
 

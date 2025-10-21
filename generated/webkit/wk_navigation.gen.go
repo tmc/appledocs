@@ -83,8 +83,8 @@ func NewNavigation() Navigation {
 // The content mode WebKit uses to load the webpage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/WebKit/WKNavigation/effectiveContentMode
-func (n_ Navigation) EffectiveContentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("effectiveContentMode"))
+func (n_ Navigation) EffectiveContentMode() ContentMode {
+	rv := objc.Send[ContentMode](n_.ID, objc.Sel("effectiveContentMode"))
 	return rv
 }
 

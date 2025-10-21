@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = authenticationservices.NewPasskeyRegistrationCredentialExtensionOutput
 
+// ExampleNewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput demonstrates how to create a PasskeyRegistrationCredentialExtensionOutput instance using NewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput.
+func ExampleNewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput() {
+	_ = authenticationservices.NewPasskeyRegistrationCredentialExtensionOutputWithLargeBlobOutput(
+		authenticationservices.ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput{}, // largeBlob ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput
+	)
+	// Output:
+}

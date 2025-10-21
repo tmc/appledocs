@@ -86,7 +86,7 @@ func NewCSUserQueryContext() CSUserQueryContext {
 // Creates a new query context object with an optional suggested search string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/init(currentSuggestion:)
-func NewCSUserQueryContextWithCurrentSuggestion(currentSuggestion unsafe.Pointer) CSUserQueryContext {
+func NewCSUserQueryContextWithCurrentSuggestion(currentSuggestion ICSSuggestion) CSUserQueryContext {
 	rv := objc.Send[CSUserQueryContext](objc.ID(getCSUserQueryContextClass().class), objc.Sel("userQueryContextWithCurrentSuggestion:"), currentSuggestion)
 	return rv
 }
@@ -95,16 +95,16 @@ func NewCSUserQueryContextWithCurrentSuggestion(currentSuggestion unsafe.Pointer
 // Creates a new query context object with an optional suggested search string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/init(currentSuggestion:)
-func (cc _CSUserQueryContextClass) UserQueryContextWithCurrentSuggestion(currentSuggestion unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("userQueryContextWithCurrentSuggestion:"), currentSuggestion)
+func (cc _CSUserQueryContextClass) UserQueryContextWithCurrentSuggestion(currentSuggestion ICSSuggestion) CSUserQueryContext {
+	rv := objc.Send[CSUserQueryContext](objc.ID(cc.class), objc.Sel("userQueryContextWithCurrentSuggestion:"), currentSuggestion)
 	return rv
 }
 
 // Returns the current behavior configuration for the user query.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSUserQueryContext/userQueryContext
-func (cc _CSUserQueryContextClass) UserQueryContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("userQueryContext"))
+func (cc _CSUserQueryContextClass) UserQueryContext() CSUserQueryContext {
+	rv := objc.Send[CSUserQueryContext](objc.ID(cc.class), objc.Sel("userQueryContext"))
 	return rv
 }
 

@@ -83,8 +83,8 @@ func NewPHCloudIdentifierMapping() PHCloudIdentifierMapping {
 // The user info dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (p_ PHCloudIdentifierMapping) UserInfo() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("userInfo"))
+func (p_ PHCloudIdentifierMapping) UserInfo() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -94,23 +94,23 @@ func (p_ PHCloudIdentifierMapping) UserInfo() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/userInfo
-func (p_ PHCloudIdentifierMapping) SetUserInfo(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), objc.String(value))
+func (p_ PHCloudIdentifierMapping) SetUserInfo(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
-func (p_ PHCloudIdentifierMapping) PHLocalIdentifierNotFound() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+func (p_ PHCloudIdentifierMapping) PHLocalIdentifierNotFound() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
 
 // An error key that retrieves an array of string values representing local identifiers matched to a cloud identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifierserrorkey
-func (p_ PHCloudIdentifierMapping) PHLocalIdentifiersErrorKey() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifiersErrorKey"))
+func (p_ PHCloudIdentifierMapping) PHLocalIdentifiersErrorKey() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLocalIdentifiersErrorKey"))
 	return rv
 }
 

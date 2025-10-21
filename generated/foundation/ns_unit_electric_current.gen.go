@@ -84,15 +84,15 @@ func NewUnitElectricCurrent() UnitElectricCurrent {
 // The amperes unit of electric current.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
-func (uc _UnitElectricCurrentClass) Amperes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("amperes"))
+func (uc _UnitElectricCurrentClass) Amperes() UnitElectricCurrent {
+	rv := objc.Send[NSUnitElectricCurrent](objc.ID(uc.class), objc.Sel("amperes"))
 	return rv
 }
 // The amperes unit of electric current.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricCurrent/amperes
-func (u_ UnitElectricCurrent) Amperes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("amperes"))
+func (u_ UnitElectricCurrent) Amperes() NSUnitElectricCurrent {
+	rv := objc.Send[NSUnitElectricCurrent](u_.ID, objc.Sel("amperes"))
 	return rv
 }
 

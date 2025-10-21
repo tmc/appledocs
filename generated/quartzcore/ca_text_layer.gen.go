@@ -85,8 +85,8 @@ func NewTextLayer() TextLayer {
 // Determines how individual lines of text are horizontally aligned within the receiver’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/alignmentMode
-func (t_ TextLayer) AlignmentMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("alignmentMode"))
+func (t_ TextLayer) AlignmentMode() TextLayerAlignmentMode {
+	rv := objc.Send[TextLayerAlignmentMode](t_.ID, objc.Sel("alignmentMode"))
 	return rv
 }
 
@@ -96,7 +96,7 @@ func (t_ TextLayer) AlignmentMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/alignmentMode
-func (t_ TextLayer) SetAlignmentMode(value unsafe.Pointer) {
+func (t_ TextLayer) SetAlignmentMode(value TextLayerAlignmentMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlignmentMode:"), value)
 }
 
@@ -211,8 +211,8 @@ func (t_ TextLayer) SetString(value objc.ID) {
 // Determines how the text is truncated to fit within the receiver’s bounds.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/truncationMode
-func (t_ TextLayer) TruncationMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("truncationMode"))
+func (t_ TextLayer) TruncationMode() TextLayerTruncationMode {
+	rv := objc.Send[TextLayerTruncationMode](t_.ID, objc.Sel("truncationMode"))
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (t_ TextLayer) TruncationMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CATextLayer/truncationMode
-func (t_ TextLayer) SetTruncationMode(value unsafe.Pointer) {
+func (t_ TextLayer) SetTruncationMode(value TextLayerTruncationMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTruncationMode:"), value)
 }
 

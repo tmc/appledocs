@@ -88,7 +88,7 @@ func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) Granularity() foundation
 // SetGranularity sets the value of the granularity property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustersetutctimeparams-2ms2i/granularity
-func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetGranularity(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetGranularity(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGranularity:"), value)
 }
 
@@ -103,7 +103,7 @@ func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) ServerSideProcessingTime
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustersetutctimeparams-2ms2i/serversideprocessingtimeout
-func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -118,7 +118,7 @@ func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) TimeSource() foundation.
 // SetTimeSource sets the value of the timeSource property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustersetutctimeparams-2ms2i/timesource
-func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetTimeSource(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetTimeSource(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeSource:"), value)
 }
 
@@ -133,7 +133,7 @@ func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) TimedInvokeTimeoutMs() f
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustersetutctimeparams-2ms2i/timedinvoketimeoutms
-func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -148,7 +148,7 @@ func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) UtcTime() foundation.Num
 // SetUtcTime sets the value of the utcTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtimesynchronizationclustersetutctimeparams-2ms2i/utctime
-func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetUtcTime(value foundation.Number) {
+func (m_ MTRTimeSynchronizationClusterSetUtcTimeParams) SetUtcTime(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUtcTime:"), value)
 }
 

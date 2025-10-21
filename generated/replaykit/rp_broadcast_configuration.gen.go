@@ -93,7 +93,7 @@ func (r_ RPBroadcastConfiguration) ClipDuration() foundation.TimeInterval {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/clipDuration
-func (r_ RPBroadcastConfiguration) SetClipDuration(value foundation.TimeInterval) {
+func (r_ RPBroadcastConfiguration) SetClipDuration(value foundation.ITimeInterval) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setClipDuration:"), value)
 }
 

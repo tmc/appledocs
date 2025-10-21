@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,7 +84,7 @@ func NewMesh() Mesh {
 // Initializes a MetalKit mesh and its submeshes from a Model I/O mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/init(mesh:device:)
-func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objc.ID, error_ unsafe.Pointer) Mesh {
+func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objectivec.IObject, error_ unsafe.Pointer) Mesh {
 	instance := getMeshClass().Alloc()
 	rv := objc.Send[Mesh](instance.ID, objc.Sel("initWithMesh:device:error:"), mesh, device, error_)
 	rv.Autorelease()
@@ -94,7 +95,7 @@ func NewMeshWithMeshDeviceError(mesh unsafe.Pointer, device objc.ID, error_ unsa
 // Creates and initializes MetalKit meshes from all Model I/O meshes in a Model I/O asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/newMeshesFromAsset:device:sourceMeshes:error:
-func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device objc.ID, sourceMeshes unsafe.Pointer, error_ unsafe.Pointer) []Mesh {
+func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Pointer, device objectivec.IObject, sourceMeshes []MDLMesh, error_ unsafe.Pointer) []Mesh {
 	rv := objc.Send[[]Mesh](objc.ID(mc.class), objc.Sel("newMeshesFromAsset:device:sourceMeshes:error:"), asset, device, sourceMeshes, error_)
 	return rv
 }
@@ -102,8 +103,8 @@ func (mc _MeshClass) NewMeshesFromAssetDeviceSourceMeshesError(asset unsafe.Poin
 // The name of the mesh.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) Name() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("name"))
+func (m_ Mesh) Name() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -113,8 +114,8 @@ func (m_ Mesh) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalKit/MTKMesh/name
-func (m_ Mesh) SetName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), objc.String(value))
+func (m_ Mesh) SetName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
 
 // An array of submeshes containing index buffers referencing the mesh vertices.

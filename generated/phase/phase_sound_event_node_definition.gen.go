@@ -92,8 +92,8 @@ func (p_ PHASESoundEventNodeDefinition) Children() []PHASESoundEventNodeDefiniti
 // A unique name for the definition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedefinition/identifier
-func (p_ PHASESoundEventNodeDefinition) Identifier() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("identifier"))
+func (p_ PHASESoundEventNodeDefinition) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -103,15 +103,15 @@ func (p_ PHASESoundEventNodeDefinition) Identifier() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasedefinition/identifier
-func (p_ PHASESoundEventNodeDefinition) SetIdentifier(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), objc.String(value))
+func (p_ PHASESoundEventNodeDefinition) SetIdentifier(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 // The object’s meta parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASESoundEventNodeDefinition) MetaParameters() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("metaParameters"))
+func (p_ PHASESoundEventNodeDefinition) MetaParameters() PHASEMetaParameter {
+	rv := objc.Send[PHASEMetaParameter](p_.ID, objc.Sel("metaParameters"))
 	return rv
 }
 
@@ -121,8 +121,8 @@ func (p_ PHASESoundEventNodeDefinition) MetaParameters() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/metaparameters
-func (p_ PHASESoundEventNodeDefinition) SetMetaParameters(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), objc.String(value))
+func (p_ PHASESoundEventNodeDefinition) SetMetaParameters(value IPHASEMetaParameter) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setMetaParameters:"), value)
 }
 
 

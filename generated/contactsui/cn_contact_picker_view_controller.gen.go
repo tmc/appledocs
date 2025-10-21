@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNContactPickerViewController] class.
@@ -131,8 +132,8 @@ func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string)
 // A predicate to determine the contact selectability in the list of contacts.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) PredicateForEnablingContact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateForEnablingContact"))
+func (c_ CNContactPickerViewController) PredicateForEnablingContact() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForEnablingContact"))
 	return rv
 }
 
@@ -142,15 +143,15 @@ func (c_ CNContactPickerViewController) PredicateForEnablingContact() unsafe.Poi
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value unsafe.Pointer) {
+func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForEnablingContact:"), value)
 }
 
 // A predicate to control the return of the selected contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateForSelectionOfContact"))
+func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfContact"))
 	return rv
 }
 
@@ -160,15 +161,15 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() unsafe.
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value unsafe.Pointer) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfContact:"), value)
 }
 
 // A predicate to control the properties of the selected contact.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
+func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
 	return rv
 }
 
@@ -178,7 +179,7 @@ func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() unsafe
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value unsafe.Pointer) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value foundation.IPredicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicateForSelectionOfProperty:"), value)
 }
 

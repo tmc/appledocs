@@ -99,8 +99,8 @@ func (c_ Condition) Wait() {
 // The name of the condition.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
-func (c_ Condition) Name() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("name"))
+func (c_ Condition) Name() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -110,8 +110,8 @@ func (c_ Condition) Name() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscondition/name
-func (c_ Condition) SetName(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), objc.String(value))
+func (c_ Condition) SetName(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
 
 

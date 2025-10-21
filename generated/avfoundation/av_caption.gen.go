@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,8 +84,8 @@ func NewCaption() Caption {
 // The animation that the system applies to this caption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
-func (c_ Caption) Animation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("animation"))
+func (c_ Caption) Animation() appkit.Animation {
+	rv := objc.Send[appkit.Animation](c_.ID, objc.Sel("animation"))
 	return rv
 }
 
@@ -94,7 +95,7 @@ func (c_ Caption) Animation() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.property
-func (c_ Caption) SetAnimation(value unsafe.Pointer) {
+func (c_ Caption) SetAnimation(value appkit.IAnimation) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAnimation:"), value)
 }
 
@@ -119,8 +120,8 @@ func (c_ Caption) SetRegion(value unsafe.Pointer) {
 // The caption text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
-func (c_ Caption) Text() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("text"))
+func (c_ Caption) Text() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("text"))
 	return rv
 }
 
@@ -130,8 +131,8 @@ func (c_ Caption) Text() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaption/text
-func (c_ Caption) SetText(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setText:"), objc.String(value))
+func (c_ Caption) SetText(value appkit.string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setText:"), value)
 }
 
 // The alignment for the caption text.

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -77,21 +79,21 @@ func NewCNAssetSpatialAudioInfo() CNAssetSpatialAudioInfo {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/loadFromAsset:completionHandler:
-func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (cc _CNAssetSpatialAudioInfoClass) LoadFromAssetCompletionHandler(asset avfoundation.IAsset, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("loadFromAsset:completionHandler:"), asset, completionHandler)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/defaultRenderingStyle
-func (c_ CNAssetSpatialAudioInfo) DefaultRenderingStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("defaultRenderingStyle"))
+func (c_ CNAssetSpatialAudioInfo) DefaultRenderingStyle() CNSpatialAudioRenderingStyle {
+	rv := objc.Send[CNSpatialAudioRenderingStyle](c_.ID, objc.Sel("defaultRenderingStyle"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetSpatialAudioInfo-57yc5/spatialAudioMixMetadata
-func (c_ CNAssetSpatialAudioInfo) SpatialAudioMixMetadata() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("spatialAudioMixMetadata"))
+func (c_ CNAssetSpatialAudioInfo) SpatialAudioMixMetadata() foundation.NSData {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("spatialAudioMixMetadata"))
 	return rv
 }
 

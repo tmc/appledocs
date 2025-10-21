@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,9 +31,9 @@ type _INParameterClass struct {
 // An interface definition for the [INParameter] class.
 type IINParameter interface {
 	objectivec.IObject
-	IndexForSubKeyPath(subKeyPath string) uint
-	IsEqualToParameter(parameter unsafe.Pointer) bool
-	SetIndexForSubKeyPath(index uint, subKeyPath string)
+	IndexForSubKeyPath(subKeyPath appkit.string) uint
+	IsEqualToParameter(parameter INParameter) bool
+	SetIndexForSubKeyPath(index uint, subKeyPath appkit.string)
 }
 
 // A parameter of an interaction object.
@@ -88,8 +89,8 @@ func NewINParameter() INParameter {
 // Creates a new parameter object using the specified key path and class information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/init(for:keyPath:)
-func NewINParameterForClassKeyPath(aClass objc.Class, keyPath string) INParameter {
-	rv := objc.Send[INParameter](objc.ID(getINParameterClass().class), objc.Sel("parameterForClass:keyPath:"), aClass, objc.String(keyPath))
+func NewINParameterForClassKeyPath(aClass objc.Class, keyPath appkit.string) INParameter {
+	rv := objc.Send[INParameter](objc.ID(getINParameterClass().class), objc.Sel("parameterForClass:keyPath:"), aClass, keyPath)
 	return rv
 }
 
@@ -97,23 +98,23 @@ func NewINParameterForClassKeyPath(aClass objc.Class, keyPath string) INParamete
 // Creates a new parameter object using the specified key path and class information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/init(for:keyPath:)
-func (ic _INParameterClass) ParameterForClassKeyPath(aClass objc.Class, keyPath string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("parameterForClass:keyPath:"), aClass, objc.String(keyPath))
+func (ic _INParameterClass) ParameterForClassKeyPath(aClass objc.Class, keyPath appkit.string) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("parameterForClass:keyPath:"), aClass, keyPath)
 	return rv
 }
 
 // The index into the array at the specified portion of the key path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/index(forSubKeyPath:)
-func (i_ INParameter) IndexForSubKeyPath(subKeyPath string) uint {
-	rv := objc.Send[uint](i_.ID, objc.Sel("indexForSubKeyPath:"), objc.String(subKeyPath))
+func (i_ INParameter) IndexForSubKeyPath(subKeyPath appkit.string) uint {
+	rv := objc.Send[uint](i_.ID, objc.Sel("indexForSubKeyPath:"), subKeyPath)
 	return rv
 }
 
 // Returns a Boolean value indicating whether the specified parameter object represents the same property as the current parameter object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/isEqual(to:)
-func (i_ INParameter) IsEqualToParameter(parameter unsafe.Pointer) bool {
+func (i_ INParameter) IsEqualToParameter(parameter INParameter) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEqualToParameter:"), parameter)
 	return rv
 }
@@ -121,8 +122,8 @@ func (i_ INParameter) IsEqualToParameter(parameter unsafe.Pointer) bool {
 // Specifies which item of an array or ordered set to use for the parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/setIndex(_:forSubKeyPath:)
-func (i_ INParameter) SetIndexForSubKeyPath(index uint, subKeyPath string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:forSubKeyPath:"), index, objc.String(subKeyPath))
+func (i_ INParameter) SetIndexForSubKeyPath(index uint, subKeyPath appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:forSubKeyPath:"), index, subKeyPath)
 }
 
 // The type of object represented by this parameter.
@@ -136,8 +137,8 @@ func (i_ INParameter) ParameterClass() objc.Class {
 // The key path to a property of an interaction object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INParameter/parameterKeyPath
-func (i_ INParameter) ParameterKeyPath() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("parameterKeyPath"))
+func (i_ INParameter) ParameterKeyPath() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("parameterKeyPath"))
 	return rv
 }
 

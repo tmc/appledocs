@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [BluetoothAccessibilityIgnoredImageCell] class.
@@ -29,18 +29,20 @@ type _BluetoothAccessibilityIgnoredImageCellClass struct {
 
 // An interface definition for the [BluetoothAccessibilityIgnoredImageCell] class.
 type IBluetoothAccessibilityIgnoredImageCell interface {
-	objectivec.IObject
+	appkit.IImageCell
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothAccessibilityIgnoredImageCell
 type BluetoothAccessibilityIgnoredImageCell struct {
-	objectivec.Object
+	appkit.ImageCell
 }
 
 // BluetoothAccessibilityIgnoredImageCellFrom constructs a [BluetoothAccessibilityIgnoredImageCell] from an unsafe.Pointer.
 func BluetoothAccessibilityIgnoredImageCellFrom(ptr unsafe.Pointer) BluetoothAccessibilityIgnoredImageCell {
-	return BluetoothAccessibilityIgnoredImageCell{objectivec.Object{objc.ID(ptr)}}
+	return BluetoothAccessibilityIgnoredImageCell{
+		ImageCell: appkit.ImageCellFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.

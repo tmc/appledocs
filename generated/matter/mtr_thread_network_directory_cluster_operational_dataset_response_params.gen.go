@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -90,8 +91,8 @@ func NewMTRThreadNetworkDirectoryClusterOperationalDatasetResponseParamsWithResp
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) OperationalDataset() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalDataset"))
+func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) OperationalDataset() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("operationalDataset"))
 	return rv
 }
 
@@ -99,7 +100,7 @@ func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) Opera
 // SetOperationalDataset sets the value of the operationalDataset property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams/operationalDataset
-func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) SetOperationalDataset(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams) SetOperationalDataset(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalDataset:"), value)
 }
 

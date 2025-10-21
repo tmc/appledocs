@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewHKQuantitySeriesSampleBuilder() HKQuantitySeriesSampleBuilder {
 // The device providing the data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
-func (h_ HKQuantitySeriesSampleBuilder) Device() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("device"))
+func (h_ HKQuantitySeriesSampleBuilder) Device() HKDevice {
+	rv := objc.Send[HKDevice](h_.ID, objc.Sel("device"))
 	return rv
 }
 
@@ -92,15 +93,15 @@ func (h_ HKQuantitySeriesSampleBuilder) Device() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/device
-func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value unsafe.Pointer) {
+func (h_ HKQuantitySeriesSampleBuilder) SetDevice(value IHKDevice) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDevice:"), value)
 }
 
 // The quantity type for the series.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/quantitytype
-func (h_ HKQuantitySeriesSampleBuilder) QuantityType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("quantityType"))
+func (h_ HKQuantitySeriesSampleBuilder) QuantityType() HKQuantityType {
+	rv := objc.Send[HKQuantityType](h_.ID, objc.Sel("quantityType"))
 	return rv
 }
 
@@ -110,15 +111,15 @@ func (h_ HKQuantitySeriesSampleBuilder) QuantityType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/quantitytype
-func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value unsafe.Pointer) {
+func (h_ HKQuantitySeriesSampleBuilder) SetQuantityType(value HKQuantityType) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setQuantityType:"), value)
 }
 
 // The starting date and time for the sample.
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-func (h_ HKQuantitySeriesSampleBuilder) StartDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("startDate"))
+func (h_ HKQuantitySeriesSampleBuilder) StartDate() foundation.Date {
+	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("startDate"))
 	return rv
 }
 
@@ -128,7 +129,7 @@ func (h_ HKQuantitySeriesSampleBuilder) StartDate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder/startdate
-func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value unsafe.Pointer) {
+func (h_ HKQuantitySeriesSampleBuilder) SetStartDate(value foundation.IDate) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setStartDate:"), value)
 }
 

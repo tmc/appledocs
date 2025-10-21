@@ -78,8 +78,8 @@ func NewMTROperationalCredentialsClusterUpdateFabricLabelParams() MTROperational
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatefabriclabelparams/label
-func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) Label() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -87,8 +87,8 @@ func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) Label() string
 // SetLabel sets the value of the label property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatefabriclabelparams/label
-func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetLabel(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
 
 //
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) ServerSideProc
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatefabriclabelparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) TimedInvokeTim
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclusterupdatefabriclabelparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterUpdateFabricLabelParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -87,14 +87,14 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) CreatorFabricIndex
 // SetCreatorFabricIndex sets the value of the creatorFabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/creatorfabricindex
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetCreatorFabricIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetCreatorFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCreatorFabricIndex:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/credentialdata
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) CredentialData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("credentialData"))
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) CredentialData() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("credentialData"))
 	return rv
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) CredentialData() u
 // SetCredentialData sets the value of the credentialData property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/credentialdata
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetCredentialData(value unsafe.Pointer) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetCredentialData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialData:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) CredentialExists()
 // SetCredentialExists sets the value of the credentialExists property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/credentialexists
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetCredentialExists(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetCredentialExists(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialExists:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) LastModifiedFabric
 // SetLastModifiedFabricIndex sets the value of the lastModifiedFabricIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/lastmodifiedfabricindex
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetLastModifiedFabricIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetLastModifiedFabricIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLastModifiedFabricIndex:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) NextCredentialInde
 // SetNextCredentialIndex sets the value of the nextCredentialIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/nextcredentialindex
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetNextCredentialIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetNextCredentialIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextCredentialIndex:"), value)
 }
 
@@ -162,7 +162,7 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) TimedInvokeTimeout
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/timedinvoketimeoutms
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 
@@ -177,7 +177,7 @@ func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) UserIndex() founda
 // SetUserIndex sets the value of the userIndex property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustergetcredentialstatusresponseparams/userindex
-func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetUserIndex(value foundation.Number) {
+func (m_ MTRDoorLockClusterGetCredentialStatusResponseParams) SetUserIndex(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserIndex:"), value)
 }
 

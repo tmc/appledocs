@@ -113,8 +113,8 @@ func (m_ MXForegroundExitData) CumulativeNormalAppExitCount() uint {
 // The metrics for the foreground app exits.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/foregroundexitdata
-func (m_ MXForegroundExitData) ForegroundExitData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("foregroundExitData"))
+func (m_ MXForegroundExitData) ForegroundExitData() MXForegroundExitData {
+	rv := objc.Send[MXForegroundExitData](m_.ID, objc.Sel("foregroundExitData"))
 	return rv
 }
 
@@ -124,7 +124,7 @@ func (m_ MXForegroundExitData) ForegroundExitData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/foregroundexitdata
-func (m_ MXForegroundExitData) SetForegroundExitData(value unsafe.Pointer) {
+func (m_ MXForegroundExitData) SetForegroundExitData(value IMXForegroundExitData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setForegroundExitData:"), value)
 }
 

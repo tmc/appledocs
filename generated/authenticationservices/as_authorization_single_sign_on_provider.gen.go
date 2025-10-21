@@ -31,7 +31,7 @@ type _AuthorizationSingleSignOnProviderClass struct {
 // An interface definition for the [AuthorizationSingleSignOnProvider] class.
 type IAuthorizationSingleSignOnProvider interface {
 	objectivec.IObject
-	CreateRequest() unsafe.Pointer
+	CreateRequest() AuthorizationSingleSignOnRequest
 }
 
 // A mechanism for generating requests to authenticate users with third-party providers.
@@ -83,8 +83,8 @@ func NewAuthorizationSingleSignOnProvider() AuthorizationSingleSignOnProvider {
 // Creates a single sign-on (SSO) authorization request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSingleSignOnProvider/createRequest()
-func (a_ AuthorizationSingleSignOnProvider) CreateRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("createRequest"))
+func (a_ AuthorizationSingleSignOnProvider) CreateRequest() AuthorizationSingleSignOnRequest {
+	rv := objc.Send[AuthorizationSingleSignOnRequest](a_.ID, objc.Sel("createRequest"))
 	return rv
 }
 
@@ -110,7 +110,7 @@ func (a_ AuthorizationSingleSignOnProvider) Url() foundation.URL {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsinglesignonprovider/url
-func (a_ AuthorizationSingleSignOnProvider) SetUrl(value foundation.URL) {
+func (a_ AuthorizationSingleSignOnProvider) SetUrl(value foundation.IURL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUrl:"), value)
 }
 

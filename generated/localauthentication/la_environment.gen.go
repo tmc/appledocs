@@ -30,8 +30,8 @@ type _EnvironmentClass struct {
 // An interface definition for the [Environment] class.
 type IEnvironment interface {
 	objectivec.IObject
-	AddObserver(observer objc.ID)
-	RemoveObserver(observer objc.ID)
+	AddObserver(observer objectivec.IObject)
+	RemoveObserver(observer objectivec.IObject)
 }
 
 //
@@ -80,35 +80,35 @@ func NewEnvironment() Environment {
 // Environment of the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/currentUser
-func (ec _EnvironmentClass) CurrentUser() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ec.class), objc.Sel("currentUser"))
+func (ec _EnvironmentClass) CurrentUser() Environment {
+	rv := objc.Send[LAEnvironment](objc.ID(ec.class), objc.Sel("currentUser"))
 	return rv
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/addObserver(_:)
-func (e_ Environment) AddObserver(observer objc.ID) {
+func (e_ Environment) AddObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("addObserver:"), observer)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/removeObserver(_:)
-func (e_ Environment) RemoveObserver(observer objc.ID) {
+func (e_ Environment) RemoveObserver(observer objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("removeObserver:"), observer)
 }
 
 // Environment of the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/currentUser
-func (e_ Environment) CurrentUser() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("currentUser"))
+func (e_ Environment) CurrentUser() LAEnvironment {
+	rv := objc.Send[LAEnvironment](e_.ID, objc.Sel("currentUser"))
 	return rv
 }
 
 // The environment state information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/state-swift.property
-func (e_ Environment) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("state"))
+func (e_ Environment) State() LAEnvironmentState {
+	rv := objc.Send[LAEnvironmentState](e_.ID, objc.Sel("state"))
 	return rv
 }
 

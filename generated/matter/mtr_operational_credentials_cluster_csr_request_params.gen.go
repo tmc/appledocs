@@ -78,8 +78,8 @@ func NewMTROperationalCredentialsClusterCSRRequestParams() MTROperationalCredent
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrrequestparams/csrnonce
-func (m_ MTROperationalCredentialsClusterCSRRequestParams) CsrNonce() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csrNonce"))
+func (m_ MTROperationalCredentialsClusterCSRRequestParams) CsrNonce() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrNonce"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (m_ MTROperationalCredentialsClusterCSRRequestParams) CsrNonce() unsafe.Poi
 // SetCsrNonce sets the value of the csrNonce property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrrequestparams/csrnonce
-func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetCsrNonce(value unsafe.Pointer) {
+func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetCsrNonce(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTROperationalCredentialsClusterCSRRequestParams) IsForUpdateNOC() foun
 // SetIsForUpdateNOC sets the value of the isForUpdateNOC property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrrequestparams/isforupdatenoc
-func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetIsForUpdateNOC(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetIsForUpdateNOC(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsForUpdateNOC:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTROperationalCredentialsClusterCSRRequestParams) ServerSideProcessingT
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrrequestparams/serversideprocessingtimeout
-func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTROperationalCredentialsClusterCSRRequestParams) TimedInvokeTimeoutMs(
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcredentialsclustercsrrequestparams/timedinvoketimeoutms
-func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTROperationalCredentialsClusterCSRRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

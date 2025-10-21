@@ -119,8 +119,8 @@ func (c_ CaptureSystemPressureState) SetLevel(value unsafe.Pointer) {
 // A value that indicates the capture device’s current system pressure state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
-func (c_ CaptureSystemPressureState) SystemPressureState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("systemPressureState"))
+func (c_ CaptureSystemPressureState) SystemPressureState() AVCaptureSystemPressureState {
+	rv := objc.Send[AVCaptureSystemPressureState](c_.ID, objc.Sel("systemPressureState"))
 	return rv
 }
 
@@ -130,15 +130,15 @@ func (c_ CaptureSystemPressureState) SystemPressureState() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.property
-func (c_ CaptureSystemPressureState) SetSystemPressureState(value unsafe.Pointer) {
+func (c_ CaptureSystemPressureState) SetSystemPressureState(value AVCaptureSystemPressureState) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureState:"), value)
 }
 
 // A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey
-func (c_ CaptureSystemPressureState) AVCaptureSessionInterruptionSystemPressureStateKey() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
+func (c_ CaptureSystemPressureState) AVCaptureSessionInterruptionSystemPressureStateKey() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("AVCaptureSessionInterruptionSystemPressureStateKey"))
 	return rv
 }
 

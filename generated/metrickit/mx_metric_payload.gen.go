@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,8 +32,8 @@ type _MXMetricPayloadClass struct {
 // An interface definition for the [MXMetricPayload] class.
 type IMXMetricPayload interface {
 	objectivec.IObject
-	DictionaryRepresentation() unsafe.Pointer
-	JSONRepresentation() unsafe.Pointer
+	DictionaryRepresentation() foundation.Dictionary
+	JSONRepresentation() foundation.Data
 }
 
 // An object that encapsulates a daily metrics report.
@@ -83,103 +85,103 @@ func NewMXMetricPayload() MXMetricPayload {
 // Returns the results of the payload as a dictionary.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/DictionaryRepresentation-1nrgx
-func (m_ MXMetricPayload) DictionaryRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("DictionaryRepresentation"))
+func (m_ MXMetricPayload) DictionaryRepresentation() foundation.Dictionary {
+	rv := objc.Send[foundation.Dictionary](m_.ID, objc.Sel("DictionaryRepresentation"))
 	return rv
 }
 
 // Returns the contents of the payload in JSON format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/jsonRepresentation()
-func (m_ MXMetricPayload) JSONRepresentation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("JSONRepresentation"))
+func (m_ MXMetricPayload) JSONRepresentation() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("JSONRepresentation"))
 	return rv
 }
 
 // The metrics for the responsiveness of app animations for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/animationMetrics
-func (m_ MXMetricPayload) AnimationMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("animationMetrics"))
+func (m_ MXMetricPayload) AnimationMetrics() MXAnimationMetric {
+	rv := objc.Send[MXAnimationMetric](m_.ID, objc.Sel("animationMetrics"))
 	return rv
 }
 
 // The app foreground and background exit metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationExitMetrics
-func (m_ MXMetricPayload) ApplicationExitMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationExitMetrics"))
+func (m_ MXMetricPayload) ApplicationExitMetrics() MXAppExitMetric {
+	rv := objc.Send[MXAppExitMetric](m_.ID, objc.Sel("applicationExitMetrics"))
 	return rv
 }
 
 // The app launch and resume metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationLaunchMetrics
-func (m_ MXMetricPayload) ApplicationLaunchMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationLaunchMetrics"))
+func (m_ MXMetricPayload) ApplicationLaunchMetrics() MXAppLaunchMetric {
+	rv := objc.Send[MXAppLaunchMetric](m_.ID, objc.Sel("applicationLaunchMetrics"))
 	return rv
 }
 
 // The metrics indicating an app’s responsiveness to user interaction for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationResponsivenessMetrics
-func (m_ MXMetricPayload) ApplicationResponsivenessMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationResponsivenessMetrics"))
+func (m_ MXMetricPayload) ApplicationResponsivenessMetrics() MXAppResponsivenessMetric {
+	rv := objc.Send[MXAppResponsivenessMetric](m_.ID, objc.Sel("applicationResponsivenessMetrics"))
 	return rv
 }
 
 // The app foreground and background time metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/applicationTimeMetrics
-func (m_ MXMetricPayload) ApplicationTimeMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("applicationTimeMetrics"))
+func (m_ MXMetricPayload) ApplicationTimeMetrics() MXAppRunTimeMetric {
+	rv := objc.Send[MXAppRunTimeMetric](m_.ID, objc.Sel("applicationTimeMetrics"))
 	return rv
 }
 
 // The cellular condition measurements for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/cellularConditionMetrics
-func (m_ MXMetricPayload) CellularConditionMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cellularConditionMetrics"))
+func (m_ MXMetricPayload) CellularConditionMetrics() MXCellularConditionMetric {
+	rv := objc.Send[MXCellularConditionMetric](m_.ID, objc.Sel("cellularConditionMetrics"))
 	return rv
 }
 
 // The CPU metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/cpuMetrics
-func (m_ MXMetricPayload) CpuMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("cpuMetrics"))
+func (m_ MXMetricPayload) CpuMetrics() MXCPUMetric {
+	rv := objc.Send[MXCPUMetric](m_.ID, objc.Sel("cpuMetrics"))
 	return rv
 }
 
 // The storage metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/diskIOMetrics
-func (m_ MXMetricPayload) DiskIOMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("diskIOMetrics"))
+func (m_ MXMetricPayload) DiskIOMetrics() MXDiskIOMetric {
+	rv := objc.Send[MXDiskIOMetric](m_.ID, objc.Sel("diskIOMetrics"))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/diskSpaceUsageMetrics
-func (m_ MXMetricPayload) DiskSpaceUsageMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("diskSpaceUsageMetrics"))
+func (m_ MXMetricPayload) DiskSpaceUsageMetrics() MXDiskSpaceUsageMetric {
+	rv := objc.Send[MXDiskSpaceUsageMetric](m_.ID, objc.Sel("diskSpaceUsageMetrics"))
 	return rv
 }
 
 // The display metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/displayMetrics
-func (m_ MXMetricPayload) DisplayMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("displayMetrics"))
+func (m_ MXMetricPayload) DisplayMetrics() MXDisplayMetric {
+	rv := objc.Send[MXDisplayMetric](m_.ID, objc.Sel("displayMetrics"))
 	return rv
 }
 
 // The GPU metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/gpuMetrics
-func (m_ MXMetricPayload) GpuMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("gpuMetrics"))
+func (m_ MXMetricPayload) GpuMetrics() MXGPUMetric {
+	rv := objc.Send[MXGPUMetric](m_.ID, objc.Sel("gpuMetrics"))
 	return rv
 }
 
@@ -194,40 +196,40 @@ func (m_ MXMetricPayload) IncludesMultipleApplicationVersions() bool {
 // The version of the app on the device at the end of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/latestApplicationVersion
-func (m_ MXMetricPayload) LatestApplicationVersion() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("latestApplicationVersion"))
+func (m_ MXMetricPayload) LatestApplicationVersion() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("latestApplicationVersion"))
 	return rv
 }
 
 // The location-tracking activity for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/locationActivityMetrics
-func (m_ MXMetricPayload) LocationActivityMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("locationActivityMetrics"))
+func (m_ MXMetricPayload) LocationActivityMetrics() MXLocationActivityMetric {
+	rv := objc.Send[MXLocationActivityMetric](m_.ID, objc.Sel("locationActivityMetrics"))
 	return rv
 }
 
 // The memory metrics for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/memoryMetrics
-func (m_ MXMetricPayload) MemoryMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("memoryMetrics"))
+func (m_ MXMetricPayload) MemoryMetrics() MXMemoryMetric {
+	rv := objc.Send[MXMemoryMetric](m_.ID, objc.Sel("memoryMetrics"))
 	return rv
 }
 
 // A set of system-level information for the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/metaData
-func (m_ MXMetricPayload) MetaData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("metaData"))
+func (m_ MXMetricPayload) MetaData() MXMetaData {
+	rv := objc.Send[MXMetaData](m_.ID, objc.Sel("metaData"))
 	return rv
 }
 
 // The network-transfer activity for the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/networkTransferMetrics
-func (m_ MXMetricPayload) NetworkTransferMetrics() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkTransferMetrics"))
+func (m_ MXMetricPayload) NetworkTransferMetrics() MXNetworkTransferMetric {
+	rv := objc.Send[MXNetworkTransferMetric](m_.ID, objc.Sel("networkTransferMetrics"))
 	return rv
 }
 
@@ -242,16 +244,16 @@ func (m_ MXMetricPayload) SignpostMetrics() []MXSignpostMetric {
 // The starting time of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/timeStampBegin
-func (m_ MXMetricPayload) TimeStampBegin() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeStampBegin"))
+func (m_ MXMetricPayload) TimeStampBegin() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampBegin"))
 	return rv
 }
 
 // The ending time of the reporting period.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXMetricPayload/timeStampEnd
-func (m_ MXMetricPayload) TimeStampEnd() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("timeStampEnd"))
+func (m_ MXMetricPayload) TimeStampEnd() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timeStampEnd"))
 	return rv
 }
 

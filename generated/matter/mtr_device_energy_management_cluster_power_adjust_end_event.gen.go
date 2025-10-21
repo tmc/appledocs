@@ -87,7 +87,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Cause() foundation
 // SetCause sets the value of the cause property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/cause
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetCause(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCause:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) Duration() foundat
 // SetDuration sets the value of the duration property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/duration
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetDuration(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) EnergyUse() founda
 // SetEnergyUse sets the value of the energyUse property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceEnergyManagementClusterPowerAdjustEndEvent/energyUse
-func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value foundation.Number) {
+func (m_ MTRDeviceEnergyManagementClusterPowerAdjustEndEvent) SetEnergyUse(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyUse:"), value)
 }
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Number] class.
@@ -29,9 +31,9 @@ type _NumberClass struct {
 // An interface definition for the [Number] class.
 type INumber interface {
 	IValue
-	Compare(otherNumber Number) unsafe.Pointer
-	DescriptionWithLocale(locale objc.ID) string
-	IsEqualToNumber(number Number) bool
+	Compare(otherNumber INumber) ComparisonResult
+	DescriptionWithLocale(locale objectivec.IObject) String
+	IsEqualToNumber(number INumber) bool
 }
 
 // An object wrapper for primitive scalar numeric values.
@@ -110,7 +112,7 @@ func NewNumberWithChar(value unsafe.Pointer) Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
-func NewNumberWithCoder(coder unsafe.Pointer) Number {
+func NewNumberWithCoder(coder ICoder) Number {
 	instance := getNumberClass().Alloc()
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -397,23 +399,23 @@ func (nc _NumberClass) NumberWithUnsignedShort(value unsafe.Pointer) Number {
 // Returns an value that indicates whether the number object’s value is greater than, equal to, or less than a given number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/compare(_:)
-func (n_ Number) Compare(otherNumber Number) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("compare:"), otherNumber)
+func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
+	rv := objc.Send[ComparisonResult](n_.ID, objc.Sel("compare:"), otherNumber)
 	return rv
 }
 
 // Returns a string that represents the contents of the number object for a given locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/description(withLocale:)
-func (n_ Number) DescriptionWithLocale(locale objc.ID) string {
-	rv := objc.Send[string](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
+func (n_ Number) DescriptionWithLocale(locale objectivec.IObject) String {
+	rv := objc.Send[String](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
 
 // Returns a Boolean value that indicates whether the number object’s value and a given number are equal.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/isEqual(to:)
-func (n_ Number) IsEqualToNumber(number Number) bool {
+func (n_ Number) IsEqualToNumber(number INumber) bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isEqualToNumber:"), number)
 	return rv
 }
@@ -501,8 +503,8 @@ func (n_ Number) LongValue() unsafe.Pointer {
 // The number object’s value expressed as a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/stringValue
-func (n_ Number) StringValue() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("stringValue"))
+func (n_ Number) StringValue() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("stringValue"))
 	return rv
 }
 

@@ -84,7 +84,7 @@ func NewCKSyncEnginePendingZoneSave() CKSyncEnginePendingZoneSave {
 // Creates a pending zone save for the specified record zone.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneSave/initWithZone:
-func NewCKSyncEnginePendingZoneSaveWithZone(zone unsafe.Pointer) CKSyncEnginePendingZoneSave {
+func NewCKSyncEnginePendingZoneSaveWithZone(zone ICKRecordZone) CKSyncEnginePendingZoneSave {
 	instance := getCKSyncEnginePendingZoneSaveClass().Alloc()
 	rv := objc.Send[CKSyncEnginePendingZoneSave](instance.ID, objc.Sel("initWithZone:"), zone)
 	rv.Autorelease()
@@ -95,8 +95,8 @@ func NewCKSyncEnginePendingZoneSaveWithZone(zone unsafe.Pointer) CKSyncEnginePen
 // The record zone to save.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingZoneSave/zone
-func (c_ CKSyncEnginePendingZoneSave) Zone() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zone"))
+func (c_ CKSyncEnginePendingZoneSave) Zone() CKRecordZone {
+	rv := objc.Send[CKRecordZone](c_.ID, objc.Sel("zone"))
 	return rv
 }
 

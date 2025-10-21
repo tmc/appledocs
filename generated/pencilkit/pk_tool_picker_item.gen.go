@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,16 +82,16 @@ func NewToolPickerItem() ToolPickerItem {
 // A string that identifies the item in the tool picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem/identifier
-func (t_ ToolPickerItem) Identifier() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("identifier"))
+func (t_ ToolPickerItem) Identifier() appkit.string {
+	rv := objc.Send[appkit.string](t_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The this tool picker item represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem/tool-918ln
-func (t_ ToolPickerItem) Tool() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("tool"))
+func (t_ ToolPickerItem) Tool() PKTool {
+	rv := objc.Send[PKTool](t_.ID, objc.Sel("tool"))
 	return rv
 }
 

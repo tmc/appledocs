@@ -83,8 +83,8 @@ func NewNEFilterManager() NEFilterManager {
 // The domain for errors resulting from calls to the filter manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
-func (n_ NEFilterManager) NEFilterErrorDomain() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("NEFilterErrorDomain"))
+func (n_ NEFilterManager) NEFilterErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("NEFilterErrorDomain"))
 	return rv
 }
 
@@ -142,8 +142,8 @@ func (n_ NEFilterManager) SetIsEnabled(value bool) {
 // A string containing a description of the filter configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/localizeddescription
-func (n_ NEFilterManager) LocalizedDescription() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("localizedDescription"))
+func (n_ NEFilterManager) LocalizedDescription() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
@@ -153,15 +153,15 @@ func (n_ NEFilterManager) LocalizedDescription() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/localizeddescription
-func (n_ NEFilterManager) SetLocalizedDescription(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), objc.String(value))
+func (n_ NEFilterManager) SetLocalizedDescription(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizedDescription:"), value)
 }
 
 // A
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
-func (n_ NEFilterManager) ProviderConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("providerConfiguration"))
+func (n_ NEFilterManager) ProviderConfiguration() NEFilterProviderConfiguration {
+	rv := objc.Send[NEFilterProviderConfiguration](n_.ID, objc.Sel("providerConfiguration"))
 	return rv
 }
 
@@ -171,7 +171,7 @@ func (n_ NEFilterManager) ProviderConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltermanager/providerconfiguration
-func (n_ NEFilterManager) SetProviderConfiguration(value unsafe.Pointer) {
+func (n_ NEFilterManager) SetProviderConfiguration(value INEFilterProviderConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProviderConfiguration:"), value)
 }
 

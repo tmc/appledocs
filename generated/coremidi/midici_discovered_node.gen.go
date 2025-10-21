@@ -82,16 +82,16 @@ func NewMIDICIDiscoveredNode() MIDICIDiscoveredNode {
 // The node’s MIDI destination.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/destination
-func (m_ MIDICIDiscoveredNode) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("destination"))
+func (m_ MIDICIDiscoveredNode) Destination() MIDIEntityRef {
+	rv := objc.Send[MIDIEntityRef](m_.ID, objc.Sel("destination"))
 	return rv
 }
 
 // The available MIDI-CI device information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreMIDI/MIDICIDiscoveredNode/deviceInfo
-func (m_ MIDICIDiscoveredNode) DeviceInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceInfo"))
+func (m_ MIDICIDiscoveredNode) DeviceInfo() MIDICIDeviceInfo {
+	rv := objc.Send[MIDICIDeviceInfo](m_.ID, objc.Sel("deviceInfo"))
 	return rv
 }
 

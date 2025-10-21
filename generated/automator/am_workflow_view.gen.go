@@ -103,8 +103,8 @@ func (a_ AMWorkflowView) SetEditable(value bool) {
 // The view’s workflow controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
-func (a_ AMWorkflowView) WorkflowController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("workflowController"))
+func (a_ AMWorkflowView) WorkflowController() AMWorkflowController {
+	rv := objc.Send[AMWorkflowController](a_.ID, objc.Sel("workflowController"))
 	return rv
 }
 
@@ -114,15 +114,15 @@ func (a_ AMWorkflowView) WorkflowController() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkflowView/workflowController
-func (a_ AMWorkflowView) SetWorkflowController(value unsafe.Pointer) {
+func (a_ AMWorkflowView) SetWorkflowController(value IAMWorkflowController) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowController:"), value)
 }
 
 // The controller’s workflow view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
-func (a_ AMWorkflowView) WorkflowView() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("workflowView"))
+func (a_ AMWorkflowView) WorkflowView() AMWorkflowView {
+	rv := objc.Send[AMWorkflowView](a_.ID, objc.Sel("workflowView"))
 	return rv
 }
 
@@ -132,7 +132,7 @@ func (a_ AMWorkflowView) WorkflowView() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/automator/amworkflowcontroller/workflowview-swift.property
-func (a_ AMWorkflowView) SetWorkflowView(value unsafe.Pointer) {
+func (a_ AMWorkflowView) SetWorkflowView(value IAMWorkflowView) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWorkflowView:"), value)
 }
 

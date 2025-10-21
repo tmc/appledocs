@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,8 +82,8 @@ func NewAssetDownloadConfiguration() AssetDownloadConfiguration {
 // A data value that represents the asset’s artwork.
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
-func (a_ AssetDownloadConfiguration) ArtworkData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("artworkData"))
+func (a_ AssetDownloadConfiguration) ArtworkData() foundation.Data {
+	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("artworkData"))
 	return rv
 }
 
@@ -92,7 +93,7 @@ func (a_ AssetDownloadConfiguration) ArtworkData() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadconfiguration/artworkdata
-func (a_ AssetDownloadConfiguration) SetArtworkData(value unsafe.Pointer) {
+func (a_ AssetDownloadConfiguration) SetArtworkData(value foundation.IData) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setArtworkData:"), value)
 }
 

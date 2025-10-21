@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
@@ -106,7 +107,7 @@ func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentTyp
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL foundation.URL) PreviewReply {
+func NewPreviewReplyWithFileURL(fileURL foundation.IURL) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()
@@ -153,8 +154,8 @@ func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
 // Custom display title for the preview. If left as the empty string, QuickLook will use the file name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/title
-func (p_ PreviewReply) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
+func (p_ PreviewReply) Title() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -164,8 +165,8 @@ func (p_ PreviewReply) Title() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/title
-func (p_ PreviewReply) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
+func (p_ PreviewReply) SetTitle(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 

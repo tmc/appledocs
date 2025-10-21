@@ -83,8 +83,8 @@ func NewRecognizedText() RecognizedText {
 // A normalized confidence score for the text recognition result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/confidence
-func (r_ RecognizedText) Confidence() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("confidence"))
+func (r_ RecognizedText) Confidence() Confidence {
+	rv := objc.Send[Confidence](r_.ID, objc.Sel("confidence"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (r_ RecognizedText) Confidence() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/confidence
-func (r_ RecognizedText) SetConfidence(value unsafe.Pointer) {
+func (r_ RecognizedText) SetConfidence(value IConfidence) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setConfidence:"), value)
 }
 
 // The top candidate for recognized text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
-func (r_ RecognizedText) String() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("string"))
+func (r_ RecognizedText) String() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -112,8 +112,8 @@ func (r_ RecognizedText) String() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/vision/vnrecognizedtext/string
-func (r_ RecognizedText) SetString(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setString:"), objc.String(value))
+func (r_ RecognizedText) SetString(value appkit.string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setString:"), value)
 }
 
 

@@ -81,16 +81,16 @@ func NewComputePassDescriptor() ComputePassDescriptor {
 // Creates a default compute pass descriptor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLComputePassDescriptor/computePassDescriptor
-func (cc _ComputePassDescriptorClass) ComputePassDescriptor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("computePassDescriptor"))
+func (cc _ComputePassDescriptorClass) ComputePassDescriptor() ComputePassDescriptor {
+	rv := objc.Send[ComputePassDescriptor](objc.ID(cc.class), objc.Sel("computePassDescriptor"))
 	return rv
 }
 
 // The strategy for dispatching any compute commands encoded in the compute pass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/dispatchtype
-func (c_ ComputePassDescriptor) DispatchType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("dispatchType"))
+func (c_ ComputePassDescriptor) DispatchType() DispatchType {
+	rv := objc.Send[DispatchType](c_.ID, objc.Sel("dispatchType"))
 	return rv
 }
 
@@ -100,15 +100,15 @@ func (c_ ComputePassDescriptor) DispatchType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/dispatchtype
-func (c_ ComputePassDescriptor) SetDispatchType(value unsafe.Pointer) {
+func (c_ ComputePassDescriptor) SetDispatchType(value DispatchType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDispatchType:"), value)
 }
 
 // The sample buffers that the compute pass can access.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/samplebufferattachments
-func (c_ ComputePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sampleBufferAttachments"))
+func (c_ ComputePassDescriptor) SampleBufferAttachments() MTLComputePassSampleBufferAttachmentDescriptorArray {
+	rv := objc.Send[MTLComputePassSampleBufferAttachmentDescriptorArray](c_.ID, objc.Sel("sampleBufferAttachments"))
 	return rv
 }
 
@@ -118,7 +118,7 @@ func (c_ ComputePassDescriptor) SampleBufferAttachments() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlcomputepassdescriptor/samplebufferattachments
-func (c_ ComputePassDescriptor) SetSampleBufferAttachments(value unsafe.Pointer) {
+func (c_ ComputePassDescriptor) SetSampleBufferAttachments(value IMTLComputePassSampleBufferAttachmentDescriptorArray) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferAttachments:"), value)
 }
 

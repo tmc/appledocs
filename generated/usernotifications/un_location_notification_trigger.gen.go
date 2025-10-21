@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [UNLocationNotificationTrigger] class.
@@ -86,7 +87,7 @@ func NewUNLocationNotificationTrigger() UNLocationNotificationTrigger {
 // Creates a location trigger using the region parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/init(region:repeats:)
-func NewUNLocationNotificationTriggerWithRegionRepeats(region unsafe.Pointer, repeats bool) UNLocationNotificationTrigger {
+func NewUNLocationNotificationTriggerWithRegionRepeats(region corelocation.IRegion, repeats bool) UNLocationNotificationTrigger {
 	rv := objc.Send[UNLocationNotificationTrigger](objc.ID(getUNLocationNotificationTriggerClass().class), objc.Sel("triggerWithRegion:repeats:"), region, repeats)
 	return rv
 }
@@ -95,7 +96,7 @@ func NewUNLocationNotificationTriggerWithRegionRepeats(region unsafe.Pointer, re
 // Creates a location trigger using the region parameter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/init(region:repeats:)
-func (uc _UNLocationNotificationTriggerClass) TriggerWithRegionRepeats(region unsafe.Pointer, repeats bool) unsafe.Pointer {
+func (uc _UNLocationNotificationTriggerClass) TriggerWithRegionRepeats(region corelocation.IRegion, repeats bool) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("triggerWithRegion:repeats:"), region, repeats)
 	return rv
 }
@@ -103,8 +104,8 @@ func (uc _UNLocationNotificationTriggerClass) TriggerWithRegionRepeats(region un
 // The region used to determine when the system sends the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/region
-func (u_ UNLocationNotificationTrigger) Region() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("region"))
+func (u_ UNLocationNotificationTrigger) Region() corelocation.Region {
+	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("region"))
 	return rv
 }
 

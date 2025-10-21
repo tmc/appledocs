@@ -89,8 +89,8 @@ func (a_ AudioBuffer) AudioBufferList() unsafe.Pointer {
 // The format of the audio in the buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioBuffer/format
-func (a_ AudioBuffer) Format() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("format"))
+func (a_ AudioBuffer) Format() AVAudioFormat {
+	rv := objc.Send[AVAudioFormat](a_.ID, objc.Sel("format"))
 	return rv
 }
 

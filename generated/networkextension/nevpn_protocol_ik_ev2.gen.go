@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [NEVPNProtocolIKEv2] class.
@@ -102,8 +103,8 @@ func (n_ NEVPNProtocolIKEv2) SetAllowPostQuantumKeyExchangeFallback(value bool) 
 // The type of the certificate in the identity configured in or .
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/certificateType
-func (n_ NEVPNProtocolIKEv2) CertificateType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("certificateType"))
+func (n_ NEVPNProtocolIKEv2) CertificateType() NEVPNIKEv2CertificateType {
+	rv := objc.Send[NEVPNIKEv2CertificateType](n_.ID, objc.Sel("certificateType"))
 	return rv
 }
 
@@ -113,23 +114,23 @@ func (n_ NEVPNProtocolIKEv2) CertificateType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/certificateType
-func (n_ NEVPNProtocolIKEv2) SetCertificateType(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIKEv2) SetCertificateType(value NEVPNIKEv2CertificateType) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCertificateType:"), value)
 }
 
 // An object containing the parameters for the child IPSec security associations to be negotiated for each IKEv2 policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/childSecurityAssociationParameters
-func (n_ NEVPNProtocolIKEv2) ChildSecurityAssociationParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("childSecurityAssociationParameters"))
+func (n_ NEVPNProtocolIKEv2) ChildSecurityAssociationParameters() NEVPNIKEv2SecurityAssociationParameters {
+	rv := objc.Send[NEVPNIKEv2SecurityAssociationParameters](n_.ID, objc.Sel("childSecurityAssociationParameters"))
 	return rv
 }
 
 // The frequency at which the IKEv2 client will run the dead peer detection algorithm.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/deadPeerDetectionRate
-func (n_ NEVPNProtocolIKEv2) DeadPeerDetectionRate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("deadPeerDetectionRate"))
+func (n_ NEVPNProtocolIKEv2) DeadPeerDetectionRate() NEVPNIKEv2DeadPeerDetectionRate {
+	rv := objc.Send[NEVPNIKEv2DeadPeerDetectionRate](n_.ID, objc.Sel("deadPeerDetectionRate"))
 	return rv
 }
 
@@ -139,7 +140,7 @@ func (n_ NEVPNProtocolIKEv2) DeadPeerDetectionRate() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/deadPeerDetectionRate
-func (n_ NEVPNProtocolIKEv2) SetDeadPeerDetectionRate(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIKEv2) SetDeadPeerDetectionRate(value INEVPNIKEv2DeadPeerDetectionRate) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDeadPeerDetectionRate:"), value)
 }
 
@@ -236,16 +237,16 @@ func (n_ NEVPNProtocolIKEv2) SetEnableRevocationCheck(value bool) {
 // An object containing the parameters for the initial IKE security association to be negotiated with the IKEv2 server.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/ikeSecurityAssociationParameters
-func (n_ NEVPNProtocolIKEv2) IKESecurityAssociationParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("IKESecurityAssociationParameters"))
+func (n_ NEVPNProtocolIKEv2) IKESecurityAssociationParameters() NEVPNIKEv2SecurityAssociationParameters {
+	rv := objc.Send[NEVPNIKEv2SecurityAssociationParameters](n_.ID, objc.Sel("IKESecurityAssociationParameters"))
 	return rv
 }
 
 // The minimum TLS version to allow for EAP-TLS authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/maximumTLSVersion
-func (n_ NEVPNProtocolIKEv2) MaximumTLSVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("maximumTLSVersion"))
+func (n_ NEVPNProtocolIKEv2) MaximumTLSVersion() NEVPNIKEv2TLSVersion {
+	rv := objc.Send[NEVPNIKEv2TLSVersion](n_.ID, objc.Sel("maximumTLSVersion"))
 	return rv
 }
 
@@ -255,15 +256,15 @@ func (n_ NEVPNProtocolIKEv2) MaximumTLSVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/maximumTLSVersion
-func (n_ NEVPNProtocolIKEv2) SetMaximumTLSVersion(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIKEv2) SetMaximumTLSVersion(value INEVPNIKEv2TLSVersion) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumTLSVersion:"), value)
 }
 
 // The minimum TLS version to allow for EAP-TLS authentication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/minimumTLSVersion
-func (n_ NEVPNProtocolIKEv2) MinimumTLSVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("minimumTLSVersion"))
+func (n_ NEVPNProtocolIKEv2) MinimumTLSVersion() NEVPNIKEv2TLSVersion {
+	rv := objc.Send[NEVPNIKEv2TLSVersion](n_.ID, objc.Sel("minimumTLSVersion"))
 	return rv
 }
 
@@ -273,7 +274,7 @@ func (n_ NEVPNProtocolIKEv2) MinimumTLSVersion() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/minimumTLSVersion
-func (n_ NEVPNProtocolIKEv2) SetMinimumTLSVersion(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIKEv2) SetMinimumTLSVersion(value INEVPNIKEv2TLSVersion) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumTLSVersion:"), value)
 }
 
@@ -298,8 +299,8 @@ func (n_ NEVPNProtocolIKEv2) SetMtu(value uint) {
 // The configuration for a post-quantum pre-shared key (PPK).
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/ppkConfiguration
-func (n_ NEVPNProtocolIKEv2) PpkConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ppkConfiguration"))
+func (n_ NEVPNProtocolIKEv2) PpkConfiguration() NEVPNIKEv2PPKConfiguration {
+	rv := objc.Send[NEVPNIKEv2PPKConfiguration](n_.ID, objc.Sel("ppkConfiguration"))
 	return rv
 }
 
@@ -309,15 +310,15 @@ func (n_ NEVPNProtocolIKEv2) PpkConfiguration() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/ppkConfiguration
-func (n_ NEVPNProtocolIKEv2) SetPpkConfiguration(value unsafe.Pointer) {
+func (n_ NEVPNProtocolIKEv2) SetPpkConfiguration(value INEVPNIKEv2PPKConfiguration) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPpkConfiguration:"), value)
 }
 
 // A string containing the value of the Subject Common Name field of the IKEv2 server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateCommonName
-func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("serverCertificateCommonName"))
+func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("serverCertificateCommonName"))
 	return rv
 }
 
@@ -327,15 +328,15 @@ func (n_ NEVPNProtocolIKEv2) ServerCertificateCommonName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateCommonName
-func (n_ NEVPNProtocolIKEv2) SetServerCertificateCommonName(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateCommonName:"), objc.String(value))
+func (n_ NEVPNProtocolIKEv2) SetServerCertificateCommonName(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateCommonName:"), value)
 }
 
 // A string containing the value of the Subject Common Name field of the Certificate Authority certificate that issued the IKEv2 server’s certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateIssuerCommonName
-func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("serverCertificateIssuerCommonName"))
+func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() appkit.string {
+	rv := objc.Send[appkit.string](n_.ID, objc.Sel("serverCertificateIssuerCommonName"))
 	return rv
 }
 
@@ -345,8 +346,8 @@ func (n_ NEVPNProtocolIKEv2) ServerCertificateIssuerCommonName() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEVPNProtocolIKEv2/serverCertificateIssuerCommonName
-func (n_ NEVPNProtocolIKEv2) SetServerCertificateIssuerCommonName(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateIssuerCommonName:"), objc.String(value))
+func (n_ NEVPNProtocolIKEv2) SetServerCertificateIssuerCommonName(value appkit.string) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setServerCertificateIssuerCommonName:"), value)
 }
 
 // Require a “not revoked” result when checking if the certificate identifying the server is revoked.

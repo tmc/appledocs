@@ -93,8 +93,8 @@ func (m_ MTRDevice) SetDeviceCachePrimed(value bool) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/devicecontroller
-func (m_ MTRDevice) DeviceController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceController"))
+func (m_ MTRDevice) DeviceController() MTRDeviceController {
+	rv := objc.Send[MTRDeviceController](m_.ID, objc.Sel("deviceController"))
 	return rv
 }
 
@@ -102,14 +102,14 @@ func (m_ MTRDevice) DeviceController() unsafe.Pointer {
 // SetDeviceController sets the value of the deviceController property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/devicecontroller
-func (m_ MTRDevice) SetDeviceController(value unsafe.Pointer) {
+func (m_ MTRDevice) SetDeviceController(value IMTRDeviceController) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceController:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedstarttime
-func (m_ MTRDevice) EstimatedStartTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("estimatedStartTime"))
+func (m_ MTRDevice) EstimatedStartTime() foundation.Date {
+	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("estimatedStartTime"))
 	return rv
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRDevice) EstimatedStartTime() unsafe.Pointer {
 // SetEstimatedStartTime sets the value of the estimatedStartTime property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedstarttime
-func (m_ MTRDevice) SetEstimatedStartTime(value unsafe.Pointer) {
+func (m_ MTRDevice) SetEstimatedStartTime(value foundation.IDate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEstimatedStartTime:"), value)
 }
 
@@ -132,15 +132,15 @@ func (m_ MTRDevice) EstimatedSubscriptionLatency() foundation.Number {
 // SetEstimatedSubscriptionLatency sets the value of the estimatedSubscriptionLatency property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/estimatedsubscriptionlatency
-func (m_ MTRDevice) SetEstimatedSubscriptionLatency(value foundation.Number) {
+func (m_ MTRDevice) SetEstimatedSubscriptionLatency(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEstimatedSubscriptionLatency:"), value)
 }
 
 // Network commissioning features supported by the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/networkcommissioningfeatures
-func (m_ MTRDevice) NetworkCommissioningFeatures() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("networkCommissioningFeatures"))
+func (m_ MTRDevice) NetworkCommissioningFeatures() MTRNetworkCommissioningFeature {
+	rv := objc.Send[MTRNetworkCommissioningFeature](m_.ID, objc.Sel("networkCommissioningFeatures"))
 	return rv
 }
 
@@ -150,7 +150,7 @@ func (m_ MTRDevice) NetworkCommissioningFeatures() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/networkcommissioningfeatures
-func (m_ MTRDevice) SetNetworkCommissioningFeatures(value unsafe.Pointer) {
+func (m_ MTRDevice) SetNetworkCommissioningFeatures(value IMTRNetworkCommissioningFeature) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkCommissioningFeatures:"), value)
 }
 
@@ -168,14 +168,14 @@ func (m_ MTRDevice) ProductID() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/productid
-func (m_ MTRDevice) SetProductID(value foundation.Number) {
+func (m_ MTRDevice) SetProductID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/state
-func (m_ MTRDevice) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+func (m_ MTRDevice) State() MTRDeviceState {
+	rv := objc.Send[MTRDeviceState](m_.ID, objc.Sel("state"))
 	return rv
 }
 
@@ -183,7 +183,7 @@ func (m_ MTRDevice) State() unsafe.Pointer {
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/state
-func (m_ MTRDevice) SetState(value unsafe.Pointer) {
+func (m_ MTRDevice) SetState(value MTRDeviceState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 
@@ -201,7 +201,7 @@ func (m_ MTRDevice) VendorID() foundation.Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevice/vendorid
-func (m_ MTRDevice) SetVendorID(value foundation.Number) {
+func (m_ MTRDevice) SetVendorID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
 

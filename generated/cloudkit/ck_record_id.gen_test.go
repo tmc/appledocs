@@ -17,3 +17,12 @@ func ExampleNewCKRecordIDWithRecordName() {
 	)
 	// Output:
 }
+// ExampleNewCKRecordIDWithRecordNameZoneID demonstrates how to create a CKRecordID instance using NewCKRecordIDWithRecordNameZoneID.
+// Creates a new record ID with the specified name and zone information.
+func ExampleNewCKRecordIDWithRecordNameZoneID() {
+	_ = cloudkit.NewCKRecordIDWithRecordNameZoneID(
+		"recordName", // recordName string
+		cloudkit.CKRecordZoneID{}, // zoneID CKRecordZoneID
+	)
+	// Output:
+}

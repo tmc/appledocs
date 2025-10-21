@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -85,48 +86,48 @@ func NewMediaItem() MediaItem {
 // Obtains the persistent identifier key for a specified grouping type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/persistentIDProperty(forGroupingType:)
-func (mc _MediaItemClass) PersistentIDPropertyForGroupingType(groupingType unsafe.Pointer) string {
-	rv := objc.Send[string](objc.ID(mc.class), objc.Sel("persistentIDPropertyForGroupingType:"), groupingType)
+func (mc _MediaItemClass) PersistentIDPropertyForGroupingType(groupingType IMediaGrouping) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(mc.class), objc.Sel("persistentIDPropertyForGroupingType:"), groupingType)
 	return rv
 }
 
 // Obtains the title key for a specified grouping type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/titleProperty(forGroupingType:)
-func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType unsafe.Pointer) string {
-	rv := objc.Send[string](objc.ID(mc.class), objc.Sel("titlePropertyForGroupingType:"), groupingType)
+func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType IMediaGrouping) foundation.String {
+	rv := objc.Send[foundation.String](objc.ID(mc.class), objc.Sel("titlePropertyForGroupingType:"), groupingType)
 	return rv
 }
 
 // The primary performing artist for an album.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumArtist
-func (m_ MediaItem) AlbumArtist() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("albumArtist"))
+func (m_ MediaItem) AlbumArtist() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("albumArtist"))
 	return rv
 }
 
 // The persistent identifier for the primary performing artist for an album.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumArtistPersistentID
-func (m_ MediaItem) AlbumArtistPersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("albumArtistPersistentID"))
+func (m_ MediaItem) AlbumArtistPersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("albumArtistPersistentID"))
 	return rv
 }
 
 // The persistent identifier for an album.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumPersistentID
-func (m_ MediaItem) AlbumPersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("albumPersistentID"))
+func (m_ MediaItem) AlbumPersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("albumPersistentID"))
 	return rv
 }
 
 // The title of an album, such as , rather than the title of an individual song on the album, such as “Crater Dance.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumTitle
-func (m_ MediaItem) AlbumTitle() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("albumTitle"))
+func (m_ MediaItem) AlbumTitle() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("albumTitle"))
 	return rv
 }
 
@@ -149,24 +150,24 @@ func (m_ MediaItem) AlbumTrackNumber() uint {
 // The performing artists for a media item, which may vary from the primary artist for the album that a media item belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/artist
-func (m_ MediaItem) Artist() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("artist"))
+func (m_ MediaItem) Artist() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("artist"))
 	return rv
 }
 
 // The persistent identifier for an artist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/artistPersistentID
-func (m_ MediaItem) ArtistPersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("artistPersistentID"))
+func (m_ MediaItem) ArtistPersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("artistPersistentID"))
 	return rv
 }
 
 // The artwork image for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/artwork
-func (m_ MediaItem) Artwork() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("artwork"))
+func (m_ MediaItem) Artwork() MPMediaItemArtwork {
+	rv := objc.Send[MPMediaItemArtwork](m_.ID, objc.Sel("artwork"))
 	return rv
 }
 
@@ -197,24 +198,24 @@ func (m_ MediaItem) BookmarkTime() foundation.TimeInterval {
 // Textual information about the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/comments
-func (m_ MediaItem) Comments() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("comments"))
+func (m_ MediaItem) Comments() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("comments"))
 	return rv
 }
 
 // The persistent identifier for a composer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/composerPersistentID
-func (m_ MediaItem) ComposerPersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("composerPersistentID"))
+func (m_ MediaItem) ComposerPersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("composerPersistentID"))
 	return rv
 }
 
 // The date the user adds the media item to the library.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/dateAdded
-func (m_ MediaItem) DateAdded() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("dateAdded"))
+func (m_ MediaItem) DateAdded() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("dateAdded"))
 	return rv
 }
 
@@ -237,16 +238,16 @@ func (m_ MediaItem) DiscNumber() uint {
 // The music or film genre of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/genre
-func (m_ MediaItem) Genre() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("genre"))
+func (m_ MediaItem) Genre() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("genre"))
 	return rv
 }
 
 // The persistent identifier for a genre.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/genrePersistentID
-func (m_ MediaItem) GenrePersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("genrePersistentID"))
+func (m_ MediaItem) GenrePersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("genrePersistentID"))
 	return rv
 }
 
@@ -293,32 +294,32 @@ func (m_ MediaItem) Preorder() bool {
 // The most recent play date of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/lastPlayedDate
-func (m_ MediaItem) LastPlayedDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("lastPlayedDate"))
+func (m_ MediaItem) LastPlayedDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("lastPlayedDate"))
 	return rv
 }
 
 // The lyrics for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/lyrics
-func (m_ MediaItem) Lyrics() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("lyrics"))
+func (m_ MediaItem) Lyrics() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("lyrics"))
 	return rv
 }
 
 // The media type of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/mediaType
-func (m_ MediaItem) MediaType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaType"))
+func (m_ MediaItem) MediaType() MediaType {
+	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaType"))
 	return rv
 }
 
 // The persistent identifier for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/persistentID
-func (m_ MediaItem) PersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("persistentID"))
+func (m_ MediaItem) PersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("persistentID"))
 	return rv
 }
 
@@ -341,24 +342,24 @@ func (m_ MediaItem) PlaybackDuration() foundation.TimeInterval {
 // The ID of a media item from the Apple Music catalog.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/playbackStoreID
-func (m_ MediaItem) PlaybackStoreID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("playbackStoreID"))
+func (m_ MediaItem) PlaybackStoreID() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("playbackStoreID"))
 	return rv
 }
 
 // The persistent identifier for an audio podcast.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/podcastPersistentID
-func (m_ MediaItem) PodcastPersistentID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("podcastPersistentID"))
+func (m_ MediaItem) PodcastPersistentID() MediaEntityPersistentID {
+	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("podcastPersistentID"))
 	return rv
 }
 
 // The title of a podcast, such as , rather than the title of an individual episode of a podcast, such as “Episode 12: Another Cold Day at the Pole.”
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/podcastTitle
-func (m_ MediaItem) PodcastTitle() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("podcastTitle"))
+func (m_ MediaItem) PodcastTitle() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("podcastTitle"))
 	return rv
 }
 
@@ -373,8 +374,8 @@ func (m_ MediaItem) Rating() uint {
 // The date of the media item’s first public release.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/releaseDate
-func (m_ MediaItem) ReleaseDate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("releaseDate"))
+func (m_ MediaItem) ReleaseDate() foundation.NSDate {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("releaseDate"))
 	return rv
 }
 
@@ -389,32 +390,32 @@ func (m_ MediaItem) SkipCount() uint {
 // The title or name of the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/title
-func (m_ MediaItem) Title() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
+func (m_ MediaItem) Title() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("title"))
 	return rv
 }
 
 // Grouping information for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/userGrouping
-func (m_ MediaItem) UserGrouping() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("userGrouping"))
+func (m_ MediaItem) UserGrouping() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("userGrouping"))
 	return rv
 }
 
 // The persistent identifier for a media entity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaentitypropertypersistentid
-func (m_ MediaItem) MPMediaEntityPropertyPersistentID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaEntityPropertyPersistentID"))
+func (m_ MediaItem) MPMediaEntityPropertyPersistentID() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MPMediaEntityPropertyPersistentID"))
 	return rv
 }
 
 // The musical composer for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
-func (m_ MediaItem) Composer() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("composer"))
+func (m_ MediaItem) Composer() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("composer"))
 	return rv
 }
 
@@ -424,8 +425,8 @@ func (m_ MediaItem) Composer() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
-func (m_ MediaItem) SetComposer(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setComposer:"), objc.String(value))
+func (m_ MediaItem) SetComposer(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setComposer:"), value)
 }
 
 // A Boolean value that indicates whether the media item has a protected asset.
@@ -521,8 +522,8 @@ func (m_ MediaItem) SetIsPreorder(value bool) {
 // The key for the persistent identifier for the media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid
-func (m_ MediaItem) MPMediaItemPropertyPersistentID() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
+func (m_ MediaItem) MPMediaItemPropertyPersistentID() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
 	return rv
 }
 

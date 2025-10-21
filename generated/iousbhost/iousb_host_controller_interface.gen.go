@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,7 +31,7 @@ type _USBHostControllerInterfaceClass struct {
 // An interface definition for the [USBHostControllerInterface] class.
 type IUSBHostControllerInterface interface {
 	objectivec.IObject
-	DescriptionForMessage(message unsafe.Pointer) string
+	DescriptionForMessage(message unsafe.Pointer) foundation.String
 	Destroy()
 	EnqueueInterruptsCountExpediteError(interrupts unsafe.Pointer, count uint, expedite bool, error_ unsafe.Pointer) bool
 }
@@ -80,8 +81,8 @@ func NewUSBHostControllerInterface() USBHostControllerInterface {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostControllerInterface/description(for:)
-func (u_ USBHostControllerInterface) DescriptionForMessage(message unsafe.Pointer) string {
-	rv := objc.Send[string](u_.ID, objc.Sel("descriptionForMessage:"), message)
+func (u_ USBHostControllerInterface) DescriptionForMessage(message unsafe.Pointer) foundation.String {
+	rv := objc.Send[foundation.String](u_.ID, objc.Sel("descriptionForMessage:"), message)
 	return rv
 }
 
@@ -115,8 +116,8 @@ func (u_ USBHostControllerInterface) SetCapabilities(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
-func (u_ USBHostControllerInterface) ControllerStateMachine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("controllerStateMachine"))
+func (u_ USBHostControllerInterface) ControllerStateMachine() IOUSBHostCIControllerStateMachine {
+	rv := objc.Send[IOUSBHostCIControllerStateMachine](u_.ID, objc.Sel("controllerStateMachine"))
 	return rv
 }
 
@@ -124,7 +125,7 @@ func (u_ USBHostControllerInterface) ControllerStateMachine() unsafe.Pointer {
 // SetControllerStateMachine sets the value of the controllerStateMachine property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/controllerstatemachine
-func (u_ USBHostControllerInterface) SetControllerStateMachine(value unsafe.Pointer) {
+func (u_ USBHostControllerInterface) SetControllerStateMachine(value IOUSBHostCIControllerStateMachine) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerStateMachine:"), value)
 }
 
@@ -160,8 +161,8 @@ func (u_ USBHostControllerInterface) SetQueue(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
-func (u_ USBHostControllerInterface) Uuid() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("uuid"))
+func (u_ USBHostControllerInterface) Uuid() foundation.UUID {
+	rv := objc.Send[foundation.UUID](u_.ID, objc.Sel("uuid"))
 	return rv
 }
 
@@ -169,7 +170,7 @@ func (u_ USBHostControllerInterface) Uuid() unsafe.Pointer {
 // SetUuid sets the value of the uuid property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface/uuid
-func (u_ USBHostControllerInterface) SetUuid(value unsafe.Pointer) {
+func (u_ USBHostControllerInterface) SetUuid(value foundation.IUUID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUuid:"), value)
 }
 

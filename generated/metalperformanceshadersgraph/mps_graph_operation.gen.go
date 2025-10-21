@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [GraphOperation] class.
@@ -84,24 +85,24 @@ func NewGraphOperation() GraphOperation {
 // The graph on which the operation is defined.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/graph
-func (g_ GraphOperation) Graph() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("graph"))
+func (g_ GraphOperation) Graph() MPSGraph {
+	rv := objc.Send[MPSGraph](g_.ID, objc.Sel("graph"))
 	return rv
 }
 
 // Name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphOperation/name
-func (g_ GraphOperation) Name() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("name"))
+func (g_ GraphOperation) Name() appkit.string {
+	rv := objc.Send[appkit.string](g_.ID, objc.Sel("name"))
 	return rv
 }
 
 // The set of operations guaranteed to execute before this operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
-func (g_ GraphOperation) ControlDependencies() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("controlDependencies"))
+func (g_ GraphOperation) ControlDependencies() MPSGraphOperation {
+	rv := objc.Send[MPSGraphOperation](g_.ID, objc.Sel("controlDependencies"))
 	return rv
 }
 
@@ -111,15 +112,15 @@ func (g_ GraphOperation) ControlDependencies() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/controldependencies
-func (g_ GraphOperation) SetControlDependencies(value unsafe.Pointer) {
+func (g_ GraphOperation) SetControlDependencies(value IMPSGraphOperation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setControlDependencies:"), value)
 }
 
 // The input tensors of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
-func (g_ GraphOperation) InputTensors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("inputTensors"))
+func (g_ GraphOperation) InputTensors() MPSGraphTensor {
+	rv := objc.Send[MPSGraphTensor](g_.ID, objc.Sel("inputTensors"))
 	return rv
 }
 
@@ -129,15 +130,15 @@ func (g_ GraphOperation) InputTensors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/inputtensors
-func (g_ GraphOperation) SetInputTensors(value unsafe.Pointer) {
+func (g_ GraphOperation) SetInputTensors(value IMPSGraphTensor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setInputTensors:"), value)
 }
 
 // The output tensors of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
-func (g_ GraphOperation) OutputTensors() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("outputTensors"))
+func (g_ GraphOperation) OutputTensors() MPSGraphTensor {
+	rv := objc.Send[MPSGraphTensor](g_.ID, objc.Sel("outputTensors"))
 	return rv
 }
 
@@ -147,7 +148,7 @@ func (g_ GraphOperation) OutputTensors() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoperation/outputtensors
-func (g_ GraphOperation) SetOutputTensors(value unsafe.Pointer) {
+func (g_ GraphOperation) SetOutputTensors(value IMPSGraphTensor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setOutputTensors:"), value)
 }
 

@@ -83,8 +83,8 @@ func NewDecimalNumberHandler() DecimalNumberHandler {
 // The rounding behavior used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
-func (d_ DecimalNumberHandler) RoundingBehavior() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("roundingBehavior"))
+func (d_ DecimalNumberHandler) RoundingBehavior() NSDecimalNumberHandler {
+	rv := objc.Send[NSDecimalNumberHandler](d_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
 
@@ -94,7 +94,7 @@ func (d_ DecimalNumberHandler) RoundingBehavior() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingbehavior
-func (d_ DecimalNumberHandler) SetRoundingBehavior(value unsafe.Pointer) {
+func (d_ DecimalNumberHandler) SetRoundingBehavior(value IDecimalNumberHandler) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingBehavior:"), value)
 }
 
@@ -112,7 +112,7 @@ func (d_ DecimalNumberHandler) RoundingIncrement() Number {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/numberformatter/roundingincrement
-func (d_ DecimalNumberHandler) SetRoundingIncrement(value Number) {
+func (d_ DecimalNumberHandler) SetRoundingIncrement(value INumber) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
 

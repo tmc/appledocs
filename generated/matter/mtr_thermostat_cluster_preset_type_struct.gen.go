@@ -87,7 +87,7 @@ func (m_ MTRThermostatClusterPresetTypeStruct) NumberOfPresets() foundation.Numb
 // SetNumberOfPresets sets the value of the numberOfPresets property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/numberOfPresets
-func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetNumberOfPresets(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfPresets:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRThermostatClusterPresetTypeStruct) PresetScenario() foundation.Numbe
 // SetPresetScenario sets the value of the presetScenario property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetScenario
-func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetScenario(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetScenario:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRThermostatClusterPresetTypeStruct) PresetTypeFeatures() foundation.N
 // SetPresetTypeFeatures sets the value of the presetTypeFeatures property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterPresetTypeStruct/presetTypeFeatures
-func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value foundation.Number) {
+func (m_ MTRThermostatClusterPresetTypeStruct) SetPresetTypeFeatures(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPresetTypeFeatures:"), value)
 }
 

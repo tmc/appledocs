@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [CredentialProviderViewController] class.
@@ -31,10 +32,10 @@ type _CredentialProviderViewControllerClass struct {
 type ICredentialProviderViewController interface {
 	appkit.IViewController
 	PerformPasskeyRegistrationWithoutUserInteractionIfPossible(registrationRequest unsafe.Pointer)
-	PrepareCredentialListForServiceIdentifiers(serviceIdentifiers unsafe.Pointer)
+	PrepareCredentialListForServiceIdentifiers(serviceIdentifiers []unsafe.IPointer)
 	PrepareInterfaceForUserChoosingTextToInsert()
-	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objc.ID)
-	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objc.ID)
+	PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject)
+	ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject)
 }
 
 // A view controller that a credential manager app uses to extend AutoFill.
@@ -97,7 +98,7 @@ func (c_ CredentialProviderViewController) PerformPasskeyRegistrationWithoutUser
 // Prepares the interface to display a list of credentials from which the user can select.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareCredentialList(for:)
-func (c_ CredentialProviderViewController) PrepareCredentialListForServiceIdentifiers(serviceIdentifiers unsafe.Pointer) {
+func (c_ CredentialProviderViewController) PrepareCredentialListForServiceIdentifiers(serviceIdentifiers []unsafe.IPointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareCredentialListForServiceIdentifiers:"), serviceIdentifiers)
 }
 
@@ -111,14 +112,14 @@ func (c_ CredentialProviderViewController) PrepareInterfaceForUserChoosingTextTo
 // Prepare the view controller to show user interface for providing the requested credential.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/prepareInterfaceToProvideCredential(for:)-68qpo
-func (c_ CredentialProviderViewController) PrepareInterfaceToProvideCredentialForRequest(credentialRequest objc.ID) {
+func (c_ CredentialProviderViewController) PrepareInterfaceToProvideCredentialForRequest(credentialRequest objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("prepareInterfaceToProvideCredentialForRequest:"), credentialRequest)
 }
 
 // Attempts to provide the user-requested credential with no further user interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASCredentialProviderViewController/provideCredentialWithoutUserInteraction(for:)-3mo23
-func (c_ CredentialProviderViewController) ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objc.ID) {
+func (c_ CredentialProviderViewController) ProvideCredentialWithoutUserInteractionForRequest(credentialRequest objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("provideCredentialWithoutUserInteractionForRequest:"), credentialRequest)
 }
 
@@ -143,8 +144,8 @@ func (c_ CredentialProviderViewController) SetExtensionContext(value unsafe.Poin
 // The domain for a credential provider extension error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain
-func (c_ CredentialProviderViewController) ASExtensionErrorDomain() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
+func (c_ CredentialProviderViewController) ASExtensionErrorDomain() appkit.string {
+	rv := objc.Send[appkit.string](c_.ID, objc.Sel("ASExtensionErrorDomain"))
 	return rv
 }
 

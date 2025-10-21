@@ -87,7 +87,7 @@ func NewMatchmakerViewController() MatchmakerViewController {
 // Creates a matchmaker view controller for the local player to start inviting other players.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/init(matchRequest:)
-func NewMatchmakerViewControllerWithMatchRequest(request unsafe.Pointer) MatchmakerViewController {
+func NewMatchmakerViewControllerWithMatchRequest(request IGKMatchRequest) MatchmakerViewController {
 	instance := getMatchmakerViewControllerClass().Alloc()
 	rv := objc.Send[MatchmakerViewController](instance.ID, objc.Sel("initWithMatchRequest:"), request)
 	rv.Autorelease()
@@ -98,8 +98,8 @@ func NewMatchmakerViewControllerWithMatchRequest(request unsafe.Pointer) Matchma
 // The default invitation message sent to a player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("defaultInvitationMessage"))
+func (m_ MatchmakerViewController) DefaultInvitationMessage() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("defaultInvitationMessage"))
 	return rv
 }
 
@@ -109,8 +109,8 @@ func (m_ MatchmakerViewController) DefaultInvitationMessage() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameKit/GKMatchmakerViewController/defaultInvitationMessage
-func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), objc.String(value))
+func (m_ MatchmakerViewController) SetDefaultInvitationMessage(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setDefaultInvitationMessage:"), value)
 }
 
 // A Boolean value that indicates whether the match is hosted or peer-to-peer.
@@ -188,8 +188,8 @@ func (m_ MatchmakerViewController) SetIsHosted(value bool) {
 // The configuration for the desired match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
-func (m_ MatchmakerViewController) MatchRequest() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("matchRequest"))
+func (m_ MatchmakerViewController) MatchRequest() GKMatchRequest {
+	rv := objc.Send[GKMatchRequest](m_.ID, objc.Sel("matchRequest"))
 	return rv
 }
 
@@ -199,7 +199,7 @@ func (m_ MatchmakerViewController) MatchRequest() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/matchrequest
-func (m_ MatchmakerViewController) SetMatchRequest(value unsafe.Pointer) {
+func (m_ MatchmakerViewController) SetMatchRequest(value IGKMatchRequest) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMatchRequest:"), value)
 }
 

@@ -87,7 +87,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg1() foundation.
 // SetArg1 sets the value of the arg1 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg1
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg1(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg1(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg2() foundation.
 // SetArg2 sets the value of the arg2 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg2
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg2(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg2(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) Arg3() foundation.
 // SetArg3 sets the value of the arg3 property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/arg3
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg3(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetArg3(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
 
@@ -132,7 +132,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) ServerSideProcessi
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/serversideprocessingtimeout
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -147,7 +147,7 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) TimedInvokeTimeout
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventrequestparams/timedinvoketimeoutms
-func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRUnitTestingClusterTestEmitTestEventRequestParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

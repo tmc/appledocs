@@ -78,7 +78,7 @@ func NewPadGradientNode() PadGradientNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradientNode/init(sourceGradient:sourceImage:gradientState:)
-func NewPadGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient unsafe.Pointer, sourceImage unsafe.Pointer, gradientState unsafe.Pointer) PadGradientNode {
+func NewPadGradientNodeWithSourceGradientSourceImageGradientState(sourceGradient IMPSNNImageNode, sourceImage IMPSNNImageNode, gradientState unsafe.Pointer) PadGradientNode {
 	instance := getPadGradientNodeClass().Alloc()
 	rv := objc.Send[PadGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:gradientState:"), sourceGradient, sourceImage, gradientState)
 	rv.Autorelease()

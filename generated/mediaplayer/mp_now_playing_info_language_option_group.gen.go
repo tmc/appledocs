@@ -85,7 +85,7 @@ func NewNowPlayingInfoLanguageOptionGroup() NowPlayingInfoLanguageOptionGroup {
 // Creates a new language option group with the supplied language options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup/init(languageOptions:defaultLanguageOption:allowEmptySelection:)
-func NewNowPlayingInfoLanguageOptionGroupWithLanguageOptionsDefaultLanguageOptionAllowEmptySelection(languageOptions unsafe.Pointer, defaultLanguageOption unsafe.Pointer, allowEmptySelection bool) NowPlayingInfoLanguageOptionGroup {
+func NewNowPlayingInfoLanguageOptionGroupWithLanguageOptionsDefaultLanguageOptionAllowEmptySelection(languageOptions []NowPlayingInfoLanguageOption, defaultLanguageOption IMPNowPlayingInfoLanguageOption, allowEmptySelection bool) NowPlayingInfoLanguageOptionGroup {
 	instance := getNowPlayingInfoLanguageOptionGroupClass().Alloc()
 	rv := objc.Send[NowPlayingInfoLanguageOptionGroup](instance.ID, objc.Sel("initWithLanguageOptions:defaultLanguageOption:allowEmptySelection:"), languageOptions, defaultLanguageOption, allowEmptySelection)
 	rv.Autorelease()
@@ -104,8 +104,8 @@ func (n_ NowPlayingInfoLanguageOptionGroup) AllowEmptySelection() bool {
 // The default language option for the group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOptionGroup/defaultLanguageOption
-func (n_ NowPlayingInfoLanguageOptionGroup) DefaultLanguageOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("defaultLanguageOption"))
+func (n_ NowPlayingInfoLanguageOptionGroup) DefaultLanguageOption() MPNowPlayingInfoLanguageOption {
+	rv := objc.Send[MPNowPlayingInfoLanguageOption](n_.ID, objc.Sel("defaultLanguageOption"))
 	return rv
 }
 

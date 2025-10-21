@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [TextObservation] class.
@@ -29,7 +28,7 @@ type _TextObservationClass struct {
 
 // An interface definition for the [TextObservation] class.
 type ITextObservation interface {
-	objectivec.IObject
+	IRectangleObservation
 }
 
 // Information about regions of text that an image-analysis request detects.
@@ -38,14 +37,16 @@ type ITextObservation interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTextObservation
 type TextObservation struct {
-	objectivec.Object
+	RectangleObservation
 }
 
 // TextObservationFrom constructs a [TextObservation] from an unsafe.Pointer.
 //
 // Information about regions of text that an image-analysis request detects.
 func TextObservationFrom(ptr unsafe.Pointer) TextObservation {
-	return TextObservation{objectivec.Object{objc.ID(ptr)}}
+	return TextObservation{
+		RectangleObservation: RectangleObservationFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -83,8 +84,8 @@ func NewTextObservation() TextObservation {
 // An array of detected individual character bounding boxes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNTextObservation/characterBoxes
-func (t_ TextObservation) CharacterBoxes() []unsafe.Pointer {
-	rv := objc.Send[[]unsafe.Pointer](t_.ID, objc.Sel("characterBoxes"))
+func (t_ TextObservation) CharacterBoxes() []RectangleObservation {
+	rv := objc.Send[[]RectangleObservation](t_.ID, objc.Sel("characterBoxes"))
 	return rv
 }
 

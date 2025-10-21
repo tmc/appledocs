@@ -84,8 +84,8 @@ func NewCMultiheadAttentionLayer() CMultiheadAttentionLayer {
 // The array of attention biases you use for key and value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
-func (c_ CMultiheadAttentionLayer) AttentionBiases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("attentionBiases"))
+func (c_ CMultiheadAttentionLayer) AttentionBiases() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("attentionBiases"))
 	return rv
 }
 
@@ -95,15 +95,15 @@ func (c_ CMultiheadAttentionLayer) AttentionBiases() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
-func (c_ CMultiheadAttentionLayer) SetAttentionBiases(value unsafe.Pointer) {
+func (c_ CMultiheadAttentionLayer) SetAttentionBiases(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAttentionBiases:"), value)
 }
 
 // The array of biases you use for query, key, value, and output projections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biases
-func (c_ CMultiheadAttentionLayer) Biases() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("biases"))
+func (c_ CMultiheadAttentionLayer) Biases() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("biases"))
 	return rv
 }
 
@@ -113,15 +113,15 @@ func (c_ CMultiheadAttentionLayer) Biases() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biases
-func (c_ CMultiheadAttentionLayer) SetBiases(value unsafe.Pointer) {
+func (c_ CMultiheadAttentionLayer) SetBiases(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
 }
 
 // The array of biases tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biasesparameters
-func (c_ CMultiheadAttentionLayer) BiasesParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("biasesParameters"))
+func (c_ CMultiheadAttentionLayer) BiasesParameters() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("biasesParameters"))
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (c_ CMultiheadAttentionLayer) BiasesParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biasesparameters
-func (c_ CMultiheadAttentionLayer) SetBiasesParameters(value unsafe.Pointer) {
+func (c_ CMultiheadAttentionLayer) SetBiasesParameters(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameters:"), value)
 }
 
@@ -156,8 +156,8 @@ func (c_ CMultiheadAttentionLayer) SetDescriptor(value unsafe.Pointer) {
 // The array of weights you use for query, key, value, and output projections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
-func (c_ CMultiheadAttentionLayer) Weights() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weights"))
+func (c_ CMultiheadAttentionLayer) Weights() MLCTensor {
+	rv := objc.Send[MLCTensor](c_.ID, objc.Sel("weights"))
 	return rv
 }
 
@@ -167,15 +167,15 @@ func (c_ CMultiheadAttentionLayer) Weights() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
-func (c_ CMultiheadAttentionLayer) SetWeights(value unsafe.Pointer) {
+func (c_ CMultiheadAttentionLayer) SetWeights(value IMLCTensor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
 }
 
 // The array of weights tensor parameters you use for optimizer updates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
-func (c_ CMultiheadAttentionLayer) WeightsParameters() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("weightsParameters"))
+func (c_ CMultiheadAttentionLayer) WeightsParameters() MLCTensorParameter {
+	rv := objc.Send[MLCTensorParameter](c_.ID, objc.Sel("weightsParameters"))
 	return rv
 }
 
@@ -185,7 +185,7 @@ func (c_ CMultiheadAttentionLayer) WeightsParameters() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
-func (c_ CMultiheadAttentionLayer) SetWeightsParameters(value unsafe.Pointer) {
+func (c_ CMultiheadAttentionLayer) SetWeightsParameters(value IMLCTensorParameter) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameters:"), value)
 }
 

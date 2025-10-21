@@ -83,7 +83,7 @@ func NewAdNetwork() AdNetwork {
 // Indicates that your app is no longer presenting a view-through ad to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdNetwork/endImpression(_:completionHandler:)
-func (ac _AdNetworkClass) EndImpressionCompletionHandler(impression unsafe.Pointer, completion unsafe.Pointer) {
+func (ac _AdNetworkClass) EndImpressionCompletionHandler(impression ISKAdImpression, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("endImpression:completionHandler:"), impression, completion)
 }
 
@@ -97,7 +97,7 @@ func (ac _AdNetworkClass) RegisterAppForAdNetworkAttribution() {
 // Indicates that your app is presenting a view-through ad to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdNetwork/startImpression(_:completionHandler:)
-func (ac _AdNetworkClass) StartImpressionCompletionHandler(impression unsafe.Pointer, completion unsafe.Pointer) {
+func (ac _AdNetworkClass) StartImpressionCompletionHandler(impression ISKAdImpression, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("startImpression:completionHandler:"), impression, completion)
 }
 
@@ -111,14 +111,14 @@ func (ac _AdNetworkClass) UpdateConversionValue(conversionValue int) {
 // Updates the fine and coarse conversion values, and calls a completion handler if the update fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:completionHandler:)
-func (ac _AdNetworkClass) UpdatePostbackConversionValueCoarseValueCompletionHandler(fineValue int, coarseValue unsafe.Pointer, completion unsafe.Pointer) {
+func (ac _AdNetworkClass) UpdatePostbackConversionValueCoarseValueCompletionHandler(fineValue int, coarseValue IAdNetworkCoarseConversionValue, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("updatePostbackConversionValue:coarseValue:completionHandler:"), fineValue, coarseValue, completion)
 }
 
 // Updates the fine and coarse conversion values and indicates whether to send the postback before the conversion window ends, and calls a completion handler if the update fails.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKAdNetwork/updatePostbackConversionValue(_:coarseValue:lockWindow:completionHandler:)
-func (ac _AdNetworkClass) UpdatePostbackConversionValueCoarseValueLockWindowCompletionHandler(fineValue int, coarseValue unsafe.Pointer, lockWindow bool, completion unsafe.Pointer) {
+func (ac _AdNetworkClass) UpdatePostbackConversionValueCoarseValueLockWindowCompletionHandler(fineValue int, coarseValue IAdNetworkCoarseConversionValue, lockWindow bool, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("updatePostbackConversionValue:coarseValue:lockWindow:completionHandler:"), fineValue, coarseValue, lockWindow, completion)
 }
 

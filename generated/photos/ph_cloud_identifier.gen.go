@@ -83,8 +83,8 @@ func NewPHCloudIdentifier() PHCloudIdentifier {
 // A string version of the cloud identifier to use in serialization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcloudidentifier/stringvalue
-func (p_ PHCloudIdentifier) StringValue() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("stringValue"))
+func (p_ PHCloudIdentifier) StringValue() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -94,15 +94,15 @@ func (p_ PHCloudIdentifier) StringValue() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcloudidentifier/stringvalue
-func (p_ PHCloudIdentifier) SetStringValue(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStringValue:"), objc.String(value))
+func (p_ PHCloudIdentifier) SetStringValue(value appkit.string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setStringValue:"), value)
 }
 
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/photos/phlocalidentifiernotfound
-func (p_ PHCloudIdentifier) PHLocalIdentifierNotFound() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
+func (p_ PHCloudIdentifier) PHLocalIdentifierNotFound() appkit.string {
+	rv := objc.Send[appkit.string](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
 

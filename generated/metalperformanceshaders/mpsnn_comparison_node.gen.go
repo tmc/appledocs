@@ -78,8 +78,8 @@ func NewComparisonNode() ComparisonNode {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode/comparisonType
-func (c_ ComparisonNode) ComparisonType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("comparisonType"))
+func (c_ ComparisonNode) ComparisonType() ComparisonType {
+	rv := objc.Send[ComparisonType](c_.ID, objc.Sel("comparisonType"))
 	return rv
 }
 
@@ -87,7 +87,7 @@ func (c_ ComparisonNode) ComparisonType() unsafe.Pointer {
 // SetComparisonType sets the value of the comparisonType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNComparisonNode/comparisonType
-func (c_ ComparisonNode) SetComparisonType(value unsafe.Pointer) {
+func (c_ ComparisonNode) SetComparisonType(value ComparisonType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setComparisonType:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -87,7 +88,7 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ActiveTimestamp() 
 // SetActiveTimestamp sets the value of the activeTimestamp property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/activeTimestamp
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetActiveTimestamp(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveTimestamp:"), value)
 }
 
@@ -102,14 +103,14 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) Channel() foundati
 // SetChannel sets the value of the channel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/channel
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value foundation.Number) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetChannel(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("extendedPanID"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("extendedPanID"))
 	return rv
 }
 
@@ -117,14 +118,14 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) ExtendedPanID() un
 // SetExtendedPanID sets the value of the extendedPanID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/extendedPanID
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(value unsafe.Pointer) {
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetExtendedPanID(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanID:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("networkName"))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("networkName"))
 	return rv
 }
 
@@ -132,8 +133,8 @@ func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) NetworkName() stri
 // SetNetworkName sets the value of the networkName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDirectoryClusterThreadNetworkStruct/networkName
-func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), objc.String(value))
+func (m_ MTRThreadNetworkDirectoryClusterThreadNetworkStruct) SetNetworkName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
 }
 
 

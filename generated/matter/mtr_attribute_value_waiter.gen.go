@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -85,8 +86,8 @@ func (m_ MTRAttributeValueWaiter) Cancel() {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeValueWaiter/uuid
-func (m_ MTRAttributeValueWaiter) UUID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("UUID"))
+func (m_ MTRAttributeValueWaiter) UUID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("UUID"))
 	return rv
 }
 

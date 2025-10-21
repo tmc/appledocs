@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -80,8 +81,8 @@ func NewMEComposeSession() MEComposeSession {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/composecontext
-func (m_ MEComposeSession) ComposeContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("composeContext"))
+func (m_ MEComposeSession) ComposeContext() MEComposeContext {
+	rv := objc.Send[MEComposeContext](m_.ID, objc.Sel("composeContext"))
 	return rv
 }
 
@@ -89,15 +90,15 @@ func (m_ MEComposeSession) ComposeContext() unsafe.Pointer {
 // SetComposeContext sets the value of the composeContext property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/composecontext
-func (m_ MEComposeSession) SetComposeContext(value unsafe.Pointer) {
+func (m_ MEComposeSession) SetComposeContext(value IMEComposeContext) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComposeContext:"), value)
 }
 
 // The properties of the mail message, such as the subject and recipients.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/mailmessage
-func (m_ MEComposeSession) MailMessage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mailMessage"))
+func (m_ MEComposeSession) MailMessage() MEMessage {
+	rv := objc.Send[MEMessage](m_.ID, objc.Sel("mailMessage"))
 	return rv
 }
 
@@ -107,15 +108,15 @@ func (m_ MEComposeSession) MailMessage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/mailmessage
-func (m_ MEComposeSession) SetMailMessage(value unsafe.Pointer) {
+func (m_ MEComposeSession) SetMailMessage(value IMEMessage) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMailMessage:"), value)
 }
 
 // A unique identifier for the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/sessionid
-func (m_ MEComposeSession) SessionID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("sessionID"))
+func (m_ MEComposeSession) SessionID() foundation.UUID {
+	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("sessionID"))
 	return rv
 }
 
@@ -125,7 +126,7 @@ func (m_ MEComposeSession) SessionID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposesession/sessionid
-func (m_ MEComposeSession) SetSessionID(value unsafe.Pointer) {
+func (m_ MEComposeSession) SetSessionID(value foundation.IUUID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 

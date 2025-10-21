@@ -81,8 +81,8 @@ func NewTileRenderPipelineColorAttachmentDescriptor() TileRenderPipelineColorAtt
 // The pixel format associated with the tile shading render pipeline.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptor/pixelFormat
-func (t_ TileRenderPipelineColorAttachmentDescriptor) PixelFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("pixelFormat"))
+func (t_ TileRenderPipelineColorAttachmentDescriptor) PixelFormat() PixelFormat {
+	rv := objc.Send[PixelFormat](t_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
@@ -92,7 +92,7 @@ func (t_ TileRenderPipelineColorAttachmentDescriptor) PixelFormat() unsafe.Point
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTileRenderPipelineColorAttachmentDescriptor/pixelFormat
-func (t_ TileRenderPipelineColorAttachmentDescriptor) SetPixelFormat(value unsafe.Pointer) {
+func (t_ TileRenderPipelineColorAttachmentDescriptor) SetPixelFormat(value PixelFormat) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPixelFormat:"), value)
 }
 

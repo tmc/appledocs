@@ -132,8 +132,8 @@ func (a_ AEAssessmentParticipantConfiguration) SetRequired(value bool) {
 // The collection of apps available during an assessment, along with their associated configurations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-func (a_ AEAssessmentParticipantConfiguration) ConfigurationsByApplication() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("configurationsByApplication"))
+func (a_ AEAssessmentParticipantConfiguration) ConfigurationsByApplication() AEAssessmentParticipantConfiguration {
+	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("configurationsByApplication"))
 	return rv
 }
 
@@ -143,15 +143,15 @@ func (a_ AEAssessmentParticipantConfiguration) ConfigurationsByApplication() uns
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/configurationsbyapplication
-func (a_ AEAssessmentParticipantConfiguration) SetConfigurationsByApplication(value unsafe.Pointer) {
+func (a_ AEAssessmentParticipantConfiguration) SetConfigurationsByApplication(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setConfigurationsByApplication:"), value)
 }
 
 // The app-specific configuration for the app that invokes the assessment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-func (a_ AEAssessmentParticipantConfiguration) MainParticipantConfiguration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("mainParticipantConfiguration"))
+func (a_ AEAssessmentParticipantConfiguration) MainParticipantConfiguration() AEAssessmentParticipantConfiguration {
+	rv := objc.Send[AEAssessmentParticipantConfiguration](a_.ID, objc.Sel("mainParticipantConfiguration"))
 	return rv
 }
 
@@ -161,7 +161,7 @@ func (a_ AEAssessmentParticipantConfiguration) MainParticipantConfiguration() un
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/mainparticipantconfiguration
-func (a_ AEAssessmentParticipantConfiguration) SetMainParticipantConfiguration(value unsafe.Pointer) {
+func (a_ AEAssessmentParticipantConfiguration) SetMainParticipantConfiguration(value IAEAssessmentParticipantConfiguration) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMainParticipantConfiguration:"), value)
 }
 

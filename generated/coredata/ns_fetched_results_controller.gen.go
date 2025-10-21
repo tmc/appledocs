@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,11 +32,11 @@ type _FetchedResultsControllerClass struct {
 // An interface definition for the [FetchedResultsController] class.
 type IFetchedResultsController interface {
 	objectivec.IObject
-	IndexPathForObject(object unsafe.Pointer) unsafe.Pointer
-	ObjectAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer
+	IndexPathForObject(object unsafe.Pointer) foundation.IndexPath
+	ObjectAtIndexPath(indexPath foundation.IIndexPath) unsafe.Pointer
 	PerformFetch(error_ unsafe.Pointer) bool
-	SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int
-	SectionIndexTitleForSectionName(sectionName string) string
+	SectionForSectionIndexTitleAtIndex(title appkit.string, sectionIndex int) int
+	SectionIndexTitleForSectionName(sectionName appkit.string) foundation.String
 }
 
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
@@ -90,9 +92,9 @@ func NewFetchedResultsController() FetchedResultsController {
 // Returns a fetch request controller initialized using the given arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/init(fetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:)
-func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(fetchRequest unsafe.Pointer, context unsafe.Pointer, sectionNameKeyPath string, name string) FetchedResultsController {
+func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameKeyPathCacheName(fetchRequest unsafe.Pointer, context IManagedObjectContext, sectionNameKeyPath appkit.string, name appkit.string) FetchedResultsController {
 	instance := getFetchedResultsControllerClass().Alloc()
-	rv := objc.Send[FetchedResultsController](instance.ID, objc.Sel("initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:"), fetchRequest, context, objc.String(sectionNameKeyPath), objc.String(name))
+	rv := objc.Send[FetchedResultsController](instance.ID, objc.Sel("initWithFetchRequest:managedObjectContext:sectionNameKeyPath:cacheName:"), fetchRequest, context, sectionNameKeyPath, name)
 	rv.Autorelease()
 	return rv
 }
@@ -101,22 +103,22 @@ func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameK
 // Deletes the cached section information with the given name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/deleteCache(withName:)
-func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name string) {
-	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("deleteCacheWithName:"), objc.String(name))
+func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name appkit.string) {
+	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("deleteCacheWithName:"), name)
 }
 
 // Returns the index path of a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/indexPath(forObject:)
-func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("indexPathForObject:"), object)
+func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) foundation.IndexPath {
+	rv := objc.Send[foundation.IndexPath](f_.ID, objc.Sel("indexPathForObject:"), object)
 	return rv
 }
 
 // Returns the object at the given index path in the fetch results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/object(at:)
-func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath unsafe.Pointer) unsafe.Pointer {
+func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath foundation.IIndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("objectAtIndexPath:"), indexPath)
 	return rv
 }
@@ -132,24 +134,24 @@ func (f_ FetchedResultsController) PerformFetch(error_ unsafe.Pointer) bool {
 // Returns the section number for a given section title and index in the section index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/section(forSectionIndexTitle:at:)
-func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title string, sectionIndex int) int {
-	rv := objc.Send[int](f_.ID, objc.Sel("sectionForSectionIndexTitle:atIndex:"), objc.String(title), sectionIndex)
+func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title appkit.string, sectionIndex int) int {
+	rv := objc.Send[int](f_.ID, objc.Sel("sectionForSectionIndexTitle:atIndex:"), title, sectionIndex)
 	return rv
 }
 
 // Returns the corresponding section index entry for a given section name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionIndexTitle(forSectionName:)
-func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName string) string {
-	rv := objc.Send[string](f_.ID, objc.Sel("sectionIndexTitleForSectionName:"), objc.String(sectionName))
+func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName appkit.string) foundation.String {
+	rv := objc.Send[foundation.String](f_.ID, objc.Sel("sectionIndexTitleForSectionName:"), sectionName)
 	return rv
 }
 
 // The name of the file used to cache section information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/cacheName
-func (f_ FetchedResultsController) CacheName() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("cacheName"))
+func (f_ FetchedResultsController) CacheName() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("cacheName"))
 	return rv
 }
 
@@ -190,8 +192,8 @@ func (f_ FetchedResultsController) FetchedObjects() []objc.ID {
 // The managed object context used to fetch objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/managedObjectContext
-func (f_ FetchedResultsController) ManagedObjectContext() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("managedObjectContext"))
+func (f_ FetchedResultsController) ManagedObjectContext() NSManagedObjectContext {
+	rv := objc.Send[NSManagedObjectContext](f_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
 
@@ -206,8 +208,8 @@ func (f_ FetchedResultsController) SectionIndexTitles() []string {
 // The key path of the attribute that determines which section the fetched entity belongs to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchedResultsController/sectionNameKeyPath
-func (f_ FetchedResultsController) SectionNameKeyPath() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("sectionNameKeyPath"))
+func (f_ FetchedResultsController) SectionNameKeyPath() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("sectionNameKeyPath"))
 	return rv
 }
 

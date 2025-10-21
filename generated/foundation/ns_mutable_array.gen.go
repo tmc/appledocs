@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [MutableArray] class.
@@ -29,22 +30,23 @@ type _MutableArrayClass struct {
 // An interface definition for the [MutableArray] class.
 type IMutableArray interface {
 	IArray
-	FilterUsingPredicate(predicate unsafe.Pointer)
+	AddObject(anObject unsafe.Pointer)
+	FilterUsingPredicate(predicate IPredicate)
 	InsertObjectAtIndex(anObject unsafe.Pointer, index uint)
 	RemoveObject(anObject unsafe.Pointer)
 	RemoveAllObjects()
 	RemoveLastObject()
 	RemoveObjectIdenticalTo(anObject unsafe.Pointer)
-	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range)
-	RemoveObjectsAtIndexes(indexes unsafe.Pointer)
+	RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ IRange)
+	RemoveObjectsAtIndexes(indexes IIndexSet)
 	RemoveObjectsFromIndicesNumIndices(indices unsafe.Pointer, cnt uint)
 	ReplaceObjectAtIndexWithObject(index uint, anObject unsafe.Pointer)
-	ReplaceObjectsAtIndexesWithObjects(indexes unsafe.Pointer, objects unsafe.Pointer)
-	ReplaceObjectsInRangeWithObjectsFromArray(range_ Range, otherArray unsafe.Pointer)
+	ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID)
+	ReplaceObjectsInRangeWithObjectsFromArray(range_ IRange, otherArray []objc.ID)
 	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
 	SortUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	SortUsingComparator(cmptr unsafe.Pointer)
-	SortUsingDescriptors(sortDescriptors unsafe.Pointer)
+	SortUsingDescriptors(sortDescriptors []SortDescriptor)
 }
 
 // A dynamic ordered collection of objects.
@@ -102,9 +104,9 @@ func NewMutableArray() MutableArray {
 // Initializes a newly allocated mutable array with the contents of the file specified by a given path
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfFile:
-func NewMutableArrayWithContentsOfFile(path string) MutableArray {
+func NewMutableArrayWithContentsOfFile(path appkit.string) MutableArray {
 	instance := getMutableArrayClass().Alloc()
-	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfFile:"), objc.String(path))
+	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
 }
@@ -114,7 +116,7 @@ func NewMutableArrayWithContentsOfFile(path string) MutableArray {
 // Initialized a newly allocated mutable array with the contents of the location specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfURL:
-func NewMutableArrayWithContentsOfURL(url URL) MutableArray {
+func NewMutableArrayWithContentsOfURL(url IURL) MutableArray {
 	instance := getMutableArrayClass().Alloc()
 	rv := objc.Send[MutableArray](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
@@ -125,15 +127,22 @@ func NewMutableArrayWithContentsOfURL(url URL) MutableArray {
 // Creates and returns a mutable array containing the contents specified by a given URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/init(contentsOfURL:)
-func (mc _MutableArrayClass) ArrayWithContentsOfURL(url URL) unsafe.Pointer {
+func (mc _MutableArrayClass) ArrayWithContentsOfURL(url IURL) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("arrayWithContentsOfURL:"), url)
 	return rv
+}
+
+// Inserts a given object at the end of the array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/add(_:)
+func (m_ MutableArray) AddObject(anObject unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addObject:"), anObject)
 }
 
 // Evaluates a given predicate against the array’s content and leaves only objects that match.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/filter(using:)
-func (m_ MutableArray) FilterUsingPredicate(predicate unsafe.Pointer) {
+func (m_ MutableArray) FilterUsingPredicate(predicate IPredicate) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("filterUsingPredicate:"), predicate)
 }
 
@@ -175,14 +184,14 @@ func (m_ MutableArray) RemoveObjectIdenticalTo(anObject unsafe.Pointer) {
 // Removes all occurrences of within the specified range in the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObject(identicalTo:in:)
-func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ Range) {
+func (m_ MutableArray) RemoveObjectIdenticalToInRange(anObject unsafe.Pointer, range_ IRange) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectIdenticalTo:inRange:"), anObject, range_)
 }
 
 // Removes the objects at the specified indexes from the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/removeObjects(at:)
-func (m_ MutableArray) RemoveObjectsAtIndexes(indexes unsafe.Pointer) {
+func (m_ MutableArray) RemoveObjectsAtIndexes(indexes IIndexSet) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeObjectsAtIndexes:"), indexes)
 }
 
@@ -203,14 +212,14 @@ func (m_ MutableArray) ReplaceObjectAtIndexWithObject(index uint, anObject unsaf
 // Replaces the objects in the receiving array at locations specified with the objects from a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(at:with:)
-func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes unsafe.Pointer, objects unsafe.Pointer) {
+func (m_ MutableArray) ReplaceObjectsAtIndexesWithObjects(indexes IIndexSet, objects []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsAtIndexes:withObjects:"), indexes, objects)
 }
 
 // Replaces the objects in the receiving array specified by a given range with all of the objects from a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/replaceObjects(in:withObjectsFrom:)
-func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ Range, otherArray unsafe.Pointer) {
+func (m_ MutableArray) ReplaceObjectsInRangeWithObjectsFromArray(range_ IRange, otherArray []objc.ID) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("replaceObjectsInRange:withObjectsFromArray:"), range_, otherArray)
 }
 
@@ -238,7 +247,7 @@ func (m_ MutableArray) SortUsingComparator(cmptr unsafe.Pointer) {
 // Sorts the receiver using a given array of sort descriptors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/sort(using:)-4eh07
-func (m_ MutableArray) SortUsingDescriptors(sortDescriptors unsafe.Pointer) {
+func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []SortDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 

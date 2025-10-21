@@ -127,8 +127,8 @@ func (r_ RegularExpression) SetOptions(value unsafe.Pointer) {
 // Returns the regular expression pattern.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-func (r_ RegularExpression) Pattern() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("pattern"))
+func (r_ RegularExpression) Pattern() appkit.string {
+	rv := objc.Send[appkit.string](r_.ID, objc.Sel("pattern"))
 	return rv
 }
 
@@ -138,8 +138,8 @@ func (r_ RegularExpression) Pattern() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsregularexpression/pattern
-func (r_ RegularExpression) SetPattern(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), objc.String(value))
+func (r_ RegularExpression) SetPattern(value appkit.string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setPattern:"), value)
 }
 
 // Returns the range of the result that the receiver represents.
@@ -156,7 +156,7 @@ func (r_ RegularExpression) Range() Range {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/range
-func (r_ RegularExpression) SetRange(value Range) {
+func (r_ RegularExpression) SetRange(value IRange) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setRange:"), value)
 }
 

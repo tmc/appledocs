@@ -84,8 +84,8 @@ func NewPDFActionGoTo() PDFActionGoTo {
 // Returns the destination associated with the action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactiongoto/destination
-func (p_ PDFActionGoTo) Destination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("destination"))
+func (p_ PDFActionGoTo) Destination() PDFDestination {
+	rv := objc.Send[PDFDestination](p_.ID, objc.Sel("destination"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (p_ PDFActionGoTo) Destination() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/pdfkit/pdfactiongoto/destination
-func (p_ PDFActionGoTo) SetDestination(value unsafe.Pointer) {
+func (p_ PDFActionGoTo) SetDestination(value IPDFDestination) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDestination:"), value)
 }
 

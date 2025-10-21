@@ -84,7 +84,7 @@ func NewCScatterLayer() CScatterLayer {
 // Creates a scatter layer with the dimension and reduction type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCScatterLayer/init(dimension:reductionType:)
-func NewCScatterLayerWithDimensionReductionType(dimension uint, reductionType unsafe.Pointer) CScatterLayer {
+func NewCScatterLayerWithDimensionReductionType(dimension uint, reductionType CReductionType) CScatterLayer {
 	rv := objc.Send[CScatterLayer](objc.ID(getCScatterLayerClass().class), objc.Sel("layerWithDimension:reductionType:"), dimension, reductionType)
 	return rv
 }
@@ -93,7 +93,7 @@ func NewCScatterLayerWithDimensionReductionType(dimension uint, reductionType un
 // Creates a scatter layer with the dimension and reduction type you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCScatterLayer/init(dimension:reductionType:)
-func (cc _CScatterLayerClass) LayerWithDimensionReductionType(dimension uint, reductionType unsafe.Pointer) unsafe.Pointer {
+func (cc _CScatterLayerClass) LayerWithDimensionReductionType(dimension uint, reductionType CReductionType) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithDimension:reductionType:"), dimension, reductionType)
 	return rv
 }
@@ -119,8 +119,8 @@ func (c_ CScatterLayer) SetDimension(value int) {
 // The reduction type that applies to all values in the source tensor.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcscatterlayer/reductiontype
-func (c_ CScatterLayer) ReductionType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("reductionType"))
+func (c_ CScatterLayer) ReductionType() CReductionType {
+	rv := objc.Send[CReductionType](c_.ID, objc.Sel("reductionType"))
 	return rv
 }
 
@@ -130,7 +130,7 @@ func (c_ CScatterLayer) ReductionType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcscatterlayer/reductiontype
-func (c_ CScatterLayer) SetReductionType(value unsafe.Pointer) {
+func (c_ CScatterLayer) SetReductionType(value CReductionType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReductionType:"), value)
 }
 

@@ -82,8 +82,8 @@ func NewAuthorizationAppleIDRequest() AuthorizationAppleIDRequest {
 // An identifier associated with the user’s Apple ID.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-func (a_ AuthorizationAppleIDRequest) User() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("user"))
+func (a_ AuthorizationAppleIDRequest) User() appkit.string {
+	rv := objc.Send[appkit.string](a_.ID, objc.Sel("user"))
 	return rv
 }
 
@@ -93,8 +93,8 @@ func (a_ AuthorizationAppleIDRequest) User() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest/user
-func (a_ AuthorizationAppleIDRequest) SetUser(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), objc.String(value))
+func (a_ AuthorizationAppleIDRequest) SetUser(value appkit.string) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), value)
 }
 
 

@@ -137,8 +137,8 @@ func (a_ AuthorizationController) SetPresentationContextProvider(value objc.ID) 
 // The authorization requests that the controller manages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) AuthorizationRequests() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizationRequests"))
+func (a_ AuthorizationController) AuthorizationRequests() ASAuthorizationRequest {
+	rv := objc.Send[ASAuthorizationRequest](a_.ID, objc.Sel("authorizationRequests"))
 	return rv
 }
 
@@ -148,7 +148,7 @@ func (a_ AuthorizationController) AuthorizationRequests() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/authorizationrequests
-func (a_ AuthorizationController) SetAuthorizationRequests(value unsafe.Pointer) {
+func (a_ AuthorizationController) SetAuthorizationRequests(value IASAuthorizationRequest) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationRequests:"), value)
 }
 

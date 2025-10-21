@@ -31,7 +31,7 @@ type _CNRenderingSessionClass struct {
 // An interface definition for the [CNRenderingSession] class.
 type ICNRenderingSession interface {
 	objectivec.IObject
-	EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objc.ID, frameAttributes unsafe.Pointer, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objc.ID, destinationChroma objc.ID) bool
+	EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool
 }
 
 // An object representing the context in which rendering occurs.
@@ -83,7 +83,7 @@ func NewCNRenderingSession() CNRenderingSession {
 // Encodes a command to render a shallow depth of field (SDoF) image to two metal textures as luma and chroma.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:
-func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objc.ID, frameAttributes unsafe.Pointer, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objc.ID, destinationChroma objc.ID) bool {
+func (c_ CNRenderingSession) EncodeRenderToCommandBufferFrameAttributesSourceImageSourceDisparityDestinationLumaDestinationChroma(commandBuffer objectivec.IObject, frameAttributes ICNRenderingSessionFrameAttributes, sourceImage unsafe.Pointer, sourceDisparity unsafe.Pointer, destinationLuma objectivec.IObject, destinationChroma objectivec.IObject) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:"), commandBuffer, frameAttributes, sourceImage, sourceDisparity, destinationLuma, destinationChroma)
 	return rv
 }
@@ -107,8 +107,8 @@ func (c_ CNRenderingSession) PreferredTransform() coregraphics.CGAffineTransform
 // Rendering session attributes for a Cinematic asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNRenderingSession-8yghc/sessionAttributes
-func (c_ CNRenderingSession) SessionAttributes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sessionAttributes"))
+func (c_ CNRenderingSession) SessionAttributes() CNRenderingSessionAttributes {
+	rv := objc.Send[CNRenderingSessionAttributes](c_.ID, objc.Sel("sessionAttributes"))
 	return rv
 }
 

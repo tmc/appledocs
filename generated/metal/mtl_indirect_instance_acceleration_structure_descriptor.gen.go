@@ -291,8 +291,8 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformStri
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformtype
-func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("motionTransformType"))
+func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() TransformType {
+	rv := objc.Send[TransformType](i_.ID, objc.Sel("motionTransformType"))
 	return rv
 }
 
@@ -300,7 +300,7 @@ func (i_ IndirectInstanceAccelerationStructureDescriptor) MotionTransformType() 
 // SetMotionTransformType sets the value of the motionTransformType property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlindirectinstanceaccelerationstructuredescriptor/motiontransformtype
-func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformType(value unsafe.Pointer) {
+func (i_ IndirectInstanceAccelerationStructureDescriptor) SetMotionTransformType(value TransformType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMotionTransformType:"), value)
 }
 

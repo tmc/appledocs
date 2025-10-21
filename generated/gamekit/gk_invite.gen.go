@@ -91,8 +91,8 @@ func (i_ Invite) PlayerGroup() uint {
 // The identifier for the player who sends the invitation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) Inviter() string {
-	rv := objc.Send[string](i_.ID, objc.Sel("inviter"))
+func (i_ Invite) Inviter() appkit.string {
+	rv := objc.Send[appkit.string](i_.ID, objc.Sel("inviter"))
 	return rv
 }
 
@@ -102,8 +102,8 @@ func (i_ Invite) Inviter() string {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/inviter
-func (i_ Invite) SetInviter(value string) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), objc.String(value))
+func (i_ Invite) SetInviter(value appkit.string) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setInviter:"), value)
 }
 
 // A Boolean value that indicates whether you host the game on your own servers.
@@ -145,8 +145,8 @@ func (i_ Invite) SetPlayerAttributes(value unsafe.Pointer) {
 // The player who sends the invitation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
-func (i_ Invite) Sender() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("sender"))
+func (i_ Invite) Sender() GKPlayer {
+	rv := objc.Send[GKPlayer](i_.ID, objc.Sel("sender"))
 	return rv
 }
 
@@ -156,7 +156,7 @@ func (i_ Invite) Sender() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/gamekit/gkinvite/sender
-func (i_ Invite) SetSender(value unsafe.Pointer) {
+func (i_ Invite) SetSender(value IGKPlayer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [MatrixRandomPhilox] class.
@@ -78,7 +79,7 @@ func NewMatrixRandomPhilox() MatrixRandomPhilox {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSMatrixRandomPhilox/init(device:destinationDataType:seed:distributionDescriptor:)
-func NewMatrixRandomPhiloxWithDeviceDestinationDataTypeSeedDistributionDescriptor(device objc.ID, destinationDataType unsafe.Pointer, seed uint, distributionDescriptor unsafe.Pointer) MatrixRandomPhilox {
+func NewMatrixRandomPhiloxWithDeviceDestinationDataTypeSeedDistributionDescriptor(device objectivec.IObject, destinationDataType unsafe.Pointer, seed uint, distributionDescriptor IMPSMatrixRandomDistributionDescriptor) MatrixRandomPhilox {
 	instance := getMatrixRandomPhiloxClass().Alloc()
 	rv := objc.Send[MatrixRandomPhilox](instance.ID, objc.Sel("initWithDevice:destinationDataType:seed:distributionDescriptor:"), device, destinationDataType, seed, distributionDescriptor)
 	rv.Autorelease()

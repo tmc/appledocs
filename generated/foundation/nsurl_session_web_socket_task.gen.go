@@ -30,8 +30,8 @@ type _URLSessionWebSocketTaskClass struct {
 type IURLSessionWebSocketTask interface {
 	IURLSessionTask
 	ReceiveMessageWithCompletionHandler(completionHandler unsafe.Pointer)
-	SendMessageCompletionHandler(message unsafe.Pointer, completionHandler unsafe.Pointer)
-	CancelWithCloseCodeReason(closeCode unsafe.Pointer, reason unsafe.Pointer)
+	SendMessageCompletionHandler(message IURLSessionWebSocketMessage, completionHandler unsafe.Pointer)
+	CancelWithCloseCodeReason(closeCode IURLSessionWebSocketCloseCode, reason IData)
 	SendPingWithPongReceiveHandler(pongReceiveHandler unsafe.Pointer)
 }
 
@@ -95,14 +95,14 @@ func (u_ URLSessionWebSocketTask) ReceiveMessageWithCompletionHandler(completion
 // Sends a WebSocket message, receiving the result in a completion handler.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionWebSocketTask/sendMessage:completionHandler:
-func (u_ URLSessionWebSocketTask) SendMessageCompletionHandler(message unsafe.Pointer, completionHandler unsafe.Pointer) {
+func (u_ URLSessionWebSocketTask) SendMessageCompletionHandler(message IURLSessionWebSocketMessage, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("sendMessage:completionHandler:"), message, completionHandler)
 }
 
 // Sends a close frame with the given close code and optional close reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/cancel(with:reason:)
-func (u_ URLSessionWebSocketTask) CancelWithCloseCodeReason(closeCode unsafe.Pointer, reason unsafe.Pointer) {
+func (u_ URLSessionWebSocketTask) CancelWithCloseCodeReason(closeCode IURLSessionWebSocketCloseCode, reason IData) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("cancelWithCloseCode:reason:"), closeCode, reason)
 }
 
@@ -116,16 +116,16 @@ func (u_ URLSessionWebSocketTask) SendPingWithPongReceiveHandler(pongReceiveHand
 // A code that indicates the reason a connection closed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeCode-swift.property
-func (u_ URLSessionWebSocketTask) CloseCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeCode"))
+func (u_ URLSessionWebSocketTask) CloseCode() URLSessionWebSocketCloseCode {
+	rv := objc.Send[URLSessionWebSocketCloseCode](u_.ID, objc.Sel("closeCode"))
 	return rv
 }
 
 // A block of data that provides further information about why a connection closed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionWebSocketTask/closeReason
-func (u_ URLSessionWebSocketTask) CloseReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("closeReason"))
+func (u_ URLSessionWebSocketTask) CloseReason() NSData {
+	rv := objc.Send[NSData](u_.ID, objc.Sel("closeReason"))
 	return rv
 }
 
@@ -168,8 +168,8 @@ func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
 // The cookie store for storing cookies within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-func (u_ URLSessionWebSocketTask) HttpCookieStorage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("httpCookieStorage"))
+func (u_ URLSessionWebSocketTask) HttpCookieStorage() NSHTTPCookieStorage {
+	rv := objc.Send[NSHTTPCookieStorage](u_.ID, objc.Sel("httpCookieStorage"))
 	return rv
 }
 
@@ -179,7 +179,7 @@ func (u_ URLSessionWebSocketTask) HttpCookieStorage() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/httpcookiestorage
-func (u_ URLSessionWebSocketTask) SetHttpCookieStorage(value unsafe.Pointer) {
+func (u_ URLSessionWebSocketTask) SetHttpCookieStorage(value IHTTPCookieStorage) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setHttpCookieStorage:"), value)
 }
 

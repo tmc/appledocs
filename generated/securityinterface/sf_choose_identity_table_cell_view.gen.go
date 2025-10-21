@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // The class instance for the [SFChooseIdentityTableCellView] class.
@@ -29,18 +29,20 @@ type _SFChooseIdentityTableCellViewClass struct {
 
 // An interface definition for the [SFChooseIdentityTableCellView] class.
 type ISFChooseIdentityTableCellView interface {
-	objectivec.IObject
+	appkit.ITableCellView
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView
 type SFChooseIdentityTableCellView struct {
-	objectivec.Object
+	appkit.TableCellView
 }
 
 // SFChooseIdentityTableCellViewFrom constructs a [SFChooseIdentityTableCellView] from an unsafe.Pointer.
 func SFChooseIdentityTableCellViewFrom(ptr unsafe.Pointer) SFChooseIdentityTableCellView {
-	return SFChooseIdentityTableCellView{objectivec.Object{objc.ID(ptr)}}
+	return SFChooseIdentityTableCellView{
+		TableCellView: appkit.TableCellViewFrom(ptr),
+	}
 }
 
 // Alloc allocates a new instance without initialization.
@@ -77,8 +79,8 @@ func NewSFChooseIdentityTableCellView() SFChooseIdentityTableCellView {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView/issuerTextField-swift.property
-func (s_ SFChooseIdentityTableCellView) IssuerTextField() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("issuerTextField"))
+func (s_ SFChooseIdentityTableCellView) IssuerTextField() appkit.TextField {
+	rv := objc.Send[appkit.TextField](s_.ID, objc.Sel("issuerTextField"))
 	return rv
 }
 
@@ -86,7 +88,7 @@ func (s_ SFChooseIdentityTableCellView) IssuerTextField() unsafe.Pointer {
 // SetIssuerTextField sets the value of the issuerTextField property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/SecurityInterface/SFChooseIdentityTableCellView/issuerTextField-swift.property
-func (s_ SFChooseIdentityTableCellView) SetIssuerTextField(value unsafe.Pointer) {
+func (s_ SFChooseIdentityTableCellView) SetIssuerTextField(value appkit.ITextField) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIssuerTextField:"), value)
 }
 

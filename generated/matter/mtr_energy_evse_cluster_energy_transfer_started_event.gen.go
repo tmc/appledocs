@@ -87,7 +87,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) MaximumCurrent() founda
 // SetMaximumCurrent sets the value of the maximumCurrent property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/maximumCurrent
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetMaximumCurrent(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaximumCurrent:"), value)
 }
 
@@ -102,7 +102,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SessionID() foundation.
 // SetSessionID sets the value of the sessionID property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/sessionID
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetSessionID(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSessionID:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) State() foundation.Numb
 // SetState sets the value of the state property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEClusterEnergyTransferStartedEvent/state
-func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value foundation.Number) {
+func (m_ MTREnergyEVSEClusterEnergyTransferStartedEvent) SetState(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
 }
 

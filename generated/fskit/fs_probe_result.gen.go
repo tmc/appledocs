@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -83,78 +84,78 @@ func NewFSProbeResult() FSProbeResult {
 // Creates a probe result for a recognized file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/recognized(name:containerID:)
-func (fc _FSProbeResultClass) RecognizedProbeResultWithNameContainerID(name string, containerID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("recognizedProbeResultWithName:containerID:"), objc.String(name), containerID)
+func (fc _FSProbeResultClass) RecognizedProbeResultWithNameContainerID(name appkit.string, containerID IFSContainerIdentifier) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("recognizedProbeResultWithName:containerID:"), name, containerID)
 	return rv
 }
 
 // Creates a probe result for a recognized and usable file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usable(name:containerID:)
-func (fc _FSProbeResultClass) UsableProbeResultWithNameContainerID(name string, containerID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableProbeResultWithName:containerID:"), objc.String(name), containerID)
+func (fc _FSProbeResultClass) UsableProbeResultWithNameContainerID(name appkit.string, containerID IFSContainerIdentifier) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableProbeResultWithName:containerID:"), name, containerID)
 	return rv
 }
 
 // Creates a probe result for a recognized file system that is usable, but with limited capabilities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited(name:containerID:)
-func (fc _FSProbeResultClass) UsableButLimitedProbeResultWithNameContainerID(name string, containerID unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResultWithName:containerID:"), objc.String(name), containerID)
+func (fc _FSProbeResultClass) UsableButLimitedProbeResultWithNameContainerID(name appkit.string, containerID IFSContainerIdentifier) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResultWithName:containerID:"), name, containerID)
 	return rv
 }
 
 // A probe result for an unrecognized file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/notRecognized
-func (fc _FSProbeResultClass) NotRecognizedProbeResult() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("notRecognizedProbeResult"))
+func (fc _FSProbeResultClass) NotRecognizedProbeResult() FSProbeResult {
+	rv := objc.Send[FSProbeResult](objc.ID(fc.class), objc.Sel("notRecognizedProbeResult"))
 	return rv
 }
 // A probe result for a recognized file system that is usable, but with limited capabilities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited
-func (fc _FSProbeResultClass) UsableButLimitedProbeResult() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResult"))
+func (fc _FSProbeResultClass) UsableButLimitedProbeResult() FSProbeResult {
+	rv := objc.Send[FSProbeResult](objc.ID(fc.class), objc.Sel("usableButLimitedProbeResult"))
 	return rv
 }
 // The container identifier, as found during the probe operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/containerID
-func (f_ FSProbeResult) ContainerID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("containerID"))
+func (f_ FSProbeResult) ContainerID() FSContainerIdentifier {
+	rv := objc.Send[FSContainerIdentifier](f_.ID, objc.Sel("containerID"))
 	return rv
 }
 
 // The resource name, as found during the probe operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/name
-func (f_ FSProbeResult) Name() string {
-	rv := objc.Send[string](f_.ID, objc.Sel("name"))
+func (f_ FSProbeResult) Name() appkit.string {
+	rv := objc.Send[appkit.string](f_.ID, objc.Sel("name"))
 	return rv
 }
 
 // A probe result for an unrecognized file system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/notRecognized
-func (f_ FSProbeResult) NotRecognizedProbeResult() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("notRecognizedProbeResult"))
+func (f_ FSProbeResult) NotRecognizedProbeResult() FSProbeResult {
+	rv := objc.Send[FSProbeResult](f_.ID, objc.Sel("notRecognizedProbeResult"))
 	return rv
 }
 
 // The match result, representing the recognition and usability of a probed resource.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/result
-func (f_ FSProbeResult) Result() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("result"))
+func (f_ FSProbeResult) Result() FSMatchResult {
+	rv := objc.Send[FSMatchResult](f_.ID, objc.Sel("result"))
 	return rv
 }
 
 // A probe result for a recognized file system that is usable, but with limited capabilities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSProbeResult/usableButLimited
-func (f_ FSProbeResult) UsableButLimitedProbeResult() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("usableButLimitedProbeResult"))
+func (f_ FSProbeResult) UsableButLimitedProbeResult() FSProbeResult {
+	rv := objc.Send[FSProbeResult](f_.ID, objc.Sel("usableButLimitedProbeResult"))
 	return rv
 }
 

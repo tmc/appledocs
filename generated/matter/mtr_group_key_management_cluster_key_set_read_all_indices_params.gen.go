@@ -102,7 +102,7 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) ServerSideProce
 // SetServerSideProcessingTimeout sets the value of the serverSideProcessingTimeout property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/serversideprocessingtimeout
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -117,7 +117,7 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) TimedInvokeTime
 // SetTimedInvokeTimeoutMs sets the value of the timedInvokeTimeoutMs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesparams/timedinvoketimeoutms
-func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

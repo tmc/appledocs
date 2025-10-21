@@ -84,8 +84,8 @@ func NewComparisonPredicate() ComparisonPredicate {
 // The right expression for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
-func (c_ ComparisonPredicate) RightExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rightExpression"))
+func (c_ ComparisonPredicate) RightExpression() NSExpression {
+	rv := objc.Send[NSExpression](c_.ID, objc.Sel("rightExpression"))
 	return rv
 }
 
@@ -128,8 +128,8 @@ func (c_ ComparisonPredicate) SetCustomSelector(value unsafe.Pointer) {
 // The left expression for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) LeftExpression() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leftExpression"))
+func (c_ ComparisonPredicate) LeftExpression() NSExpression {
+	rv := objc.Send[NSExpression](c_.ID, objc.Sel("leftExpression"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (c_ ComparisonPredicate) LeftExpression() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nscomparisonpredicate/leftexpression
-func (c_ ComparisonPredicate) SetLeftExpression(value unsafe.Pointer) {
+func (c_ ComparisonPredicate) SetLeftExpression(value IExpression) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLeftExpression:"), value)
 }
 

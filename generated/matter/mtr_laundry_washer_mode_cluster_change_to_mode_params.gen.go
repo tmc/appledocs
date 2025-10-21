@@ -87,7 +87,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeParams) NewMode() foundation.Num
 // SetNewMode sets the value of the newMode property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeParams/newMode
-func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetNewMode(value foundation.Number) {
+func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetNewMode(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
 
@@ -105,7 +105,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeParams) ServerSideProcessingTime
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -123,7 +123,7 @@ func (m_ MTRLaundryWasherModeClusterChangeToModeParams) TimedInvokeTimeoutMs() f
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLaundryWasherModeClusterChangeToModeParams/timedInvokeTimeoutMs
-func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRLaundryWasherModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

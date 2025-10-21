@@ -29,7 +29,7 @@ type _MoveCommandClass struct {
 // An interface definition for the [MoveCommand] class.
 type IMoveCommand interface {
 	IScriptCommand
-	SetReceiversSpecifier(receiversRef unsafe.Pointer)
+	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 }
 
 // A command that moves one or more scriptable objects.
@@ -85,15 +85,15 @@ func NewMoveCommand() MoveCommand {
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/setReceiversSpecifier(_:)
-func (m_ MoveCommand) SetReceiversSpecifier(receiversRef unsafe.Pointer) {
+func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
 
 // Returns a specifier for the object or objects to be moved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/keySpecifier
-func (m_ MoveCommand) KeySpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("keySpecifier"))
+func (m_ MoveCommand) KeySpecifier() NSScriptObjectSpecifier {
+	rv := objc.Send[NSScriptObjectSpecifier](m_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
 

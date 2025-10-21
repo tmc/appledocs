@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -78,8 +79,8 @@ func NewMTRChannelClusterCancelRecordProgramParams() MTRChannelClusterCancelReco
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/data
-func (m_ MTRChannelClusterCancelRecordProgramParams) Data() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("data"))
+func (m_ MTRChannelClusterCancelRecordProgramParams) Data() foundation.NSData {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("data"))
 	return rv
 }
 
@@ -87,14 +88,14 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) Data() unsafe.Pointer {
 // SetData sets the value of the data property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/data
-func (m_ MTRChannelClusterCancelRecordProgramParams) SetData(value unsafe.Pointer) {
+func (m_ MTRChannelClusterCancelRecordProgramParams) SetData(value foundation.IData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("programIdentifier"))
+func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("programIdentifier"))
 	return rv
 }
 
@@ -102,8 +103,8 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ProgramIdentifier() string 
 // SetProgramIdentifier sets the value of the programIdentifier property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/programIdentifier
-func (m_ MTRChannelClusterCancelRecordProgramParams) SetProgramIdentifier(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), objc.String(value))
+func (m_ MTRChannelClusterCancelRecordProgramParams) SetProgramIdentifier(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setProgramIdentifier:"), value)
 }
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
@@ -120,7 +121,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ServerSideProcessingTimeout
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/serverSideProcessingTimeout
-func (m_ MTRChannelClusterCancelRecordProgramParams) SetServerSideProcessingTimeout(value foundation.Number) {
+func (m_ MTRChannelClusterCancelRecordProgramParams) SetServerSideProcessingTimeout(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
 
@@ -135,7 +136,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) ShouldRecordSeries() founda
 // SetShouldRecordSeries sets the value of the shouldRecordSeries property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/shouldRecordSeries
-func (m_ MTRChannelClusterCancelRecordProgramParams) SetShouldRecordSeries(value foundation.Number) {
+func (m_ MTRChannelClusterCancelRecordProgramParams) SetShouldRecordSeries(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldRecordSeries:"), value)
 }
 
@@ -153,7 +154,7 @@ func (m_ MTRChannelClusterCancelRecordProgramParams) TimedInvokeTimeoutMs() foun
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterCancelRecordProgramParams/timedInvokeTimeoutMs
-func (m_ MTRChannelClusterCancelRecordProgramParams) SetTimedInvokeTimeoutMs(value foundation.Number) {
+func (m_ MTRChannelClusterCancelRecordProgramParams) SetTimedInvokeTimeoutMs(value foundation.INumber) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
 

@@ -116,8 +116,8 @@ func (m_ MEFileInfo) SetDuration(value unsafe.Pointer) {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
-func (m_ MEFileInfo) SidecarFileName() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("sidecarFileName"))
+func (m_ MEFileInfo) SidecarFileName() appkit.string {
+	rv := objc.Send[appkit.string](m_.ID, objc.Sel("sidecarFileName"))
 	return rv
 }
 
@@ -125,8 +125,8 @@ func (m_ MEFileInfo) SidecarFileName() string {
 // SetSidecarFileName sets the value of the sidecarFileName property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/mefileinfo/sidecarfilename
-func (m_ MEFileInfo) SetSidecarFileName(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), objc.String(value))
+func (m_ MEFileInfo) SetSidecarFileName(value appkit.string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSidecarFileName:"), value)
 }
 
 
