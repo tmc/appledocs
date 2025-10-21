@@ -17,6 +17,7 @@ func ExampleNewUserDefaults() {
 	// Output:
 }
 
+
 // ExampleNewUserDefaultsWithSuiteName demonstrates how to create a UserDefaults instance using NewUserDefaultsWithSuiteName.
 // Creates a user defaults object initialized with the defaults for the specified database name.
 func ExampleNewUserDefaultsWithSuiteName() {

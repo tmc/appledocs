@@ -13,4 +13,3 @@ var _ = foundation.NewCompoundPredicate
 
 
 
-

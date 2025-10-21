@@ -19,6 +19,7 @@ func ExampleNewHostWithAddress() {
 	// Output:
 }
 
+
 // ExampleNewHostWithName demonstrates how to create a Host instance using NewHostWithName.
 // Returns a host with a specific name.
 func ExampleNewHostWithName() {

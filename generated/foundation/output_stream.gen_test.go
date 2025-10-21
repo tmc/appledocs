@@ -21,6 +21,7 @@ func ExampleNewOutputStreamToFileAtPathAppend() {
 	// Output:
 }
 
+
 // ExampleNewOutputStreamToMemory demonstrates how to create a OutputStream instance using NewOutputStreamToMemory.
 // Returns an initialized output stream that will write to memory.
 func ExampleNewOutputStreamToMemory() {

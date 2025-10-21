@@ -17,6 +17,7 @@ func ExampleNewURLComponents() {
 	// Output:
 }
 
+
 // ExampleNewURLComponentsWithString demonstrates how to create a URLComponents instance using NewURLComponentsWithString.
 // Creates a URL components object by parsing a URL in string form.
 func ExampleNewURLComponentsWithString() {
@@ -25,6 +26,7 @@ func ExampleNewURLComponentsWithString() {
 	)
 	// Output:
 }
+
 
 // ExampleNewURLComponentsWithStringEncodingInvalidCharacters demonstrates how to create a URLComponents instance using NewURLComponentsWithStringEncodingInvalidCharacters.
 // Creates a URL components instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
