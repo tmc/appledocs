@@ -1,0 +1,164 @@
+// Code generated from Apple documentation for CallKit. DO NOT EDIT.
+
+package callkit
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+)
+
+// The class instance for the [CXStartCallAction] class.
+var (
+	CXStartCallActionClass     _CXStartCallActionClass
+	CXStartCallActionClassOnce sync.Once
+)
+
+func getCXStartCallActionClass() _CXStartCallActionClass {
+	CXStartCallActionClassOnce.Do(func() {
+		CXStartCallActionClass = _CXStartCallActionClass{objc.GetClass("CXStartCallAction")}
+	})
+	return CXStartCallActionClass
+}
+
+type _CXStartCallActionClass struct {
+	class objc.Class
+}
+
+// An interface definition for the [CXStartCallAction] class.
+type ICXStartCallAction interface {
+	ICXCallAction
+	FulfillWithDateStarted(dateStarted unsafe.Pointer)
+}
+
+// An encapsulation of the act of initiating an outgoing call.
+//
+// is a concrete subclass of . When the user initiates an outgoing call, the provider sends to its delegate. The provider’s delegate calls the method to indicate that the action was successfully performed. To indicate that the call started at a time other than the current time, you can instead call the .
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction
+type CXStartCallAction struct {
+	CXCallAction
+}
+
+// CXStartCallActionFrom constructs a [CXStartCallAction] from an unsafe.Pointer.
+//
+// An encapsulation of the act of initiating an outgoing call.
+func CXStartCallActionFrom(ptr unsafe.Pointer) CXStartCallAction {
+	return CXStartCallAction{
+		CXCallAction: CXCallActionFrom(ptr),
+	}
+}
+
+// Alloc allocates a new instance without initialization.
+func (cc _CXStartCallActionClass) Alloc() CXStartCallAction {
+	rv := objc.Send[CXStartCallAction](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
+func (cc _CXStartCallActionClass) New() CXStartCallAction {
+	rv := objc.Send[CXStartCallAction](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ CXStartCallAction) Init() CXStartCallAction {
+	rv := objc.Send[CXStartCallAction](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ CXStartCallAction) Autorelease() CXStartCallAction {
+	rv := objc.Send[CXStartCallAction](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewCXStartCallAction creates a new CXStartCallAction instance.
+func NewCXStartCallAction() CXStartCallAction {
+	return getCXStartCallActionClass().New()
+}
+
+
+// Creates a new action to start a call with data in an unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(coder:)
+func NewCXStartCallActionWithCoder(aDecoder unsafe.Pointer) CXStartCallAction {
+	instance := getCXStartCallActionClass().Alloc()
+	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a new action to start a call with the specified UUID to a recipient with the specified handle.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/init(call:handle:)
+func NewCXStartCallActionWithCallUUIDHandle(callUUID unsafe.Pointer, handle unsafe.Pointer) CXStartCallAction {
+	instance := getCXStartCallActionClass().Alloc()
+	rv := objc.Send[CXStartCallAction](instance.ID, objc.Sel("initWithCallUUID:handle:"), callUUID, handle)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Reports the successful execution of the action at the specified time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/fulfill(withDateStarted:)
+func (c_ CXStartCallAction) FulfillWithDateStarted(dateStarted unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("fulfillWithDateStarted:"), dateStarted)
+}
+
+// The identifier for the call recipient.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
+func (c_ CXStartCallAction) ContactIdentifier() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("contactIdentifier"))
+	return rv
+}
+
+
+// SetContactIdentifier sets the value of the contactIdentifier property.
+// The identifier for the call recipient.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/contactIdentifier
+func (c_ CXStartCallAction) SetContactIdentifier(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContactIdentifier:"), value)
+}
+// The handle of the call recipient.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
+func (c_ CXStartCallAction) Handle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("handle"))
+	return rv
+}
+
+
+// SetHandle sets the value of the handle property.
+// The handle of the call recipient.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/handle
+func (c_ CXStartCallAction) SetHandle(value unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHandle:"), value)
+}
+// A Boolean value that indicates whether the call is a video call.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/isVideo
+func (c_ CXStartCallAction) Video() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("video"))
+	return rv
+}
+
+
+// SetVideo sets the value of the video property.
+// A Boolean value that indicates whether the call is a video call.
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXStartCallAction/isVideo
+func (c_ CXStartCallAction) SetVideo(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setVideo:"), value)
+}
+
