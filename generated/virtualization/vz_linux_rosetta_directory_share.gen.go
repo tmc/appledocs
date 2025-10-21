@@ -99,6 +99,21 @@ func (vc _VZLinuxRosettaDirectoryShareClass) InstallRosettaWithCompletionHandler
 	objc.Send[objc.ID](objc.ID(vc.class), objc.Sel("installRosettaWithCompletionHandler:"), completionHandler)
 }
 
+// A value that indicates the current state of Rosetta’s availability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
+func (vc _VZLinuxRosettaDirectoryShareClass) Availability() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("availability"))
+	return rv
+}
+// A value that indicates the current state of Rosetta’s availability.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/availability
+func (v_ VZLinuxRosettaDirectoryShare) Availability() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("availability"))
+	return rv
+}
+
 // The value that enables translation caching and configures the socket communication type for Rosetta.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaDirectoryShare/options

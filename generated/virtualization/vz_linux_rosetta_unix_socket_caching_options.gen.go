@@ -92,6 +92,21 @@ func NewVZLinuxRosettaUnixSocketCachingOptionsWithPathError(path string, error_ 
 }
 
 
+// The maximum allowed length of the path to the UNIX domain socket.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/maximumPathLength
+func (vc _VZLinuxRosettaUnixSocketCachingOptionsClass) MaximumPathLength() uint {
+	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumPathLength"))
+	return rv
+}
+// The maximum allowed length of the path to the UNIX domain socket.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/maximumPathLength
+func (v_ VZLinuxRosettaUnixSocketCachingOptions) MaximumPathLength() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("maximumPathLength"))
+	return rv
+}
+
 // The path to the UNIX domain socket that Rosetta uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaUnixSocketCachingOptions/path

@@ -109,6 +109,13 @@ func NewVZVirtualMachineWithConfigurationQueue(configuration unsafe.Pointer, que
 }
 
 
+// A Boolean value that indicates whether the system supports virtualization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/isSupported
+func (vc _VZVirtualMachineClass) Supported() bool {
+	rv := objc.Send[bool](objc.ID(vc.class), objc.Sel("supported"))
+	return rv
+}
 // Pauses a running VM and notifies the specified completion handler of the results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/pause()
@@ -244,6 +251,14 @@ func (v_ VZVirtualMachine) DirectorySharingDevices() []VZDirectorySharingDevice 
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/graphicsDevices
 func (v_ VZVirtualMachine) GraphicsDevices() []VZGraphicsDevice {
 	rv := objc.Send[[]VZGraphicsDevice](v_.ID, objc.Sel("graphicsDevices"))
+	return rv
+}
+
+// A Boolean value that indicates whether the system supports virtualization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/isSupported
+func (v_ VZVirtualMachine) Supported() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("supported"))
 	return rv
 }
 

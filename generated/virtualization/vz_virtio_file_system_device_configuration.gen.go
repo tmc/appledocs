@@ -100,6 +100,21 @@ func (vc _VZVirtioFileSystemDeviceConfigurationClass) ValidateTagError(tag strin
 	return rv
 }
 
+// A value that indicates that the guest needs to automount this file system device in the guest VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
+func (vc _VZVirtioFileSystemDeviceConfigurationClass) MacOSGuestAutomountTag() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("macOSGuestAutomountTag"))
+	return rv
+}
+// A value that indicates that the guest needs to automount this file system device in the guest VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/macOSGuestAutomountTag
+func (v_ VZVirtioFileSystemDeviceConfiguration) MacOSGuestAutomountTag() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("macOSGuestAutomountTag"))
+	return rv
+}
+
 // A value that defines how the host exposes resources to the guest virtual machine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioFileSystemDeviceConfiguration/share

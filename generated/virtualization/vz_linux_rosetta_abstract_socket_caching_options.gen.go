@@ -92,6 +92,21 @@ func NewVZLinuxRosettaAbstractSocketCachingOptionsWithNameError(name string, err
 }
 
 
+// The maximum length of name that the framework allows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/maximumNameLength
+func (vc _VZLinuxRosettaAbstractSocketCachingOptionsClass) MaximumNameLength() uint {
+	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumNameLength"))
+	return rv
+}
+// The maximum length of name that the framework allows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/maximumNameLength
+func (v_ VZLinuxRosettaAbstractSocketCachingOptions) MaximumNameLength() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("maximumNameLength"))
+	return rv
+}
+
 // The name of the abstract socket that Rosetta uses.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAbstractSocketCachingOptions/name

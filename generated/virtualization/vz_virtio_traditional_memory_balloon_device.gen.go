@@ -84,8 +84,8 @@ func NewVZVirtioTraditionalMemoryBalloonDevice() VZVirtioTraditionalMemoryBalloo
 // The target amount of memory, in bytes, to make available to the virtual machine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDevice/targetVirtualMachineMemorySize
-func (v_ VZVirtioTraditionalMemoryBalloonDevice) TargetVirtualMachineMemorySize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("targetVirtualMachineMemorySize"))
+func (v_ VZVirtioTraditionalMemoryBalloonDevice) TargetVirtualMachineMemorySize() uint64 {
+	rv := objc.Send[uint64](v_.ID, objc.Sel("targetVirtualMachineMemorySize"))
 	return rv
 }
 
@@ -95,7 +95,7 @@ func (v_ VZVirtioTraditionalMemoryBalloonDevice) TargetVirtualMachineMemorySize(
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDevice/targetVirtualMachineMemorySize
-func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetTargetVirtualMachineMemorySize(value unsafe.Pointer) {
+func (v_ VZVirtioTraditionalMemoryBalloonDevice) SetTargetVirtualMachineMemorySize(value uint64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTargetVirtualMachineMemorySize:"), value)
 }
 

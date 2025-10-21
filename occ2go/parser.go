@@ -2,6 +2,7 @@ package occ2go
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/tmc/appledocs"
@@ -906,7 +907,12 @@ func ParseProperty(doc *appledocs.Document) (*ParsedProperty, error) {
 	docURL := ConvertDocURLToWeb(doc.Identifier.URL)
 	abstract := ExtractAbstract(doc.Abstract)
 
-	if !strings.Contains(externalID, "(py)") {
+	hasPy := strings.Contains(externalID, "(py)")
+	hasCpy := strings.Contains(externalID, "(cpy)")
+	if os.Getenv("DEBUG_PARSER") != "" {
+		fmt.Fprintf(os.Stderr, "DEBUG: Property check %s: (py)=%v (cpy)=%v\n", externalID, hasPy, hasCpy)
+	}
+	if !hasPy && !hasCpy {
 		return nil, fmt.Errorf("not a property: %s", externalID)
 	}
 
@@ -926,16 +932,152 @@ func ParseProperty(doc *appledocs.Document) (*ParsedProperty, error) {
 		return nil, fmt.Errorf("no declaration found for %s", externalID)
 	}
 
+	if strings.Contains(externalID, "(cpy)") && strings.Contains(externalID, "maximumAllowedMemorySize") {
+		propName := externalID[strings.LastIndex(externalID, ")")+1:]
+		fmt.Fprintf(os.Stderr, "DEBUG: Parsing class property %s: %d tokens\n", propName, len(tokens))
+		for i, tok := range tokens {
+			if i < 10 { // Show first 10 tokens
+				fmt.Fprintf(os.Stderr, "DEBUG:   [%d] kind=%s text=%q\n", i, tok.Kind, tok.Text)
+			}
+		}
+	}
+
 	property, err := ParsePropertyDeclaration(tokens)
+	if os.Getenv("DEBUG_PARSER") != "" && strings.Contains(externalID, "(cpy)") {
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "DEBUG: ParsePropertyDeclaration error: %v\n", err)
+		} else {
+			fmt.Fprintf(os.Stderr, "DEBUG: Parsed property successfully: name=%s type=%s\n", property.Name, property.Type)
+		}
+	}
 	if err != nil {
 		return nil, err
 	}
+
+	// Mark as class property if external ID contains (cpy)
+	property.IsClassProperty = strings.Contains(externalID, "(cpy)")
 
 	property.Availability = availability
 	property.DocURL = docURL
 	property.Abstract = abstract
 
 	return property, nil
+}
+
+// parseSwiftPropertyDeclaration parses a Swift property declaration.
+// Swift property syntax: [class] var name: Type { get [set] }
+func parseSwiftPropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error) {
+	if os.Getenv("DEBUG_PARSER") != "" {
+		fmt.Fprintf(os.Stderr, "DEBUG: parseSwiftPropertyDeclaration called with %d tokens\n", len(tokens))
+		if len(tokens) > 0 {
+			fmt.Fprintf(os.Stderr, "DEBUG: First token: kind=%s text=%s\n", tokens[0].Kind, tokens[0].Text)
+		}
+	}
+
+	property := &ParsedProperty{
+		Attributes: []string{},
+	}
+
+	i := 0
+
+	// Check for 'class' keyword (indicates class property)
+	if i < len(tokens) && tokens[i].Kind == "keyword" && tokens[i].Text == "class" {
+		// This is a class property, skip to 'var'
+		i++
+		// Skip whitespace
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+	}
+
+	// Expect 'var' or 'let' keyword
+	if i >= len(tokens) || tokens[i].Kind != "keyword" {
+		return nil, fmt.Errorf("expected var or let keyword in Swift property")
+	}
+	if tokens[i].Text != "var" && tokens[i].Text != "let" {
+		return nil, fmt.Errorf("expected var or let, got %s", tokens[i].Text)
+	}
+
+	// 'let' is read-only
+	if tokens[i].Text == "let" {
+		property.Attributes = append(property.Attributes, "readonly")
+	}
+
+	i++ // Skip 'var' or 'let'
+
+	// Skip whitespace
+	for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+		i++
+	}
+
+	// Parse property name (identifier)
+	if i >= len(tokens) || tokens[i].Kind != "identifier" {
+		return nil, fmt.Errorf("expected property name identifier")
+	}
+	property.Name = tokens[i].Text
+	i++
+
+	// Skip whitespace and colon
+	for i < len(tokens) && (tokens[i].Kind == "text" || tokens[i].Text == ":") {
+		i++
+	}
+
+	// Parse property type (typeIdentifier or keyword)
+	typeParts := []string{}
+	for i < len(tokens) && (tokens[i].Kind == "typeIdentifier" || tokens[i].Kind == "keyword") {
+		typeParts = append(typeParts, tokens[i].Text)
+		i++
+		// Skip whitespace between type parts
+		for i < len(tokens) && tokens[i].Kind == "text" && strings.TrimSpace(tokens[i].Text) == "" {
+			i++
+		}
+	}
+
+	if len(typeParts) == 0 {
+		return nil, fmt.Errorf("no type found for property %s", property.Name)
+	}
+
+	property.Type = strings.Join(typeParts, " ")
+
+	// Check for { get } or { get set } to determine readonly
+	// Look for opening brace
+	for i < len(tokens) && tokens[i].Text != "{" {
+		i++
+	}
+	if i < len(tokens) {
+		i++ // Skip {
+		// Look for 'get' and 'set' keywords
+		hasGet := false
+		hasSet := false
+		for i < len(tokens) && tokens[i].Text != "}" {
+			if tokens[i].Kind == "keyword" {
+				if tokens[i].Text == "get" {
+					hasGet = true
+				} else if tokens[i].Text == "set" {
+					hasSet = true
+				}
+			}
+			i++
+		}
+		// If only 'get' or neither, it's readonly
+		if hasGet && !hasSet {
+			if !contains(property.Attributes, "readonly") {
+				property.Attributes = append(property.Attributes, "readonly")
+			}
+		}
+	}
+
+	return property, nil
+}
+
+// contains checks if a string slice contains a value
+func contains(slice []string, str string) bool {
+	for _, s := range slice {
+		if s == str {
+			return true
+		}
+	}
+	return false
 }
 
 // ParsePropertyDeclaration parses an Objective-C property declaration from tokens.
@@ -945,9 +1087,17 @@ func ParsePropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error)
 		Attributes: []string{},
 	}
 
+	// Check if this is a Swift property declaration (class var / var)
+	// Pattern: [class] var name: Type { get }
+	if len(tokens) > 0 && tokens[0].Kind == "keyword" {
+		if tokens[0].Text == "class" || tokens[0].Text == "var" || tokens[0].Text == "let" {
+			return parseSwiftPropertyDeclaration(tokens)
+		}
+	}
+
 	i := 0
 
-	// Look for @property keyword
+	// Look for @property keyword (Objective-C)
 	for i < len(tokens) && !(tokens[i].Kind == "keyword" && tokens[i].Text == "@property") {
 		i++
 	}

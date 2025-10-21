@@ -82,6 +82,34 @@ func NewVZVirtualMachineConfiguration() VZVirtualMachineConfiguration {
 }
 
 
+// The maximum number of CPUs you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedCPUCount
+func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedCPUCount() uint {
+	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("maximumAllowedCPUCount"))
+	return rv
+}
+// The maximum amount of memory that you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedMemorySize
+func (vc _VZVirtualMachineConfigurationClass) MaximumAllowedMemorySize() uint64 {
+	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("maximumAllowedMemorySize"))
+	return rv
+}
+// The minimum number of CPUs you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedCPUCount
+func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedCPUCount() uint {
+	rv := objc.Send[uint](objc.ID(vc.class), objc.Sel("minimumAllowedCPUCount"))
+	return rv
+}
+// The minimum amount of memory that you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedMemorySize
+func (vc _VZVirtualMachineConfigurationClass) MinimumAllowedMemorySize() uint64 {
+	rv := objc.Send[uint64](objc.ID(vc.class), objc.Sel("minimumAllowedMemorySize"))
+	return rv
+}
 // Validates the current configuration settings and reports any issues that might prevent the successful initialization of the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/validate()
@@ -113,7 +141,17 @@ func (v_ VZVirtualMachineConfiguration) AudioDevices() []VZAudioDeviceConfigurat
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/audioDevices
 func (v_ VZVirtualMachineConfiguration) SetAudioDevices(value []VZAudioDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAudioDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setAudioDevices:"), nsArray)
 }
 // The guest system to boot when the VM starts.
 //
@@ -147,7 +185,17 @@ func (v_ VZVirtualMachineConfiguration) ConsoleDevices() []VZConsoleDeviceConfig
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/consoleDevices
 func (v_ VZVirtualMachineConfiguration) SetConsoleDevices(value []VZConsoleDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setConsoleDevices:"), nsArray)
 }
 // The number of CPUs you make available to the guest operating system.
 //
@@ -181,7 +229,17 @@ func (v_ VZVirtualMachineConfiguration) DirectorySharingDevices() []VZDirectoryS
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/directorySharingDevices
 func (v_ VZVirtualMachineConfiguration) SetDirectorySharingDevices(value []VZDirectorySharingDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectorySharingDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setDirectorySharingDevices:"), nsArray)
 }
 // The array of randomization devices that you expose to the guest operating system.
 //
@@ -198,7 +256,17 @@ func (v_ VZVirtualMachineConfiguration) EntropyDevices() []VZEntropyDeviceConfig
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/entropyDevices
 func (v_ VZVirtualMachineConfiguration) SetEntropyDevices(value []VZEntropyDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setEntropyDevices:"), nsArray)
 }
 // The list of graphics devices.
 //
@@ -215,7 +283,17 @@ func (v_ VZVirtualMachineConfiguration) GraphicsDevices() []VZGraphicsDeviceConf
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/graphicsDevices
 func (v_ VZVirtualMachineConfiguration) SetGraphicsDevices(value []VZGraphicsDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setGraphicsDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setGraphicsDevices:"), nsArray)
 }
 // The list of keyboards.
 //
@@ -232,8 +310,34 @@ func (v_ VZVirtualMachineConfiguration) Keyboards() []VZKeyboardConfiguration {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/keyboards
 func (v_ VZVirtualMachineConfiguration) SetKeyboards(value []VZKeyboardConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setKeyboards:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setKeyboards:"), nsArray)
 }
+// The maximum number of CPUs you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedCPUCount
+func (v_ VZVirtualMachineConfiguration) MaximumAllowedCPUCount() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("maximumAllowedCPUCount"))
+	return rv
+}
+
+// The maximum amount of memory that you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/maximumAllowedMemorySize
+func (v_ VZVirtualMachineConfiguration) MaximumAllowedMemorySize() uint64 {
+	rv := objc.Send[uint64](v_.ID, objc.Sel("maximumAllowedMemorySize"))
+	return rv
+}
+
 // An array that you configure with a memory balloon device, used to update the memory in the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memoryBalloonDevices
@@ -249,7 +353,17 @@ func (v_ VZVirtualMachineConfiguration) MemoryBalloonDevices() []VZMemoryBalloon
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/memoryBalloonDevices
 func (v_ VZVirtualMachineConfiguration) SetMemoryBalloonDevices(value []VZMemoryBalloonDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), nsArray)
 }
 // The memory size in bytes for the virtual machine. Must be a multiple of 1MB and between minimumAllowedMemorySize and maximumAllowedMemorySize.
 //
@@ -268,6 +382,22 @@ func (v_ VZVirtualMachineConfiguration) MemorySize() uint64 {
 func (v_ VZVirtualMachineConfiguration) SetMemorySize(value uint64) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemorySize:"), value)
 }
+// The minimum number of CPUs you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedCPUCount
+func (v_ VZVirtualMachineConfiguration) MinimumAllowedCPUCount() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("minimumAllowedCPUCount"))
+	return rv
+}
+
+// The minimum amount of memory that you may configure for the VM.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/minimumAllowedMemorySize
+func (v_ VZVirtualMachineConfiguration) MinimumAllowedMemorySize() uint64 {
+	rv := objc.Send[uint64](v_.ID, objc.Sel("minimumAllowedMemorySize"))
+	return rv
+}
+
 // The array of network devices that you expose to the guest operating system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/networkDevices
@@ -283,7 +413,17 @@ func (v_ VZVirtualMachineConfiguration) NetworkDevices() []VZNetworkDeviceConfig
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/networkDevices
 func (v_ VZVirtualMachineConfiguration) SetNetworkDevices(value []VZNetworkDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setNetworkDevices:"), nsArray)
 }
 // The hardware platform to use.
 //
@@ -317,7 +457,17 @@ func (v_ VZVirtualMachineConfiguration) PointingDevices() []VZPointingDeviceConf
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/pointingDevices
 func (v_ VZVirtualMachineConfiguration) SetPointingDevices(value []VZPointingDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setPointingDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setPointingDevices:"), nsArray)
 }
 // The array of serial ports that you expose to the guest operating system.
 //
@@ -334,7 +484,17 @@ func (v_ VZVirtualMachineConfiguration) SerialPorts() []VZSerialPortConfiguratio
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/serialPorts
 func (v_ VZVirtualMachineConfiguration) SetSerialPorts(value []VZSerialPortConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setSerialPorts:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSerialPorts:"), nsArray)
 }
 // The socket device that you use to implement port-based communication with the guest operating system.
 //
@@ -351,7 +511,17 @@ func (v_ VZVirtualMachineConfiguration) SocketDevices() []VZSocketDeviceConfigur
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/socketDevices
 func (v_ VZVirtualMachineConfiguration) SetSocketDevices(value []VZSocketDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setSocketDevices:"), nsArray)
 }
 // The array of storage devices that you expose to the guest operating system.
 //
@@ -368,7 +538,17 @@ func (v_ VZVirtualMachineConfiguration) StorageDevices() []VZStorageDeviceConfig
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/storageDevices
 func (v_ VZVirtualMachineConfiguration) SetStorageDevices(value []VZStorageDeviceConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setStorageDevices:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setStorageDevices:"), nsArray)
 }
 // The list of configured USB controllers for the VM.
 //
@@ -385,7 +565,17 @@ func (v_ VZVirtualMachineConfiguration) UsbControllers() []VZUSBControllerConfig
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachineConfiguration/usbControllers
 func (v_ VZVirtualMachineConfiguration) SetUsbControllers(value []VZUSBControllerConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setUsbControllers:"), nsArray)
 }
 // The number of CPUs for the virtual machine. Must be between minimumAllowedCPUCount and maximumAllowedCPUCount. [Full Topic]
 func (v_ VZVirtualMachineConfiguration) CpuCount() uint {

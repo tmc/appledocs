@@ -100,15 +100,12 @@ func init() {
 
 package {{.PackageName}}
 
-{{- $requiredImports := .RequiredImports}}
-{{- $hasImports := or .WithRefMethods (gt (len .RefTypes) 0) (gt (len $requiredImports) 0)}}
+{{- $undefinedTypes := .GetUndefinedTypesForTemplate}}
+{{- $hasImports := or .WithRefMethods (gt (len .RefTypes) 0) (gt (len $undefinedTypes) 0)}}
 {{if $hasImports -}}
 import (
-{{- if or .WithRefMethods (gt (len .RefTypes) 0)}}
+{{- if or .WithRefMethods (gt (len .RefTypes) 0) (gt (len $undefinedTypes) 0)}}
 	"unsafe"
-{{- end}}
-{{- range $pkg := sortedKeys $requiredImports}}
-	"github.com/tmc/appledocs/generated/{{$pkg}}"
 {{- end}}
 )
 
@@ -231,7 +228,6 @@ type EventModifierFlags int
 type CGFloat = float64
 
 {{end -}}
-{{- $undefinedTypes := .GetUndefinedTypesForTemplate}}
 {{if gt (len $undefinedTypes) 0}}
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.
@@ -841,7 +837,21 @@ func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$goType}} {
 // [Full Topic]: {{convertDocURL .DocURL}}
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType}}) {
+	{{- if hasPrefix $goType "[]"}}
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), nsArray)
+	{{- else}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
+	{{- end}}
 }
 
 {{- end}}

@@ -97,8 +97,8 @@ func (v_ VZMacOSConfigurationRequirements) MinimumSupportedCPUCount() uint {
 // The minimum supported memory size for this configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements/minimumSupportedMemorySize
-func (v_ VZMacOSConfigurationRequirements) MinimumSupportedMemorySize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("minimumSupportedMemorySize"))
+func (v_ VZMacOSConfigurationRequirements) MinimumSupportedMemorySize() uint64 {
+	rv := objc.Send[uint64](v_.ID, objc.Sel("minimumSupportedMemorySize"))
 	return rv
 }
 

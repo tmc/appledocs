@@ -97,6 +97,16 @@ func (v_ VZMacGraphicsDeviceConfiguration) Displays() []VZMacGraphicsDisplayConf
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDeviceConfiguration/displays
 func (v_ VZMacGraphicsDeviceConfiguration) SetDisplays(value []VZMacGraphicsDisplayConfiguration) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](v_.ID, objc.Sel("setDisplays:"), nsArray)
 }
 
