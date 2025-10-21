@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CKQuery] class.
@@ -125,8 +124,8 @@ func (c_ CKQuery) RecordType() unsafe.Pointer {
 // The sort descriptors for organizing the query’s results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/sortDescriptors
-func (c_ CKQuery) SortDescriptors() []NSSortDescriptor {
-	rv := objc.Send[[]NSSortDescriptor](c_.ID, objc.Sel("sortDescriptors"))
+func (c_ CKQuery) SortDescriptors() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -136,7 +135,7 @@ func (c_ CKQuery) SortDescriptors() []NSSortDescriptor {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuery/sortDescriptors
-func (c_ CKQuery) SetSortDescriptors(value []NSSortDescriptor) {
+func (c_ CKQuery) SetSortDescriptors(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

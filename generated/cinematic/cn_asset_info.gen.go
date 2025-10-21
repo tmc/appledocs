@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [CNAssetInfo] class.
@@ -97,8 +96,8 @@ func (c_ CNAssetInfo) FrameTimingTrack() unsafe.Pointer {
 // Tracks required to construct the video composition output.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Cinematic/CNAssetInfo-8ja4t/videoCompositionTracks
-func (c_ CNAssetInfo) VideoCompositionTracks() []AVAssetTrack {
-	rv := objc.Send[[]AVAssetTrack](c_.ID, objc.Sel("videoCompositionTracks"))
+func (c_ CNAssetInfo) VideoCompositionTracks() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](c_.ID, objc.Sel("videoCompositionTracks"))
 	return rv
 }
 

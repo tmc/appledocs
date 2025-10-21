@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [Tokenizer] class.
@@ -35,7 +34,7 @@ type ITokenizer interface {
 	SetLanguage(language unsafe.Pointer)
 	TokenRangeAtIndex(characterIndex uint) Range
 	TokenRangeForRange(range_ Range) Range
-	TokensForRange(range_ Range) []avfoundation.NSValue
+	TokensForRange(range_ Range) []unsafe.Pointer
 }
 
 // A tokenizer that segments natural language text into semantic units.
@@ -132,8 +131,8 @@ func (t_ Tokenizer) TokenRangeForRange(range_ Range) Range {
 // Tokenizes the string within the provided range.
 //
 // [Full Topic]: https://developer.apple.com/documentation/NaturalLanguage/NLTokenizer/tokensForRange:
-func (t_ Tokenizer) TokensForRange(range_ Range) []avfoundation.NSValue {
-	rv := objc.Send[[]avfoundation.NSValue](t_.ID, objc.Sel("tokensForRange:"), range_)
+func (t_ Tokenizer) TokensForRange(range_ Range) []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](t_.ID, objc.Sel("tokensForRange:"), range_)
 	return rv
 }
 

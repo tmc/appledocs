@@ -242,8 +242,8 @@ func (p_ PlayerViewController) SetContentProposalViewController(value unsafe.Poi
 // An array of action controls to present contextually during playback.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) ContextualActions() []UIAction {
-	rv := objc.Send[[]UIAction](p_.ID, objc.Sel("contextualActions"))
+func (p_ PlayerViewController) ContextualActions() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("contextualActions"))
 	return rv
 }
 
@@ -253,7 +253,7 @@ func (p_ PlayerViewController) ContextualActions() []UIAction {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActions
-func (p_ PlayerViewController) SetContextualActions(value []UIAction) {
+func (p_ PlayerViewController) SetContextualActions(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -314,8 +314,8 @@ func (p_ PlayerViewController) SetCustomInfoViewController(value unsafe.Pointer)
 // An array of view controllers to display as content tabs in the player user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) CustomInfoViewControllers() []UIViewController {
-	rv := objc.Send[[]UIViewController](p_.ID, objc.Sel("customInfoViewControllers"))
+func (p_ PlayerViewController) CustomInfoViewControllers() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("customInfoViewControllers"))
 	return rv
 }
 
@@ -325,7 +325,7 @@ func (p_ PlayerViewController) CustomInfoViewControllers() []UIViewController {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
-func (p_ PlayerViewController) SetCustomInfoViewControllers(value []UIViewController) {
+func (p_ PlayerViewController) SetCustomInfoViewControllers(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -422,8 +422,8 @@ func (p_ PlayerViewController) GroupExperienceCoordinator() unsafe.Pointer {
 // An array of actions to present in the Info content view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) InfoViewActions() []UIAction {
-	rv := objc.Send[[]UIAction](p_.ID, objc.Sel("infoViewActions"))
+func (p_ PlayerViewController) InfoViewActions() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("infoViewActions"))
 	return rv
 }
 
@@ -433,7 +433,7 @@ func (p_ PlayerViewController) InfoViewActions() []UIAction {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/infoViewActions
-func (p_ PlayerViewController) SetInfoViewActions(value []UIAction) {
+func (p_ PlayerViewController) SetInfoViewActions(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -743,8 +743,8 @@ func (p_ PlayerViewController) ToggleLookupAction() unsafe.Pointer {
 // An array of actions and menus to display with the default player controls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems
-func (p_ PlayerViewController) TransportBarCustomMenuItems() []appkit.UIMenuElement {
-	rv := objc.Send[[]appkit.UIMenuElement](p_.ID, objc.Sel("transportBarCustomMenuItems"))
+func (p_ PlayerViewController) TransportBarCustomMenuItems() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("transportBarCustomMenuItems"))
 	return rv
 }
 
@@ -754,7 +754,7 @@ func (p_ PlayerViewController) TransportBarCustomMenuItems() []appkit.UIMenuElem
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/transportBarCustomMenuItems
-func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []appkit.UIMenuElement) {
+func (p_ PlayerViewController) SetTransportBarCustomMenuItems(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

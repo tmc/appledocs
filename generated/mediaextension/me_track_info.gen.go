@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [METrackInfo] class.
@@ -131,8 +130,8 @@ func (m_ METrackInfo) SetNominalFrameRate(value unsafe.Pointer) {
 // An array of edit segments for the given track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) TrackEdits() []avfoundation.NSValue {
-	rv := objc.Send[[]avfoundation.NSValue](m_.ID, objc.Sel("trackEdits"))
+func (m_ METrackInfo) TrackEdits() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](m_.ID, objc.Sel("trackEdits"))
 	return rv
 }
 
@@ -142,7 +141,7 @@ func (m_ METrackInfo) TrackEdits() []avfoundation.NSValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) SetTrackEdits(value []avfoundation.NSValue) {
+func (m_ METrackInfo) SetTrackEdits(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

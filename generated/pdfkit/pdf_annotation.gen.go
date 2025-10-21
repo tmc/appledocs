@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -771,8 +770,8 @@ func (p_ PDFAnnotation) SetPage(value unsafe.Pointer) {
 // An array of bezier paths, in annotation-space coordinates, that compose the annotation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/paths
-func (p_ PDFAnnotation) Paths() []UIBezierPath {
-	rv := objc.Send[[]UIBezierPath](p_.ID, objc.Sel("paths"))
+func (p_ PDFAnnotation) Paths() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("paths"))
 	return rv
 }
 
@@ -797,8 +796,8 @@ func (p_ PDFAnnotation) SetPopup(value unsafe.Pointer) {
 // An array of values that represents the points bounding the marked-up text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/quadrilateralPoints
-func (p_ PDFAnnotation) QuadrilateralPoints() []avfoundation.NSValue {
-	rv := objc.Send[[]avfoundation.NSValue](p_.ID, objc.Sel("quadrilateralPoints"))
+func (p_ PDFAnnotation) QuadrilateralPoints() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("quadrilateralPoints"))
 	return rv
 }
 
@@ -808,7 +807,7 @@ func (p_ PDFAnnotation) QuadrilateralPoints() []avfoundation.NSValue {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFAnnotation/quadrilateralPoints
-func (p_ PDFAnnotation) SetQuadrilateralPoints(value []avfoundation.NSValue) {
+func (p_ PDFAnnotation) SetQuadrilateralPoints(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

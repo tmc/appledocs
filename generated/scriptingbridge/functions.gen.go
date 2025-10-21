@@ -1,13 +1,13 @@
-// Code generated from Apple documentation for ApplePayMerchantTokenUsageInformation. DO NOT EDIT.
+// Code generated from Apple documentation for ScriptingBridge. DO NOT EDIT.
 
-package applepaymerchanttokenusageinformation
+package scriptingbridge
 
 import (
 	"github.com/ebitengine/purego"
 )
 
 
-// ApplePayMerchantTokenUsageInformation Functions (0 total)
+// ScriptingBridge Functions (0 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -20,8 +20,6 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
 
 
 

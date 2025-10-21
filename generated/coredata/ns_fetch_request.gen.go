@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/cloudkit"
 )
 
 // The class instance for the [FetchRequest] class.
@@ -449,8 +448,8 @@ func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 // The sort descriptors of the fetch request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SortDescriptors() []cloudkit.NSSortDescriptor {
-	rv := objc.Send[[]cloudkit.NSSortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
+func (f_ FetchRequest) SortDescriptors() []NSSortDescriptor {
+	rv := objc.Send[[]NSSortDescriptor](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -460,7 +459,7 @@ func (f_ FetchRequest) SortDescriptors() []cloudkit.NSSortDescriptor {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSFetchRequest/sortDescriptors
-func (f_ FetchRequest) SetSortDescriptors(value []cloudkit.NSSortDescriptor) {
+func (f_ FetchRequest) SetSortDescriptors(value []NSSortDescriptor) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

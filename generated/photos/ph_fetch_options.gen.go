@@ -8,8 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/cloudkit"
 )
 
 // The class instance for the [PHFetchOptions] class.
@@ -175,8 +173,8 @@ func (p_ PHFetchOptions) SetPredicate(value unsafe.Pointer) {
 // A list of sort descriptors, specifying an order for the fetched objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
-func (p_ PHFetchOptions) SortDescriptors() []cloudkit.NSSortDescriptor {
-	rv := objc.Send[[]cloudkit.NSSortDescriptor](p_.ID, objc.Sel("sortDescriptors"))
+func (p_ PHFetchOptions) SortDescriptors() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](p_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -186,7 +184,7 @@ func (p_ PHFetchOptions) SortDescriptors() []cloudkit.NSSortDescriptor {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHFetchOptions/sortDescriptors
-func (p_ PHFetchOptions) SetSortDescriptors(value []cloudkit.NSSortDescriptor) {
+func (p_ PHFetchOptions) SetSortDescriptors(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

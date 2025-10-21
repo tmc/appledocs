@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [NavigationMarkersGroup] class.
@@ -109,16 +108,16 @@ func NewNavigationMarkersGroupWithTitleTimedNavigationMarkers(title string, navi
 // The array of date range navigation markers for which the group provides navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/dateRangeNavigationMarkers
-func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []AVDateRangeMetadataGroup {
-	rv := objc.Send[[]AVDateRangeMetadataGroup](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
+func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
 	return rv
 }
 
 // The array of timed navigation markers for which the group provides navigation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/timedNavigationMarkers
-func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []AVTimedMetadataGroup {
-	rv := objc.Send[[]AVTimedMetadataGroup](n_.ID, objc.Sel("timedNavigationMarkers"))
+func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](n_.ID, objc.Sel("timedNavigationMarkers"))
 	return rv
 }
 

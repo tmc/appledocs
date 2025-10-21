@@ -28,6 +28,8 @@ type GCControllerButtonTouchedChangedHandler unsafe.Pointer
 
 type GCControllerButtonValueChangedHandler unsafe.Pointer
 
+type GCControllerInputState unsafe.Pointer
+
 type GCControllerPlayerIndex unsafe.Pointer
 
 type GCControllerTouchpadHandler unsafe.Pointer

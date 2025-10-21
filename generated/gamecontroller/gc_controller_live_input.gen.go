@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [GCControllerLiveInput] class.
@@ -28,7 +29,7 @@ type _GCControllerLiveInputClass struct {
 
 // An interface definition for the [GCControllerLiveInput] class.
 type IGCControllerLiveInput interface {
-	IGCControllerInputState
+	objectivec.IObject
 	Capture() unsafe.Pointer
 	NextInputState() unsafe.Pointer
 }
@@ -39,16 +40,14 @@ type IGCControllerLiveInput interface {
 //
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCControllerLiveInput
 type GCControllerLiveInput struct {
-	GCControllerInputState
+	objectivec.Object
 }
 
 // GCControllerLiveInputFrom constructs a [GCControllerLiveInput] from an unsafe.Pointer.
 //
 // The input profile for a controller.
 func GCControllerLiveInputFrom(ptr unsafe.Pointer) GCControllerLiveInput {
-	return GCControllerLiveInput{
-		GCControllerInputState: GCControllerInputStateFrom(ptr),
-	}
+	return GCControllerLiveInput{objectivec.Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.

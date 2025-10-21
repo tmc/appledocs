@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [AudioPlayer] class.
@@ -210,8 +209,8 @@ func (a_ AudioPlayer) UpdateMeters() {
 // An array of channel descriptions for the audio player.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) ChannelAssignments() []AVAudioSessionChannelDescription {
-	rv := objc.Send[[]AVAudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
+func (a_ AudioPlayer) ChannelAssignments() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](a_.ID, objc.Sel("channelAssignments"))
 	return rv
 }
 
@@ -221,7 +220,7 @@ func (a_ AudioPlayer) ChannelAssignments() []AVAudioSessionChannelDescription {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioPlayer/channelAssignments
-func (a_ AudioPlayer) SetChannelAssignments(value []AVAudioSessionChannelDescription) {
+func (a_ AudioPlayer) SetChannelAssignments(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

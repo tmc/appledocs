@@ -1794,8 +1794,8 @@ func (v_ View) SetAutoresizingMask(value unsafe.Pointer) {
 // An array of Core Image filters to apply to the view’s background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) BackgroundFilters() []CIFilter {
-	rv := objc.Send[[]CIFilter](v_.ID, objc.Sel("backgroundFilters"))
+func (v_ View) BackgroundFilters() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](v_.ID, objc.Sel("backgroundFilters"))
 	return rv
 }
 
@@ -1805,7 +1805,7 @@ func (v_ View) BackgroundFilters() []CIFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/backgroundFilters
-func (v_ View) SetBackgroundFilters(value []CIFilter) {
+func (v_ View) SetBackgroundFilters(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -1993,8 +1993,8 @@ func (v_ View) Constraints() []LayoutConstraint {
 // An array of Core Image filters to apply to the contents of the view and its sublayers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) ContentFilters() []CIFilter {
-	rv := objc.Send[[]CIFilter](v_.ID, objc.Sel("contentFilters"))
+func (v_ View) ContentFilters() []unsafe.Pointer {
+	rv := objc.Send[[]unsafe.Pointer](v_.ID, objc.Sel("contentFilters"))
 	return rv
 }
 
@@ -2004,7 +2004,7 @@ func (v_ View) ContentFilters() []CIFilter {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/contentFilters
-func (v_ View) SetContentFilters(value []CIFilter) {
+func (v_ View) SetContentFilters(value []unsafe.Pointer) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PropertyDescription] class.
@@ -244,8 +243,8 @@ func (p_ PropertyDescription) SetUserInfo(value unsafe.Pointer) {
 // The validation predicates of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPropertyDescription/validationPredicates
-func (p_ PropertyDescription) ValidationPredicates() []classkit.NSPredicate {
-	rv := objc.Send[[]classkit.NSPredicate](p_.ID, objc.Sel("validationPredicates"))
+func (p_ PropertyDescription) ValidationPredicates() []NSPredicate {
+	rv := objc.Send[[]NSPredicate](p_.ID, objc.Sel("validationPredicates"))
 	return rv
 }
 
