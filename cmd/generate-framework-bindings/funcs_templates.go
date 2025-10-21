@@ -219,7 +219,7 @@ func extractTypeName(funcName, framework string) string {
 }
 
 // formatMethodParams formats method parameters for Go function signature.
-// Returns: "title string, target objc.IObject, action objc.Selector"
+// Returns: "title string, target objectivec.IObject, action objc.Selector"
 func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
 	if len(method.Parameters) == 0 {
 		return ""
@@ -235,6 +235,16 @@ func formatMethodParams(method *occ2go.ParsedMethod, framework string) string {
 			paramName += "_"
 		}
 		goType := mapObjCTypeToGo(p.Type, framework)
+
+		// Convert objc.ID to objectivec.IObject for better type safety
+		// This allows users to pass any Objective-C object wrapper instead of raw objc.ID
+		if goType == "objc.ID" {
+			goType = "objectivec.IObject"
+		} else {
+			// For other class types, use interface types
+			goType = typeToInterfaceType(goType)
+		}
+
 		parts[i] = fmt.Sprintf("%s %s", paramName, goType)
 	}
 	return strings.Join(parts, ", ")
@@ -427,6 +437,13 @@ func generateTestValueWithPackage(goType, framework, packageName, paramName stri
 	}
 
 	// Package-local type - needs to be qualified with packageName
+	// Handle array types specially: []Foo{} should become []packageName.Foo{}, not packageName.[]Foo{}
+	if strings.HasPrefix(testValue, "[]") {
+		// Extract the element type from []Type{}
+		elementType := strings.TrimPrefix(testValue, "[]")
+		elementType = strings.TrimSuffix(elementType, "{}")
+		return "[]" + packageName + "." + elementType + "{}"
+	}
 	return packageName + "." + testValue
 }
 

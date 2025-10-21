@@ -329,6 +329,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		if mapping.ObjCType == objcType {
 			// If the type is from a different framework, qualify it
 			if mapping.Framework != "" && mapping.Framework != framework {
+				// Don't qualify types that are already qualified (unsafe.Pointer, objc.ID, etc.)
+				if strings.Contains(mapping.GoType, ".") {
+					return mapping.GoType, true
+				}
 				return strings.ToLower(mapping.Framework) + "." + mapping.GoType, true
 			}
 			return mapping.GoType, true
@@ -357,6 +361,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			if mapping.ObjCType == objcTypeNoPtr {
 				// If the type is from a different framework, qualify it
 				if mapping.Framework != "" && mapping.Framework != framework {
+					// Don't qualify types that are already qualified (unsafe.Pointer, objc.ID, etc.)
+					if strings.Contains(mapping.GoType, ".") {
+						return mapping.GoType, true
+					}
 					return strings.ToLower(mapping.Framework) + "." + mapping.GoType, true
 				}
 				return mapping.GoType, true
