@@ -391,8 +391,8 @@ func (u_ URLSession) DelegateQueue() unsafe.Pointer {
 // An app-defined descriptive label for the session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
-func (u_ URLSession) SessionDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sessionDescription"))
+func (u_ URLSession) SessionDescription() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("sessionDescription"))
 	return rv
 }
 
@@ -402,8 +402,8 @@ func (u_ URLSession) SessionDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
-func (u_ URLSession) SetSessionDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), value)
+func (u_ URLSession) SetSessionDescription(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), objc.String(value))
 }
 // The shared singleton session object.
 //

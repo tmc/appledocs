@@ -117,8 +117,8 @@ func (w_ WindowTab) SetAttributedTitle(value unsafe.Pointer) {
 // The title for the window tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
-func (w_ WindowTab) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("title"))
+func (w_ WindowTab) Title() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -128,14 +128,14 @@ func (w_ WindowTab) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
-func (w_ WindowTab) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
+func (w_ WindowTab) SetTitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The tooltip for this window tab.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
-func (w_ WindowTab) ToolTip() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("toolTip"))
+func (w_ WindowTab) ToolTip() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
@@ -145,8 +145,8 @@ func (w_ WindowTab) ToolTip() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
-func (w_ WindowTab) SetToolTip(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), value)
+func (w_ WindowTab) SetToolTip(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 
 

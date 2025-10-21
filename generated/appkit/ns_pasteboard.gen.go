@@ -38,7 +38,7 @@ type IPasteboard interface {
 	SetDataForType(data unsafe.Pointer, dataType unsafe.Pointer) bool
 	SetPropertyListForType(plist objc.ID, dataType unsafe.Pointer) bool
 	SetStringForType(string_ string, dataType unsafe.Pointer) bool
-	StringForType(dataType unsafe.Pointer) unsafe.Pointer
+	StringForType(dataType unsafe.Pointer) string
 	WriteObjects(objects unsafe.Pointer) bool
 }
 
@@ -155,8 +155,8 @@ func (p_ Pasteboard) SetStringForType(string_ string, dataType unsafe.Pointer) b
 // Returns a concatenation of the strings for the specified type from all the items in the receiver that contain the type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/string(forType:)
-func (p_ Pasteboard) StringForType(dataType unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringForType:"), dataType)
+func (p_ Pasteboard) StringForType(dataType unsafe.Pointer) string {
+	rv := objc.Send[string](p_.ID, objc.Sel("stringForType:"), dataType)
 	return rv
 }
 

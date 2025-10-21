@@ -83,8 +83,8 @@ func NewUserNotification() UserNotification {
 // Specifies the title of the action button displayed in the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
-func (u_ UserNotification) ActionButtonTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("actionButtonTitle"))
+func (u_ UserNotification) ActionButtonTitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("actionButtonTitle"))
 	return rv
 }
 
@@ -94,8 +94,8 @@ func (u_ UserNotification) ActionButtonTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/actionButtonTitle
-func (u_ UserNotification) SetActionButtonTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), value)
+func (u_ UserNotification) SetActionButtonTitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setActionButtonTitle:"), objc.String(value))
 }
 // Specifies what caused a user notification to occur.
 //
@@ -177,8 +177,8 @@ func (u_ UserNotification) SetDeliveryDate(value unsafe.Pointer) {
 // The body text of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
-func (u_ UserNotification) InformativeText() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("informativeText"))
+func (u_ UserNotification) InformativeText() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("informativeText"))
 	return rv
 }
 
@@ -188,8 +188,8 @@ func (u_ UserNotification) InformativeText() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/informativeText
-func (u_ UserNotification) SetInformativeText(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), value)
+func (u_ UserNotification) SetInformativeText(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setInformativeText:"), objc.String(value))
 }
 // Specifies whether the user notification has been presented.
 //
@@ -210,8 +210,8 @@ func (u_ UserNotification) Remote() bool {
 // Specifies a custom title for the close button in an alert-style notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/otherButtonTitle
-func (u_ UserNotification) OtherButtonTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("otherButtonTitle"))
+func (u_ UserNotification) OtherButtonTitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("otherButtonTitle"))
 	return rv
 }
 
@@ -221,8 +221,8 @@ func (u_ UserNotification) OtherButtonTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/otherButtonTitle
-func (u_ UserNotification) SetOtherButtonTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), value)
+func (u_ UserNotification) SetOtherButtonTitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setOtherButtonTitle:"), objc.String(value))
 }
 // The response with which the user responded to a notification.
 //
@@ -235,8 +235,8 @@ func (u_ UserNotification) Response() unsafe.Pointer {
 // Specifies the title of the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/title
-func (u_ UserNotification) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
+func (u_ UserNotification) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -246,8 +246,8 @@ func (u_ UserNotification) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/title
-func (u_ UserNotification) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
+func (u_ UserNotification) SetTitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

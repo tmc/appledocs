@@ -136,8 +136,8 @@ func (d_ DateFormatter) SetCalendar(value unsafe.Pointer) {
 // The date format string used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-func (d_ DateFormatter) DateFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateFormat"))
+func (d_ DateFormatter) DateFormat() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("dateFormat"))
 	return rv
 }
 
@@ -147,8 +147,8 @@ func (d_ DateFormatter) DateFormat() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateFormatter/dateFormat
-func (d_ DateFormatter) SetDateFormat(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), value)
+func (d_ DateFormatter) SetDateFormat(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDateFormat:"), objc.String(value))
 }
 // The date style of the receiver.
 //

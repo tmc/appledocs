@@ -733,8 +733,8 @@ func (c_ CaptureDevice) TransportType() unsafe.Pointer {
 // An identifier that uniquely identifies the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/uniqueID
-func (c_ CaptureDevice) UniqueID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("uniqueID"))
+func (c_ CaptureDevice) UniqueID() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("uniqueID"))
 	return rv
 }
 

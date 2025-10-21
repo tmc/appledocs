@@ -194,8 +194,8 @@ func (s_ Screen) LastDisplayUpdateTimestamp() float64 {
 // The localized name of the display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/localizedName
-func (s_ Screen) LocalizedName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("localizedName"))
+func (s_ Screen) LocalizedName() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("localizedName"))
 	return rv
 }
 

@@ -84,8 +84,8 @@ func NewHTTPURLResponse() HTTPURLResponse {
 // Returns a localized string corresponding to a specified HTTP status code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPURLResponse/localizedString(forStatusCode:)
-func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
+func (hc _HTTPURLResponseClass) LocalizedStringForStatusCode(statusCode int) string {
+	rv := objc.Send[string](objc.ID(hc.class), objc.Sel("localizedStringForStatusCode:"), statusCode)
 	return rv
 }
 

@@ -100,16 +100,16 @@ func (uc _UserNotificationActionClass) ActionWithIdentifierTitle(identifier stri
 // The identifier for the user notification action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/identifier
-func (u_ UserNotificationAction) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("identifier"))
+func (u_ UserNotificationAction) Identifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("identifier"))
 	return rv
 }
 
 // The localized title shown to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/title
-func (u_ UserNotificationAction) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
+func (u_ UserNotificationAction) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 

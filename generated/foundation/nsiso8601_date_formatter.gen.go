@@ -85,8 +85,8 @@ func NewISO8601DateFormatter() ISO8601DateFormatter {
 // Creates a representation of the specified date with a given time zone and format options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ISO8601DateFormatter/string(from:timeZone:formatOptions:)
-func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date unsafe.Pointer, timeZone unsafe.Pointer, formatOptions unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
+func (ic _ISO8601DateFormatterClass) StringFromDateTimeZoneFormatOptions(date unsafe.Pointer, timeZone unsafe.Pointer, formatOptions unsafe.Pointer) string {
+	rv := objc.Send[string](objc.ID(ic.class), objc.Sel("stringFromDate:timeZone:formatOptions:"), date, timeZone, formatOptions)
 	return rv
 }
 

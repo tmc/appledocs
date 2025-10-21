@@ -34,10 +34,10 @@ type IArray interface {
 	ArrayByAddingObject(anObject unsafe.Pointer) []objc.ID
 	ArrayByAddingObjectsFromArray(otherArray unsafe.Pointer) []objc.ID
 	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
-	ComponentsJoinedByString(separator string) unsafe.Pointer
+	ComponentsJoinedByString(separator string) string
 	ContainsObject(anObject unsafe.Pointer) bool
-	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
-	DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer
+	DescriptionWithLocale(locale objc.ID) string
+	DescriptionWithLocaleIndent(locale objc.ID, level uint) string
 	DifferenceFromArray(other unsafe.Pointer) unsafe.Pointer
 	DifferenceFromArrayWithOptions(other unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer
 	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other unsafe.Pointer, options unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer
@@ -132,6 +132,34 @@ func NewArray() Array {
 }
 
 
+// Creates and returns an array containing a given object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
+func NewArrayWithObject(anObject unsafe.Pointer) Array {
+	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
+	return rv
+}
+
+// Initializes a newly allocated array to include a given number of objects from a given C array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
+func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a newly allocated array by placing in it the objects in the argument list.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
+func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly allocated array by placing in it the objects contained in a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:)-o72h
@@ -142,21 +170,21 @@ func NewArrayWithArray(array unsafe.Pointer) Array {
 	return rv
 }
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
+func NewArrayWithCoder(coder unsafe.Pointer) Array {
+	instance := getArrayClass().Alloc()
+	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly allocated array using as the source of data objects for the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(array:copyItems:)
 func NewArrayWithArrayCopyItems(array unsafe.Pointer, flag bool) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithArray:copyItems:"), array, flag)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(coder:)
-func NewArrayWithCoder(coder unsafe.Pointer) Array {
-	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -186,34 +214,6 @@ func NewArrayWithContentsOfURL(url unsafe.Pointer) Array {
 func NewArrayWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Array {
 	instance := getArrayClass().Alloc()
 	rv := objc.Send[Array](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates and returns an array containing a given object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(object:)
-func NewArrayWithObject(anObject unsafe.Pointer) Array {
-	rv := objc.Send[Array](objc.ID(getArrayClass().class), objc.Sel("arrayWithObject:"), anObject)
-	return rv
-}
-
-// Initializes a newly allocated array to include a given number of objects from a given C array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/init(objects:count:)-5odxv
-func NewArrayWithObjectsCount(objects unsafe.Pointer, cnt uint) Array {
-	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:count:"), objects, cnt)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a newly allocated array by placing in it the objects in the argument list.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/initWithObjects:
-func NewArrayWithObjects(firstObj unsafe.Pointer) Array {
-	instance := getArrayClass().Alloc()
-	rv := objc.Send[Array](instance.ID, objc.Sel("initWithObjects:"), firstObj)
 	rv.Autorelease()
 	return rv
 }
@@ -323,8 +323,8 @@ func (a_ Array) ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID {
 // Constructs and returns an object that is the result of interposing a given separator between the elements of the array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/componentsJoined(by:)
-func (a_ Array) ComponentsJoinedByString(separator string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("componentsJoinedByString:"), objc.String(separator))
+func (a_ Array) ComponentsJoinedByString(separator string) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("componentsJoinedByString:"), objc.String(separator))
 	return rv
 }
 
@@ -339,16 +339,16 @@ func (a_ Array) ContainsObject(anObject unsafe.Pointer) bool {
 // Returns a string that represents the contents of the array, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:)
-func (a_ Array) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("descriptionWithLocale:"), locale)
+func (a_ Array) DescriptionWithLocale(locale objc.ID) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
 
 // Returns a string that represents the contents of the array, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:indent:)
-func (a_ Array) DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
+func (a_ Array) DescriptionWithLocaleIndent(locale objc.ID, level uint) string {
+	rv := objc.Send[string](a_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
 
@@ -734,8 +734,8 @@ func (a_ Array) Count() uint {
 // A string that represents the contents of the array, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description
-func (a_ Array) Description() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("description"))
+func (a_ Array) Description() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("description"))
 	return rv
 }
 

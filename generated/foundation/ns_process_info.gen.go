@@ -37,7 +37,7 @@ type IProcessInfo interface {
 	EndActivity(activity objc.ID)
 	IsDeviceCertifiedFor(performanceTier unsafe.Pointer) bool
 	IsOperatingSystemAtLeastVersion(version unsafe.Pointer) bool
-	OperatingSystemName() unsafe.Pointer
+	OperatingSystemName() string
 	PerformActivityWithOptionsReasonUsingBlock(options unsafe.Pointer, reason string, block unsafe.Pointer)
 	PerformExpiringActivityWithReasonUsingBlock(reason string, block unsafe.Pointer)
 }
@@ -152,8 +152,8 @@ func (p_ ProcessInfo) IsOperatingSystemAtLeastVersion(version unsafe.Pointer) bo
 // Returns a string containing the name of the operating system on which the process is executing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemName()
-func (p_ ProcessInfo) OperatingSystemName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("operatingSystemName"))
+func (p_ ProcessInfo) OperatingSystemName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("operatingSystemName"))
 	return rv
 }
 
@@ -198,16 +198,16 @@ func (p_ ProcessInfo) Environment() unsafe.Pointer {
 // Returns the full name of the current user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/fullUserName
-func (p_ ProcessInfo) FullUserName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fullUserName"))
+func (p_ ProcessInfo) FullUserName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("fullUserName"))
 	return rv
 }
 
 // Global unique identifier for the process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/globallyUniqueString
-func (p_ ProcessInfo) GloballyUniqueString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("globallyUniqueString"))
+func (p_ ProcessInfo) GloballyUniqueString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("globallyUniqueString"))
 	return rv
 }
 
@@ -245,8 +245,8 @@ func (p_ ProcessInfo) IOSAppOnVision() bool {
 // A string containing the version of the operating system on which the process is executing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/operatingSystemVersionString
-func (p_ ProcessInfo) OperatingSystemVersionString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("operatingSystemVersionString"))
+func (p_ ProcessInfo) OperatingSystemVersionString() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("operatingSystemVersionString"))
 	return rv
 }
 
@@ -277,8 +277,8 @@ func (p_ ProcessInfo) ProcessInfo() unsafe.Pointer {
 // The name of the process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
-func (p_ ProcessInfo) ProcessName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processName"))
+func (p_ ProcessInfo) ProcessName() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("processName"))
 	return rv
 }
 
@@ -288,8 +288,8 @@ func (p_ ProcessInfo) ProcessName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processName
-func (p_ ProcessInfo) SetProcessName(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), value)
+func (p_ ProcessInfo) SetProcessName(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), objc.String(value))
 }
 // The amount of time the system has been awake since the last time it was restarted.
 //

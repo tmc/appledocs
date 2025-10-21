@@ -10,6 +10,15 @@ import (
 var _ = foundation.NewOutputStream
 
 
+// ExampleNewOutputStreamToMemory demonstrates how to create a OutputStream instance using NewOutputStreamToMemory.
+// Returns an initialized output stream that will write to memory.
+func ExampleNewOutputStreamToMemory() {
+	_ = foundation.NewOutputStreamToMemory()
+	// Output:
+}
+
+
+
 // ExampleNewOutputStreamToFileAtPathAppend demonstrates how to create a OutputStream instance using NewOutputStreamToFileAtPathAppend.
 // Returns an initialized output stream for writing to a specified file.
 func ExampleNewOutputStreamToFileAtPathAppend() {
@@ -19,14 +28,5 @@ func ExampleNewOutputStreamToFileAtPathAppend() {
 	)
 	// Output:
 }
-
-// ExampleNewOutputStreamToMemory demonstrates how to create a OutputStream instance using NewOutputStreamToMemory.
-// Returns an initialized output stream that will write to memory.
-func ExampleNewOutputStreamToMemory() {
-	_ = foundation.NewOutputStreamToMemory()
-	// Output:
-}
-
-
 
 

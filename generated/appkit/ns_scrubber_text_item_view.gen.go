@@ -92,8 +92,8 @@ func (s_ ScrubberTextItemView) TextField() unsafe.Pointer {
 // The text displayed for the scrubber item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
-func (s_ ScrubberTextItemView) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("title"))
+func (s_ ScrubberTextItemView) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (s_ ScrubberTextItemView) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
-func (s_ ScrubberTextItemView) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
+func (s_ ScrubberTextItemView) SetTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 
 

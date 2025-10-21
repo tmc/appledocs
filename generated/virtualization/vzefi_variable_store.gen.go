@@ -78,22 +78,22 @@ func NewVZEFIVariableStore() VZEFIVariableStore {
 }
 
 
-// Creates a new EFI variable store at specified the URL on the filesystem, initialization options, and error-return variable.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(creatingVariableStoreAt:options:)
-func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) VZEFIVariableStore {
-	instance := getVZEFIVariableStoreClass().Alloc()
-	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initCreatingVariableStoreAtURL:options:error:"), URL, options, error_)
-	rv.Autorelease()
-	return rv
-}
-
 // Initialize the variable store from the URL of an existing file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(url:)
 func NewVZEFIVariableStoreWithURL(URL unsafe.Pointer) VZEFIVariableStore {
 	instance := getVZEFIVariableStoreClass().Alloc()
 	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initWithURL:"), URL)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates a new EFI variable store at specified the URL on the filesystem, initialization options, and error-return variable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/init(creatingVariableStoreAt:options:)
+func NewVZEFIVariableStoreCreatingVariableStoreAtURLOptionsError(URL unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) VZEFIVariableStore {
+	instance := getVZEFIVariableStoreClass().Alloc()
+	rv := objc.Send[VZEFIVariableStore](instance.ID, objc.Sel("initCreatingVariableStoreAtURL:options:error:"), URL, options, error_)
 	rv.Autorelease()
 	return rv
 }

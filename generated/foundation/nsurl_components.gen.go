@@ -147,8 +147,8 @@ func (u_ URLComponents) URLRelativeToURL(baseURL unsafe.Pointer) unsafe.Pointer 
 // The host URL subcomponent expressed as a URL-encoded string, or if not present.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) PercentEncodedHost() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("percentEncodedHost"))
+func (u_ URLComponents) PercentEncodedHost() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("percentEncodedHost"))
 	return rv
 }
 
@@ -158,14 +158,14 @@ func (u_ URLComponents) PercentEncodedHost() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedHost
-func (u_ URLComponents) SetPercentEncodedHost(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), value)
+func (u_ URLComponents) SetPercentEncodedHost(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setPercentEncodedHost:"), objc.String(value))
 }
 // A URL derived from the components object, in string form.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/string
-func (u_ URLComponents) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("string"))
+func (u_ URLComponents) String() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("string"))
 	return rv
 }
 

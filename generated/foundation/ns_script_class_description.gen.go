@@ -29,7 +29,7 @@ type _ScriptClassDescriptionClass struct {
 // An interface definition for the [ScriptClassDescription] class.
 type IScriptClassDescription interface {
 	IClassDescription
-	TypeForKey(key string) unsafe.Pointer
+	TypeForKey(key string) string
 }
 
 // A scriptable class that a macOS app supports.
@@ -85,8 +85,8 @@ func NewScriptClassDescription() ScriptClassDescription {
 // Returns the name of the declared type of the attribute or relationship identified by the passed key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
-func (s_ ScriptClassDescription) TypeForKey(key string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
+func (s_ ScriptClassDescription) TypeForKey(key string) string {
+	rv := objc.Send[string](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
 	return rv
 }
 

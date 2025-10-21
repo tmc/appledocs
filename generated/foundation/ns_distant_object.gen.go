@@ -82,6 +82,15 @@ func NewDistantObject() DistantObject {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
+func NewDistantObjectWithCoder(inCoder unsafe.Pointer) DistantObject {
+	instance := getDistantObjectClass().Alloc()
+	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithCoder:"), inCoder)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes an object as a local proxy for a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithLocal:connection:
@@ -98,15 +107,6 @@ func NewDistantObjectWithLocalConnection(target objc.ID, connection unsafe.Point
 func NewDistantObjectWithTargetConnection(target objc.ID, connection unsafe.Pointer) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithTarget:connection:"), target, connection)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithCoder:
-func NewDistantObjectWithCoder(inCoder unsafe.Pointer) DistantObject {
-	instance := getDistantObjectClass().Alloc()
-	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithCoder:"), inCoder)
 	rv.Autorelease()
 	return rv
 }

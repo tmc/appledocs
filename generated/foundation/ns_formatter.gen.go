@@ -33,7 +33,7 @@ type IFormatter interface {
 	AttributedStringForObjectValueWithDefaultAttributes(obj objc.ID, attrs unsafe.Pointer) unsafe.Pointer
 	GetObjectValueForStringErrorDescription(obj objc.ID, string_ string, error_ string) bool
 	IsPartialStringValidProposedSelectedRangeOriginalStringOriginalSelectedRangeErrorDescription(partialStringPtr string, proposedSelRangePtr unsafe.Pointer, origString string, origSelRange Range, error_ string) bool
-	StringForObjectValue(obj objc.ID) unsafe.Pointer
+	StringForObjectValue(obj objc.ID) string
 }
 
 // An abstract class that declares an interface for objects that create, interpret, and validate the textual representation of values.
@@ -111,8 +111,8 @@ func (f_ Formatter) IsPartialStringValidProposedSelectedRangeOriginalStringOrigi
 // The default implementation of this method raises an exception.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/string(for:)
-func (f_ Formatter) StringForObjectValue(obj objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stringForObjectValue:"), obj)
+func (f_ Formatter) StringForObjectValue(obj objc.ID) string {
+	rv := objc.Send[string](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
 

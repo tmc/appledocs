@@ -11,14 +11,13 @@ var _ = foundation.NewDictionary
 
 
 
-
-
 // ExampleNewDictionary demonstrates how to create a Dictionary instance.
 // Initializes a newly allocated dictionary.
 func ExampleNewDictionary() {
 	_ = foundation.NewDictionary()
 	// Output:
 }
+
 
 
 
@@ -34,5 +33,6 @@ func ExampleNewDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
+
 
 

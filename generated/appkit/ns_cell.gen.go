@@ -55,7 +55,7 @@ type ICell interface {
 	ImageRectForBounds(rect coregraphics.CGRect) coregraphics.CGRect
 	IsEntryAcceptable(string_ string) bool
 	MenuForEventInRectOfView(event unsafe.Pointer, cellFrame coregraphics.CGRect, view unsafe.Pointer) unsafe.Pointer
-	Mnemonic() unsafe.Pointer
+	Mnemonic() string
 	MnemonicLocation() uint
 	PerformClick(sender objc.ID)
 	ResetCursorRectInView(cellFrame coregraphics.CGRect, controlView unsafe.Pointer)
@@ -127,16 +127,6 @@ func NewCell() Cell {
 }
 
 
-// Returns an NSCell object initialized with the specified string and set to have the cell’s default menu.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
-func NewCellTextCell(string_ string) Cell {
-	instance := getCellClass().Alloc()
-	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
-	rv.Autorelease()
-	return rv
-}
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(coder:)
 func NewCellWithCoder(coder unsafe.Pointer) Cell {
@@ -152,6 +142,16 @@ func NewCellWithCoder(coder unsafe.Pointer) Cell {
 func NewCellImageCell(image unsafe.Pointer) Cell {
 	instance := getCellClass().Alloc()
 	rv := objc.Send[Cell](instance.ID, objc.Sel("initImageCell:"), image)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an NSCell object initialized with the specified string and set to have the cell’s default menu.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/init(textCell:)
+func NewCellTextCell(string_ string) Cell {
+	instance := getCellClass().Alloc()
+	rv := objc.Send[Cell](instance.ID, objc.Sel("initTextCell:"), objc.String(string_))
 	rv.Autorelease()
 	return rv
 }
@@ -364,8 +364,8 @@ func (c_ Cell) MenuForEventInRectOfView(event unsafe.Pointer, cellFrame coregrap
 // Returns the character in the receiver’s title that appears underlined for use as a mnemonic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/mnemonic
-func (c_ Cell) Mnemonic() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("mnemonic"))
+func (c_ Cell) Mnemonic() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("mnemonic"))
 	return rv
 }
 
@@ -1057,8 +1057,8 @@ func (c_ Cell) SetSelectable(value bool) {
 // The key equivalent associated with clicking the cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/keyEquivalent
-func (c_ Cell) KeyEquivalent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("keyEquivalent"))
+func (c_ Cell) KeyEquivalent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
 
@@ -1225,8 +1225,8 @@ func (c_ Cell) SetState(value unsafe.Pointer) {
 // The cell’s value as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stringValue
-func (c_ Cell) StringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringValue"))
+func (c_ Cell) StringValue() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -1236,8 +1236,8 @@ func (c_ Cell) StringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/stringValue
-func (c_ Cell) SetStringValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), value)
+func (c_ Cell) SetStringValue(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 // A tag for identifying the cell.
 //
@@ -1276,8 +1276,8 @@ func (c_ Cell) SetTarget(value objc.ID) {
 // The cell’s title text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/title
-func (c_ Cell) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("title"))
+func (c_ Cell) Title() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -1287,8 +1287,8 @@ func (c_ Cell) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/title
-func (c_ Cell) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), value)
+func (c_ Cell) SetTitle(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // A Boolean value indicating whether the cell truncates text that does not fit within the cell’s bounds.
 //

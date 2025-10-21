@@ -143,8 +143,8 @@ func (x_ XMLParser) ParserError() unsafe.Pointer {
 // The public identifier of the external entity referenced in the XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/publicID
-func (x_ XMLParser) PublicID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("publicID"))
+func (x_ XMLParser) PublicID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
 	return rv
 }
 

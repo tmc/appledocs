@@ -109,8 +109,8 @@ func (b_ ButtonCell) SetGradientType(value unsafe.Pointer) {
 // The button’s key-equivalent character.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/keyEquivalent
-func (b_ ButtonCell) KeyEquivalent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("keyEquivalent"))
+func (b_ ButtonCell) KeyEquivalent() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (b_ ButtonCell) KeyEquivalent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButtonCell/keyEquivalent
-func (b_ ButtonCell) SetKeyEquivalent(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), value)
+func (b_ ButtonCell) SetKeyEquivalent(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
 }
 // The font used to draw the button’s key equivalent.
 //

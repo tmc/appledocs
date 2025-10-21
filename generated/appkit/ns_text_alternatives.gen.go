@@ -83,8 +83,8 @@ func NewTextAlternatives() TextAlternatives {
 // The text that was initially chosen as the input string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/primaryString
-func (t_ TextAlternatives) PrimaryString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("primaryString"))
+func (t_ TextAlternatives) PrimaryString() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("primaryString"))
 	return rv
 }
 

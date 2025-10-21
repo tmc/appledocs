@@ -131,8 +131,8 @@ func (t_ TextCheckingResult) Duration() TimeInterval {
 // The phone number of a type checking result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/phoneNumber
-func (t_ TextCheckingResult) PhoneNumber() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("phoneNumber"))
+func (t_ TextCheckingResult) PhoneNumber() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("phoneNumber"))
 	return rv
 }
 

@@ -12,21 +12,14 @@ var _ = foundation.NewNumber
 
 
 
-
-// ExampleNewNumberWithUnsignedLongLong demonstrates how to create a Number instance using NewNumberWithUnsignedLongLong.
-// Returns an   object initialized to contain a given value, treated as an  .
-func ExampleNewNumberWithUnsignedLongLong() {
-	_ = foundation.NewNumberWithUnsignedLongLong(
-		0, // value uint64
+// ExampleNewNumberWithBool demonstrates how to create a Number instance using NewNumberWithBool.
+// Returns an   object initialized to contain a given value, treated as a  .
+func ExampleNewNumberWithBool() {
+	_ = foundation.NewNumberWithBool(
+		false, // value bool
 	)
 	// Output:
 }
-
-
-
-
-
-
 
 
 // ExampleNewNumberWithUnsignedInteger demonstrates how to create a Number instance using NewNumberWithUnsignedInteger.
@@ -48,11 +41,18 @@ func ExampleNewNumberWithInteger() {
 }
 
 
-// ExampleNewNumberWithBool demonstrates how to create a Number instance using NewNumberWithBool.
-// Returns an   object initialized to contain a given value, treated as a  .
-func ExampleNewNumberWithBool() {
-	_ = foundation.NewNumberWithBool(
-		false, // value bool
+
+
+
+
+
+
+
+// ExampleNewNumberWithUnsignedLongLong demonstrates how to create a Number instance using NewNumberWithUnsignedLongLong.
+// Returns an   object initialized to contain a given value, treated as an  .
+func ExampleNewNumberWithUnsignedLongLong() {
+	_ = foundation.NewNumberWithUnsignedLongLong(
+		0, // value uint64
 	)
 	// Output:
 }

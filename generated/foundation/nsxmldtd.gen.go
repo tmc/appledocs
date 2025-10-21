@@ -91,6 +91,15 @@ func NewXMLDTD() XMLDTD {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLDTD/initWithKind:options:
+func NewXMLDTDWithKindOptions(kind unsafe.Pointer, options unsafe.Pointer) XMLDTD {
+	instance := getXMLDTDClass().Alloc()
+	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes and returns an object created from the DTD declarations in a URL-referenced source.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(contentsOf:options:)
@@ -107,15 +116,6 @@ func NewXMLDTDWithContentsOfURLOptionsError(url unsafe.Pointer, mask unsafe.Poin
 func NewXMLDTDWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLDTD/initWithKind:options:
-func NewXMLDTDWithKindOptions(kind unsafe.Pointer, options unsafe.Pointer) XMLDTD {
-	instance := getXMLDTDClass().Alloc()
-	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithKind:options:"), kind, options)
 	rv.Autorelease()
 	return rv
 }
@@ -206,8 +206,8 @@ func (x_ XMLDTD) SetChildren(children unsafe.Pointer) {
 // Returns the receiver’s public identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/publicID
-func (x_ XMLDTD) PublicID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("publicID"))
+func (x_ XMLDTD) PublicID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("publicID"))
 	return rv
 }
 
@@ -217,14 +217,14 @@ func (x_ XMLDTD) PublicID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/publicID
-func (x_ XMLDTD) SetPublicID(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), value)
+func (x_ XMLDTD) SetPublicID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setPublicID:"), objc.String(value))
 }
 // Returns the receiver’s system identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
-func (x_ XMLDTD) SystemID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("systemID"))
+func (x_ XMLDTD) SystemID() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("systemID"))
 	return rv
 }
 
@@ -234,7 +234,7 @@ func (x_ XMLDTD) SystemID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/systemID
-func (x_ XMLDTD) SetSystemID(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), value)
+func (x_ XMLDTD) SetSystemID(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setSystemID:"), objc.String(value))
 }
 

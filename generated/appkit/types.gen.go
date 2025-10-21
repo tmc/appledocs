@@ -16,6 +16,172 @@ type WindowLevel int
 type EventType int
 type EventModifierFlags int
 
+// Enum types and constants
+// NSRemoteNotificationType - These constants determine whether apps launched by remote notifications display a badge.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/RemoteNotificationType
+type RemoteNotificationType int
+
+// NSCellHitResult - Constants used by the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/HitResult
+type CellHitResult int
+
+// NSCellStyleMask - Constants for specifying what happens when a button is pressed or is displaying its alternate state.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/StyleMask
+type CellStyleMask int
+
+// NSCollectionViewScrollPosition - Constants indicating the options for scrolling the collection view’s content.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/ScrollPosition
+type CollectionViewScrollPosition int
+
+// NSColorPanelOptions - The color modes that are enabled for a color panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/Options
+type ColorPanelOptions int
+
+// NSDirectionalRectEdge enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDirectionalRectEdge
+type DirectionalRectEdge int
+
+// NSDragOperation - A group of constants that represent which operations the dragging source can perform on dragging items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDragOperation
+type DragOperation int
+
+// NSEventButtonMask - Constants you use to identify the activated tablet buttons in an event.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/ButtonMask-swift.struct
+type EventButtonMask int
+
+// NSEventMask - Constants that you use to filter out specific event types from the stream of incoming events.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/EventTypeMask
+type EventMask int
+
+// NSEventModifierFlags - Flags that represent key states in an event object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/ModifierFlags-swift.struct
+type EventModifierFlags int
+
+// NSEventPhase - Constants that represent the possible phases during an event phase.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/Phase-swift.struct
+type EventPhase int
+
+// NSEventSwipeTrackingOptions - Constants that specify swipe-tracking options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/SwipeTrackingOptions
+type EventSwipeTrackingOptions int
+
+// NSFontCollectionOptions - Constants that support font collection management.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollectionOptions
+type FontCollectionOptions int
+
+// NSFontDescriptorSymbolicTraits - A symbolic description of the stylistic aspects of a font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/SymbolicTraits-swift.struct
+type FontDescriptorSymbolicTraits int
+
+// NSFontPanelModeMask enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel/ModeMask
+type FontPanelModeMask int
+
+// NSFontTraitMask - Constants for isolating specific traits of a font.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontTraitMask
+type FontTraitMask int
+
+// NSPDFPanelOptions - Constants used to configure the contents of a PDF panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/Options-swift.struct
+type PDFPanelOptions int
+
+// NSLineBreakStrategy - Constants that specify how the text system breaks lines while laying out paragraphs.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/LineBreakStrategy-swift.struct
+type LineBreakStrategy int
+
+// NSPasteboardContentsOptions - Options for preparing the pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ContentsOptions
+type PasteboardContentsOptions int
+
+// NSPrintPanelOptions - Constants that specify options for configuring the contents of the main Print panel.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/Options-swift.struct
+type PrintPanelOptions int
+
+// NSTableColumnResizingOptions enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/ResizingOptions
+type TableColumnResizingOptions int
+
+// NSTableViewAnimationOptions - Specifies the animation effects to apply when inserting or removing rows.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/AnimationOptions
+type TableViewAnimationOptions int
+
+// NSTableViewGridLineStyle enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/GridLineStyle
+type TableViewGridLineStyle int
+
+// NSTextInsertionIndicatorAutomaticModeOptions - Options that affect the automatic display mode.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct
+type TextInsertionIndicatorAutomaticModeOptions int
+
+// NSTextLayoutManagerSegmentOptions - Values that describe where and how the framework extends segments of a selection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/SegmentOptions
+type TextLayoutManagerSegmentOptions int
+
+// NSTouchTypeMask - A bit mask identifying a direct or indirect touch type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/TouchTypeMask
+type TouchTypeMask int
+
+// NSAutoresizingMaskOptions - Constants that specify the autoresizing behaviors for views.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/AutoresizingMask-swift.struct
+type AutoresizingMaskOptions int
+
+// NSViewControllerTransitionOptions - Animation options for view transitions in a view controller.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/TransitionOptions
+type ViewControllerTransitionOptions int
+
+// NSWindowCollectionBehavior - Window collection behaviors related to Mission Control, Spaces, and Stage Manager.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct
+type WindowCollectionBehavior int
+
+// NSWindowNumberListOptions - Options to use when retrieving window numbers from the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/NumberListOptions
+type WindowNumberListOptions int
+
+// NSWindowOcclusionState - Specifies whether the window is occluded.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/OcclusionState-swift.struct
+type WindowOcclusionState int
+
+// NSWindowStyleMask - Constants that specify the style of a window, and that you can combine with the C bitwise OR operator.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/StyleMask-swift.struct
+type WindowStyleMask int
+
+// NSWritingToolsResultOptions - Constants to specify what type of content to allow in Writing Tools
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsResultOptions
+type WritingToolsResultOptions int
+
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.

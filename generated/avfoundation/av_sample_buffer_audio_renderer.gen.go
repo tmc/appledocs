@@ -83,8 +83,8 @@ func NewSampleBufferAudioRenderer() SampleBufferAudioRenderer {
 // The unique identifier of the output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
-func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -94,8 +94,8 @@ func (s_ SampleBufferAudioRenderer) AudioOutputDeviceUniqueID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferAudioRenderer/audioOutputDeviceUniqueID
-func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
+func (s_ SampleBufferAudioRenderer) SetAudioOutputDeviceUniqueID(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
 }
 
 

@@ -30,8 +30,8 @@ type _CalendarDateClass struct {
 type ICalendarDate interface {
 	IDate
 	DayOfCommonEra() int
-	DescriptionWithCalendarFormat(format string) unsafe.Pointer
-	DescriptionWithCalendarFormatLocale(format string, locale objc.ID) unsafe.Pointer
+	DescriptionWithCalendarFormat(format string) string
+	DescriptionWithCalendarFormatLocale(format string, locale objc.ID) string
 	HourOfDay() int
 }
 
@@ -106,15 +106,15 @@ func (c_ CalendarDate) DayOfCommonEra() int {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:
-func (c_ CalendarDate) DescriptionWithCalendarFormat(format string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptionWithCalendarFormat:"), objc.String(format))
+func (c_ CalendarDate) DescriptionWithCalendarFormat(format string) string {
+	rv := objc.Send[string](c_.ID, objc.Sel("descriptionWithCalendarFormat:"), objc.String(format))
 	return rv
 }
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/descriptionWithCalendarFormat:locale:
-func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format string, locale objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("descriptionWithCalendarFormat:locale:"), objc.String(format), locale)
+func (c_ CalendarDate) DescriptionWithCalendarFormatLocale(format string, locale objc.ID) string {
+	rv := objc.Send[string](c_.ID, objc.Sel("descriptionWithCalendarFormat:locale:"), objc.String(format), locale)
 	return rv
 }
 

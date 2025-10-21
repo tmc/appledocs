@@ -170,8 +170,8 @@ func (u_ URLCredential) Identity() unsafe.Pointer {
 // The credential’s password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/password
-func (u_ URLCredential) Password() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("password"))
+func (u_ URLCredential) Password() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
@@ -186,8 +186,8 @@ func (u_ URLCredential) Persistence() unsafe.Pointer {
 // The credential’s user name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredential/user
-func (u_ URLCredential) User() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("user"))
+func (u_ URLCredential) User() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
 

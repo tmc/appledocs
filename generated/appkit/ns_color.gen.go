@@ -398,8 +398,8 @@ func (c_ Color) LabelColor() unsafe.Pointer {
 // The localized version of the catalog name containing the color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColor/localizedCatalogNameComponent
-func (c_ Color) LocalizedCatalogNameComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("localizedCatalogNameComponent"))
+func (c_ Color) LocalizedCatalogNameComponent() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("localizedCatalogNameComponent"))
 	return rv
 }
 

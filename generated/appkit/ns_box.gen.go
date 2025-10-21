@@ -270,8 +270,8 @@ func (b_ Box) SetTransparent(value bool) {
 // The receiver’s title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/title
-func (b_ Box) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("title"))
+func (b_ Box) Title() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -281,8 +281,8 @@ func (b_ Box) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/title
-func (b_ Box) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), value)
+func (b_ Box) SetTitle(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The cell used to display the receiver’s title.
 //

@@ -83,8 +83,8 @@ func NewMorphologyCustomPronoun() MorphologyCustomPronoun {
 // The reflexive pronoun form to apply when using this custom pronoun behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-func (m_ MorphologyCustomPronoun) ReflexiveForm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("reflexiveForm"))
+func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("reflexiveForm"))
 	return rv
 }
 
@@ -94,8 +94,8 @@ func (m_ MorphologyCustomPronoun) ReflexiveForm() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
-func (m_ MorphologyCustomPronoun) SetReflexiveForm(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), value)
+func (m_ MorphologyCustomPronoun) SetReflexiveForm(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), objc.String(value))
 }
 
 

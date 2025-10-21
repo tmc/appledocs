@@ -107,8 +107,8 @@ func (ic _ItemBadgeClass) IndicatorBadge() unsafe.Pointer {
 // The text to be displayed within the badge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/text
-func (i_ ItemBadge) Text() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("text"))
+func (i_ ItemBadge) Text() string {
+	rv := objc.Send[string](i_.ID, objc.Sel("text"))
 	return rv
 }
 

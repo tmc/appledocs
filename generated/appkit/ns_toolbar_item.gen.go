@@ -307,8 +307,8 @@ func (t_ ToolbarItem) SetItemMenuFormRepresentation(value unsafe.Pointer) {
 // The label that appears for this item in the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
-func (t_ ToolbarItem) Label() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("label"))
+func (t_ ToolbarItem) Label() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -318,8 +318,8 @@ func (t_ ToolbarItem) Label() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
-func (t_ ToolbarItem) SetLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
+func (t_ ToolbarItem) SetLabel(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
 }
 // The toolbar item’s maximum size.
 //
@@ -375,8 +375,8 @@ func (t_ ToolbarItem) SetMinSize(value coregraphics.CGSize) {
 // The label that appears when the toolbar item is in the customization palette.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
-func (t_ ToolbarItem) PaletteLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("paletteLabel"))
+func (t_ ToolbarItem) PaletteLabel() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("paletteLabel"))
 	return rv
 }
 
@@ -386,8 +386,8 @@ func (t_ ToolbarItem) PaletteLabel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
-func (t_ ToolbarItem) SetPaletteLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), value)
+func (t_ ToolbarItem) SetPaletteLabel(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), objc.String(value))
 }
 // The set of labels that the item might display.
 //
@@ -460,8 +460,8 @@ func (t_ ToolbarItem) SetTarget(value objc.ID) {
 // The title of the toolbar item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
-func (t_ ToolbarItem) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("title"))
+func (t_ ToolbarItem) Title() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -471,14 +471,14 @@ func (t_ ToolbarItem) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
-func (t_ ToolbarItem) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), value)
+func (t_ ToolbarItem) SetTitle(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // The tooltip to display when someone hovers over the item in the toolbar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
-func (t_ ToolbarItem) ToolTip() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("toolTip"))
+func (t_ ToolbarItem) ToolTip() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
@@ -488,8 +488,8 @@ func (t_ ToolbarItem) ToolTip() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
-func (t_ ToolbarItem) SetToolTip(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), value)
+func (t_ ToolbarItem) SetToolTip(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 // The toolbar that currently includes the item.
 //

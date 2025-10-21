@@ -2674,8 +2674,8 @@ func (v_ View) PreviousValidKeyView() unsafe.Pointer {
 // The view’s print job title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/printJobTitle
-func (v_ View) PrintJobTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("printJobTitle"))
+func (v_ View) PrintJobTitle() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("printJobTitle"))
 	return rv
 }
 
@@ -2798,8 +2798,8 @@ func (v_ View) Tag() int {
 // The text for the view’s tooltip.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
-func (v_ View) ToolTip() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("toolTip"))
+func (v_ View) ToolTip() string {
+	rv := objc.Send[string](v_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
@@ -2809,8 +2809,8 @@ func (v_ View) ToolTip() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/toolTip
-func (v_ View) SetToolTip(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setToolTip:"), value)
+func (v_ View) SetToolTip(value string) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setToolTip:"), objc.String(value))
 }
 // A layout anchor representing the top edge of the view’s frame.
 //

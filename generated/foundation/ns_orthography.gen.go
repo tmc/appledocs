@@ -30,7 +30,7 @@ type _OrthographyClass struct {
 // An interface definition for the [Orthography] class.
 type IOrthography interface {
 	objectivec.IObject
-	DominantLanguageForScript(script string) unsafe.Pointer
+	DominantLanguageForScript(script string) string
 	LanguagesForScript(script string) []string
 }
 
@@ -121,8 +121,8 @@ func (oc _OrthographyClass) OrthographyWithDominantScriptLanguageMap(script stri
 // Returns the dominant language for the specified script.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantLanguage(forScript:)
-func (o_ Orthography) DominantLanguageForScript(script string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dominantLanguageForScript:"), objc.String(script))
+func (o_ Orthography) DominantLanguageForScript(script string) string {
+	rv := objc.Send[string](o_.ID, objc.Sel("dominantLanguageForScript:"), objc.String(script))
 	return rv
 }
 
@@ -153,16 +153,16 @@ func (o_ Orthography) AllScripts() []string {
 // The first language in the list of languages for the dominant script.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantLanguage
-func (o_ Orthography) DominantLanguage() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dominantLanguage"))
+func (o_ Orthography) DominantLanguage() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("dominantLanguage"))
 	return rv
 }
 
 // The dominant script for the text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrthography/dominantScript
-func (o_ Orthography) DominantScript() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dominantScript"))
+func (o_ Orthography) DominantScript() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("dominantScript"))
 	return rv
 }
 

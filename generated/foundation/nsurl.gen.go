@@ -118,6 +118,24 @@ func NewURLFromPasteboard(pasteBoard unsafe.Pointer) URL {
 	return rv
 }
 
+// Returns a new URL made by resolving the alias file at .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
+func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) URL {
+	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
+	return rv
+}
+
+// Initializes a newly created NSURL that points to a location specified by resolving bookmark data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
+func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData unsafe.Pointer, options unsafe.Pointer, relativeURL unsafe.Pointer, isStale unsafe.Pointer, error_ unsafe.Pointer) URL {
+	instance := getURLClass().Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a newly created NSURL with a specified scheme, host, and path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(scheme:host:path:)
@@ -138,11 +156,12 @@ func NewURLWithString(URLString string) URL {
 	return rv
 }
 
+// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
-func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
+func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URL {
 	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initAbsoluteURLWithDataRepresentation:relativeToURL:"), data, baseURL)
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
 	rv.Autorelease()
 	return rv
 }
@@ -162,44 +181,6 @@ func NewURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsa
 func NewURLFileURLWithFileSystemRepresentationIsDirectoryRelativeToURL(path unsafe.Pointer, isDir bool, baseURL unsafe.Pointer) URL {
 	instance := getURLClass().Alloc()
 	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:"), path, isDir, baseURL)
-	rv.Autorelease()
-	return rv
-}
-
-// Returns a new URL made by resolving the alias file at .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingAliasFileAt:options:)
-func NewURLByResolvingAliasFileAtURLOptionsError(url unsafe.Pointer, options unsafe.Pointer, error_ unsafe.Pointer) URL {
-	rv := objc.Send[URL](objc.ID(getURLClass().class), objc.Sel("URLByResolvingAliasFileAtURL:options:error:"), url, options, error_)
-	return rv
-}
-
-// Initializes a newly created NSURL that points to a location specified by resolving bookmark data.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(resolvingBookmarkData:options:relativeTo:bookmarkDataIsStale:)
-func NewURLByResolvingBookmarkDataOptionsRelativeToURLBookmarkDataIsStaleError(bookmarkData unsafe.Pointer, options unsafe.Pointer, relativeURL unsafe.Pointer, isStale unsafe.Pointer, error_ unsafe.Pointer) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), bookmarkData, options, relativeURL, isStale, error_)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates an instance from the provided string, optionally IDNA- and percent-encoding any invalid characters.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:encodingInvalidCharacters:)
-func NewURLWithStringEncodingInvalidCharacters(URLString string, encodingInvalidCharacters bool) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:encodingInvalidCharacters:"), objc.String(URLString), encodingInvalidCharacters)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes an NSURL object with a base URL and a relative string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
-func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
-	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), objc.String(URLString), baseURL)
 	rv.Autorelease()
 	return rv
 }
@@ -225,19 +206,38 @@ func NewURLFileURLWithPathIsDirectory(path string, isDir bool) URL {
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
-func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) URL {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
+func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
 	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), objc.String(path), isDir, baseURL)
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes an NSURL object with a base URL and a relative string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(string:relativeTo:)
+func NewURLWithStringRelativeToURL(URLString string, baseURL unsafe.Pointer) URL {
+	instance := getURLClass().Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initWithString:relativeToURL:"), objc.String(URLString), baseURL)
 	rv.Autorelease()
 	return rv
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:relativeTo:)
-func NewURLFileURLWithPathRelativeToURL(path string, baseURL unsafe.Pointer) URL {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(absoluteURLWithDataRepresentation:relativeTo:)
+func NewURLAbsoluteURLWithDataRepresentationRelativeToURL(data unsafe.Pointer, baseURL unsafe.Pointer) URL {
 	instance := getURLClass().Alloc()
-	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:relativeToURL:"), objc.String(path), baseURL)
+	rv := objc.Send[URL](instance.ID, objc.Sel("initAbsoluteURLWithDataRepresentation:relativeToURL:"), data, baseURL)
+	rv.Autorelease()
+	return rv
+}
+
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/init(fileURLWithPath:isDirectory:relativeTo:)
+func NewURLFileURLWithPathIsDirectoryRelativeToURL(path string, isDir bool, baseURL unsafe.Pointer) URL {
+	instance := getURLClass().Alloc()
+	rv := objc.Send[URL](instance.ID, objc.Sel("initFileURLWithPath:isDirectory:relativeToURL:"), objc.String(path), isDir, baseURL)
 	rv.Autorelease()
 	return rv
 }
@@ -604,8 +604,8 @@ func (u_ URL) WriteToPasteboard(pasteBoard unsafe.Pointer) {
 // The URL string for the receiver as an absolute URL. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/absoluteString
-func (u_ URL) AbsoluteString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("absoluteString"))
+func (u_ URL) AbsoluteString() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("absoluteString"))
 	return rv
 }
 
@@ -667,8 +667,8 @@ func (u_ URL) FileSystemRepresentation() unsafe.Pointer {
 // The fragment identifier, conforming to RFC 1808. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/fragment
-func (u_ URL) Fragment() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("fragment"))
+func (u_ URL) Fragment() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("fragment"))
 	return rv
 }
 
@@ -683,8 +683,8 @@ func (u_ URL) HasDirectoryPath() bool {
 // The host, conforming to RFC 1808. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/host
-func (u_ URL) Host() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("host"))
+func (u_ URL) Host() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("host"))
 	return rv
 }
 
@@ -699,32 +699,32 @@ func (u_ URL) FileURL() bool {
 // The last path component. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/lastPathComponent
-func (u_ URL) LastPathComponent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("lastPathComponent"))
+func (u_ URL) LastPathComponent() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("lastPathComponent"))
 	return rv
 }
 
 // The parameter string conforming to RFC 1808. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/parameterString
-func (u_ URL) ParameterString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("parameterString"))
+func (u_ URL) ParameterString() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("parameterString"))
 	return rv
 }
 
 // The password conforming to RFC 1808. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/password
-func (u_ URL) Password() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("password"))
+func (u_ URL) Password() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("password"))
 	return rv
 }
 
 // The path, conforming to RFC 1808. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/path
-func (u_ URL) Path() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("path"))
+func (u_ URL) Path() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("path"))
 	return rv
 }
 
@@ -739,8 +739,8 @@ func (u_ URL) PathComponents() []string {
 // The path extension. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/pathExtension
-func (u_ URL) PathExtension() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("pathExtension"))
+func (u_ URL) PathExtension() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("pathExtension"))
 	return rv
 }
 
@@ -755,24 +755,24 @@ func (u_ URL) Port() unsafe.Pointer {
 // The query string, conforming to RFC 1808.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/query
-func (u_ URL) Query() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("query"))
+func (u_ URL) Query() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("query"))
 	return rv
 }
 
 // The relative path, conforming to RFC 1808. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/relativePath
-func (u_ URL) RelativePath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("relativePath"))
+func (u_ URL) RelativePath() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("relativePath"))
 	return rv
 }
 
 // A string representation of the relative portion of the URL. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/relativeString
-func (u_ URL) RelativeString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("relativeString"))
+func (u_ URL) RelativeString() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("relativeString"))
 	return rv
 }
 
@@ -787,16 +787,16 @@ func (u_ URL) URLByResolvingSymlinksInPath() unsafe.Pointer {
 // The resource specifier. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/resourceSpecifier
-func (u_ URL) ResourceSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("resourceSpecifier"))
+func (u_ URL) ResourceSpecifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("resourceSpecifier"))
 	return rv
 }
 
 // The scheme. (read-only)
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/scheme
-func (u_ URL) Scheme() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("scheme"))
+func (u_ URL) Scheme() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("scheme"))
 	return rv
 }
 
@@ -819,8 +819,8 @@ func (u_ URL) URLByStandardizingPath() unsafe.Pointer {
 // The user name, conforming to RFC 1808.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/user
-func (u_ URL) User() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("user"))
+func (u_ URL) User() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("user"))
 	return rv
 }
 

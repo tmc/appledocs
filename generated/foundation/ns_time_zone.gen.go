@@ -238,8 +238,8 @@ func (t_ TimeZone) SetDefaultTimeZone(value unsafe.Pointer) {
 // A textual description of the time zone including the name, abbreviation, offset from GMT, and whether or not daylight saving time is currently in effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/description
-func (t_ TimeZone) Description() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("description"))
+func (t_ TimeZone) Description() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("description"))
 	return rv
 }
 
@@ -254,8 +254,8 @@ func (t_ TimeZone) LocalTimeZone() unsafe.Pointer {
 // The geopolitical region ID that identifies the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTimeZone/name
-func (t_ TimeZone) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("name"))
+func (t_ TimeZone) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 

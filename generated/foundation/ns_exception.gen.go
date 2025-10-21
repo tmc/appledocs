@@ -148,8 +148,8 @@ func (e_ Exception) Name() unsafe.Pointer {
 // A string containing a “human-readable” reason for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/reason-swift.property
-func (e_ Exception) Reason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("reason"))
+func (e_ Exception) Reason() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("reason"))
 	return rv
 }
 

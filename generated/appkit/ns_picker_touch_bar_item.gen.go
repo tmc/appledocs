@@ -110,8 +110,8 @@ func (p_ PickerTouchBarItem) SetCollapsedRepresentationImage(value unsafe.Pointe
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationLabel
-func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collapsedRepresentationLabel"))
+func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("collapsedRepresentationLabel"))
 	return rv
 }
 
@@ -119,7 +119,7 @@ func (p_ PickerTouchBarItem) CollapsedRepresentationLabel() unsafe.Pointer {
 // SetCollapsedRepresentationLabel sets the value of the collapsedRepresentationLabel property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/collapsedRepresentationLabel
-func (p_ PickerTouchBarItem) SetCollapsedRepresentationLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), value)
+func (p_ PickerTouchBarItem) SetCollapsedRepresentationLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), objc.String(value))
 }
 

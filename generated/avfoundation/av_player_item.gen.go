@@ -38,7 +38,7 @@ type IPlayerItem interface {
 	SelectMediaOptionInMediaSelectionGroup(mediaSelectionOption unsafe.Pointer, mediaSelectionGroup unsafe.Pointer)
 	SelectMediaOptionAutomaticallyInMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer)
 	SelectMediaPresentationLanguageForMediaSelectionGroup(language string, mediaSelectionGroup unsafe.Pointer)
-	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer
+	SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) string
 	SelectedMediaPresentationSettingsForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer
 }
 
@@ -151,8 +151,8 @@ func (p_ PlayerItem) SelectMediaPresentationLanguageForMediaSelectionGroup(langu
 // Returns the selected media presentation language for the specified media selection group, if any language has previously been selected via use of -selectMediaPresentationLanguages:forMediaSelectionGroup:.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItem/selectedMediaPresentationLanguage(for:)
-func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
+func (p_ PlayerItem) SelectedMediaPresentationLanguageForMediaSelectionGroup(mediaSelectionGroup unsafe.Pointer) string {
+	rv := objc.Send[string](p_.ID, objc.Sel("selectedMediaPresentationLanguageForMediaSelectionGroup:"), mediaSelectionGroup)
 	return rv
 }
 

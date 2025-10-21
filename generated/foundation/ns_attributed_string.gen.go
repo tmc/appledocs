@@ -388,8 +388,8 @@ func (a_ AttributedString) Length() uint {
 // The character contents of the attributed string as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/string
-func (a_ AttributedString) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("string"))
+func (a_ AttributedString) String() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("string"))
 	return rv
 }
 

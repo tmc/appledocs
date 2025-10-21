@@ -30,7 +30,7 @@ type _PasteboardItemClass struct {
 // An interface definition for the [PasteboardItem] class.
 type IPasteboardItem interface {
 	objectivec.IObject
-	StringForType(type_ unsafe.Pointer) unsafe.Pointer
+	StringForType(type_ unsafe.Pointer) string
 }
 
 // An item on a pasteboard.
@@ -84,8 +84,8 @@ func NewPasteboardItem() PasteboardItem {
 // Returns the value for the specified type as a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboardItem/string(forType:)
-func (p_ PasteboardItem) StringForType(type_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringForType:"), type_)
+func (p_ PasteboardItem) StringForType(type_ unsafe.Pointer) string {
+	rv := objc.Send[string](p_.ID, objc.Sel("stringForType:"), type_)
 	return rv
 }
 

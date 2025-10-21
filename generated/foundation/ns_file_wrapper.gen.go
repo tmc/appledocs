@@ -32,7 +32,7 @@ type IFileWrapper interface {
 	objectivec.IObject
 	MatchesContentsOfURL(url unsafe.Pointer) bool
 	NeedsToBeUpdatedFromPath(path string) bool
-	SymbolicLinkDestination() unsafe.Pointer
+	SymbolicLinkDestination() string
 	WriteToFileAtomicallyUpdateFilenames(path string, atomicFlag bool, updateFilenamesFlag bool) bool
 }
 
@@ -103,8 +103,8 @@ func (f_ FileWrapper) NeedsToBeUpdatedFromPath(path string) bool {
 // Provides the pathname referenced by the file wrapper object, which must be a symbolic-link file wrapper.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/symbolicLinkDestination()
-func (f_ FileWrapper) SymbolicLinkDestination() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("symbolicLinkDestination"))
+func (f_ FileWrapper) SymbolicLinkDestination() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("symbolicLinkDestination"))
 	return rv
 }
 
@@ -119,8 +119,8 @@ func (f_ FileWrapper) WriteToFileAtomicallyUpdateFilenames(path string, atomicFl
 // The filename of the file wrapper object
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) Filename() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("filename"))
+func (f_ FileWrapper) Filename() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("filename"))
 	return rv
 }
 
@@ -130,8 +130,8 @@ func (f_ FileWrapper) Filename() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/filename
-func (f_ FileWrapper) SetFilename(value unsafe.Pointer) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), value)
+func (f_ FileWrapper) SetFilename(value string) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
 // The contents of the file wrapper as an opaque data object.
 //

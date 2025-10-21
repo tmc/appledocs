@@ -218,6 +218,16 @@ func NewWindow() Window {
 }
 
 
+// Initializes the window with the specified values.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
+func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
+	instance := getWindowClass().Alloc()
+	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes an allocated window with the specified values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:screen:)
@@ -242,16 +252,6 @@ func NewWindowWithContentViewController(contentViewController unsafe.Pointer) Wi
 func NewWindowWithWindowRef(windowRef unsafe.Pointer) Window {
 	instance := getWindowClass().Alloc()
 	rv := objc.Send[Window](instance.ID, objc.Sel("initWithWindowRef:"), windowRef)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes the window with the specified values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/init(contentRect:styleMask:backing:defer:)
-func NewWindowWithContentRectStyleMaskBackingDefer(contentRect coregraphics.CGRect, style WindowStyleMask, backingStoreType BackingStoreType, flag bool) Window {
-	instance := getWindowClass().Alloc()
-	rv := objc.Send[Window](instance.ID, objc.Sel("initWithContentRect:styleMask:backing:defer:"), contentRect, style, backingStoreType, flag)
 	rv.Autorelease()
 	return rv
 }
@@ -2402,8 +2402,8 @@ func (w_ Window) SetMiniwindowImage(value unsafe.Pointer) {
 // The title displayed in the window’s minimized window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowTitle
-func (w_ Window) MiniwindowTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("miniwindowTitle"))
+func (w_ Window) MiniwindowTitle() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("miniwindowTitle"))
 	return rv
 }
 
@@ -2413,8 +2413,8 @@ func (w_ Window) MiniwindowTitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/miniwindowTitle
-func (w_ Window) SetMiniwindowTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowTitle:"), value)
+func (w_ Window) SetMiniwindowTitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setMiniwindowTitle:"), objc.String(value))
 }
 // The current location of the pointer reckoned in the window’s base coordinate system, regardless of the current event being handled or of any events pending.
 //
@@ -2520,8 +2520,8 @@ func (w_ Window) SetPreventsApplicationTerminationWhenModal(value bool) {
 // The path to the file of the window’s represented file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedFilename
-func (w_ Window) RepresentedFilename() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("representedFilename"))
+func (w_ Window) RepresentedFilename() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("representedFilename"))
 	return rv
 }
 
@@ -2531,8 +2531,8 @@ func (w_ Window) RepresentedFilename() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/representedFilename
-func (w_ Window) SetRepresentedFilename(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedFilename:"), value)
+func (w_ Window) SetRepresentedFilename(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setRepresentedFilename:"), objc.String(value))
 }
 // The URL of the file the window represents.
 //
@@ -2688,8 +2688,8 @@ func (w_ Window) SetStyleMask(value WindowStyleMask) {
 // A secondary line of text that appears in the title bar of the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/subtitle
-func (w_ Window) Subtitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("subtitle"))
+func (w_ Window) Subtitle() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("subtitle"))
 	return rv
 }
 
@@ -2699,8 +2699,8 @@ func (w_ Window) Subtitle() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/subtitle
-func (w_ Window) SetSubtitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setSubtitle:"), value)
+func (w_ Window) SetSubtitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setSubtitle:"), objc.String(value))
 }
 // An object that represents information about a window when it displays as a tab.
 //
@@ -2763,8 +2763,8 @@ func (w_ Window) SetTabbingMode(value unsafe.Pointer) {
 // The string that appears in the title bar of the window or the path to the represented file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/title
-func (w_ Window) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("title"))
+func (w_ Window) Title() string {
+	rv := objc.Send[string](w_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -2774,8 +2774,8 @@ func (w_ Window) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/title
-func (w_ Window) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
+func (w_ Window) SetTitle(value string) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // A value that indicates the visibility of the window’s title and title bar buttons.
 //

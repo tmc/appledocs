@@ -365,8 +365,8 @@ func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool) {
 // Specifies the unique ID of the Core Audio output device used to play audio.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) AudioOutputDeviceUniqueID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
+func (p_ Player) AudioOutputDeviceUniqueID() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
 }
 
@@ -376,8 +376,8 @@ func (p_ Player) AudioOutputDeviceUniqueID() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
-func (p_ Player) SetAudioOutputDeviceUniqueID(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
+func (p_ Player) SetAudioOutputDeviceUniqueID(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), objc.String(value))
 }
 // Whether the player’s audio output is suppressed due to being on a non-mixable audio route.
 //

@@ -148,8 +148,8 @@ func (u_ UserActivity) ResignCurrent() {
 // The user activity object’s activity type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/activityType
-func (u_ UserActivity) ActivityType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("activityType"))
+func (u_ UserActivity) ActivityType() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("activityType"))
 	return rv
 }
 
@@ -231,8 +231,8 @@ func (u_ UserActivity) SetExpirationDate(value unsafe.Pointer) {
 // A unique identifier from the app’s media content catalog for the currently displayed media item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-func (u_ UserActivity) ExternalMediaContentIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("externalMediaContentIdentifier"))
+func (u_ UserActivity) ExternalMediaContentIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("externalMediaContentIdentifier"))
 	return rv
 }
 
@@ -242,8 +242,8 @@ func (u_ UserActivity) ExternalMediaContentIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/externalMediaContentIdentifier
-func (u_ UserActivity) SetExternalMediaContentIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), value)
+func (u_ UserActivity) SetExternalMediaContentIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setExternalMediaContentIdentifier:"), objc.String(value))
 }
 // The SiriKit interaction object to use when configuring your app.
 //
@@ -459,8 +459,8 @@ func (u_ UserActivity) SetShortcutAvailability(value unsafe.Pointer) {
 // A phrase suggested to the user when they create a shortcut.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-func (u_ UserActivity) SuggestedInvocationPhrase() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("suggestedInvocationPhrase"))
+func (u_ UserActivity) SuggestedInvocationPhrase() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("suggestedInvocationPhrase"))
 	return rv
 }
 
@@ -470,8 +470,8 @@ func (u_ UserActivity) SuggestedInvocationPhrase() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/suggestedInvocationPhrase
-func (u_ UserActivity) SetSuggestedInvocationPhrase(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), value)
+func (u_ UserActivity) SetSuggestedInvocationPhrase(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedInvocationPhrase:"), objc.String(value))
 }
 // A Boolean value that determines whether the continuing app can request streams to be opened back to the originating app.
 //
@@ -493,8 +493,8 @@ func (u_ UserActivity) SetSupportsContinuationStreams(value bool) {
 // A string that identifies the user activity’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-func (u_ UserActivity) TargetContentIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("targetContentIdentifier"))
+func (u_ UserActivity) TargetContentIdentifier() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("targetContentIdentifier"))
 	return rv
 }
 
@@ -504,14 +504,14 @@ func (u_ UserActivity) TargetContentIdentifier() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/targetContentIdentifier
-func (u_ UserActivity) SetTargetContentIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), value)
+func (u_ UserActivity) SetTargetContentIdentifier(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTargetContentIdentifier:"), objc.String(value))
 }
 // An optional, user-visible title for this activity, such as a document name or web page title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-func (u_ UserActivity) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("title"))
+func (u_ UserActivity) Title() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -521,8 +521,8 @@ func (u_ UserActivity) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserActivity/title
-func (u_ UserActivity) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), value)
+func (u_ UserActivity) SetTitle(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // A dictionary containing app-specific state information needed to continue an activity on another device.
 //

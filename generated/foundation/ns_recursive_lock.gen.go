@@ -92,8 +92,8 @@ func (r_ RecursiveLock) TryLock() bool {
 // The name associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-func (r_ RecursiveLock) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("name"))
+func (r_ RecursiveLock) Name() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -103,8 +103,8 @@ func (r_ RecursiveLock) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecursiveLock/name
-func (r_ RecursiveLock) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), value)
+func (r_ RecursiveLock) SetName(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

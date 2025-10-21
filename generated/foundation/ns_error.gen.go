@@ -154,24 +154,24 @@ func (e_ Error) Domain() unsafe.Pointer {
 // A string to display in response to an alert panel help anchor button being pressed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/helpAnchor
-func (e_ Error) HelpAnchor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("helpAnchor"))
+func (e_ Error) HelpAnchor() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("helpAnchor"))
 	return rv
 }
 
 // A string containing the localized description of the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedDescription
-func (e_ Error) LocalizedDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("localizedDescription"))
+func (e_ Error) LocalizedDescription() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("localizedDescription"))
 	return rv
 }
 
 // A string containing the localized explanation of the reason for the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedFailureReason
-func (e_ Error) LocalizedFailureReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("localizedFailureReason"))
+func (e_ Error) LocalizedFailureReason() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("localizedFailureReason"))
 	return rv
 }
 
@@ -186,8 +186,8 @@ func (e_ Error) LocalizedRecoveryOptions() []string {
 // A string containing the localized recovery suggestion for the error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/localizedRecoverySuggestion
-func (e_ Error) LocalizedRecoverySuggestion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("localizedRecoverySuggestion"))
+func (e_ Error) LocalizedRecoverySuggestion() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("localizedRecoverySuggestion"))
 	return rv
 }
 

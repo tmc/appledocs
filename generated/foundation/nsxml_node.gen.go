@@ -32,7 +32,7 @@ type IXMLNode interface {
 	objectivec.IObject
 	ChildAtIndex(index uint) unsafe.Pointer
 	SetStringValueResolvingEntities(string_ string, resolve bool)
-	XMLStringWithOptions(options unsafe.Pointer) unsafe.Pointer
+	XMLStringWithOptions(options unsafe.Pointer) string
 }
 
 // The nodes in the abstract, logical tree structure that represents an XML document.
@@ -234,8 +234,8 @@ func (x_ XMLNode) SetStringValueResolvingEntities(string_ string, resolve bool) 
 // Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/xmlString(options:)
-func (x_ XMLNode) XMLStringWithOptions(options unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
+func (x_ XMLNode) XMLStringWithOptions(options unsafe.Pointer) string {
+	rv := objc.Send[string](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
 	return rv
 }
 
@@ -266,8 +266,8 @@ func (x_ XMLNode) Level() uint {
 // Returns the name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
-func (x_ XMLNode) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("name"))
+func (x_ XMLNode) Name() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -277,8 +277,8 @@ func (x_ XMLNode) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
-func (x_ XMLNode) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), value)
+func (x_ XMLNode) SetName(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // Returns the object value of the receiver.
 //
@@ -308,8 +308,8 @@ func (x_ XMLNode) Parent() unsafe.Pointer {
 // Returns the content of the receiver as a string value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
-func (x_ XMLNode) StringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("stringValue"))
+func (x_ XMLNode) StringValue() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -319,14 +319,14 @@ func (x_ XMLNode) StringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
-func (x_ XMLNode) SetStringValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), value)
+func (x_ XMLNode) SetStringValue(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 // Returns the URI associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
-func (x_ XMLNode) URI() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("URI"))
+func (x_ XMLNode) URI() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("URI"))
 	return rv
 }
 
@@ -336,7 +336,7 @@ func (x_ XMLNode) URI() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
-func (x_ XMLNode) SetURI(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), value)
+func (x_ XMLNode) SetURI(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), objc.String(value))
 }
 

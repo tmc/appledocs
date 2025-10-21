@@ -29,7 +29,7 @@ type _LengthFormatterClass struct {
 // An interface definition for the [LengthFormatter] class.
 type ILengthFormatter interface {
 	IFormatter
-	UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) unsafe.Pointer
+	UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) string
 }
 
 // A formatter that provides localized descriptions of linear distances, such as length and height measurements.
@@ -83,8 +83,8 @@ func NewLengthFormatter() LengthFormatter {
 // Returns the unit string based on the provided value and unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/LengthFormatter/unitString(fromValue:unit:)
-func (l_ LengthFormatter) UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
+func (l_ LengthFormatter) UnitStringFromValueUnit(value unsafe.Pointer, unit unsafe.Pointer) string {
+	rv := objc.Send[string](l_.ID, objc.Sel("unitStringFromValue:unit:"), value, unit)
 	return rv
 }
 

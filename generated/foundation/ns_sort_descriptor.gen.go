@@ -81,16 +81,6 @@ func NewSortDescriptor() SortDescriptor {
 }
 
 
-// Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:selector:)
-func NewSortDescriptorWithKeyAscendingSelector(key string, ascending bool, selector objc.SEL) SortDescriptor {
-	instance := getSortDescriptorClass().Alloc()
-	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:selector:"), objc.String(key), ascending, selector)
-	rv.Autorelease()
-	return rv
-}
-
 // Creates a sort descriptor by decoding from the coder you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(coder:)
@@ -121,6 +111,16 @@ func NewSortDescriptorWithKeyAscendingComparator(key string, ascending bool, cmp
 	return rv
 }
 
+// Creates a sort descriptor with a specified string key path, ordering, and comparison selector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/init(key:ascending:selector:)
+func NewSortDescriptorWithKeyAscendingSelector(key string, ascending bool, selector objc.SEL) SortDescriptor {
+	instance := getSortDescriptorClass().Alloc()
+	rv := objc.Send[SortDescriptor](instance.ID, objc.Sel("initWithKey:ascending:selector:"), objc.String(key), ascending, selector)
+	rv.Autorelease()
+	return rv
+}
+
 
 // Creates and returns a sort descriptor initialized with the specified key path and ordering, and a comparator block.
 //
@@ -141,8 +141,8 @@ func (s_ SortDescriptor) CompareObjectToObject(object1 objc.ID, object2 objc.ID)
 // The key that specifies the property to compare during sorting.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/key
-func (s_ SortDescriptor) Key() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("key"))
+func (s_ SortDescriptor) Key() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("key"))
 	return rv
 }
 

@@ -290,8 +290,8 @@ func (u_ URLSessionTask) State() unsafe.Pointer {
 // An app-provided string value for the current task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) TaskDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("taskDescription"))
+func (u_ URLSessionTask) TaskDescription() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("taskDescription"))
 	return rv
 }
 
@@ -301,8 +301,8 @@ func (u_ URLSessionTask) TaskDescription() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTask/taskDescription
-func (u_ URLSessionTask) SetTaskDescription(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), value)
+func (u_ URLSessionTask) SetTaskDescription(value string) {
+	objc.Send[objc.ID](u_.ID, objc.Sel("setTaskDescription:"), objc.String(value))
 }
 // An identifier uniquely identifying the task within a given session.
 //

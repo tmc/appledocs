@@ -83,8 +83,8 @@ func NewTouchBarItem() TouchBarItem {
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/customizationLabel
-func (t_ TouchBarItem) CustomizationLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("customizationLabel"))
+func (t_ TouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 

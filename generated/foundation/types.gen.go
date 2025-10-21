@@ -41,6 +41,197 @@ const (
 	RectEdgeMaxY RectEdge = 3
 )
 
+// Enum types and constants
+// NSAlignmentOptions - Values representing alignment operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/AlignmentOptions
+type AlignmentOptions int
+
+// NSDirectoryEnumerationOptions - Options for enumerating the contents of directories.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions
+type DirectoryEnumerationOptions int
+
+// NSFileManagerItemReplacementOptions - Options for specifying the behavior of file replacement operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/ItemReplacementOptions
+type FileManagerItemReplacementOptions int
+
+// NSSearchPathDomainMask - Domain constants specifying base locations to use when you search for significant directories.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDomainMask
+type SearchPathDomainMask int
+
+// NSFileManagerUnmountOptions - Options that specify the behavior of an unmount operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/UnmountOptions
+type FileManagerUnmountOptions int
+
+// NSVolumeEnumerationOptions - Options for enumerating mounted volumes with the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/VolumeEnumerationOptions
+type VolumeEnumerationOptions int
+
+// NSInlinePresentationIntent - A type that defines presentation intent for runs of characters for traits like emphasis, strikethrough, and code voice.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/InlinePresentationIntent
+type InlinePresentationIntent int
+
+// NSAttributedStringEnumerationOptions - Options for enumerating attributes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAttributedString/EnumerationOptions
+type AttributedStringEnumerationOptions int
+
+// NSBinarySearchingOptions - Options for searches and insertions using 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBinarySearchingOptions
+type BinarySearchingOptions int
+
+// NSCalendarUnit - Calendrical units such as year, month, day and hour.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Unit
+type CalendarUnit int
+
+// NSDataBase64DecodingOptions - Options to modify the decoding algorithm used to decode Base64 encoded data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64DecodingOptions
+type DataBase64DecodingOptions int
+
+// NSDataBase64EncodingOptions - Options for methods used to Base64 encode data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/Base64EncodingOptions
+type DataBase64EncodingOptions int
+
+// NSDataReadingOptions - Options for methods used to read data objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/ReadingOptions
+type DataReadingOptions int
+
+// NSDataSearchOptions - Options for method used to search data objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/SearchOptions
+type DataSearchOptions int
+
+// NSDataWritingOptions - Options for methods used to write data objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/WritingOptions
+type DataWritingOptions int
+
+// NSEnumerationOptions - Options for block enumeration operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerationOptions
+type EnumerationOptions int
+
+// NSFileCoordinatorWritingOptions - Options to use when changing the contents or attributes of a file or directory.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/WritingOptions
+type FileCoordinatorWritingOptions int
+
+// NSFileManagerSupportedSyncControls - An option set of the sync controls available for an item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls
+type FileManagerSupportedSyncControls int
+
+// NSItemProviderFileOptions - Data-access specifications that declare how to handle items.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProviderFileOptions
+type ItemProviderFileOptions int
+
+// NSKeyValueObservingOptions - The values that can be returned in a change dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueObservingOptions
+type KeyValueObservingOptions int
+
+// NSLinguisticTaggerOptions - Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/Options
+type LinguisticTaggerOptions int
+
+// NSMachPortOptions - Used to remove access rights to a mach port when the 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/Options
+type MachPortOptions int
+
+// NSOrderedCollectionDifferenceCalculationOptions - Constants that specify the options to use when creating an ordered collection difference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifferenceCalculationOptions
+type OrderedCollectionDifferenceCalculationOptions int
+
+// NSPointerFunctionsOptions - Defines the memory and personality options for an 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerFunctions/Options
+type PointerFunctionsOptions int
+
+// NSSortOptions - Options for block sorting operations.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortOptions
+type SortOptions int
+
+// NSStringCompareOptions - These values represent the options available to many of the string classes’ search and comparison methods.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/CompareOptions
+type StringCompareOptions int
+
+// NSStringDrawingOptions enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/DrawingOptions
+type StringDrawingOptions int
+
+// NSStringEncodingConversionOptions - Options for converting string encodings.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EncodingConversionOptions
+type StringEncodingConversionOptions int
+
+// NSStringEnumerationOptions - Constants to specify kinds of substrings and styles of enumeration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/EnumerationOptions
+type StringEnumerationOptions int
+
+// NSTextCheckingType - These constants specify the type of checking the methods should do. They are returned by 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/CheckingType
+type TextCheckingType int
+
+// NSURLBookmarkCreationOptions - Options used when creating bookmark data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkCreationOptions
+type URLBookmarkCreationOptions int
+
+// NSURLBookmarkResolutionOptions - Options used when resolving bookmark data.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/BookmarkResolutionOptions
+type URLBookmarkResolutionOptions int
+
+// NSXPCConnectionOptions - Options that you can pass to a connection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/Options
+type XPCConnectionOptions int
+
+// NSNetServiceOptions - These constants specify options for a network service.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/Options
+type NetServiceOptions int
+
+// NSNotificationCoalescing - The constants that specify how notifications are coalesced.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/NotificationCoalescing
+type NotificationCoalescing int
+
+// NSActivityOptions - Option flags used with 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/ActivityOptions
+type ActivityOptions int
+
+// NSStreamEvent - Describes the constants that may be sent to the delegate as a bit field in the second parameter of 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/Event
+type StreamEvent int
+
+// NSXMLNodeOptions - These constants are input and output options for all 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/Options
+type XMLNodeOptions int
+
 
 // Fallback type aliases for undefined types
 // These types are referenced in method signatures but not fully documented.

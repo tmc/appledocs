@@ -30,7 +30,7 @@ type _OrderedSetClass struct {
 // An interface definition for the [OrderedSet] class.
 type IOrderedSet interface {
 	objectivec.IObject
-	DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer
+	DescriptionWithLocaleIndent(locale objc.ID, level uint) string
 	EnumerateObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
 	IndexOfObjectPassingTest(predicate unsafe.Pointer) uint
 	ObjectAtIndex(idx uint) unsafe.Pointer
@@ -87,8 +87,8 @@ func NewOrderedSet() OrderedSet {
 // Returns a string that represents the contents of the ordered set, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
-func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
+func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objc.ID, level uint) string {
+	rv := objc.Send[string](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
 

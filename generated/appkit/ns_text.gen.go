@@ -637,8 +637,8 @@ func (t_ Text) SetSelectedRange(value foundation.Range) {
 // The characters of the receiver’s text.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/string
-func (t_ Text) String() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("string"))
+func (t_ Text) String() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("string"))
 	return rv
 }
 
@@ -648,8 +648,8 @@ func (t_ Text) String() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/string
-func (t_ Text) SetString(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), value)
+func (t_ Text) SetString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setString:"), objc.String(value))
 }
 // The text color of all characters in the receiver.
 //

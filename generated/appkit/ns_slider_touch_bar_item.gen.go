@@ -82,8 +82,8 @@ func NewSliderTouchBarItem() SliderTouchBarItem {
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/customizationLabel
-func (s_ SliderTouchBarItem) CustomizationLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("customizationLabel"))
+func (s_ SliderTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
@@ -93,8 +93,8 @@ func (s_ SliderTouchBarItem) CustomizationLabel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/customizationLabel
-func (s_ SliderTouchBarItem) SetCustomizationLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), value)
+func (s_ SliderTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
 // The accessory that appears at the end of the slider with the minimum value.
 //

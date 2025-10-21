@@ -327,8 +327,8 @@ func (s_ SavePanel) SetExtensionHidden(value bool) {
 // The message text displayed in the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/message
-func (s_ SavePanel) Message() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("message"))
+func (s_ SavePanel) Message() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("message"))
 	return rv
 }
 
@@ -338,14 +338,14 @@ func (s_ SavePanel) Message() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/message
-func (s_ SavePanel) SetMessage(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMessage:"), value)
+func (s_ SavePanel) SetMessage(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMessage:"), objc.String(value))
 }
 // The label text displayed in front of the filename text field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldLabel
-func (s_ SavePanel) NameFieldLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("nameFieldLabel"))
+func (s_ SavePanel) NameFieldLabel() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("nameFieldLabel"))
 	return rv
 }
 
@@ -355,14 +355,14 @@ func (s_ SavePanel) NameFieldLabel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldLabel
-func (s_ SavePanel) SetNameFieldLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldLabel:"), value)
+func (s_ SavePanel) SetNameFieldLabel(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldLabel:"), objc.String(value))
 }
 // The user-editable filename currently shown in the name field.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldStringValue
-func (s_ SavePanel) NameFieldStringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("nameFieldStringValue"))
+func (s_ SavePanel) NameFieldStringValue() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("nameFieldStringValue"))
 	return rv
 }
 
@@ -372,14 +372,14 @@ func (s_ SavePanel) NameFieldStringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/nameFieldStringValue
-func (s_ SavePanel) SetNameFieldStringValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldStringValue:"), value)
+func (s_ SavePanel) SetNameFieldStringValue(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNameFieldStringValue:"), objc.String(value))
 }
 // The text to display in the default button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
-func (s_ SavePanel) Prompt() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("prompt"))
+func (s_ SavePanel) Prompt() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("prompt"))
 	return rv
 }
 
@@ -389,8 +389,8 @@ func (s_ SavePanel) Prompt() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
-func (s_ SavePanel) SetPrompt(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrompt:"), value)
+func (s_ SavePanel) SetPrompt(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPrompt:"), objc.String(value))
 }
 // : Whether or not to show a control for selecting the type of the saved file. The control shows the types in . Default is . : Not used.
 //
@@ -473,8 +473,8 @@ func (s_ SavePanel) SetTagNames(value []string) {
 // The title of the panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/title
-func (s_ SavePanel) Title() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("title"))
+func (s_ SavePanel) Title() string {
+	rv := objc.Send[string](s_.ID, objc.Sel("title"))
 	return rv
 }
 
@@ -484,8 +484,8 @@ func (s_ SavePanel) Title() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/title
-func (s_ SavePanel) SetTitle(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
+func (s_ SavePanel) SetTitle(value string) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
 // A Boolean value that indicates whether the panel displays file packages as directories.
 //

@@ -40,7 +40,7 @@ type IUndoManager interface {
 	SetActionUserInfoValueForKey(info objc.ID, key unsafe.Pointer)
 	Undo()
 	UndoActionUserInfoValueForKey(key unsafe.Pointer) objc.ID
-	UndoMenuTitleForUndoActionName(actionName string) unsafe.Pointer
+	UndoMenuTitleForUndoActionName(actionName string) string
 	UndoNestedGroup()
 }
 
@@ -166,8 +166,8 @@ func (u_ UndoManager) UndoActionUserInfoValueForKey(key unsafe.Pointer) objc.ID 
 // Returns the localized title of the Undo menu command for the identified action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoMenuTitle(forUndoActionName:)
-func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), objc.String(actionName))
+func (u_ UndoManager) UndoMenuTitleForUndoActionName(actionName string) string {
+	rv := objc.Send[string](u_.ID, objc.Sel("undoMenuTitleForUndoActionName:"), objc.String(actionName))
 	return rv
 }
 
@@ -222,8 +222,8 @@ func (u_ UndoManager) RedoCount() uint {
 // The title of the Redo menu command, such as Redo Paste.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoMenuItemTitle
-func (u_ UndoManager) RedoMenuItemTitle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("redoMenuItemTitle"))
+func (u_ UndoManager) RedoMenuItemTitle() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("redoMenuItemTitle"))
 	return rv
 }
 
@@ -257,8 +257,8 @@ func (u_ UndoManager) SetRunLoopModes(value []string) {
 // The name identifying the undo action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName
-func (u_ UndoManager) UndoActionName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("undoActionName"))
+func (u_ UndoManager) UndoActionName() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("undoActionName"))
 	return rv
 }
 

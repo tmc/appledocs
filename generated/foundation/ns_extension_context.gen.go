@@ -36,7 +36,7 @@ type IExtensionContext interface {
 	CompleteRequestWithBroadcastURLBroadcastConfigurationSetupInfo(broadcastURL unsafe.Pointer, broadcastConfiguration unsafe.Pointer, setupInfo unsafe.Pointer)
 	CompleteRequestWithBroadcastURLSetupInfo(broadcastURL unsafe.Pointer, setupInfo unsafe.Pointer)
 	DismissNotificationContentExtension()
-	InterfaceParametersDescription() unsafe.Pointer
+	InterfaceParametersDescription() string
 	LoadBroadcastingApplicationInfoWithCompletion(handler unsafe.Pointer)
 	MediaPlayingPaused()
 	MediaPlayingStarted()
@@ -129,8 +129,8 @@ func (e_ ExtensionContext) DismissNotificationContentExtension() {
 // Returns a human-readable string describing the data that SiriKit displays to the user when you handle an intent.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/interfaceParametersDescription()
-func (e_ ExtensionContext) InterfaceParametersDescription() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("interfaceParametersDescription"))
+func (e_ ExtensionContext) InterfaceParametersDescription() string {
+	rv := objc.Send[string](e_.ID, objc.Sel("interfaceParametersDescription"))
 	return rv
 }
 

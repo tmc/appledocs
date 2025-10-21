@@ -49,9 +49,9 @@ type IFileManager interface {
 	CreateSymbolicLinkAtURLWithDestinationURLError(url unsafe.Pointer, destURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	CreateSymbolicLinkAtPathPathContent(path string, otherpath string) bool
 	CreateSymbolicLinkAtPathWithDestinationPathError(path string, destPath string, error_ unsafe.Pointer) bool
-	DestinationOfSymbolicLinkAtPathError(path string, error_ unsafe.Pointer) unsafe.Pointer
+	DestinationOfSymbolicLinkAtPathError(path string, error_ unsafe.Pointer) string
 	DirectoryContentsAtPath(path string) unsafe.Pointer
-	DisplayNameAtPath(path string) unsafe.Pointer
+	DisplayNameAtPath(path string) string
 	EnumeratorAtPath(path string) unsafe.Pointer
 	EvictUbiquitousItemAtURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
 	FetchLatestRemoteVersionOfItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
@@ -74,7 +74,7 @@ type IFileManager interface {
 	MountedVolumeURLsIncludingResourceValuesForKeysOptions(propertyKeys unsafe.Pointer, options unsafe.Pointer) []URL
 	MoveItemAtURLToURLError(srcURL unsafe.Pointer, dstURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	MoveItemAtPathToPathError(srcPath string, dstPath string, error_ unsafe.Pointer) bool
-	PathContentOfSymbolicLinkAtPath(path string) unsafe.Pointer
+	PathContentOfSymbolicLinkAtPath(path string) string
 	PauseSyncForUbiquitousItemAtURLCompletionHandler(url unsafe.Pointer, completionHandler unsafe.Pointer)
 	RemoveItemAtURLError(URL unsafe.Pointer, error_ unsafe.Pointer) bool
 	RemoveItemAtPathError(path string, error_ unsafe.Pointer) bool
@@ -83,7 +83,7 @@ type IFileManager interface {
 	SetAttributesOfItemAtPathError(attributes unsafe.Pointer, path string, error_ unsafe.Pointer) bool
 	SetUbiquitousItemAtURLDestinationURLError(flag bool, url unsafe.Pointer, destinationURL unsafe.Pointer, error_ unsafe.Pointer) bool
 	StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointer, error_ unsafe.Pointer) bool
-	StringWithFileSystemRepresentationLength(str unsafe.Pointer, len uint) unsafe.Pointer
+	StringWithFileSystemRepresentationLength(str unsafe.Pointer, len uint) string
 	SubpathsAtPath(path string) []string
 	SubpathsOfDirectoryAtPathError(path string, error_ unsafe.Pointer) []string
 	TrashItemAtURLResultingItemURLError(url unsafe.Pointer, outResultingURL unsafe.Pointer, error_ unsafe.Pointer) bool
@@ -327,8 +327,8 @@ func (f_ FileManager) CreateSymbolicLinkAtPathWithDestinationPathError(path stri
 // Returns the path of the item pointed to by a symbolic link.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/destinationOfSymbolicLink(atPath:)
-func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error_ unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), objc.String(path), error_)
+func (f_ FileManager) DestinationOfSymbolicLinkAtPathError(path string, error_ unsafe.Pointer) string {
+	rv := objc.Send[string](f_.ID, objc.Sel("destinationOfSymbolicLinkAtPath:error:"), objc.String(path), error_)
 	return rv
 }
 
@@ -343,8 +343,8 @@ func (f_ FileManager) DirectoryContentsAtPath(path string) unsafe.Pointer {
 // Returns the display name of the file or directory at a specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/displayName(atPath:)
-func (f_ FileManager) DisplayNameAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("displayNameAtPath:"), objc.String(path))
+func (f_ FileManager) DisplayNameAtPath(path string) string {
+	rv := objc.Send[string](f_.ID, objc.Sel("displayNameAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -525,8 +525,8 @@ func (f_ FileManager) MoveItemAtPathToPathError(srcPath string, dstPath string, 
 // Returns the path of the directory or file that a symbolic link at a given path refers to.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/pathContentOfSymbolicLink(atPath:)
-func (f_ FileManager) PathContentOfSymbolicLinkAtPath(path string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("pathContentOfSymbolicLinkAtPath:"), objc.String(path))
+func (f_ FileManager) PathContentOfSymbolicLinkAtPath(path string) string {
+	rv := objc.Send[string](f_.ID, objc.Sel("pathContentOfSymbolicLinkAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -595,8 +595,8 @@ func (f_ FileManager) StartDownloadingUbiquitousItemAtURLError(url unsafe.Pointe
 // Returns an object whose contents are derived from the specified C-string path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/string(withFileSystemRepresentation:length:)
-func (f_ FileManager) StringWithFileSystemRepresentationLength(str unsafe.Pointer, len uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("stringWithFileSystemRepresentation:length:"), str, len)
+func (f_ FileManager) StringWithFileSystemRepresentationLength(str unsafe.Pointer, len uint) string {
+	rv := objc.Send[string](f_.ID, objc.Sel("stringWithFileSystemRepresentation:length:"), str, len)
 	return rv
 }
 
@@ -713,8 +713,8 @@ func (f_ FileManager) RemoveFileAtPathHandler(path string, handler objc.ID) bool
 // The path to the program’s current directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/currentDirectoryPath
-func (f_ FileManager) CurrentDirectoryPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("currentDirectoryPath"))
+func (f_ FileManager) CurrentDirectoryPath() string {
+	rv := objc.Send[string](f_.ID, objc.Sel("currentDirectoryPath"))
 	return rv
 }
 

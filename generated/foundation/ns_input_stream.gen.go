@@ -83,6 +83,16 @@ func NewInputStream() InputStream {
 }
 
 
+// Initializes and returns an object that reads data from the file at a given URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
+func NewInputStreamWithURL(url unsafe.Pointer) InputStream {
+	instance := getInputStreamClass().Alloc()
+	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes and returns an object for reading from a given object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(data:)
@@ -99,16 +109,6 @@ func NewInputStreamWithData(data unsafe.Pointer) InputStream {
 func NewInputStreamWithFileAtPath(path string) InputStream {
 	instance := getInputStreamClass().Alloc()
 	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithFileAtPath:"), objc.String(path))
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes and returns an object that reads data from the file at a given URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/InputStream/init(url:)-1lfmj
-func NewInputStreamWithURL(url unsafe.Pointer) InputStream {
-	instance := getInputStreamClass().Alloc()
-	rv := objc.Send[InputStream](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
 	return rv
 }

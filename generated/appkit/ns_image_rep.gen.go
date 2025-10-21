@@ -85,6 +85,14 @@ func NewImageRep() ImageRep {
 }
 
 
+// Creates and returns an image representation object using the contents of the specified pasteboard.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
+func NewImageRepWithPasteboard(pasteboard unsafe.Pointer) ImageRep {
+	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
+	return rv
+}
+
 // Creates and returns an image representation object from data in an unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(coder:)
@@ -92,14 +100,6 @@ func NewImageRepWithCoder(coder unsafe.Pointer) ImageRep {
 	instance := getImageRepClass().Alloc()
 	rv := objc.Send[ImageRep](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
-	return rv
-}
-
-// Creates and returns an image representation object using the contents of the specified pasteboard.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageRep/init(pasteboard:)
-func NewImageRepWithPasteboard(pasteboard unsafe.Pointer) ImageRep {
-	rv := objc.Send[ImageRep](objc.ID(getImageRepClass().class), objc.Sel("imageRepWithPasteboard:"), pasteboard)
 	return rv
 }
 

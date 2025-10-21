@@ -244,16 +244,16 @@ func (n_ NetService) SetDelegate(value objc.ID) {
 // A string containing the domain for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
-func (n_ NetService) Domain() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("domain"))
+func (n_ NetService) Domain() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("domain"))
 	return rv
 }
 
 // A string containing the DNS hostname for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/hostName
-func (n_ NetService) HostName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("hostName"))
+func (n_ NetService) HostName() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("hostName"))
 	return rv
 }
 
@@ -277,8 +277,8 @@ func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 // A string containing the name of this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name
-func (n_ NetService) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("name"))
+func (n_ NetService) Name() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -293,8 +293,8 @@ func (n_ NetService) Port() int {
 // The type of the published service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/type
-func (n_ NetService) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("type"))
+func (n_ NetService) Type() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv
 }
 

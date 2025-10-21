@@ -37,7 +37,7 @@ type IPrinter interface {
 	IsKeyInTable(key string, table string) bool
 	PageSizeForPaper(paperName unsafe.Pointer) coregraphics.CGSize
 	StatusForTable(tableName string) unsafe.Pointer
-	StringForKeyInTable(key string, table string) unsafe.Pointer
+	StringForKeyInTable(key string, table string) string
 	StringListForKeyInTable(key string, table string) unsafe.Pointer
 }
 
@@ -140,8 +140,8 @@ func (p_ Printer) StatusForTable(tableName string) unsafe.Pointer {
 // Returns the first occurrence of a value associated with specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/stringForKey:inTable:
-func (p_ Printer) StringForKeyInTable(key string, table string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringForKey:inTable:"), objc.String(key), objc.String(table))
+func (p_ Printer) StringForKeyInTable(key string, table string) string {
+	rv := objc.Send[string](p_.ID, objc.Sel("stringForKey:inTable:"), objc.String(key), objc.String(table))
 	return rv
 }
 

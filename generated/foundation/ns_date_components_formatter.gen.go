@@ -29,7 +29,7 @@ type _DateComponentsFormatterClass struct {
 // An interface definition for the [DateComponentsFormatter] class.
 type IDateComponentsFormatter interface {
 	IFormatter
-	StringForObjectValue(obj objc.ID) unsafe.Pointer
+	StringForObjectValue(obj objc.ID) string
 }
 
 // A formatter that creates string representations of quantities of time.
@@ -85,8 +85,8 @@ func NewDateComponentsFormatter() DateComponentsFormatter {
 // Returns a formatted string based on the date information in the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(for:)
-func (d_ DateComponentsFormatter) StringForObjectValue(obj objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("stringForObjectValue:"), obj)
+func (d_ DateComponentsFormatter) StringForObjectValue(obj objc.ID) string {
+	rv := objc.Send[string](d_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
 

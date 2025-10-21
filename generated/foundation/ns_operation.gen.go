@@ -187,8 +187,8 @@ func (o_ Operation) Ready() bool {
 // The name of the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("name"))
+func (o_ Operation) Name() string {
+	rv := objc.Send[string](o_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -198,8 +198,8 @@ func (o_ Operation) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/name
-func (o_ Operation) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), value)
+func (o_ Operation) SetName(value string) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
 // The relative amount of importance for granting system resources to the operation.
 //

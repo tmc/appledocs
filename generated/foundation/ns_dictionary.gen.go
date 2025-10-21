@@ -32,26 +32,26 @@ type IDictionary interface {
 	objectivec.IObject
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
 	CountByEnumeratingWithStateObjectsCount(state unsafe.Pointer, buffer unsafe.Pointer, len uint) uint
-	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
-	DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer
+	DescriptionWithLocale(locale objc.ID) string
+	DescriptionWithLocaleIndent(locale objc.ID, level uint) string
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts unsafe.Pointer, block unsafe.Pointer)
 	FileCreationDate() unsafe.Pointer
 	FileExtensionHidden() bool
 	FileGroupOwnerAccountID() unsafe.Pointer
-	FileGroupOwnerAccountName() unsafe.Pointer
+	FileGroupOwnerAccountName() string
 	FileHFSCreatorCode() unsafe.Pointer
 	FileHFSTypeCode() unsafe.Pointer
 	FileIsAppendOnly() bool
 	FileIsImmutable() bool
 	FileModificationDate() unsafe.Pointer
 	FileOwnerAccountID() unsafe.Pointer
-	FileOwnerAccountName() unsafe.Pointer
+	FileOwnerAccountName() string
 	FilePosixPermissions() uint
 	FileSize() uint64
 	FileSystemFileNumber() uint
 	FileSystemNumber() int
-	FileType() unsafe.Pointer
+	FileType() string
 	GetObjectsAndKeys(objects unsafe.Pointer, keys unsafe.Pointer)
 	GetObjectsAndKeysCount(objects unsafe.Pointer, keys unsafe.Pointer, count uint)
 	IsEqualToDictionary(otherDictionary unsafe.Pointer) bool
@@ -130,21 +130,29 @@ func NewDictionaryWithCoder(coder unsafe.Pointer) Dictionary {
 
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
-func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
+func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Dictionary {
 	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
 }
 
-// Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects.
+// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:count:)
-func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objc.ID, cnt uint) Dictionary {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:)-9fw1u
+func NewDictionaryWithDictionary(otherDictionary unsafe.Pointer) Dictionary {
 	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:count:"), objects, keys, cnt)
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithDictionary:"), otherDictionary)
 	rv.Autorelease()
+	return rv
+}
+
+// Creates a dictionary containing a given key and value.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
+func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objc.ID) Dictionary {
+	rv := objc.Send[Dictionary](objc.ID(getDictionaryClass().class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	return rv
 }
 
@@ -170,20 +178,10 @@ func NewDictionaryWithContentsOfFile(path string) Dictionary {
 
 // Initializes a newly allocated dictionary using the keys and values found at a given URL.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:error:)
-func NewDictionaryWithContentsOfURLError(url unsafe.Pointer, error_ unsafe.Pointer) Dictionary {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(contentsOfURL:)-4pv16
+func NewDictionaryWithContentsOfURL(url unsafe.Pointer) Dictionary {
 	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:error:"), url, error_)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a newly allocated dictionary by placing in it the keys and values contained in another given dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(dictionary:)-9fw1u
-func NewDictionaryWithDictionary(otherDictionary unsafe.Pointer) Dictionary {
-	instance := getDictionaryClass().Alloc()
-	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithDictionary:"), otherDictionary)
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
 }
@@ -198,20 +196,22 @@ func NewDictionaryWithDictionaryCopyItems(otherDictionary unsafe.Pointer, flag b
 	return rv
 }
 
-// Creates a dictionary containing a given key and value.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
-func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objc.ID) Dictionary {
-	rv := objc.Send[Dictionary](objc.ID(getDictionaryClass().class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
-	return rv
-}
-
 // Initializes a newly allocated dictionary with key-value pairs constructed from the provided arrays of keys and objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:)
 func NewDictionaryWithObjectsForKeys(objects unsafe.Pointer, keys unsafe.Pointer) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:"), objects, keys)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a newly allocated dictionary with the specified number of key-value pairs constructed from the provided C arrays of keys and objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(objects:forKeys:count:)
+func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objc.ID, cnt uint) Dictionary {
+	instance := getDictionaryClass().Alloc()
+	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjects:forKeys:count:"), objects, keys, cnt)
 	rv.Autorelease()
 	return rv
 }
@@ -316,16 +316,16 @@ func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state unsafe.Pointe
 // Returns a string object that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:)
-func (d_ Dictionary) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
+func (d_ Dictionary) DescriptionWithLocale(locale objc.ID) string {
+	rv := objc.Send[string](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
 
 // Returns a string object that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:indent:)
-func (d_ Dictionary) DescriptionWithLocaleIndent(locale objc.ID, level uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
+func (d_ Dictionary) DescriptionWithLocaleIndent(locale objc.ID, level uint) string {
+	rv := objc.Send[string](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
 
@@ -370,8 +370,8 @@ func (d_ Dictionary) FileGroupOwnerAccountID() unsafe.Pointer {
 // Returns the file’s group owner account name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileGroupOwnerAccountName()
-func (d_ Dictionary) FileGroupOwnerAccountName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileGroupOwnerAccountName"))
+func (d_ Dictionary) FileGroupOwnerAccountName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileGroupOwnerAccountName"))
 	return rv
 }
 
@@ -426,8 +426,8 @@ func (d_ Dictionary) FileOwnerAccountID() unsafe.Pointer {
 // Returns the file’s owner account name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileOwnerAccountName()
-func (d_ Dictionary) FileOwnerAccountName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileOwnerAccountName"))
+func (d_ Dictionary) FileOwnerAccountName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileOwnerAccountName"))
 	return rv
 }
 
@@ -466,8 +466,8 @@ func (d_ Dictionary) FileSystemNumber() int {
 // Returns the file type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/fileType()
-func (d_ Dictionary) FileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileType"))
+func (d_ Dictionary) FileType() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileType"))
 	return rv
 }
 
@@ -632,16 +632,16 @@ func (d_ Dictionary) Count() uint {
 // A string that represents the contents of the dictionary, formatted as a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description
-func (d_ Dictionary) Description() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("description"))
+func (d_ Dictionary) Description() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("description"))
 	return rv
 }
 
 // A string that represents the contents of the dictionary, formatted in file format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/descriptionInStringsFileFormat
-func (d_ Dictionary) DescriptionInStringsFileFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
+func (d_ Dictionary) DescriptionInStringsFileFormat() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
 	return rv
 }
 

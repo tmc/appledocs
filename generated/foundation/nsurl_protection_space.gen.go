@@ -83,8 +83,8 @@ func NewURLProtectionSpace() URLProtectionSpace {
 // The authentication method used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/authenticationMethod
-func (u_ URLProtectionSpace) AuthenticationMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("authenticationMethod"))
+func (u_ URLProtectionSpace) AuthenticationMethod() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("authenticationMethod"))
 	return rv
 }
 
@@ -99,8 +99,8 @@ func (u_ URLProtectionSpace) DistinguishedNames() []Data {
 // The receiver’s proxy type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtectionSpace/proxyType
-func (u_ URLProtectionSpace) ProxyType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("proxyType"))
+func (u_ URLProtectionSpace) ProxyType() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("proxyType"))
 	return rv
 }
 

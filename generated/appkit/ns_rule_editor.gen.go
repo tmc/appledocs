@@ -84,8 +84,8 @@ func NewRuleEditor() RuleEditor {
 // The key path for the subrows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowsKeyPath
-func (r_ RuleEditor) SubrowsKeyPath() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("subrowsKeyPath"))
+func (r_ RuleEditor) SubrowsKeyPath() string {
+	rv := objc.Send[string](r_.ID, objc.Sel("subrowsKeyPath"))
 	return rv
 }
 
@@ -95,8 +95,8 @@ func (r_ RuleEditor) SubrowsKeyPath() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/subrowsKeyPath
-func (r_ RuleEditor) SetSubrowsKeyPath(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), value)
+func (r_ RuleEditor) SetSubrowsKeyPath(value string) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setSubrowsKeyPath:"), objc.String(value))
 }
 
 

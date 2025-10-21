@@ -106,8 +106,8 @@ func (p_ PlayerItemTrack) SetEnabled(value bool) {
 // A mode that specifies the handling of video frames that contain multiple fields.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-func (p_ PlayerItemTrack) VideoFieldMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("videoFieldMode"))
+func (p_ PlayerItemTrack) VideoFieldMode() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("videoFieldMode"))
 	return rv
 }
 
@@ -117,8 +117,8 @@ func (p_ PlayerItemTrack) VideoFieldMode() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemTrack/videoFieldMode
-func (p_ PlayerItemTrack) SetVideoFieldMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), value)
+func (p_ PlayerItemTrack) SetVideoFieldMode(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoFieldMode:"), objc.String(value))
 }
 
 

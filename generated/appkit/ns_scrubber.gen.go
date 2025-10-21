@@ -93,22 +93,22 @@ func NewScrubber() Scrubber {
 }
 
 
-// Initializes and returns a newly allocated scrubber object from a storyboard or nib file.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
-func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
-	instance := getScrubberClass().Alloc()
-	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes and returns a newly allocated scrubber object with the specified frame rectangle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(frame:)
 func NewScrubberWithFrame(frameRect coregraphics.CGRect) Scrubber {
 	instance := getScrubberClass().Alloc()
 	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes and returns a newly allocated scrubber object from a storyboard or nib file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/init(coder:)
+func NewScrubberWithCoder(coder unsafe.Pointer) Scrubber {
+	instance := getScrubberClass().Alloc()
+	rv := objc.Send[Scrubber](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

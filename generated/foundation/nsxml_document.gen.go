@@ -154,8 +154,8 @@ func (x_ XMLDocument) SetRootElement(root unsafe.Pointer) {
 // Returns the MIME type for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) MIMEType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("MIMEType"))
+func (x_ XMLDocument) MIMEType() string {
+	rv := objc.Send[string](x_.ID, objc.Sel("MIMEType"))
 	return rv
 }
 
@@ -165,8 +165,8 @@ func (x_ XMLDocument) MIMEType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/mimeType
-func (x_ XMLDocument) SetMIMEType(value unsafe.Pointer) {
-	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), value)
+func (x_ XMLDocument) SetMIMEType(value string) {
+	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
 }
 // Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
 //

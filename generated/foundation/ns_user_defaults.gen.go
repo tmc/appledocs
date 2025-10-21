@@ -32,7 +32,7 @@ type IUserDefaults interface {
 	objectivec.IObject
 	SetURLForKey(url unsafe.Pointer, defaultName string)
 	SetObjectForKey(value objc.ID, defaultName string)
-	StringForKey(defaultName string) unsafe.Pointer
+	StringForKey(defaultName string) string
 }
 
 // An interface to the user’s defaults database, where you store key-value pairs persistently across launches of your app.
@@ -118,8 +118,8 @@ func (u_ UserDefaults) SetObjectForKey(value objc.ID, defaultName string) {
 // Returns the string associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
-func (u_ UserDefaults) StringForKey(defaultName string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
+func (u_ UserDefaults) StringForKey(defaultName string) string {
+	rv := objc.Send[string](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
 	return rv
 }
 

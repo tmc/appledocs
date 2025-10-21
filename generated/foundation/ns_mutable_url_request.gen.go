@@ -109,8 +109,8 @@ func (m_ MutableURLRequest) SetCachePolicy(value unsafe.Pointer) {
 // The HTTP request method.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
-func (m_ MutableURLRequest) HTTPMethod() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("HTTPMethod"))
+func (m_ MutableURLRequest) HTTPMethod() string {
+	rv := objc.Send[string](m_.ID, objc.Sel("HTTPMethod"))
 	return rv
 }
 
@@ -120,8 +120,8 @@ func (m_ MutableURLRequest) HTTPMethod() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableURLRequest/httpMethod
-func (m_ MutableURLRequest) SetHTTPMethod(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPMethod:"), value)
+func (m_ MutableURLRequest) SetHTTPMethod(value string) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHTTPMethod:"), objc.String(value))
 }
 // The URL being requested.
 //

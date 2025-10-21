@@ -94,8 +94,8 @@ func NewUnitWithSymbol(symbol string) Unit {
 // The symbolic representation of the unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Unit/symbol
-func (u_ Unit) Symbol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("symbol"))
+func (u_ Unit) Symbol() string {
+	rv := objc.Send[string](u_.ID, objc.Sel("symbol"))
 	return rv
 }
 

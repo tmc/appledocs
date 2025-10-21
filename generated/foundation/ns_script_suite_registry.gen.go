@@ -35,7 +35,7 @@ type IScriptSuiteRegistry interface {
 	LoadSuitesFromBundle(bundle unsafe.Pointer)
 	RegisterCommandDescription(commandDescription unsafe.Pointer)
 	RegisterClassDescription(classDescription unsafe.Pointer)
-	SuiteForAppleEventCode(appleEventCode unsafe.Pointer) unsafe.Pointer
+	SuiteForAppleEventCode(appleEventCode unsafe.Pointer) string
 }
 
 // The top-level repository of scriptability information for an app at runtime.
@@ -125,8 +125,8 @@ func (s_ ScriptSuiteRegistry) RegisterClassDescription(classDescription unsafe.P
 // Returns the name of the suite definition associated with the given four-character Apple event code, .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptSuiteRegistry/suite(forAppleEventCode:)
-func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("suiteForAppleEventCode:"), appleEventCode)
+func (s_ ScriptSuiteRegistry) SuiteForAppleEventCode(appleEventCode unsafe.Pointer) string {
+	rv := objc.Send[string](s_.ID, objc.Sel("suiteForAppleEventCode:"), appleEventCode)
 	return rv
 }
 

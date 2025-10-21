@@ -32,7 +32,7 @@ type IDecimalNumber interface {
 	DecimalNumberByAdding(decimalNumber unsafe.Pointer) unsafe.Pointer
 	DecimalNumberByAddingWithBehavior(decimalNumber unsafe.Pointer, behavior objc.ID) unsafe.Pointer
 	Compare(decimalNumber unsafe.Pointer) unsafe.Pointer
-	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
+	DescriptionWithLocale(locale objc.ID) string
 	DecimalNumberByDividingBy(decimalNumber unsafe.Pointer) unsafe.Pointer
 	DecimalNumberByDividingByWithBehavior(decimalNumber unsafe.Pointer, behavior objc.ID) unsafe.Pointer
 	DecimalNumberByMultiplyingBy(decimalNumber unsafe.Pointer) unsafe.Pointer
@@ -96,6 +96,16 @@ func NewDecimalNumber() DecimalNumber {
 }
 
 
+// Initializes a decimal number to represent a given decimal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
+func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
+	instance := getDecimalNumberClass().Alloc()
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes a decimal number using the given mantissa, exponent, and sign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(mantissa:exponent:isNegative:)
@@ -122,16 +132,6 @@ func NewDecimalNumberWithString(numberValue string) DecimalNumber {
 func NewDecimalNumberWithStringLocale(numberValue string, locale objc.ID) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), objc.String(numberValue), locale)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes a decimal number to represent a given decimal.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
-func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
-	instance := getDecimalNumberClass().Alloc()
-	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
 	rv.Autorelease()
 	return rv
 }
@@ -238,8 +238,8 @@ func (d_ DecimalNumber) Compare(decimalNumber unsafe.Pointer) unsafe.Pointer {
 // Returns a string representation of the decimal number appropriate for the specified locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/description(withLocale:)
-func (d_ DecimalNumber) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
+func (d_ DecimalNumber) DescriptionWithLocale(locale objc.ID) string {
+	rv := objc.Send[string](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
 

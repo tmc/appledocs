@@ -82,22 +82,22 @@ func NewVZMacGraphicsDisplayConfiguration() VZMacGraphicsDisplayConfiguration {
 }
 
 
-// Create a display configuration with the specified pixel dimensions and pixel density.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/init(widthInPixels:heightInPixels:pixelsPerInch:)
-func NewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch(widthInPixels int, heightInPixels int, pixelsPerInch int) VZMacGraphicsDisplayConfiguration {
-	instance := getVZMacGraphicsDisplayConfigurationClass().Alloc()
-	rv := objc.Send[VZMacGraphicsDisplayConfiguration](instance.ID, objc.Sel("initWithWidthInPixels:heightInPixels:pixelsPerInch:"), widthInPixels, heightInPixels, pixelsPerInch)
-	rv.Autorelease()
-	return rv
-}
-
 // Create a display configuration suitable for showing on the specified screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/init(for:sizeInPoints:)
 func NewVZMacGraphicsDisplayConfigurationForScreenSizeInPoints(screen unsafe.Pointer, sizeInPoints foundation.Size) VZMacGraphicsDisplayConfiguration {
 	instance := getVZMacGraphicsDisplayConfigurationClass().Alloc()
 	rv := objc.Send[VZMacGraphicsDisplayConfiguration](instance.ID, objc.Sel("initForScreen:sizeInPoints:"), screen, sizeInPoints)
+	rv.Autorelease()
+	return rv
+}
+
+// Create a display configuration with the specified pixel dimensions and pixel density.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacGraphicsDisplayConfiguration/init(widthInPixels:heightInPixels:pixelsPerInch:)
+func NewVZMacGraphicsDisplayConfigurationWithWidthInPixelsHeightInPixelsPixelsPerInch(widthInPixels int, heightInPixels int, pixelsPerInch int) VZMacGraphicsDisplayConfiguration {
+	instance := getVZMacGraphicsDisplayConfigurationClass().Alloc()
+	rv := objc.Send[VZMacGraphicsDisplayConfiguration](instance.ID, objc.Sel("initWithWidthInPixels:heightInPixels:pixelsPerInch:"), widthInPixels, heightInPixels, pixelsPerInch)
 	rv.Autorelease()
 	return rv
 }

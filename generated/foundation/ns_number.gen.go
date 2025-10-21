@@ -30,7 +30,7 @@ type _NumberClass struct {
 type INumber interface {
 	IValue
 	Compare(otherNumber unsafe.Pointer) unsafe.Pointer
-	DescriptionWithLocale(locale objc.ID) unsafe.Pointer
+	DescriptionWithLocale(locale objc.ID) string
 	IsEqualToNumber(number unsafe.Pointer) bool
 }
 
@@ -84,21 +84,12 @@ func NewNumber() Number {
 }
 
 
-// Returns an object initialized to contain a given value, treated as a signed .
+// Returns an object initialized to contain , treated as a signed .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-8krjs
-func NewNumberWithChar(value unsafe.Pointer) Number {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-40ad0
+func NewNumberWithLongLong(value unsafe.Pointer) Number {
 	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithChar:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
-func NewNumberWithCoder(coder unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithLongLong:"), value)
 	rv.Autorelease()
 	return rv
 }
@@ -133,42 +124,21 @@ func NewNumberWithLong(value unsafe.Pointer) Number {
 	return rv
 }
 
-// Returns an object initialized to contain a given value, treated as a .
+// Returns an object initialized to contain a given value, treated as an .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-1ojz2
-func NewNumberWithBool(value bool) Number {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/initWithUnsignedLong:
+func NewNumberWithUnsignedLong(value unsafe.Pointer) Number {
 	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithBool:"), value)
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedLong:"), value)
 	rv.Autorelease()
 	return rv
 }
 
-// Returns an object initialized to contain a given value, treated as an .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-3l4ek
-func NewNumberWithUnsignedInteger(value uint) Number {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(coder:)
+func NewNumberWithCoder(coder unsafe.Pointer) Number {
 	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInteger:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-47coa
-func NewNumberWithUnsignedInt(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInt:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-// Returns an object initialized to contain a given value, treated as an .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-8se67
-func NewNumberWithUnsignedChar(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedChar:"), value)
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -179,16 +149,6 @@ func NewNumberWithUnsignedChar(value unsafe.Pointer) Number {
 func NewNumberWithShort(value unsafe.Pointer) Number {
 	instance := getNumberClass().Alloc()
 	rv := objc.Send[Number](instance.ID, objc.Sel("initWithShort:"), value)
-	rv.Autorelease()
-	return rv
-}
-
-// Returns an object initialized to contain , treated as a signed .
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-40ad0
-func NewNumberWithLongLong(value unsafe.Pointer) Number {
-	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithLongLong:"), value)
 	rv.Autorelease()
 	return rv
 }
@@ -205,10 +165,10 @@ func NewNumberWithInt(value unsafe.Pointer) Number {
 
 // Returns an object initialized to contain a given value, treated as an .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/initWithUnsignedLong:
-func NewNumberWithUnsignedLong(value unsafe.Pointer) Number {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-87y9m
+func NewNumberWithUnsignedShort(value unsafe.Pointer) Number {
 	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedLong:"), value)
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedShort:"), value)
 	rv.Autorelease()
 	return rv
 }
@@ -235,10 +195,50 @@ func NewNumberWithFloat(value unsafe.Pointer) Number {
 
 // Returns an object initialized to contain a given value, treated as an .
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-87y9m
-func NewNumberWithUnsignedShort(value unsafe.Pointer) Number {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-47coa
+func NewNumberWithUnsignedInt(value unsafe.Pointer) Number {
 	instance := getNumberClass().Alloc()
-	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedShort:"), value)
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInt:"), value)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized to contain a given value, treated as a signed .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-8krjs
+func NewNumberWithChar(value unsafe.Pointer) Number {
+	instance := getNumberClass().Alloc()
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithChar:"), value)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized to contain a given value, treated as an .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-8se67
+func NewNumberWithUnsignedChar(value unsafe.Pointer) Number {
+	instance := getNumberClass().Alloc()
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedChar:"), value)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized to contain a given value, treated as a .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-1ojz2
+func NewNumberWithBool(value bool) Number {
+	instance := getNumberClass().Alloc()
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithBool:"), value)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized to contain a given value, treated as an .
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-3l4ek
+func NewNumberWithUnsignedInteger(value uint) Number {
+	instance := getNumberClass().Alloc()
+	rv := objc.Send[Number](instance.ID, objc.Sel("initWithUnsignedInteger:"), value)
 	rv.Autorelease()
 	return rv
 }
@@ -375,8 +375,8 @@ func (n_ Number) Compare(otherNumber unsafe.Pointer) unsafe.Pointer {
 // Returns a string that represents the contents of the number object for a given locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/description(withLocale:)
-func (n_ Number) DescriptionWithLocale(locale objc.ID) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
+func (n_ Number) DescriptionWithLocale(locale objc.ID) string {
+	rv := objc.Send[string](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
 
@@ -471,8 +471,8 @@ func (n_ Number) LongValue() unsafe.Pointer {
 // The number object’s value expressed as a human-readable string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/stringValue
-func (n_ Number) StringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("stringValue"))
+func (n_ Number) StringValue() string {
+	rv := objc.Send[string](n_.ID, objc.Sel("stringValue"))
 	return rv
 }
 

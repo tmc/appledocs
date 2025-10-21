@@ -236,8 +236,8 @@ func (a_ AssetTrack) EstimatedDataRate() unsafe.Pointer {
 // The language tag of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/extendedLanguageTag
-func (a_ AssetTrack) ExtendedLanguageTag() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("extendedLanguageTag"))
+func (a_ AssetTrack) ExtendedLanguageTag() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("extendedLanguageTag"))
 	return rv
 }
 
@@ -292,8 +292,8 @@ func (a_ AssetTrack) SelfContained() bool {
 // The language code of the track.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/languageCode
-func (a_ AssetTrack) LanguageCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("languageCode"))
+func (a_ AssetTrack) LanguageCode() string {
+	rv := objc.Send[string](a_.ID, objc.Sel("languageCode"))
 	return rv
 }
 

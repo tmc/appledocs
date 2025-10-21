@@ -170,8 +170,8 @@ func (t_ TextFieldCell) SetPlaceholderAttributedString(value unsafe.Pointer) {
 // The placeholder text for the cell, specified as a plain text string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-func (t_ TextFieldCell) PlaceholderString() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("placeholderString"))
+func (t_ TextFieldCell) PlaceholderString() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("placeholderString"))
 	return rv
 }
 
@@ -181,8 +181,8 @@ func (t_ TextFieldCell) PlaceholderString() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFieldCell/placeholderString
-func (t_ TextFieldCell) SetPlaceholderString(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), value)
+func (t_ TextFieldCell) SetPlaceholderString(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPlaceholderString:"), objc.String(value))
 }
 // The color to use to draw the cell’s text.
 //

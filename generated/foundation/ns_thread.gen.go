@@ -268,8 +268,8 @@ func (t_ Thread) MainThread() unsafe.Pointer {
 // The name of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
-func (t_ Thread) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("name"))
+func (t_ Thread) Name() string {
+	rv := objc.Send[string](t_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -279,8 +279,8 @@ func (t_ Thread) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/name
-func (t_ Thread) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
+func (t_ Thread) SetName(value string) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), objc.String(value))
 }
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/qualityOfService

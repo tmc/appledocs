@@ -96,21 +96,21 @@ func NewViewController() ViewController {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
+func NewViewControllerWithCoder(coder unsafe.Pointer) ViewController {
+	instance := getViewControllerClass().Alloc()
+	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
 // Returns a view controller object initialized to the nib file in the specified bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
 func NewViewControllerWithNibNameBundle(nibNameOrNil unsafe.Pointer, nibBundleOrNil unsafe.Pointer) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
-func NewViewControllerWithCoder(coder unsafe.Pointer) ViewController {
-	instance := getViewControllerClass().Alloc()
-	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

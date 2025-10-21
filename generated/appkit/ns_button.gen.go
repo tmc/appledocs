@@ -296,8 +296,8 @@ func (b_ Button) SetTransparent(value bool) {
 // The key-equivalent character of the button.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalent
-func (b_ Button) KeyEquivalent() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("keyEquivalent"))
+func (b_ Button) KeyEquivalent() string {
+	rv := objc.Send[string](b_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
 
@@ -307,8 +307,8 @@ func (b_ Button) KeyEquivalent() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/keyEquivalent
-func (b_ Button) SetKeyEquivalent(value unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), value)
+func (b_ Button) SetKeyEquivalent(value string) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
 }
 // A Boolean value that determines whether the button displays its border only when the pointer is over it.
 //

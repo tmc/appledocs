@@ -139,16 +139,16 @@ func (h_ Host) Addresses() []string {
 // Returns the name used as by default when publishing .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/localizedName
-func (h_ Host) LocalizedName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("localizedName"))
+func (h_ Host) LocalizedName() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("localizedName"))
 	return rv
 }
 
 // Returns one of the hostnames of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Host/name
-func (h_ Host) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("name"))
+func (h_ Host) Name() string {
+	rv := objc.Send[string](h_.ID, objc.Sel("name"))
 	return rv
 }
 

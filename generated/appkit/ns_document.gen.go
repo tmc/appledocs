@@ -43,14 +43,14 @@ type IDocument interface {
 	ContinueActivityUsingBlock(block unsafe.Pointer)
 	ContinueAsynchronousWorkOnMainThreadUsingBlock(block unsafe.Pointer)
 	DataOfTypeError(typeName string, outError unsafe.Pointer) unsafe.Pointer
-	DefaultDraftName() unsafe.Pointer
+	DefaultDraftName() string
 	DuplicateAndReturnError(outError unsafe.Pointer) unsafe.Pointer
 	DuplicateDocument(sender objc.ID)
 	DuplicateDocumentWithDelegateDidDuplicateSelectorContextInfo(delegate objc.ID, didDuplicateSelector objc.SEL, contextInfo unsafe.Pointer)
 	EncodeRestorableStateWithCoder(coder unsafe.Pointer)
 	EncodeRestorableStateWithCoderBackgroundQueue(coder unsafe.Pointer, queue unsafe.Pointer)
 	FileAttributesToWriteToURLOfTypeForSaveOperationOriginalContentsURLError(url unsafe.Pointer, typeName string, saveOperation unsafe.Pointer, absoluteOriginalContentsURL unsafe.Pointer, outError unsafe.Pointer) unsafe.Pointer
-	FileNameExtensionForTypeSaveOperation(typeName string, saveOperation unsafe.Pointer) unsafe.Pointer
+	FileNameExtensionForTypeSaveOperation(typeName string, saveOperation unsafe.Pointer) string
 	FileWrapperOfTypeError(typeName string, outError unsafe.Pointer) unsafe.Pointer
 	HandleCloseScriptCommand(command unsafe.Pointer) objc.ID
 	HandlePrintScriptCommand(command unsafe.Pointer) objc.ID
@@ -379,8 +379,8 @@ func (d_ Document) DataOfTypeError(typeName string, outError unsafe.Pointer) uns
 // Returns the default draft name for the document subclass.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/defaultDraftName()
-func (d_ Document) DefaultDraftName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("defaultDraftName"))
+func (d_ Document) DefaultDraftName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("defaultDraftName"))
 	return rv
 }
 
@@ -431,8 +431,8 @@ func (d_ Document) FileAttributesToWriteToURLOfTypeForSaveOperationOriginalConte
 // Returns a filename extension that can be appended to a base filename, for a specified file type and kind of save operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileNameExtension(forType:saveOperation:)
-func (d_ Document) FileNameExtensionForTypeSaveOperation(typeName string, saveOperation unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileNameExtensionForType:saveOperation:"), objc.String(typeName), saveOperation)
+func (d_ Document) FileNameExtensionForTypeSaveOperation(typeName string, saveOperation unsafe.Pointer) string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileNameExtensionForType:saveOperation:"), objc.String(typeName), saveOperation)
 	return rv
 }
 
@@ -1030,8 +1030,8 @@ func (d_ Document) AutosavesInPlace() bool {
 // The document type to use for an autosave operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/autosavingFileType
-func (d_ Document) AutosavingFileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("autosavingFileType"))
+func (d_ Document) AutosavingFileType() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("autosavingFileType"))
 	return rv
 }
 
@@ -1054,8 +1054,8 @@ func (d_ Document) BackupFileURL() unsafe.Pointer {
 // The name of the document as displayed in the title bars of the document’s windows and in alert dialogs related to the document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/displayName
-func (d_ Document) DisplayName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("displayName"))
+func (d_ Document) DisplayName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("displayName"))
 	return rv
 }
 
@@ -1065,8 +1065,8 @@ func (d_ Document) DisplayName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/displayName
-func (d_ Document) SetDisplayName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), value)
+func (d_ Document) SetDisplayName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setDisplayName:"), objc.String(value))
 }
 // The last-known modification date of the document’s on-disk representation.
 //
@@ -1096,8 +1096,8 @@ func (d_ Document) FileNameExtensionWasHiddenInLastRunSavePanel() bool {
 // The name of the document type, as specified in the app’s information property-list file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileType
-func (d_ Document) FileType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileType"))
+func (d_ Document) FileType() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileType"))
 	return rv
 }
 
@@ -1107,14 +1107,14 @@ func (d_ Document) FileType() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileType
-func (d_ Document) SetFileType(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFileType:"), value)
+func (d_ Document) SetFileType(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setFileType:"), objc.String(value))
 }
 // The file type that was last selected in the Save panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/fileTypeFromLastRunSavePanel
-func (d_ Document) FileTypeFromLastRunSavePanel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("fileTypeFromLastRunSavePanel"))
+func (d_ Document) FileTypeFromLastRunSavePanel() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("fileTypeFromLastRunSavePanel"))
 	return rv
 }
 
@@ -1228,8 +1228,8 @@ func (d_ Document) KeepBackupFile() bool {
 // The name of the document seen by the user in AppleScript.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/lastComponentOfFileName
-func (d_ Document) LastComponentOfFileName() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("lastComponentOfFileName"))
+func (d_ Document) LastComponentOfFileName() string {
+	rv := objc.Send[string](d_.ID, objc.Sel("lastComponentOfFileName"))
 	return rv
 }
 
@@ -1239,8 +1239,8 @@ func (d_ Document) LastComponentOfFileName() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/lastComponentOfFileName
-func (d_ Document) SetLastComponentOfFileName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setLastComponentOfFileName:"), value)
+func (d_ Document) SetLastComponentOfFileName(value string) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setLastComponentOfFileName:"), objc.String(value))
 }
 // Returns the object specifier that represents the document.
 //

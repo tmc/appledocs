@@ -636,8 +636,8 @@ func (c_ Control) SetRefusesFirstResponder(value bool) {
 // The value of the receiver’s cell as an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/stringValue
-func (c_ Control) StringValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("stringValue"))
+func (c_ Control) StringValue() string {
+	rv := objc.Send[string](c_.ID, objc.Sel("stringValue"))
 	return rv
 }
 
@@ -647,8 +647,8 @@ func (c_ Control) StringValue() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/stringValue
-func (c_ Control) SetStringValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), value)
+func (c_ Control) SetStringValue(value string) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setStringValue:"), objc.String(value))
 }
 // The tag identifying the receiver (not the tag of the receiver’s cell).
 //

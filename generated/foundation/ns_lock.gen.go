@@ -101,8 +101,8 @@ func (l_ Lock) TryLock() bool {
 // The name associated with the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-func (l_ Lock) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("name"))
+func (l_ Lock) Name() string {
+	rv := objc.Send[string](l_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -112,8 +112,8 @@ func (l_ Lock) Name() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLock/name
-func (l_ Lock) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), value)
+func (l_ Lock) SetName(value string) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setName:"), objc.String(value))
 }
 
 

@@ -141,8 +141,8 @@ func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value unsafe.Point
 // The localized string displayed by the button for the default collapsed representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
-func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("collapsedRepresentationLabel"))
+func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("collapsedRepresentationLabel"))
 	return rv
 }
 
@@ -152,14 +152,14 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
-func (p_ PopoverTouchBarItem) SetCollapsedRepresentationLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), value)
+func (p_ PopoverTouchBarItem) SetCollapsedRepresentationLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), objc.String(value))
 }
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
-func (p_ PopoverTouchBarItem) CustomizationLabel() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("customizationLabel"))
+func (p_ PopoverTouchBarItem) CustomizationLabel() string {
+	rv := objc.Send[string](p_.ID, objc.Sel("customizationLabel"))
 	return rv
 }
 
@@ -169,8 +169,8 @@ func (p_ PopoverTouchBarItem) CustomizationLabel() unsafe.Pointer {
 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
-func (p_ PopoverTouchBarItem) SetCustomizationLabel(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), value)
+func (p_ PopoverTouchBarItem) SetCustomizationLabel(value string) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), objc.String(value))
 }
 // The bar displayed when this item is “popped.”
 //
