@@ -120,6 +120,9 @@ var templateFuncs = template.FuncMap{
 	"getStructEmbeddedField": getStructEmbeddedField,
 	"getFromConstructorBody": getFromConstructorBody,
 	"getConstructorBody":     getConstructorBody,
+
+	// Utility functions for template generation
+	"sortedKeys": sortedKeys,
 }
 
 // FunctionData represents data for function template rendering.
@@ -901,7 +904,7 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "int"
 	case "NSUInteger", "UInt":
 		return "uint"
-	case "unsigned long long", "UInt64":
+	case "unsigned long long", "UInt64", "uint64_t":
 		return "uint64"
 	case "CGFloat", "Double":
 		return "float64"
@@ -2869,4 +2872,28 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 	}
 
 	return nil
+}
+
+// sortedKeys returns the keys of a map in sorted order, suitable for templates.
+// This is useful for generating consistent output across template generations.
+func sortedKeys(m map[string]bool) []string {
+	if m == nil {
+		return []string{}
+	}
+
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+
+	// Simple bubble sort for consistency
+	for i := 0; i < len(keys); i++ {
+		for j := i + 1; j < len(keys); j++ {
+			if keys[i] > keys[j] {
+				keys[i], keys[j] = keys[j], keys[i]
+			}
+		}
+	}
+
+	return keys
 }

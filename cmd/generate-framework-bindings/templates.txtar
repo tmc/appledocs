@@ -100,8 +100,17 @@ func init() {
 
 package {{.PackageName}}
 
-{{if or .WithRefMethods (gt (len .RefTypes) 0) -}}
-import "unsafe"
+{{- $requiredImports := .RequiredImports}}
+{{- $hasImports := or .WithRefMethods (gt (len .RefTypes) 0) (gt (len $requiredImports) 0)}}
+{{if $hasImports -}}
+import (
+{{- if or .WithRefMethods (gt (len .RefTypes) 0)}}
+	"unsafe"
+{{- end}}
+{{- range $pkg := sortedKeys $requiredImports}}
+	"github.com/tmc/appledocs/generated/{{$pkg}}"
+{{- end}}
+)
 
 {{end -}}
 {{if .WithRefMethods -}}
@@ -221,6 +230,16 @@ type EventModifierFlags int
 // QuartzCore needs CGFloat for its functions
 type CGFloat = float64
 
+{{end -}}
+{{- $undefinedTypes := .GetUndefinedTypesForTemplate}}
+{{if gt (len $undefinedTypes) 0}}
+// Fallback type aliases for undefined types
+// These types are referenced in method signatures but not fully documented.
+// Using unsafe.Pointer as fallback to allow code generation.
+{{range $undefinedTypes -}}
+type {{.Name}} unsafe.Pointer
+
+{{end}}
 {{end -}}
 
 -- functions.gen.go --
@@ -504,6 +523,28 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 }
 {{end}}
 {{- end}}
+{{- range .Properties}}
+{{- if .IsClassProperty}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $capitalizedName := capitalize .Name}}
+{{- if ne $goType ""}}
+
+{{- if .Abstract}}
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$goType}} {
+	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
+	return rv
+}
+{{- end}}
+{{- end}}
+{{- end}}
 {{- range filterPropertyMethods .}}
 {{- if not (isEssentialSelector .Selector)}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
@@ -716,6 +757,28 @@ func ({{$classReceiver}} {{$classTypeName}}) {{.Name}}({{formatMethodParams . $f
 	{{- end}}
 }
 {{end}}
+{{- end}}
+{{- range .Properties}}
+{{- if .IsClassProperty}}
+{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $capitalizedName := capitalize .Name}}
+{{- if ne $goType ""}}
+
+{{- if .Abstract}}
+// {{commentLine .Abstract}}{{if not .DocURL}} [Full Topic]{{end}}
+{{if .DocURL}}//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end}}{{end -}}
+{{- if and (not .Abstract) .DocURL}}
+//
+// [Full Topic]: {{convertDocURL .DocURL}}
+{{end -}}
+func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$goType}} {
+	rv := objc.Send[{{$goType}}](objc.ID({{$classReceiver}}.class), objc.Sel("{{.Name}}"))
+	return rv
+}
+{{- end}}
+{{- end}}
 {{- end}}
 {{- range filterPropertyMethods .}}
 {{- if not (isEssentialSelector .Selector)}}
