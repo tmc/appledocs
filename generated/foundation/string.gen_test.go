@@ -10,14 +10,6 @@ import (
 var _ = foundation.NewString
 
 
-
-
-
-
-
-
-
-
 // ExampleNewStringWithFormat demonstrates how to create a String instance using NewStringWithFormat.
 // Returns an   object initialized by using a given format string as a template into which the remaining argument values are substituted.
 func ExampleNewStringWithFormat() {
@@ -32,27 +24,6 @@ func ExampleNewStringWithFormat() {
 
 
 
-// ExampleNewStringWithString demonstrates how to create a String instance using NewStringWithString.
-// Returns an   object initialized by copying the characters from another given string.
-func ExampleNewStringWithString() {
-	_ = foundation.NewStringWithString(
-		"aString", // aString string
-	)
-	// Output:
-}
-
-
-
-
-
-
-
-// ExampleNewString demonstrates how to create a String instance.
-// Returns an initialized   object that contains no characters.
-func ExampleNewString() {
-	_ = foundation.NewString()
-	// Output:
-}
 
 
 
@@ -67,6 +38,35 @@ func ExampleNewStringWithContentsOfFile() {
 	// Output:
 }
 
+// ExampleNewString demonstrates how to create a String instance.
+// Returns an initialized   object that contains no characters.
+func ExampleNewString() {
+	_ = foundation.NewString()
+	// Output:
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ExampleNewStringWithString demonstrates how to create a String instance using NewStringWithString.
+// Returns an   object initialized by copying the characters from another given string.
+func ExampleNewStringWithString() {
+	_ = foundation.NewStringWithString(
+		"aString", // aString string
+	)
+	// Output:
+}
 
 
 

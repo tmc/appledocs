@@ -81,22 +81,22 @@ func NewInvocationOperation() InvocationOperation {
 }
 
 
-// Returns an object initialized with the specified target and selector.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithTarget:selector:object:
-func NewInvocationOperationWithTargetSelectorObject(target objc.ID, sel objc.SEL, arg objc.ID) InvocationOperation {
-	instance := getInvocationOperationClass().Alloc()
-	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, sel, arg)
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an object initialized with the specified invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
 func NewInvocationOperationWithInvocation(inv unsafe.Pointer) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithInvocation:"), inv)
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized with the specified target and selector.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithTarget:selector:object:
+func NewInvocationOperationWithTargetSelectorObject(target objc.ID, sel objc.SEL, arg objc.ID) InvocationOperation {
+	instance := getInvocationOperationClass().Alloc()
+	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, sel, arg)
 	rv.Autorelease()
 	return rv
 }

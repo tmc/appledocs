@@ -11,6 +11,28 @@ var _ = foundation.NewURL
 
 
 
+
+// ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
+// Initializes an NSURL object with a provided URL string.
+func ExampleNewURLWithString() {
+	_ = foundation.NewURLWithString(
+		"https://example.com", // URLString string
+	)
+	// Output:
+}
+
+
+// ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
+// Initializes a newly created NSURL referencing the local file or directory at  .
+func ExampleNewURLFileURLWithPathIsDirectory() {
+	_ = foundation.NewURLFileURLWithPathIsDirectory(
+		"/tmp/test", // path string
+		false, // isDir bool
+	)
+	// Output:
+}
+
+
 // ExampleNewURLWithSchemeHostPath demonstrates how to create a URL instance using NewURLWithSchemeHostPath.
 // Initializes a newly created NSURL with a specified scheme, host, and path.
 func ExampleNewURLWithSchemeHostPath() {
@@ -18,15 +40,6 @@ func ExampleNewURLWithSchemeHostPath() {
 		"scheme", // scheme string
 		"host", // host string
 		"/tmp/test", // path string
-	)
-	// Output:
-}
-
-// ExampleNewURLWithString demonstrates how to create a URL instance using NewURLWithString.
-// Initializes an NSURL object with a provided URL string.
-func ExampleNewURLWithString() {
-	_ = foundation.NewURLWithString(
-		"https://example.com", // URLString string
 	)
 	// Output:
 }
@@ -44,18 +57,6 @@ func ExampleNewURLWithStringEncodingInvalidCharacters() {
 
 
 
-// ExampleNewURLFileURLWithPathIsDirectory demonstrates how to create a URL instance using NewURLFileURLWithPathIsDirectory.
-// Initializes a newly created NSURL referencing the local file or directory at  .
-func ExampleNewURLFileURLWithPathIsDirectory() {
-	_ = foundation.NewURLFileURLWithPathIsDirectory(
-		"/tmp/test", // path string
-		false, // isDir bool
-	)
-	// Output:
-}
-
-
-
 // ExampleNewURLFileURLWithPath demonstrates how to create a URL instance using NewURLFileURLWithPath.
 // Initializes a newly created NSURL referencing the local file or directory at  .
 func ExampleNewURLFileURLWithPath() {
@@ -64,7 +65,6 @@ func ExampleNewURLFileURLWithPath() {
 	)
 	// Output:
 }
-
 
 
 

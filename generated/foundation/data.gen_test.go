@@ -11,6 +11,20 @@ var _ = foundation.NewData
 
 
 
+// ExampleNewDataWithBase64Encoding demonstrates how to create a Data instance using NewDataWithBase64Encoding.
+// Initializes a data object initialized with the given Base64 encoded string.
+func ExampleNewDataWithBase64Encoding() {
+	_ = foundation.NewDataWithBase64Encoding(
+		"base64String", // base64String string
+	)
+	// Output:
+}
+
+
+
+
+
+
 // ExampleNewDataWithContentsOfFile demonstrates how to create a Data instance using NewDataWithContentsOfFile.
 // Initializes a data object with the content of the file at a given path.
 func ExampleNewDataWithContentsOfFile() {
@@ -19,7 +33,6 @@ func ExampleNewDataWithContentsOfFile() {
 	)
 	// Output:
 }
-
 
 
 // ExampleNewDataWithContentsOfMappedFile demonstrates how to create a Data instance using NewDataWithContentsOfMappedFile.
@@ -31,19 +44,6 @@ func ExampleNewDataWithContentsOfMappedFile() {
 	// Output:
 }
 
-
-
-
-
-
-// ExampleNewDataWithBase64Encoding demonstrates how to create a Data instance using NewDataWithBase64Encoding.
-// Initializes a data object initialized with the given Base64 encoded string.
-func ExampleNewDataWithBase64Encoding() {
-	_ = foundation.NewDataWithBase64Encoding(
-		"base64String", // base64String string
-	)
-	// Output:
-}
 
 
 
