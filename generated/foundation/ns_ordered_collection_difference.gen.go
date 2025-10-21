@@ -121,8 +121,8 @@ func (o_ OrderedCollectionDifference) HasChanges() bool {
 // A collection of removal change objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/removals
-func (o_ OrderedCollectionDifference) Removals() []foundation.NSOrderedCollectionChange {
-	rv := objc.Send[[]foundation.NSOrderedCollectionChange](o_.ID, objc.Sel("removals"))
+func (o_ OrderedCollectionDifference) Removals() []NSOrderedCollectionChange {
+	rv := objc.Send[[]NSOrderedCollectionChange](o_.ID, objc.Sel("removals"))
 	return rv
 }
 

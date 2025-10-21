@@ -10,12 +10,6 @@ import (
 var _ = appkit.NewCell
 
 
-// ExampleNewCell demonstrates how to create a Cell instance.
-func ExampleNewCell() {
-	_ = appkit.NewCell()
-	// Output:
-}
-
 
 
 // ExampleNewCellTextCell demonstrates how to create a Cell instance using NewCellTextCell.
@@ -24,6 +18,12 @@ func ExampleNewCellTextCell() {
 	_ = appkit.NewCellTextCell(
 		"string", // string string
 	)
+	// Output:
+}
+
+// ExampleNewCell demonstrates how to create a Cell instance.
+func ExampleNewCell() {
+	_ = appkit.NewCell()
 	// Output:
 }
 

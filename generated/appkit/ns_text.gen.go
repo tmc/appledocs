@@ -115,19 +115,19 @@ func NewText() Text {
 
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
-func NewTextWithCoder(coder unsafe.Pointer) Text {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
+func NewTextWithFrame(frameRect coregraphics.CGRect) Text {
 	instance := getTextClass().Alloc()
-	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
 	rv.Autorelease()
 	return rv
 }
 
 //
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(frame:)
-func NewTextWithFrame(frameRect coregraphics.CGRect) Text {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSText/init(coder:)
+func NewTextWithCoder(coder unsafe.Pointer) Text {
 	instance := getTextClass().Alloc()
-	rv := objc.Send[Text](instance.ID, objc.Sel("initWithFrame:"), frameRect)
+	rv := objc.Send[Text](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

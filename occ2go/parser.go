@@ -1357,12 +1357,20 @@ func ParseEnumCase(doc *appledocs.Document) (*ParsedEnumCase, error) {
 }
 
 // ParseEnumCaseDeclaration parses an enum constant declaration from tokens.
-// Objective-C: static const NSWindowStyleMask NSTitledWindowMask;
-// Swift: static var titled: NSWindow.StyleMask { get }
+// Modern format (ObjC variant in docs): NSBackingStoreBuffered
+// Old format: static const NSWindowStyleMask NSTitledWindowMask;
+// Swift format: static var titled: NSWindow.StyleMask { get }
 func ParseEnumCaseDeclaration(tokens []appledocs.Token) (*ParsedEnumCase, error) {
 	enumCase := &ParsedEnumCase{}
 
 	i := 0
+
+	// Modern Apple docs just have a single identifier token for ObjC enum cases
+	// Try this first before the old formats
+	if len(tokens) == 1 && tokens[0].Kind == "identifier" {
+		enumCase.Name = tokens[0].Text
+		return enumCase, nil
+	}
 
 	// Skip static keyword if present
 	if i < len(tokens) && tokens[i].Kind == "keyword" && tokens[i].Text == "static" {
@@ -1412,6 +1420,9 @@ func ParseEnumCaseDeclaration(tokens []appledocs.Token) (*ParsedEnumCase, error)
 				enumCase.Name = tokens[i].Text
 			}
 		}
+	} else if i < len(tokens) && (tokens[i].Kind == "identifier" || tokens[i].Kind == "typeIdentifier") {
+		// Fallback: just an identifier (modern Apple docs format)
+		enumCase.Name = tokens[i].Text
 	}
 
 	// Note: We don't try to extract the numeric value from tokens because:

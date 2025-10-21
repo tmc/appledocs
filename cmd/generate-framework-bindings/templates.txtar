@@ -15,6 +15,10 @@
 {{template "doc.gen.go" .}}
 #-- types.gen.go --
 {{template "types.gen.go" .}}
+{{if gt .EnumCount 0 -}}
+#-- enums.gen.go --
+{{template "enums.gen.go" .}}
+{{end -}}
 #-- functions.gen.go --
 {{template "functions.gen.go" .}}
 {{if or (gt .ClassCount 0) (gt .FunctionCount 0) .GenerateTests .GenerateExamples -}}
@@ -218,59 +222,10 @@ const (
 )
 
 {{end -}}
-{{if eq .Framework "AppKit" -}}
-// AppKit-specific enum types
-type WindowStyleMask int
-type BackingStoreType int
-type WindowOrderingMode int
-type WindowLevel int
-type EventType int
-type EventModifierFlags int
-
-{{end -}}
 {{if eq .Framework "QuartzCore" -}}
 // QuartzCore needs CGFloat for its functions
 type CGFloat = float64
 
-{{end -}}
-{{if gt .EnumCount 0 -}}
-// Enum types and constants
-{{range .Enums -}}
-{{if .Abstract -}}
-// {{.Name}} - {{.Abstract}}
-{{else -}}
-// {{.Name}} enum type
-{{end -}}
-{{if .DocURL -}}
-//
-// [Full Topic]: {{convertDocURL .DocURL}}
-{{end -}}
-type {{stripObjCPrefix .Name}} {{if .IsOptions}}uint{{else}}int{{end}}
-
-{{if gt (len .Cases) 0 -}}
-const (
-{{range $i, $case := .Cases -}}
-{{if $case.Abstract -}}
-	// {{stripObjCPrefix $case.Name}} - {{$case.Abstract}}
-{{end -}}
-{{if $case.DocURL -}}
-	//
-	// [Full Topic]: {{convertDocURL $case.DocURL}}
-{{end -}}
-{{if $.IsOptions -}}
-	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $.Name}} = 1 << {{$i}}
-{{else -}}
-{{if eq $i 0 -}}
-	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $.Name}} = iota
-{{else -}}
-	{{stripObjCPrefix $case.Name}}
-{{end -}}
-{{end -}}
-{{end -}}
-)
-
-{{end -}}
-{{end -}}
 {{end -}}
 {{if gt (len $undefinedTypes) 0}}
 // Fallback type aliases for undefined types
@@ -1321,3 +1276,46 @@ func BenchmarkString(b *testing.B) {
 		_ = String("benchmark string")
 	}
 }
+
+-- enums.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+// Enum types and constants
+{{range $enum := .Enums -}}
+{{if $enum.Abstract -}}
+// {{$enum.Name}} - {{$enum.Abstract}}
+{{else -}}
+// {{$enum.Name}} enum type
+{{end -}}
+{{if $enum.DocURL -}}
+//
+// [Full Topic]: {{convertDocURL $enum.DocURL}}
+{{end -}}
+type {{stripObjCPrefix $enum.Name}} {{if $enum.IsOptions}}uint{{else}}int{{end}}
+
+{{if gt (len $enum.Cases) 0 -}}
+const (
+{{range $i, $case := $enum.Cases -}}
+{{if $case.Abstract -}}
+	// {{stripObjCPrefix $case.Name}} - {{$case.Abstract}}
+{{end -}}
+{{if $case.DocURL -}}
+	//
+	// [Full Topic]: {{convertDocURL $case.DocURL}}
+{{end -}}
+{{if $enum.IsOptions -}}
+	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = 1 << {{$i}}
+{{else -}}
+{{if eq $i 0 -}}
+	{{stripObjCPrefix $case.Name}} {{stripObjCPrefix $enum.Name}} = iota
+{{else -}}
+	{{stripObjCPrefix $case.Name}}
+{{end -}}
+{{end -}}
+{{end -}}
+)
+
+{{end -}}
+{{end -}}

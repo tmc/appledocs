@@ -10,12 +10,12 @@ import (
 var _ = appkit.NewTouchBar
 
 
-
 // ExampleNewTouchBar demonstrates how to create a TouchBar instance.
 // Creates a Touch Bar object.
 func ExampleNewTouchBar() {
 	_ = appkit.NewTouchBar()
 	// Output:
 }
+
 
 
