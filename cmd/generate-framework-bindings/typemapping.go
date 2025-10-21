@@ -160,8 +160,9 @@ var typeRegistry = []TypeMapping{
 	{ObjCType: "NSWindowOrderingMode", GoType: "WindowOrderingMode", Framework: "AppKit"},
 	{ObjCType: "NSWindowLevel", GoType: "WindowLevel", Framework: "AppKit"},
 
-	// AppKit string types
-	{ObjCType: "NSString *", GoType: "string", Framework: "AppKit"},
+	// NSString is a universal type that maps to Go string across all frameworks
+	// Framework: "" makes it framework-agnostic so it never gets qualified
+	{ObjCType: "NSString *", GoType: "string", Framework: ""},
 
 	// ==== UniformTypeIdentifiers types ====
 	// UTType within its own framework - unqualified
