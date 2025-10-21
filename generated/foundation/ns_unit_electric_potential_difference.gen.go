@@ -81,5 +81,35 @@ func NewUnitElectricPotentialDifference() UnitElectricPotentialDifference {
 }
 
 
+// The megavolts unit of electric potential difference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/megavolts
+func (uc _UnitElectricPotentialDifferenceClass) Megavolts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("megavolts"))
+	return rv
+}
+// The volts unit of electric potential difference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
+func (uc _UnitElectricPotentialDifferenceClass) Volts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("volts"))
+	return rv
+}
+// The megavolts unit of electric potential difference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/megavolts
+func (u_ UnitElectricPotentialDifference) Megavolts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("megavolts"))
+	return rv
+}
+
+// The volts unit of electric potential difference.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitElectricPotentialDifference/volts
+func (u_ UnitElectricPotentialDifference) Volts() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("volts"))
+	return rv
+}
+
 
 

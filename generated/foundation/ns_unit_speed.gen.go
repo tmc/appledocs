@@ -81,5 +81,20 @@ func NewUnitSpeed() UnitSpeed {
 }
 
 
+// The meter per second unit of speed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
+func (uc _UnitSpeedClass) MetersPerSecond() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("metersPerSecond"))
+	return rv
+}
+// The meter per second unit of speed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitSpeed/metersPerSecond
+func (u_ UnitSpeed) MetersPerSecond() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("metersPerSecond"))
+	return rv
+}
+
 
 

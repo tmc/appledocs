@@ -35,13 +35,13 @@ type IFileHandle interface {
 	ReadDataOfLength(length uint) unsafe.Pointer
 	ReadDataToEndOfFile() unsafe.Pointer
 	ReadInBackgroundAndNotifyForModes(modes unsafe.Pointer)
-	SeekToFileOffset(offset unsafe.Pointer)
-	SeekToOffsetError(offset unsafe.Pointer, error_ unsafe.Pointer) bool
-	SeekToEndOfFile() unsafe.Pointer
+	SeekToFileOffset(offset uint64)
+	SeekToOffsetError(offset uint64, error_ unsafe.Pointer) bool
+	SeekToEndOfFile() uint64
 	SynchronizeAndReturnError(error_ unsafe.Pointer) bool
 	SynchronizeFile()
-	TruncateAtOffsetError(offset unsafe.Pointer, error_ unsafe.Pointer) bool
-	TruncateFileAtOffset(offset unsafe.Pointer)
+	TruncateAtOffsetError(offset uint64, error_ unsafe.Pointer) bool
+	TruncateFileAtOffset(offset uint64)
 	WriteData(data unsafe.Pointer)
 	GetOffsetError(offsetInFile unsafe.Pointer, error_ unsafe.Pointer) bool
 	ReadDataToEndOfFileAndReturnError(error_ unsafe.Pointer) unsafe.Pointer
@@ -97,36 +97,6 @@ func NewFileHandle() FileHandle {
 }
 
 
-// Returns a file handle initialized from data in an unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(coder:)
-func NewFileHandleWithCoder(coder unsafe.Pointer) FileHandle {
-	instance := getFileHandleClass().Alloc()
-	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates and returns a file handle object associated with the specified file descriptor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:)
-func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
-	instance := getFileHandleClass().Alloc()
-	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:"), fd)
-	rv.Autorelease()
-	return rv
-}
-
-// Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:closeOnDealloc:)
-func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt bool) FileHandle {
-	instance := getFileHandleClass().Alloc()
-	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:closeOnDealloc:"), fd, closeopt)
-	rv.Autorelease()
-	return rv
-}
-
 // Returns a file handle initialized for reading the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forReadingAtPath:)
@@ -143,11 +113,29 @@ func NewFileHandleForReadingFromURLError(url unsafe.Pointer, error_ unsafe.Point
 	return rv
 }
 
+// Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified URL.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingURL:)
+func NewFileHandleForUpdatingURLError(url unsafe.Pointer, error_ unsafe.Pointer) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingURL:error:"), url, error_)
+	return rv
+}
+
 // Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
 func NewFileHandleForWritingAtPath(path string) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
+	return rv
+}
+
+// Creates and returns a file handle object associated with the specified file descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:)
+func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
+	instance := getFileHandleClass().Alloc()
+	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:"), fd)
+	rv.Autorelease()
 	return rv
 }
 
@@ -159,19 +147,31 @@ func NewFileHandleForUpdatingAtPath(path string) FileHandle {
 	return rv
 }
 
-// Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified URL.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingURL:)
-func NewFileHandleForUpdatingURLError(url unsafe.Pointer, error_ unsafe.Pointer) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingURL:error:"), url, error_)
-	return rv
-}
-
 // Returns a file handle initialized for writing to the file, device, or named socket at the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingToURL:)
 func NewFileHandleForWritingToURLError(url unsafe.Pointer, error_ unsafe.Pointer) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingToURL:error:"), url, error_)
+	return rv
+}
+
+// Returns a file handle initialized from data in an unarchiver.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(coder:)
+func NewFileHandleWithCoder(coder unsafe.Pointer) FileHandle {
+	instance := getFileHandleClass().Alloc()
+	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+// Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:closeOnDealloc:)
+func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt bool) FileHandle {
+	instance := getFileHandleClass().Alloc()
+	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:closeOnDealloc:"), fd, closeopt)
+	rv.Autorelease()
 	return rv
 }
 
@@ -224,6 +224,27 @@ func (fc _FileHandleClass) FileHandleForWritingToURLError(url unsafe.Pointer, er
 	return rv
 }
 
+// The file handle associated with a null device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/nullDevice
+func (fc _FileHandleClass) FileHandleWithNullDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleWithNullDevice"))
+	return rv
+}
+// The file handle associated with the standard error file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
+func (fc _FileHandleClass) FileHandleWithStandardError() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleWithStandardError"))
+	return rv
+}
+// The file handle associated with the standard input file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
+func (fc _FileHandleClass) FileHandleWithStandardInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fileHandleWithStandardInput"))
+	return rv
+}
 // Disallows further access to the represented file or communications channel and signals end of file on communications channels that permit writing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/close()
@@ -265,14 +286,14 @@ func (f_ FileHandle) ReadInBackgroundAndNotifyForModes(modes unsafe.Pointer) {
 // Moves the file pointer to the specified offset within the file represented by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seek(toFileOffset:)
-func (f_ FileHandle) SeekToFileOffset(offset unsafe.Pointer) {
+func (f_ FileHandle) SeekToFileOffset(offset uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("seekToFileOffset:"), offset)
 }
 
 // Moves the file pointer to the specified offset within the file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seek(toOffset:)
-func (f_ FileHandle) SeekToOffsetError(offset unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (f_ FileHandle) SeekToOffsetError(offset uint64, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("seekToOffset:error:"), offset, error_)
 	return rv
 }
@@ -280,8 +301,8 @@ func (f_ FileHandle) SeekToOffsetError(offset unsafe.Pointer, error_ unsafe.Poin
 // Places the file pointer at the end of the file referenced by the file handle and returns the new file offset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/seekToEndOfFile()
-func (f_ FileHandle) SeekToEndOfFile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("seekToEndOfFile"))
+func (f_ FileHandle) SeekToEndOfFile() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("seekToEndOfFile"))
 	return rv
 }
 
@@ -303,7 +324,7 @@ func (f_ FileHandle) SynchronizeFile() {
 // Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/truncate(atOffset:)
-func (f_ FileHandle) TruncateAtOffsetError(offset unsafe.Pointer, error_ unsafe.Pointer) bool {
+func (f_ FileHandle) TruncateAtOffsetError(offset uint64, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("truncateAtOffset:error:"), offset, error_)
 	return rv
 }
@@ -311,7 +332,7 @@ func (f_ FileHandle) TruncateAtOffsetError(offset unsafe.Pointer, error_ unsafe.
 // Truncates or extends the file represented by the file handle to a specified offset within the file and puts the file pointer at that position.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/truncateFile(atOffset:)
-func (f_ FileHandle) TruncateFileAtOffset(offset unsafe.Pointer) {
+func (f_ FileHandle) TruncateFileAtOffset(offset uint64) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("truncateFileAtOffset:"), offset)
 }
 
@@ -354,11 +375,35 @@ func (f_ FileHandle) SeekToEndReturningOffsetError(offsetInFile unsafe.Pointer, 
 	return rv
 }
 
+// The file handle associated with a null device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/nullDevice
+func (f_ FileHandle) FileHandleWithNullDevice() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithNullDevice"))
+	return rv
+}
+
 // The position of the file pointer within the file represented by the file handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/offsetInFile
-func (f_ FileHandle) OffsetInFile() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("offsetInFile"))
+func (f_ FileHandle) OffsetInFile() uint64 {
+	rv := objc.Send[uint64](f_.ID, objc.Sel("offsetInFile"))
+	return rv
+}
+
+// The file handle associated with the standard error file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardError
+func (f_ FileHandle) FileHandleWithStandardError() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardError"))
+	return rv
+}
+
+// The file handle associated with the standard input file.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/standardInput
+func (f_ FileHandle) FileHandleWithStandardInput() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fileHandleWithStandardInput"))
 	return rv
 }
 

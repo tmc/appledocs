@@ -242,7 +242,17 @@ func (u_ UndoManager) RunLoopModes() []string {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/runLoopModes
 func (u_ UndoManager) SetRunLoopModes(value []string) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), nsArray)
 }
 // The name identifying the undo action.
 //

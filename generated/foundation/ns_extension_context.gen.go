@@ -219,7 +219,17 @@ func (e_ ExtensionContext) NotificationActions() []objc.ID {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
 func (e_ ExtensionContext) SetNotificationActions(value []objc.ID) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setNotificationActions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](e_.ID, objc.Sel("setNotificationActions:"), nsArray)
 }
 // The active display mode of the widget.
 //

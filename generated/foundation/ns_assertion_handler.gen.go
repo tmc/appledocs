@@ -82,6 +82,13 @@ func NewAssertionHandler() AssertionHandler {
 }
 
 
+// Returns the object associated with the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
+func (ac _AssertionHandlerClass) CurrentHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("currentHandler"))
+	return rv
+}
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInFunction:file:lineNumber:description:
 func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(functionName string, fileName string, line int, format string) {
@@ -92,6 +99,14 @@ func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(func
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
 func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objc.ID, fileName string, line int, format string) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, objc.String(fileName), line, objc.String(format))
+}
+
+// Returns the object associated with the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/current
+func (a_ AssertionHandler) CurrentHandler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentHandler"))
+	return rv
 }
 
 

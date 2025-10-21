@@ -90,21 +90,21 @@ func NewMutableSet() MutableSet {
 }
 
 
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(coder:)
+func NewMutableSetWithCoder(coder unsafe.Pointer) MutableSet {
+	instance := getMutableSetClass().Alloc()
+	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
 // Returns an initialized mutable set with a given initial capacity.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(capacity:)
 func NewMutableSetWithCapacity(numItems uint) MutableSet {
 	instance := getMutableSetClass().Alloc()
 	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
-	rv.Autorelease()
-	return rv
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableSet/init(coder:)
-func NewMutableSetWithCoder(coder unsafe.Pointer) MutableSet {
-	instance := getMutableSetClass().Alloc()
-	rv := objc.Send[MutableSet](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }

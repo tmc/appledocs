@@ -94,6 +94,13 @@ func NewNotificationQueueWithNotificationCenter(notificationCenter unsafe.Pointe
 }
 
 
+// Returns the default notification queue for the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
+func (nc _NotificationQueueClass) DefaultQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("defaultQueue"))
+	return rv
+}
 // Removes all notifications from the queue that match a provided notification using provided matching criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/dequeueNotifications(matching:coalesceMask:)
@@ -113,6 +120,14 @@ func (n_ NotificationQueue) EnqueueNotificationPostingStyle(notification unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/enqueue(_:postingStyle:coalesceMask:forModes:)
 func (n_ NotificationQueue) EnqueueNotificationPostingStyleCoalesceMaskForModes(notification unsafe.Pointer, postingStyle unsafe.Pointer, coalesceMask unsafe.Pointer, modes unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("enqueueNotification:postingStyle:coalesceMask:forModes:"), notification, postingStyle, coalesceMask, modes)
+}
+
+// Returns the default notification queue for the current thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
+func (n_ NotificationQueue) DefaultQueue() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("defaultQueue"))
+	return rv
 }
 
 

@@ -116,6 +116,20 @@ func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant unsaf
 	return rv
 }
 
+// A calendar that tracks changes to user’s preferred calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/autoupdatingCurrent
+func (cc _CalendarClass) AutoupdatingCurrentCalendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("autoupdatingCurrentCalendar"))
+	return rv
+}
+// The user’s current calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/current
+func (cc _CalendarClass) CurrentCalendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("currentCalendar"))
+	return rv
+}
 // Returns the date components representing a given date.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/components(_:from:)
@@ -188,11 +202,27 @@ func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep unsafe.Po
 	return rv
 }
 
+// A calendar that tracks changes to user’s preferred calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/autoupdatingCurrent
+func (c_ Calendar) AutoupdatingCurrentCalendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("autoupdatingCurrentCalendar"))
+	return rv
+}
+
 // An identifier for the calendar.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/calendarIdentifier
 func (c_ Calendar) CalendarIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("calendarIdentifier"))
+	return rv
+}
+
+// The user’s current calendar.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/current
+func (c_ Calendar) CurrentCalendar() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("currentCalendar"))
 	return rv
 }
 

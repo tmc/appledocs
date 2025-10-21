@@ -141,6 +141,13 @@ func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configu
 	return rv
 }
 
+// The shared singleton session object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/shared
+func (uc _URLSessionClass) SharedSession() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("sharedSession"))
+	return rv
+}
 // Creates a task that retrieves the contents of the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/dataTask(with:)-10dy7
@@ -398,4 +405,12 @@ func (u_ URLSession) SessionDescription() unsafe.Pointer {
 func (u_ URLSession) SetSessionDescription(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), value)
 }
+// The shared singleton session object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/shared
+func (u_ URLSession) SharedSession() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sharedSession"))
+	return rv
+}
+
 

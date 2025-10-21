@@ -80,5 +80,20 @@ func NewHTTPCookieStorage() HTTPCookieStorage {
 }
 
 
+// The shared cookie storage instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
+func (hc _HTTPCookieStorageClass) SharedHTTPCookieStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("sharedHTTPCookieStorage"))
+	return rv
+}
+// The shared cookie storage instance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookieStorage/shared
+func (h_ HTTPCookieStorage) SharedHTTPCookieStorage() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sharedHTTPCookieStorage"))
+	return rv
+}
+
 
 

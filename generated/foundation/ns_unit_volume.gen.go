@@ -81,5 +81,35 @@ func NewUnitVolume() UnitVolume {
 }
 
 
+// The imperial gallons unit of volume.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialGallons
+func (uc _UnitVolumeClass) ImperialGallons() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("imperialGallons"))
+	return rv
+}
+// The liters unit of volume.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
+func (uc _UnitVolumeClass) Liters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("liters"))
+	return rv
+}
+// The imperial gallons unit of volume.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/imperialGallons
+func (u_ UnitVolume) ImperialGallons() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("imperialGallons"))
+	return rv
+}
+
+// The liters unit of volume.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitVolume/liters
+func (u_ UnitVolume) Liters() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("liters"))
+	return rv
+}
+
 
 

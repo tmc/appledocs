@@ -238,16 +238,4 @@ func (m_ MutableArray) SortUsingDescriptors(sortDescriptors unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 
-// NewMutableArrayWithObjects creates a new MutableArray and populates it with the given objects.
-// This is a convenience helper that creates an array and adds objects in one call.
-//
-// The objects parameter should be a slice of unsafe.Pointer values representing Objective-C objects.
-func NewMutableArrayWithObjects(objects ...unsafe.Pointer) MutableArray {
-	array := NewMutableArray()
-	for _, obj := range objects {
-		objc.Send[objc.ID](array.ID, objc.Sel("addObject:"), obj)
-	}
-	return array
-}
-
 

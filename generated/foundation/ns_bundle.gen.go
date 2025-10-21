@@ -112,22 +112,6 @@ func NewBundle() Bundle {
 }
 
 
-// Returns the object with which the specified class is associated.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
-func NewBundleForClass(aClass objc.Class) Bundle {
-	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
-	return rv
-}
-
-// Returns the instance that has the specified bundle identifier.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
-func NewBundleWithIdentifier(identifier string) Bundle {
-	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
-	return rv
-}
-
 // Returns an object initialized to correspond to the specified directory.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(path:)
@@ -145,6 +129,22 @@ func NewBundleWithURL(url unsafe.Pointer) Bundle {
 	instance := getBundleClass().Alloc()
 	rv := objc.Send[Bundle](instance.ID, objc.Sel("initWithURL:"), url)
 	rv.Autorelease()
+	return rv
+}
+
+// Returns the object with which the specified class is associated.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
+func NewBundleForClass(aClass objc.Class) Bundle {
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleForClass:"), aClass)
+	return rv
+}
+
+// Returns the instance that has the specified bundle identifier.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(identifier:)
+func NewBundleWithIdentifier(identifier string) Bundle {
+	rv := objc.Send[Bundle](objc.ID(getBundleClass().class), objc.Sel("bundleWithIdentifier:"), objc.String(identifier))
 	return rv
 }
 
@@ -245,6 +245,27 @@ func (bc _BundleClass) LoadNibNamedOwner(nibName string, owner objc.ID) bool {
 	return rv
 }
 
+// Returns an array of all the application’s non-framework bundles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allBundles
+func (bc _BundleClass) AllBundles() []Bundle {
+	rv := objc.Send[[]Bundle](objc.ID(bc.class), objc.Sel("allBundles"))
+	return rv
+}
+// Returns an array of all of the application’s bundles that represent frameworks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allFrameworks
+func (bc _BundleClass) AllFrameworks() []Bundle {
+	rv := objc.Send[[]Bundle](objc.ID(bc.class), objc.Sel("allFrameworks"))
+	return rv
+}
+// Returns the bundle object that contains the current executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
+func (bc _BundleClass) MainBundle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("mainBundle"))
+	return rv
+}
 // Returns the object for the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/classNamed(_:)
@@ -497,6 +518,22 @@ func (b_ Bundle) LocalizedStringForKeyValueTableLocalizations(key string, value 
 	return rv
 }
 
+// Returns an array of all the application’s non-framework bundles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allBundles
+func (b_ Bundle) AllBundles() []Bundle {
+	rv := objc.Send[[]Bundle](b_.ID, objc.Sel("allBundles"))
+	return rv
+}
+
+// Returns an array of all of the application’s bundles that represent frameworks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allFrameworks
+func (b_ Bundle) AllFrameworks() []Bundle {
+	rv := objc.Send[[]Bundle](b_.ID, objc.Sel("allFrameworks"))
+	return rv
+}
+
 // The file URL for the bundle’s App Store receipt.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/appStoreReceiptURL
@@ -606,6 +643,14 @@ func (b_ Bundle) Localizations() []string {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/localizedInfoDictionary
 func (b_ Bundle) LocalizedInfoDictionary() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("localizedInfoDictionary"))
+	return rv
+}
+
+// Returns the bundle object that contains the current executable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
+func (b_ Bundle) MainBundle() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("mainBundle"))
 	return rv
 }
 

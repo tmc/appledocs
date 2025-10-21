@@ -84,22 +84,6 @@ func NewPredicate() Predicate {
 }
 
 
-// Creates a predicate that evaluates using a specified block object and bindings dictionary.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
-func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
-	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
-	return rv
-}
-
-// Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
-func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objc.ID) Predicate {
-	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
-	return rv
-}
-
 // Creates a predicate by substituting the values in an argument list into a format string and parsing the result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:arguments:)
@@ -121,6 +105,22 @@ func NewPredicateFromMetadataQueryString(queryString string) Predicate {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(value:)
 func NewPredicateWithValue(value bool) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithValue:"), value)
+	return rv
+}
+
+// Creates a predicate that evaluates using a specified block object and bindings dictionary.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(block:)
+func NewPredicateWithBlock(block unsafe.Pointer) Predicate {
+	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithBlock:"), block)
+	return rv
+}
+
+// Creates a predicate by substituting the values in a specified array into a format string and parsing the result.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(format:argumentArray:)
+func NewPredicateWithFormatArgumentArray(predicateFormat string, arguments objc.ID) Predicate {
+	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithFormat:argumentArray:"), objc.String(predicateFormat), arguments)
 	return rv
 }
 

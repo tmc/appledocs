@@ -120,7 +120,17 @@ func (u_ UserNotification) AdditionalActions() []UserNotificationAction {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotification/additionalActions
 func (u_ UserNotification) SetAdditionalActions(value []UserNotificationAction) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](u_.ID, objc.Sel("setAdditionalActions:"), nsArray)
 }
 // An additional action selected by the user.
 //

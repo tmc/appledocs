@@ -80,5 +80,50 @@ func NewDate() Date {
 }
 
 
+// A date object representing a date in the distant future.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
+func (dc _DateClass) DistantFuture() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("distantFuture"))
+	return rv
+}
+// A date object representing a date in the distant past.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
+func (dc _DateClass) DistantPast() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("distantPast"))
+	return rv
+}
+// The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
+func (dc _DateClass) TimeIntervalSinceReferenceDate() TimeInterval {
+	rv := objc.Send[TimeInterval](objc.ID(dc.class), objc.Sel("timeIntervalSinceReferenceDate"))
+	return rv
+}
+// A date object representing a date in the distant future.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantFuture
+func (d_ Date) DistantFuture() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantFuture"))
+	return rv
+}
+
+// A date object representing a date in the distant past.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/distantPast
+func (d_ Date) DistantPast() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("distantPast"))
+	return rv
+}
+
+// The interval between 00:00:00 UTC on 1 January 2001 and the current date and time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.type.property
+func (d_ Date) TimeIntervalSinceReferenceDate() TimeInterval {
+	rv := objc.Send[TimeInterval](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
+	return rv
+}
+
 
 

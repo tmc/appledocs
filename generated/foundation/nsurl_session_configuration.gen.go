@@ -97,6 +97,20 @@ func (uc _URLSessionConfigurationClass) BackgroundSessionConfiguration(identifie
 	return rv
 }
 
+// A default session configuration object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
+func (uc _URLSessionConfigurationClass) DefaultSessionConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("defaultSessionConfiguration"))
+	return rv
+}
+// A session configuration that uses no persistent storage for caches, cookies, or credentials.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
+func (uc _URLSessionConfigurationClass) EphemeralSessionConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("ephemeralSessionConfiguration"))
+	return rv
+}
 // An array of proxy configuration objects containing information about the proxies to use within this session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
@@ -112,7 +126,17 @@ func (u_ URLSessionConfiguration) ProxyConfigurations() []unsafe.Pointer {
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLSessionConfiguration/proxyConfigurations
 func (u_ URLSessionConfiguration) SetProxyConfigurations(value []unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setProxyConfigurations:"), value)
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](u_.ID, objc.Sel("setProxyConfigurations:"), nsArray)
 }
 // A Boolean value that determines whether connections should be made over a cellular network.
 //
@@ -182,6 +206,22 @@ func (u_ URLSessionConfiguration) ConnectionProxyDictionary() unsafe.Pointer {
 func (u_ URLSessionConfiguration) SetConnectionProxyDictionary(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setConnectionProxyDictionary:"), value)
 }
+// A default session configuration object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/default
+func (u_ URLSessionConfiguration) DefaultSessionConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("defaultSessionConfiguration"))
+	return rv
+}
+
+// A session configuration that uses no persistent storage for caches, cookies, or credentials.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/ephemeral
+func (u_ URLSessionConfiguration) EphemeralSessionConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("ephemeralSessionConfiguration"))
+	return rv
+}
+
 // A dictionary of additional headers to send with requests.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionConfiguration/httpAdditionalHeaders

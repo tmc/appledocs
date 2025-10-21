@@ -99,11 +99,26 @@ func (fc _FileCoordinatorClass) RemoveFilePresenter(filePresenter objc.ID) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("removeFilePresenter:"), filePresenter)
 }
 
+// Returns an array containing the currently registered file presenter objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/filePresenters
+func (fc _FileCoordinatorClass) FilePresenters() []objc.ID {
+	rv := objc.Send[[]objc.ID](objc.ID(fc.class), objc.Sel("filePresenters"))
+	return rv
+}
 // Performs a number of coordinated-read or -write operations asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(with:queue:byAccessor:)
 func (f_ FileCoordinator) CoordinateAccessWithIntentsQueueByAccessor(intents unsafe.Pointer, queue unsafe.Pointer, accessor unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateAccessWithIntents:queue:byAccessor:"), intents, queue, accessor)
+}
+
+// Returns an array containing the currently registered file presenter objects.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/filePresenters
+func (f_ FileCoordinator) FilePresenters() []objc.ID {
+	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("filePresenters"))
+	return rv
 }
 
 

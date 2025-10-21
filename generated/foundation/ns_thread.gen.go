@@ -152,6 +152,34 @@ func (tc _ThreadClass) ThreadPriority() unsafe.Pointer {
 	return rv
 }
 
+// Returns an array containing the call stack return addresses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
+func (tc _ThreadClass) CallStackReturnAddresses() []Number {
+	rv := objc.Send[[]Number](objc.ID(tc.class), objc.Sel("callStackReturnAddresses"))
+	return rv
+}
+// Returns an array containing the call stack symbols.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackSymbols
+func (tc _ThreadClass) CallStackSymbols() []string {
+	rv := objc.Send[[]string](objc.ID(tc.class), objc.Sel("callStackSymbols"))
+	return rv
+}
+// Returns the thread object representing the current thread of execution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
+func (tc _ThreadClass) CurrentThread() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("currentThread"))
+	return rv
+}
+// Returns the object representing the main thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
+func (tc _ThreadClass) MainThread() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("mainThread"))
+	return rv
+}
 // Changes the cancelled state of the receiver to indicate that it should exit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/cancel()
@@ -171,6 +199,30 @@ func (t_ Thread) Main() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/start()
 func (t_ Thread) Start() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("start"))
+}
+
+// Returns an array containing the call stack return addresses.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
+func (t_ Thread) CallStackReturnAddresses() []Number {
+	rv := objc.Send[[]Number](t_.ID, objc.Sel("callStackReturnAddresses"))
+	return rv
+}
+
+// Returns an array containing the call stack symbols.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackSymbols
+func (t_ Thread) CallStackSymbols() []string {
+	rv := objc.Send[[]string](t_.ID, objc.Sel("callStackSymbols"))
+	return rv
+}
+
+// Returns the thread object representing the current thread of execution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/current
+func (t_ Thread) CurrentThread() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("currentThread"))
+	return rv
 }
 
 // A Boolean value that indicates whether the receiver is cancelled.
@@ -202,6 +254,14 @@ func (t_ Thread) Finished() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/isMainThread-swift.property
 func (t_ Thread) IsMainThread() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isMainThread"))
+	return rv
+}
+
+// Returns the object representing the main thread.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/main
+func (t_ Thread) MainThread() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("mainThread"))
 	return rv
 }
 

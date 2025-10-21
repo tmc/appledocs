@@ -90,6 +90,13 @@ func NewProcessInfo() ProcessInfo {
 }
 
 
+// Returns the process information agent for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processInfo
+func (pc _ProcessInfoClass) ProcessInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("processInfo"))
+	return rv
+}
 // Begin an activity using the given options and reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/beginActivity(options:reason:)
@@ -246,8 +253,8 @@ func (p_ ProcessInfo) OperatingSystemVersionString() unsafe.Pointer {
 // The amount of physical memory on the computer in bytes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/physicalMemory
-func (p_ ProcessInfo) PhysicalMemory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("physicalMemory"))
+func (p_ ProcessInfo) PhysicalMemory() uint64 {
+	rv := objc.Send[uint64](p_.ID, objc.Sel("physicalMemory"))
 	return rv
 }
 
@@ -256,6 +263,14 @@ func (p_ ProcessInfo) PhysicalMemory() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processIdentifier
 func (p_ ProcessInfo) ProcessIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processIdentifier"))
+	return rv
+}
+
+// Returns the process information agent for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processInfo
+func (p_ ProcessInfo) ProcessInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("processInfo"))
 	return rv
 }
 

@@ -138,6 +138,41 @@ func (lc _LocaleClass) WindowsLocaleCodeFromLocaleIdentifier(localeIdentifier st
 	return rv
 }
 
+// The list of locale identifiers available on the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/availableLocaleIdentifiers
+func (lc _LocaleClass) AvailableLocaleIdentifiers() []string {
+	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("availableLocaleIdentifiers"))
+	return rv
+}
+// A list of commonly encountered currency codes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/commonISOCurrencyCodes
+func (lc _LocaleClass) CommonISOCurrencyCodes() []string {
+	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("commonISOCurrencyCodes"))
+	return rv
+}
+// A locale that represents the user’s region settings at the time the property is read.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/current
+func (lc _LocaleClass) CurrentLocale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("currentLocale"))
+	return rv
+}
+// An ordered list of the user’s preferred languages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/preferredLanguages
+func (lc _LocaleClass) PreferredLanguages() []string {
+	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("preferredLanguages"))
+	return rv
+}
+// A locale representing the generic root values with little localization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/system
+func (lc _LocaleClass) SystemLocale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("systemLocale"))
+	return rv
+}
 // Returns the display name for the given locale component value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/displayName(forKey:value:)
@@ -186,6 +221,14 @@ func (l_ Locale) AlternateQuotationEndDelimiter() unsafe.Pointer {
 	return rv
 }
 
+// The list of locale identifiers available on the system.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/availableLocaleIdentifiers
+func (l_ Locale) AvailableLocaleIdentifiers() []string {
+	rv := objc.Send[[]string](l_.ID, objc.Sel("availableLocaleIdentifiers"))
+	return rv
+}
+
 // The calendar identifier for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/calendarIdentifier
@@ -210,11 +253,27 @@ func (l_ Locale) CollatorIdentifier() unsafe.Pointer {
 	return rv
 }
 
+// A list of commonly encountered currency codes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/commonISOCurrencyCodes
+func (l_ Locale) CommonISOCurrencyCodes() []string {
+	rv := objc.Send[[]string](l_.ID, objc.Sel("commonISOCurrencyCodes"))
+	return rv
+}
+
 // The currency code for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/currencyCode
 func (l_ Locale) CurrencyCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("currencyCode"))
+	return rv
+}
+
+// A locale that represents the user’s region settings at the time the property is read.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/current
+func (l_ Locale) CurrentLocale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("currentLocale"))
 	return rv
 }
 
@@ -249,6 +308,14 @@ func (l_ Locale) LanguageIdentifier() unsafe.Pointer {
 	return rv
 }
 
+// An ordered list of the user’s preferred languages.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/preferredLanguages
+func (l_ Locale) PreferredLanguages() []string {
+	rv := objc.Send[[]string](l_.ID, objc.Sel("preferredLanguages"))
+	return rv
+}
+
 // The begin quotation symbol for the locale.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/quotationBeginDelimiter
@@ -277,6 +344,14 @@ func (l_ Locale) RegionCode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/scriptCode
 func (l_ Locale) ScriptCode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("scriptCode"))
+	return rv
+}
+
+// A locale representing the generic root values with little localization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/system
+func (l_ Locale) SystemLocale() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("systemLocale"))
 	return rv
 }
 

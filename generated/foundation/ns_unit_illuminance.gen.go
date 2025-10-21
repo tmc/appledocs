@@ -81,5 +81,20 @@ func NewUnitIlluminance() UnitIlluminance {
 }
 
 
+// The lux unit of illuminance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
+func (uc _UnitIlluminanceClass) Lux() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("lux"))
+	return rv
+}
+// The lux unit of illuminance.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitIlluminance/lux
+func (u_ UnitIlluminance) Lux() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("lux"))
+	return rv
+}
+
 
 

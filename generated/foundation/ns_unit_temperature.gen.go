@@ -81,5 +81,50 @@ func NewUnitTemperature() UnitTemperature {
 }
 
 
+// The degree Celsius unit of temperature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
+func (uc _UnitTemperatureClass) Celsius() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("celsius"))
+	return rv
+}
+// The degree Fahrenheit unit of temperature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
+func (uc _UnitTemperatureClass) Fahrenheit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("fahrenheit"))
+	return rv
+}
+// The kelvin unit of temperature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
+func (uc _UnitTemperatureClass) Kelvin() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("kelvin"))
+	return rv
+}
+// The degree Celsius unit of temperature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/celsius
+func (u_ UnitTemperature) Celsius() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("celsius"))
+	return rv
+}
+
+// The degree Fahrenheit unit of temperature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/fahrenheit
+func (u_ UnitTemperature) Fahrenheit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("fahrenheit"))
+	return rv
+}
+
+// The kelvin unit of temperature.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitTemperature/kelvin
+func (u_ UnitTemperature) Kelvin() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("kelvin"))
+	return rv
+}
+
 
 

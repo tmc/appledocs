@@ -85,6 +85,16 @@ func NewCountedSet() CountedSet {
 }
 
 
+// Returns a counted set object initialized with the contents of a given set.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(set:)
+func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
+	instance := getCountedSetClass().Alloc()
+	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithSet:"), set)
+	rv.Autorelease()
+	return rv
+}
+
 // Returns a counted set object initialized with the contents of a given array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(array:)
@@ -101,16 +111,6 @@ func NewCountedSetWithArray(array unsafe.Pointer) CountedSet {
 func NewCountedSetWithCapacity(numItems uint) CountedSet {
 	instance := getCountedSetClass().Alloc()
 	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithCapacity:"), numItems)
-	rv.Autorelease()
-	return rv
-}
-
-// Returns a counted set object initialized with the contents of a given set.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountedSet/init(set:)
-func NewCountedSetWithSet(set unsafe.Pointer) CountedSet {
-	instance := getCountedSetClass().Alloc()
-	rv := objc.Send[CountedSet](instance.ID, objc.Sel("initWithSet:"), set)
 	rv.Autorelease()
 	return rv
 }

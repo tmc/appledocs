@@ -94,6 +94,13 @@ func NewUserDefaultsWithSuiteName(suitename string) UserDefaults {
 }
 
 
+// Returns the shared defaults object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
+func (uc _UserDefaultsClass) StandardUserDefaults() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("standardUserDefaults"))
+	return rv
+}
 // Sets the value of the specified default key to the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/set(_:forKey:)-2bqjt
@@ -113,6 +120,14 @@ func (u_ UserDefaults) SetObjectForKey(value objc.ID, defaultName string) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/string(forKey:)
 func (u_ UserDefaults) StringForKey(defaultName string) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("stringForKey:"), objc.String(defaultName))
+	return rv
+}
+
+// Returns the shared defaults object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UserDefaults/standard
+func (u_ UserDefaults) StandardUserDefaults() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardUserDefaults"))
 	return rv
 }
 

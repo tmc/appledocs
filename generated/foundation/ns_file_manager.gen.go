@@ -165,6 +165,13 @@ func (fc _FileManagerClass) FileManagerWithAuthorization(authorization unsafe.Po
 	return rv
 }
 
+// The shared file manager object for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/default
+func (fc _FileManagerClass) DefaultManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("defaultManager"))
+	return rv
+}
 // Returns a dictionary that describes the attributes of the mounted file system on which a given path resides.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/attributesOfFileSystem(forPath:)
@@ -708,6 +715,14 @@ func (f_ FileManager) RemoveFileAtPathHandler(path string, handler objc.ID) bool
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/currentDirectoryPath
 func (f_ FileManager) CurrentDirectoryPath() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("currentDirectoryPath"))
+	return rv
+}
+
+// The shared file manager object for the process.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/default
+func (f_ FileManager) DefaultManager() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("defaultManager"))
 	return rv
 }
 

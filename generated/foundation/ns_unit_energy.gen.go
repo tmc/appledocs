@@ -81,5 +81,35 @@ func NewUnitEnergy() UnitEnergy {
 }
 
 
+// The kilocalories unit of energy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
+func (uc _UnitEnergyClass) Kilocalories() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("kilocalories"))
+	return rv
+}
+// The kilowatt hours unit of energy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilowattHours
+func (uc _UnitEnergyClass) KilowattHours() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("kilowattHours"))
+	return rv
+}
+// The kilocalories unit of energy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilocalories
+func (u_ UnitEnergy) Kilocalories() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("kilocalories"))
+	return rv
+}
+
+// The kilowatt hours unit of energy.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitEnergy/kilowattHours
+func (u_ UnitEnergy) KilowattHours() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("kilowattHours"))
+	return rv
+}
+
 
 

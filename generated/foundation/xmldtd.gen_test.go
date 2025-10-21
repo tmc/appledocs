@@ -12,11 +12,11 @@ var _ = foundation.NewXMLDTD
 
 
 
-
 // ExampleNewXMLDTD demonstrates how to create a XMLDTD instance.
 func ExampleNewXMLDTD() {
 	_ = foundation.NewXMLDTD()
 	// Output:
 }
+
 
 

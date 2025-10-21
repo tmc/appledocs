@@ -125,6 +125,21 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 		defined[ref] = true
 	}
 
+	// Add framework-specific types that are defined in templates or as classes
+	frameworkSpecificTypes := map[string][]string{
+		"CoreGraphics": {"CGFloat", "CGPoint", "CGSize", "CGRect", "CGAffineTransform", "CGVector", "Range", "Size", "Point", "Rect"},
+		"Foundation":   {"TimeInterval", "Point", "Size", "Rect", "Range", "RectEdge"},
+		"AppKit":       {"WindowStyleMask", "BackingStoreType", "WindowOrderingMode", "WindowLevel", "EventType", "EventModifierFlags"},
+		"QuartzCore":   {"CGFloat"},
+		"ObjectiveC":   {"Protocol"}, // Protocol is a class, not a fallback type
+	}
+
+	if types, ok := frameworkSpecificTypes[g.Framework]; ok {
+		for _, t := range types {
+			defined[t] = true
+		}
+	}
+
 	return defined
 }
 

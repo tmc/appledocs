@@ -80,22 +80,22 @@ func NewScriptObjectSpecifier() ScriptObjectSpecifier {
 }
 
 
-// Returns an object initialized with a given container specifier and key.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerSpecifier:key:)
-func NewScriptObjectSpecifierWithContainerSpecifierKey(container unsafe.Pointer, property string) ScriptObjectSpecifier {
-	instance := getScriptObjectSpecifierClass().Alloc()
-	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, objc.String(property))
-	rv.Autorelease()
-	return rv
-}
-
 // Returns an object initialized with the given attributes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerClassDescription:containerSpecifier:key:)
 func NewScriptObjectSpecifierWithContainerClassDescriptionContainerSpecifierKey(classDesc unsafe.Pointer, container unsafe.Pointer, property string) ScriptObjectSpecifier {
 	instance := getScriptObjectSpecifierClass().Alloc()
 	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerClassDescription:containerSpecifier:key:"), classDesc, container, objc.String(property))
+	rv.Autorelease()
+	return rv
+}
+
+// Returns an object initialized with a given container specifier and key.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptObjectSpecifier/init(containerSpecifier:key:)
+func NewScriptObjectSpecifierWithContainerSpecifierKey(container unsafe.Pointer, property string) ScriptObjectSpecifier {
+	instance := getScriptObjectSpecifierClass().Alloc()
+	rv := objc.Send[ScriptObjectSpecifier](instance.ID, objc.Sel("initWithContainerSpecifier:key:"), container, objc.String(property))
 	rv.Autorelease()
 	return rv
 }

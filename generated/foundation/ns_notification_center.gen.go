@@ -84,6 +84,13 @@ func NewNotificationCenter() NotificationCenter {
 }
 
 
+// The app’s default notification center.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
+func (nc _NotificationCenterClass) DefaultCenter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("defaultCenter"))
+	return rv
+}
 // Adds an entry to the notification center to call the provided selector with the notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/addObserver(_:selector:name:object:)
@@ -132,6 +139,14 @@ func (n_ NotificationCenter) RemoveObserver(observer objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/removeObserver(_:name:object:)
 func (n_ NotificationCenter) RemoveObserverNameObject(observer objc.ID, aName unsafe.Pointer, anObject objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
+}
+
+// The app’s default notification center.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationCenter/default
+func (n_ NotificationCenter) DefaultCenter() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("defaultCenter"))
+	return rv
 }
 
 

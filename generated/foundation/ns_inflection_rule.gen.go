@@ -88,5 +88,20 @@ func (ic _InflectionRuleClass) CanInflectLanguage(language string) bool {
 	return rv
 }
 
+// A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
+func (ic _InflectionRuleClass) CanInflectPreferredLocalization() bool {
+	rv := objc.Send[bool](objc.ID(ic.class), objc.Sel("canInflectPreferredLocalization"))
+	return rv
+}
+// A Boolean value that indicates whether the rule can inflect the user’s current preferred localization.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRule/canInflectPreferredLocalization
+func (i_ InflectionRule) CanInflectPreferredLocalization() bool {
+	rv := objc.Send[bool](i_.ID, objc.Sel("canInflectPreferredLocalization"))
+	return rv
+}
+
 
 
