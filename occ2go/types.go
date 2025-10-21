@@ -60,9 +60,10 @@ type ParsedMethod struct {
 // ParsedProperty represents an Objective-C property declaration.
 type ParsedProperty struct {
 	Name            string
-	Type            string
-	Attributes      []string // e.g., "readonly", "nonatomic", "strong"
-	IsClassProperty bool     // true for class properties (static/class var in Swift)
+	Type            string      // Swift/Go type (e.g., "String?", "string", "unsafe.Pointer")
+	ObjCType        string      // Original Objective-C type (e.g., "NSString *") for proper type mapping
+	Attributes      []string    // e.g., "readonly", "nonatomic", "strong"
+	IsClassProperty bool        // true for class properties (static/class var in Swift)
 	Comment         string
 	Availability    Availability
 	DocURL          string

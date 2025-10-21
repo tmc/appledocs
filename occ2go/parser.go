@@ -1152,6 +1152,8 @@ func ParsePropertyDeclaration(tokens []appledocs.Token) (*ParsedProperty, error)
 	}
 
 	property.Type = strings.Join(typeParts, " ")
+	// Store the original Objective-C type for proper type mapping
+	property.ObjCType = property.Type
 
 	// Parse property name
 	if i < len(tokens) && tokens[i].Kind == "identifier" {

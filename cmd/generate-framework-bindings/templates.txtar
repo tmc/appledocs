@@ -826,7 +826,8 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams . $frame
 {{- end}}
 
 {{- range .Properties}}
-{{- $goType := mapObjCTypeToGo .Type $framework}}
+{{- $typeToMap := if .ObjCType .ObjCType .Type}}
+{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
 {{- $capitalizedName := capitalize .Name}}
 {{- if ne $goType ""}}
 {{- if .Abstract}}
@@ -866,6 +867,8 @@ func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$goType
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), nsArray)
+	{{- else if eq $goType "string"}}
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), objc.String(value))
 	{{- else}}
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 	{{- end}}

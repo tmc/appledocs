@@ -910,6 +910,9 @@ func mapObjCTypeToGo(objcType, framework string) string {
 		return "float32"
 	case "void":
 		return ""
+	case "String", "String?":
+		// Swift string types map to Go string
+		return "string"
 	}
 
 	// Check the type mapping registry first (includes both with and without pointers)
@@ -932,6 +935,11 @@ func mapObjCTypeToGo(objcType, framework string) string {
 
 	// Special case: NSString * -> string (most common string parameter type)
 	if isPointer && objcTypeNoPtr == "NSString" {
+		return "string"
+	}
+
+	// Also handle NSString without pointer (from property types in docs)
+	if objcType == "NSString" {
 		return "string"
 	}
 
