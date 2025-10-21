@@ -163,11 +163,14 @@ type FunctionDocData struct {
 }
 
 var goKeywords = map[string]bool{
+	// Reserved keywords
 	"break": true, "case": true, "chan": true, "const": true, "continue": true,
 	"default": true, "defer": true, "else": true, "fallthrough": true, "for": true,
 	"func": true, "go": true, "goto": true, "if": true, "import": true,
 	"interface": true, "map": true, "package": true, "range": true, "return": true,
 	"select": true, "struct": true, "switch": true, "type": true, "var": true,
+	// Predeclared identifiers
+	"true": true, "false": true, "nil": true, "iota": true,
 	// Special identifiers that cannot be used as type/variable names
 	"init": true,
 	// Built-in types that shadow if used as parameter names
@@ -176,6 +179,12 @@ var goKeywords = map[string]bool{
 	"int": true, "int8": true, "int16": true, "int32": true, "int64": true,
 	"rune": true, "string": true,
 	"uint": true, "uint8": true, "uint16": true, "uint32": true, "uint64": true, "uintptr": true,
+	// Built-in functions that could conflict
+	"append": true, "cap": true, "close": true, "complex": true, "copy": true,
+	"delete": true, "imag": true, "len": true, "make": true, "new": true,
+	"panic": true, "print": true, "println": true, "real": true, "recover": true,
+	// Protocol is not a Go keyword but commonly conflicts in Cocoa APIs
+	"protocol": true,
 }
 
 // isGoKeyword checks if a string is a Go reserved keyword.
@@ -1554,6 +1563,8 @@ func sliceContainsString(slice []string, str string) bool {
 // Examples:
 //   title -> Title
 //   backgroundColor -> BackgroundColor
+//   false -> False_  (appends underscore for Go keywords)
+//   protocol -> Protocol_  (appends underscore for conflicting identifiers)
 func capitalizeFirst(s string) string {
 	if s == "" {
 		return ""
@@ -1563,7 +1574,16 @@ func capitalizeFirst(s string) string {
 	if strings.ToLower(s) == "object" {
 		return "GetObject"
 	}
-	return strings.ToUpper(s[:1]) + s[1:]
+
+	capitalized := strings.ToUpper(s[:1]) + s[1:]
+
+	// Check if the capitalized version would conflict with a Go keyword/identifier
+	// We need to check the lowercase version because property names are lowercased
+	if isGoKeyword(s) {
+		capitalized = capitalized + "_"
+	}
+
+	return capitalized
 }
 
 // needsCustomImports checks if any methods use types that require custom imports

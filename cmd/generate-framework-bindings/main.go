@@ -960,7 +960,15 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 	classSeenProperties := make(map[string]map[string]bool)
 
 	// Initialize with properties extracted from references
-	for className, props := range refProperties {
+	// Sort class names for stable output
+	var refPropertyClasses []string
+	for className := range refProperties {
+		refPropertyClasses = append(refPropertyClasses, className)
+	}
+	sort.Strings(refPropertyClasses)
+
+	for _, className := range refPropertyClasses {
+		props := refProperties[className]
 		if classSeenProperties[className] == nil {
 			classSeenProperties[className] = make(map[string]bool)
 		}
