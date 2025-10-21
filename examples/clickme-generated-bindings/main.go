@@ -7,8 +7,9 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/ebitengine/purego/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 var (
@@ -29,44 +30,63 @@ func main() {
 		return
 	}
 
-	// Create application
-	app := appkit.SharedApplication()
-	app.SetActivationPolicy(appkit.ActivationPolicyRegular)
+	// Create application using the class method
+	app := appkit.ApplicationClass.SharedApplication()
+	appkit.ApplicationFrom(app).SetActivationPolicy(appkit.ActivationPolicyRegular)
 
-	// Create window
-	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
-		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable)
-	window.SetTitle("Hello from Generated Bindings!")
+	// Create window with proper constructor
+	contentRect := coregraphics.CGRect{
+		Origin: coregraphics.CGPoint{X: 100, Y: 100},
+		Size:   coregraphics.CGSize{Width: 400, Height: 300},
+	}
+	window := appkit.NewWindowWithContentRectStyleMaskBackingDefer(
+		contentRect,
+		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable,
+		appkit.BackingStoreBuffered,
+		false,
+	)
+	window.SetTitle(objc.String("Hello from Generated Bindings!"))
 
 	// Create counter label
-	counterLabel = appkit.NewTextFieldWithFrame(100, 200, 200, 40)
-	counterLabel.SetStringValue("Clicks: 0")
+	labelRect := coregraphics.CGRect{
+		Origin: coregraphics.CGPoint{X: 100, Y: 200},
+		Size:   coregraphics.CGSize{Width: 200, Height: 40},
+	}
+	counterLabel = appkit.TextFieldClass.TextFieldWithFrame(labelRect)
+	counterLabel.SetStringValue(objc.String("Clicks: 0"))
 	counterLabel.SetEditable(false)
 	counterLabel.SetBordered(false)
 	counterLabel.SetDrawsBackground(false)
 	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
-	window.ContentView().AddSubviewTyped(counterLabel)
+
+	// Add label to window's content view
+	contentView := window.ContentView()
+	appkit.ViewFrom(contentView).AddSubview(counterLabel.ID)
 
 	// Create button handler
 	buttonHandler := createButtonHandler()
 
 	// Create button
-	button := appkit.NewButtonWithFrame(150, 120, 100, 40)
-	button.SetTitleString("Click Me!")
+	buttonRect := coregraphics.CGRect{
+		Origin: coregraphics.CGPoint{X: 150, Y: 120},
+		Size:   coregraphics.CGSize{Width: 100, Height: 40},
+	}
+	button := appkit.ButtonClass.ButtonWithFrame(buttonRect)
+	button.SetTitle(objc.String("Click Me!"))
 	button.SetTarget(buttonHandler)
-	button.SetAction(objc.RegisterName("buttonClicked:"))
+	button.SetAction(objc.Sel("buttonClicked:"))
 
 	// Add button to window's content view
-	window.ContentView().AddSubviewTyped(button)
+	appkit.ViewFrom(contentView).AddSubview(button.ID)
 
 	// Make window key and bring to front
-	window.MakeKeyAndOrderFront(0)
+	window.MakeKeyAndOrderFront(nil)
 
 	// Activate ignoring other apps
-	app.ActivateIgnoringOtherApps(true)
+	appkit.ApplicationFrom(app).ActivateIgnoringOtherApps(true)
 
 	// Run the application event loop
-	app.Run()
+	appkit.ApplicationFrom(app).Run()
 }
 
 // runE2ETest runs automated end-to-end test with small delays for visibility
@@ -74,15 +94,23 @@ func runE2ETest() {
 	fmt.Println("=== E2E Test Mode (Clickme Generated Bindings) ===")
 
 	// Create application
-	app := appkit.SharedApplication()
-	app.SetActivationPolicy(appkit.ActivationPolicyAccessory) // No dock icon in tests
+	app := appkit.ApplicationClass.SharedApplication()
+	appkit.ApplicationFrom(app).SetActivationPolicy(appkit.ActivationPolicyAccessory) // No dock icon in tests
 	fmt.Println("✓ Created application")
 	time.Sleep(100 * time.Millisecond)
 
 	// Create window
-	window := appkit.NewWindowWithFrame(100, 100, 400, 300,
-		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable)
-	window.SetTitle("E2E Test Window")
+	contentRect := coregraphics.CGRect{
+		Origin: coregraphics.CGPoint{X: 100, Y: 100},
+		Size:   coregraphics.CGSize{Width: 400, Height: 300},
+	}
+	window := appkit.NewWindowWithContentRectStyleMaskBackingDefer(
+		contentRect,
+		appkit.WindowStyleMaskTitled|appkit.WindowStyleMaskClosable,
+		appkit.BackingStoreBuffered,
+		false,
+	)
+	window.SetTitle(objc.String("E2E Test Window"))
 	fmt.Println("✓ Created window with title")
 	time.Sleep(100 * time.Millisecond)
 
@@ -92,13 +120,17 @@ func runE2ETest() {
 	time.Sleep(100 * time.Millisecond)
 
 	// Create counter label
-	counterLabel = appkit.NewTextFieldWithFrame(100, 200, 200, 40)
-	counterLabel.SetStringValue("Clicks: 0")
+	labelRect := coregraphics.CGRect{
+		Origin: coregraphics.CGPoint{X: 100, Y: 200},
+		Size:   coregraphics.CGSize{Width: 200, Height: 40},
+	}
+	counterLabel = appkit.TextFieldClass.TextFieldWithFrame(labelRect)
+	counterLabel.SetStringValue(objc.String("Clicks: 0"))
 	counterLabel.SetEditable(false)
 	counterLabel.SetBordered(false)
 	counterLabel.SetDrawsBackground(false)
 	counterLabel.SetAlignment(appkit.TextAlignmentCenter)
-	contentView.AddSubviewTyped(counterLabel)
+	appkit.ViewFrom(contentView).AddSubview(counterLabel.ID)
 	fmt.Println("✓ Created counter label")
 	time.Sleep(100 * time.Millisecond)
 
@@ -108,11 +140,15 @@ func runE2ETest() {
 	time.Sleep(100 * time.Millisecond)
 
 	// Create button
-	button := appkit.NewButtonWithFrame(150, 120, 100, 40)
-	button.SetTitleString("Click Me!")
+	buttonRect := coregraphics.CGRect{
+		Origin: coregraphics.CGPoint{X: 150, Y: 120},
+		Size:   coregraphics.CGSize{Width: 100, Height: 40},
+	}
+	button := appkit.ButtonClass.ButtonWithFrame(buttonRect)
+	button.SetTitle(objc.String("Click Me!"))
 	button.SetTarget(buttonHandler)
-	button.SetAction(objc.RegisterName("buttonClicked:"))
-	contentView.AddSubviewTyped(button)
+	button.SetAction(objc.Sel("buttonClicked:"))
+	appkit.ViewFrom(contentView).AddSubview(button.ID)
 	fmt.Println("✓ Created and configured button")
 	time.Sleep(100 * time.Millisecond)
 
@@ -125,8 +161,8 @@ func runE2ETest() {
 	time.Sleep(100 * time.Millisecond)
 
 	// Verify label string values
-	labelValue := counterLabel.ID.Send(objc.RegisterName("stringValue"))
-	if labelValue == 0 {
+	labelValue := counterLabel.StringValue()
+	if labelValue == nil {
 		fmt.Println("✗ FAIL: Label value not set")
 		os.Exit(1)
 	}
@@ -134,12 +170,12 @@ func runE2ETest() {
 	time.Sleep(100 * time.Millisecond)
 
 	// Show window briefly
-	window.MakeKeyAndOrderFront(0)
+	window.MakeKeyAndOrderFront(nil)
 	fmt.Println("✓ Window displayed")
 	time.Sleep(200 * time.Millisecond)
 
 	// Close window
-	window.ID.Send(objc.RegisterName("close"))
+	window.Close()
 	fmt.Println("✓ Window closed")
 
 	fmt.Println("\n=== E2E Test PASSED ===")
@@ -155,11 +191,11 @@ func createButtonHandler() objc.ID {
 		buttonClicked := func(self objc.ID, _cmd objc.SEL, sender objc.ID) {
 			clickCount++
 			fmt.Printf("Button clicked! Count: %d\n", clickCount)
-			counterLabel.SetStringValue(fmt.Sprintf("Clicks: %d", clickCount))
+			counterLabel.SetStringValue(objc.String(fmt.Sprintf("Clicks: %d", clickCount)))
 		}
 		class, _ = objc.RegisterClass(className, superClass, []*objc.Protocol{}, []objc.FieldDef{},
-			[]objc.MethodDef{{Cmd: objc.RegisterName("buttonClicked:"), Fn: buttonClicked}})
+			[]objc.MethodDef{{Cmd: objc.Sel("buttonClicked:"), Fn: buttonClicked}})
 	}
-	handler := objc.ID(class).Send(objc.RegisterName("alloc"))
-	return handler.Send(objc.RegisterName("init"))
+	handler := objc.ID(class).Send(objc.Sel("alloc"))
+	return handler.Send(objc.Sel("init"))
 }

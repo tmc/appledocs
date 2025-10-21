@@ -930,6 +930,11 @@ func mapObjCTypeToGo(objcType, framework string) string {
 	isPointer := strings.HasSuffix(objcType, "*")
 	objcTypeNoPtr := strings.TrimSpace(strings.TrimSuffix(objcType, "*"))
 
+	// Special case: NSString * -> string (most common string parameter type)
+	if isPointer && objcTypeNoPtr == "NSString" {
+		return "string"
+	}
+
 	// Check registry again for type without pointer
 	if isPointer && objcTypeNoPtr != objcType {
 		if goType, found := lookupTypeMapping(objcTypeNoPtr, framework); found {
