@@ -88,6 +88,16 @@ func NewXPCConnection() XPCConnection {
 }
 
 
+// Initializes an object to connect to an object in an XPC service, identified by a service name.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
+func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
+	instance := getXPCConnectionClass().Alloc()
+	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
+	rv.Autorelease()
+	return rv
+}
+
 // Initializes an object to connect to an object in another process, identified by an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(listenerEndpoint:)
@@ -104,16 +114,6 @@ func NewXPCConnectionWithListenerEndpoint(endpoint unsafe.Pointer) XPCConnection
 func NewXPCConnectionWithMachServiceNameOptions(name string, options unsafe.Pointer) XPCConnection {
 	instance := getXPCConnectionClass().Alloc()
 	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithMachServiceName:options:"), objc.String(name), options)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes an object to connect to an object in an XPC service, identified by a service name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCConnection/init(serviceName:)
-func NewXPCConnectionWithServiceName(serviceName string) XPCConnection {
-	instance := getXPCConnectionClass().Alloc()
-	rv := objc.Send[XPCConnection](instance.ID, objc.Sel("initWithServiceName:"), objc.String(serviceName))
 	rv.Autorelease()
 	return rv
 }

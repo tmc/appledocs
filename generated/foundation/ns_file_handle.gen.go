@@ -97,6 +97,16 @@ func NewFileHandle() FileHandle {
 }
 
 
+// Creates and returns a file handle object associated with the specified file descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:)
+func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
+	instance := getFileHandleClass().Alloc()
+	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:"), fd)
+	rv.Autorelease()
+	return rv
+}
+
 // Creates and returns a file handle object associated with the specified file descriptor and deallocation policy.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:closeOnDealloc:)
@@ -107,20 +117,20 @@ func NewFileHandleWithFileDescriptorCloseOnDealloc(fd unsafe.Pointer, closeopt b
 	return rv
 }
 
-// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
+// Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified URL.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
-func NewFileHandleForWritingAtPath(path string) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingURL:)
+func NewFileHandleForUpdatingURLError(url unsafe.Pointer, error_ unsafe.Pointer) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingURL:error:"), url, error_)
 	return rv
 }
 
-// Creates and returns a file handle object associated with the specified file descriptor.
+// Returns a file handle initialized from data in an unarchiver.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(fileDescriptor:)
-func NewFileHandleWithFileDescriptor(fd unsafe.Pointer) FileHandle {
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(coder:)
+func NewFileHandleWithCoder(coder unsafe.Pointer) FileHandle {
 	instance := getFileHandleClass().Alloc()
-	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithFileDescriptor:"), fd)
+	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
 }
@@ -149,11 +159,11 @@ func NewFileHandleForUpdatingAtPath(path string) FileHandle {
 	return rv
 }
 
-// Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified URL.
+// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forUpdatingURL:)
-func NewFileHandleForUpdatingURLError(url unsafe.Pointer, error_ unsafe.Pointer) FileHandle {
-	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForUpdatingURL:error:"), url, error_)
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingAtPath:)
+func NewFileHandleForWritingAtPath(path string) FileHandle {
+	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingAtPath:"), objc.String(path))
 	return rv
 }
 
@@ -162,16 +172,6 @@ func NewFileHandleForUpdatingURLError(url unsafe.Pointer, error_ unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(forWritingToURL:)
 func NewFileHandleForWritingToURLError(url unsafe.Pointer, error_ unsafe.Pointer) FileHandle {
 	rv := objc.Send[FileHandle](objc.ID(getFileHandleClass().class), objc.Sel("fileHandleForWritingToURL:error:"), url, error_)
-	return rv
-}
-
-// Returns a file handle initialized from data in an unarchiver.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileHandle/init(coder:)
-func NewFileHandleWithCoder(coder unsafe.Pointer) FileHandle {
-	instance := getFileHandleClass().Alloc()
-	rv := objc.Send[FileHandle](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
 	return rv
 }
 

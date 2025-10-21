@@ -81,6 +81,16 @@ func NewCompoundPredicate() CompoundPredicate {
 }
 
 
+// Returns the receiver that a specified type initializes using predicates from a specified array.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(type:subpredicates:)
+func NewCompoundPredicateWithTypeSubpredicates(type_ unsafe.Pointer, subpredicates unsafe.Pointer) CompoundPredicate {
+	instance := getCompoundPredicateClass().Alloc()
+	rv := objc.Send[CompoundPredicate](instance.ID, objc.Sel("initWithType:subpredicates:"), type_, subpredicates)
+	rv.Autorelease()
+	return rv
+}
+
 // Returns a new predicate that you form using an AND operation on the predicates in a specified array.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(andPredicateWithSubpredicates:)
@@ -94,16 +104,6 @@ func NewCompoundPredicateAndPredicateWithSubpredicates(subpredicates unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(notPredicateWithSubpredicate:)
 func NewCompoundPredicateNotPredicateWithSubpredicate(predicate unsafe.Pointer) CompoundPredicate {
 	rv := objc.Send[CompoundPredicate](objc.ID(getCompoundPredicateClass().class), objc.Sel("notPredicateWithSubpredicate:"), predicate)
-	return rv
-}
-
-// Returns the receiver that a specified type initializes using predicates from a specified array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompoundPredicate/init(type:subpredicates:)
-func NewCompoundPredicateWithTypeSubpredicates(type_ unsafe.Pointer, subpredicates unsafe.Pointer) CompoundPredicate {
-	instance := getCompoundPredicateClass().Alloc()
-	rv := objc.Send[CompoundPredicate](instance.ID, objc.Sel("initWithType:subpredicates:"), type_, subpredicates)
-	rv.Autorelease()
 	return rv
 }
 

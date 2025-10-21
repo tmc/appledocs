@@ -10,18 +10,6 @@ import (
 var _ = foundation.NewArray
 
 
-// ExampleNewArray demonstrates how to create a Array instance.
-// Initializes a newly allocated array.
-func ExampleNewArray() {
-	_ = foundation.NewArray()
-	// Output:
-}
-
-
-
-
-
-
 
 
 // ExampleNewArrayWithContentsOfFile demonstrates how to create a Array instance using NewArrayWithContentsOfFile.
@@ -32,6 +20,18 @@ func ExampleNewArrayWithContentsOfFile() {
 	)
 	// Output:
 }
+
+
+
+
+// ExampleNewArray demonstrates how to create a Array instance.
+// Initializes a newly allocated array.
+func ExampleNewArray() {
+	_ = foundation.NewArray()
+	// Output:
+}
+
+
 
 
 

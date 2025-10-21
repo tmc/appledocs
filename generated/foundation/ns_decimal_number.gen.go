@@ -96,16 +96,6 @@ func NewDecimalNumber() DecimalNumber {
 }
 
 
-// Initializes a decimal number to represent a given decimal.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
-func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
-	instance := getDecimalNumberClass().Alloc()
-	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
-	rv.Autorelease()
-	return rv
-}
-
 // Initializes a decimal number using the given mantissa, exponent, and sign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(mantissa:exponent:isNegative:)
@@ -132,6 +122,16 @@ func NewDecimalNumberWithString(numberValue string) DecimalNumber {
 func NewDecimalNumberWithStringLocale(numberValue string, locale objc.ID) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), objc.String(numberValue), locale)
+	rv.Autorelease()
+	return rv
+}
+
+// Initializes a decimal number to represent a given decimal.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(decimal:)
+func NewDecimalNumberWithDecimal(dcm unsafe.Pointer) DecimalNumber {
+	instance := getDecimalNumberClass().Alloc()
+	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithDecimal:"), dcm)
 	rv.Autorelease()
 	return rv
 }

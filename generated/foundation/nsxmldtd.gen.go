@@ -91,6 +91,16 @@ func NewXMLDTD() XMLDTD {
 }
 
 
+// Initializes and returns an object created from the DTD declarations encapsulated in an object
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(data:options:)
+func NewXMLDTDWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDTD {
+	instance := getXMLDTDClass().Alloc()
+	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
+	rv.Autorelease()
+	return rv
+}
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXMLDTD/initWithKind:options:
 func NewXMLDTDWithKindOptions(kind unsafe.Pointer, options unsafe.Pointer) XMLDTD {
@@ -106,16 +116,6 @@ func NewXMLDTDWithKindOptions(kind unsafe.Pointer, options unsafe.Pointer) XMLDT
 func NewXMLDTDWithContentsOfURLOptionsError(url unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDTD {
 	instance := getXMLDTDClass().Alloc()
 	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithContentsOfURL:options:error:"), url, mask, error_)
-	rv.Autorelease()
-	return rv
-}
-
-// Initializes and returns an object created from the DTD declarations encapsulated in an object
-//
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/init(data:options:)
-func NewXMLDTDWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer, error_ unsafe.Pointer) XMLDTD {
-	instance := getXMLDTDClass().Alloc()
-	rv := objc.Send[XMLDTD](instance.ID, objc.Sel("initWithData:options:error:"), data, mask, error_)
 	rv.Autorelease()
 	return rv
 }

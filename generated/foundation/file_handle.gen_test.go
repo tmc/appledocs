@@ -12,7 +12,6 @@ var _ = foundation.NewFileHandle
 
 
 
-
 // ExampleNewFileHandleForUpdatingAtPath demonstrates how to create a FileHandle instance using NewFileHandleForUpdatingAtPath.
 // Returns a file handle initialized for reading and writing to the file, device, or named socket at the specified path.
 func ExampleNewFileHandleForUpdatingAtPath() {
@@ -22,10 +21,12 @@ func ExampleNewFileHandleForUpdatingAtPath() {
 	// Output:
 }
 
-// ExampleNewFileHandleForWritingAtPath demonstrates how to create a FileHandle instance using NewFileHandleForWritingAtPath.
-// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
-func ExampleNewFileHandleForWritingAtPath() {
-	_ = foundation.NewFileHandleForWritingAtPath(
+
+
+// ExampleNewFileHandleForReadingAtPath demonstrates how to create a FileHandle instance using NewFileHandleForReadingAtPath.
+// Returns a file handle initialized for reading the file, device, or named socket at the specified path.
+func ExampleNewFileHandleForReadingAtPath() {
+	_ = foundation.NewFileHandleForReadingAtPath(
 		"/tmp/test", // path string
 	)
 	// Output:
@@ -33,11 +34,10 @@ func ExampleNewFileHandleForWritingAtPath() {
 
 
 
-
-// ExampleNewFileHandleForReadingAtPath demonstrates how to create a FileHandle instance using NewFileHandleForReadingAtPath.
-// Returns a file handle initialized for reading the file, device, or named socket at the specified path.
-func ExampleNewFileHandleForReadingAtPath() {
-	_ = foundation.NewFileHandleForReadingAtPath(
+// ExampleNewFileHandleForWritingAtPath demonstrates how to create a FileHandle instance using NewFileHandleForWritingAtPath.
+// Returns a file handle initialized for writing to the file, device, or named socket at the specified path.
+func ExampleNewFileHandleForWritingAtPath() {
+	_ = foundation.NewFileHandleForWritingAtPath(
 		"/tmp/test", // path string
 	)
 	// Output:
