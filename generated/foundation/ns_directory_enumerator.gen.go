@@ -79,3 +79,7 @@ func (d_ DirectoryEnumerator) Autorelease() DirectoryEnumerator {
 func NewDirectoryEnumerator() DirectoryEnumerator {
 	return getDirectoryEnumeratorClass().New()
 }
+
+
+
+

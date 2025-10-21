@@ -108,6 +108,7 @@ func NewMutableDictionary() MutableDictionary {
 	return getMutableDictionaryClass().New()
 }
 
+
 // Initializes a newly allocated mutable dictionary, allocating enough memory to hold entries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(capacity:)
@@ -166,6 +167,7 @@ func NewMutableDictionaryWithSharedKeySet(keyset objc.ID) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
+
 
 // Creates and returns a mutable dictionary, initially giving it enough allocated memory to hold a given number of entries.
 //
@@ -420,3 +422,5 @@ func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key o
 func (m_ MutableDictionary) SetValueForKey(value unsafe.Pointer, key string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:forKey:"), value, objc.String(key))
 }
+
+

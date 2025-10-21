@@ -80,6 +80,7 @@ func NewUnitConverter() UnitConverter {
 	return getUnitConverterClass().New()
 }
 
+
 // For a given unit, returns the specified value of that unit in terms of the base unit of its dimension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitConverter/baseUnitValue(fromValue:)
@@ -87,3 +88,6 @@ func (u_ UnitConverter) BaseUnitValueFromValue(value unsafe.Pointer) unsafe.Poin
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("baseUnitValueFromValue:"), value)
 	return rv
 }
+
+
+

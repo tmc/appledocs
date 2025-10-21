@@ -83,6 +83,7 @@ func NewNumber() Number {
 	return getNumberClass().New()
 }
 
+
 // Returns an object initialized to contain a given value, treated as a .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/init(value:)-1ojz2
@@ -241,6 +242,7 @@ func NewNumberWithUnsignedShort(value unsafe.Pointer) Number {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates and returns an object containing a given value, treating it as a .
 //
@@ -521,3 +523,5 @@ func (n_ Number) UnsignedLongValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("unsignedLongValue"))
 	return rv
 }
+
+

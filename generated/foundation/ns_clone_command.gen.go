@@ -81,9 +81,13 @@ func NewCloneCommand() CloneCommand {
 	return getCloneCommandClass().New()
 }
 
+
 // Sets the receiver’s object specifier;.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloneCommand/setReceiversSpecifier(_:)
 func (c_ CloneCommand) SetReceiversSpecifier(receiversRef unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
 }
+
+
+

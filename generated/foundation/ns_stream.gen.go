@@ -85,6 +85,7 @@ func NewStream() Stream {
 	return getStreamClass().New()
 }
 
+
 // Creates and returns by reference a bound pair of input and output streams.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/getBoundStreams(withBufferSize:inputStream:outputStream:)
@@ -150,6 +151,7 @@ func (s_ Stream) Delegate() objc.ID {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // Sets the receiver’s delegate.
 
@@ -158,7 +160,6 @@ func (s_ Stream) Delegate() objc.ID {
 func (s_ Stream) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
-
 // Returns an object representing the stream error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Stream/streamError
@@ -174,3 +175,6 @@ func (s_ Stream) StreamStatus() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("streamStatus"))
 	return rv
 }
+
+
+

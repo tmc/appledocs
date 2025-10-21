@@ -81,6 +81,7 @@ func NewCondition() Condition {
 	return getConditionClass().New()
 }
 
+
 // Signals the condition, waking up all threads waiting on it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCondition/broadcast()
@@ -94,3 +95,6 @@ func (c_ Condition) Broadcast() {
 func (c_ Condition) Wait() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("wait"))
 }
+
+
+

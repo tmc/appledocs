@@ -9,12 +9,14 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewDictionary
 
+
 // ExampleNewDictionary demonstrates how to create a Dictionary instance.
 // Initializes a newly allocated dictionary.
 func ExampleNewDictionary() {
 	_ = foundation.NewDictionary()
 	// Output:
 }
+
 
 // ExampleNewDictionaryWithContentsOfFile demonstrates how to create a Dictionary instance using NewDictionaryWithContentsOfFile.
 // Initializes a newly allocated dictionary using the keys and values found in a file at a given path.
@@ -24,3 +26,13 @@ func ExampleNewDictionaryWithContentsOfFile() {
 	)
 	// Output:
 }
+
+
+
+
+
+
+
+
+
+

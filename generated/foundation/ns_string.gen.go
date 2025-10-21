@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [String] class.
@@ -183,6 +183,7 @@ func (s_ String) Autorelease() String {
 func NewString() String {
 	return getStringClass().New()
 }
+
 
 // Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding.
 //
@@ -457,6 +458,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format string,
 	return rv
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormat(format string) string {
@@ -651,7 +653,6 @@ func (sc _StringClass) AvailableStringEncodings() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("availableStringEncodings"))
 	return rv
 }
-
 // Returns the C-string encoding assumed for any method accepting a C string as an argument.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/defaultCStringEncoding
@@ -659,7 +660,6 @@ func (sc _StringClass) DefaultCStringEncoding() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("defaultCStringEncoding"))
 	return rv
 }
-
 // Returns a new string made from the receiver by replacing all characters not in the specified set with percent-encoded characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/addingPercentEncoding(withAllowedCharacters:)
@@ -1761,3 +1761,5 @@ func (s_ String) UTF8String() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("UTF8String"))
 	return rv
 }
+
+

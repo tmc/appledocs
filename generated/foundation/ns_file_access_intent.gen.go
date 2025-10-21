@@ -79,6 +79,7 @@ func NewFileAccessIntent() FileAccessIntent {
 	return getFileAccessIntentClass().New()
 }
 
+
 // Returns a file access intent object for reading the given URL with the provided options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileAccessIntent/readingIntent(with:options:)
@@ -94,3 +95,6 @@ func (f_ FileAccessIntent) URL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("URL"))
 	return rv
 }
+
+
+

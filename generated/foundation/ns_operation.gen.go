@@ -85,6 +85,7 @@ func NewOperation() Operation {
 	return getOperationClass().New()
 }
 
+
 // Makes the receiver dependent on the completion of the specified operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/addDependency(_:)
@@ -191,6 +192,7 @@ func (o_ Operation) Name() string {
 	return rv
 }
 
+
 // SetName sets the value of the name property.
 // The name of the operation.
 
@@ -199,7 +201,6 @@ func (o_ Operation) Name() string {
 func (o_ Operation) SetName(value string) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setName:"), objc.String(value))
 }
-
 // The relative amount of importance for granting system resources to the operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
@@ -207,6 +208,7 @@ func (o_ Operation) QualityOfService() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("qualityOfService"))
 	return rv
 }
+
 
 // SetQualityOfService sets the value of the qualityOfService property.
 // The relative amount of importance for granting system resources to the operation.
@@ -216,7 +218,6 @@ func (o_ Operation) QualityOfService() unsafe.Pointer {
 func (o_ Operation) SetQualityOfService(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQualityOfService:"), value)
 }
-
 // The execution priority of the operation in an operation queue.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/queuePriority-swift.property
@@ -224,6 +225,7 @@ func (o_ Operation) QueuePriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("queuePriority"))
 	return rv
 }
+
 
 // SetQueuePriority sets the value of the queuePriority property.
 // The execution priority of the operation in an operation queue.
@@ -233,7 +235,6 @@ func (o_ Operation) QueuePriority() unsafe.Pointer {
 func (o_ Operation) SetQueuePriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueuePriority:"), value)
 }
-
 // The thread priority to use when executing the operation
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/threadPriority
@@ -241,6 +242,7 @@ func (o_ Operation) ThreadPriority() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("threadPriority"))
 	return rv
 }
+
 
 // SetThreadPriority sets the value of the threadPriority property.
 // The thread priority to use when executing the operation
@@ -250,3 +252,5 @@ func (o_ Operation) ThreadPriority() unsafe.Pointer {
 func (o_ Operation) SetThreadPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setThreadPriority:"), value)
 }
+
+

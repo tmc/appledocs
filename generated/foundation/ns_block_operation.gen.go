@@ -81,6 +81,7 @@ func NewBlockOperation() BlockOperation {
 	return getBlockOperationClass().New()
 }
 
+
 // Creates and returns an object and adds the specified block to it.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/BlockOperation/init(block:)
@@ -88,6 +89,7 @@ func NewBlockOperationWithBlock(block unsafe.Pointer) BlockOperation {
 	rv := objc.Send[BlockOperation](objc.ID(getBlockOperationClass().class), objc.Sel("blockOperationWithBlock:"), block)
 	return rv
 }
+
 
 // Creates and returns an object and adds the specified block to it.
 //
@@ -111,3 +113,5 @@ func (b_ BlockOperation) ExecutionBlocks() []func() {
 	rv := objc.Send[[]func()](b_.ID, objc.Sel("executionBlocks"))
 	return rv
 }
+
+

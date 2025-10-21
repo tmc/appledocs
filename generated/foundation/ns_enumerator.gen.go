@@ -80,6 +80,7 @@ func NewEnumerator() Enumerator {
 	return getEnumeratorClass().New()
 }
 
+
 // Returns the next object from the collection being enumerated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerator/nextObject()
@@ -95,3 +96,6 @@ func (e_ Enumerator) AllObjects() []objc.ID {
 	rv := objc.Send[[]objc.ID](e_.ID, objc.Sel("allObjects"))
 	return rv
 }
+
+
+

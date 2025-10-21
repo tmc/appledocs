@@ -79,3 +79,7 @@ func (p_ PropertySpecifier) Autorelease() PropertySpecifier {
 func NewPropertySpecifier() PropertySpecifier {
 	return getPropertySpecifierClass().New()
 }
+
+
+
+

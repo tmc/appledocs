@@ -80,6 +80,7 @@ func NewException() Exception {
 	return getExceptionClass().New()
 }
 
+
 // Initializes and returns a newly allocated exception object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSException/init(name:reason:userInfo:)
@@ -89,6 +90,7 @@ func NewExceptionWithNameReasonUserInfo(aName unsafe.Pointer, aReason string, aU
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates and returns an exception object .
 //
@@ -158,3 +160,5 @@ func (e_ Exception) UserInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userInfo"))
 	return rv
 }
+
+

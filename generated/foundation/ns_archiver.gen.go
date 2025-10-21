@@ -81,6 +81,7 @@ func NewArchiver() Archiver {
 	return getArchiverClass().New()
 }
 
+
 // Creates a temporary instance of and archives an object graph by encoding it into a data object and writing the resulting data object to a specified file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArchiver/archiveRootObject(_:toFile:)
@@ -95,3 +96,6 @@ func (ac _ArchiverClass) ArchiveRootObjectToFile(rootObject objc.ID, path string
 func (a_ Archiver) EncodeRootObject(rootObject objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("encodeRootObject:"), rootObject)
 }
+
+
+

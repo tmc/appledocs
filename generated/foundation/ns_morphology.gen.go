@@ -78,3 +78,7 @@ func (m_ Morphology) Autorelease() Morphology {
 func NewMorphology() Morphology {
 	return getMorphologyClass().New()
 }
+
+
+
+

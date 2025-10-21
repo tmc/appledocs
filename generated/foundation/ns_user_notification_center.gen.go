@@ -80,6 +80,7 @@ func NewUserNotificationCenter() UserNotificationCenter {
 	return getUserNotificationCenterClass().New()
 }
 
+
 // Remove a delivered user notification from the user notification center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/removeDeliveredNotification(_:)
@@ -95,6 +96,7 @@ func (u_ UserNotificationCenter) Delegate() objc.ID {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // Specifies the notification center delegate.
 
@@ -103,3 +105,5 @@ func (u_ UserNotificationCenter) Delegate() objc.ID {
 func (u_ UserNotificationCenter) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
+
+

@@ -79,3 +79,7 @@ func (m_ MessagePort) Autorelease() MessagePort {
 func NewMessagePort() MessagePort {
 	return getMessagePortClass().New()
 }
+
+
+
+

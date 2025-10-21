@@ -9,9 +9,12 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewURLSessionConfiguration
 
+
 // ExampleNewURLSessionConfiguration demonstrates how to create a URLSessionConfiguration instance.
 // Creates an empty session configuration.
 func ExampleNewURLSessionConfiguration() {
 	_ = foundation.NewURLSessionConfiguration()
 	// Output:
 }
+
+

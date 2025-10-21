@@ -89,6 +89,7 @@ func NewProcessInfo() ProcessInfo {
 	return getProcessInfoClass().New()
 }
 
+
 // Returns the process information agent for the process.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/processInfo
@@ -96,7 +97,6 @@ func (pc _ProcessInfoClass) ProcessInfo() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("processInfo"))
 	return rv
 }
-
 // Begin an activity using the given options and reason.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/beginActivity(options:reason:)
@@ -282,6 +282,7 @@ func (p_ ProcessInfo) ProcessName() string {
 	return rv
 }
 
+
 // SetProcessName sets the value of the processName property.
 // The name of the process.
 
@@ -290,7 +291,6 @@ func (p_ ProcessInfo) ProcessName() string {
 func (p_ ProcessInfo) SetProcessName(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProcessName:"), objc.String(value))
 }
-
 // The amount of time the system has been awake since the last time it was restarted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/systemUptime
@@ -298,3 +298,6 @@ func (p_ ProcessInfo) SystemUptime() TimeInterval {
 	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("systemUptime"))
 	return rv
 }
+
+
+

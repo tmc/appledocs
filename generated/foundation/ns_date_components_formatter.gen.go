@@ -81,6 +81,7 @@ func NewDateComponentsFormatter() DateComponentsFormatter {
 	return getDateComponentsFormatterClass().New()
 }
 
+
 // Returns a formatted string based on the date information in the specified object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(for:)
@@ -97,6 +98,7 @@ func (d_ DateComponentsFormatter) ZeroFormattingBehavior() unsafe.Pointer {
 	return rv
 }
 
+
 // SetZeroFormattingBehavior sets the value of the zeroFormattingBehavior property.
 // The formatting style for units whose value is 0.
 
@@ -105,3 +107,5 @@ func (d_ DateComponentsFormatter) ZeroFormattingBehavior() unsafe.Pointer {
 func (d_ DateComponentsFormatter) SetZeroFormattingBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setZeroFormattingBehavior:"), value)
 }
+
+

@@ -79,6 +79,7 @@ func NewAppleEventManager() AppleEventManager {
 	return getAppleEventManagerClass().New()
 }
 
+
 // Returns the single instance of , creating it first if it doesn’t exist.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventManager/shared()
@@ -86,3 +87,6 @@ func (ac _AppleEventManagerClass) SharedAppleEventManager() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("sharedAppleEventManager"))
 	return rv
 }
+
+
+

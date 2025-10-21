@@ -79,3 +79,7 @@ func (u_ UnitInformationStorage) Autorelease() UnitInformationStorage {
 func NewUnitInformationStorage() UnitInformationStorage {
 	return getUnitInformationStorageClass().New()
 }
+
+
+
+

@@ -80,6 +80,7 @@ func NewInvocationOperation() InvocationOperation {
 	return getInvocationOperationClass().New()
 }
 
+
 // Returns an object initialized with the specified invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithInvocation:
@@ -100,6 +101,7 @@ func NewInvocationOperationWithTargetSelectorObject(target objc.ID, sel objc.SEL
 	return rv
 }
 
+
 // The receiver’s invocation object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/invocation
@@ -115,3 +117,5 @@ func (i_ InvocationOperation) Result() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("result"))
 	return rv
 }
+
+

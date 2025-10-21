@@ -81,6 +81,7 @@ func NewURLCredentialStorage() URLCredentialStorage {
 	return getURLCredentialStorageClass().New()
 }
 
+
 // Returns a dictionary containing the credentials for the specified protection space.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLCredentialStorage/credentials(for:)
@@ -95,3 +96,6 @@ func (u_ URLCredentialStorage) CredentialsForProtectionSpace(space unsafe.Pointe
 func (u_ URLCredentialStorage) SetDefaultCredentialForProtectionSpace(credential unsafe.Pointer, space unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDefaultCredential:forProtectionSpace:"), credential, space)
 }
+
+
+

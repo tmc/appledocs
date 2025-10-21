@@ -79,6 +79,7 @@ func NewPipe() Pipe {
 	return getPipeClass().New()
 }
 
+
 // Returns an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPipe/pipe
@@ -102,3 +103,6 @@ func (p_ Pipe) FileHandleForWriting() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("fileHandleForWriting"))
 	return rv
 }
+
+
+

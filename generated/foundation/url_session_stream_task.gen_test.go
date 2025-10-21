@@ -9,8 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewURLSessionStreamTask
 
+
 // ExampleNewURLSessionStreamTask demonstrates how to create a URLSessionStreamTask instance.
 func ExampleNewURLSessionStreamTask() {
 	_ = foundation.NewURLSessionStreamTask()
 	// Output:
 }
+
+

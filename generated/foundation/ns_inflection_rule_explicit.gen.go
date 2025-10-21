@@ -77,3 +77,7 @@ func (i_ InflectionRuleExplicit) Autorelease() InflectionRuleExplicit {
 func NewInflectionRuleExplicit() InflectionRuleExplicit {
 	return getInflectionRuleExplicitClass().New()
 }
+
+
+
+

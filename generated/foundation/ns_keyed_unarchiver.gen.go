@@ -83,6 +83,7 @@ func NewKeyedUnarchiver() KeyedUnarchiver {
 	return getKeyedUnarchiverClass().New()
 }
 
+
 // Decodes a Boolean value associated with a given key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyedUnarchiver/decodeBool(forKey:)
@@ -115,6 +116,7 @@ func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
 	return rv
 }
 
+
 // SetDecodingFailurePolicy sets the value of the decodingFailurePolicy property.
 // The action to take when this unarchiver fails to decode an entry.
 
@@ -123,3 +125,5 @@ func (k_ KeyedUnarchiver) DecodingFailurePolicy() unsafe.Pointer {
 func (k_ KeyedUnarchiver) SetDecodingFailurePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](k_.ID, objc.Sel("setDecodingFailurePolicy:"), value)
 }
+
+

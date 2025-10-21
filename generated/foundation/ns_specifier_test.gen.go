@@ -80,6 +80,7 @@ func NewSpecifierTest() SpecifierTest {
 	return getSpecifierTestClass().New()
 }
 
+
 // Returns a specifier test initialized to evaluate a test object against an object specified by an object specifier using a given comparison operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpecifierTest/init(objectSpecifier:comparisonOperator:test:)
@@ -89,3 +90,6 @@ func NewSpecifierTestWithObjectSpecifierComparisonOperatorTestObject(obj1 unsafe
 	rv.Autorelease()
 	return rv
 }
+
+
+

@@ -80,6 +80,7 @@ func NewSocketPort() SocketPort {
 	return getSocketPortClass().New()
 }
 
+
 // Initializes the receiver as a local socket with the provided arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/SocketPort/init(protocolFamily:socketType:protocol:address:)
@@ -89,6 +90,7 @@ func NewSocketPortWithProtocolFamilySocketTypeProtocolAddress(family unsafe.Poin
 	rv.Autorelease()
 	return rv
 }
+
 
 // The receiver’s socket address structure stored inside an object.
 //
@@ -113,3 +115,5 @@ func (s_ SocketPort) Socket() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("socket"))
 	return rv
 }
+
+

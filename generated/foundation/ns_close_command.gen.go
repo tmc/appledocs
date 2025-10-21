@@ -80,6 +80,7 @@ func NewCloseCommand() CloseCommand {
 	return getCloseCommandClass().New()
 }
 
+
 // Returns a constant indicating how to deal with closing any modified documents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCloseCommand/saveOptions
@@ -87,3 +88,6 @@ func (c_ CloseCommand) SaveOptions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("saveOptions"))
 	return rv
 }
+
+
+

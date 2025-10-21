@@ -79,6 +79,7 @@ func NewBackgroundActivityScheduler() BackgroundActivityScheduler {
 	return getBackgroundActivitySchedulerClass().New()
 }
 
+
 // Initializes a background activity scheduler object with a specified unique identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBackgroundActivityScheduler/init(identifier:)
@@ -88,3 +89,6 @@ func NewBackgroundActivitySchedulerWithIdentifier(identifier string) BackgroundA
 	rv.Autorelease()
 	return rv
 }
+
+
+

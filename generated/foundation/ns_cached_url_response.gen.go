@@ -78,3 +78,7 @@ func (c_ CachedURLResponse) Autorelease() CachedURLResponse {
 func NewCachedURLResponse() CachedURLResponse {
 	return getCachedURLResponseClass().New()
 }
+
+
+
+

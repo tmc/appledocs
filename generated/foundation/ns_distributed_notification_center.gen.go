@@ -81,6 +81,7 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 	return getDistributedNotificationCenterClass().New()
 }
 
+
 // Creates a notification with information, and posts it to the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:userInfo:)
@@ -94,3 +95,6 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName
 func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name unsafe.Pointer, object string, userInfo objc.ID, deliverImmediately bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:deliverImmediately:"), name, objc.String(object), userInfo, deliverImmediately)
 }
+
+
+

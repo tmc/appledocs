@@ -80,6 +80,7 @@ func NewPortNameServer() PortNameServer {
 	return getPortNameServerClass().New()
 }
 
+
 // Makes a given port available on the network under a specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPortNameServer/registerPort:name:
@@ -87,3 +88,6 @@ func (p_ PortNameServer) RegisterPortName(port unsafe.Pointer, name string) bool
 	rv := objc.Send[bool](p_.ID, objc.Sel("registerPort:name:"), port, objc.String(name))
 	return rv
 }
+
+
+

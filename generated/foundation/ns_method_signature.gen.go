@@ -78,3 +78,7 @@ func (m_ MethodSignature) Autorelease() MethodSignature {
 func NewMethodSignature() MethodSignature {
 	return getMethodSignatureClass().New()
 }
+
+
+
+

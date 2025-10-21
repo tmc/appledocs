@@ -83,6 +83,7 @@ func NewAppleEventDescriptor() AppleEventDescriptor {
 	return getAppleEventDescriptorClass().New()
 }
 
+
 // Initializes a newly allocated instance as a descriptor for the specified Carbon structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAppleEventDescriptor/init(aeDescNoCopy:)
@@ -92,6 +93,7 @@ func NewAppleEventDescriptorWithAEDescNoCopy(aeDesc unsafe.Pointer) AppleEventDe
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates a descriptor that represents an Apple event, initialized according to the specified information.
 //
@@ -161,3 +163,5 @@ func (a_ AppleEventDescriptor) DoubleValue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("doubleValue"))
 	return rv
 }
+
+

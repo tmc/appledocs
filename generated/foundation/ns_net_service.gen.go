@@ -91,6 +91,7 @@ func NewNetService() NetService {
 	return getNetServiceClass().New()
 }
 
+
 // Returns the receiver, initialized as a network service of a given type and sets the initial host information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/init(domain:type:name:)
@@ -110,6 +111,7 @@ func NewNetServiceWithDomainTypeNamePort(domain string, type_ string, name strin
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns an object representing a TXT record formed from a given dictionary.
 //
@@ -230,6 +232,7 @@ func (n_ NetService) Delegate() objc.ID {
 	return rv
 }
 
+
 // SetDelegate sets the value of the delegate property.
 // The delegate for the receiver.
 
@@ -238,7 +241,6 @@ func (n_ NetService) Delegate() objc.ID {
 func (n_ NetService) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
 }
-
 // A string containing the domain for this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/domain
@@ -263,6 +265,7 @@ func (n_ NetService) IncludesPeerToPeer() bool {
 	return rv
 }
 
+
 // SetIncludesPeerToPeer sets the value of the includesPeerToPeer property.
 // Specifies whether to also publish, resolve, or monitor this service over peer-to-peer Bluetooth and Wi-Fi, if available.
 
@@ -271,7 +274,6 @@ func (n_ NetService) IncludesPeerToPeer() bool {
 func (n_ NetService) SetIncludesPeerToPeer(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIncludesPeerToPeer:"), value)
 }
-
 // A string containing the name of this service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/name
@@ -295,3 +297,5 @@ func (n_ NetService) Type() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("type"))
 	return rv
 }
+
+

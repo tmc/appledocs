@@ -82,6 +82,7 @@ func NewBundleResourceRequest() BundleResourceRequest {
 	return getBundleResourceRequestClass().New()
 }
 
+
 // Initializes a resource request for managing the on-demand resources marked with any of the set of specified tags. The managed resources are loaded into the main bundle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/init(tags:)
@@ -91,6 +92,7 @@ func NewBundleResourceRequestWithTags(tags unsafe.Pointer) BundleResourceRequest
 	rv.Autorelease()
 	return rv
 }
+
 
 // Requests access to the resources marked with the managed tags. If any of the resources are not on the device, they are requested from the App Store.
 //
@@ -120,3 +122,5 @@ func (b_ BundleResourceRequest) Progress() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("progress"))
 	return rv
 }
+
+

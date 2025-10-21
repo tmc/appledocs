@@ -81,6 +81,7 @@ func NewTimer() Timer {
 	return getTimerClass().New()
 }
 
+
 // Initializes a timer for the specified date and time interval with the specified block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fire:interval:repeats:block:)
@@ -124,6 +125,7 @@ func NewTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti TimeInterval, aTar
 	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
 	return rv
 }
+
 
 // Initializes a timer object with the specified invocation object.
 //
@@ -195,6 +197,7 @@ func (t_ Timer) FireDate() unsafe.Pointer {
 	return rv
 }
 
+
 // SetFireDate sets the value of the fireDate property.
 // The date at which the timer will fire.
 
@@ -203,7 +206,6 @@ func (t_ Timer) FireDate() unsafe.Pointer {
 func (t_ Timer) SetFireDate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setFireDate:"), value)
 }
-
 // A Boolean value that indicates whether the timer is currently valid.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/isValid
@@ -228,6 +230,7 @@ func (t_ Timer) Tolerance() TimeInterval {
 	return rv
 }
 
+
 // SetTolerance sets the value of the tolerance property.
 // The amount of time after the scheduled fire date that the timer may fire.
 
@@ -236,7 +239,6 @@ func (t_ Timer) Tolerance() TimeInterval {
 func (t_ Timer) SetTolerance(value TimeInterval) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTolerance:"), value)
 }
-
 // The receiver’s object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/userInfo
@@ -244,3 +246,5 @@ func (t_ Timer) UserInfo() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("userInfo"))
 	return rv
 }
+
+

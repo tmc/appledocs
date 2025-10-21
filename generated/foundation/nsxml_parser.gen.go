@@ -80,6 +80,7 @@ func NewXMLParser() XMLParser {
 	return getXMLParserClass().New()
 }
 
+
 // Initializes a parser with the XML contents encapsulated in a given data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/init(data:)
@@ -100,6 +101,7 @@ func NewXMLParserWithStream(stream unsafe.Pointer) XMLParser {
 	return rv
 }
 
+
 // Starts the event-driven parsing operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/parse()
@@ -115,13 +117,13 @@ func (x_ XMLParser) AllowedExternalEntityURLs() unsafe.Pointer {
 	return rv
 }
 
+
 // SetAllowedExternalEntityURLs sets the value of the allowedExternalEntityURLs property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/allowedExternalEntityURLs
 func (x_ XMLParser) SetAllowedExternalEntityURLs(value unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setAllowedExternalEntityURLs:"), value)
 }
-
 // The line number of the XML document being processed by the parser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/lineNumber
@@ -154,6 +156,7 @@ func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
 	return rv
 }
 
+
 // SetShouldReportNamespacePrefixes sets the value of the shouldReportNamespacePrefixes property.
 // A Boolean value that determines whether the parser reports the prefixes indicating the scope of namespace declarations.
 
@@ -162,3 +165,4 @@ func (x_ XMLParser) ShouldReportNamespacePrefixes() bool {
 func (x_ XMLParser) SetShouldReportNamespacePrefixes(value bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setShouldReportNamespacePrefixes:"), value)
 }
+

@@ -79,3 +79,7 @@ func (s_ SetCommand) Autorelease() SetCommand {
 func NewSetCommand() SetCommand {
 	return getSetCommandClass().New()
 }
+
+
+
+

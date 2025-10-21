@@ -80,6 +80,7 @@ func NewFileCoordinator() FileCoordinator {
 	return getFileCoordinatorClass().New()
 }
 
+
 // Initializes and returns a file coordinator object using the specified file presenter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/init(filePresenter:)
@@ -89,6 +90,7 @@ func NewFileCoordinatorWithFilePresenter(filePresenterOrNil objc.ID) FileCoordin
 	rv.Autorelease()
 	return rv
 }
+
 
 // Unregisters the specified file presenter object.
 //
@@ -104,7 +106,6 @@ func (fc _FileCoordinatorClass) FilePresenters() []objc.ID {
 	rv := objc.Send[[]objc.ID](objc.ID(fc.class), objc.Sel("filePresenters"))
 	return rv
 }
-
 // Performs a number of coordinated-read or -write operations asynchronously.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(with:queue:byAccessor:)
@@ -119,3 +120,5 @@ func (f_ FileCoordinator) FilePresenters() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("filePresenters"))
 	return rv
 }
+
+

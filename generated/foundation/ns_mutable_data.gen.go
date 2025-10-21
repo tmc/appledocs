@@ -79,3 +79,7 @@ func (m_ MutableData) Autorelease() MutableData {
 func NewMutableData() MutableData {
 	return getMutableDataClass().New()
 }
+
+
+
+

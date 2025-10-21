@@ -80,6 +80,7 @@ func NewConnection() Connection {
 	return getConnectionClass().New()
 }
 
+
 // Returns a proxy for the root object of the object registered with the default under a given name on a given host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootProxyForConnectionWithRegisteredName:host:
@@ -94,3 +95,6 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name str
 func (c_ Connection) EnableMultipleThreads() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enableMultipleThreads"))
 }
+
+
+

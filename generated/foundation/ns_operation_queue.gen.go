@@ -82,6 +82,7 @@ func NewOperationQueue() OperationQueue {
 	return getOperationQueueClass().New()
 }
 
+
 // Invokes a block when the queue finishes all enqueued operations, and prevents subsequent operations from starting until the block has completed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addBarrierBlock(_:)
@@ -118,3 +119,6 @@ func (o_ OperationQueue) Operations() []Operation {
 	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
 	return rv
 }
+
+
+

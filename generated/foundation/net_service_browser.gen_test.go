@@ -9,9 +9,12 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewNetServiceBrowser
 
+
 // ExampleNewNetServiceBrowser demonstrates how to create a NetServiceBrowser instance.
 // Initializes an allocated   object.
 func ExampleNewNetServiceBrowser() {
 	_ = foundation.NewNetServiceBrowser()
 	// Output:
 }
+
+

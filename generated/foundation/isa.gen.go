@@ -73,3 +73,7 @@ func (i_ isa) Autorelease() isa {
 func Newisa() isa {
 	return getisaClass().New()
 }
+
+
+
+

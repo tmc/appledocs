@@ -87,6 +87,7 @@ func NewUbiquitousKeyValueStore() UbiquitousKeyValueStore {
 	return getUbiquitousKeyValueStoreClass().New()
 }
 
+
 // Returns the Boolean value associated with the specified key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore/bool(forKey:)
@@ -145,3 +146,6 @@ func (u_ UbiquitousKeyValueStore) Synchronize() bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("synchronize"))
 	return rv
 }
+
+
+

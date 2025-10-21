@@ -21,3 +21,5 @@ var StreamDelegateProtocol *objc.Protocol
 func init() {
 	StreamDelegateProtocol = objc.GetProtocol("NSStreamDelegate")
 }
+
+

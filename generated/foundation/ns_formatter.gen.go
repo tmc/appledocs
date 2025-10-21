@@ -83,6 +83,7 @@ func NewFormatter() Formatter {
 	return getFormatterClass().New()
 }
 
+
 // The default implementation returns to indicate that the formatter object does not provide an attributed string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Formatter/attributedString(for:withDefaultAttributes:)
@@ -114,3 +115,6 @@ func (f_ Formatter) StringForObjectValue(obj objc.ID) string {
 	rv := objc.Send[string](f_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }
+
+
+

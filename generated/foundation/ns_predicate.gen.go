@@ -83,6 +83,7 @@ func NewPredicate() Predicate {
 	return getPredicateClass().New()
 }
 
+
 // Creates a predicate with a metadata query string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/init(fromMetadataQueryString:)
@@ -122,6 +123,7 @@ func NewPredicateWithValue(value bool) Predicate {
 	rv := objc.Send[Predicate](objc.ID(getPredicateClass().class), objc.Sel("predicateWithValue:"), value)
 	return rv
 }
+
 
 // Creates a predicate that evaluates using a specified block object and bindings dictionary.
 //
@@ -209,3 +211,6 @@ func (p_ Predicate) PredicateFormat() string {
 	rv := objc.Send[string](p_.ID, objc.Sel("predicateFormat"))
 	return rv
 }
+
+
+

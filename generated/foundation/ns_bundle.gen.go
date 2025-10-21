@@ -111,6 +111,7 @@ func NewBundle() Bundle {
 	return getBundleClass().New()
 }
 
+
 // Returns the object with which the specified class is associated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/init(for:)
@@ -146,6 +147,7 @@ func NewBundleWithURL(url unsafe.Pointer) Bundle {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns the object with which the specified class is associated.
 //
@@ -250,7 +252,6 @@ func (bc _BundleClass) AllBundles() []Bundle {
 	rv := objc.Send[[]Bundle](objc.ID(bc.class), objc.Sel("allBundles"))
 	return rv
 }
-
 // Returns an array of all of the application’s bundles that represent frameworks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/allFrameworks
@@ -258,7 +259,6 @@ func (bc _BundleClass) AllFrameworks() []Bundle {
 	rv := objc.Send[[]Bundle](objc.ID(bc.class), objc.Sel("allFrameworks"))
 	return rv
 }
-
 // Returns the bundle object that contains the current executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/main
@@ -266,7 +266,6 @@ func (bc _BundleClass) MainBundle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("mainBundle"))
 	return rv
 }
-
 // Returns the object for the specified name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Bundle/classNamed(_:)
@@ -734,3 +733,5 @@ func (b_ Bundle) SharedSupportURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("sharedSupportURL"))
 	return rv
 }
+
+

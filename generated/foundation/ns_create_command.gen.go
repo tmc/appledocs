@@ -80,6 +80,7 @@ func NewCreateCommand() CreateCommand {
 	return getCreateCommandClass().New()
 }
 
+
 // Returns the class description for the class that is to be created.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateCommand/createClassDescription
@@ -95,3 +96,6 @@ func (c_ CreateCommand) ResolvedKeyDictionary() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("resolvedKeyDictionary"))
 	return rv
 }
+
+
+

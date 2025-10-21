@@ -80,6 +80,7 @@ func NewPortMessage() PortMessage {
 	return getPortMessageClass().New()
 }
 
+
 // Initializes a newly allocated object to send given data on a given port and to receiver replies on another given port.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/init(send:receive:components:)
@@ -89,6 +90,7 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort unsafe.Pointer, re
 	rv.Autorelease()
 	return rv
 }
+
 
 // Attempts to send the message before the specified date.
 //
@@ -114,6 +116,7 @@ func (p_ PortMessage) Msgid() unsafe.Pointer {
 	return rv
 }
 
+
 // SetMsgid sets the value of the msgid property.
 // Returns the identifier for the receiver.
 
@@ -122,7 +125,6 @@ func (p_ PortMessage) Msgid() unsafe.Pointer {
 func (p_ PortMessage) SetMsgid(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
 }
-
 // For an outgoing message, returns the port on which replies to the receiver will arrive. For an incoming message, returns the port the receiver did arrive on.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/receivePort
@@ -138,3 +140,5 @@ func (p_ PortMessage) SendPort() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sendPort"))
 	return rv
 }
+
+

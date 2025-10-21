@@ -84,6 +84,7 @@ func NewURLConnection() URLConnection {
 	return getURLConnectionClass().New()
 }
 
+
 // Returns an initialized URL connection and begins to load the data for the URL request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:)
@@ -103,6 +104,7 @@ func NewURLConnectionWithRequestDelegateStartImmediately(request unsafe.Pointer,
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns whether a request can be handled based on a preflight evaluation.
 //
@@ -185,3 +187,5 @@ func (u_ URLConnection) OriginalRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("originalRequest"))
 	return rv
 }
+
+

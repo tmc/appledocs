@@ -79,6 +79,7 @@ func NewTextCheckingResult() TextCheckingResult {
 	return getTextCheckingResultClass().New()
 }
 
+
 // Creates and returns a text checking result with the specified address components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/addressCheckingResult(range:components:)
@@ -158,3 +159,6 @@ func (t_ TextCheckingResult) ResultType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("resultType"))
 	return rv
 }
+
+
+

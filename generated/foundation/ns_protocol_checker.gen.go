@@ -79,3 +79,7 @@ func (p_ ProtocolChecker) Autorelease() ProtocolChecker {
 func NewProtocolChecker() ProtocolChecker {
 	return getProtocolCheckerClass().New()
 }
+
+
+
+

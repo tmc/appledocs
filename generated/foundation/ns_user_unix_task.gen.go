@@ -81,6 +81,7 @@ func NewUserUnixTask() UserUnixTask {
 	return getUserUnixTaskClass().New()
 }
 
+
 // Execute the unix script with the specified arguments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/execute(withArguments:completionHandler:)
@@ -96,6 +97,7 @@ func (u_ UserUnixTask) StandardError() unsafe.Pointer {
 	return rv
 }
 
+
 // SetStandardError sets the value of the standardError property.
 // The standard error stream.
 
@@ -104,7 +106,6 @@ func (u_ UserUnixTask) StandardError() unsafe.Pointer {
 func (u_ UserUnixTask) SetStandardError(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardError:"), value)
 }
-
 // The standard input stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardInput
@@ -112,6 +113,7 @@ func (u_ UserUnixTask) StandardInput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardInput"))
 	return rv
 }
+
 
 // SetStandardInput sets the value of the standardInput property.
 // The standard input stream.
@@ -121,7 +123,6 @@ func (u_ UserUnixTask) StandardInput() unsafe.Pointer {
 func (u_ UserUnixTask) SetStandardInput(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardInput:"), value)
 }
-
 // The standard output stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserUnixTask/standardOutput
@@ -129,6 +130,7 @@ func (u_ UserUnixTask) StandardOutput() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("standardOutput"))
 	return rv
 }
+
 
 // SetStandardOutput sets the value of the standardOutput property.
 // The standard output stream.
@@ -138,3 +140,5 @@ func (u_ UserUnixTask) StandardOutput() unsafe.Pointer {
 func (u_ UserUnixTask) SetStandardOutput(value unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setStandardOutput:"), value)
 }
+
+

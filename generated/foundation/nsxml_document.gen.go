@@ -87,6 +87,7 @@ func NewXMLDocument() XMLDocument {
 	return getXMLDocumentClass().New()
 }
 
+
 // Initializes and returns an object created from an object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/init(data:options:)
@@ -96,6 +97,7 @@ func NewXMLDocumentWithDataOptionsError(data unsafe.Pointer, mask unsafe.Pointer
 	rv.Autorelease()
 	return rv
 }
+
 
 // Adds a child node after the last of the receiver’s existing children.
 //
@@ -157,6 +159,7 @@ func (x_ XMLDocument) MIMEType() string {
 	return rv
 }
 
+
 // SetMIMEType sets the value of the MIMEType property.
 // Returns the MIME type for the receiver.
 
@@ -165,7 +168,6 @@ func (x_ XMLDocument) MIMEType() string {
 func (x_ XMLDocument) SetMIMEType(value string) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setMIMEType:"), objc.String(value))
 }
-
 // Returns the XML string representation of the receiver—that is, the entire document—encapsulated in a data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDocument/xmlData
@@ -173,3 +175,5 @@ func (x_ XMLDocument) XMLData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("XMLData"))
 	return rv
 }
+
+

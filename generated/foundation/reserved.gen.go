@@ -73,3 +73,7 @@ func (r_ reserved) Autorelease() reserved {
 func Newreserved() reserved {
 	return getreservedClass().New()
 }
+
+
+
+

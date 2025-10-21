@@ -82,6 +82,7 @@ func NewCalendarDate() CalendarDate {
 	return getCalendarDateClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dateWithYear:month:day:hour:minute:second:timeZone:
 func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uint, day uint, hour uint, minute uint, second uint, aTimeZone unsafe.Pointer) objc.ID {
@@ -123,3 +124,6 @@ func (c_ CalendarDate) HourOfDay() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("hourOfDay"))
 	return rv
 }
+
+
+

@@ -81,6 +81,7 @@ func NewPersonNameComponentsFormatter() PersonNameComponentsFormatter {
 	return getPersonNameComponentsFormatterClass().New()
 }
 
+
 // Returns a person name components object from a given string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PersonNameComponentsFormatter/personNameComponents(from:)
@@ -88,3 +89,6 @@ func (p_ PersonNameComponentsFormatter) PersonNameComponentsFromString(string_ s
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("personNameComponentsFromString:"), objc.String(string_))
 	return rv
 }
+
+
+

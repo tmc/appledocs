@@ -20,3 +20,5 @@ var netServiceBrowserWillSearchProtocol *objc.Protocol
 func init() {
 	netServiceBrowserWillSearchProtocol = objc.GetProtocol("netServiceBrowserWillSearch:")
 }
+
+

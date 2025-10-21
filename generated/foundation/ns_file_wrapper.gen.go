@@ -83,6 +83,7 @@ func NewFileWrapper() FileWrapper {
 	return getFileWrapperClass().New()
 }
 
+
 // Indicates whether the contents of a file wrapper matches a directory, regular file, or symbolic link on disk.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/matchesContents(of:)
@@ -123,6 +124,7 @@ func (f_ FileWrapper) Filename() string {
 	return rv
 }
 
+
 // SetFilename sets the value of the filename property.
 // The filename of the file wrapper object
 
@@ -131,7 +133,6 @@ func (f_ FileWrapper) Filename() string {
 func (f_ FileWrapper) SetFilename(value string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFilename:"), objc.String(value))
 }
-
 // The contents of the file wrapper as an opaque data object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileWrapper/serializedRepresentation
@@ -139,3 +140,6 @@ func (f_ FileWrapper) SerializedRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("serializedRepresentation"))
 	return rv
 }
+
+
+

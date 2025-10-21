@@ -73,3 +73,7 @@ func (n_ numBytes) Autorelease() numBytes {
 func NewnumBytes() numBytes {
 	return getnumBytesClass().New()
 }
+
+
+
+

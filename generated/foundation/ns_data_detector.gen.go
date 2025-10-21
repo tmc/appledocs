@@ -79,3 +79,7 @@ func (d_ DataDetector) Autorelease() DataDetector {
 func NewDataDetector() DataDetector {
 	return getDataDetectorClass().New()
 }
+
+
+
+

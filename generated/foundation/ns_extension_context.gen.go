@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
 // The class instance for the [ExtensionContext] class.
@@ -91,6 +91,7 @@ func (e_ ExtensionContext) Autorelease() ExtensionContext {
 func NewExtensionContext() ExtensionContext {
 	return getExtensionContextClass().New()
 }
+
 
 // Tells the host app to cancel the app extension request, with a supplied error.
 //
@@ -213,6 +214,7 @@ func (e_ ExtensionContext) NotificationActions() []objc.ID {
 	return rv
 }
 
+
 // SetNotificationActions sets the value of the notificationActions property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/notificationActions
@@ -229,7 +231,6 @@ func (e_ ExtensionContext) SetNotificationActions(value []objc.ID) {
 	}
 	objc.Send[objc.ID](e_.ID, objc.Sel("setNotificationActions:"), nsArray)
 }
-
 // The active display mode of the widget.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/widgetActiveDisplayMode
@@ -246,6 +247,7 @@ func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() unsafe.Pointer {
 	return rv
 }
 
+
 // SetWidgetLargestAvailableDisplayMode sets the value of the widgetLargestAvailableDisplayMode property.
 // The largest display mode the widget supports.
 
@@ -254,3 +256,5 @@ func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() unsafe.Pointer {
 func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setWidgetLargestAvailableDisplayMode:"), value)
 }
+
+

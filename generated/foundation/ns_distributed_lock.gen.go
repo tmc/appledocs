@@ -82,6 +82,7 @@ func NewDistributedLock() DistributedLock {
 	return getDistributedLockClass().New()
 }
 
+
 // Forces the lock to be relinquished.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/break()
@@ -111,3 +112,6 @@ func (d_ DistributedLock) LockDate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("lockDate"))
 	return rv
 }
+
+
+

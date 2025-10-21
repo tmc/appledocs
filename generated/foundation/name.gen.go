@@ -73,3 +73,7 @@ func (n_ name) Autorelease() name {
 func Newname() name {
 	return getnameClass().New()
 }
+
+
+
+

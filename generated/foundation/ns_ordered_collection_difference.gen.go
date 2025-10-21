@@ -80,6 +80,7 @@ func NewOrderedCollectionDifference() OrderedCollectionDifference {
 	return getOrderedCollectionDifferenceClass().New()
 }
 
+
 // Creates an ordered collection difference from arrays of inserted and removed objects with corresponding sets of indices.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedCollectionDifference/init(insert:insertedObjects:remove:removedObjects:)
@@ -99,6 +100,7 @@ func NewOrderedCollectionDifferenceWithInsertIndexesInsertedObjectsRemoveIndexes
 	rv.Autorelease()
 	return rv
 }
+
 
 // Calculate the difference between two objects in the reverse direction of comparison.
 //
@@ -123,3 +125,5 @@ func (o_ OrderedCollectionDifference) Removals() []NSOrderedCollectionChange {
 	rv := objc.Send[[]NSOrderedCollectionChange](o_.ID, objc.Sel("removals"))
 	return rv
 }
+
+

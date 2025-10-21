@@ -79,6 +79,7 @@ func NewURLResponse() URLResponse {
 	return getURLResponseClass().New()
 }
 
+
 // The URL for the response.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/url
@@ -86,3 +87,6 @@ func (u_ URLResponse) URL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("URL"))
 	return rv
 }
+
+
+

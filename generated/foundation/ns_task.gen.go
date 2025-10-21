@@ -81,6 +81,8 @@ func NewTask() Task {
 	return getTaskClass().New()
 }
 
+
+
 // Runs the process with the current environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/run()
@@ -104,6 +106,7 @@ func (t_ Task) Environment() unsafe.Pointer {
 	return rv
 }
 
+
 // SetEnvironment sets the value of the environment property.
 // The environment for the receiver.
 
@@ -112,7 +115,6 @@ func (t_ Task) Environment() unsafe.Pointer {
 func (t_ Task) SetEnvironment(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEnvironment:"), value)
 }
-
 // The receiver’s executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/executableURL
@@ -120,6 +122,7 @@ func (t_ Task) ExecutableURL() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("executableURL"))
 	return rv
 }
+
 
 // SetExecutableURL sets the value of the executableURL property.
 // The receiver’s executable.
@@ -129,7 +132,6 @@ func (t_ Task) ExecutableURL() unsafe.Pointer {
 func (t_ Task) SetExecutableURL(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setExecutableURL:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
 func (t_ Task) LaunchRequirementData() unsafe.Pointer {
@@ -137,13 +139,13 @@ func (t_ Task) LaunchRequirementData() unsafe.Pointer {
 	return rv
 }
 
+
 // SetLaunchRequirementData sets the value of the launchRequirementData property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/launchRequirementData
 func (t_ Task) SetLaunchRequirementData(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLaunchRequirementData:"), value)
 }
-
 // The receiver’s process identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Process/processIdentifier
@@ -151,3 +153,5 @@ func (t_ Task) ProcessIdentifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("processIdentifier"))
 	return rv
 }
+
+

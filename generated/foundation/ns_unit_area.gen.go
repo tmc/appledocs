@@ -79,3 +79,7 @@ func (u_ UnitArea) Autorelease() UnitArea {
 func NewUnitArea() UnitArea {
 	return getUnitAreaClass().New()
 }
+
+
+
+

@@ -79,6 +79,8 @@ func NewURLSessionTaskMetrics() URLSessionTaskMetrics {
 	return getURLSessionTaskMetricsClass().New()
 }
 
+
+
 // The number of redirects that occurred during the execution of the task.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/redirectCount
@@ -102,3 +104,5 @@ func (u_ URLSessionTaskMetrics) TransactionMetrics() []URLSessionTaskTransaction
 	rv := objc.Send[[]URLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
 }
+
+

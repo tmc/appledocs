@@ -79,3 +79,7 @@ func (m_ MeasurementFormatter) Autorelease() MeasurementFormatter {
 func NewMeasurementFormatter() MeasurementFormatter {
 	return getMeasurementFormatterClass().New()
 }
+
+
+
+

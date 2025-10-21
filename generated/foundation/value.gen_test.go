@@ -9,6 +9,26 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewValue
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ExampleNewValueWithPoint demonstrates how to create a Value instance using NewValueWithPoint.
 // Creates a new value object containing the specified Foundation point structure.
 func ExampleNewValueWithPoint() {
@@ -17,6 +37,7 @@ func ExampleNewValueWithPoint() {
 	)
 	// Output:
 }
+
 
 // ExampleNewValueWithRange demonstrates how to create a Value instance using NewValueWithRange.
 // Creates a new value object containing the specified Foundation range structure.
@@ -36,6 +57,9 @@ func ExampleNewValueWithRect() {
 	// Output:
 }
 
+
+
+
 // ExampleNewValueWithSize demonstrates how to create a Value instance using NewValueWithSize.
 // Creates a new value object containing the specified Foundation size structure.
 func ExampleNewValueWithSize() {
@@ -44,3 +68,7 @@ func ExampleNewValueWithSize() {
 	)
 	// Output:
 }
+
+
+
+

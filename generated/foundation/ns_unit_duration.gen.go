@@ -80,6 +80,7 @@ func NewUnitDuration() UnitDuration {
 	return getUnitDurationClass().New()
 }
 
+
 // The second unit of duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
@@ -87,7 +88,6 @@ func (uc _UnitDurationClass) Seconds() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("seconds"))
 	return rv
 }
-
 // The second unit of duration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDuration/seconds
@@ -95,3 +95,6 @@ func (u_ UnitDuration) Seconds() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("seconds"))
 	return rv
 }
+
+
+

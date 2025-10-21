@@ -81,6 +81,7 @@ func NewOutputStream() OutputStream {
 	return getOutputStreamClass().New()
 }
 
+
 // Returns an initialized output stream that can write to a provided buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OutputStream/init(toBuffer:capacity:)
@@ -120,6 +121,7 @@ func NewOutputStreamWithURLAppend(url unsafe.Pointer, shouldAppend bool) OutputS
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates and returns an initialized output stream that can write to a provided buffer.
 //
@@ -168,3 +170,5 @@ func (o_ OutputStream) HasSpaceAvailable() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hasSpaceAvailable"))
 	return rv
 }
+
+

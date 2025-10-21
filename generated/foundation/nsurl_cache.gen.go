@@ -78,3 +78,7 @@ func (u_ URLCache) Autorelease() URLCache {
 func NewURLCache() URLCache {
 	return getURLCacheClass().New()
 }
+
+
+
+

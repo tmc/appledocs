@@ -85,6 +85,7 @@ func NewMutableAttributedString() MutableAttributedString {
 	return getMutableAttributedStringClass().New()
 }
 
+
 // Adds the characters and attributes of a given attributed string to the end of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/append(_:)
@@ -118,3 +119,6 @@ func (m_ MutableAttributedString) ReplaceCharactersInRangeWithAttributedString(r
 func (m_ MutableAttributedString) SetAttributedString(attrString unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedString:"), attrString)
 }
+
+
+

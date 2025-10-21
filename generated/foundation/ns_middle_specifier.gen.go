@@ -79,3 +79,7 @@ func (m_ MiddleSpecifier) Autorelease() MiddleSpecifier {
 func NewMiddleSpecifier() MiddleSpecifier {
 	return getMiddleSpecifierClass().New()
 }
+
+
+
+

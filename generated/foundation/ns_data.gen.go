@@ -95,6 +95,7 @@ func NewData() Data {
 	return getDataClass().New()
 }
 
+
 // Initializes a data object with the given Base64 encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSData/init(base64EncodedData:options:)
@@ -224,6 +225,7 @@ func NewDataWithData(data unsafe.Pointer) Data {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates an empty data object.
 //
@@ -452,3 +454,5 @@ func (d_ Data) Length() uint {
 	rv := objc.Send[uint](d_.ID, objc.Sel("length"))
 	return rv
 }
+
+

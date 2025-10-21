@@ -83,6 +83,7 @@ func NewNumberFormatter() NumberFormatter {
 	return getNumberFormatterClass().New()
 }
 
+
 // Returns an constant that indicates default formatter behavior for new instances of .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/defaultFormatterBehavior()
@@ -138,6 +139,7 @@ func (n_ NumberFormatter) AllowsFloats() bool {
 	return rv
 }
 
+
 // SetAllowsFloats sets the value of the allowsFloats property.
 // Determines whether the receiver allows as input floating-point values (that is, values that include the period character [ ]).
 
@@ -146,7 +148,6 @@ func (n_ NumberFormatter) AllowsFloats() bool {
 func (n_ NumberFormatter) SetAllowsFloats(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAllowsFloats:"), value)
 }
-
 // Determines whether the receiver always shows the decimal separator, even for integer numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/alwaysShowsDecimalSeparator
@@ -154,6 +155,7 @@ func (n_ NumberFormatter) AlwaysShowsDecimalSeparator() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("alwaysShowsDecimalSeparator"))
 	return rv
 }
+
 
 // SetAlwaysShowsDecimalSeparator sets the value of the alwaysShowsDecimalSeparator property.
 // Determines whether the receiver always shows the decimal separator, even for integer numbers.
@@ -163,7 +165,6 @@ func (n_ NumberFormatter) AlwaysShowsDecimalSeparator() bool {
 func (n_ NumberFormatter) SetAlwaysShowsDecimalSeparator(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAlwaysShowsDecimalSeparator:"), value)
 }
-
 // The attributed string the receiver uses to display values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNil
@@ -171,6 +172,7 @@ func (n_ NumberFormatter) AttributedStringForNil() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("attributedStringForNil"))
 	return rv
 }
+
 
 // SetAttributedStringForNil sets the value of the attributedStringForNil property.
 // The attributed string the receiver uses to display values.
@@ -180,7 +182,6 @@ func (n_ NumberFormatter) AttributedStringForNil() unsafe.Pointer {
 func (n_ NumberFormatter) SetAttributedStringForNil(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForNil:"), value)
 }
-
 // The attributed string the receiver uses to display “not a number” values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForNotANumber
@@ -188,6 +189,7 @@ func (n_ NumberFormatter) AttributedStringForNotANumber() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("attributedStringForNotANumber"))
 	return rv
 }
+
 
 // SetAttributedStringForNotANumber sets the value of the attributedStringForNotANumber property.
 // The attributed string the receiver uses to display “not a number” values.
@@ -197,7 +199,6 @@ func (n_ NumberFormatter) AttributedStringForNotANumber() unsafe.Pointer {
 func (n_ NumberFormatter) SetAttributedStringForNotANumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForNotANumber:"), value)
 }
-
 // The attributed string that the receiver uses to display zero values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/attributedStringForZero
@@ -205,6 +206,7 @@ func (n_ NumberFormatter) AttributedStringForZero() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("attributedStringForZero"))
 	return rv
 }
+
 
 // SetAttributedStringForZero sets the value of the attributedStringForZero property.
 // The attributed string that the receiver uses to display zero values.
@@ -214,7 +216,6 @@ func (n_ NumberFormatter) AttributedStringForZero() unsafe.Pointer {
 func (n_ NumberFormatter) SetAttributedStringForZero(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setAttributedStringForZero:"), value)
 }
-
 // The receiver’s currency code.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/currencyCode
@@ -222,6 +223,7 @@ func (n_ NumberFormatter) CurrencyCode() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("currencyCode"))
 	return rv
 }
+
 
 // SetCurrencyCode sets the value of the currencyCode property.
 // The receiver’s currency code.
@@ -231,7 +233,6 @@ func (n_ NumberFormatter) CurrencyCode() string {
 func (n_ NumberFormatter) SetCurrencyCode(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrencyCode:"), objc.String(value))
 }
-
 // The string used by the receiver as a currency decimal separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/currencyDecimalSeparator
@@ -239,6 +240,7 @@ func (n_ NumberFormatter) CurrencyDecimalSeparator() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("currencyDecimalSeparator"))
 	return rv
 }
+
 
 // SetCurrencyDecimalSeparator sets the value of the currencyDecimalSeparator property.
 // The string used by the receiver as a currency decimal separator.
@@ -248,7 +250,6 @@ func (n_ NumberFormatter) CurrencyDecimalSeparator() string {
 func (n_ NumberFormatter) SetCurrencyDecimalSeparator(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrencyDecimalSeparator:"), objc.String(value))
 }
-
 // The currency grouping separator for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/currencyGroupingSeparator
@@ -256,6 +257,7 @@ func (n_ NumberFormatter) CurrencyGroupingSeparator() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("currencyGroupingSeparator"))
 	return rv
 }
+
 
 // SetCurrencyGroupingSeparator sets the value of the currencyGroupingSeparator property.
 // The currency grouping separator for the receiver.
@@ -265,7 +267,6 @@ func (n_ NumberFormatter) CurrencyGroupingSeparator() string {
 func (n_ NumberFormatter) SetCurrencyGroupingSeparator(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrencyGroupingSeparator:"), objc.String(value))
 }
-
 // The string used by the receiver as a local currency symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/currencySymbol
@@ -273,6 +274,7 @@ func (n_ NumberFormatter) CurrencySymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("currencySymbol"))
 	return rv
 }
+
 
 // SetCurrencySymbol sets the value of the currencySymbol property.
 // The string used by the receiver as a local currency symbol.
@@ -282,7 +284,6 @@ func (n_ NumberFormatter) CurrencySymbol() string {
 func (n_ NumberFormatter) SetCurrencySymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrencySymbol:"), objc.String(value))
 }
-
 // The character the receiver uses as a decimal separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/decimalSeparator
@@ -290,6 +291,7 @@ func (n_ NumberFormatter) DecimalSeparator() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("decimalSeparator"))
 	return rv
 }
+
 
 // SetDecimalSeparator sets the value of the decimalSeparator property.
 // The character the receiver uses as a decimal separator.
@@ -299,7 +301,6 @@ func (n_ NumberFormatter) DecimalSeparator() string {
 func (n_ NumberFormatter) SetDecimalSeparator(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDecimalSeparator:"), objc.String(value))
 }
-
 // The string used to represent an exponent symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/exponentSymbol
@@ -307,6 +308,7 @@ func (n_ NumberFormatter) ExponentSymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("exponentSymbol"))
 	return rv
 }
+
 
 // SetExponentSymbol sets the value of the exponentSymbol property.
 // The string used to represent an exponent symbol.
@@ -316,7 +318,6 @@ func (n_ NumberFormatter) ExponentSymbol() string {
 func (n_ NumberFormatter) SetExponentSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setExponentSymbol:"), objc.String(value))
 }
-
 // The receiver’s format.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/format
@@ -324,6 +325,7 @@ func (n_ NumberFormatter) Format() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("format"))
 	return rv
 }
+
 
 // SetFormat sets the value of the format property.
 // The receiver’s format.
@@ -333,7 +335,6 @@ func (n_ NumberFormatter) Format() string {
 func (n_ NumberFormatter) SetFormat(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormat:"), objc.String(value))
 }
-
 // The format width used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatWidth
@@ -341,6 +342,7 @@ func (n_ NumberFormatter) FormatWidth() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("formatWidth"))
 	return rv
 }
+
 
 // SetFormatWidth sets the value of the formatWidth property.
 // The format width used by the receiver.
@@ -350,7 +352,6 @@ func (n_ NumberFormatter) FormatWidth() uint {
 func (n_ NumberFormatter) SetFormatWidth(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatWidth:"), value)
 }
-
 // The formatter behavior of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formatterBehavior
@@ -358,6 +359,7 @@ func (n_ NumberFormatter) FormatterBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("formatterBehavior"))
 	return rv
 }
+
 
 // SetFormatterBehavior sets the value of the formatterBehavior property.
 // The formatter behavior of the receiver.
@@ -367,7 +369,6 @@ func (n_ NumberFormatter) FormatterBehavior() unsafe.Pointer {
 func (n_ NumberFormatter) SetFormatterBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormatterBehavior:"), value)
 }
-
 // The capitalization formatting context used when formatting a number.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/formattingContext
@@ -375,6 +376,7 @@ func (n_ NumberFormatter) FormattingContext() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("formattingContext"))
 	return rv
 }
+
 
 // SetFormattingContext sets the value of the formattingContext property.
 // The capitalization formatting context used when formatting a number.
@@ -384,7 +386,6 @@ func (n_ NumberFormatter) FormattingContext() unsafe.Pointer {
 func (n_ NumberFormatter) SetFormattingContext(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setFormattingContext:"), value)
 }
-
 // The string used by the receiver for a grouping separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/groupingSeparator
@@ -392,6 +393,7 @@ func (n_ NumberFormatter) GroupingSeparator() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("groupingSeparator"))
 	return rv
 }
+
 
 // SetGroupingSeparator sets the value of the groupingSeparator property.
 // The string used by the receiver for a grouping separator.
@@ -401,7 +403,6 @@ func (n_ NumberFormatter) GroupingSeparator() string {
 func (n_ NumberFormatter) SetGroupingSeparator(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGroupingSeparator:"), objc.String(value))
 }
-
 // The grouping size of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/groupingSize
@@ -409,6 +410,7 @@ func (n_ NumberFormatter) GroupingSize() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("groupingSize"))
 	return rv
 }
+
 
 // SetGroupingSize sets the value of the groupingSize property.
 // The grouping size of the receiver.
@@ -418,7 +420,6 @@ func (n_ NumberFormatter) GroupingSize() uint {
 func (n_ NumberFormatter) SetGroupingSize(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setGroupingSize:"), value)
 }
-
 // Determines whether the receiver uses thousand separators.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/hasThousandSeparators
@@ -426,6 +427,7 @@ func (n_ NumberFormatter) HasThousandSeparators() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasThousandSeparators"))
 	return rv
 }
+
 
 // SetHasThousandSeparators sets the value of the hasThousandSeparators property.
 // Determines whether the receiver uses thousand separators.
@@ -435,7 +437,6 @@ func (n_ NumberFormatter) HasThousandSeparators() bool {
 func (n_ NumberFormatter) SetHasThousandSeparators(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setHasThousandSeparators:"), value)
 }
-
 // The international currency symbol used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/internationalCurrencySymbol
@@ -443,6 +444,7 @@ func (n_ NumberFormatter) InternationalCurrencySymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("internationalCurrencySymbol"))
 	return rv
 }
+
 
 // SetInternationalCurrencySymbol sets the value of the internationalCurrencySymbol property.
 // The international currency symbol used by the receiver.
@@ -452,7 +454,6 @@ func (n_ NumberFormatter) InternationalCurrencySymbol() string {
 func (n_ NumberFormatter) SetInternationalCurrencySymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInternationalCurrencySymbol:"), objc.String(value))
 }
-
 // Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/isLenient
@@ -460,6 +461,7 @@ func (n_ NumberFormatter) Lenient() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("lenient"))
 	return rv
 }
+
 
 // SetLenient sets the value of the lenient property.
 // Determines whether the receiver will use heuristics to guess at the number which is intended by a string.
@@ -469,7 +471,6 @@ func (n_ NumberFormatter) Lenient() bool {
 func (n_ NumberFormatter) SetLenient(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLenient:"), value)
 }
-
 // Determines whether partial string validation is enabled for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/isPartialStringValidationEnabled
@@ -477,6 +478,7 @@ func (n_ NumberFormatter) PartialStringValidationEnabled() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("partialStringValidationEnabled"))
 	return rv
 }
+
 
 // SetPartialStringValidationEnabled sets the value of the partialStringValidationEnabled property.
 // Determines whether partial string validation is enabled for the receiver.
@@ -486,7 +488,6 @@ func (n_ NumberFormatter) PartialStringValidationEnabled() bool {
 func (n_ NumberFormatter) SetPartialStringValidationEnabled(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPartialStringValidationEnabled:"), value)
 }
-
 // The locale of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/locale
@@ -494,6 +495,7 @@ func (n_ NumberFormatter) Locale() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("locale"))
 	return rv
 }
+
 
 // SetLocale sets the value of the locale property.
 // The locale of the receiver.
@@ -503,7 +505,6 @@ func (n_ NumberFormatter) Locale() unsafe.Pointer {
 func (n_ NumberFormatter) SetLocale(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocale:"), value)
 }
-
 // Determines whether the dollar sign character ( ), decimal separator character ( ), and thousand separator character ( ) are converted to appropriately localized characters as specified by the user’s localization preference.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/localizesFormat
@@ -511,6 +512,7 @@ func (n_ NumberFormatter) LocalizesFormat() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("localizesFormat"))
 	return rv
 }
+
 
 // SetLocalizesFormat sets the value of the localizesFormat property.
 // Determines whether the dollar sign character ( ), decimal separator character ( ), and thousand separator character ( ) are converted to appropriately localized characters as specified by the user’s localization preference.
@@ -520,7 +522,6 @@ func (n_ NumberFormatter) LocalizesFormat() bool {
 func (n_ NumberFormatter) SetLocalizesFormat(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalizesFormat:"), value)
 }
-
 // The highest number allowed as input by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximum
@@ -528,6 +529,7 @@ func (n_ NumberFormatter) Maximum() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("maximum"))
 	return rv
 }
+
 
 // SetMaximum sets the value of the maximum property.
 // The highest number allowed as input by the receiver.
@@ -537,7 +539,6 @@ func (n_ NumberFormatter) Maximum() unsafe.Pointer {
 func (n_ NumberFormatter) SetMaximum(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximum:"), value)
 }
-
 // The maximum number of digits after the decimal separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumFractionDigits
@@ -545,6 +546,7 @@ func (n_ NumberFormatter) MaximumFractionDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumFractionDigits"))
 	return rv
 }
+
 
 // SetMaximumFractionDigits sets the value of the maximumFractionDigits property.
 // The maximum number of digits after the decimal separator.
@@ -554,7 +556,6 @@ func (n_ NumberFormatter) MaximumFractionDigits() uint {
 func (n_ NumberFormatter) SetMaximumFractionDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumFractionDigits:"), value)
 }
-
 // The maximum number of digits before the decimal separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumIntegerDigits
@@ -562,6 +563,7 @@ func (n_ NumberFormatter) MaximumIntegerDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumIntegerDigits"))
 	return rv
 }
+
 
 // SetMaximumIntegerDigits sets the value of the maximumIntegerDigits property.
 // The maximum number of digits before the decimal separator.
@@ -571,7 +573,6 @@ func (n_ NumberFormatter) MaximumIntegerDigits() uint {
 func (n_ NumberFormatter) SetMaximumIntegerDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumIntegerDigits:"), value)
 }
-
 // The maximum number of significant digits for the number formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/maximumSignificantDigits
@@ -579,6 +580,7 @@ func (n_ NumberFormatter) MaximumSignificantDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("maximumSignificantDigits"))
 	return rv
 }
+
 
 // SetMaximumSignificantDigits sets the value of the maximumSignificantDigits property.
 // The maximum number of significant digits for the number formatter.
@@ -588,7 +590,6 @@ func (n_ NumberFormatter) MaximumSignificantDigits() uint {
 func (n_ NumberFormatter) SetMaximumSignificantDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumSignificantDigits:"), value)
 }
-
 // The lowest number allowed as input by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimum
@@ -596,6 +597,7 @@ func (n_ NumberFormatter) Minimum() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("minimum"))
 	return rv
 }
+
 
 // SetMinimum sets the value of the minimum property.
 // The lowest number allowed as input by the receiver.
@@ -605,7 +607,6 @@ func (n_ NumberFormatter) Minimum() unsafe.Pointer {
 func (n_ NumberFormatter) SetMinimum(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimum:"), value)
 }
-
 // The minimum number of digits after the decimal separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumFractionDigits
@@ -613,6 +614,7 @@ func (n_ NumberFormatter) MinimumFractionDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumFractionDigits"))
 	return rv
 }
+
 
 // SetMinimumFractionDigits sets the value of the minimumFractionDigits property.
 // The minimum number of digits after the decimal separator.
@@ -622,7 +624,6 @@ func (n_ NumberFormatter) MinimumFractionDigits() uint {
 func (n_ NumberFormatter) SetMinimumFractionDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumFractionDigits:"), value)
 }
-
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumGroupingDigits
 func (n_ NumberFormatter) MinimumGroupingDigits() int {
@@ -630,13 +631,13 @@ func (n_ NumberFormatter) MinimumGroupingDigits() int {
 	return rv
 }
 
+
 // SetMinimumGroupingDigits sets the value of the minimumGroupingDigits property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumGroupingDigits
 func (n_ NumberFormatter) SetMinimumGroupingDigits(value int) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumGroupingDigits:"), value)
 }
-
 // The minimum number of digits before the decimal separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumIntegerDigits
@@ -644,6 +645,7 @@ func (n_ NumberFormatter) MinimumIntegerDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumIntegerDigits"))
 	return rv
 }
+
 
 // SetMinimumIntegerDigits sets the value of the minimumIntegerDigits property.
 // The minimum number of digits before the decimal separator.
@@ -653,7 +655,6 @@ func (n_ NumberFormatter) MinimumIntegerDigits() uint {
 func (n_ NumberFormatter) SetMinimumIntegerDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumIntegerDigits:"), value)
 }
-
 // The minimum number of significant digits for the number formatter.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minimumSignificantDigits
@@ -661,6 +662,7 @@ func (n_ NumberFormatter) MinimumSignificantDigits() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("minimumSignificantDigits"))
 	return rv
 }
+
 
 // SetMinimumSignificantDigits sets the value of the minimumSignificantDigits property.
 // The minimum number of significant digits for the number formatter.
@@ -670,7 +672,6 @@ func (n_ NumberFormatter) MinimumSignificantDigits() uint {
 func (n_ NumberFormatter) SetMinimumSignificantDigits(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinimumSignificantDigits:"), value)
 }
-
 // The string used to represent a minus sign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/minusSign
@@ -678,6 +679,7 @@ func (n_ NumberFormatter) MinusSign() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("minusSign"))
 	return rv
 }
+
 
 // SetMinusSign sets the value of the minusSign property.
 // The string used to represent a minus sign.
@@ -687,7 +689,6 @@ func (n_ NumberFormatter) MinusSign() string {
 func (n_ NumberFormatter) SetMinusSign(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMinusSign:"), objc.String(value))
 }
-
 // The multiplier of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/multiplier
@@ -695,6 +696,7 @@ func (n_ NumberFormatter) Multiplier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("multiplier"))
 	return rv
 }
+
 
 // SetMultiplier sets the value of the multiplier property.
 // The multiplier of the receiver.
@@ -704,7 +706,6 @@ func (n_ NumberFormatter) Multiplier() unsafe.Pointer {
 func (n_ NumberFormatter) SetMultiplier(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setMultiplier:"), value)
 }
-
 // The format the receiver uses to display negative values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/negativeFormat
@@ -712,6 +713,7 @@ func (n_ NumberFormatter) NegativeFormat() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("negativeFormat"))
 	return rv
 }
+
 
 // SetNegativeFormat sets the value of the negativeFormat property.
 // The format the receiver uses to display negative values.
@@ -721,7 +723,6 @@ func (n_ NumberFormatter) NegativeFormat() string {
 func (n_ NumberFormatter) SetNegativeFormat(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNegativeFormat:"), objc.String(value))
 }
-
 // The string used to represent a negative infinity symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/negativeInfinitySymbol
@@ -729,6 +730,7 @@ func (n_ NumberFormatter) NegativeInfinitySymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("negativeInfinitySymbol"))
 	return rv
 }
+
 
 // SetNegativeInfinitySymbol sets the value of the negativeInfinitySymbol property.
 // The string used to represent a negative infinity symbol.
@@ -738,7 +740,6 @@ func (n_ NumberFormatter) NegativeInfinitySymbol() string {
 func (n_ NumberFormatter) SetNegativeInfinitySymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNegativeInfinitySymbol:"), objc.String(value))
 }
-
 // The string the receiver uses as a prefix for negative values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/negativePrefix
@@ -746,6 +747,7 @@ func (n_ NumberFormatter) NegativePrefix() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("negativePrefix"))
 	return rv
 }
+
 
 // SetNegativePrefix sets the value of the negativePrefix property.
 // The string the receiver uses as a prefix for negative values.
@@ -755,7 +757,6 @@ func (n_ NumberFormatter) NegativePrefix() string {
 func (n_ NumberFormatter) SetNegativePrefix(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNegativePrefix:"), objc.String(value))
 }
-
 // The string the receiver uses as a suffix for negative values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/negativeSuffix
@@ -763,6 +764,7 @@ func (n_ NumberFormatter) NegativeSuffix() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("negativeSuffix"))
 	return rv
 }
+
 
 // SetNegativeSuffix sets the value of the negativeSuffix property.
 // The string the receiver uses as a suffix for negative values.
@@ -772,7 +774,6 @@ func (n_ NumberFormatter) NegativeSuffix() string {
 func (n_ NumberFormatter) SetNegativeSuffix(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNegativeSuffix:"), objc.String(value))
 }
-
 // The string used to represent a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/nilSymbol
@@ -780,6 +781,7 @@ func (n_ NumberFormatter) NilSymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("nilSymbol"))
 	return rv
 }
+
 
 // SetNilSymbol sets the value of the nilSymbol property.
 // The string used to represent a value.
@@ -789,7 +791,6 @@ func (n_ NumberFormatter) NilSymbol() string {
 func (n_ NumberFormatter) SetNilSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNilSymbol:"), objc.String(value))
 }
-
 // The string used to represent a NaN (“not a number”) value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/notANumberSymbol
@@ -797,6 +798,7 @@ func (n_ NumberFormatter) NotANumberSymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("notANumberSymbol"))
 	return rv
 }
+
 
 // SetNotANumberSymbol sets the value of the notANumberSymbol property.
 // The string used to represent a NaN (“not a number”) value.
@@ -806,7 +808,6 @@ func (n_ NumberFormatter) NotANumberSymbol() string {
 func (n_ NumberFormatter) SetNotANumberSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNotANumberSymbol:"), objc.String(value))
 }
-
 // The number style used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/numberStyle
@@ -814,6 +815,7 @@ func (n_ NumberFormatter) NumberStyle() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("numberStyle"))
 	return rv
 }
+
 
 // SetNumberStyle sets the value of the numberStyle property.
 // The number style used by the receiver.
@@ -823,7 +825,6 @@ func (n_ NumberFormatter) NumberStyle() unsafe.Pointer {
 func (n_ NumberFormatter) SetNumberStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNumberStyle:"), value)
 }
-
 // The string that the receiver uses to pad numbers in the formatted string representation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/paddingCharacter
@@ -831,6 +832,7 @@ func (n_ NumberFormatter) PaddingCharacter() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("paddingCharacter"))
 	return rv
 }
+
 
 // SetPaddingCharacter sets the value of the paddingCharacter property.
 // The string that the receiver uses to pad numbers in the formatted string representation.
@@ -840,7 +842,6 @@ func (n_ NumberFormatter) PaddingCharacter() string {
 func (n_ NumberFormatter) SetPaddingCharacter(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPaddingCharacter:"), objc.String(value))
 }
-
 // The padding position used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/paddingPosition
@@ -848,6 +849,7 @@ func (n_ NumberFormatter) PaddingPosition() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("paddingPosition"))
 	return rv
 }
+
 
 // SetPaddingPosition sets the value of the paddingPosition property.
 // The padding position used by the receiver.
@@ -857,7 +859,6 @@ func (n_ NumberFormatter) PaddingPosition() unsafe.Pointer {
 func (n_ NumberFormatter) SetPaddingPosition(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPaddingPosition:"), value)
 }
-
 // The string used to represent a per-mill (per-thousand) symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/perMillSymbol
@@ -865,6 +866,7 @@ func (n_ NumberFormatter) PerMillSymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("perMillSymbol"))
 	return rv
 }
+
 
 // SetPerMillSymbol sets the value of the perMillSymbol property.
 // The string used to represent a per-mill (per-thousand) symbol.
@@ -874,7 +876,6 @@ func (n_ NumberFormatter) PerMillSymbol() string {
 func (n_ NumberFormatter) SetPerMillSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPerMillSymbol:"), objc.String(value))
 }
-
 // The string used to represent a percent symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/percentSymbol
@@ -882,6 +883,7 @@ func (n_ NumberFormatter) PercentSymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("percentSymbol"))
 	return rv
 }
+
 
 // SetPercentSymbol sets the value of the percentSymbol property.
 // The string used to represent a percent symbol.
@@ -891,7 +893,6 @@ func (n_ NumberFormatter) PercentSymbol() string {
 func (n_ NumberFormatter) SetPercentSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPercentSymbol:"), objc.String(value))
 }
-
 // The string used to represent a plus sign.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/plusSign
@@ -899,6 +900,7 @@ func (n_ NumberFormatter) PlusSign() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("plusSign"))
 	return rv
 }
+
 
 // SetPlusSign sets the value of the plusSign property.
 // The string used to represent a plus sign.
@@ -908,7 +910,6 @@ func (n_ NumberFormatter) PlusSign() string {
 func (n_ NumberFormatter) SetPlusSign(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPlusSign:"), objc.String(value))
 }
-
 // The format the receiver uses to display positive values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/positiveFormat
@@ -916,6 +917,7 @@ func (n_ NumberFormatter) PositiveFormat() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("positiveFormat"))
 	return rv
 }
+
 
 // SetPositiveFormat sets the value of the positiveFormat property.
 // The format the receiver uses to display positive values.
@@ -925,7 +927,6 @@ func (n_ NumberFormatter) PositiveFormat() string {
 func (n_ NumberFormatter) SetPositiveFormat(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPositiveFormat:"), objc.String(value))
 }
-
 // The string used to represent a positive infinity symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/positiveInfinitySymbol
@@ -933,6 +934,7 @@ func (n_ NumberFormatter) PositiveInfinitySymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("positiveInfinitySymbol"))
 	return rv
 }
+
 
 // SetPositiveInfinitySymbol sets the value of the positiveInfinitySymbol property.
 // The string used to represent a positive infinity symbol.
@@ -942,7 +944,6 @@ func (n_ NumberFormatter) PositiveInfinitySymbol() string {
 func (n_ NumberFormatter) SetPositiveInfinitySymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPositiveInfinitySymbol:"), objc.String(value))
 }
-
 // The string the receiver uses as the suffix for positive values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/positiveSuffix
@@ -950,6 +951,7 @@ func (n_ NumberFormatter) PositiveSuffix() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("positiveSuffix"))
 	return rv
 }
+
 
 // SetPositiveSuffix sets the value of the positiveSuffix property.
 // The string the receiver uses as the suffix for positive values.
@@ -959,7 +961,6 @@ func (n_ NumberFormatter) PositiveSuffix() string {
 func (n_ NumberFormatter) SetPositiveSuffix(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPositiveSuffix:"), objc.String(value))
 }
-
 // The rounding behavior used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingBehavior
@@ -967,6 +968,7 @@ func (n_ NumberFormatter) RoundingBehavior() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("roundingBehavior"))
 	return rv
 }
+
 
 // SetRoundingBehavior sets the value of the roundingBehavior property.
 // The rounding behavior used by the receiver.
@@ -976,7 +978,6 @@ func (n_ NumberFormatter) RoundingBehavior() unsafe.Pointer {
 func (n_ NumberFormatter) SetRoundingBehavior(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingBehavior:"), value)
 }
-
 // The rounding increment used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingIncrement
@@ -984,6 +985,7 @@ func (n_ NumberFormatter) RoundingIncrement() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("roundingIncrement"))
 	return rv
 }
+
 
 // SetRoundingIncrement sets the value of the roundingIncrement property.
 // The rounding increment used by the receiver.
@@ -993,7 +995,6 @@ func (n_ NumberFormatter) RoundingIncrement() unsafe.Pointer {
 func (n_ NumberFormatter) SetRoundingIncrement(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingIncrement:"), value)
 }
-
 // The rounding mode used by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/roundingMode-swift.property
@@ -1001,6 +1002,7 @@ func (n_ NumberFormatter) RoundingMode() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("roundingMode"))
 	return rv
 }
+
 
 // SetRoundingMode sets the value of the roundingMode property.
 // The rounding mode used by the receiver.
@@ -1010,7 +1012,6 @@ func (n_ NumberFormatter) RoundingMode() unsafe.Pointer {
 func (n_ NumberFormatter) SetRoundingMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setRoundingMode:"), value)
 }
-
 // The secondary grouping size of the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/secondaryGroupingSize
@@ -1018,6 +1019,7 @@ func (n_ NumberFormatter) SecondaryGroupingSize() uint {
 	rv := objc.Send[uint](n_.ID, objc.Sel("secondaryGroupingSize"))
 	return rv
 }
+
 
 // SetSecondaryGroupingSize sets the value of the secondaryGroupingSize property.
 // The secondary grouping size of the receiver.
@@ -1027,7 +1029,6 @@ func (n_ NumberFormatter) SecondaryGroupingSize() uint {
 func (n_ NumberFormatter) SetSecondaryGroupingSize(value uint) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setSecondaryGroupingSize:"), value)
 }
-
 // The text attributes used to display the negative infinity symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeInfinity
@@ -1035,6 +1036,7 @@ func (n_ NumberFormatter) TextAttributesForNegativeInfinity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("textAttributesForNegativeInfinity"))
 	return rv
 }
+
 
 // SetTextAttributesForNegativeInfinity sets the value of the textAttributesForNegativeInfinity property.
 // The text attributes used to display the negative infinity symbol.
@@ -1044,7 +1046,6 @@ func (n_ NumberFormatter) TextAttributesForNegativeInfinity() unsafe.Pointer {
 func (n_ NumberFormatter) SetTextAttributesForNegativeInfinity(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNegativeInfinity:"), value)
 }
-
 // The text attributes to be used in displaying negative values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNegativeValues
@@ -1052,6 +1053,7 @@ func (n_ NumberFormatter) TextAttributesForNegativeValues() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("textAttributesForNegativeValues"))
 	return rv
 }
+
 
 // SetTextAttributesForNegativeValues sets the value of the textAttributesForNegativeValues property.
 // The text attributes to be used in displaying negative values.
@@ -1061,7 +1063,6 @@ func (n_ NumberFormatter) TextAttributesForNegativeValues() unsafe.Pointer {
 func (n_ NumberFormatter) SetTextAttributesForNegativeValues(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNegativeValues:"), value)
 }
-
 // The text attributes used to display the symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForNil
@@ -1069,6 +1070,7 @@ func (n_ NumberFormatter) TextAttributesForNil() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("textAttributesForNil"))
 	return rv
 }
+
 
 // SetTextAttributesForNil sets the value of the textAttributesForNil property.
 // The text attributes used to display the symbol.
@@ -1078,7 +1080,6 @@ func (n_ NumberFormatter) TextAttributesForNil() unsafe.Pointer {
 func (n_ NumberFormatter) SetTextAttributesForNil(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForNil:"), value)
 }
-
 // The text attributes used to display the positive infinity symbol.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveInfinity
@@ -1086,6 +1087,7 @@ func (n_ NumberFormatter) TextAttributesForPositiveInfinity() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("textAttributesForPositiveInfinity"))
 	return rv
 }
+
 
 // SetTextAttributesForPositiveInfinity sets the value of the textAttributesForPositiveInfinity property.
 // The text attributes used to display the positive infinity symbol.
@@ -1095,7 +1097,6 @@ func (n_ NumberFormatter) TextAttributesForPositiveInfinity() unsafe.Pointer {
 func (n_ NumberFormatter) SetTextAttributesForPositiveInfinity(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForPositiveInfinity:"), value)
 }
-
 // The text attributes to be used in displaying positive values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForPositiveValues
@@ -1103,6 +1104,7 @@ func (n_ NumberFormatter) TextAttributesForPositiveValues() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("textAttributesForPositiveValues"))
 	return rv
 }
+
 
 // SetTextAttributesForPositiveValues sets the value of the textAttributesForPositiveValues property.
 // The text attributes to be used in displaying positive values.
@@ -1112,7 +1114,6 @@ func (n_ NumberFormatter) TextAttributesForPositiveValues() unsafe.Pointer {
 func (n_ NumberFormatter) SetTextAttributesForPositiveValues(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForPositiveValues:"), value)
 }
-
 // The text attributes used to display a zero value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/textAttributesForZero
@@ -1120,6 +1121,7 @@ func (n_ NumberFormatter) TextAttributesForZero() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("textAttributesForZero"))
 	return rv
 }
+
 
 // SetTextAttributesForZero sets the value of the textAttributesForZero property.
 // The text attributes used to display a zero value.
@@ -1129,7 +1131,6 @@ func (n_ NumberFormatter) TextAttributesForZero() unsafe.Pointer {
 func (n_ NumberFormatter) SetTextAttributesForZero(value unsafe.Pointer) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setTextAttributesForZero:"), value)
 }
-
 // The character the receiver uses as a thousand separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/thousandSeparator
@@ -1137,6 +1138,7 @@ func (n_ NumberFormatter) ThousandSeparator() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("thousandSeparator"))
 	return rv
 }
+
 
 // SetThousandSeparator sets the value of the thousandSeparator property.
 // The character the receiver uses as a thousand separator.
@@ -1146,7 +1148,6 @@ func (n_ NumberFormatter) ThousandSeparator() string {
 func (n_ NumberFormatter) SetThousandSeparator(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setThousandSeparator:"), objc.String(value))
 }
-
 // Determines whether the receiver displays the group separator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/usesGroupingSeparator
@@ -1154,6 +1155,7 @@ func (n_ NumberFormatter) UsesGroupingSeparator() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("usesGroupingSeparator"))
 	return rv
 }
+
 
 // SetUsesGroupingSeparator sets the value of the usesGroupingSeparator property.
 // Determines whether the receiver displays the group separator.
@@ -1163,7 +1165,6 @@ func (n_ NumberFormatter) UsesGroupingSeparator() bool {
 func (n_ NumberFormatter) SetUsesGroupingSeparator(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUsesGroupingSeparator:"), value)
 }
-
 // A Boolean value indicating whether the formatter uses minimum and maximum significant digits when formatting numbers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/usesSignificantDigits
@@ -1171,6 +1172,7 @@ func (n_ NumberFormatter) UsesSignificantDigits() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("usesSignificantDigits"))
 	return rv
 }
+
 
 // SetUsesSignificantDigits sets the value of the usesSignificantDigits property.
 // A Boolean value indicating whether the formatter uses minimum and maximum significant digits when formatting numbers.
@@ -1180,7 +1182,6 @@ func (n_ NumberFormatter) UsesSignificantDigits() bool {
 func (n_ NumberFormatter) SetUsesSignificantDigits(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setUsesSignificantDigits:"), value)
 }
-
 // The string used to represent a zero value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NumberFormatter/zeroSymbol
@@ -1188,6 +1189,7 @@ func (n_ NumberFormatter) ZeroSymbol() string {
 	rv := objc.Send[string](n_.ID, objc.Sel("zeroSymbol"))
 	return rv
 }
+
 
 // SetZeroSymbol sets the value of the zeroSymbol property.
 // The string used to represent a zero value.
@@ -1197,3 +1199,5 @@ func (n_ NumberFormatter) ZeroSymbol() string {
 func (n_ NumberFormatter) SetZeroSymbol(value string) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setZeroSymbol:"), objc.String(value))
 }
+
+

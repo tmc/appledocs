@@ -81,6 +81,7 @@ func NewSpellServer() SpellServer {
 	return getSpellServerClass().New()
 }
 
+
 // Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/isWord(inUserDictionaries:caseSensitive:)
@@ -95,3 +96,6 @@ func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word string, flag bo
 func (s_ SpellServer) Run() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
 }
+
+
+

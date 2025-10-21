@@ -81,6 +81,7 @@ func NewScriptClassDescription() ScriptClassDescription {
 	return getScriptClassDescriptionClass().New()
 }
 
+
 // Returns the name of the declared type of the attribute or relationship identified by the passed key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/type(forKey:)
@@ -88,3 +89,6 @@ func (s_ ScriptClassDescription) TypeForKey(key string) string {
 	rv := objc.Send[string](s_.ID, objc.Sel("typeForKey:"), objc.String(key))
 	return rv
 }
+
+
+

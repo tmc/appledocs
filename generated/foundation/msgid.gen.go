@@ -73,3 +73,7 @@ func (m_ msgid) Autorelease() msgid {
 func Newmsgid() msgid {
 	return getmsgidClass().New()
 }
+
+
+
+

@@ -77,3 +77,7 @@ func (e_ EnergyFormatter) Autorelease() EnergyFormatter {
 func NewEnergyFormatter() EnergyFormatter {
 	return getEnergyFormatterClass().New()
 }
+
+
+
+

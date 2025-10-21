@@ -80,6 +80,7 @@ func NewCache() Cache {
 	return getCacheClass().New()
 }
 
+
 // Sets the value of the specified key in the cache, and associates the key-value pair with the specified cost.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCache/setObject(_:forKey:cost:)
@@ -95,6 +96,7 @@ func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
 	return rv
 }
 
+
 // SetEvictsObjectsWithDiscardedContent sets the value of the evictsObjectsWithDiscardedContent property.
 // Whether the cache will automatically evict discardable-content objects whose content has been discarded.
 
@@ -103,3 +105,5 @@ func (c_ Cache) EvictsObjectsWithDiscardedContent() bool {
 func (c_ Cache) SetEvictsObjectsWithDiscardedContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setEvictsObjectsWithDiscardedContent:"), value)
 }
+
+

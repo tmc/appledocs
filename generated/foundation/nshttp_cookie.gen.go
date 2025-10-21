@@ -79,6 +79,7 @@ func NewHTTPCookie() HTTPCookie {
 	return getHTTPCookieClass().New()
 }
 
+
 // The cookie’s properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie/properties
@@ -86,3 +87,6 @@ func (h_ HTTPCookie) Properties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
 	return rv
 }
+
+
+

@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewMutableString
 
+
 // ExampleNewMutableStringWithCapacity demonstrates how to create a MutableString instance using NewMutableStringWithCapacity.
 // Returns an   object initialized with initial storage for a given number of characters,
 func ExampleNewMutableStringWithCapacity() {
@@ -17,3 +18,5 @@ func ExampleNewMutableStringWithCapacity() {
 	)
 	// Output:
 }
+
+

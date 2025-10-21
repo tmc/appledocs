@@ -20,3 +20,5 @@ var netServiceWillPublishProtocol *objc.Protocol
 func init() {
 	netServiceWillPublishProtocol = objc.GetProtocol("netServiceWillPublish:")
 }
+
+

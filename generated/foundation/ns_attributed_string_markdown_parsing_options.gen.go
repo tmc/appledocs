@@ -76,3 +76,7 @@ func (a_ AttributedStringMarkdownParsingOptions) Autorelease() AttributedStringM
 func NewAttributedStringMarkdownParsingOptions() AttributedStringMarkdownParsingOptions {
 	return getAttributedStringMarkdownParsingOptionsClass().New()
 }
+
+
+
+

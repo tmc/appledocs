@@ -73,3 +73,7 @@ func (k_ KeyValueSharedObserversSnapshot) Autorelease() KeyValueSharedObserversS
 func NewKeyValueSharedObserversSnapshot() KeyValueSharedObserversSnapshot {
 	return getKeyValueSharedObserversSnapshotClass().New()
 }
+
+
+
+

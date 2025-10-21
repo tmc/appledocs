@@ -91,6 +91,7 @@ func NewUndoManager() UndoManager {
 	return getUndoManagerClass().New()
 }
 
+
 // Marks the beginning of an undo group.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/beginUndoGrouping()
@@ -201,6 +202,7 @@ func (u_ UndoManager) GroupsByEvent() bool {
 	return rv
 }
 
+
 // SetGroupsByEvent sets the value of the groupsByEvent property.
 // A Boolean value that indicates whether the manager automatically creates undo groups around each pass of the run loop.
 
@@ -209,7 +211,6 @@ func (u_ UndoManager) GroupsByEvent() bool {
 func (u_ UndoManager) SetGroupsByEvent(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setGroupsByEvent:"), value)
 }
-
 // The number of times you can invoke redo before there are no actions left to redo.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/redoCount
@@ -234,6 +235,7 @@ func (u_ UndoManager) RunLoopModes() []string {
 	return rv
 }
 
+
 // SetRunLoopModes sets the value of the runLoopModes property.
 // The modes governing the types of input to handle during a cycle of the run loop.
 
@@ -252,7 +254,6 @@ func (u_ UndoManager) SetRunLoopModes(value []string) {
 	}
 	objc.Send[objc.ID](u_.ID, objc.Sel("setRunLoopModes:"), nsArray)
 }
-
 // The name identifying the undo action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UndoManager/undoActionName
@@ -260,3 +261,6 @@ func (u_ UndoManager) UndoActionName() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("undoActionName"))
 	return rv
 }
+
+
+

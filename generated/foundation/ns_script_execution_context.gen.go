@@ -78,3 +78,7 @@ func (s_ ScriptExecutionContext) Autorelease() ScriptExecutionContext {
 func NewScriptExecutionContext() ScriptExecutionContext {
 	return getScriptExecutionContextClass().New()
 }
+
+
+
+

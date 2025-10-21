@@ -80,6 +80,7 @@ func NewPositionalSpecifier() PositionalSpecifier {
 	return getPositionalSpecifierClass().New()
 }
 
+
 // Sets the class description for the object or objects to be inserted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPositionalSpecifier/setInsertionClassDescription(_:)
@@ -102,3 +103,6 @@ func (p_ PositionalSpecifier) Position() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("position"))
 	return rv
 }
+
+
+

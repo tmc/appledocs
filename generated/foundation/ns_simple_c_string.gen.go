@@ -74,3 +74,7 @@ func (s_ SimpleCString) Autorelease() SimpleCString {
 func NewSimpleCString() SimpleCString {
 	return getSimpleCStringClass().New()
 }
+
+
+
+

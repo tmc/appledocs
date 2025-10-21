@@ -86,6 +86,7 @@ func NewItemProvider() ItemProvider {
 	return getItemProviderClass().New()
 }
 
+
 // Creates a new item provider, employing a specified object’s type identifiers to specify the data representations eligible for the provider to load.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/init(object:)
@@ -95,6 +96,7 @@ func NewItemProviderWithObject(object objc.ID) ItemProvider {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns a Boolean value indicating whether an item provider can load objects of a specified class.
 //
@@ -158,6 +160,7 @@ func (i_ ItemProvider) PreferredPresentationStyle() unsafe.Pointer {
 	return rv
 }
 
+
 // SetPreferredPresentationStyle sets the value of the preferredPresentationStyle property.
 // The preferred style for presenting the item provider’s data.
 
@@ -166,7 +169,6 @@ func (i_ ItemProvider) PreferredPresentationStyle() unsafe.Pointer {
 func (i_ ItemProvider) SetPreferredPresentationStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
 }
-
 // The rectangle that the item occupies in the host app’s source window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/sourceFrame
@@ -174,3 +176,5 @@ func (i_ ItemProvider) SourceFrame() Rect {
 	rv := objc.Send[Rect](i_.ID, objc.Sel("sourceFrame"))
 	return rv
 }
+
+

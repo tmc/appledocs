@@ -89,6 +89,7 @@ func NewXMLElement() XMLElement {
 	return getXMLElementClass().New()
 }
 
+
 // Returns an object initialized with a specified name and a single text-node child containing a specified value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLElement/init(name:stringValue:)
@@ -108,6 +109,7 @@ func NewXMLElementWithNameURI(name string, URI string) XMLElement {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Adds a namespace node to the receiver.
 //
@@ -175,3 +177,5 @@ func (x_ XMLElement) RemoveNamespaceForPrefix(name string) {
 func (x_ XMLElement) ReplaceChildAtIndexWithNode(index uint, node unsafe.Pointer) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("replaceChildAtIndex:withNode:"), index, node)
 }
+
+

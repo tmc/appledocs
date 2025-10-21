@@ -79,6 +79,7 @@ func NewCharacterSet() CharacterSet {
 	return getCharacterSetClass().New()
 }
 
+
 // A character set containing the characters in Unicode General Category Cc and Cf.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
@@ -86,7 +87,6 @@ func (cc _CharacterSetClass) ControlCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("controlCharacterSet"))
 	return rv
 }
-
 // A character set containing values in the category of Non-Characters or that have not yet been defined in version 3.2 of the Unicode standard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/illegalCharacters
@@ -94,7 +94,6 @@ func (cc _CharacterSetClass) IllegalCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("illegalCharacterSet"))
 	return rv
 }
-
 // A character set containing the characters in Unicode General Category M*.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/nonBaseCharacters
@@ -102,7 +101,6 @@ func (cc _CharacterSetClass) NonBaseCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("nonBaseCharacterSet"))
 	return rv
 }
-
 // A character set containing the characters in Unicode General Category S*.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/symbols
@@ -110,7 +108,6 @@ func (cc _CharacterSetClass) SymbolCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("symbolCharacterSet"))
 	return rv
 }
-
 // Returns the character set for characters allowed in a path URL component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlPathAllowed
@@ -118,7 +115,6 @@ func (cc _CharacterSetClass) URLPathAllowedCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("URLPathAllowedCharacterSet"))
 	return rv
 }
-
 // Returns the character set for characters allowed in a query URL component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/urlQueryAllowed
@@ -126,7 +122,6 @@ func (cc _CharacterSetClass) URLQueryAllowedCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("URLQueryAllowedCharacterSet"))
 	return rv
 }
-
 // A character set containing the characters in Unicode General Category Zs and ( ).
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespaces
@@ -134,7 +129,6 @@ func (cc _CharacterSetClass) WhitespaceCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("whitespaceCharacterSet"))
 	return rv
 }
-
 // A character set containing characters in Unicode General Category Z*, ~ , and .
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/whitespacesAndNewlines
@@ -142,7 +136,6 @@ func (cc _CharacterSetClass) WhitespaceAndNewlineCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("whitespaceAndNewlineCharacterSet"))
 	return rv
 }
-
 // A character set containing the characters in Unicode General Category Cc and Cf.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCharacterSet/controlCharacters
@@ -214,3 +207,6 @@ func (c_ CharacterSet) WhitespaceAndNewlineCharacterSet() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("whitespaceAndNewlineCharacterSet"))
 	return rv
 }
+
+
+

@@ -80,6 +80,7 @@ func NewInvocation() Invocation {
 	return getInvocationClass().New()
 }
 
+
 // Returns an object able to construct messages using a given method signature.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/invocationWithMethodSignature:
@@ -103,6 +104,7 @@ func (i_ Invocation) Target() objc.ID {
 	return rv
 }
 
+
 // SetTarget sets the value of the target property.
 // The receiver’s target, or if the receiver has no target.
 
@@ -111,3 +113,5 @@ func (i_ Invocation) Target() objc.ID {
 func (i_ Invocation) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTarget:"), value)
 }
+
+

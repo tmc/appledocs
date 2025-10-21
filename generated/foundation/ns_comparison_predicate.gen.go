@@ -80,6 +80,7 @@ func NewComparisonPredicate() ComparisonPredicate {
 	return getComparisonPredicateClass().New()
 }
 
+
 // The right expression for the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSComparisonPredicate/rightExpression
@@ -87,3 +88,6 @@ func (c_ ComparisonPredicate) RightExpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("rightExpression"))
 	return rv
 }
+
+
+

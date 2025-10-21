@@ -117,6 +117,7 @@ func NewDictionary() Dictionary {
 	return getDictionaryClass().New()
 }
 
+
 // Creates a dictionary initialized from data in the provided unarchiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(coder:)
@@ -214,6 +215,7 @@ func NewDictionaryWithObjectsForKeysCount(objects unsafe.Pointer, keys objc.ID, 
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates an empty dictionary.
 //
@@ -642,3 +644,5 @@ func (d_ Dictionary) DescriptionInStringsFileFormat() string {
 	rv := objc.Send[string](d_.ID, objc.Sel("descriptionInStringsFileFormat"))
 	return rv
 }
+
+

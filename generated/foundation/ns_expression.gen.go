@@ -81,6 +81,7 @@ func NewExpression() Expression {
 	return getExpressionClass().New()
 }
 
+
 // Forces a securely decoded expression to allow evaluation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/allowEvaluation()
@@ -119,3 +120,6 @@ func (e_ Expression) TrueExpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("trueExpression"))
 	return rv
 }
+
+
+

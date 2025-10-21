@@ -80,6 +80,7 @@ func NewIndexSpecifier() IndexSpecifier {
 	return getIndexSpecifierClass().New()
 }
 
+
 // Initializes an allocated object with a class description, container specifier, collection key, and object index.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/init(containerClassDescription:containerSpecifier:key:index:)
@@ -90,6 +91,7 @@ func NewIndexSpecifierWithContainerClassDescriptionContainerSpecifierKeyIndex(cl
 	return rv
 }
 
+
 // Sets the value of the receiver’s property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSpecifier/index
@@ -97,6 +99,7 @@ func (i_ IndexSpecifier) Index() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("index"))
 	return rv
 }
+
 
 // SetIndex sets the value of the index property.
 // Sets the value of the receiver’s property.
@@ -106,3 +109,4 @@ func (i_ IndexSpecifier) Index() int {
 func (i_ IndexSpecifier) SetIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIndex:"), value)
 }
+

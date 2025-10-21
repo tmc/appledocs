@@ -96,6 +96,7 @@ func NewMutableArray() MutableArray {
 	return getMutableArrayClass().New()
 }
 
+
 // Initializes a newly allocated mutable array with the contents of the file specified by a given path
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/initWithContentsOfFile:
@@ -115,6 +116,7 @@ func NewMutableArrayWithContentsOfURL(url unsafe.Pointer) MutableArray {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Creates and returns a mutable array containing the contents specified by a given URL.
 //
@@ -235,3 +237,5 @@ func (m_ MutableArray) SortUsingComparator(cmptr unsafe.Pointer) {
 func (m_ MutableArray) SortUsingDescriptors(sortDescriptors unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
+
+

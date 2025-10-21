@@ -80,6 +80,7 @@ func NewPointerArray() PointerArray {
 	return getPointerArrayClass().New()
 }
 
+
 // Returns a new pointer array initialized to use the given options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointerArray/pointerArrayWithOptions:
@@ -135,6 +136,7 @@ func (p_ PointerArray) Count() uint {
 	return rv
 }
 
+
 // SetCount sets the value of the count property.
 // The number of elements in the receiver.
 
@@ -143,3 +145,5 @@ func (p_ PointerArray) Count() uint {
 func (p_ PointerArray) SetCount(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCount:"), value)
 }
+
+

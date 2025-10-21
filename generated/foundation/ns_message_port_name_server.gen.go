@@ -82,6 +82,7 @@ func NewMessagePortNameServer() MessagePortNameServer {
 	return getMessagePortNameServerClass().New()
 }
 
+
 // Returns the object registered under a given name on the local host.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMessagePortNameServer/portForName:
@@ -97,3 +98,6 @@ func (m_ MessagePortNameServer) PortForNameHost(name string, host string) unsafe
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("portForName:host:"), objc.String(name), objc.String(host))
 	return rv
 }
+
+
+

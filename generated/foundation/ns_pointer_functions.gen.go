@@ -78,3 +78,7 @@ func (p_ PointerFunctions) Autorelease() PointerFunctions {
 func NewPointerFunctions() PointerFunctions {
 	return getPointerFunctionsClass().New()
 }
+
+
+
+

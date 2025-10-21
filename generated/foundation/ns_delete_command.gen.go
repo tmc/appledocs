@@ -81,6 +81,7 @@ func NewDeleteCommand() DeleteCommand {
 	return getDeleteCommandClass().New()
 }
 
+
 // Sets the receiver’s object specifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeleteCommand/setReceiversSpecifier(_:)
@@ -95,3 +96,6 @@ func (d_ DeleteCommand) KeySpecifier() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("keySpecifier"))
 	return rv
 }
+
+
+

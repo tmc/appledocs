@@ -80,6 +80,7 @@ func NewSecureUnarchiveFromDataTransformer() SecureUnarchiveFromDataTransformer 
 	return getSecureUnarchiveFromDataTransformerClass().New()
 }
 
+
 // A list of allowed classes the top-level object in an archive must conform to, for encoding and decoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer/allowedTopLevelClasses
@@ -87,7 +88,6 @@ func (sc _SecureUnarchiveFromDataTransformerClass) AllowedTopLevelClasses() []ob
 	rv := objc.Send[[]objc.Class](objc.ID(sc.class), objc.Sel("allowedTopLevelClasses"))
 	return rv
 }
-
 // A list of allowed classes the top-level object in an archive must conform to, for encoding and decoding.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSecureUnarchiveFromDataTransformer/allowedTopLevelClasses
@@ -95,3 +95,6 @@ func (s_ SecureUnarchiveFromDataTransformer) AllowedTopLevelClasses() []objc.Cla
 	rv := objc.Send[[]objc.Class](s_.ID, objc.Sel("allowedTopLevelClasses"))
 	return rv
 }
+
+
+

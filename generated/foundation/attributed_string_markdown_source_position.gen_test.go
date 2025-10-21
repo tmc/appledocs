@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewAttributedStringMarkdownSourcePosition
 
+
 // ExampleNewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn demonstrates how to create a AttributedStringMarkdownSourcePosition instance using NewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn.
 // Creates a Markdown source position instance from its start and end line and column.
 func ExampleNewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEndLineEndColumn() {
@@ -20,3 +21,5 @@ func ExampleNewAttributedStringMarkdownSourcePositionWithStartLineStartColumnEnd
 	)
 	// Output:
 }
+
+

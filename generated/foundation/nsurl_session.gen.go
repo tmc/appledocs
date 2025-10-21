@@ -107,6 +107,7 @@ func NewURLSession() URLSession {
 	return getURLSessionClass().New()
 }
 
+
 // Creates a session with the specified session configuration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:)
@@ -122,6 +123,7 @@ func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration unsafe.Po
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
 }
+
 
 // Creates a session with the specified session configuration.
 //
@@ -146,7 +148,6 @@ func (uc _URLSessionClass) SharedSession() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("sharedSession"))
 	return rv
 }
-
 // Creates a task that retrieves the contents of the specified URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/dataTask(with:)-10dy7
@@ -395,6 +396,7 @@ func (u_ URLSession) SessionDescription() string {
 	return rv
 }
 
+
 // SetSessionDescription sets the value of the sessionDescription property.
 // An app-defined descriptive label for the session.
 
@@ -403,7 +405,6 @@ func (u_ URLSession) SessionDescription() string {
 func (u_ URLSession) SetSessionDescription(value string) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), objc.String(value))
 }
-
 // The shared singleton session object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/shared
@@ -411,3 +412,5 @@ func (u_ URLSession) SharedSession() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("sharedSession"))
 	return rv
 }
+
+

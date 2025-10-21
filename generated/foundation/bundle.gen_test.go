@@ -9,6 +9,8 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewBundle
 
+
+
 // ExampleNewBundleWithIdentifier demonstrates how to create a Bundle instance using NewBundleWithIdentifier.
 // Returns the   instance that has the specified bundle identifier.
 func ExampleNewBundleWithIdentifier() {
@@ -26,3 +28,6 @@ func ExampleNewBundleWithPath() {
 	)
 	// Output:
 }
+
+
+

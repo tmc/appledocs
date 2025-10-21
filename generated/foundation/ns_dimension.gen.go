@@ -80,6 +80,7 @@ func NewDimension() Dimension {
 	return getDimensionClass().New()
 }
 
+
 // Initializes a dimensional unit with the symbol and unit converter you specify.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/init(symbol:converter:)
@@ -89,6 +90,7 @@ func NewDimensionWithSymbolConverter(symbol string, converter unsafe.Pointer) Di
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns the base unit.
 //
@@ -105,3 +107,5 @@ func (d_ Dimension) Converter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("converter"))
 	return rv
 }
+
+

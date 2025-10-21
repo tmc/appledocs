@@ -78,3 +78,7 @@ func (r_ RegularExpression) Autorelease() RegularExpression {
 func NewRegularExpression() RegularExpression {
 	return getRegularExpressionClass().New()
 }
+
+
+
+

@@ -88,6 +88,7 @@ func NewMutableString() MutableString {
 	return getMutableStringClass().New()
 }
 
+
 // Returns an object initialized with initial storage for a given number of characters,
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableString/init(capacity:)
@@ -97,6 +98,7 @@ func NewMutableStringWithCapacity(capacity uint) MutableString {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns an empty object with initial storage for a given number of characters.
 //
@@ -163,3 +165,5 @@ func (m_ MutableString) ReplaceOccurrencesOfStringWithStringOptionsRange(target 
 func (m_ MutableString) SetString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setString:"), objc.String(aString))
 }
+
+

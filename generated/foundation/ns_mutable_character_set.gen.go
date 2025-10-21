@@ -84,6 +84,7 @@ func NewMutableCharacterSet() MutableCharacterSet {
 	return getMutableCharacterSetClass().New()
 }
 
+
 // Returns a character set read from the bitmap representation stored in the file a given path.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableCharacterSet/init(contentsOfFile:)
@@ -99,6 +100,7 @@ func NewMutableCharacterSetWithRange(aRange Range) MutableCharacterSet {
 	rv := objc.Send[MutableCharacterSet](objc.ID(getMutableCharacterSetClass().class), objc.Sel("characterSetWithRange:"), aRange)
 	return rv
 }
+
 
 // Returns a character set containing the characters in Unicode General Categories L*, M*, and N*.
 //
@@ -231,3 +233,5 @@ func (m_ MutableCharacterSet) Invert() {
 func (m_ MutableCharacterSet) RemoveCharactersInString(aString string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("removeCharactersInString:"), objc.String(aString))
 }
+
+

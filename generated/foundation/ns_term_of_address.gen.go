@@ -79,9 +79,13 @@ func NewTermOfAddress() TermOfAddress {
 	return getTermOfAddressClass().New()
 }
 
+
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/masculine
 func (tc _TermOfAddressClass) Masculine() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("masculine"))
 	return rv
 }
+
+
+

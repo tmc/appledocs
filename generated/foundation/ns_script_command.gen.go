@@ -80,6 +80,7 @@ func NewScriptCommand() ScriptCommand {
 	return getScriptCommandClass().New()
 }
 
+
 // Overridden by subclasses to provide a default implementation for the command represented by the receiver.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/performDefaultImplementation()
@@ -104,6 +105,7 @@ func (s_ ScriptCommand) ReceiversSpecifier() unsafe.Pointer {
 	return rv
 }
 
+
 // SetReceiversSpecifier sets the value of the receiversSpecifier property.
 // Sets the object specifier to that, when evaluated, indicates the receiver or receivers of the command.
 
@@ -112,3 +114,5 @@ func (s_ ScriptCommand) ReceiversSpecifier() unsafe.Pointer {
 func (s_ ScriptCommand) SetReceiversSpecifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReceiversSpecifier:"), value)
 }
+
+

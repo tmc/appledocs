@@ -15,3 +15,5 @@ var URLDownloadDelegateProtocol *objc.Protocol
 func init() {
 	URLDownloadDelegateProtocol = objc.GetProtocol("NSURLDownloadDelegate")
 }
+
+

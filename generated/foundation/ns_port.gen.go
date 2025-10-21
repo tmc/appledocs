@@ -82,6 +82,7 @@ func NewPort() Port {
 	return getPortClass().New()
 }
 
+
 // Creates and returns a new object capable of both sending and receiving messages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPort/port
@@ -112,3 +113,6 @@ func (p_ Port) SendBeforeDateComponentsFromReserved(limitDate unsafe.Pointer, co
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:components:from:reserved:"), limitDate, components, receivePort, headerSpaceReserved)
 	return rv
 }
+
+
+

@@ -81,6 +81,7 @@ func NewXPCListener() XPCListener {
 	return getXPCListenerClass().New()
 }
 
+
 // Initializes a listener in a LaunchAgent or LaunchDaemon which has a name advertised in a file.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSXPCListener/init(machServiceName:)
@@ -90,6 +91,7 @@ func NewXPCListenerWithMachServiceName(name string) XPCListener {
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns a new anonymous listener connection.
 //
@@ -120,3 +122,5 @@ func (x_ XPCListener) Endpoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("endpoint"))
 	return rv
 }
+
+

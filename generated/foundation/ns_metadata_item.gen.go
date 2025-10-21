@@ -78,3 +78,7 @@ func (m_ MetadataItem) Autorelease() MetadataItem {
 func NewMetadataItem() MetadataItem {
 	return getMetadataItemClass().New()
 }
+
+
+
+

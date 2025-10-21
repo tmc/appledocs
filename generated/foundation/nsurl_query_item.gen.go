@@ -79,6 +79,7 @@ func NewURLQueryItem() URLQueryItem {
 	return getURLQueryItemClass().New()
 }
 
+
 // The value for the query item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLQueryItem/value
@@ -86,3 +87,6 @@ func (u_ URLQueryItem) Value() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("value"))
 	return rv
 }
+
+
+

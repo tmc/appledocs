@@ -9,6 +9,7 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewTimeZone
 
+
 // ExampleNewTimeZoneForSecondsFromGMT demonstrates how to create a TimeZone instance using NewTimeZoneForSecondsFromGMT.
 // Returns a time zone object offset from Greenwich Mean Time by a given number of seconds.
 func ExampleNewTimeZoneForSecondsFromGMT() {
@@ -35,3 +36,5 @@ func ExampleNewTimeZoneWithName() {
 	)
 	// Output:
 }
+
+

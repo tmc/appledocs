@@ -80,6 +80,7 @@ func NewUnitAcceleration() UnitAcceleration {
 	return getUnitAccelerationClass().New()
 }
 
+
 // Returns the meter per second squared unit of acceleration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
@@ -87,7 +88,6 @@ func (uc _UnitAccelerationClass) MetersPerSecondSquared() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("metersPerSecondSquared"))
 	return rv
 }
-
 // Returns the meter per second squared unit of acceleration.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitAcceleration/metersPerSecondSquared
@@ -95,3 +95,6 @@ func (u_ UnitAcceleration) MetersPerSecondSquared() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("metersPerSecondSquared"))
 	return rv
 }
+
+
+

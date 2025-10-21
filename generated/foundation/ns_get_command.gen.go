@@ -79,3 +79,7 @@ func (g_ GetCommand) Autorelease() GetCommand {
 func NewGetCommand() GetCommand {
 	return getGetCommandClass().New()
 }
+
+
+
+

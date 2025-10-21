@@ -79,6 +79,7 @@ func NewUserNotificationAction() UserNotificationAction {
 	return getUserNotificationActionClass().New()
 }
 
+
 // Creates a user notification action with a specified identifier and title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationAction/init(identifier:title:)
@@ -86,6 +87,7 @@ func NewUserNotificationActionWithIdentifierTitle(identifier string, title strin
 	rv := objc.Send[UserNotificationAction](objc.ID(getUserNotificationActionClass().class), objc.Sel("actionWithIdentifier:title:"), objc.String(identifier), objc.String(title))
 	return rv
 }
+
 
 // Creates a user notification action with a specified identifier and title.
 //
@@ -110,3 +112,5 @@ func (u_ UserNotificationAction) Title() string {
 	rv := objc.Send[string](u_.ID, objc.Sel("title"))
 	return rv
 }
+
+

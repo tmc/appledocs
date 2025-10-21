@@ -81,6 +81,7 @@ func NewMetadataQuery() MetadataQuery {
 	return getMetadataQueryClass().New()
 }
 
+
 // Enumerates the current set of results using the given block.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/enumerateResults(_:)
@@ -104,6 +105,7 @@ func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
 	return rv
 }
 
+
 // SetNotificationBatchingInterval sets the value of the notificationBatchingInterval property.
 // The interval at which notification of updated results occurs.
 
@@ -112,7 +114,6 @@ func (m_ MetadataQuery) NotificationBatchingInterval() TimeInterval {
 func (m_ MetadataQuery) SetNotificationBatchingInterval(value TimeInterval) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNotificationBatchingInterval:"), value)
 }
-
 // The queue on which query result notifications are posted.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/operationQueue
@@ -120,6 +121,7 @@ func (m_ MetadataQuery) OperationQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationQueue"))
 	return rv
 }
+
 
 // SetOperationQueue sets the value of the operationQueue property.
 // The queue on which query result notifications are posted.
@@ -129,7 +131,6 @@ func (m_ MetadataQuery) OperationQueue() unsafe.Pointer {
 func (m_ MetadataQuery) SetOperationQueue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationQueue:"), value)
 }
-
 // The predicate used to filter query results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/predicate
@@ -137,6 +138,7 @@ func (m_ MetadataQuery) Predicate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("predicate"))
 	return rv
 }
+
 
 // SetPredicate sets the value of the predicate property.
 // The predicate used to filter query results.
@@ -146,7 +148,6 @@ func (m_ MetadataQuery) Predicate() unsafe.Pointer {
 func (m_ MetadataQuery) SetPredicate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPredicate:"), value)
 }
-
 // An array containing the query’s results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMetadataQuery/results
@@ -163,6 +164,7 @@ func (m_ MetadataQuery) SearchScopes() unsafe.Pointer {
 	return rv
 }
 
+
 // SetSearchScopes sets the value of the searchScopes property.
 // An array containing the search scopes.
 
@@ -171,3 +173,5 @@ func (m_ MetadataQuery) SearchScopes() unsafe.Pointer {
 func (m_ MetadataQuery) SetSearchScopes(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchScopes:"), value)
 }
+
+

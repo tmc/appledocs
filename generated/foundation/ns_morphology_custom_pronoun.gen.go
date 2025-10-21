@@ -79,6 +79,7 @@ func NewMorphologyCustomPronoun() MorphologyCustomPronoun {
 	return getMorphologyCustomPronounClass().New()
 }
 
+
 // The reflexive pronoun form to apply when using this custom pronoun behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMorphologyCustomPronoun/reflexiveForm
@@ -86,6 +87,7 @@ func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
 	rv := objc.Send[string](m_.ID, objc.Sel("reflexiveForm"))
 	return rv
 }
+
 
 // SetReflexiveForm sets the value of the reflexiveForm property.
 // The reflexive pronoun form to apply when using this custom pronoun behavior.
@@ -95,3 +97,5 @@ func (m_ MorphologyCustomPronoun) ReflexiveForm() string {
 func (m_ MorphologyCustomPronoun) SetReflexiveForm(value string) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReflexiveForm:"), objc.String(value))
 }
+
+

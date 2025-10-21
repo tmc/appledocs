@@ -81,6 +81,7 @@ func NewURLDownload() URLDownload {
 	return getURLDownloadClass().New()
 }
 
+
 // Returns an initialized URL download for a URL request and begins to download the data for the request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
@@ -100,6 +101,7 @@ func NewURLDownloadWithResumeDataDelegatePath(resumeData unsafe.Pointer, delegat
 	rv.Autorelease()
 	return rv
 }
+
 
 // Returns whether a URL download object can resume a download that was decoded with the specified MIME type.
 //
@@ -131,6 +133,7 @@ func (u_ URLDownload) DeletesFileUponFailure() bool {
 	return rv
 }
 
+
 // SetDeletesFileUponFailure sets the value of the deletesFileUponFailure property.
 // Returns whether the receiver deletes partially downloaded files when a download stops prematurely.
 
@@ -139,7 +142,6 @@ func (u_ URLDownload) DeletesFileUponFailure() bool {
 func (u_ URLDownload) SetDeletesFileUponFailure(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDeletesFileUponFailure:"), value)
 }
-
 // Returns the request that initiated the receiver’s download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/request
@@ -155,3 +157,5 @@ func (u_ URLDownload) ResumeData() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("resumeData"))
 	return rv
 }
+
+

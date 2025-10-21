@@ -79,6 +79,7 @@ func NewURLAuthenticationChallenge() URLAuthenticationChallenge {
 	return getURLAuthenticationChallengeClass().New()
 }
 
+
 // The URL response object representing the last authentication failure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLAuthenticationChallenge/failureResponse
@@ -110,3 +111,6 @@ func (u_ URLAuthenticationChallenge) Sender() objc.ID {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("sender"))
 	return rv
 }
+
+
+

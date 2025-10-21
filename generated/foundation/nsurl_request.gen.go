@@ -79,6 +79,7 @@ func NewURLRequest() URLRequest {
 	return getURLRequestClass().New()
 }
 
+
 // A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLRequest/allowsConstrainedNetworkAccess
@@ -109,3 +110,6 @@ func (u_ URLRequest) NetworkServiceType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("networkServiceType"))
 	return rv
 }
+
+
+

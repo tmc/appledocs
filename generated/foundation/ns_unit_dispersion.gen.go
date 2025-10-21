@@ -80,6 +80,7 @@ func NewUnitDispersion() UnitDispersion {
 	return getUnitDispersionClass().New()
 }
 
+
 // The parts per million unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion/partsPerMillion
@@ -87,7 +88,6 @@ func (uc _UnitDispersionClass) PartsPerMillion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(uc.class), objc.Sel("partsPerMillion"))
 	return rv
 }
-
 // The parts per million unit.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitDispersion/partsPerMillion
@@ -95,3 +95,6 @@ func (u_ UnitDispersion) PartsPerMillion() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("partsPerMillion"))
 	return rv
 }
+
+
+

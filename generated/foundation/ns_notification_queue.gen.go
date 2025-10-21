@@ -82,6 +82,7 @@ func NewNotificationQueue() NotificationQueue {
 	return getNotificationQueueClass().New()
 }
 
+
 // Initializes and returns a notification queue for the specified notification center.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/init(notificationCenter:)
@@ -92,6 +93,7 @@ func NewNotificationQueueWithNotificationCenter(notificationCenter unsafe.Pointe
 	return rv
 }
 
+
 // Returns the default notification queue for the current thread.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/default
@@ -99,7 +101,6 @@ func (nc _NotificationQueueClass) DefaultQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("defaultQueue"))
 	return rv
 }
-
 // Removes all notifications from the queue that match a provided notification using provided matching criteria.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NotificationQueue/dequeueNotifications(matching:coalesceMask:)
@@ -128,3 +129,5 @@ func (n_ NotificationQueue) DefaultQueue() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("defaultQueue"))
 	return rv
 }
+
+
