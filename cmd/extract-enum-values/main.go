@@ -1,0 +1,113 @@
+package main
+
+import (
+	"bufio"
+	"encoding/json"
+	"fmt"
+	"os"
+	"os/exec"
+	"regexp"
+	"strconv"
+	"strings"
+)
+
+type EnumValue struct {
+	Name  string `json:"name"`
+	Value int    `json:"value"`
+}
+
+type Enum struct {
+	Name   string      `json:"name"`
+	Values []EnumValue `json:"values"`
+}
+
+func main() {
+	if len(os.Args) < 3 {
+		fmt.Fprintf(os.Stderr, "Usage: %s <framework> <enum_name>\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "Example: %s AppKit NSBackingStoreType\n", os.Args[0])
+		os.Exit(1)
+	}
+
+	framework := os.Args[1]
+	enumName := os.Args[2]
+
+	enum, err := extractEnumValues(framework, enumName)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Output as JSON
+	enc := json.NewEncoder(os.Stdout)
+	enc.SetIndent("", "  ")
+	if err := enc.Encode(enum); err != nil {
+		fmt.Fprintf(os.Stderr, "Error encoding JSON: %v\n", err)
+		os.Exit(1)
+	}
+}
+
+func extractEnumValues(framework, enumName string) (*Enum, error) {
+	// Run clang preprocessor
+	cmd := exec.Command("clang", "-x", "objective-c", "-E", "-")
+	cmd.Stdin = strings.NewReader(fmt.Sprintf("#import <%s/%s.h>", framework, framework))
+	cmd.Stderr = os.Stderr
+	output, err := cmd.Output()
+	if err != nil {
+		return nil, fmt.Errorf("running clang: %w", err)
+	}
+
+	// Parse the output to find the enum
+	scanner := bufio.NewScanner(strings.NewReader(string(output)))
+	inEnum := false
+	enumPattern := regexp.MustCompile(`enum\s+` + regexp.QuoteMeta(enumName) + `\s*:\s*\w+\s*\{`)
+	valuePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__\(\([^)]+\)\)\s*)?=\s*(\d+)`)
+	namePattern := regexp.MustCompile(`^\s*([A-Z][A-Za-z0-9_]+)\s*(?:__attribute__|,)`)
+
+	result := &Enum{
+		Name:   enumName,
+		Values: []EnumValue{},
+	}
+	currentValue := 0
+
+	for scanner.Scan() {
+		line := scanner.Text()
+
+		if enumPattern.MatchString(line) {
+			inEnum = true
+			continue
+		}
+
+		if inEnum {
+			if strings.Contains(line, "};") {
+				break
+			}
+
+			// Try explicit value first
+			matches := valuePattern.FindStringSubmatch(line)
+			if len(matches) >= 3 {
+				val, _ := strconv.Atoi(matches[2])
+				result.Values = append(result.Values, EnumValue{
+					Name:  matches[1],
+					Value: val,
+				})
+				currentValue = val + 1
+				continue
+			}
+
+			// Try implicit value (no = assignment)
+			matches = namePattern.FindStringSubmatch(line)
+			if len(matches) >= 2 {
+				result.Values = append(result.Values, EnumValue{
+					Name:  matches[1],
+					Value: currentValue,
+				})
+				currentValue++
+			}
+		}
+	}
+
+	if len(result.Values) == 0 {
+		return nil, fmt.Errorf("enum %s not found in %s framework", enumName, framework)
+	}
+
+	return result, nil}
